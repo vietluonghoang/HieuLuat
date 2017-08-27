@@ -1,0 +1,709 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		20279DE0C4C4A62F0030B572 /* Pods_HieuLuat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2F4D9953D61DA1A8A51262 /* Pods_HieuLuat.framework */; };
+		33D305291F51794F00547497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305281F51794F00547497 /* AppDelegate.swift */; };
+		33D3052B1F51794F00547497 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3052A1F51794F00547497 /* ViewController.swift */; };
+		33D3052E1F51794F00547497 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33D3052C1F51794F00547497 /* Main.storyboard */; };
+		33D305301F51794F00547497 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33D3052F1F51794F00547497 /* Assets.xcassets */; };
+		33D305331F51794F00547497 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33D305311F51794F00547497 /* LaunchScreen.storyboard */; };
+		33D3053E1F51794F00547497 /* HieuLuatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3053D1F51794F00547497 /* HieuLuatTests.swift */; };
+		33D305491F51794F00547497 /* HieuLuatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305481F51794F00547497 /* HieuLuatUITests.swift */; };
+		33D305581F517BA800547497 /* Hieuluat.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 33D305571F517BA800547497 /* Hieuluat.sqlite */; };
+		33D3055B1F517D6F00547497 /* DataConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3055A1F517D6F00547497 /* DataConnection.swift */; };
+		33D3055D1F517F2B00547497 /* SearchFor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3055C1F517F2B00547497 /* SearchFor.swift */; };
+		33D3055F1F517F5800547497 /* Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3055E1F517F5800547497 /* Queries.swift */; };
+		33D305621F517FB900547497 /* Dieukhoan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305611F517FB900547497 /* Dieukhoan.swift */; };
+		33D305641F517FF500547497 /* Coquanbanhanh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305631F517FF500547497 /* Coquanbanhanh.swift */; };
+		33D305661F51802700547497 /* Loaivanban.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305651F51802700547497 /* Loaivanban.swift */; };
+		33D305681F51804F00547497 /* Vanban.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305671F51804F00547497 /* Vanban.swift */; };
+		33D3056B1F51F76800547497 /* QC41SearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3056A1F51F76800547497 /* QC41SearchTableController.swift */; };
+		33D3056D1F51F82A00547497 /* QC41DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3056C1F51F82A00547497 /* QC41DetailsViewController.swift */; };
+		33D3056F1F51F8DC00547497 /* DieukhoanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3056E1F51F8DC00547497 /* DieukhoanTableViewCell.swift */; };
+		33D305711F52A3DD00547497 /* QC41SeemoreTableviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305701F52A3DD00547497 /* QC41SeemoreTableviewCell.swift */; };
+		33D305731F52A4FF00547497 /* QC41SeemoreTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305721F52A4FF00547497 /* QC41SeemoreTableController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		33D3053A1F51794F00547497 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33D3051D1F51794F00547497 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33D305241F51794F00547497;
+			remoteInfo = HieuLuat;
+		};
+		33D305451F51794F00547497 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33D3051D1F51794F00547497 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33D305241F51794F00547497;
+			remoteInfo = HieuLuat;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		33D305251F51794F00547497 /* HieuLuat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HieuLuat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		33D305281F51794F00547497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		33D3052A1F51794F00547497 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		33D3052D1F51794F00547497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		33D3052F1F51794F00547497 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		33D305321F51794F00547497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		33D305341F51794F00547497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33D305391F51794F00547497 /* HieuLuatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HieuLuatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		33D3053D1F51794F00547497 /* HieuLuatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HieuLuatTests.swift; sourceTree = "<group>"; };
+		33D3053F1F51794F00547497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33D305441F51794F00547497 /* HieuLuatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HieuLuatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		33D305481F51794F00547497 /* HieuLuatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HieuLuatUITests.swift; sourceTree = "<group>"; };
+		33D3054A1F51794F00547497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33D305571F517BA800547497 /* Hieuluat.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hieuluat.sqlite; sourceTree = "<group>"; };
+		33D3055A1F517D6F00547497 /* DataConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataConnection.swift; sourceTree = "<group>"; };
+		33D3055C1F517F2B00547497 /* SearchFor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFor.swift; sourceTree = "<group>"; };
+		33D3055E1F517F5800547497 /* Queries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queries.swift; sourceTree = "<group>"; };
+		33D305611F517FB900547497 /* Dieukhoan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dieukhoan.swift; sourceTree = "<group>"; };
+		33D305631F517FF500547497 /* Coquanbanhanh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coquanbanhanh.swift; sourceTree = "<group>"; };
+		33D305651F51802700547497 /* Loaivanban.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loaivanban.swift; sourceTree = "<group>"; };
+		33D305671F51804F00547497 /* Vanban.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vanban.swift; sourceTree = "<group>"; };
+		33D3056A1F51F76800547497 /* QC41SearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QC41SearchTableController.swift; sourceTree = "<group>"; };
+		33D3056C1F51F82A00547497 /* QC41DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QC41DetailsViewController.swift; sourceTree = "<group>"; };
+		33D3056E1F51F8DC00547497 /* DieukhoanTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DieukhoanTableViewCell.swift; sourceTree = "<group>"; };
+		33D305701F52A3DD00547497 /* QC41SeemoreTableviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QC41SeemoreTableviewCell.swift; sourceTree = "<group>"; };
+		33D305721F52A4FF00547497 /* QC41SeemoreTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QC41SeemoreTableController.swift; sourceTree = "<group>"; };
+		72E93BC1C30A83EE28D1AC21 /* Pods-HieuLuat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat.debug.xcconfig"; sourceTree = "<group>"; };
+		9017557B072E220F7AC12647 /* Pods-HieuLuat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.release.xcconfig"; path = "Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat.release.xcconfig"; sourceTree = "<group>"; };
+		CA2F4D9953D61DA1A8A51262 /* Pods_HieuLuat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HieuLuat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		33D305221F51794F00547497 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20279DE0C4C4A62F0030B572 /* Pods_HieuLuat.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33D305361F51794F00547497 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33D305411F51794F00547497 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		33D3051C1F51794F00547497 = {
+			isa = PBXGroup;
+			children = (
+				33D305691F51F73500547497 /* UI */,
+				33D305601F517F8600547497 /* Entities */,
+				33D305591F517D5000547497 /* Utils */,
+				33D305561F517B8700547497 /* Data */,
+				33D305271F51794F00547497 /* HieuLuat */,
+				33D3053C1F51794F00547497 /* HieuLuatTests */,
+				33D305471F51794F00547497 /* HieuLuatUITests */,
+				33D305261F51794F00547497 /* Products */,
+				591EC7CE7A54DABE4D14BD32 /* Pods */,
+				CD71561126F08633F40F836C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		33D305261F51794F00547497 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				33D305251F51794F00547497 /* HieuLuat.app */,
+				33D305391F51794F00547497 /* HieuLuatTests.xctest */,
+				33D305441F51794F00547497 /* HieuLuatUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		33D305271F51794F00547497 /* HieuLuat */ = {
+			isa = PBXGroup;
+			children = (
+				33D305281F51794F00547497 /* AppDelegate.swift */,
+				33D3052A1F51794F00547497 /* ViewController.swift */,
+				33D3052C1F51794F00547497 /* Main.storyboard */,
+				33D3052F1F51794F00547497 /* Assets.xcassets */,
+				33D305311F51794F00547497 /* LaunchScreen.storyboard */,
+				33D305341F51794F00547497 /* Info.plist */,
+			);
+			path = HieuLuat;
+			sourceTree = "<group>";
+		};
+		33D3053C1F51794F00547497 /* HieuLuatTests */ = {
+			isa = PBXGroup;
+			children = (
+				33D3053D1F51794F00547497 /* HieuLuatTests.swift */,
+				33D3053F1F51794F00547497 /* Info.plist */,
+			);
+			path = HieuLuatTests;
+			sourceTree = "<group>";
+		};
+		33D305471F51794F00547497 /* HieuLuatUITests */ = {
+			isa = PBXGroup;
+			children = (
+				33D305481F51794F00547497 /* HieuLuatUITests.swift */,
+				33D3054A1F51794F00547497 /* Info.plist */,
+			);
+			path = HieuLuatUITests;
+			sourceTree = "<group>";
+		};
+		33D305561F517B8700547497 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				33D305571F517BA800547497 /* Hieuluat.sqlite */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		33D305591F517D5000547497 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				33D3055A1F517D6F00547497 /* DataConnection.swift */,
+				33D3055C1F517F2B00547497 /* SearchFor.swift */,
+				33D3055E1F517F5800547497 /* Queries.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		33D305601F517F8600547497 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				33D305611F517FB900547497 /* Dieukhoan.swift */,
+				33D305631F517FF500547497 /* Coquanbanhanh.swift */,
+				33D305651F51802700547497 /* Loaivanban.swift */,
+				33D305671F51804F00547497 /* Vanban.swift */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		33D305691F51F73500547497 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				33D3056A1F51F76800547497 /* QC41SearchTableController.swift */,
+				33D3056C1F51F82A00547497 /* QC41DetailsViewController.swift */,
+				33D3056E1F51F8DC00547497 /* DieukhoanTableViewCell.swift */,
+				33D305701F52A3DD00547497 /* QC41SeemoreTableviewCell.swift */,
+				33D305721F52A4FF00547497 /* QC41SeemoreTableController.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		591EC7CE7A54DABE4D14BD32 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				72E93BC1C30A83EE28D1AC21 /* Pods-HieuLuat.debug.xcconfig */,
+				9017557B072E220F7AC12647 /* Pods-HieuLuat.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CD71561126F08633F40F836C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CA2F4D9953D61DA1A8A51262 /* Pods_HieuLuat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		33D305241F51794F00547497 /* HieuLuat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33D3054D1F51794F00547497 /* Build configuration list for PBXNativeTarget "HieuLuat" */;
+			buildPhases = (
+				CC81A362C19F5B1802AC5F2E /* [CP] Check Pods Manifest.lock */,
+				33D305211F51794F00547497 /* Sources */,
+				33D305221F51794F00547497 /* Frameworks */,
+				33D305231F51794F00547497 /* Resources */,
+				7E01514F7D3D0D5E06B4A2AD /* [CP] Embed Pods Frameworks */,
+				820A3110A9E91F5AC6F3EBC0 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HieuLuat;
+			productName = HieuLuat;
+			productReference = 33D305251F51794F00547497 /* HieuLuat.app */;
+			productType = "com.apple.product-type.application";
+		};
+		33D305381F51794F00547497 /* HieuLuatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33D305501F51794F00547497 /* Build configuration list for PBXNativeTarget "HieuLuatTests" */;
+			buildPhases = (
+				33D305351F51794F00547497 /* Sources */,
+				33D305361F51794F00547497 /* Frameworks */,
+				33D305371F51794F00547497 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				33D3053B1F51794F00547497 /* PBXTargetDependency */,
+			);
+			name = HieuLuatTests;
+			productName = HieuLuatTests;
+			productReference = 33D305391F51794F00547497 /* HieuLuatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		33D305431F51794F00547497 /* HieuLuatUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33D305531F51794F00547497 /* Build configuration list for PBXNativeTarget "HieuLuatUITests" */;
+			buildPhases = (
+				33D305401F51794F00547497 /* Sources */,
+				33D305411F51794F00547497 /* Frameworks */,
+				33D305421F51794F00547497 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				33D305461F51794F00547497 /* PBXTargetDependency */,
+			);
+			name = HieuLuatUITests;
+			productName = HieuLuatUITests;
+			productReference = 33D305441F51794F00547497 /* HieuLuatUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		33D3051D1F51794F00547497 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = VietLH;
+				TargetAttributes = {
+					33D305241F51794F00547497 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = D95825NFBM;
+						ProvisioningStyle = Automatic;
+					};
+					33D305381F51794F00547497 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = D95825NFBM;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 33D305241F51794F00547497;
+					};
+					33D305431F51794F00547497 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = D95825NFBM;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 33D305241F51794F00547497;
+					};
+				};
+			};
+			buildConfigurationList = 33D305201F51794F00547497 /* Build configuration list for PBXProject "HieuLuat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 33D3051C1F51794F00547497;
+			productRefGroup = 33D305261F51794F00547497 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				33D305241F51794F00547497 /* HieuLuat */,
+				33D305381F51794F00547497 /* HieuLuatTests */,
+				33D305431F51794F00547497 /* HieuLuatUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		33D305231F51794F00547497 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33D305581F517BA800547497 /* Hieuluat.sqlite in Resources */,
+				33D305331F51794F00547497 /* LaunchScreen.storyboard in Resources */,
+				33D305301F51794F00547497 /* Assets.xcassets in Resources */,
+				33D3052E1F51794F00547497 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33D305371F51794F00547497 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33D305421F51794F00547497 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7E01514F7D3D0D5E06B4A2AD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		820A3110A9E91F5AC6F3EBC0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC81A362C19F5B1802AC5F2E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HieuLuat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		33D305211F51794F00547497 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33D305711F52A3DD00547497 /* QC41SeemoreTableviewCell.swift in Sources */,
+				33D3055F1F517F5800547497 /* Queries.swift in Sources */,
+				33D3056B1F51F76800547497 /* QC41SearchTableController.swift in Sources */,
+				33D3056F1F51F8DC00547497 /* DieukhoanTableViewCell.swift in Sources */,
+				33D305731F52A4FF00547497 /* QC41SeemoreTableController.swift in Sources */,
+				33D305641F517FF500547497 /* Coquanbanhanh.swift in Sources */,
+				33D305681F51804F00547497 /* Vanban.swift in Sources */,
+				33D3052B1F51794F00547497 /* ViewController.swift in Sources */,
+				33D305291F51794F00547497 /* AppDelegate.swift in Sources */,
+				33D3055B1F517D6F00547497 /* DataConnection.swift in Sources */,
+				33D305621F517FB900547497 /* Dieukhoan.swift in Sources */,
+				33D3056D1F51F82A00547497 /* QC41DetailsViewController.swift in Sources */,
+				33D305661F51802700547497 /* Loaivanban.swift in Sources */,
+				33D3055D1F517F2B00547497 /* SearchFor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33D305351F51794F00547497 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33D3053E1F51794F00547497 /* HieuLuatTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33D305401F51794F00547497 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33D305491F51794F00547497 /* HieuLuatUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		33D3053B1F51794F00547497 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33D305241F51794F00547497 /* HieuLuat */;
+			targetProxy = 33D3053A1F51794F00547497 /* PBXContainerItemProxy */;
+		};
+		33D305461F51794F00547497 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33D305241F51794F00547497 /* HieuLuat */;
+			targetProxy = 33D305451F51794F00547497 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		33D3052C1F51794F00547497 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33D3052D1F51794F00547497 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		33D305311F51794F00547497 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33D305321F51794F00547497 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		33D3054B1F51794F00547497 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		33D3054C1F51794F00547497 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		33D3054E1F51794F00547497 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72E93BC1C30A83EE28D1AC21 /* Pods-HieuLuat.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = D95825NFBM;
+				INFOPLIST_FILE = HieuLuat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.HieuLuat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		33D3054F1F51794F00547497 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9017557B072E220F7AC12647 /* Pods-HieuLuat.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = D95825NFBM;
+				INFOPLIST_FILE = HieuLuat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.HieuLuat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		33D305511F51794F00547497 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = D95825NFBM;
+				INFOPLIST_FILE = HieuLuatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.HieuLuatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HieuLuat.app/HieuLuat";
+			};
+			name = Debug;
+		};
+		33D305521F51794F00547497 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = D95825NFBM;
+				INFOPLIST_FILE = HieuLuatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.HieuLuatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HieuLuat.app/HieuLuat";
+			};
+			name = Release;
+		};
+		33D305541F51794F00547497 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = D95825NFBM;
+				INFOPLIST_FILE = HieuLuatUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.HieuLuatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = HieuLuat;
+			};
+			name = Debug;
+		};
+		33D305551F51794F00547497 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = D95825NFBM;
+				INFOPLIST_FILE = HieuLuatUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.HieuLuatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = HieuLuat;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		33D305201F51794F00547497 /* Build configuration list for PBXProject "HieuLuat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33D3054B1F51794F00547497 /* Debug */,
+				33D3054C1F51794F00547497 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33D3054D1F51794F00547497 /* Build configuration list for PBXNativeTarget "HieuLuat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33D3054E1F51794F00547497 /* Debug */,
+				33D3054F1F51794F00547497 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33D305501F51794F00547497 /* Build configuration list for PBXNativeTarget "HieuLuatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33D305511F51794F00547497 /* Debug */,
+				33D305521F51794F00547497 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33D305531F51794F00547497 /* Build configuration list for PBXNativeTarget "HieuLuatUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33D305541F51794F00547497 /* Debug */,
+				33D305551F51794F00547497 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 33D3051D1F51794F00547497 /* Project object */;
+}
