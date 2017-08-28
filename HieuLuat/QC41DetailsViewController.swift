@@ -40,7 +40,7 @@ class QC41DetailsViewController: UIViewController {
         
         
         if(children.count>0){
-            lblSeeMore.setTitle("Xem thêm", for: .normal)
+            lblSeeMore.setTitle("Xem các điều khoản liên quan", for: .normal)
         }else{
             lblSeeMore.setTitle("", for: .normal)
         }

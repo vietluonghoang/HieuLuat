@@ -44,53 +44,38 @@ class QC41SeemoreTableController: UITableViewController {
      }
      */
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
-//        
-//        super.prepare(for: segue, sender: sender)
-//        
-//        switch(segue.identifier ?? "") {
-//            
-//            //        case "AddItem":
-//            //            os_log("Adding a new meal.", log: OSLog.default, type: .debug)
-//            
-//        case "showDieukhoan":
-//            guard let dieukhoanDetails = segue.destination as? QC41DetailsViewController else {
-//                fatalError("Unexpected destination: \(segue.destination)")
-//            }
-//            
-//            guard let selectedDieukhoanCell = sender as? DieukhoanTableViewCell else {
-//                fatalError("Unexpected sender: \(String(describing: sender))")
-//            }
-//            
-//            guard let indexPath = tblView.indexPath(for: selectedDieukhoanCell) else {
-//                fatalError("The selected cell is not being displayed by the table")
-//            }
-//            
-//            let selectedDieukhoan = dieukhoanList[indexPath.row]
-//            dieukhoanDetails.updateDetails(dieukhoan: selectedDieukhoan)
-//            //        case "viewImages":
-//            //            guard let imageViews = segue.destination as? ImageViewController else {
-//            //                fatalError("Unexpected destination: \(segue.destination)")
-//            //            }
-//            //
-//            //            guard let selectedDieukhoanCell = sender as? DieukhoanTableViewCell else {
-//            //                fatalError("Unexpected sender: \(String(describing: sender))")
-//            //            }
-//            //
-//            //            guard let indexPath = tblView.indexPath(for: selectedDieukhoanCell) else {
-//            //                fatalError("The selected cell is not being displayed by the table")
-//            //            }
-//            //
-//            //            let images:[String] = ["QC41-Hinh_33","QC41-Hinh_33","QC41-Hinh_33","QC41-Hinh_33","QC41-Hinh_33","QC41-Hinh_33"]
-//            //
-//            //            imageViews.updateImages(images: images)
-//            
-//        default:
-//            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? "") {
+            
+            //        case "AddItem":
+            //            os_log("Adding a new meal.", log: OSLog.default, type: .debug)
+            
+        case "showDieukhoan":
+            guard let dieukhoanDetails = segue.destination as? QC41DetailsViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedDieukhoanCell = sender as? QC41SeemoreTableviewCell else {
+                fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+            
+            guard let indexPath = tblView.indexPath(for: selectedDieukhoanCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let selectedDieukhoan = dieukhoanList[indexPath.row]
+            dieukhoanDetails.updateDetails(dieukhoan: selectedDieukhoan)
+            
+            
+        default:
+            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
+        }
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "tblSeemoreCell"

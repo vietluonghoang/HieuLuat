@@ -30,7 +30,9 @@ class QC41SearchTableController: UIViewController, UITableViewDelegate, UITableV
         if DataConnection.database == nil {
             DataConnection.databaseSetup()
         }
-        
+        updateDieukhoanList(arrDieukhoan: search(keyword: ""))
+        rowCount = dieukhoanList.count
+        tblView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -91,22 +93,6 @@ class QC41SearchTableController: UIViewController, UITableViewDelegate, UITableV
             
             let selectedDieukhoan = dieukhoanList[indexPath.row]
             dieukhoanDetails.updateDetails(dieukhoan: selectedDieukhoan)
-            //        case "viewImages":
-            //            guard let imageViews = segue.destination as? ImageViewController else {
-            //                fatalError("Unexpected destination: \(segue.destination)")
-            //            }
-            //
-            //            guard let selectedDieukhoanCell = sender as? DieukhoanTableViewCell else {
-            //                fatalError("Unexpected sender: \(String(describing: sender))")
-            //            }
-            //
-            //            guard let indexPath = tblView.indexPath(for: selectedDieukhoanCell) else {
-            //                fatalError("The selected cell is not being displayed by the table")
-            //            }
-            //
-            //            let images:[String] = ["QC41-Hinh_33","QC41-Hinh_33","QC41-Hinh_33","QC41-Hinh_33","QC41-Hinh_33","QC41-Hinh_33"]
-            //
-            //            imageViews.updateImages(images: images)
             
         default:
             fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")

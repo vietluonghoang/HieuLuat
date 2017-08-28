@@ -43,6 +43,13 @@ class QC41SeemoreTableviewCell: UITableViewCell{
             noidung.append("...")
         }
         lblNoidung.text = noidung
-        sampleImageView.image = UIImage(named: (dieukhoan.getMinhhoa()[0].trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: ".png", with: "")).replacingOccurrences(of: "\n", with: ""))
+        var image:UIImage
+        
+        if(dieukhoan.getMinhhoa()[0].trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "").characters.count>0){
+            image = UIImage(named: (dieukhoan.getMinhhoa()[0].trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: ".png", with: "")).replacingOccurrences(of: "\n", with: ""))!
+        }else{
+            image = UIImage(named: "noimage")!
+        }
+        sampleImageView.image = image
     }
 }
