@@ -1,21 +1,25 @@
 //
-//  QC41SearchTableController.swift
+//  VBPLSearchTableController.swift
 //  HieuLuat
 //
-//  Created by VietLH on 8/27/17.
+//  Created by VietLH on 9/4/17.
 //  Copyright © 2017 VietLH. All rights reserved.
 //
 
 import UIKit
 import os.log
 
-class QC41SearchTableController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
     @IBOutlet weak var tblView: UITableView!
     
+    @IBOutlet weak var searchbarView: UIView!
+    
+    @IBOutlet weak var consHeightTableView: NSLayoutConstraint!
     var dieukhoanList = [Dieukhoan]()
     let searchController = UISearchController(searchResultsController: nil)
     var rowCount = 0
+    var filterSettings = [String:String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +30,16 @@ class QC41SearchTableController: UIViewController, UITableViewDelegate, UITableV
         tblView.dataSource = self
         
         initSearch()
-        
+        initFilterConfig()
+        searchController.searchBar.becomeFirstResponder()
+        print("\(searchController.searchBar.isFirstResponder)")
         if DataConnection.database == nil {
             DataConnection.databaseSetup()
         }
-        updateDieukhoanList(arrDieukhoan: search(keyword: ""))
+        if(dieukhoanList.count<1){
+            updateDieukhoanList(arrDieukhoan: search(keyword: searchController.searchBar.text!))
+        }
+        
         rowCount = dieukhoanList.count
         tblView.reloadData()
     }
@@ -44,7 +53,35 @@ class QC41SearchTableController: UIViewController, UITableViewDelegate, UITableV
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-        tblView.tableHeaderView = searchController.searchBar
+        searchbarView.addSubview(searchController.searchBar)
+    }
+    
+    func initFilterConfig() {
+        if(filterSettings.count < 1){
+            filterSettings["QC41"] = "on"
+            filterSettings["TT01"] = "on"
+            filterSettings["ND46"] = "on"
+            filterSettings["LGTDB"] = "on"
+        }
+    }
+    
+    func getActiveFilter() -> [String] {
+        var activeFilterList = [String]()
+        
+        if(filterSettings["QC41"] == "on"){
+            activeFilterList.append("1")
+        }
+        if(filterSettings["ND46"] == "on"){
+            activeFilterList.append("2")
+        }
+        if(filterSettings["TT01"] == "on"){
+            activeFilterList.append("3")
+        }
+        if(filterSettings["LGTDB"] == "on"){
+            activeFilterList.append("4")
+        }
+        
+        return activeFilterList
     }
     
     func updateDieukhoanList(arrDieukhoan: Array<Dieukhoan>)  {
@@ -52,10 +89,16 @@ class QC41SearchTableController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func search(keyword:String) -> [Dieukhoan]{
-        var rs:[Dieukhoan]
-        rs=Queries.searchDieukhoan(keyword: "\(keyword)")
+        var rs = [Dieukhoan]()
+        //print(getActiveFilter())
+        if(keyword.trimmingCharacters(in: .whitespacesAndNewlines).characters.count > 0){
+            rs = Queries.searchDieukhoan(keyword: "\(keyword.trimmingCharacters(in: .whitespacesAndNewlines))", vanbanid: getActiveFilter())
+        }else{
+            rs = Queries.searchChildren(keyword: "\(keyword.trimmingCharacters(in: .whitespacesAndNewlines))", vanbanid: getActiveFilter())
+        }
         return rs
     }
+    
     
     /*
      // MARK: - Navigation
@@ -75,15 +118,24 @@ class QC41SearchTableController: UIViewController, UITableViewDelegate, UITableV
         
         switch(segue.identifier ?? "") {
             
-            //        case "AddItem":
-            //            os_log("Adding a new meal.", log: OSLog.default, type: .debug)
-            
-        case "showDieukhoan":
-            guard let dieukhoanDetails = segue.destination as? QC41DetailsViewController else {
+        case "vanbanHome":
+            guard segue.destination is VBPLHomeDetailsViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
-            guard let selectedDieukhoanCell = sender as? DieukhoanTableViewCell else {
+        case "filterPopup":
+            guard let filterPopup = segue.destination as? FilterPopupViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            filterPopup.updateActiveFilterList(root: self)
+            
+        case "showDieukhoan":
+            guard let dieukhoanDetails = segue.destination as? VBPLDetailsViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedDieukhoanCell = sender as? VBPLTableViewCell else {
                 fatalError("Unexpected sender: \(String(describing: sender))")
             }
             
@@ -97,12 +149,13 @@ class QC41SearchTableController: UIViewController, UITableViewDelegate, UITableV
         default:
             fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "tblDieukhoanCell"
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? DieukhoanTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? VBPLTableViewCell else {
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
         
@@ -142,15 +195,13 @@ class QC41SearchTableController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
-        updateDieukhoanList(arrDieukhoan: search(keyword: searchText.trimmingCharacters(in: .whitespacesAndNewlines)))
+        updateDieukhoanList(arrDieukhoan: search(keyword: searchText))
         rowCount = dieukhoanList.count
         tblView.reloadData()
     }
     
     public func updateSearchResults(for searchController: UISearchController) {
-        
         filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
     }
     
 }
-

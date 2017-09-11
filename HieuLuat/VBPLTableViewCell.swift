@@ -1,21 +1,26 @@
 //
-//  DieukhoanTableViewCell.swift
+//  VBPLTableViewCell.swift
 //  HieuLuat
 //
-//  Created by VietLH on 8/27/17.
+//  Created by VietLH on 9/5/17.
 //  Copyright © 2017 VietLH. All rights reserved.
 //
 
 import UIKit
 
-class DieukhoanTableViewCell: UITableViewCell{
+class VBPLTableViewCell: UITableViewCell{
     //MARK: Properties
     
     @IBOutlet weak var lblVanban: UILabel!
     @IBOutlet weak var lblDieukhoan: UILabel!
     @IBOutlet weak var lblNoidung: UILabel!
-    @IBOutlet weak var sampleImageView: UIImageView!
     
+    @IBOutlet var consWidthImageView: NSLayoutConstraint!
+    
+    @IBOutlet var consHeightImageView: NSLayoutConstraint!
+    
+    @IBOutlet var consWidthImageViewEmpty: NSLayoutConstraint!
+    @IBOutlet weak var imgView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,19 +43,23 @@ class DieukhoanTableViewCell: UITableViewCell{
         lblDieukhoan.text = dieukhoan.getSo()
         var noidung = "\(dieukhoan.getTieude()) \n \(dieukhoan.getNoidung())"
         
-        if(noidung.characters.count>150){
-            noidung = noidung.substring(to: noidung.index(noidung.startIndex, offsetBy: 150))
+        let maxText = 250
+        if(noidung.characters.count > maxText){
+            noidung = noidung.substring(to: noidung.index(noidung.startIndex, offsetBy: maxText))
             noidung.append("...")
         }
         lblNoidung.text = noidung
         
-        var image:UIImage
-        
         if(dieukhoan.getMinhhoa()[0].trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "").characters.count>0){
-            image = UIImage(named: (dieukhoan.getMinhhoa()[0].trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: ".png", with: "")).replacingOccurrences(of: "\n", with: ""))!
+            let image = UIImage(named: (dieukhoan.getMinhhoa()[0].trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: ".png", with: "")).replacingOccurrences(of: "\n", with: ""))!
+            imgView.image = image
+            consWidthImageViewEmpty.isActive = false
+            consWidthImageView.isActive = true
         }else{
-            image = UIImage(named: "noimage")!
+            consWidthImageView.isActive = false
+            consWidthImageViewEmpty.isActive = true
         }
-        sampleImageView.image = image
+        
+        
     }
 }

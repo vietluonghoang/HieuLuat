@@ -15,9 +15,7 @@ class DataConnection: NSObject {
     class func databaseSetup() {
         if database == nil {
             let docsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            print("docsDir: \(docsDir)")
             let dpPath = docsDir.appendingPathComponent("Hieuluat.sqlite")
-            print("dpPath: \(dpPath)")
             let file = FileManager.default
             if(!file.fileExists(atPath: dpPath.path)) {
                 let dpPathApp = Bundle.main.path(forResource: "Hieuluat", ofType: "sqlite")

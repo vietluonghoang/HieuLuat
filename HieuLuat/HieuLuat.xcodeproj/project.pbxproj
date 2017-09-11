@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		20279DE0C4C4A62F0030B572 /* Pods_HieuLuat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2F4D9953D61DA1A8A51262 /* Pods_HieuLuat.framework */; };
+		335078EA1F5B099100D52741 /* VBPLDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335078E91F5B099100D52741 /* VBPLDetailsViewController.swift */; };
+		335078EC1F5D166A00D52741 /* VBPLSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335078EB1F5D166A00D52741 /* VBPLSearchTableController.swift */; };
+		339E7EA61F6181810048B0E8 /* VBPLHomeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339E7EA51F6181810048B0E8 /* VBPLHomeDetailsViewController.swift */; };
+		33C87DFC1F604C0200D8B198 /* ConfigAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C87DFB1F604C0200D8B198 /* ConfigAttribute.swift */; };
+		33C87DFE1F6052B100D8B198 /* FilterPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C87DFD1F6052B100D8B198 /* FilterPopupViewController.swift */; };
+		33CB16001F5AF9A700AD2C45 /* VBPLDetailsSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CB15FF1F5AF9A700AD2C45 /* VBPLDetailsSearchTableController.swift */; };
+		33CE51FC1F5E788C008AB4D4 /* VBPLTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CE51FB1F5E788C008AB4D4 /* VBPLTableViewCell.swift */; };
 		33D305291F51794F00547497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305281F51794F00547497 /* AppDelegate.swift */; };
 		33D3052B1F51794F00547497 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3052A1F51794F00547497 /* ViewController.swift */; };
 		33D3052E1F51794F00547497 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33D3052C1F51794F00547497 /* Main.storyboard */; };
@@ -23,11 +30,6 @@
 		33D305641F517FF500547497 /* Coquanbanhanh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305631F517FF500547497 /* Coquanbanhanh.swift */; };
 		33D305661F51802700547497 /* Loaivanban.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305651F51802700547497 /* Loaivanban.swift */; };
 		33D305681F51804F00547497 /* Vanban.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305671F51804F00547497 /* Vanban.swift */; };
-		33D3056B1F51F76800547497 /* QC41SearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3056A1F51F76800547497 /* QC41SearchTableController.swift */; };
-		33D3056D1F51F82A00547497 /* QC41DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3056C1F51F82A00547497 /* QC41DetailsViewController.swift */; };
-		33D3056F1F51F8DC00547497 /* DieukhoanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3056E1F51F8DC00547497 /* DieukhoanTableViewCell.swift */; };
-		33D305711F52A3DD00547497 /* QC41SeemoreTableviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305701F52A3DD00547497 /* QC41SeemoreTableviewCell.swift */; };
-		33D305731F52A4FF00547497 /* QC41SeemoreTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305721F52A4FF00547497 /* QC41SeemoreTableController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		335078E91F5B099100D52741 /* VBPLDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLDetailsViewController.swift; sourceTree = "<group>"; };
+		335078EB1F5D166A00D52741 /* VBPLSearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLSearchTableController.swift; sourceTree = "<group>"; };
+		339E7EA51F6181810048B0E8 /* VBPLHomeDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLHomeDetailsViewController.swift; sourceTree = "<group>"; };
+		33C87DFB1F604C0200D8B198 /* ConfigAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigAttribute.swift; sourceTree = "<group>"; };
+		33C87DFD1F6052B100D8B198 /* FilterPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPopupViewController.swift; sourceTree = "<group>"; };
+		33CB15FF1F5AF9A700AD2C45 /* VBPLDetailsSearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLDetailsSearchTableController.swift; sourceTree = "<group>"; };
+		33CE51FB1F5E788C008AB4D4 /* VBPLTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLTableViewCell.swift; sourceTree = "<group>"; };
 		33D305251F51794F00547497 /* HieuLuat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HieuLuat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33D305281F51794F00547497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33D3052A1F51794F00547497 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,11 +78,6 @@
 		33D305631F517FF500547497 /* Coquanbanhanh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coquanbanhanh.swift; sourceTree = "<group>"; };
 		33D305651F51802700547497 /* Loaivanban.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loaivanban.swift; sourceTree = "<group>"; };
 		33D305671F51804F00547497 /* Vanban.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vanban.swift; sourceTree = "<group>"; };
-		33D3056A1F51F76800547497 /* QC41SearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QC41SearchTableController.swift; sourceTree = "<group>"; };
-		33D3056C1F51F82A00547497 /* QC41DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QC41DetailsViewController.swift; sourceTree = "<group>"; };
-		33D3056E1F51F8DC00547497 /* DieukhoanTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DieukhoanTableViewCell.swift; sourceTree = "<group>"; };
-		33D305701F52A3DD00547497 /* QC41SeemoreTableviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QC41SeemoreTableviewCell.swift; sourceTree = "<group>"; };
-		33D305721F52A4FF00547497 /* QC41SeemoreTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QC41SeemoreTableController.swift; sourceTree = "<group>"; };
 		72E93BC1C30A83EE28D1AC21 /* Pods-HieuLuat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat.debug.xcconfig"; sourceTree = "<group>"; };
 		9017557B072E220F7AC12647 /* Pods-HieuLuat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.release.xcconfig"; path = "Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat.release.xcconfig"; sourceTree = "<group>"; };
 		CA2F4D9953D61DA1A8A51262 /* Pods_HieuLuat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HieuLuat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,6 +191,7 @@
 				33D305631F517FF500547497 /* Coquanbanhanh.swift */,
 				33D305651F51802700547497 /* Loaivanban.swift */,
 				33D305671F51804F00547497 /* Vanban.swift */,
+				33C87DFB1F604C0200D8B198 /* ConfigAttribute.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -194,11 +199,12 @@
 		33D305691F51F73500547497 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				33D3056A1F51F76800547497 /* QC41SearchTableController.swift */,
-				33D3056C1F51F82A00547497 /* QC41DetailsViewController.swift */,
-				33D3056E1F51F8DC00547497 /* DieukhoanTableViewCell.swift */,
-				33D305701F52A3DD00547497 /* QC41SeemoreTableviewCell.swift */,
-				33D305721F52A4FF00547497 /* QC41SeemoreTableController.swift */,
+				33CB15FF1F5AF9A700AD2C45 /* VBPLDetailsSearchTableController.swift */,
+				335078E91F5B099100D52741 /* VBPLDetailsViewController.swift */,
+				335078EB1F5D166A00D52741 /* VBPLSearchTableController.swift */,
+				33CE51FB1F5E788C008AB4D4 /* VBPLTableViewCell.swift */,
+				33C87DFD1F6052B100D8B198 /* FilterPopupViewController.swift */,
+				339E7EA51F6181810048B0E8 /* VBPLHomeDetailsViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -415,20 +421,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33D305711F52A3DD00547497 /* QC41SeemoreTableviewCell.swift in Sources */,
 				33D3055F1F517F5800547497 /* Queries.swift in Sources */,
-				33D3056B1F51F76800547497 /* QC41SearchTableController.swift in Sources */,
-				33D3056F1F51F8DC00547497 /* DieukhoanTableViewCell.swift in Sources */,
-				33D305731F52A4FF00547497 /* QC41SeemoreTableController.swift in Sources */,
+				335078EC1F5D166A00D52741 /* VBPLSearchTableController.swift in Sources */,
 				33D305641F517FF500547497 /* Coquanbanhanh.swift in Sources */,
+				339E7EA61F6181810048B0E8 /* VBPLHomeDetailsViewController.swift in Sources */,
 				33D305681F51804F00547497 /* Vanban.swift in Sources */,
 				33D3052B1F51794F00547497 /* ViewController.swift in Sources */,
+				33C87DFE1F6052B100D8B198 /* FilterPopupViewController.swift in Sources */,
 				33D305291F51794F00547497 /* AppDelegate.swift in Sources */,
+				33CB16001F5AF9A700AD2C45 /* VBPLDetailsSearchTableController.swift in Sources */,
+				33CE51FC1F5E788C008AB4D4 /* VBPLTableViewCell.swift in Sources */,
 				33D3055B1F517D6F00547497 /* DataConnection.swift in Sources */,
 				33D305621F517FB900547497 /* Dieukhoan.swift in Sources */,
-				33D3056D1F51F82A00547497 /* QC41DetailsViewController.swift in Sources */,
+				335078EA1F5B099100D52741 /* VBPLDetailsViewController.swift in Sources */,
 				33D305661F51802700547497 /* Loaivanban.swift in Sources */,
 				33D3055D1F517F2B00547497 /* SearchFor.swift in Sources */,
+				33C87DFC1F604C0200D8B198 /* ConfigAttribute.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +594,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = D95825NFBM;
 				INFOPLIST_FILE = HieuLuat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.HieuLuat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -602,6 +611,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = D95825NFBM;
 				INFOPLIST_FILE = HieuLuat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.HieuLuat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
