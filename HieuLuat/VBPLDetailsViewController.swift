@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class VBPLDetailsViewController: UIViewController {
+class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
     //MARK: Properties
     
@@ -22,16 +22,24 @@ class VBPLDetailsViewController: UIViewController {
     @IBOutlet var consSvStackviewHeightBig: NSLayoutConstraint!
     @IBOutlet var consSvStackviewHeightSmall: NSLayoutConstraint!
     
+    @IBOutlet var tblView: UITableView!
+    @IBOutlet var consHeightTblView: NSLayoutConstraint!
+    
     var children = [Dieukhoan]()
     var relatedChildren = [Dieukhoan]()
     var dieukhoan: Dieukhoan? = nil
     var search = SearchFor()
     var specificVanbanId = [String]()
     var images = [String]()
+    let searchController = UISearchController(searchResultsController: nil)
+    var rowCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //            scvDetails.autoresizingMask = UIViewAutoresizing.flexibleHeight
+        
+        tblView.delegate = self
+        tblView.dataSource = self
         lblVanban.numberOfLines = 0
         lblVanban.lineBreakMode = NSLineBreakMode.byWordWrapping
         lblDieukhoan.numberOfLines = 0
@@ -46,6 +54,9 @@ class VBPLDetailsViewController: UIViewController {
             lblSeeMore.isEnabled = false
         }
         showDieukhoan()
+        
+        tblView.reloadData()
+        updateTableViewHeight()
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,7 +74,21 @@ class VBPLDetailsViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
+    func updateTableViewHeight() {
+        consHeightTblView.constant = 5000
+        tblView.reloadData()
+        tblView.layoutIfNeeded()
+
+        var tableHeight:CGFloat = 0
+        for obj in tblView.visibleCells {
+            if let cell = obj as? UITableViewCell {
+                tableHeight += cell.bounds.height
+            }
+        }
+        consHeightTblView.constant = tableHeight
+        tblView.sizeToFit()
+        tblView.layoutIfNeeded()
+    }
     func updateDetails(dieukhoan: Dieukhoan) {
         self.dieukhoan = dieukhoan
         specificVanbanId.append( String(describing:dieukhoan.getVanban().getId()))
@@ -72,6 +97,7 @@ class VBPLDetailsViewController: UIViewController {
         for child in getChildren(keyword: String(describing: dieukhoan.id)) {
             children.append(child)
         }
+        rowCount = children.count
         
         var keywords: [String] = []
         
@@ -163,9 +189,9 @@ class VBPLDetailsViewController: UIViewController {
     
     func imageViewScaleup(frameWidth: Float,imageView:UIImageView) {
         
-        let ratio:Float = Float(imageView.frame.width)/Float(imageView.frame.height)
+//        let ratio:Float = Float(imageView.frame.width)/Float(imageView.frame.height)
         let newWidth:Float = frameWidth - 10
-        let newHeight:Float = newWidth/ratio
+        let newHeight:Float = (newWidth / Float(imageView.frame.width))*Float(imageView.frame.height)
         
         print("\(newWidth):\(+newHeight)")
         imageView.frame = CGRect(x: imageView.frame.minX, y: imageView.frame.minY, width: CGFloat(newWidth), height: CGFloat(newHeight))
@@ -247,6 +273,22 @@ class VBPLDetailsViewController: UIViewController {
             }
             
             dieukhoanSeemore.updateDieukhoanList(arrDieukhoan: relatedChildren)
+         
+        case "showDieukhoan":
+            guard let dieukhoanDetails = segue.destination as? VBPLDetailsViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedDieukhoanCell = sender as? VBPLTableViewCell else {
+                fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+            
+            guard let indexPath = tblView.indexPath(for: selectedDieukhoanCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let selectedDieukhoan = children[indexPath.row]
+            dieukhoanDetails.updateDetails(dieukhoan: selectedDieukhoan)
             
         default:
             fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
@@ -261,7 +303,7 @@ class VBPLDetailsViewController: UIViewController {
         
         images = dieukhoan!.getMinhhoa()
         
-        if(children.count > 0 || images.count > 0){
+        if(images.count > 0){
             
             hideMinhhoaStackview(isHidden: false)
             
@@ -279,37 +321,37 @@ class VBPLDetailsViewController: UIViewController {
                     
                     svStackview.addArrangedSubview(imgView)
                 }
-                for child in children {
+//                for child in children {
 //                    let lineView = UIView(frame: CGRect(x: 0, y: 0, width: svStackview.frame.width, height: 1))
 ////                    lineView.layer.borderWidth = 1.0
 ////                    lineView.layer.borderColor = UIColor.black!
 //                    lineView.backgroundColor = UIColor.black
                     
-                    let lblDK = UILabel()
-                    lblDK.numberOfLines = 0
-                    lblDK.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    lblDK.text = child.getSo()
-                    lblDK.font = UIFont.boldSystemFont(ofSize: 14)
-                    
-                    let lblND = UILabel()
-                    lblND.numberOfLines = 0
-                    lblND.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    lblND.text = child.getTieude() + "\n " + child.getNoidung()
-                    lblND.font = UIFont.systemFont(ofSize: 16)
-                    
-                    let space = UILabel()
-                    space.numberOfLines = 0
-                    space.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    space.text = "   "
-                    
-                    svStackview.addArrangedSubview(space)
-                    svStackview.addArrangedSubview(lblDK)
-                    svStackview.addArrangedSubview(lblND)
-                    
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
-                    lblND.isUserInteractionEnabled = true
-                    lblND.addGestureRecognizer(tap)
-                }
+//                    let lblDK = UILabel()
+//                    lblDK.numberOfLines = 0
+//                    lblDK.lineBreakMode = NSLineBreakMode.byWordWrapping
+//                    lblDK.text = child.getSo()
+//                    lblDK.font = UIFont.boldSystemFont(ofSize: 14)
+//                    
+//                    let lblND = UILabel()
+//                    lblND.numberOfLines = 0
+//                    lblND.lineBreakMode = NSLineBreakMode.byWordWrapping
+//                    lblND.text = child.getTieude() + "\n " + child.getNoidung()
+//                    lblND.font = UIFont.systemFont(ofSize: 16)
+//                    
+//                    let space = UILabel()
+//                    space.numberOfLines = 0
+//                    space.lineBreakMode = NSLineBreakMode.byWordWrapping
+//                    space.text = "   "
+//                    
+//                    svStackview.addArrangedSubview(space)
+//                    svStackview.addArrangedSubview(lblDK)
+//                    svStackview.addArrangedSubview(lblND)
+//                    
+//                    let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
+//                    lblND.isUserInteractionEnabled = true
+//                    lblND.addGestureRecognizer(tap)
+//                }
             }
         }else{
             hideMinhhoaStackview(isHidden: true)
@@ -319,5 +361,57 @@ class VBPLDetailsViewController: UIViewController {
     
     func seeMore(sender: UITapGestureRecognizer) {
         print("it works")
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifier = "tblDieukhoanCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? VBPLTableViewCell else {
+            fatalError("The dequeued cell is not an instance of MealTableViewCell.")
+        }
+        
+        // Configure the cell...
+        
+        var dieukhoan:Dieukhoan
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            if children.count>0 {
+                dieukhoan = children[indexPath.row]
+            }else{
+                dieukhoan = Dieukhoan(id: 0, cha: 0, vanban: Vanban(id: 0, ten: "", loai: Loaivanban(id: 0, ten: ""), so: "", nam: "", ma: "", coquanbanhanh: Coquanbanhanh(id: 0, ten: ""), noidung: ""))
+                dieukhoan.setMinhhoa(minhhoa: [""])
+            }
+        } else {
+            dieukhoan = children[indexPath.row]
+        }
+        
+        cell.updateDieukhoan(dieukhoan: dieukhoan, fullDetails: true, showVanban: false)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return rowCount
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+//        updateDieukhoanList(arrDieukhoan: search(keyword: searchText))
+        rowCount = children.count
+        tblView.reloadData()
+    }
+    
+    public func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
     }
 }

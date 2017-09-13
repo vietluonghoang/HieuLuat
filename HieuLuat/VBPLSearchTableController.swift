@@ -174,7 +174,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
             dieukhoan = dieukhoanList[indexPath.row]
         }
         
-        cell.updateDieukhoan(dieukhoan: dieukhoan)
+        cell.updateDieukhoan(dieukhoan: dieukhoan, fullDetails: false, showVanban: true)
         return cell
     }
     

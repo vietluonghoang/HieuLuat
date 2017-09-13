@@ -36,6 +36,7 @@ class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, U
         }
         rowCount = dieukhoanList.count
         tblView.reloadData()
+        tblView.layoutIfNeeded()
     }
     
     override func didReceiveMemoryWarning() {
@@ -127,7 +128,7 @@ class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, U
             dieukhoan = dieukhoanList[indexPath.row]
         }
         
-        cell.updateDieukhoan(dieukhoan: dieukhoan)
+        cell.updateDieukhoan(dieukhoan: dieukhoan, fullDetails: true, showVanban: false)
         return cell
     }
     

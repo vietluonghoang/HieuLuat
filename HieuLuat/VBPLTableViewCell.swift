@@ -31,22 +31,32 @@ class VBPLTableViewCell: UITableViewCell{
         // Configure the view for the selected state
     }
     
-    func updateDieukhoan(dieukhoan: Dieukhoan) {
-        lblVanban.numberOfLines = 0
-        lblVanban.lineBreakMode = NSLineBreakMode.byWordWrapping
+    func updateDieukhoan(dieukhoan: Dieukhoan,fullDetails: Bool,showVanban: Bool) {
+        if(!showVanban){
+            lblVanban.isHidden = true
+        }else{
+            lblVanban.isHidden = false
+            lblVanban.numberOfLines = 0
+            lblVanban.lineBreakMode = NSLineBreakMode.byWordWrapping
+            lblVanban.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+        }
         lblDieukhoan.numberOfLines = 0
         lblDieukhoan.lineBreakMode = NSLineBreakMode.byWordWrapping
+        lblDieukhoan.font = UIFont.boldSystemFont(ofSize: 14)
         lblNoidung.numberOfLines = 0
         lblNoidung.lineBreakMode = NSLineBreakMode.byWordWrapping
+        lblNoidung.font = UIFont.systemFont(ofSize: 16)
         
         lblVanban.text = dieukhoan.getVanban().getMa()
         lblDieukhoan.text = dieukhoan.getSo()
         var noidung = "\(dieukhoan.getTieude()) \n \(dieukhoan.getNoidung())"
         
         let maxText = 250
-        if(noidung.characters.count > maxText){
-            noidung = noidung.substring(to: noidung.index(noidung.startIndex, offsetBy: maxText))
-            noidung.append("...")
+        if(!fullDetails){
+            if(noidung.characters.count > maxText){
+                noidung = noidung.substring(to: noidung.index(noidung.startIndex, offsetBy: maxText))
+                noidung.append("...")
+            }
         }
         lblNoidung.text = noidung
         
