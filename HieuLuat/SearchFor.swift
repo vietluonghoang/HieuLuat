@@ -23,4 +23,46 @@ class SearchFor {
             return [""]
         }
     }
+    
+    func isStringExisted(str:String, strArr:[String]) -> Bool {
+        
+        for key in strArr {
+            if key == str {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func getAncesters(dieukhoan:Dieukhoan, vanbanId: [String]) -> String {
+        var ancesters = ""
+        if DataConnection.database == nil {
+            DataConnection.databaseSetup()
+        }
+        
+        if dieukhoan.getCha() == 0 {
+            ancesters = "\(dieukhoan.getId())"
+        }else{
+            ancesters = "\(dieukhoan.getCha())"
+            var parents = Queries.searchDieukhoanByID(keyword: "\(dieukhoan.getCha())",vanbanid: vanbanId)
+            while parents[0].getCha() != 0 {
+                ancesters = "\(parents[0].getCha())-"+ancesters
+                parents = Queries.searchDieukhoanByID(keyword: "\(parents[0].getCha())",vanbanid: vanbanId)
+            }
+            
+        }
+        return ancesters
+    }
+    
+    func getDieunay(currentDieukhoan: Dieukhoan, vanbanId: [String]) -> Dieukhoan {
+        var trackingDieukhoan = currentDieukhoan
+        while !trackingDieukhoan.getSo().lowercased().contains("điều") {
+            if(trackingDieukhoan.getCha() != 0){
+                trackingDieukhoan = Queries.searchDieukhoanByID(keyword: "\(trackingDieukhoan.getCha())",vanbanid: vanbanId)[0]
+            }else{
+                return trackingDieukhoan
+            }
+        }
+        return trackingDieukhoan
+    }
 }

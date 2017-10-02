@@ -12,6 +12,8 @@ class FilterPopupViewController: UIViewController {
     @IBOutlet weak var swtQC41: UISwitch!
     @IBOutlet weak var swtTT01: UISwitch!
     @IBOutlet weak var swtND46: UISwitch!
+    @IBOutlet var swtLGTDB2008: UISwitch!
+    @IBOutlet var swtLXLVPHC2012: UISwitch!
     
     var root: VBPLSearchTableController? = nil
     
@@ -46,7 +48,14 @@ class FilterPopupViewController: UIViewController {
             swtTT01.isOn = false
         }
         if(root?.filterSettings["LGTDB"] == "on"){
+            swtLGTDB2008.isOn = true
         }else{
+            swtLGTDB2008.isOn = false
+        }
+        if(root?.filterSettings["LXLVPHC"] == "on"){
+            swtLXLVPHC2012.isOn = true
+        }else{
+            swtLXLVPHC2012.isOn = false
         }
     }
     
@@ -73,6 +82,20 @@ class FilterPopupViewController: UIViewController {
             root?.filterSettings["ND46"] = "on"
         }else{
             root?.filterSettings["ND46"] = "off"
+        }
+    }
+    @IBAction func swtLGTDB2008ValueChange(_ sender: Any) {
+        if (sender as! UISwitch).isOn {
+            root?.filterSettings["LGTDB"] = "on"
+        }else{
+            root?.filterSettings["LGTDB"] = "off"
+        }
+    }
+    @IBAction func swtLXLVPHCValueChange(_ sender: Any) {
+        if (sender as! UISwitch).isOn {
+            root?.filterSettings["LXLVPHC"] = "on"
+        }else{
+            root?.filterSettings["LXLVPHC"] = "off"
         }
     }
 }

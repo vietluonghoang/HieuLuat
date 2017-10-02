@@ -140,15 +140,15 @@ class Queries: NSObject {
         return dieukhoanArray
     }
     
-    class func searchDieukhoanBySo(keyword:String,vanbanid:String) -> [Dieukhoan] {
+    class func searchDieukhoanBySo(keyword:String,vanbanid:[String]) -> [Dieukhoan] {
         DataConnection.database!.open()
         var specificVanban = ""
-        if vanbanid.characters.count > 0 {
-            specificVanban = " and vbId = "+vanbanid.trimmingCharacters(in: .whitespacesAndNewlines)
+        if vanbanid[0].characters.count > 0 {
+            specificVanban = " and vbId = "+vanbanid[0].trimmingCharacters(in: .whitespacesAndNewlines)
         }
-        let sql = "select dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id where dkSo = ?"+specificVanban
+        let sql = "select dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id where (dkSo = ? or dk.forsearch like ? or dk.forsearch like ?)"+specificVanban
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [keyword,keyword,keyword,keyword])!
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [keyword,"\(keyword) %","\(keyword). %"])!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -193,7 +193,7 @@ class Queries: NSObject {
            searchArgurment = "= ?"
         }
         
-        let sql = "select dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id where dkCha "+searchArgurment+" "+specificVanban
+        let sql = "select dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id where dkCha "+searchArgurment+specificVanban
         
         let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [keyword,keyword,keyword,keyword])!
         

@@ -75,10 +75,10 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
      }
      */
     func updateTableViewHeight() {
-        consHeightTblView.constant = 5000
+        consHeightTblView.constant = 50000
         tblView.reloadData()
         tblView.layoutIfNeeded()
-
+        
         var tableHeight:CGFloat = 0
         for obj in tblView.visibleCells {
             if let cell = obj as? UITableViewCell {
@@ -89,6 +89,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         tblView.sizeToFit()
         tblView.layoutIfNeeded()
     }
+    
     func updateDetails(dieukhoan: Dieukhoan) {
         self.dieukhoan = dieukhoan
         specificVanbanId.append( String(describing:dieukhoan.getVanban().getId()))
@@ -99,39 +100,25 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }
         rowCount = children.count
         
-        var keywords: [String] = []
+        for child in getRelatedDieukhoan(noidung: noidung) {
+            relatedChildren.append(child)
+        }
+        let relatedPlate = getRelatedPlatKeywords(content: noidung)
         
-        for k in getRelatedDirectKeywords(content: noidung) {
+        //this is a stupid way to take related ones out, but simpler to get it worked with less code
+        for k in relatedPlate {
             var key = k.lowercased()
             if key.characters.count>0 {
-                if key.contains("điều")||key.contains("chương")||key.contains("phần")||key.contains("mục")||key.contains("phụ lục") {
-                    keywords.append(key)
-                }else{
-                    keywords.append(key.components(separatedBy: " ")[1])
-                }
-            }
-        }
-        
-        for key in keywords {
-            for child in getRelatedChildren(keyword: key) {
-                let pattern = "^\\s*\(key.replacingOccurrences(of: ".", with: "\\."))\\.*\\s*$"
-                if search.regexSearch(pattern: pattern, searchIn: child.getSo().lowercased()).count>0{
-                    appendRelatedChild(child: child)
-                }
-            }
-        }
-        
-        //  TODO: need to make this simpler
-        
-        for k in getRelatedPlatKeywords(content: noidung) {
-            var key = k.lowercased()
-            if key.characters.count>0 {
-                keywords.append(key)
-                for child in getRelatedChildren(keyword: key)
+                let relatedChild = getRelatedChildren(keyword: key)
+                for child in relatedChild
                 {
-                    let noidung = child.getTieude() + " "+child.getNoidung()
-                    if getParent(keyword: getAncesters(dieukhoan: child).components(separatedBy: "-")[0])[0].getSo().lowercased().contains("phụ lục")&&(search.regexSearch(pattern: "^\\s*\(key.replacingOccurrences(of: ".", with: "\\."))\\s+", searchIn: noidung).count>0 || search.regexSearch(pattern: "\\s+\(key.replacingOccurrences(of: ".", with: "\\."))\\.*\\s+", searchIn: noidung).count>0 || search.regexSearch(pattern: "\\s+\(key.replacingOccurrences(of: ".", with: "\\."))\\.*$", searchIn: noidung).count>0) {
-                        appendRelatedChild(child: child)
+                    if  getParent(keyword: search.getAncesters(dieukhoan: child, vanbanId: specificVanbanId).components(separatedBy: "-")[0])[0].getSo().lowercased().contains("phụ lục"){
+                        let noidungChild = child.getTieude() + " "+child.getNoidung()
+                        let childContains = search.regexSearch(pattern: "((^|\\W)(\(key.replacingOccurrences(of: ".", with: "\\.")))(\\.)*($|\\W))|((^|\\W)(\(key.replacingOccurrences(of: ".", with: "\\.")))(\\.)*($|\\W))", searchIn: noidungChild).count>0
+                        
+                        if (childContains) {
+                            appendRelatedChild(child: child)
+                        }
                     }
                 }
             }
@@ -149,28 +136,13 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             for c in relatedChildren {
                 if c.getId() == child.getId(){
                     isExisted = true
+                    break
                 }
             }
             if !isExisted {
                 relatedChildren.append(child)
             }
         }
-    }
-    
-    func getAncesters(dieukhoan:Dieukhoan) -> String {
-        var ancesters = ""
-        if dieukhoan.getCha() == 0 {
-            ancesters = "\(dieukhoan.getId())"
-        }else{
-            ancesters = "\(dieukhoan.getCha())"
-            var parents = getParent(keyword: "\(dieukhoan.getCha())")
-            while parents[0].getCha() != 0 {
-                ancesters = "\(parents[0].getCha())-"+ancesters
-                parents = getParent(keyword: "\(parents[0].getCha())")
-            }
-            
-        }
-        return ancesters
     }
     
     func hideMinhhoaStackview(isHidden: Bool)  {
@@ -189,7 +161,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func imageViewScaleup(frameWidth: Float,imageView:UIImageView) {
         
-//        let ratio:Float = Float(imageView.frame.width)/Float(imageView.frame.height)
+        //        let ratio:Float = Float(imageView.frame.width)/Float(imageView.frame.height)
         let newWidth:Float = frameWidth - 10
         let newHeight:Float = (newWidth / Float(imageView.frame.width))*Float(imageView.frame.height)
         
@@ -203,12 +175,12 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
         let widthRatio  = targetWidth / image.size.width
         
-        let ratio:Float = Float(size.width)/Float(size.height)
+        //        let ratio:Float = Float(size.width)/Float(size.height)
         
         
         // Figure out what our orientation is, and use that to form the rectangle
         var newSize: CGSize
-        newSize = CGSize(width: size.width * widthRatio, height: CGFloat(Float(size.height) * (Float(ratio) * Float(widthRatio))))
+        newSize = CGSize(width: size.width * widthRatio, height: CGFloat(Float(size.height) * Float(widthRatio)))
         
         // This is the rect that we've calculated out and this is what is actually used below
         let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
@@ -243,19 +215,110 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         return Queries.searchDieukhoan(keyword: "\(keyword)", vanbanid: specificVanbanId)
     }
     
+    func getRelatedDieukhoan(noidung:String) -> [Dieukhoan] {
+        var nd = noidung.lowercased()
+        var keywords = [String]()
+        
+        var pattern = "((((điểm)\\s((\\w)+(\\.)*)+(,)*(\\s)*)*((khoản)\\s((\\d)+(\\.)*)+(;|,)*(\\s)*)+)+((điều\\s((này)|((\\d)+)))*))"
+        
+        let longMatches = search.regexSearch(pattern: pattern, searchIn: noidung)
+        
+        for match in longMatches{
+            nd = nd.replacingOccurrences(of: match, with: "")
+            if(!search.isStringExisted(str: match, strArr: keywords)){
+                keywords.append(match.trimmingCharacters(in: .whitespacesAndNewlines))
+            }
+        }
+        
+        pattern = "((điều)|(khoản)|(điểm)|(chương)|(mục)|(phần)|(phụ lục))(\\s)+(((\\d)|(\\w))+(\\.)*)+"
+        
+        let shortMatches = search.regexSearch(pattern: pattern, searchIn: nd)
+        
+        for match in shortMatches{
+            nd = nd.replacingOccurrences(of: match, with: "")
+            if(!search.isStringExisted(str: match, strArr: keywords)){
+                keywords.append(match.trimmingCharacters(in: .whitespacesAndNewlines))
+            }
+        }
+        
+        var relatedDieukhoan = [Dieukhoan]()
+        
+        for key in keywords {
+            let dk = parseRelatedDieukhoanKeywords(keyword: key)
+            if dk.count > 0{
+                for dkh in dk {
+                    relatedDieukhoan.append(dkh)
+                }
+            }
+        }
+        return relatedDieukhoan
+    }
     
-    func getRelatedDirectKeywords(content:String) -> [String] {
-        let input = content.lowercased()
+    //this function is not good-implemented since the performance is quite bad. should take a look on this again to find a better solution
+    func parseRelatedDieukhoanKeywords(keyword:String) -> [Dieukhoan] {
+        let key = keyword.lowercased()
+        var relatedDieukhoan = [Dieukhoan]()
         
-        let pattern = "((điều|chương|phần)\\s\\d{1,3})|((mục|phụ\\slục)\\s([A-Z]|[a-z]){1,3})|(khoản\\s\\d{1,3}\\.\\d{1,3})|((điểm)\\s\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})"
-        
-        return search.regexSearch(pattern: pattern, searchIn: input)
+        var pattern = "^((điều)|(khoản)|(điểm)|(chương)|(mục)|(phần)|(phụ lục))(\\s)+(((\\d)|(\\w))+(\\.)*)+$"
+        if search.regexSearch(pattern: pattern, searchIn: key).count > 0 {
+            for d in Queries.searchDieukhoanBySo(keyword: key, vanbanid: specificVanbanId) {
+                relatedDieukhoan.append(d)
+            }
+        }else{
+            var dieu: Dieukhoan? = nil
+            
+            pattern = "(điều)(\\s)+(((\\d)|(\\w))+(\\.)*)+$"
+            for d in search.regexSearch(pattern: pattern, searchIn: key){
+                if d == "điều này" {
+                    dieu = search.getDieunay(currentDieukhoan: dieukhoan!, vanbanId: specificVanbanId)
+                }else{
+                    var rs = Queries.searchDieukhoanBySo(keyword: d, vanbanid: specificVanbanId)
+                    if rs.count > 0 {
+                        dieu = rs[0]
+                    }else{
+                        return relatedDieukhoan
+                    }
+                }
+            }
+            pattern = "(((điểm)\\s((\\w)+(\\.)*)+(,)*(\\s)*)*((khoản)\\s((\\d)+(\\.)*)+)+)"
+            for kd in search.regexSearch(pattern: pattern, searchIn: key) {
+                pattern = "(khoản)(\\s)+(((\\d)|(\\w))+(\\.)*)+$"
+                for k in search.regexSearch(pattern: pattern, searchIn: kd) {
+                    var khoan = [Dieukhoan]()
+                    for childKhoan in getChildren(keyword: "\(String(describing: dieu!.getId()))") {
+                        if search.regexSearch(pattern: "^(\(k.components(separatedBy: " ")[1]))(\\.)*$", searchIn: childKhoan.getSo().lowercased()).count > 0 {
+                            khoan.append(childKhoan)
+                            break
+                        }
+                    }
+                    pattern = "(điểm)(\\s)+((\\w)+(\\.)*)+"
+                    let diem = search.regexSearch(pattern: pattern, searchIn: kd)
+                    if diem.count > 0 {
+                        for d in diem {
+                            for k in khoan {
+                                for dm in getChildren(keyword: "\(String(describing: k.getId()))") {
+                                    if search.regexSearch(pattern: "^(\(d.components(separatedBy: " ")[1]))(\\.)*$", searchIn: dm.getSo().lowercased()).count > 0 {
+                                        relatedDieukhoan.append(dm)
+                                        break
+                                    }
+                                }
+                            }
+                        }
+                    }else{
+                        for k in khoan {
+                            relatedDieukhoan.append(k)
+                        }
+                    }
+                }
+            }
+        }
+        return relatedDieukhoan
     }
     
     func getRelatedPlatKeywords(content:String) -> [String] {
         let input = content.lowercased()
         
-        let pattern = "(([A-Z]|[a-z]){1,2}\\.\\d{1,4})|(vạch)\\s(\\d)+(\\.\\d)*"
+        let pattern = "(\\b(([a-zA-Z]{1,2})(\\.|,)+)+(\\d)+(\\.\\d)*([a-zA-Z])*\\b)|(\\b(vạch)(\\ssố)*\\s(\\d)+(\\.\\d)*(\\.)*\\b)"
         return search.regexSearch(pattern: pattern, searchIn: input)
     }
     
@@ -273,7 +336,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             }
             
             dieukhoanSeemore.updateDieukhoanList(arrDieukhoan: relatedChildren)
-         
+            
         case "showDieukhoan":
             guard let dieukhoanDetails = segue.destination as? VBPLDetailsViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
@@ -319,39 +382,43 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                     
                     imageViewScaleup(frameWidth: Float(svStackview.frame.width), imageView: imgView)
                     
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
+                    imgView.isUserInteractionEnabled = true
+                    imgView.addGestureRecognizer(tap)
+
                     svStackview.addArrangedSubview(imgView)
                 }
-//                for child in children {
-//                    let lineView = UIView(frame: CGRect(x: 0, y: 0, width: svStackview.frame.width, height: 1))
-////                    lineView.layer.borderWidth = 1.0
-////                    lineView.layer.borderColor = UIColor.black!
-//                    lineView.backgroundColor = UIColor.black
-                    
-//                    let lblDK = UILabel()
-//                    lblDK.numberOfLines = 0
-//                    lblDK.lineBreakMode = NSLineBreakMode.byWordWrapping
-//                    lblDK.text = child.getSo()
-//                    lblDK.font = UIFont.boldSystemFont(ofSize: 14)
-//                    
-//                    let lblND = UILabel()
-//                    lblND.numberOfLines = 0
-//                    lblND.lineBreakMode = NSLineBreakMode.byWordWrapping
-//                    lblND.text = child.getTieude() + "\n " + child.getNoidung()
-//                    lblND.font = UIFont.systemFont(ofSize: 16)
-//                    
-//                    let space = UILabel()
-//                    space.numberOfLines = 0
-//                    space.lineBreakMode = NSLineBreakMode.byWordWrapping
-//                    space.text = "   "
-//                    
-//                    svStackview.addArrangedSubview(space)
-//                    svStackview.addArrangedSubview(lblDK)
-//                    svStackview.addArrangedSubview(lblND)
-//                    
-//                    let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
-//                    lblND.isUserInteractionEnabled = true
-//                    lblND.addGestureRecognizer(tap)
-//                }
+                //                for child in children {
+                //                    let lineView = UIView(frame: CGRect(x: 0, y: 0, width: svStackview.frame.width, height: 1))
+                ////                    lineView.layer.borderWidth = 1.0
+                ////                    lineView.layer.borderColor = UIColor.black!
+                //                    lineView.backgroundColor = UIColor.black
+                
+                //                    let lblDK = UILabel()
+                //                    lblDK.numberOfLines = 0
+                //                    lblDK.lineBreakMode = NSLineBreakMode.byWordWrapping
+                //                    lblDK.text = child.getSo()
+                //                    lblDK.font = UIFont.boldSystemFont(ofSize: 14)
+                //
+                //                    let lblND = UILabel()
+                //                    lblND.numberOfLines = 0
+                //                    lblND.lineBreakMode = NSLineBreakMode.byWordWrapping
+                //                    lblND.text = child.getTieude() + "\n " + child.getNoidung()
+                //                    lblND.font = UIFont.systemFont(ofSize: 16)
+                //
+                //                    let space = UILabel()
+                //                    space.numberOfLines = 0
+                //                    space.lineBreakMode = NSLineBreakMode.byWordWrapping
+                //                    space.text = "   "
+                //
+                //                    svStackview.addArrangedSubview(space)
+                //                    svStackview.addArrangedSubview(lblDK)
+                //                    svStackview.addArrangedSubview(lblND)
+                //
+//                                    let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
+//                                    lblND.isUserInteractionEnabled = true
+//                                    lblND.addGestureRecognizer(tap)
+                //                }
             }
         }else{
             hideMinhhoaStackview(isHidden: true)
@@ -360,7 +427,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func seeMore(sender: UITapGestureRecognizer) {
-        print("it works")
+        print("----------------------------\nI want to show image in zoom view but it could take more time to implement this while the benefit from this is not really high, then i'll let it like this until i have more time or i change my mind.\n----------------------------")
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -406,7 +473,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
-//        updateDieukhoanList(arrDieukhoan: search(keyword: searchText))
+        //        updateDieukhoanList(arrDieukhoan: search(keyword: searchText))
         rowCount = children.count
         tblView.reloadData()
     }

@@ -31,8 +31,6 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         
         initSearch()
         initFilterConfig()
-        searchController.searchBar.becomeFirstResponder()
-        print("\(searchController.searchBar.isFirstResponder)")
         if DataConnection.database == nil {
             DataConnection.databaseSetup()
         }
@@ -62,6 +60,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
             filterSettings["TT01"] = "on"
             filterSettings["ND46"] = "on"
             filterSettings["LGTDB"] = "on"
+            filterSettings["LXLVPHC"] = "on"
         }
     }
     
@@ -80,7 +79,9 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         if(filterSettings["LGTDB"] == "on"){
             activeFilterList.append("4")
         }
-        
+        if(filterSettings["LXLVPHC"] == "on"){
+            activeFilterList.append("5")
+        }
         return activeFilterList
     }
     
