@@ -91,13 +91,15 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     
     func search(keyword:String) -> [Dieukhoan]{
         var rs = [Dieukhoan]()
+        var kw = keyword.trimmingCharacters(in: .whitespacesAndNewlines)
         //print(getActiveFilter())
-        if(keyword.trimmingCharacters(in: .whitespacesAndNewlines).characters.count > 0){
-            rs = Queries.searchDieukhoan(keyword: "\(keyword.trimmingCharacters(in: .whitespacesAndNewlines))", vanbanid: getActiveFilter())
+        if(kw.characters.count > 0){
+            rs = Queries.searchDieukhoan(keyword: "\(kw)", vanbanid: getActiveFilter())
         }else{
-            rs = Queries.searchChildren(keyword: "\(keyword.trimmingCharacters(in: .whitespacesAndNewlines))", vanbanid: getActiveFilter())
+            rs = Queries.searchChildren(keyword: "\(kw)", vanbanid: getActiveFilter())
         }
-        return rs
+        let sortIt = SortUtil()
+        return sortIt.sortByBestMatch(listDieukhoan: rs, keyword: kw)
     }
     
     

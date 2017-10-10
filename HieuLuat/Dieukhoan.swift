@@ -16,6 +16,7 @@ class Dieukhoan: NSObject {
     var minhhoa:[String]=[]
     var cha:Int64
     var vanban:Vanban
+    var sortPoint: Int16 = 0
     
     //    init(id:Int64,so:String,tieude:String,noidung:String,minhhoa:[String],cha:Int64,vanbanid:Int64) {
     //        self.id=id
@@ -37,6 +38,7 @@ class Dieukhoan: NSObject {
         for mh in minhhoa.components(separatedBy: ";") {
             self.minhhoa.append(String(describing: mh.trimmingCharacters(in: .whitespacesAndNewlines)))
         }
+        self.sortPoint = 0
     }
     
     init(id:Int64,cha:Int64,vanban:Vanban) {
@@ -46,6 +48,7 @@ class Dieukhoan: NSObject {
         self.so=""
         self.tieude=""
         self.noidung=""
+        self.sortPoint = 0
     }
     
     func getId() -> Int64 {
@@ -106,6 +109,14 @@ class Dieukhoan: NSObject {
     
     func setVanban(vanban:Vanban) {
         self.vanban=vanban
+    }
+    
+    func getSortPoint() -> Int16 {
+        return sortPoint
+    }
+    
+    func setSortPoint(sortPoint:Int16) {
+        self.sortPoint=sortPoint
     }
 }
 

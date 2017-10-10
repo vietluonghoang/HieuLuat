@@ -106,22 +106,33 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         let relatedPlate = getRelatedPlatKeywords(content: noidung)
         
         //this is a stupid way to take related ones out, but simpler to get it worked with less code
+        
+        var sortedRelatedPlat = [Dieukhoan]()
+        let sortIt = SortUtil()
         for k in relatedPlate {
             var key = k.lowercased()
             if key.characters.count>0 {
                 let relatedChild = getRelatedChildren(keyword: key)
-                for child in relatedChild
+                var order = 0
+                for child in sortIt.sortByBestMatch(listDieukhoan: relatedChild, keyword: key)
                 {
                     if  getParent(keyword: search.getAncesters(dieukhoan: child, vanbanId: specificVanbanId).components(separatedBy: "-")[0])[0].getSo().lowercased().contains("phụ lục"){
-                        let noidungChild = child.getTieude() + " "+child.getNoidung()
-                        let childContains = search.regexSearch(pattern: "((^|\\W)(\(key.replacingOccurrences(of: ".", with: "\\.")))(\\.)*($|\\W))|((^|\\W)(\(key.replacingOccurrences(of: ".", with: "\\.")))(\\.)*($|\\W))", searchIn: noidungChild).count>0
-                        
-                        if (childContains) {
-                            appendRelatedChild(child: child)
-                        }
+//                        let noidungChild = child.getTieude() + " "+child.getNoidung()
+//                        let childContains = search.regexSearch(pattern: "((^|\\W)(\(key.replacingOccurrences(of: ".", with: "\\.")))(\\.)*($|\\W))|((^|\\W)(\(key.replacingOccurrences(of: ".", with: "\\.")))(\\.)*($|\\W))", searchIn: noidungChild).count>0
+//                        
+//                        if (childContains) {
+//                            appendRelatedChild(child: child)
+//                        }
+                        child.setSortPoint(sortPoint: Int16(order))
+                        sortedRelatedPlat.append(child)
+                        order += 1
                     }
                 }
             }
+        }
+        
+        for relatedPlateItem in sortIt.sortBySortPoint(listDieukhoan: sortedRelatedPlat,isAscending: true) {
+            appendRelatedChild(child: relatedPlateItem)
         }
         
         for child in getParent(keyword: String(describing: dieukhoan.cha)) {
@@ -258,6 +269,8 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     func parseRelatedDieukhoanKeywords(keyword:String) -> [Dieukhoan] {
         let key = keyword.lowercased()
         var relatedDieukhoan = [Dieukhoan]()
+        let sortIt = SortUtil()
+        
         
         var pattern = "^((điều)|(khoản)|(điểm)|(chương)|(mục)|(phần)|(phụ lục))(\\s)+(((\\d)|(\\w))+(\\.)*)+$"
         if search.regexSearch(pattern: pattern, searchIn: key).count > 0 {
@@ -276,7 +289,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                     if rs.count > 0 {
                         dieu = rs[0]
                     }else{
-                        return relatedDieukhoan
+                        return sortIt.sortByBestMatch(listDieukhoan: relatedDieukhoan, keyword: key)
                     }
                 }
             }
@@ -312,7 +325,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                 }
             }
         }
-        return relatedDieukhoan
+        return sortIt.sortByBestMatch(listDieukhoan: relatedDieukhoan, keyword: key)
     }
     
     func getRelatedPlatKeywords(content:String) -> [String] {
