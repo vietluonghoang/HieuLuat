@@ -128,7 +128,7 @@ class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, U
             dieukhoan = dieukhoanList[indexPath.row]
         }
         
-        cell.updateDieukhoan(dieukhoan: dieukhoan, fullDetails: true, showVanban: false)
+        cell.updateDieukhoan(dieukhoan: dieukhoan, fullDetails: true, showVanban: true)
         return cell
     }
     

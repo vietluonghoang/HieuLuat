@@ -16,6 +16,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var lblVanban: UILabel!
     @IBOutlet weak var lblDieukhoan: UILabel!
     @IBOutlet weak var lblNoidung: UILabel!
+    @IBOutlet var lblParentBreadscrub: UILabel!
     @IBOutlet weak var scvDetails: UIScrollView!
     @IBOutlet weak var svStackview: UIStackView!
     @IBOutlet weak var lblSeeMore: UIButton!
@@ -116,7 +117,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                 var order = 0
                 for child in sortIt.sortByBestMatch(listDieukhoan: relatedChild, keyword: key)
                 {
-                    if  getParent(keyword: search.getAncesters(dieukhoan: child, vanbanId: specificVanbanId).components(separatedBy: "-")[0])[0].getSo().lowercased().contains("phụ lục"){
+                    if  getParent(keyword: search.getAncestersID(dieukhoan: child, vanbanId: specificVanbanId).components(separatedBy: "-")[0])[0].getSo().lowercased().contains("phụ lục"){
 //                        let noidungChild = child.getTieude() + " "+child.getNoidung()
 //                        let childContains = search.regexSearch(pattern: "((^|\\W)(\(key.replacingOccurrences(of: ".", with: "\\.")))(\\.)*($|\\W))|((^|\\W)(\(key.replacingOccurrences(of: ".", with: "\\.")))(\\.)*($|\\W))", searchIn: noidungChild).count>0
 //                        
@@ -374,6 +375,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     func showDieukhoan() {
         lblVanban.text = dieukhoan!.getVanban().getMa()
         lblDieukhoan.text = dieukhoan!.getSo()
+        lblParentBreadscrub.text = search.getAncestersNumber(dieukhoan: dieukhoan!, vanbanId: [String(describing: dieukhoan!.getVanban().getId())])
         let noidung = "\(String(describing: dieukhoan!.getTieude())) \n \(String(describing: dieukhoan!.getNoidung()))"
         lblNoidung.text = noidung
         

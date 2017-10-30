@@ -61,6 +61,7 @@ class FilterPopupViewController: UIViewController {
     
     @IBAction func btnXongOnTouchDown(_ sender: Any) {
         root?.updateSearchResults(for: (root?.searchController)!)
+        root?.updateFilterLabel()
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func swtQC41OnValueChange(_ sender: Any) {

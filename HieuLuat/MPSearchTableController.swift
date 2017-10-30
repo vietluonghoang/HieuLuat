@@ -1,19 +1,20 @@
 //
-//  VBPLSearchTableController.swift
+//  MPSearchTableController.swift
 //  HieuLuat
 //
-//  Created by VietLH on 9/4/17.
+//  Created by VietLH on 10/27/17.
 //  Copyright © 2017 VietLH. All rights reserved.
 //
 
 import UIKit
 import os.log
 
-class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class MPSearchTableController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet var lblLoctheo: UILabel!
     @IBOutlet weak var searchbarView: UIView!
+    @IBOutlet var bottomView: UIView!
     @IBOutlet weak var consHeightTableView: NSLayoutConstraint!
     var dieukhoanList = [Dieukhoan]()
     let searchController = UISearchController(searchResultsController: nil)
@@ -56,11 +57,11 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     
     func initFilterConfig() {
         if(filterSettings.count < 1){
-            filterSettings["QC41"] = "on"
-            filterSettings["TT01"] = "on"
+//            filterSettings["QC41"] = "on"
+//            filterSettings["TT01"] = "on"
             filterSettings["ND46"] = "on"
-            filterSettings["LGTDB"] = "on"
-            filterSettings["LXLVPHC"] = "on"
+//            filterSettings["LGTDB"] = "on"
+//            filterSettings["LXLVPHC"] = "on"
         }
     }
     
@@ -140,8 +141,9 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
             }
             
         case "filterPopup":
-            guard let filterPopup = segue.destination as? FilterPopupViewController else {
+            guard let filterPopup = segue.destination as? MPSearchFilterPopupController else {
                 fatalError("Unexpected destination: \(segue.destination)")
+                
             }
             
             filterPopup.updateActiveFilterList(root: self)

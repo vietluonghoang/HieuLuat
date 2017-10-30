@@ -14,6 +14,7 @@ class VBPLTableViewCell: UITableViewCell{
     @IBOutlet weak var lblVanban: UILabel!
     @IBOutlet weak var lblDieukhoan: UILabel!
     @IBOutlet weak var lblNoidung: UILabel!
+    @IBOutlet var lblParentBreadscrub: UILabel!
     
     @IBOutlet var consWidthImageView: NSLayoutConstraint!
     
@@ -21,6 +22,8 @@ class VBPLTableViewCell: UITableViewCell{
     
     @IBOutlet var consWidthImageViewEmpty: NSLayoutConstraint!
     @IBOutlet weak var imgView: UIImageView!
+    
+    var search = SearchFor()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,25 +33,37 @@ class VBPLTableViewCell: UITableViewCell{
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
-    
+   
     func updateDieukhoan(dieukhoan: Dieukhoan,fullDetails: Bool,showVanban: Bool) {
         if(!showVanban){
             lblVanban.isHidden = true
+            lblParentBreadscrub.isHidden = true
         }else{
             lblVanban.isHidden = false
+            lblParentBreadscrub.isHidden = false
             lblVanban.numberOfLines = 0
             lblVanban.lineBreakMode = NSLineBreakMode.byWordWrapping
             lblVanban.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+            lblVanban.textAlignment = NSTextAlignment.left
+            lblParentBreadscrub.numberOfLines = 0
+            lblParentBreadscrub.lineBreakMode = NSLineBreakMode.byWordWrapping
+            lblParentBreadscrub.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightRegular)
+            lblParentBreadscrub.textAlignment = NSTextAlignment.right
         }
         lblDieukhoan.numberOfLines = 0
         lblDieukhoan.lineBreakMode = NSLineBreakMode.byWordWrapping
         lblDieukhoan.font = UIFont.boldSystemFont(ofSize: 14)
+        lblDieukhoan.textAlignment = NSTextAlignment.left
         lblNoidung.numberOfLines = 0
         lblNoidung.lineBreakMode = NSLineBreakMode.byWordWrapping
         lblNoidung.font = UIFont.systemFont(ofSize: 16)
+        lblNoidung.textAlignment = NSTextAlignment.left
         
         lblVanban.text = dieukhoan.getVanban().getMa()
         lblDieukhoan.text = dieukhoan.getSo()
+        
+        let breadscrub = search.getAncestersNumber(dieukhoan: dieukhoan, vanbanId: [String(dieukhoan.getVanban().getId())])
+        lblParentBreadscrub.text = breadscrub
         var noidung = "\(dieukhoan.getTieude()) \n \(dieukhoan.getNoidung())"
         
         let maxText = 250
