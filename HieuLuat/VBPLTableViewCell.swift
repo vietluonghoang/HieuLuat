@@ -16,6 +16,7 @@ class VBPLTableViewCell: UITableViewCell{
     @IBOutlet weak var lblNoidung: UILabel!
     @IBOutlet var lblParentBreadscrub: UILabel!
     
+    @IBOutlet var consHeightLblVanban: NSLayoutConstraint!
     @IBOutlet var consWidthImageView: NSLayoutConstraint!
     
     @IBOutlet var consHeightImageView: NSLayoutConstraint!
@@ -38,8 +39,10 @@ class VBPLTableViewCell: UITableViewCell{
         if(!showVanban){
             lblVanban.isHidden = true
             lblParentBreadscrub.isHidden = true
+            consHeightLblVanban.constant = 0
         }else{
             lblVanban.isHidden = false
+            consHeightLblVanban.constant = 15
             lblParentBreadscrub.isHidden = false
             lblVanban.numberOfLines = 0
             lblVanban.lineBreakMode = NSLineBreakMode.byWordWrapping

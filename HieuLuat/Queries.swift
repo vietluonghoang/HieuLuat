@@ -109,6 +109,46 @@ class Queries: NSObject {
         return dieukhoanArray
     }
     
+    class func searchDieukhoanByQuery(query:String, vanbanid: [String]) -> [Dieukhoan] {
+        DataConnection.database!.open()
+        var specificVanban = ""
+        if vanbanid.count > 0 {
+            specificVanban = " and ("
+            for id in vanbanid {
+                if id.characters.count > 0 {
+                    specificVanban = specificVanban + "vbId = "+id.trimmingCharacters(in: .whitespacesAndNewlines) + " or "
+                }
+            }
+            specificVanban = specificVanban.substring(to: specificVanban.index(specificVanban.endIndex, offsetBy: -4)) + ")"
+        }
+
+        let appendKeyword = [String]()
+        
+        let sql = query.lowercased() + specificVanban
+        
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: appendKeyword)!
+        
+        var dieukhoanArray = Array<Dieukhoan>()
+        
+        if resultSet != nil {
+            while resultSet.next() {
+                var cha = resultSet.string(forColumn: "dkCha")
+                if(cha==nil){
+                    cha="0"
+                }
+                let lvb = Loaivanban(id: Int64(resultSet.string(forColumn: "lvbId")!)!, ten: resultSet.string(forColumn: "lvbTen")!)
+                let cq = Coquanbanhanh(id: Int64(resultSet.string(forColumn: "vbCoquanbanhanhid")!)!, ten: resultSet.string(forColumn: "cqTen")!)
+                let vb = Vanban(id: Int64(resultSet.string(forColumn: "vbId")!)!, ten: resultSet.string(forColumn: "vbTen")!, loai: lvb, so: resultSet.string(forColumn: "vbSo")!, nam: resultSet.string(forColumn: "vbNam")!, ma: resultSet.string(forColumn: "vbMa")!, coquanbanhanh: cq, noidung: resultSet.string(forColumn: "vbNoidung")!)
+                let dieukhoan = Dieukhoan(id: Int64(resultSet.string(forColumn: "dkId")!)!, so: resultSet.string(forColumn: "dkSo")!, tieude: resultSet.string(forColumn: "dkTieude")!, noidung: resultSet.string(forColumn: "dkNoidung")!, minhhoa: resultSet.string(forColumn: "dkMinhhoa")!, cha: Int64(cha!)!, vanban: vb)
+                dieukhoanArray.append(dieukhoan)
+            }
+        }
+        
+        DataConnection.database!.close()
+        
+        return dieukhoanArray
+    }
+    
     class func searchDieukhoanByID(keyword:String,vanbanid:[String]) -> [Dieukhoan] {
         DataConnection.database!.open()
         var specificVanban = ""

@@ -7,5 +7,6 @@ target 'HieuLuat' do
 
   # Pods for HieuLuat
 pod 'FMDB'
+pod 'Google-Mobile-Ads-SDK'
 
 end

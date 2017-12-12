@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import GoogleMobileAds
 
 class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
@@ -15,10 +16,13 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet var lblLoctheo: UILabel!
     @IBOutlet weak var searchbarView: UIView!
     @IBOutlet weak var consHeightTableView: NSLayoutConstraint!
+    @IBOutlet var viewBottom: UIView!
+    
     var dieukhoanList = [Dieukhoan]()
     let searchController = UISearchController(searchResultsController: nil)
     var rowCount = 0
     var filterSettings = [String:String]()
+    var bannerView: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +44,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         
         rowCount = dieukhoanList.count
         tblView.reloadData()
+        initAds()
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,7 +56,62 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-        searchbarView.addSubview(searchController.searchBar)
+        let sBar = searchController.searchBar
+        searchbarView.addSubview(sBar)
+        searchbarView.addConstraints(
+            [NSLayoutConstraint(item: sBar,
+                                attribute: .top,
+                                relatedBy: .equal,
+                                toItem: searchbarView,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: sBar,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: searchbarView,
+                                attribute: .bottom,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: sBar,
+                                attribute: .leading,
+                                relatedBy: .equal,
+                                toItem: searchbarView,
+                                attribute: .leading,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: sBar,
+                                attribute: .trailing,
+                                relatedBy: .equal,
+                                toItem: searchbarView,
+                                attribute: .trailing,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: sBar,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: searchbarView,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
+    }
+    
+    func setupSearchBarSize(){
+        self.searchController.searchBar.frame.size.width = self.view.frame.size.width
+    }
+    
+    func didDismissSearchController(searchController: UISearchController) {
+        setupSearchBarSize()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        setupSearchBarSize()
+    }
+    
+    func initAds() {
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        AdsHelper.addBannerViewToView(bannerView: bannerView,toView: viewBottom, root: self)
     }
     
     func initFilterConfig() {

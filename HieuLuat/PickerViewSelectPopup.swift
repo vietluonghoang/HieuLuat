@@ -10,14 +10,14 @@ import UIKit
 
 class PickerViewSelectPopup: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    let mucphatRange = ["50.000","60.000","80.000","100.000","120.000","200.000","300.000","400.000","500.000","600.000","800.000","1.000.000","1.200.000","500.000","1.600.000","2.000.000","2.500.000","3.000.000","4.000.000","5.000.000","6.000.000","7.000.000","8.000.000","10.000.000","12.000.000","14.000.000","15.000.000","16.000.000","18.000.000","20.000.000","25.000.000","28.000.000","30.000.000","32.000.000","36.000.000","37.500.000","40.000.000","50.000.000","52.500.000","56.000.000","64.000.000","70.000.000","75.000.000","80.000.000","150.000.000"]
+    let mucphatRange = GeneralSettings.getMucphatRange()
     
     @IBOutlet var pvMucphat: UIPickerView!
     @IBOutlet var btnXong: UIButton!
     
     var root = MPSearchFilterPopupController()
     var target = ""
-    var selectedRow = ""
+    var selectedRow = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +35,9 @@ class PickerViewSelectPopup: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBAction func btnXongAction(_ sender: Any) {
         //Xong button
         if(target == "tu"){
-            root.updateMucphatTu(tu: selectedRow)
+            root.updateMucphatTu(tu: mucphatRange[selectedRow])
         }else{
-            root.updateMucphatDen(den: selectedRow)
+            root.updateMucphatDen(den: mucphatRange[selectedRow])
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -63,7 +63,7 @@ class PickerViewSelectPopup: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedRow = mucphatRange[row] as String
+        selectedRow = row
     }
     
 }

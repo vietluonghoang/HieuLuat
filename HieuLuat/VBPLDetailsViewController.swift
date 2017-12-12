@@ -400,8 +400,32 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                     let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
                     imgView.isUserInteractionEnabled = true
                     imgView.addGestureRecognizer(tap)
-
+                    imgView.translatesAutoresizingMaskIntoConstraints = false
                     svStackview.addArrangedSubview(imgView)
+                    svStackview.addConstraints(
+                        [
+                            NSLayoutConstraint(item: imgView,
+                                            attribute: .leading,
+                                            relatedBy: .equal,
+                                            toItem: svStackview,
+                                            attribute: .leading,
+                                            multiplier: 1,
+                                            constant: 0),
+                            NSLayoutConstraint(item: imgView,
+                                            attribute: .trailing,
+                                            relatedBy: .equal,
+                                            toItem: svStackview,
+                                            attribute: .trailing,
+                                            multiplier: 1,
+                                            constant: 0),
+                            NSLayoutConstraint(item: imgView,
+                                            attribute: .centerX,
+                                            relatedBy: .equal,
+                                            toItem: svStackview,
+                                            attribute: .centerX,
+                                            multiplier: 1,
+                                            constant: 0)
+                        ])
                 }
                 //                for child in children {
                 //                    let lineView = UIView(frame: CGRect(x: 0, y: 0, width: svStackview.frame.width, height: 1))

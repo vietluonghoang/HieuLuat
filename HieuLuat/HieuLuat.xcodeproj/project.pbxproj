@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		20279DE0C4C4A62F0030B572 /* Pods_HieuLuat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2F4D9953D61DA1A8A51262 /* Pods_HieuLuat.framework */; };
 		3331E6641FA3092000219B19 /* MPSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3331E6631FA3092000219B19 /* MPSearchTableController.swift */; };
+		334939891FA8A74F0037305C /* AdsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334939881FA8A74F0037305C /* AdsHelper.swift */; };
+		334AAFB21FC1E0A300A5BE0F /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AAFB11FC1E0A300A5BE0F /* GeneralSettings.swift */; };
 		335078EA1F5B099100D52741 /* VBPLDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335078E91F5B099100D52741 /* VBPLDetailsViewController.swift */; };
 		335078EC1F5D166A00D52741 /* VBPLSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335078EB1F5D166A00D52741 /* VBPLSearchTableController.swift */; };
 		3357C5321F86547700B963E6 /* SortUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357C5311F86547700B963E6 /* SortUtil.swift */; };
 		336C485B1FA0D7D200A154D9 /* PickerViewSelectPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336C485A1FA0D7D200A154D9 /* PickerViewSelectPopup.swift */; };
 		339E7EA61F6181810048B0E8 /* VBPLHomeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339E7EA51F6181810048B0E8 /* VBPLHomeDetailsViewController.swift */; };
+		33C8670A1FAA02AC0090D954 /* AppearanceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C867091FAA02AC0090D954 /* AppearanceUtil.swift */; };
 		33C87DFC1F604C0200D8B198 /* ConfigAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C87DFB1F604C0200D8B198 /* ConfigAttribute.swift */; };
 		33C87DFE1F6052B100D8B198 /* FilterPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C87DFD1F6052B100D8B198 /* FilterPopupViewController.swift */; };
 		33CB16001F5AF9A700AD2C45 /* VBPLDetailsSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CB15FF1F5AF9A700AD2C45 /* VBPLDetailsSearchTableController.swift */; };
@@ -55,11 +58,14 @@
 
 /* Begin PBXFileReference section */
 		3331E6631FA3092000219B19 /* MPSearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPSearchTableController.swift; sourceTree = "<group>"; };
+		334939881FA8A74F0037305C /* AdsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsHelper.swift; sourceTree = "<group>"; };
+		334AAFB11FC1E0A300A5BE0F /* GeneralSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
 		335078E91F5B099100D52741 /* VBPLDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLDetailsViewController.swift; sourceTree = "<group>"; };
 		335078EB1F5D166A00D52741 /* VBPLSearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLSearchTableController.swift; sourceTree = "<group>"; };
 		3357C5311F86547700B963E6 /* SortUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortUtil.swift; sourceTree = "<group>"; };
 		336C485A1FA0D7D200A154D9 /* PickerViewSelectPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewSelectPopup.swift; sourceTree = "<group>"; };
 		339E7EA51F6181810048B0E8 /* VBPLHomeDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLHomeDetailsViewController.swift; sourceTree = "<group>"; };
+		33C867091FAA02AC0090D954 /* AppearanceUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceUtil.swift; sourceTree = "<group>"; };
 		33C87DFB1F604C0200D8B198 /* ConfigAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigAttribute.swift; sourceTree = "<group>"; };
 		33C87DFD1F6052B100D8B198 /* FilterPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPopupViewController.swift; sourceTree = "<group>"; };
 		33CB15FF1F5AF9A700AD2C45 /* VBPLDetailsSearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLDetailsSearchTableController.swift; sourceTree = "<group>"; };
@@ -189,6 +195,8 @@
 				33D3055C1F517F2B00547497 /* SearchFor.swift */,
 				33D3055E1F517F5800547497 /* Queries.swift */,
 				3357C5311F86547700B963E6 /* SortUtil.swift */,
+				334939881FA8A74F0037305C /* AdsHelper.swift */,
+				33C867091FAA02AC0090D954 /* AppearanceUtil.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -201,6 +209,7 @@
 				33D305651F51802700547497 /* Loaivanban.swift */,
 				33D305671F51804F00547497 /* Vanban.swift */,
 				33C87DFB1F604C0200D8B198 /* ConfigAttribute.swift */,
+				334AAFB11FC1E0A300A5BE0F /* GeneralSettings.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -440,11 +449,14 @@
 				33D31DE41F77BEF700A46E62 /* MPSearchFilterPopupController.swift in Sources */,
 				33D305681F51804F00547497 /* Vanban.swift in Sources */,
 				33D3052B1F51794F00547497 /* ViewController.swift in Sources */,
+				334939891FA8A74F0037305C /* AdsHelper.swift in Sources */,
 				33C87DFE1F6052B100D8B198 /* FilterPopupViewController.swift in Sources */,
 				33D305291F51794F00547497 /* AppDelegate.swift in Sources */,
 				33CB16001F5AF9A700AD2C45 /* VBPLDetailsSearchTableController.swift in Sources */,
 				33CE51FC1F5E788C008AB4D4 /* VBPLTableViewCell.swift in Sources */,
+				334AAFB21FC1E0A300A5BE0F /* GeneralSettings.swift in Sources */,
 				3357C5321F86547700B963E6 /* SortUtil.swift in Sources */,
+				33C8670A1FAA02AC0090D954 /* AppearanceUtil.swift in Sources */,
 				33D3055B1F517D6F00547497 /* DataConnection.swift in Sources */,
 				33D305621F517FB900547497 /* Dieukhoan.swift in Sources */,
 				336C485B1FA0D7D200A154D9 /* PickerViewSelectPopup.swift in Sources */,
