@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import GoogleMobileAds
 
 class MPSearchTableController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
@@ -22,6 +23,8 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     var filterSettings = [String:String]()
     var searchFilters = [String:[String:[String:String]]]()
     var builtQuery = ""
+    var settings = GeneralSettings()
+    var bannerView: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +47,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         
         rowCount = dieukhoanList.count
         tblView.reloadData()
+        initAds()
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,6 +100,10 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
             ])
     }
     
+    func initAds() {
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        AdsHelper.addBannerViewToView(bannerView: bannerView,toView: bottomView, root: self)
+    }
     
     func setupSearchBarSize(){
         self.searchController.searchBar.frame.size.width = self.view.frame.size.width
@@ -173,8 +181,16 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     
     func updateFilterLabel() {
         var newLabel = ""
-        if searchFilters["Mucphat"]!["tu"]!["chon"] != "0" && searchFilters["Mucphat"]!["den"]!["chon"] != "0" {
-            newLabel += "Mức phạt (\(String(describing: searchFilters["Mucphat"]!["tu"]!["chon"]!))-\(String(describing: searchFilters["Mucphat"]!["den"]!["chon"]!)))" + ", "
+        if searchFilters["Mucphat"]!["tu"]!["chon"] != "0" || searchFilters["Mucphat"]!["den"]!["chon"] != "0" {
+            if searchFilters["Mucphat"]!["tu"]!["chon"] != "0" && searchFilters["Mucphat"]!["den"]!["chon"] == "0" {
+                searchFilters["Mucphat"]!["den"]!["chon"] = settings.getMucphatRange()[settings.getMucphatRange().count - 1]
+                newLabel += "Mức phạt (từ \(String(describing: searchFilters["Mucphat"]!["tu"]!["chon"]!)))" + ", "
+            }else if searchFilters["Mucphat"]!["tu"]!["chon"] == "0" && searchFilters["Mucphat"]!["den"]!["chon"] != "0"{
+                searchFilters["Mucphat"]!["tu"]!["chon"] = settings.getMucphatRange()[0]
+                newLabel += "Mức phạt (đến \(String(describing: searchFilters["Mucphat"]!["den"]!["chon"]!)))" + ", "
+            }else{
+                newLabel += "Mức phạt (\(String(describing: searchFilters["Mucphat"]!["tu"]!["chon"]!))-\(String(describing: searchFilters["Mucphat"]!["den"]!["chon"]!)))" + ", "
+            }
         }
         
         if searchFilters["Phuongtien"]!["Oto"]!["chon"] != "0" {
@@ -278,7 +294,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func getBuiltQuery(keyword: String) -> String {
-        let query = "select dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id where"
+        let query = "select distinct dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id where"
         
         var appendString = ""
         for k in keyword.components(separatedBy: " ") {
@@ -301,14 +317,14 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         let tuInt = Int32(tu.replacingOccurrences(of: ".", with: ""))
         let denInt = Int32(den.replacingOccurrences(of: ".", with: ""))
         var inClause = ""
-        for item in GeneralSettings.getMucphatRange() {
+        for item in settings.getMucphatRange() {
             let itemInt = Int32(item.replacingOccurrences(of: ".", with: ""))
             if itemInt! >= tuInt! && itemInt! <= denInt! {
                 inClause += "\"\(item)\","
             }
         }
         inClause = inClause.substring(to: inClause.index(inClause.endIndex, offsetBy: -1))
-        return " and dkId in (select dieukhoanID from tblMucphat where canhanTu in (\(inClause)) or canhanDen in (\(inClause)) or tochucTu in (\(inClause)) or tochucDen in (\(inClause)))"
+        return " and dkId in (select distinct dieukhoanID from tblMucphat where canhanTu in (\(inClause)) or canhanDen in (\(inClause)) or tochucTu in (\(inClause)) or tochucDen in (\(inClause)))"
     }
     
     func getWhereClauseForPhuongtien() -> String {
@@ -343,7 +359,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         
         inClause = inClause.substring(to: inClause.index(inClause.endIndex, offsetBy: -4))
         
-        return " and dkID in (select dieukhoanID from tblPhuongtien where \(inClause))"
+        return " and dkID in (select distinct dieukhoanID from tblPhuongtien where \(inClause))"
     }
     
     /*
@@ -448,8 +464,10 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     public func updateSearchResults(for searchController: UISearchController) {
-        builtQuery = getBuiltQuery(keyword: searchController.searchBar.text!)
-        filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
+//        if searchController.searchBar.text!.characters.count > 1 {
+            builtQuery = getBuiltQuery(keyword: searchController.searchBar.text!)
+            filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
+//        }
     }
     
 }

@@ -277,7 +277,9 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     }
     
     public func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
+//        if searchController.searchBar.text!.characters.count > 1 {
+            filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
+//        }
     }
     
 }

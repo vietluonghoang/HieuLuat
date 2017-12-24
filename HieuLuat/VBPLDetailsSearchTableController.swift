@@ -8,15 +8,18 @@
 
 import UIKit
 import os.log
+import GoogleMobileAds
 
 class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
     @IBOutlet weak var tblView: UITableView!
+    @IBOutlet var viewAds: UIView!
     
     var dieukhoanList = [Dieukhoan]()
     var specificVanbanId = [String]()
     let searchController = UISearchController(searchResultsController: nil)
     var rowCount = 0
+    var bannerView: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +40,7 @@ class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, U
         rowCount = dieukhoanList.count
         tblView.reloadData()
         tblView.layoutIfNeeded()
+        initAds()
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,6 +53,11 @@ class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, U
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tblView.tableHeaderView = searchController.searchBar
+    }
+    
+    func initAds() {
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        AdsHelper.addBannerViewToView(bannerView: bannerView,toView: viewAds, root: self)
     }
     
     func updateDieukhoanList(arrDieukhoan: Array<Dieukhoan>)  {
@@ -155,8 +164,9 @@ class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, U
     }
     
     public func updateSearchResults(for searchController: UISearchController) {
-        
-        filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
+//        if searchController.searchBar.text!.characters.count > 1 {
+            filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
+//        }
     }
     
 }

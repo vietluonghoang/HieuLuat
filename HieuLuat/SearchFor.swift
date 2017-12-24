@@ -92,4 +92,18 @@ class SearchFor {
         }
         return trackingDieukhoan
     }
+    
+    func getKhoannay(currentDieukhoan: Dieukhoan, vanbanId: [String]) -> Dieukhoan {
+        var trackingDieukhoan = currentDieukhoan
+        var prevTrackingDieukhoan = currentDieukhoan
+        while !trackingDieukhoan.getSo().lowercased().contains("điều") {
+            prevTrackingDieukhoan = trackingDieukhoan
+            if(trackingDieukhoan.getCha() != 0){
+                trackingDieukhoan = Queries.searchDieukhoanByID(keyword: "\(trackingDieukhoan.getCha())",vanbanid: vanbanId)[0]
+            }else{
+                return prevTrackingDieukhoan
+            }
+        }
+        return prevTrackingDieukhoan
+    }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import GoogleMobileAds
 
 class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
@@ -16,17 +17,35 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var lblVanban: UILabel!
     @IBOutlet weak var lblDieukhoan: UILabel!
     @IBOutlet weak var lblNoidung: UILabel!
-    @IBOutlet var lblParentBreadscrub: UILabel!
+    
+    @IBOutlet var btnParentBreadscrub: UIButton!
     @IBOutlet weak var scvDetails: UIScrollView!
     @IBOutlet weak var svStackview: UIStackView!
     @IBOutlet weak var lblSeeMore: UIButton!
+    @IBOutlet var viewExtraInfo: UIView!
+    @IBOutlet var lblMucphat: UILabel!
+    @IBOutlet var lblPhuongtien: UILabel!
+    @IBOutlet var lblLinhvuc: UILabel!
+    @IBOutlet var lblDoituong: UILabel!
     @IBOutlet var consSvStackviewHeightBig: NSLayoutConstraint!
     @IBOutlet var consSvStackviewHeightSmall: NSLayoutConstraint!
+    @IBOutlet var consExtraViewHeight: NSLayoutConstraint!
+    @IBOutlet var consLblMucphatHeight: NSLayoutConstraint!
+    @IBOutlet var consLblPhuongtienHeight: NSLayoutConstraint!
+    @IBOutlet var consLblLinhvucHeight: NSLayoutConstraint!
+    @IBOutlet var consLblDoituongHeight: NSLayoutConstraint!
+    @IBOutlet var consLblMucphatDetailsHeight: NSLayoutConstraint!
+    @IBOutlet var consLblPhuongtienDetailsHeight: NSLayoutConstraint!
+    @IBOutlet var consLblLinhvucDetailsHeight: NSLayoutConstraint!
+    @IBOutlet var consLblDoituongDetailsHeight: NSLayoutConstraint!
+    @IBOutlet var consLblSeeMoreHeight: NSLayoutConstraint!
     
     @IBOutlet var tblView: UITableView!
     @IBOutlet var consHeightTblView: NSLayoutConstraint!
+    @IBOutlet var viewAds: UIView!
     
     var children = [Dieukhoan]()
+    var parentDieukhoan: Dieukhoan? = nil
     var relatedChildren = [Dieukhoan]()
     var dieukhoan: Dieukhoan? = nil
     var search = SearchFor()
@@ -34,6 +53,8 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     var images = [String]()
     let searchController = UISearchController(searchResultsController: nil)
     var rowCount = 0
+    var settings = GeneralSettings()
+    var bannerView: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,13 +72,19 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
         if(relatedChildren.count>0){
             lblSeeMore.isEnabled = true
+            consLblSeeMoreHeight.constant = 50
         }else{
             lblSeeMore.isEnabled = false
+            consLblSeeMoreHeight.constant = 0
         }
         showDieukhoan()
         
         tblView.reloadData()
         updateTableViewHeight()
+        initAds()
+        
+        //        svStackview.contentMode = UIViewContentMode.scaleAspectFit
+        //        print(svStackview.frame.size)
     }
     
     override func didReceiveMemoryWarning() {
@@ -91,6 +118,11 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         tblView.layoutIfNeeded()
     }
     
+    func initAds() {
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        AdsHelper.addBannerViewToView(bannerView: bannerView,toView: viewAds, root: self)
+    }
+    
     func updateDetails(dieukhoan: Dieukhoan) {
         self.dieukhoan = dieukhoan
         specificVanbanId.append( String(describing:dieukhoan.getVanban().getId()))
@@ -104,31 +136,17 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         for child in getRelatedDieukhoan(noidung: noidung) {
             relatedChildren.append(child)
         }
-        let relatedPlate = getRelatedPlatKeywords(content: noidung)
-        
-        //this is a stupid way to take related ones out, but simpler to get it worked with less code
-        
+        let relatedPlateKeywords = getRelatedPlatKeywords(content: noidung)
         var sortedRelatedPlat = [Dieukhoan]()
         let sortIt = SortUtil()
-        for k in relatedPlate {
+        
+        for k in relatedPlateKeywords {
             var key = k.lowercased()
-            if key.characters.count>0 {
-                let relatedChild = getRelatedChildren(keyword: key)
-                var order = 0
-                for child in sortIt.sortByBestMatch(listDieukhoan: relatedChild, keyword: key)
-                {
-                    if  getParent(keyword: search.getAncestersID(dieukhoan: child, vanbanId: specificVanbanId).components(separatedBy: "-")[0])[0].getSo().lowercased().contains("phụ lục"){
-//                        let noidungChild = child.getTieude() + " "+child.getNoidung()
-//                        let childContains = search.regexSearch(pattern: "((^|\\W)(\(key.replacingOccurrences(of: ".", with: "\\.")))(\\.)*($|\\W))|((^|\\W)(\(key.replacingOccurrences(of: ".", with: "\\.")))(\\.)*($|\\W))", searchIn: noidungChild).count>0
-//                        
-//                        if (childContains) {
-//                            appendRelatedChild(child: child)
-//                        }
-                        child.setSortPoint(sortPoint: Int16(order))
-                        sortedRelatedPlat.append(child)
-                        order += 1
-                    }
-                }
+            var finalQuery = ""
+            if key.characters.count > 0 {
+                finalQuery = "select distinct dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id where (dkCha in (select id from tblChitietvanban where forsearch like 'phụ lục%') or dkCha in (select id from tblchitietvanban where cha in (select id from tblChitietvanban where forsearch like 'phụ lục%')) or dkCha in (select id from tblchitietvanban where cha in (select id from tblchitietvanban where cha in (select id from tblChitietvanban where forsearch like 'phụ lục%')))) and forsearch like '% \(key) %'"
+                let relatedChild = Queries.searchDieukhoanByQuery(query: finalQuery, vanbanid: ["\(settings.getQC41ID())"])
+                    sortedRelatedPlat.append(contentsOf: sortIt.sortByBestMatch(listDieukhoan: relatedChild, keyword: key))
             }
         }
         
@@ -136,8 +154,8 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             appendRelatedChild(child: relatedPlateItem)
         }
         
-        for child in getParent(keyword: String(describing: dieukhoan.cha)) {
-            appendRelatedChild(child: child)
+        for parent in getParent(keyword: String(describing: dieukhoan.cha)) {
+            parentDieukhoan = parent
         }
         
     }
@@ -171,39 +189,371 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func imageViewScaleup(frameWidth: Float,imageView:UIImageView) {
-        
-        //        let ratio:Float = Float(imageView.frame.width)/Float(imageView.frame.height)
-        let newWidth:Float = frameWidth - 10
-        let newHeight:Float = (newWidth / Float(imageView.frame.width))*Float(imageView.frame.height)
-        
-        print("\(newWidth):\(+newHeight)")
-        imageView.frame = CGRect(x: imageView.frame.minX, y: imageView.frame.minY, width: CGFloat(newWidth), height: CGFloat(newHeight))
+    func hideExtraInfoView(isHidden: Bool)  {
+        if(isHidden){
+            consExtraViewHeight.constant = 0
+            consExtraViewHeight.isActive = true
+            viewExtraInfo.isHidden = true
+        }else{
+            consExtraViewHeight.isActive = false
+            viewExtraInfo.isHidden = false
+        }
     }
     
+    func getRelatedChildren(keyword:String) -> [Dieukhoan] {
+        if DataConnection.database == nil {
+            DataConnection.databaseSetup()
+        }
+        return Queries.searchDieukhoan(keyword: "\(keyword)", vanbanid: specificVanbanId)
+    }
     
-    func scaleImage(image: UIImage, targetWidth: CGFloat) -> UIImage {
-        let size = image.size
+    func getRelatedDieukhoan(noidung:String) -> [Dieukhoan] {
+        var nd = noidung.lowercased()
         
-        let widthRatio  = targetWidth / image.size.width
+        var relatedDieukhoan = [Dieukhoan]()
         
-        //        let ratio:Float = Float(size.width)/Float(size.height)
+        var pattern = "((điểm\\s+(((\\p{L}{1})|(\\d\\.*)+)(,|;)*\\s+(và)*\\s*)+)*(khoản\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+)*((điều\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+)+(((của)|(tại)|(theo))*\\s*((luật)|(nghị định)|(quy chuẩn)|(thông tư))\\s*((này)|(giao thông đường bộ)|(xử lý vi phạm hành chính)))"
+        let vanbanPattern = "(((của)|(tại)|(theo))*\\s*((luật)|(nghị định)|(quy chuẩn)|(thông tư))\\s*((này)|(giao thông đường bộ)|(xử lý vi phạm hành chính)))"
         
+        let fullMatches = search.regexSearch(pattern: pattern, searchIn: nd)
         
-        // Figure out what our orientation is, and use that to form the rectangle
-        var newSize: CGSize
-        newSize = CGSize(width: size.width * widthRatio, height: CGFloat(Float(size.height) * Float(widthRatio)))
+        for fmatch in fullMatches {
+            var keywords = [String]()
+            for vbMatch in search.regexSearch(pattern: vanbanPattern, searchIn: fmatch) {
+                if vbMatch.contains("này") {
+                    specificVanbanId = [String(describing: dieukhoan!.getVanban().getId())]
+                }
+                if vbMatch.contains("luật giao thông") {
+                    specificVanbanId = [settings.getLGTID()]
+                }
+                if vbMatch.contains("luật xử lý vi phạm hành chính") {
+                    specificVanbanId = [settings.getLXLVPHCID()]
+                }
+                if vbMatch.contains("nghị định 46") {
+                    specificVanbanId = [settings.getND46ID()]
+                }
+                if vbMatch.contains("thông tư 01") {
+                    specificVanbanId = [settings.getTT01ID()]
+                }
+                if vbMatch.contains("quy chuẩn 41") {
+                    specificVanbanId = [settings.getQC41ID()]
+                }
+            }
+            
+            nd = nd.replacingOccurrences(of: fmatch, with: "")
+            
+            pattern = "((điểm\\s+(((\\p{L}{1})|(\\d\\.*)+)(,|;)*\\s+(và)*\\s*)+)*(khoản\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+)*((điều\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+)+"
+            
+            let longMatches = search.regexSearch(pattern: pattern, searchIn: fmatch)
+            
+            for match in longMatches{
+                if(!search.isStringExisted(str: match, strArr: keywords)){
+                    keywords.append(match.trimmingCharacters(in: .whitespacesAndNewlines))
+                }
+            }
+            
+            for key in keywords {
+                let dk = parseRelatedDieukhoan(keyword: key)
+                if dk.count > 0{
+                    for dkh in dk {
+                        relatedDieukhoan.append(dkh)
+                    }
+                }
+            }
+        }
         
-        // This is the rect that we've calculated out and this is what is actually used below
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        specificVanbanId = [String(describing: dieukhoan!.getVanban().getId())]
         
-        // Actually do the resizing to the rect using the ImageContext stuff
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+        pattern = "((điểm\\s+(((\\p{L}{1})|(\\d\\.*)+)(,|;)*\\s+(và)*\\s*)+)*(khoản\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+)+((điều\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+)+"
         
-        return newImage!
+        let longMatches = search.regexSearch(pattern: pattern, searchIn: nd)
+        
+        for lmatch in longMatches{
+            var keywords = [String]()
+            nd = nd.replacingOccurrences(of: lmatch, with: "")
+            
+            if(!search.isStringExisted(str: lmatch, strArr: keywords)){
+                if lmatch.contains("điều này") {
+                    keywords.append(lmatch.replacingOccurrences(of: "điều này", with: search.getDieunay(currentDieukhoan: dieukhoan!, vanbanId: specificVanbanId).getSo()).trimmingCharacters(in: .whitespacesAndNewlines))
+                }else{
+                    keywords.append(lmatch.trimmingCharacters(in: .whitespacesAndNewlines))
+                }
+            }
+            for key in keywords {
+                let dk = parseRelatedDieukhoan(keyword: key)
+                if dk.count > 0{
+                    for dkh in dk {
+                        relatedDieukhoan.append(dkh)
+                    }
+                }
+            }
+        }
+        
+        pattern = "(điểm\\s+(((\\p{L}{1})|(\\d\\.*)+)(,|;)*\\s+(và)*\\s*)+)*(khoản\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+"
+        
+        let shortMatches = search.regexSearch(pattern: pattern, searchIn: nd)
+        
+        for smatch in shortMatches{
+            var keywords = [String]()
+            nd = nd.replacingOccurrences(of: smatch, with: "")
+            var key = smatch
+            
+            if(!search.isStringExisted(str: smatch, strArr: keywords)){
+                if smatch.contains("điều này") {
+                    key = key.replacingOccurrences(of: "điều này", with: search.getDieunay(currentDieukhoan: dieukhoan!, vanbanId: specificVanbanId).getSo()).trimmingCharacters(in: .whitespacesAndNewlines)
+                }else{
+                    key = key + " " + search.getDieunay(currentDieukhoan: dieukhoan!, vanbanId: specificVanbanId).getSo().trimmingCharacters(in: .whitespacesAndNewlines)
+                }
+                
+                if smatch.contains("khoản này") {
+                    key = key.replacingOccurrences(of: "khoản này", with: search.getKhoannay(currentDieukhoan: dieukhoan!, vanbanId: specificVanbanId).getSo()).trimmingCharacters(in: .whitespacesAndNewlines)
+                }
+                
+                keywords.append(key.trimmingCharacters(in: .whitespacesAndNewlines))
+                
+            }
+            for key in keywords {
+                let dk = parseRelatedDieukhoan(keyword: key.lowercased())
+                if dk.count > 0{
+                    for dkh in dk {
+                        relatedDieukhoan.append(dkh)
+                    }
+                }
+            }
+        }
+        
+        return relatedDieukhoan
+    }
+    
+    func parseRelatedDieukhoan(keyword: String) -> [Dieukhoan] {
+        let key = keyword.lowercased()
+        var relatedDieukhoan = [Dieukhoan]()
+        var finalQuery = ""
+        
+        var pattern = "(điều\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+"
+        
+        let dieuMatches = search.regexSearch(pattern: pattern, searchIn: key)
+        
+        for dm in dieuMatches{
+            var convertedDieu = dm.replacingOccurrences(of: " và", with: ",")
+            convertedDieu = convertedDieu.replacingOccurrences(of: ";", with: ",")
+            var dieu = [String]()
+            var dieuQuery = ""
+            var tempQuery = ""
+            if search.regexSearch(pattern: "(\\d+,\\s*\\d+)+", searchIn: convertedDieu).count > 0 {
+                convertedDieu = convertedDieu.replacingOccurrences(of: "điều", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+                for eachDm in convertedDieu.components(separatedBy: ","){
+                    if(!search.isStringExisted(str: eachDm, strArr: dieu) && eachDm.characters.count > 0){
+                        dieu.append("điều "+eachDm.trimmingCharacters(in: .whitespacesAndNewlines))
+                    }
+                }
+            }else{
+                if(!search.isStringExisted(str: convertedDieu, strArr: dieu)){
+                    convertedDieu = convertedDieu.replacingOccurrences(of: ",", with: "")
+                    dieu.append(convertedDieu.trimmingCharacters(in: .whitespacesAndNewlines))
+                }
+            }
+            
+            for d  in dieu {
+                tempQuery += "forsearch like \"\(d) %\" or forsearch like \"\(d). %\" or "
+            }
+            
+            dieuQuery = "select distinct id from tblChitietvanban where (\(tempQuery.substring(to: tempQuery.index(tempQuery.endIndex, offsetBy: -4)))) and vanbanid = \(specificVanbanId[0])"
+            
+            pattern = "(điểm\\s+(((\\p{L}{1})|(\\d\\.*)+)(,|;)*\\s+(và)*\\s*)+)*(khoản\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+"
+            
+            let khoanMatches = search.regexSearch(pattern: pattern, searchIn: key)
+            
+            for km in khoanMatches{
+                var query = ""
+                var khoan = [String]()
+                var convertedKhoan = km.replacingOccurrences(of: " và", with: ",")
+                convertedKhoan = convertedKhoan.replacingOccurrences(of: ";", with: ",")
+                pattern = "khoản\\s+((\\d+\\.*(,|;)*\\s*)+)"
+                for matchKhoan in search.regexSearch(pattern: pattern, searchIn: convertedKhoan){
+                    var mk = matchKhoan
+                    if search.regexSearch(pattern: "(\\d+,\\s*\\d+)+", searchIn: mk).count > 0 {
+                        mk = mk.replacingOccurrences(of: "khoản", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+                        for eachKm in mk.components(separatedBy: ","){
+                            if(!search.isStringExisted(str: eachKm, strArr: khoan) && eachKm.characters.count > 0){
+                                khoan.append(eachKm.trimmingCharacters(in: .whitespacesAndNewlines))
+                            }
+                        }
+                    }else{
+                        if(!search.isStringExisted(str: matchKhoan, strArr: khoan)){
+                            mk = mk.replacingOccurrences(of: ",", with: "")
+                            khoan.append(mk.replacingOccurrences(of: "khoản", with: "").trimmingCharacters(in: .whitespacesAndNewlines))
+                        }
+                    }
+                }
+                tempQuery = ""
+                for d in khoan {
+                    tempQuery += "forsearch like \"\(d) %\" or forsearch like \"\(d). %\" or "
+                }
+                if khoan.count > 0 {
+                    query = "select distinct id from tblChitietvanban where (\(tempQuery.substring(to: tempQuery.index(tempQuery.endIndex, offsetBy: -4)))) and cha in (\(dieuQuery))"
+                }
+                
+                pattern = "điểm\\s+(((\\p{L}{1})|(\\d\\.*)+)(,|;)*\\s+(và)*\\s*)+"
+                
+                let diemMatches = search.regexSearch(pattern: pattern, searchIn: convertedKhoan)
+                
+                var diem = [String]()
+                for d in diemMatches{
+                    var convertedDiem = d.replacingOccurrences(of: " và", with: ",")
+                    convertedDiem = convertedDiem.replacingOccurrences(of: ";", with: ",")
+                    pattern = "điểm\\s+(((\\p{L}{1})|(\\d\\.*)+)(,|;)*\\s+(và)*\\s*)+"
+                    for matchDiem in search.regexSearch(pattern: pattern, searchIn: convertedDiem) {
+                        var md = matchDiem
+                        md = md.replacingOccurrences(of: "điểm", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+                        if search.regexSearch(pattern: "((((\\p{L}{1})|(\\d\\.*)+)(,\\s+)((\\p{L}{1})|(\\d\\.*)+))+", searchIn: md).count > 0 {
+                            for eachD in md.components(separatedBy: ","){
+                                if(!search.isStringExisted(str: eachD, strArr: diem) && eachD.characters.count > 0){
+                                    diem.append(eachD.trimmingCharacters(in: .whitespacesAndNewlines))
+                                }
+                            }
+                        }else{
+                            if(!search.isStringExisted(str: md, strArr: diem)){
+                                md = md.replacingOccurrences(of: ",", with: "")
+                                diem.append(md.replacingOccurrences(of: "điểm", with: "").trimmingCharacters(in: .whitespacesAndNewlines))
+                            }
+                        }
+                    }
+                    tempQuery = ""
+                    for d in diem {
+                        tempQuery += "forsearch like \"\(d) %\" or forsearch like \"\(d). %\" or "
+                    }
+                }
+                if diem.count > 0{
+                    query = "select distinct id from tblChitietvanban where (\(tempQuery.substring(to: tempQuery.index(tempQuery.endIndex, offsetBy: -4)))) and cha in (\(query))"
+                }
+                finalQuery += "dkid in (\(query)) or "
+            }
+            
+            if finalQuery.characters.count < 1 {
+                //in case no 'khoan' and 'diem' available, the query should be initialized (' or ' is added because it will be removed when initializing final query
+                finalQuery = "dkid in (\(dieuQuery)) or "
+            }
+        }
+        finalQuery = "select distinct dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id where \(finalQuery.substring(to: finalQuery.index(finalQuery.endIndex, offsetBy: -4)))"
+        
+        relatedDieukhoan.append(contentsOf: Queries.searchDieukhoanByQuery(query: finalQuery, vanbanid: specificVanbanId))
+        return relatedDieukhoan
+    }
+    
+    func showDieukhoan() {
+        lblVanban.text = dieukhoan!.getVanban().getMa()
+        lblDieukhoan.text = dieukhoan!.getSo()
+        let breadscrubText = search.getAncestersNumber(dieukhoan: dieukhoan!, vanbanId: [String(describing: dieukhoan!.getVanban().getId())])
+        if breadscrubText.characters.count > 0 {
+            btnParentBreadscrub.setTitle(breadscrubText, for: .normal)
+            btnParentBreadscrub.isEnabled = true
+        }else {
+            btnParentBreadscrub.setTitle("", for: .normal)
+            btnParentBreadscrub.isEnabled = false
+        }
+        
+        let noidung = "\(String(describing: dieukhoan!.getTieude())) \n \(String(describing: dieukhoan!.getNoidung()))"
+        lblNoidung.text = noidung
+        
+        images = dieukhoan!.getMinhhoa()
+        
+        if(images.count > 0){
+            
+            hideMinhhoaStackview(isHidden: false)
+            for img in images {
+                if (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines).characters.count < 1{
+                    
+                }else{
+                    let image = UIImage(named: (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines))!
+                    
+                    let imgView = UIImageView(image: image)
+                    
+                    
+                    imgView.clipsToBounds = true
+                    imgView.contentMode = UIViewContentMode.scaleAspectFit
+                    imgView.autoresizesSubviews = true
+                    imgView.translatesAutoresizingMaskIntoConstraints = false
+                    svStackview.addArrangedSubview(imgView)
+                    svStackview.addConstraints(
+                        [
+                            NSLayoutConstraint(item: imgView,
+                                               attribute: .leading,
+                                               relatedBy: .equal,
+                                               toItem: svStackview,
+                                               attribute: .leading,
+                                               multiplier: 1,
+                                               constant: 0),
+                            NSLayoutConstraint(item: imgView,
+                                               attribute: .trailing,
+                                               relatedBy: .equal,
+                                               toItem: svStackview,
+                                               attribute: .trailing,
+                                               multiplier: 1,
+                                               constant: 0)
+                        ])
+                    
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
+                    imgView.isUserInteractionEnabled = true
+                    imgView.addGestureRecognizer(tap)
+                }
+                
+                // Enable extra section for details of ND46
+                if String(describing:dieukhoan!.vanban.getId()) == settings.getND46ID() {
+                    hideExtraInfoView(isHidden: false)
+                    let mpText = getMucphat(id: String(describing: dieukhoan!.getId()))
+                    let ptText = getPhuongtien(id: String(describing: dieukhoan!.getId()))
+                    let lvText = getLinhvuc(id: String(describing: dieukhoan!.getId()))
+                    let dtText = getDoituong(id: String(describing: dieukhoan!.getId()))
+                    
+                    if mpText.characters.count > 0 {
+                        consLblMucphatHeight.isActive = false
+                        consLblMucphatDetailsHeight.isActive = false
+                        lblMucphat.text = mpText
+                    }else{
+                        consLblMucphatHeight.isActive = true
+                        consLblMucphatDetailsHeight.isActive = true
+                        consLblMucphatHeight.constant =  0
+                        consLblMucphatDetailsHeight.constant =  0
+                    }
+                    if ptText.characters.count > 0 {
+                        consLblPhuongtienHeight.isActive = false
+                        consLblPhuongtienDetailsHeight.isActive = false
+                        lblPhuongtien.text = ptText
+                    }else{
+                        consLblPhuongtienHeight.isActive = true
+                        consLblPhuongtienDetailsHeight.isActive = true
+                        consLblPhuongtienHeight.constant =  0
+                        consLblPhuongtienDetailsHeight.constant =  0
+                    }
+                    if lvText.characters.count > 0 {
+                        consLblLinhvucHeight.isActive = false
+                        consLblLinhvucDetailsHeight.isActive = false
+                        lblLinhvuc.text = lvText
+                    }else{
+                        consLblLinhvucHeight.isActive = true
+                        consLblLinhvucDetailsHeight.isActive = true
+                        consLblLinhvucHeight.constant =  0
+                        consLblLinhvucDetailsHeight.constant =  0
+                    }
+                    if dtText.characters.count > 0 {
+                        consLblDoituongHeight.isActive = false
+                        consLblDoituongDetailsHeight.isActive = false
+                        lblDoituong.text = dtText
+                    }else{
+                        consLblDoituongHeight.isActive = true
+                        consLblDoituongDetailsHeight.isActive = true
+                        consLblDoituongHeight.constant =  0
+                        consLblDoituongDetailsHeight.constant =  0
+                    }
+                }else{
+                    hideExtraInfoView(isHidden: true)
+                }
+            }
+        }else{
+            hideMinhhoaStackview(isHidden: true)
+        }
+        
     }
     
     func getChildren(keyword:String) -> [Dieukhoan] {
@@ -220,120 +570,39 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         return Queries.searchDieukhoanByID(keyword: "\(keyword)", vanbanid: specificVanbanId)
     }
     
-    func getRelatedChildren(keyword:String) -> [Dieukhoan] {
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
-        return Queries.searchDieukhoan(keyword: "\(keyword)", vanbanid: specificVanbanId)
-    }
-    
-    func getRelatedDieukhoan(noidung:String) -> [Dieukhoan] {
-        var nd = noidung.lowercased()
-        var keywords = [String]()
-        
-        var pattern = "((((điểm)\\s((\\w)+(\\.)*)+(,)*(\\s)*)*((khoản)\\s((\\d)+(\\.)*)+(;|,)*(\\s)*)+)+((điều\\s((này)|((\\d)+)))*))"
-        
-        let longMatches = search.regexSearch(pattern: pattern, searchIn: noidung)
-        
-        for match in longMatches{
-            nd = nd.replacingOccurrences(of: match, with: "")
-            if(!search.isStringExisted(str: match, strArr: keywords)){
-                keywords.append(match.trimmingCharacters(in: .whitespacesAndNewlines))
-            }
-        }
-        
-        pattern = "((điều)|(khoản)|(điểm)|(chương)|(mục)|(phần)|(phụ lục))(\\s)+(((\\d)|(\\w))+(\\.)*)+"
-        
-        let shortMatches = search.regexSearch(pattern: pattern, searchIn: nd)
-        
-        for match in shortMatches{
-            nd = nd.replacingOccurrences(of: match, with: "")
-            if(!search.isStringExisted(str: match, strArr: keywords)){
-                keywords.append(match.trimmingCharacters(in: .whitespacesAndNewlines))
-            }
-        }
-        
-        var relatedDieukhoan = [Dieukhoan]()
-        
-        for key in keywords {
-            let dk = parseRelatedDieukhoanKeywords(keyword: key)
-            if dk.count > 0{
-                for dkh in dk {
-                    relatedDieukhoan.append(dkh)
-                }
-            }
-        }
-        return relatedDieukhoan
-    }
-    
-    //this function is not good-implemented since the performance is quite bad. should take a look on this again to find a better solution
-    func parseRelatedDieukhoanKeywords(keyword:String) -> [Dieukhoan] {
-        let key = keyword.lowercased()
-        var relatedDieukhoan = [Dieukhoan]()
-        let sortIt = SortUtil()
-        
-        
-        var pattern = "^((điều)|(khoản)|(điểm)|(chương)|(mục)|(phần)|(phụ lục))(\\s)+(((\\d)|(\\w))+(\\.)*)+$"
-        if search.regexSearch(pattern: pattern, searchIn: key).count > 0 {
-            for d in Queries.searchDieukhoanBySo(keyword: key, vanbanid: specificVanbanId) {
-                relatedDieukhoan.append(d)
-            }
-        }else{
-            var dieu: Dieukhoan? = nil
-            
-            pattern = "(điều)(\\s)+(((\\d)|(\\w))+(\\.)*)+$"
-            for d in search.regexSearch(pattern: pattern, searchIn: key){
-                if d == "điều này" {
-                    dieu = search.getDieunay(currentDieukhoan: dieukhoan!, vanbanId: specificVanbanId)
-                }else{
-                    var rs = Queries.searchDieukhoanBySo(keyword: d, vanbanid: specificVanbanId)
-                    if rs.count > 0 {
-                        dieu = rs[0]
-                    }else{
-                        return sortIt.sortByBestMatch(listDieukhoan: relatedDieukhoan, keyword: key)
-                    }
-                }
-            }
-            pattern = "(((điểm)\\s((\\w)+(\\.)*)+(,)*(\\s)*)*((khoản)\\s((\\d)+(\\.)*)+)+)"
-            for kd in search.regexSearch(pattern: pattern, searchIn: key) {
-                pattern = "(khoản)(\\s)+(((\\d)|(\\w))+(\\.)*)+$"
-                for k in search.regexSearch(pattern: pattern, searchIn: kd) {
-                    var khoan = [Dieukhoan]()
-                    for childKhoan in getChildren(keyword: "\(String(describing: dieu!.getId()))") {
-                        if search.regexSearch(pattern: "^(\(k.components(separatedBy: " ")[1]))(\\.)*$", searchIn: childKhoan.getSo().lowercased()).count > 0 {
-                            khoan.append(childKhoan)
-                            break
-                        }
-                    }
-                    pattern = "(điểm)(\\s)+((\\w)+(\\.)*)+"
-                    let diem = search.regexSearch(pattern: pattern, searchIn: kd)
-                    if diem.count > 0 {
-                        for d in diem {
-                            for k in khoan {
-                                for dm in getChildren(keyword: "\(String(describing: k.getId()))") {
-                                    if search.regexSearch(pattern: "^(\(d.components(separatedBy: " ")[1]))(\\.)*$", searchIn: dm.getSo().lowercased()).count > 0 {
-                                        relatedDieukhoan.append(dm)
-                                        break
-                                    }
-                                }
-                            }
-                        }
-                    }else{
-                        for k in khoan {
-                            relatedDieukhoan.append(k)
-                        }
-                    }
-                }
-            }
-        }
-        return sortIt.sortByBestMatch(listDieukhoan: relatedDieukhoan, keyword: key)
-    }
-    
     func getRelatedPlatKeywords(content:String) -> [String] {
         let input = content.lowercased()
         
         let pattern = "(\\b(([a-zA-Z]{1,2})(\\.|,)+)+(\\d)+(\\.\\d)*([a-zA-Z])*\\b)|(\\b(vạch)(\\ssố)*\\s(\\d)+(\\.\\d)*(\\.)*\\b)"
         return search.regexSearch(pattern: pattern, searchIn: input)
+    }
+    
+    func getMucphat(id: String) -> String {
+        if DataConnection.database == nil {
+            DataConnection.databaseSetup()
+        }
+        return Queries.searchMucphatInfo(id: id)
+    }
+    
+    func getPhuongtien(id: String) -> String {
+        if DataConnection.database == nil {
+            DataConnection.databaseSetup()
+        }
+        return Queries.searchPhuongtienInfo(id: id)
+    }
+    
+    func getLinhvuc(id: String) -> String {
+        if DataConnection.database == nil {
+            DataConnection.databaseSetup()
+        }
+        return Queries.searchLinhvucInfo(id: id)
+    }
+    
+    func getDoituong(id: String) -> String {
+        if DataConnection.database == nil {
+            DataConnection.databaseSetup()
+        }
+        return Queries.searchDoituongInfo(id: id)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -350,6 +619,12 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             }
             
             dieukhoanSeemore.updateDieukhoanList(arrDieukhoan: relatedChildren)
+        case "seeParent":
+            guard let dieukhoanParent = segue.destination as? VBPLDetailsViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            dieukhoanParent.updateDetails(dieukhoan: parentDieukhoan!)
             
         case "showDieukhoan":
             guard let dieukhoanDetails = segue.destination as? VBPLDetailsViewController else {
@@ -370,99 +645,6 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         default:
             fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
-    }
-    
-    func showDieukhoan() {
-        lblVanban.text = dieukhoan!.getVanban().getMa()
-        lblDieukhoan.text = dieukhoan!.getSo()
-        lblParentBreadscrub.text = search.getAncestersNumber(dieukhoan: dieukhoan!, vanbanId: [String(describing: dieukhoan!.getVanban().getId())])
-        let noidung = "\(String(describing: dieukhoan!.getTieude())) \n \(String(describing: dieukhoan!.getNoidung()))"
-        lblNoidung.text = noidung
-        
-        images = dieukhoan!.getMinhhoa()
-        
-        if(images.count > 0){
-            
-            hideMinhhoaStackview(isHidden: false)
-            
-            for img in images {
-                if (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines).characters.count < 1{
-                    
-                }else{
-                    let image = scaleImage(image:UIImage(named: (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines))!,targetWidth: svStackview.frame.width)
-                    
-                    let imgView = UIImageView(image: image)
-                    imgView.clipsToBounds = true
-                    imgView.contentMode = UIViewContentMode.scaleAspectFit
-                    
-                    imageViewScaleup(frameWidth: Float(svStackview.frame.width), imageView: imgView)
-                    
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
-                    imgView.isUserInteractionEnabled = true
-                    imgView.addGestureRecognizer(tap)
-                    imgView.translatesAutoresizingMaskIntoConstraints = false
-                    svStackview.addArrangedSubview(imgView)
-                    svStackview.addConstraints(
-                        [
-                            NSLayoutConstraint(item: imgView,
-                                            attribute: .leading,
-                                            relatedBy: .equal,
-                                            toItem: svStackview,
-                                            attribute: .leading,
-                                            multiplier: 1,
-                                            constant: 0),
-                            NSLayoutConstraint(item: imgView,
-                                            attribute: .trailing,
-                                            relatedBy: .equal,
-                                            toItem: svStackview,
-                                            attribute: .trailing,
-                                            multiplier: 1,
-                                            constant: 0),
-                            NSLayoutConstraint(item: imgView,
-                                            attribute: .centerX,
-                                            relatedBy: .equal,
-                                            toItem: svStackview,
-                                            attribute: .centerX,
-                                            multiplier: 1,
-                                            constant: 0)
-                        ])
-                }
-                //                for child in children {
-                //                    let lineView = UIView(frame: CGRect(x: 0, y: 0, width: svStackview.frame.width, height: 1))
-                ////                    lineView.layer.borderWidth = 1.0
-                ////                    lineView.layer.borderColor = UIColor.black!
-                //                    lineView.backgroundColor = UIColor.black
-                
-                //                    let lblDK = UILabel()
-                //                    lblDK.numberOfLines = 0
-                //                    lblDK.lineBreakMode = NSLineBreakMode.byWordWrapping
-                //                    lblDK.text = child.getSo()
-                //                    lblDK.font = UIFont.boldSystemFont(ofSize: 14)
-                //
-                //                    let lblND = UILabel()
-                //                    lblND.numberOfLines = 0
-                //                    lblND.lineBreakMode = NSLineBreakMode.byWordWrapping
-                //                    lblND.text = child.getTieude() + "\n " + child.getNoidung()
-                //                    lblND.font = UIFont.systemFont(ofSize: 16)
-                //
-                //                    let space = UILabel()
-                //                    space.numberOfLines = 0
-                //                    space.lineBreakMode = NSLineBreakMode.byWordWrapping
-                //                    space.text = "   "
-                //
-                //                    svStackview.addArrangedSubview(space)
-                //                    svStackview.addArrangedSubview(lblDK)
-                //                    svStackview.addArrangedSubview(lblND)
-                //
-//                                    let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
-//                                    lblND.isUserInteractionEnabled = true
-//                                    lblND.addGestureRecognizer(tap)
-                //                }
-            }
-        }else{
-            hideMinhhoaStackview(isHidden: true)
-        }
-        
     }
     
     func seeMore(sender: UITapGestureRecognizer) {
