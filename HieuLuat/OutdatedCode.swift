@@ -24,6 +24,13 @@ class OutdatedCode {
     }
     
     
+    func getScreenWidth() -> CGFloat {
+        if UIDevice.current.orientation == UIDeviceOrientation.portrait || UIDevice.current.orientation == UIDeviceOrientation.portraitUpsideDown {
+            return UIScreen.main.bounds.width
+        }
+        return UIScreen.main.bounds.height
+    }
+    
     func scaleImage(image: UIImage, targetWidth: CGFloat) -> UIImage {
         let size = image.size
         

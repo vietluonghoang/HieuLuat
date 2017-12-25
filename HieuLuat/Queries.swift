@@ -11,6 +11,15 @@ import FMDB
 
 class Queries: NSObject {
     
+    static var physicalMemorySize: UInt64 {
+        get{
+            return self.physicalMemorySize
+        }
+        set(v){
+            self.physicalMemorySize = getPhysicalMemorySize();
+        }
+    }
+    
     class func insert(dieukhoan:Dieukhoan) {
         //        Utils.database!.open()
         //        let sql = "INSERT INTO Person (id, name, age) VALUES (?, ?, ?)"
@@ -42,7 +51,7 @@ class Queries: NSObject {
     class func selectAllDieukhoan() -> [Dieukhoan] {
         DataConnection.database!.open()
         let sql = "SELECT * FROM tblChitietvanban"
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(setRecordsCap(query: sql), withArgumentsIn: [])!
         var dieukhoanArray = Array<Dieukhoan>()
         if resultSet != nil {
             while resultSet.next() {
@@ -86,7 +95,7 @@ class Queries: NSObject {
         
         let sql = "select distinct dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id where"+appendString + specificVanban
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: appendKeyword)!
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(setRecordsCap(query: sql), withArgumentsIn: appendKeyword)!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -100,7 +109,7 @@ class Queries: NSObject {
                 let cq = Coquanbanhanh(id: Int64(resultSet.string(forColumn: "vbCoquanbanhanhid")!)!, ten: resultSet.string(forColumn: "cqTen")!)
                 let vb = Vanban(id: Int64(resultSet.string(forColumn: "vbId")!)!, ten: resultSet.string(forColumn: "vbTen")!, loai: lvb, so: resultSet.string(forColumn: "vbSo")!, nam: resultSet.string(forColumn: "vbNam")!, ma: resultSet.string(forColumn: "vbMa")!, coquanbanhanh: cq, noidung: resultSet.string(forColumn: "vbNoidung")!)
                 let dieukhoan = Dieukhoan(id: Int64(resultSet.string(forColumn: "dkId")!)!, so: resultSet.string(forColumn: "dkSo")!, tieude: resultSet.string(forColumn: "dkTieude")!, noidung: resultSet.string(forColumn: "dkNoidung")!, minhhoa: resultSet.string(forColumn: "dkMinhhoa")!, cha: Int64(cha!)!, vanban: vb)
-//                dieukhoanArray = appendDieukhoan(dieukhoan: dieukhoan, dkArr: dieukhoanArray)
+                //                dieukhoanArray = appendDieukhoan(dieukhoan: dieukhoan, dkArr: dieukhoanArray)
                 dieukhoanArray.append(dieukhoan)
             }
         }
@@ -122,12 +131,12 @@ class Queries: NSObject {
             }
             specificVanban = specificVanban.substring(to: specificVanban.index(specificVanban.endIndex, offsetBy: -4)) + ")"
         }
-
+        
         let appendKeyword = [String]()
         
         let sql = query.lowercased() + specificVanban
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: appendKeyword)!
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(setRecordsCap(query: sql), withArgumentsIn: appendKeyword)!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -141,7 +150,7 @@ class Queries: NSObject {
                 let cq = Coquanbanhanh(id: Int64(resultSet.string(forColumn: "vbCoquanbanhanhid")!)!, ten: resultSet.string(forColumn: "cqTen")!)
                 let vb = Vanban(id: Int64(resultSet.string(forColumn: "vbId")!)!, ten: resultSet.string(forColumn: "vbTen")!, loai: lvb, so: resultSet.string(forColumn: "vbSo")!, nam: resultSet.string(forColumn: "vbNam")!, ma: resultSet.string(forColumn: "vbMa")!, coquanbanhanh: cq, noidung: resultSet.string(forColumn: "vbNoidung")!)
                 let dieukhoan = Dieukhoan(id: Int64(resultSet.string(forColumn: "dkId")!)!, so: resultSet.string(forColumn: "dkSo")!, tieude: resultSet.string(forColumn: "dkTieude")!, noidung: resultSet.string(forColumn: "dkNoidung")!, minhhoa: resultSet.string(forColumn: "dkMinhhoa")!, cha: Int64(cha!)!, vanban: vb)
-//                dieukhoanArray = appendDieukhoan(dieukhoan: dieukhoan, dkArr: dieukhoanArray)
+                //                dieukhoanArray = appendDieukhoan(dieukhoan: dieukhoan, dkArr: dieukhoanArray)
                 dieukhoanArray.append(dieukhoan)
             }
         }
@@ -159,7 +168,7 @@ class Queries: NSObject {
         }
         let sql = "select distinct dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id where dkId = ?"+specificVanban
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [keyword,keyword,keyword,keyword])!
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(setRecordsCap(query: sql), withArgumentsIn: [keyword,keyword,keyword,keyword])!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -173,7 +182,7 @@ class Queries: NSObject {
                 let cq = Coquanbanhanh(id: Int64(resultSet.string(forColumn: "vbCoquanbanhanhid")!)!, ten: resultSet.string(forColumn: "cqTen")!)
                 let vb = Vanban(id: Int64(resultSet.string(forColumn: "vbId")!)!, ten: resultSet.string(forColumn: "vbTen")!, loai: lvb, so: resultSet.string(forColumn: "vbSo")!, nam: resultSet.string(forColumn: "vbNam")!, ma: resultSet.string(forColumn: "vbMa")!, coquanbanhanh: cq, noidung: resultSet.string(forColumn: "vbNoidung")!)
                 let dieukhoan = Dieukhoan(id: Int64(resultSet.string(forColumn: "dkId")!)!, so: resultSet.string(forColumn: "dkSo")!, tieude: resultSet.string(forColumn: "dkTieude")!, noidung: resultSet.string(forColumn: "dkNoidung")!, minhhoa: resultSet.string(forColumn: "dkMinhhoa")!, cha: Int64(cha!)!, vanban: vb)
-//                dieukhoanArray = appendDieukhoan(dieukhoan: dieukhoan, dkArr: dieukhoanArray)
+                //                dieukhoanArray = appendDieukhoan(dieukhoan: dieukhoan, dkArr: dieukhoanArray)
                 dieukhoanArray.append(dieukhoan)
             }
         }
@@ -191,7 +200,7 @@ class Queries: NSObject {
         }
         let sql = "select distinct dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id where (dkSo = ? or dk.forsearch like ? or dk.forsearch like ?)"+specificVanban
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [keyword,"\(keyword) %","\(keyword). %"])!
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(setRecordsCap(query: sql), withArgumentsIn: [keyword,"\(keyword) %","\(keyword). %"])!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -205,7 +214,7 @@ class Queries: NSObject {
                 let cq = Coquanbanhanh(id: Int64(resultSet.string(forColumn: "vbCoquanbanhanhid")!)!, ten: resultSet.string(forColumn: "cqTen")!)
                 let vb = Vanban(id: Int64(resultSet.string(forColumn: "vbId")!)!, ten: resultSet.string(forColumn: "vbTen")!, loai: lvb, so: resultSet.string(forColumn: "vbSo")!, nam: resultSet.string(forColumn: "vbNam")!, ma: resultSet.string(forColumn: "vbMa")!, coquanbanhanh: cq, noidung: resultSet.string(forColumn: "vbNoidung")!)
                 let dieukhoan = Dieukhoan(id: Int64(resultSet.string(forColumn: "dkId")!)!, so: resultSet.string(forColumn: "dkSo")!, tieude: resultSet.string(forColumn: "dkTieude")!, noidung: resultSet.string(forColumn: "dkNoidung")!, minhhoa: resultSet.string(forColumn: "dkMinhhoa")!, cha: Int64(cha!)!, vanban: vb)
-//                dieukhoanArray = appendDieukhoan(dieukhoan: dieukhoan, dkArr: dieukhoanArray)
+                //                dieukhoanArray = appendDieukhoan(dieukhoan: dieukhoan, dkArr: dieukhoanArray)
                 dieukhoanArray.append(dieukhoan)
             }
         }
@@ -234,12 +243,12 @@ class Queries: NSObject {
         if(searchKeyword.characters.count == 0){
             searchArgurment = "is null"
         }else{
-           searchArgurment = "= ?"
+            searchArgurment = "= ?"
         }
         
         let sql = "select distinct dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id where dkCha "+searchArgurment+specificVanban
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [keyword,keyword,keyword,keyword])!
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(setRecordsCap(query: sql), withArgumentsIn: [keyword,keyword,keyword,keyword])!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -253,7 +262,7 @@ class Queries: NSObject {
                 let cq = Coquanbanhanh(id: Int64(resultSet.string(forColumn: "vbCoquanbanhanhid")!)!, ten: resultSet.string(forColumn: "cqTen")!)
                 let vb = Vanban(id: Int64(resultSet.string(forColumn: "vbId")!)!, ten: resultSet.string(forColumn: "vbTen")!, loai: lvb, so: resultSet.string(forColumn: "vbSo")!, nam: resultSet.string(forColumn: "vbNam")!, ma: resultSet.string(forColumn: "vbMa")!, coquanbanhanh: cq, noidung: resultSet.string(forColumn: "vbNoidung")!)
                 let dieukhoan = Dieukhoan(id: Int64(resultSet.string(forColumn: "dkId")!)!, so: resultSet.string(forColumn: "dkSo")!, tieude: resultSet.string(forColumn: "dkTieude")!, noidung: resultSet.string(forColumn: "dkNoidung")!, minhhoa: resultSet.string(forColumn: "dkMinhhoa")!, cha: Int64(cha!)!, vanban: vb)
-//                dieukhoanArray = appendDieukhoan(dieukhoan: dieukhoan, dkArr: dieukhoanArray)
+                //                dieukhoanArray = appendDieukhoan(dieukhoan: dieukhoan, dkArr: dieukhoanArray)
                 dieukhoanArray.append(dieukhoan)
             }
         }
@@ -293,7 +302,7 @@ class Queries: NSObject {
         DataConnection.database!.close()
         
         return result
-
+        
     }
     
     class func searchPhuongtienInfo(id: String) -> String {
@@ -363,7 +372,7 @@ class Queries: NSObject {
                     result = "Đường bộ, Đường sắt"
                 }else{
                     if duongsat != "0" {
-                            result = "Đường sắt"
+                        result = "Đường sắt"
                     }
                     if duongbo != "0" {
                         result = "Đường bộ"
@@ -455,16 +464,16 @@ class Queries: NSObject {
                 if nhanvien != "0" && phucvu != "0" {
                     result += "Nhân viên Phục vụ, "
                 }
-//                if nhanvien != "0" && dieudo != "0" {
-//                    result += "Nhân viên điều độ chạy tàu, "
-//                }
-//                if nhanvien != "0" && ghepnoi != "0" {
-//                    result += "Nhân viên đường sắt, "
-//                }
+                //                if nhanvien != "0" && dieudo != "0" {
+                //                    result += "Nhân viên điều độ chạy tàu, "
+                //                }
+                //                if nhanvien != "0" && ghepnoi != "0" {
+                //                    result += "Nhân viên đường sắt, "
+                //                }
                 
-//                if dibo != "0" {
-//                    result += "Người đi bộ, "
-//                }
+                //                if dibo != "0" {
+                //                    result += "Người đi bộ, "
+                //                }
                 if dangkiemvien != "0" {
                     result += "Đăng kiểm viên, "
                 }
@@ -564,6 +573,19 @@ class Queries: NSObject {
         }
         dieukhoanArray.append(dieukhoan)
         return dieukhoanArray
+    }
+    class func getPhysicalMemorySize() -> UInt64 {
+        return ProcessInfo.processInfo.physicalMemory / UInt64(1024.0 * 1024.0 * 1024.0)
+    }
+    
+    class func setRecordsCap(query: String) -> String {
+        let cap = GeneralSettings().getRecordCapByRam(ram: getPhysicalMemorySize())
+        
+        //if cap equals 0, it means no cap
+        if cap == 0 {
+            return query
+        }
+        return  "\(query) limit \(cap)"
     }
 }
 

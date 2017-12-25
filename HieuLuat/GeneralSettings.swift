@@ -85,4 +85,22 @@ class GeneralSettings {
     func getQC41ID() -> String {
         return qc41Id
     }
+    
+    func getRecordCapByRam(ram: UInt64) -> Int16 {
+        if ram <= 1 {
+            return 250
+        }
+        if ram <= 2 {
+            return 500
+        }
+        if ram <= 3 {
+            return 750
+        }
+        if ram <= 4 {
+            return 1000
+        }
+        
+        //no cap if more than 4GB RAM
+        return 0
+    }
 }

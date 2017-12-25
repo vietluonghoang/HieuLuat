@@ -39,7 +39,9 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet var consLblLinhvucDetailsHeight: NSLayoutConstraint!
     @IBOutlet var consLblDoituongDetailsHeight: NSLayoutConstraint!
     @IBOutlet var consLblSeeMoreHeight: NSLayoutConstraint!
+    @IBOutlet var consViewMinhhoaHeight: NSLayoutConstraint!
     
+    @IBOutlet var viewMinhhoa: UIView!
     @IBOutlet var tblView: UITableView!
     @IBOutlet var consHeightTblView: NSLayoutConstraint!
     @IBOutlet var viewAds: UIView!
@@ -146,7 +148,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             if key.characters.count > 0 {
                 finalQuery = "select distinct dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id where (dkCha in (select id from tblChitietvanban where forsearch like 'phụ lục%') or dkCha in (select id from tblchitietvanban where cha in (select id from tblChitietvanban where forsearch like 'phụ lục%')) or dkCha in (select id from tblchitietvanban where cha in (select id from tblchitietvanban where cha in (select id from tblChitietvanban where forsearch like 'phụ lục%')))) and forsearch like '% \(key) %'"
                 let relatedChild = Queries.searchDieukhoanByQuery(query: finalQuery, vanbanid: ["\(settings.getQC41ID())"])
-                    sortedRelatedPlat.append(contentsOf: sortIt.sortByBestMatch(listDieukhoan: relatedChild, keyword: key))
+                sortedRelatedPlat.append(contentsOf: sortIt.sortByBestMatch(listDieukhoan: relatedChild, keyword: key))
             }
         }
         
@@ -176,16 +178,23 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func hideMinhhoaStackview(isHidden: Bool)  {
-        consSvStackviewHeightBig.constant = 0
         consSvStackviewHeightSmall.constant = 0
         if(isHidden){
             svStackview.isHidden = true
-            consSvStackviewHeightBig.isActive = false
             consSvStackviewHeightSmall.isActive = true
         }else{
             svStackview.isHidden = false
-            consSvStackviewHeightBig.isActive = true
+            //            consSvStackviewHeightBig.isActive = true
             consSvStackviewHeightSmall.isActive = false
+        }
+    }
+    
+    func hideMinhhoaView(isHidden: Bool) {
+        consViewMinhhoaHeight.constant = 0
+        if isHidden {
+            consViewMinhhoaHeight.isActive = true
+        }else {
+            consViewMinhhoaHeight.isActive = false
         }
     }
     
@@ -459,101 +468,68 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         images = dieukhoan!.getMinhhoa()
         
         if(images.count > 0){
-            
-            hideMinhhoaStackview(isHidden: false)
-            for img in images {
-                if (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines).characters.count < 1{
-                    
-                }else{
-                    let image = UIImage(named: (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines))!
-                    
-                    let imgView = UIImageView(image: image)
-                    
-                    
-                    imgView.clipsToBounds = true
-                    imgView.contentMode = UIViewContentMode.scaleAspectFit
-                    imgView.autoresizesSubviews = true
-                    imgView.translatesAutoresizingMaskIntoConstraints = false
-                    svStackview.addArrangedSubview(imgView)
-                    svStackview.addConstraints(
-                        [
-                            NSLayoutConstraint(item: imgView,
-                                               attribute: .leading,
-                                               relatedBy: .equal,
-                                               toItem: svStackview,
-                                               attribute: .leading,
-                                               multiplier: 1,
-                                               constant: 0),
-                            NSLayoutConstraint(item: imgView,
-                                               attribute: .trailing,
-                                               relatedBy: .equal,
-                                               toItem: svStackview,
-                                               attribute: .trailing,
-                                               multiplier: 1,
-                                               constant: 0)
-                        ])
-                    
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
-                    imgView.isUserInteractionEnabled = true
-                    imgView.addGestureRecognizer(tap)
-                }
-                
-                // Enable extra section for details of ND46
-                if String(describing:dieukhoan!.vanban.getId()) == settings.getND46ID() {
-                    hideExtraInfoView(isHidden: false)
-                    let mpText = getMucphat(id: String(describing: dieukhoan!.getId()))
-                    let ptText = getPhuongtien(id: String(describing: dieukhoan!.getId()))
-                    let lvText = getLinhvuc(id: String(describing: dieukhoan!.getId()))
-                    let dtText = getDoituong(id: String(describing: dieukhoan!.getId()))
-                    
-                    if mpText.characters.count > 0 {
-                        consLblMucphatHeight.isActive = false
-                        consLblMucphatDetailsHeight.isActive = false
-                        lblMucphat.text = mpText
-                    }else{
-                        consLblMucphatHeight.isActive = true
-                        consLblMucphatDetailsHeight.isActive = true
-                        consLblMucphatHeight.constant =  0
-                        consLblMucphatDetailsHeight.constant =  0
-                    }
-                    if ptText.characters.count > 0 {
-                        consLblPhuongtienHeight.isActive = false
-                        consLblPhuongtienDetailsHeight.isActive = false
-                        lblPhuongtien.text = ptText
-                    }else{
-                        consLblPhuongtienHeight.isActive = true
-                        consLblPhuongtienDetailsHeight.isActive = true
-                        consLblPhuongtienHeight.constant =  0
-                        consLblPhuongtienDetailsHeight.constant =  0
-                    }
-                    if lvText.characters.count > 0 {
-                        consLblLinhvucHeight.isActive = false
-                        consLblLinhvucDetailsHeight.isActive = false
-                        lblLinhvuc.text = lvText
-                    }else{
-                        consLblLinhvucHeight.isActive = true
-                        consLblLinhvucDetailsHeight.isActive = true
-                        consLblLinhvucHeight.constant =  0
-                        consLblLinhvucDetailsHeight.constant =  0
-                    }
-                    if dtText.characters.count > 0 {
-                        consLblDoituongHeight.isActive = false
-                        consLblDoituongDetailsHeight.isActive = false
-                        lblDoituong.text = dtText
-                    }else{
-                        consLblDoituongHeight.isActive = true
-                        consLblDoituongDetailsHeight.isActive = true
-                        consLblDoituongHeight.constant =  0
-                        consLblDoituongDetailsHeight.constant =  0
-                    }
-                }else{
-                    hideExtraInfoView(isHidden: true)
-                }
-            }
+            //            fillMinhhoaToStackview(images: images)
+            //            viewMinhhoa.translatesAutoresizingMaskIntoConstraints = false
+            //            viewMinhhoa.sizeToFit()
+            //            viewMinhhoa.layoutSubviews()
+            //            print("view Minh hoa: \(viewMinhhoa.frame.size.height)")
+            fillMinhhoaToViewMinhhoa(images: images)
         }else{
-            hideMinhhoaStackview(isHidden: true)
+            hideMinhhoaView(isHidden: true)
+            //            hideMinhhoaStackview(isHidden: true)
         }
         
+        // Enable extra section for details of ND46
+        if String(describing:dieukhoan!.vanban.getId()) == settings.getND46ID() {
+            hideExtraInfoView(isHidden: false)
+            let mpText = getMucphat(id: String(describing: dieukhoan!.getId()))
+            let ptText = getPhuongtien(id: String(describing: dieukhoan!.getId()))
+            let lvText = getLinhvuc(id: String(describing: dieukhoan!.getId()))
+            let dtText = getDoituong(id: String(describing: dieukhoan!.getId()))
+            
+            if mpText.characters.count > 0 {
+                consLblMucphatHeight.isActive = false
+                consLblMucphatDetailsHeight.isActive = false
+                lblMucphat.text = mpText
+            }else{
+                consLblMucphatHeight.isActive = true
+                consLblMucphatDetailsHeight.isActive = true
+                consLblMucphatHeight.constant =  0
+                consLblMucphatDetailsHeight.constant =  0
+            }
+            if ptText.characters.count > 0 {
+                consLblPhuongtienHeight.isActive = false
+                consLblPhuongtienDetailsHeight.isActive = false
+                lblPhuongtien.text = ptText
+            }else{
+                consLblPhuongtienHeight.isActive = true
+                consLblPhuongtienDetailsHeight.isActive = true
+                consLblPhuongtienHeight.constant =  0
+                consLblPhuongtienDetailsHeight.constant =  0
+            }
+            if lvText.characters.count > 0 {
+                consLblLinhvucHeight.isActive = false
+                consLblLinhvucDetailsHeight.isActive = false
+                lblLinhvuc.text = lvText
+            }else{
+                consLblLinhvucHeight.isActive = true
+                consLblLinhvucDetailsHeight.isActive = true
+                consLblLinhvucHeight.constant =  0
+                consLblLinhvucDetailsHeight.constant =  0
+            }
+            if dtText.characters.count > 0 {
+                consLblDoituongHeight.isActive = false
+                consLblDoituongDetailsHeight.isActive = false
+                lblDoituong.text = dtText
+            }else{
+                consLblDoituongHeight.isActive = true
+                consLblDoituongDetailsHeight.isActive = true
+                consLblDoituongHeight.constant =  0
+                consLblDoituongDetailsHeight.constant =  0
+            }
+        }else{
+            hideExtraInfoView(isHidden: true)
+        }
     }
     
     func getChildren(keyword:String) -> [Dieukhoan] {
@@ -576,6 +552,221 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         let pattern = "(\\b(([a-zA-Z]{1,2})(\\.|,)+)+(\\d)+(\\.\\d)*([a-zA-Z])*\\b)|(\\b(vạch)(\\ssố)*\\s(\\d)+(\\.\\d)*(\\.)*\\b)"
         return search.regexSearch(pattern: pattern, searchIn: input)
     }
+    
+    func scaleImage(image: UIImage, targetWidth: CGFloat) -> UIImage {
+        let size = image.size
+        
+        let widthRatio  = targetWidth / image.size.width
+        
+        //        let ratio:Float = Float(size.width)/Float(size.height)
+        
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        newSize = CGSize(width: size.width * widthRatio, height: CGFloat(Float(size.height) * Float(widthRatio)))
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
+    
+    func getScreenWidth() -> CGFloat {
+        return UIScreen.main.bounds.width
+    }
+    
+    func fillMinhhoaToViewMinhhoa(images: [String]) {
+        hideMinhhoaView(isHidden: false)
+        
+        var order = 0
+        var previousImageView = UIImageView()
+        
+        for img in images {
+            if (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines).characters.count < 1{
+                
+            }else{
+                let image = UIImage(named: (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines))!
+                
+                let imgView = UIImageView(image: scaleImage(image: image, targetWidth: getScreenWidth()))
+                imgView.translatesAutoresizingMaskIntoConstraints = false
+                imgView.clipsToBounds = true
+                imgView.contentMode = UIViewContentMode.scaleAspectFit
+                imgView.autoresizesSubviews = true
+                viewMinhhoa.addSubview(imgView)
+                if order == 0 {
+                    if images.count == 1 {
+                        viewMinhhoa.addConstraints(
+                            [
+                                NSLayoutConstraint(item: imgView,
+                                                   attribute: .leading,
+                                                   relatedBy: .equal,
+                                                   toItem: viewMinhhoa,
+                                                   attribute: .leading,
+                                                   multiplier: 1,
+                                                   constant: 0),
+                                NSLayoutConstraint(item: imgView,
+                                                   attribute: .trailing,
+                                                   relatedBy: .equal,
+                                                   toItem: viewMinhhoa,
+                                                   attribute: .trailing,
+                                                   multiplier: 1,
+                                                   constant: 0),
+                                NSLayoutConstraint(item: imgView,
+                                                   attribute: .top,
+                                                   relatedBy: .equal,
+                                                   toItem: viewMinhhoa,
+                                                   attribute: .top,
+                                                   multiplier: 1,
+                                                   constant: 0),
+                                NSLayoutConstraint(item: imgView,
+                                                   attribute: .bottom,
+                                                   relatedBy: .equal,
+                                                   toItem: viewMinhhoa,
+                                                   attribute: .bottom,
+                                                   multiplier: 1,
+                                                   constant: 0)
+                            ])
+                    }else{
+                        viewMinhhoa.addConstraints(
+                            [
+                                NSLayoutConstraint(item: imgView,
+                                                   attribute: .leading,
+                                                   relatedBy: .equal,
+                                                   toItem: viewMinhhoa,
+                                                   attribute: .leading,
+                                                   multiplier: 1,
+                                                   constant: 0),
+                                NSLayoutConstraint(item: imgView,
+                                                   attribute: .trailing,
+                                                   relatedBy: .equal,
+                                                   toItem: viewMinhhoa,
+                                                   attribute: .trailing,
+                                                   multiplier: 1,
+                                                   constant: 0),
+                                NSLayoutConstraint(item: imgView,
+                                                   attribute: .top,
+                                                   relatedBy: .equal,
+                                                   toItem: viewMinhhoa,
+                                                   attribute: .top,
+                                                   multiplier: 1,
+                                                   constant: 0)
+                            ])
+                    }
+                }else{
+                    if order < (images.count - 1) {
+                        viewMinhhoa.addConstraints(
+                            [
+                                NSLayoutConstraint(item: imgView,
+                                                   attribute: .leading,
+                                                   relatedBy: .equal,
+                                                   toItem: viewMinhhoa,
+                                                   attribute: .leading,
+                                                   multiplier: 1,
+                                                   constant: 0),
+                                NSLayoutConstraint(item: imgView,
+                                                   attribute: .trailing,
+                                                   relatedBy: .equal,
+                                                   toItem: viewMinhhoa,
+                                                   attribute: .trailing,
+                                                   multiplier: 1,
+                                                   constant: 0),
+                                NSLayoutConstraint(item: imgView,
+                                                   attribute: .top,
+                                                   relatedBy: .equal,
+                                                   toItem:previousImageView,
+                                                   attribute: .bottom,
+                                                   multiplier: 1,
+                                                   constant: 0)
+                            ])
+                    }else{
+                        viewMinhhoa.addConstraints(
+                            [
+                                NSLayoutConstraint(item: imgView,
+                                                   attribute: .leading,
+                                                   relatedBy: .equal,
+                                                   toItem: viewMinhhoa,
+                                                   attribute: .leading,
+                                                   multiplier: 1,
+                                                   constant: 0),
+                                NSLayoutConstraint(item: imgView,
+                                                   attribute: .trailing,
+                                                   relatedBy: .equal,
+                                                   toItem: viewMinhhoa,
+                                                   attribute: .trailing,
+                                                   multiplier: 1,
+                                                   constant: 0),
+                                NSLayoutConstraint(item: imgView,
+                                                   attribute: .top,
+                                                   relatedBy: .equal,
+                                                   toItem: previousImageView,
+                                                   attribute: .bottom,
+                                                   multiplier: 1,
+                                                   constant: 0),
+                                NSLayoutConstraint(item: imgView,
+                                                   attribute: .bottom,
+                                                   relatedBy: .equal,
+                                                   toItem: viewMinhhoa,
+                                                   attribute: .bottom,
+                                                   multiplier: 1,
+                                                   constant: 0)
+                            ])
+                    }
+                }
+                previousImageView = imgView
+                order += 1
+                let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
+                imgView.isUserInteractionEnabled = true
+                imgView.addGestureRecognizer(tap)
+            }
+        }
+        print("image view: \(previousImageView.frame.size.height)")
+    }
+    //    func fillMinhhoaToStackview(images: [String]) {
+    //        hideMinhhoaStackview(isHidden: false)
+    //        for img in images {
+    //            if (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines).characters.count < 1{
+    //
+    //            }else{
+    //                let image = UIImage(named: (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines))!
+    //
+    //                let imgView = UIImageView(image: image)
+    //
+    //
+    //                imgView.clipsToBounds = true
+    //                imgView.contentMode = UIViewContentMode.scaleAspectFit
+    //                imgView.autoresizesSubviews = true
+    //                imgView.translatesAutoresizingMaskIntoConstraints = false
+    //                svStackview.addArrangedSubview(imgView)
+    //                svStackview.addConstraints(
+    //                    [
+    //                        NSLayoutConstraint(item: imgView,
+    //                                           attribute: .leading,
+    //                                           relatedBy: .equal,
+    //                                           toItem: svStackview,
+    //                                           attribute: .leading,
+    //                                           multiplier: 1,
+    //                                           constant: 0),
+    //                        NSLayoutConstraint(item: imgView,
+    //                                           attribute: .trailing,
+    //                                           relatedBy: .equal,
+    //                                           toItem: svStackview,
+    //                                           attribute: .trailing,
+    //                                           multiplier: 1,
+    //                                           constant: 0)
+    //                    ])
+    //
+    //                let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
+    //                imgView.isUserInteractionEnabled = true
+    //                imgView.addGestureRecognizer(tap)
+    //            }
+    //        }
+    //    }
     
     func getMucphat(id: String) -> String {
         if DataConnection.database == nil {
