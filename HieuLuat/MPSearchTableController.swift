@@ -294,13 +294,18 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func getBuiltQuery(keyword: String) -> String {
-        let query = "select distinct dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id where"
+        let query = Queries.rawSqlQuery
         
         var appendString = ""
-        for k in keyword.components(separatedBy: " ") {
-            appendString += " dkSearch like '%\(k)%' and"
-        }
         
+        for k in Queries.convertKeywordsForDifferentAccentType(keyword: keyword.lowercased()) {
+            var str = ""
+            for key in k.components(separatedBy: " ") {
+                str += "dkSearch like %\(key)% and "
+            }
+            str = str.substring(to: str.index(str.endIndex, offsetBy: -5))
+            appendString += "(\(str)) or "
+        }
         appendString = appendString.substring(to: appendString.index(appendString.endIndex, offsetBy: -4))
         
         if searchFilters["Mucphat"]!["tu"]!["chon"] != "0" && searchFilters["Mucphat"]!["den"]!["chon"] != "0" {
