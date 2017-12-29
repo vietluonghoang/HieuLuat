@@ -119,11 +119,11 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     
     func initFilterConfig() {
         if(filterSettings.count < 1){
-//            filterSettings["QC41"] = "on"
-//            filterSettings["TT01"] = "on"
+            //            filterSettings["QC41"] = "on"
+            //            filterSettings["TT01"] = "on"
             filterSettings["ND46"] = "on"
-//            filterSettings["LGTDB"] = "on"
-//            filterSettings["LXLVPHC"] = "on"
+            //            filterSettings["LGTDB"] = "on"
+            //            filterSettings["LXLVPHC"] = "on"
         }
     }
     
@@ -133,50 +133,50 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
             searchFilters["Phuongtien"] = ["Oto":["chon":"0"],"Xemay":["chon":"0"],"Xechuyendung":["chon":"0"],"Tauhoa":["chon":"0"],"Xedap":["chon":"0"],"Dibo":["chon":"0"]]
             searchFilters["Doituong"] = ["Canhan":["Chuphuongtien":"0","NDK":"0","NDX":"0","GVDLX":"0","KDVT":"0"], "Tochuc":["KDVT":"0","KDDS":"0","TPDB":"0","TTKDVTDS":"0","QLKTPTDS":"0","QLKTBTHTDB":"0","QLKTBTHTDS":"0"], "Doanhnghiep":["KDKB":"0","KDSXLR":"0","KDVTDS":"0","KDXDHH":"0","KDKCHTDS":"0"], "Nhanvien":["DKV":"0","NVTTDK":"0","GC":"0","KX":"0","TH":"0","PV":"0","DDCT":"0","DS":"0","GN":"0","LT":"0","PLT":"0","TD":"0","TT":"0","DKMD":"0","TBCTG":"0"], "Trungtam":["SHLX":"0","DK":"0"], "Cosodaotaolaixe":["chon":"0"], "Ga":["chon":"0"]]
         }
-//        searchFilters["Mucphat"]!["tu"]!["chon"] = "0"
-//        searchFilters["Mucphat"]!["den"]!["chon"] = "0"
-//        searchFilters["Phuongtien"]!["Oto"]!["chon"] = "0"
-//        searchFilters["Phuongtien"]!["Xemay"]!["chon"] = "0"
-//        searchFilters["Phuongtien"]!["Xechuyendung"]!["chon"] = "0"
-//        searchFilters["Phuongtien"]!["Tauhoa"]!["chon"] = "0"
-//        searchFilters["Phuongtien"]!["Xedap"]!["chon"] = "0"
-//        searchFilters["Phuongtien"]!["Dibo"]!["chon"] = "0"
-//        searchFilters["Doituong"]!["Canhan"]!["Chuphuongtien"] = "0"
-//        searchFilters["Doituong"]!["Canhan"]!["NDK"] = "0"
-//        searchFilters["Doituong"]!["Canhan"]!["NDX"] = "0"
-//        searchFilters["Doituong"]!["Canhan"]!["GVDLX"] = "0"
-//        searchFilters["Doituong"]!["Canhan"]!["KDVT"] = "0"
-//        searchFilters["Doituong"]!["Tochuc"]!["KDVT"] = "0"
-//        searchFilters["Doituong"]!["Tochuc"]!["KDDS"] = "0"
-//        searchFilters["Doituong"]!["Tochuc"]!["TPDB"] = "0"
-//        searchFilters["Doituong"]!["Tochuc"]!["TTKDVTDS"] = "0"
-//        searchFilters["Doituong"]!["Tochuc"]!["QLKTPTDS"] = "0"
-//        searchFilters["Doituong"]!["Tochuc"]!["QLKTBTHTDB"] = "0"
-//        searchFilters["Doituong"]!["Tochuc"]!["QLKTBTHTDS"] = "0"
-//        searchFilters["Doituong"]!["Doanhnghiep"]!["KDKB"] = "0"
-//        searchFilters["Doituong"]!["Doanhnghiep"]!["KDSXLR"] = "0"
-//        searchFilters["Doituong"]!["Doanhnghiep"]!["KDVTDS"] = "0"
-//        searchFilters["Doituong"]!["Doanhnghiep"]!["KDXDHH"] = "0"
-//        searchFilters["Doituong"]!["Doanhnghiep"]!["KDKCHTDS"] = "0"
-//        searchFilters["Doituong"]!["Nhanvien"]!["DKV"] = "0"
-//        searchFilters["Doituong"]!["Nhanvien"]!["NVTTDK"] = "0"
-//        searchFilters["Doituong"]!["Nhanvien"]!["GC"] = "0"
-//        searchFilters["Doituong"]!["Nhanvien"]!["KX"] = "0"
-//        searchFilters["Doituong"]!["Nhanvien"]!["TH"] = "0"
-//        searchFilters["Doituong"]!["Nhanvien"]!["PV"] = "0"
-//        searchFilters["Doituong"]!["Nhanvien"]!["DDCT"] = "0"
-//        searchFilters["Doituong"]!["Nhanvien"]!["DS"] = "0"
-//        searchFilters["Doituong"]!["Nhanvien"]!["GN"] = "0"
-//        searchFilters["Doituong"]!["Nhanvien"]!["LT"] = "0"
-//        searchFilters["Doituong"]!["Nhanvien"]!["PLT"] = "0"
-//        searchFilters["Doituong"]!["Nhanvien"]!["TD"] = "0"
-//        searchFilters["Doituong"]!["Nhanvien"]!["TT"] = "0"
-//        searchFilters["Doituong"]!["Nhanvien"]!["DKMD"] = "0"
-//        searchFilters["Doituong"]!["Nhanvien"]!["TBCTG"] = "0"
-//        searchFilters["Doituong"]!["Trungtam"]!["SHLX"] = "0"
-//        searchFilters["Doituong"]!["Trungtam"]!["DK"] = "0"
-//        searchFilters["Doituong"]!["Cosodaotaolaixe"]!["chon"] = "0"
-//        searchFilters["Doituong"]!["Ga"]!["chon"] = "0"
+        //        searchFilters["Mucphat"]!["tu"]!["chon"] = "0"
+        //        searchFilters["Mucphat"]!["den"]!["chon"] = "0"
+        //        searchFilters["Phuongtien"]!["Oto"]!["chon"] = "0"
+        //        searchFilters["Phuongtien"]!["Xemay"]!["chon"] = "0"
+        //        searchFilters["Phuongtien"]!["Xechuyendung"]!["chon"] = "0"
+        //        searchFilters["Phuongtien"]!["Tauhoa"]!["chon"] = "0"
+        //        searchFilters["Phuongtien"]!["Xedap"]!["chon"] = "0"
+        //        searchFilters["Phuongtien"]!["Dibo"]!["chon"] = "0"
+        //        searchFilters["Doituong"]!["Canhan"]!["Chuphuongtien"] = "0"
+        //        searchFilters["Doituong"]!["Canhan"]!["NDK"] = "0"
+        //        searchFilters["Doituong"]!["Canhan"]!["NDX"] = "0"
+        //        searchFilters["Doituong"]!["Canhan"]!["GVDLX"] = "0"
+        //        searchFilters["Doituong"]!["Canhan"]!["KDVT"] = "0"
+        //        searchFilters["Doituong"]!["Tochuc"]!["KDVT"] = "0"
+        //        searchFilters["Doituong"]!["Tochuc"]!["KDDS"] = "0"
+        //        searchFilters["Doituong"]!["Tochuc"]!["TPDB"] = "0"
+        //        searchFilters["Doituong"]!["Tochuc"]!["TTKDVTDS"] = "0"
+        //        searchFilters["Doituong"]!["Tochuc"]!["QLKTPTDS"] = "0"
+        //        searchFilters["Doituong"]!["Tochuc"]!["QLKTBTHTDB"] = "0"
+        //        searchFilters["Doituong"]!["Tochuc"]!["QLKTBTHTDS"] = "0"
+        //        searchFilters["Doituong"]!["Doanhnghiep"]!["KDKB"] = "0"
+        //        searchFilters["Doituong"]!["Doanhnghiep"]!["KDSXLR"] = "0"
+        //        searchFilters["Doituong"]!["Doanhnghiep"]!["KDVTDS"] = "0"
+        //        searchFilters["Doituong"]!["Doanhnghiep"]!["KDXDHH"] = "0"
+        //        searchFilters["Doituong"]!["Doanhnghiep"]!["KDKCHTDS"] = "0"
+        //        searchFilters["Doituong"]!["Nhanvien"]!["DKV"] = "0"
+        //        searchFilters["Doituong"]!["Nhanvien"]!["NVTTDK"] = "0"
+        //        searchFilters["Doituong"]!["Nhanvien"]!["GC"] = "0"
+        //        searchFilters["Doituong"]!["Nhanvien"]!["KX"] = "0"
+        //        searchFilters["Doituong"]!["Nhanvien"]!["TH"] = "0"
+        //        searchFilters["Doituong"]!["Nhanvien"]!["PV"] = "0"
+        //        searchFilters["Doituong"]!["Nhanvien"]!["DDCT"] = "0"
+        //        searchFilters["Doituong"]!["Nhanvien"]!["DS"] = "0"
+        //        searchFilters["Doituong"]!["Nhanvien"]!["GN"] = "0"
+        //        searchFilters["Doituong"]!["Nhanvien"]!["LT"] = "0"
+        //        searchFilters["Doituong"]!["Nhanvien"]!["PLT"] = "0"
+        //        searchFilters["Doituong"]!["Nhanvien"]!["TD"] = "0"
+        //        searchFilters["Doituong"]!["Nhanvien"]!["TT"] = "0"
+        //        searchFilters["Doituong"]!["Nhanvien"]!["DKMD"] = "0"
+        //        searchFilters["Doituong"]!["Nhanvien"]!["TBCTG"] = "0"
+        //        searchFilters["Doituong"]!["Trungtam"]!["SHLX"] = "0"
+        //        searchFilters["Doituong"]!["Trungtam"]!["DK"] = "0"
+        //        searchFilters["Doituong"]!["Cosodaotaolaixe"]!["chon"] = "0"
+        //        searchFilters["Doituong"]!["Ga"]!["chon"] = "0"
     }
     
     func updateFilterLabel() {
@@ -297,24 +297,24 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         let query = Queries.rawSqlQuery
         
         var appendString = ""
-        
-        for k in Queries.convertKeywordsForDifferentAccentType(keyword: keyword.lowercased()) {
-            var str = ""
-            for key in k.components(separatedBy: " ") {
-                str += "dkSearch like %\(key)% and "
+        if keyword.characters.count > 0 {
+            for k in Queries.convertKeywordsForDifferentAccentType(keyword: keyword.lowercased()) {
+                var str = ""
+                for key in k.components(separatedBy: " ") {
+                    str += "dkSearch like '%\(key)%' and "
+                }
+                str = str.substring(to: str.index(str.endIndex, offsetBy: -5))
+                appendString += "(\(str)) or "
             }
-            str = str.substring(to: str.index(str.endIndex, offsetBy: -5))
-            appendString += "(\(str)) or "
+            appendString = "(\(appendString.substring(to: appendString.index(appendString.endIndex, offsetBy: -4))))"
         }
-        appendString = appendString.substring(to: appendString.index(appendString.endIndex, offsetBy: -4))
-        
         if searchFilters["Mucphat"]!["tu"]!["chon"] != "0" && searchFilters["Mucphat"]!["den"]!["chon"] != "0" {
             appendString += getWhereClauseForMucphat(tu: searchFilters["Mucphat"]!["tu"]!["chon"]!, den: searchFilters["Mucphat"]!["den"]!["chon"]!)
         }
         
         if searchFilters["Phuongtien"]!["Oto"]!["chon"] != "0" || searchFilters["Phuongtien"]!["Xemay"]!["chon"] != "0" || searchFilters["Phuongtien"]!["Xechuyendung"]!["chon"] != "0" || searchFilters["Phuongtien"]!["Tauhoa"]!["chon"] != "0" || searchFilters["Phuongtien"]!["Xedap"]!["chon"] != "0" || searchFilters["Phuongtien"]!["Dibo"]!["chon"] != "0" {
-                appendString += getWhereClauseForPhuongtien()
-            }
+            appendString += getWhereClauseForPhuongtien()
+        }
         return query + appendString
     }
     
@@ -469,10 +469,10 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     public func updateSearchResults(for searchController: UISearchController) {
-//        if searchController.searchBar.text!.characters.count > 1 {
-            builtQuery = getBuiltQuery(keyword: searchController.searchBar.text!)
-            filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
-//        }
+        //        if searchController.searchBar.text!.characters.count > 1 {
+        builtQuery = getBuiltQuery(keyword: searchController.searchBar.text!)
+        filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
+        //        }
     }
     
 }
