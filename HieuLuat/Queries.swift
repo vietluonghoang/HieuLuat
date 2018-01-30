@@ -174,10 +174,63 @@ class Queries: NSObject {
         return dieukhoanArray
     }
     
+    class func getAllRelatedDieukhoan(dieukhoanId: Int64) -> [Dieukhoan] {
+        DataConnection.database!.open()
+        let sql = rawSqlQuery + " dkId in (select dieukhoanId from tblRelatedDieukhoan where relatedDieukhoanId = \(dieukhoanId)) or dkId in (select relatedDieukhoanId from tblRelatedDieukhoan where dieukhoanId = \(dieukhoanId))"
+        
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        
+        var dieukhoanArray = Array<Dieukhoan>()
+        
+        if resultSet != nil {
+            dieukhoanArray = generateDieukhoanList(resultSet: resultSet)
+        }
+        
+        DataConnection.database!.close()
+        
+        return dieukhoanArray
+    }
+    
+    class func getAllHinhphatbosung(dieukhoanId: Int64) -> [BosungKhacphuc] {
+        DataConnection.database!.open()
+        let sql = "select distinct dk.id as dkId, dk.so as dkSo, dk.tieude as dkTieude, dk.noidung as dkNoidung, dk.minhhoa as dkMinhhoa, dk.cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, dk.vanbanid as vbId, vb.ten as vbTen, vb.nam as vbNam, vb.ma as vbMa, vb.noidung as vbNoidung, vb.coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch, rdk.id as rdkId, rdk.so as rdkSo, rdk.tieude as rdkTieude, rdk.noidung as rdkNoidung, rdk.minhhoa as rdkMinhhoa, rdk.cha as rdkCha, rvb.loai as rlvbID, rlvb.ten as rlvbTen, rvb.so as rvbSo, rdk.vanbanid as rvbId, rvb.ten as rvbTen, rvb.nam as rvbNam, rvb.ma as rvbMa, rvb.noidung as rvbNoidung, rvb.coquanbanhanh as rvbCoquanbanhanhId, rcq.ten as rcqTen, rdk.forSearch as rdkSearch, hp.noidung as noidung from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id join tblHinhphatbosung as hp on dk.id = hp.dieukhoanId join tblChitietvanban as rdk on hp.dieukhoanQuydinhId = rdk.id join tblVanban as rvb on rdk.vanbanid=rvb.id join tblLoaivanban as rlvb on rvb.loai=rlvb.id join tblCoquanbanhanh as rcq on rvb.coquanbanhanh=rcq.id where hp.dieukhoanId = \(dieukhoanId)"
+        
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        
+        var bosungKhacphucArray = Array<BosungKhacphuc>()
+        
+        if resultSet != nil {
+            bosungKhacphucArray = generateBosungKhacphucList(resultSet: resultSet)
+        }
+        
+        DataConnection.database!.close()
+        
+        return bosungKhacphucArray
+    }
+    
+    class func getAllBienphapkhacphuc(dieukhoanId: Int64) -> [BosungKhacphuc] {
+        DataConnection.database!.open()
+        let sql = "select distinct dk.id as dkId, dk.so as dkSo, dk.tieude as dkTieude, dk.noidung as dkNoidung, dk.minhhoa as dkMinhhoa, dk.cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, dk.vanbanid as vbId, vb.ten as vbTen, vb.nam as vbNam, vb.ma as vbMa, vb.noidung as vbNoidung, vb.coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch, rdk.id as rdkId, rdk.so as rdkSo, rdk.tieude as rdkTieude, rdk.noidung as rdkNoidung, rdk.minhhoa as rdkMinhhoa, rdk.cha as rdkCha, rvb.loai as rlvbID, rlvb.ten as rlvbTen, rvb.so as rvbSo, rdk.vanbanid as rvbId, rvb.ten as rvbTen, rvb.nam as rvbNam, rvb.ma as rvbMa, rvb.noidung as rvbNoidung, rvb.coquanbanhanh as rvbCoquanbanhanhId, rcq.ten as rcqTen, rdk.forSearch as rdkSearch, kp.noidung as noidung from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id join tblBienphapkhacphuc as kp on dk.id = kp.dieukhoanId join tblChitietvanban as rdk on kp.dieukhoanQuydinhId = rdk.id join tblVanban as rvb on rdk.vanbanid=rvb.id join tblLoaivanban as rlvb on rvb.loai=rlvb.id join tblCoquanbanhanh as rcq on rvb.coquanbanhanh=rcq.id where kp.dieukhoanId = \(dieukhoanId)"
+        
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        
+        var bosungKhacphucArray = Array<BosungKhacphuc>()
+        
+        if resultSet != nil {
+            bosungKhacphucArray = generateBosungKhacphucList(resultSet: resultSet)
+        }
+        
+        DataConnection.database!.close()
+        
+        return bosungKhacphucArray
+    }
+    
     class func searchMucphatInfo(id: String) -> String {
         DataConnection.database!.open()
         
-        let sql = "select distinct canhanTu, canhanDen, tochucTu, tochucDen from tblMucphat where dieukhoanId = ?"
+        //there is an 'typo' in the create table query then the column named 'tochucDen' became 'tuchucDen'
+        
+        let sql = "select distinct canhanTu, canhanDen, tochucTu, tuchucDen from tblMucphat where dieukhoanId = ?"
         
         let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [id])!
         var result = ""
@@ -186,7 +239,7 @@ class Queries: NSObject {
                 let cnTu = resultSet.string(forColumn: "canhanTu")!
                 let cnDen = resultSet.string(forColumn: "canhanDen")!
                 let tcTu = resultSet.string(forColumn: "tochucTu")!
-                let tcDen = resultSet.string(forColumn: "tochucDen")!
+                let tcDen = resultSet.string(forColumn: "tuchucDen")!
                 if tcTu != "" && tcDen != "" {
                     result = "cá nhân: \(cnTu) - \(cnDen)\ntổ chức: \(tcTu) - \(tcDen)"
                 }else{
@@ -569,6 +622,35 @@ class Queries: NSObject {
         }
         
         return dieukhoanArray
+    }
+    
+    class func generateBosungKhacphucList(resultSet: FMResultSet) -> [BosungKhacphuc] {
+        var bosungKhacphucArray = Array<BosungKhacphuc>()
+        
+        while resultSet.next() {
+            var cha = resultSet.string(forColumn: "dkCha")
+            if(cha==nil){
+                cha="0"
+            }
+            let lvb = Loaivanban(id: Int64(resultSet.string(forColumn: "lvbId")!)!, ten: resultSet.string(forColumn: "lvbTen")!)
+            let cq = Coquanbanhanh(id: Int64(resultSet.string(forColumn: "vbCoquanbanhanhid")!)!, ten: resultSet.string(forColumn: "cqTen")!)
+            let vb = Vanban(id: Int64(resultSet.string(forColumn: "vbId")!)!, ten: resultSet.string(forColumn: "vbTen")!, loai: lvb, so: resultSet.string(forColumn: "vbSo")!, nam: resultSet.string(forColumn: "vbNam")!, ma: resultSet.string(forColumn: "vbMa")!, coquanbanhanh: cq, noidung: resultSet.string(forColumn: "vbNoidung")!)
+            let dieukhoan = Dieukhoan(id: Int64(resultSet.string(forColumn: "dkId")!)!, so: resultSet.string(forColumn: "dkSo")!, tieude: resultSet.string(forColumn: "dkTieude")!, noidung: resultSet.string(forColumn: "dkNoidung")!, minhhoa: resultSet.string(forColumn: "dkMinhhoa")!, cha: Int64(cha!)!, vanban: vb)
+            var rcha = resultSet.string(forColumn: "rdkCha")
+            if(rcha==nil){
+                rcha="0"
+            }
+            let rlvb = Loaivanban(id: Int64(resultSet.string(forColumn: "rlvbId")!)!, ten: resultSet.string(forColumn: "rlvbTen")!)
+            let rcq = Coquanbanhanh(id: Int64(resultSet.string(forColumn: "rvbCoquanbanhanhid")!)!, ten: resultSet.string(forColumn: "rcqTen")!)
+            let rvb = Vanban(id: Int64(resultSet.string(forColumn: "rvbId")!)!, ten: resultSet.string(forColumn: "rvbTen")!, loai: rlvb, so: resultSet.string(forColumn: "rvbSo")!, nam: resultSet.string(forColumn: "rvbNam")!, ma: resultSet.string(forColumn: "rvbMa")!, coquanbanhanh: rcq, noidung: resultSet.string(forColumn: "rvbNoidung")!)
+            let rdieukhoan = Dieukhoan(id: Int64(resultSet.string(forColumn: "rdkId")!)!, so: resultSet.string(forColumn: "rdkSo")!, tieude: resultSet.string(forColumn: "rdkTieude")!, noidung: resultSet.string(forColumn: "rdkNoidung")!, minhhoa: resultSet.string(forColumn: "rdkMinhhoa")!, cha: Int64(cha!)!, vanban: rvb)
+            
+            let bosungkhacphuc = BosungKhacphuc(dieukhoanLienquan: dieukhoan, dieukhoanQuydinh: rdieukhoan, noidung: resultSet.string(forColumn: "noidung")!)
+            
+            bosungKhacphucArray.append(bosungkhacphuc)
+        }
+        
+        return bosungKhacphucArray
     }
 }
 

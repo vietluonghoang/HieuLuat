@@ -2660,8 +2660,80 @@ kết cấu hạ tầng đường sắt</string>
                                             <constraint firstItem="RIc-lp-G8Z" firstAttribute="trailing" secondItem="WN0-hA-aTQ" secondAttribute="trailing" constant="-2" id="xy0-OE-iiC"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Iu-E9-goo">
+                                        <rect key="frame" x="0.0" y="175" width="320" height="102"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2mS-58-4G5">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kin-6w-MtK">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="17"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVo-85-3jR">
+                                                        <rect key="frame" x="8" y="19" width="312" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="eVo-85-3jR" firstAttribute="bottom" secondItem="2mS-58-4G5" secondAttribute="bottom" id="CWf-Eu-oK0"/>
+                                                    <constraint firstAttribute="height" constant="50" id="TZi-nS-Lxb"/>
+                                                    <constraint firstItem="eVo-85-3jR" firstAttribute="trailing" secondItem="2mS-58-4G5" secondAttribute="trailing" id="Vy2-JM-C52"/>
+                                                    <constraint firstItem="eVo-85-3jR" firstAttribute="leading" secondItem="2mS-58-4G5" secondAttribute="leading" constant="8" id="amO-TD-qYE"/>
+                                                    <constraint firstItem="kin-6w-MtK" firstAttribute="leading" secondItem="2mS-58-4G5" secondAttribute="leading" id="hnI-XT-jWh"/>
+                                                    <constraint firstItem="eVo-85-3jR" firstAttribute="top" secondItem="kin-6w-MtK" secondAttribute="bottom" constant="2" id="itb-eh-xMu"/>
+                                                    <constraint firstItem="kin-6w-MtK" firstAttribute="top" secondItem="2mS-58-4G5" secondAttribute="top" id="kW4-FP-bOk"/>
+                                                    <constraint firstItem="kin-6w-MtK" firstAttribute="trailing" secondItem="2mS-58-4G5" secondAttribute="trailing" id="z9K-VZ-gFK"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kb1-YC-BiG">
+                                                <rect key="frame" x="0.0" y="52" width="320" height="50"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Bw-eX-yva">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="17"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpG-Kc-VnZ">
+                                                        <rect key="frame" x="8" y="19" width="312" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="2Bw-eX-yva" firstAttribute="trailing" secondItem="Kb1-YC-BiG" secondAttribute="trailing" id="0Qp-g0-PPO"/>
+                                                    <constraint firstItem="2Bw-eX-yva" firstAttribute="leading" secondItem="Kb1-YC-BiG" secondAttribute="leading" id="3K2-wR-CRD"/>
+                                                    <constraint firstItem="ZpG-Kc-VnZ" firstAttribute="bottom" secondItem="Kb1-YC-BiG" secondAttribute="bottom" id="4QR-eN-PV9"/>
+                                                    <constraint firstItem="ZpG-Kc-VnZ" firstAttribute="top" secondItem="2Bw-eX-yva" secondAttribute="bottom" constant="2" id="7Ky-Je-0hj"/>
+                                                    <constraint firstItem="2Bw-eX-yva" firstAttribute="top" secondItem="Kb1-YC-BiG" secondAttribute="top" id="ZmC-Lk-asa"/>
+                                                    <constraint firstItem="ZpG-Kc-VnZ" firstAttribute="leading" secondItem="Kb1-YC-BiG" secondAttribute="leading" constant="8" id="ang-MQ-Dic"/>
+                                                    <constraint firstItem="ZpG-Kc-VnZ" firstAttribute="trailing" secondItem="Kb1-YC-BiG" secondAttribute="trailing" id="voO-vv-ZTH"/>
+                                                    <constraint firstAttribute="height" constant="50" id="wYS-Ov-bKv"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="2mS-58-4G5" firstAttribute="trailing" secondItem="1Iu-E9-goo" secondAttribute="trailing" id="B1u-aM-EQL"/>
+                                            <constraint firstItem="Kb1-YC-BiG" firstAttribute="top" secondItem="2mS-58-4G5" secondAttribute="bottom" constant="2" id="FeQ-qL-p2Y"/>
+                                            <constraint firstItem="Kb1-YC-BiG" firstAttribute="bottom" secondItem="1Iu-E9-goo" secondAttribute="bottom" id="d7n-aR-8GN"/>
+                                            <constraint firstItem="2mS-58-4G5" firstAttribute="leading" secondItem="1Iu-E9-goo" secondAttribute="leading" id="gw6-nt-dqP"/>
+                                            <constraint firstItem="Kb1-YC-BiG" firstAttribute="trailing" secondItem="1Iu-E9-goo" secondAttribute="trailing" id="otN-UC-ERY"/>
+                                            <constraint firstItem="2mS-58-4G5" firstAttribute="top" secondItem="1Iu-E9-goo" secondAttribute="top" id="pDI-VP-cbK"/>
+                                            <constraint firstAttribute="height" constant="102" id="rT7-7s-kVb"/>
+                                            <constraint firstItem="Kb1-YC-BiG" firstAttribute="leading" secondItem="1Iu-E9-goo" secondAttribute="leading" id="xCr-t4-H9g"/>
+                                        </constraints>
+                                    </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="115" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pk2-KJ-EXR">
-                                        <rect key="frame" x="0.0" y="175" width="320" height="191"/>
+                                        <rect key="frame" x="0.0" y="279" width="320" height="191"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="191" id="QJR-8X-BeA"/>
@@ -2745,6 +2817,7 @@ kết cấu hạ tầng đường sắt</string>
                                     </tableView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="1Iu-E9-goo" firstAttribute="leading" secondItem="SFG-ng-sUY" secondAttribute="leading" id="0gg-ng-hba"/>
                                     <constraint firstItem="OgF-st-Uxu" firstAttribute="leading" secondItem="SFG-ng-sUY" secondAttribute="leading" id="3Jo-hB-2rN"/>
                                     <constraint firstItem="NK0-Td-euH" firstAttribute="top" secondItem="qJA-Tf-GrX" secondAttribute="bottom" constant="2" id="3pV-Zy-fe6"/>
                                     <constraint firstItem="OgF-st-Uxu" firstAttribute="centerX" secondItem="SFG-ng-sUY" secondAttribute="centerX" id="5hW-kF-8aq"/>
@@ -2753,21 +2826,23 @@ kết cấu hạ tầng đường sắt</string>
                                     <constraint firstItem="NK0-Td-euH" firstAttribute="leading" secondItem="SFG-ng-sUY" secondAttribute="leading" constant="8" id="Dzr-bs-keC"/>
                                     <constraint firstItem="MIa-qb-scZ" firstAttribute="trailing" secondItem="SFG-ng-sUY" secondAttribute="trailing" constant="-8" id="E2t-JK-B1V"/>
                                     <constraint firstItem="jqc-2M-hRr" firstAttribute="leading" secondItem="SFG-ng-sUY" secondAttribute="leading" constant="2" id="Eyc-DX-2PK"/>
-                                    <constraint firstItem="Pk2-KJ-EXR" firstAttribute="top" secondItem="WN0-hA-aTQ" secondAttribute="bottom" constant="2" id="HG5-fO-PdW"/>
                                     <constraint firstItem="MIa-qb-scZ" firstAttribute="top" secondItem="NK0-Td-euH" secondAttribute="bottom" constant="2" id="HRG-T8-Dxv"/>
                                     <constraint firstItem="qJA-Tf-GrX" firstAttribute="leading" secondItem="SFG-ng-sUY" secondAttribute="leading" constant="8" id="PT7-AD-AK7"/>
                                     <constraint firstItem="NK0-Td-euH" firstAttribute="trailing" secondItem="iYh-ox-bra" secondAttribute="leading" constant="-2" id="WZ1-i2-Di6"/>
                                     <constraint firstItem="iYh-ox-bra" firstAttribute="leading" secondItem="NK0-Td-euH" secondAttribute="trailing" constant="2" id="XtZ-HS-br2"/>
-                                    <constraint firstAttribute="bottom" secondItem="Pk2-KJ-EXR" secondAttribute="bottom" id="aJ3-5G-GPo"/>
+                                    <constraint firstItem="1Iu-E9-goo" firstAttribute="top" secondItem="WN0-hA-aTQ" secondAttribute="bottom" constant="2" id="YeI-ha-rvZ"/>
+                                    <constraint firstItem="Pk2-KJ-EXR" firstAttribute="bottom" secondItem="SFG-ng-sUY" secondAttribute="bottom" id="aJ3-5G-GPo"/>
                                     <constraint firstItem="qJA-Tf-GrX" firstAttribute="trailing" secondItem="SFG-ng-sUY" secondAttribute="trailing" constant="-8" id="bBb-gX-lry"/>
                                     <constraint firstItem="OgF-st-Uxu" firstAttribute="top" secondItem="MIa-qb-scZ" secondAttribute="bottom" constant="2" id="bid-sA-v9d"/>
                                     <constraint firstItem="jqc-2M-hRr" firstAttribute="top" secondItem="OgF-st-Uxu" secondAttribute="bottom" id="cj5-ql-3Iy"/>
                                     <constraint firstItem="MIa-qb-scZ" firstAttribute="leading" secondItem="SFG-ng-sUY" secondAttribute="leading" constant="8" id="fmj-Id-Wby"/>
+                                    <constraint firstItem="Pk2-KJ-EXR" firstAttribute="top" secondItem="1Iu-E9-goo" secondAttribute="bottom" constant="2" id="hWe-gP-pz3"/>
                                     <constraint firstItem="Pk2-KJ-EXR" firstAttribute="leading" secondItem="SFG-ng-sUY" secondAttribute="leading" id="hcM-5N-xtJ"/>
                                     <constraint firstItem="OgF-st-Uxu" firstAttribute="trailing" secondItem="SFG-ng-sUY" secondAttribute="trailing" id="i78-tt-g9L"/>
                                     <constraint firstItem="Pk2-KJ-EXR" firstAttribute="trailing" secondItem="SFG-ng-sUY" secondAttribute="trailing" id="kTy-rU-y3y"/>
                                     <constraint firstItem="WN0-hA-aTQ" firstAttribute="leading" secondItem="SFG-ng-sUY" secondAttribute="leading" id="ltJ-5F-7MQ"/>
                                     <constraint firstItem="MIa-qb-scZ" firstAttribute="top" secondItem="iYh-ox-bra" secondAttribute="bottom" constant="2" id="s9n-sq-FIz"/>
+                                    <constraint firstItem="1Iu-E9-goo" firstAttribute="trailing" secondItem="SFG-ng-sUY" secondAttribute="trailing" id="sRu-So-GHS"/>
                                     <constraint firstItem="WN0-hA-aTQ" firstAttribute="top" secondItem="jqc-2M-hRr" secondAttribute="bottom" constant="2" id="szL-uz-9zW"/>
                                     <constraint firstItem="WN0-hA-aTQ" firstAttribute="trailing" secondItem="SFG-ng-sUY" secondAttribute="trailing" id="vfk-9i-PnZ"/>
                                     <constraint firstItem="qJA-Tf-GrX" firstAttribute="top" secondItem="SFG-ng-sUY" secondAttribute="top" constant="8" id="xwe-cy-Eii"/>
@@ -2824,9 +2899,16 @@ kết cấu hạ tầng đường sắt</string>
                         <outlet property="consLblPhuongtienHeight" destination="71B-gz-Li2" id="taF-d2-Um8"/>
                         <outlet property="consLblSeeMoreHeight" destination="v35-zd-saw" id="e0g-dI-rb5"/>
                         <outlet property="consSvStackviewHeightSmall" destination="YNX-2u-dtn" id="XDi-EX-Yhj"/>
+                        <outlet property="consViewBienphapkhacphucHeight" destination="wYS-Ov-bKv" id="qPQ-vN-z84"/>
+                        <outlet property="consViewBosungKhacphucHeight" destination="rT7-7s-kVb" id="pMg-sq-3pt"/>
+                        <outlet property="consViewHinhphatbosungHeight" destination="TZi-nS-Lxb" id="bZj-Dx-RnO"/>
                         <outlet property="consViewMinhhoaHeight" destination="5Kz-X1-gkl" id="dk4-6C-AQ6"/>
+                        <outlet property="lblBienphapkhacphucDetails" destination="ZpG-Kc-VnZ" id="kse-sR-sho"/>
+                        <outlet property="lblBienphapkhacphucTitle" destination="2Bw-eX-yva" id="fRY-8g-JxA"/>
                         <outlet property="lblDieukhoan" destination="NK0-Td-euH" id="nkg-cn-p7T"/>
                         <outlet property="lblDoituong" destination="rwa-Pz-f5g" id="ukT-op-uc4"/>
+                        <outlet property="lblHinhphatbosungDetails" destination="eVo-85-3jR" id="FrH-N7-BtU"/>
+                        <outlet property="lblHinhphatbosungTitle" destination="kin-6w-MtK" id="bLd-na-7NC"/>
                         <outlet property="lblLinhvuc" destination="7X3-dc-l3h" id="idj-sE-CLY"/>
                         <outlet property="lblMucphat" destination="uRF-C1-3kv" id="XDA-sm-Pjs"/>
                         <outlet property="lblNoidung" destination="MIa-qb-scZ" id="Kme-7B-HnG"/>
@@ -2837,7 +2919,10 @@ kết cấu hạ tầng đường sắt</string>
                         <outlet property="svStackview" destination="OgF-st-Uxu" id="0Xj-du-oWl"/>
                         <outlet property="tblView" destination="Pk2-KJ-EXR" id="XgB-Yx-MOK"/>
                         <outlet property="viewAds" destination="68I-w5-UTy" id="Tq1-5Q-WH3"/>
+                        <outlet property="viewBienphapkhacphuc" destination="Kb1-YC-BiG" id="5ve-F1-KZ1"/>
+                        <outlet property="viewBosungKhacphuc" destination="1Iu-E9-goo" id="lcL-N5-9gE"/>
                         <outlet property="viewExtraInfo" destination="WN0-hA-aTQ" id="HfI-Vb-vbQ"/>
+                        <outlet property="viewHinhphatbosung" destination="2mS-58-4G5" id="xkR-Ub-niy"/>
                         <outlet property="viewMinhhoa" destination="jqc-2M-hRr" id="JeW-Vg-R4a"/>
                     </connections>
                 </viewController>

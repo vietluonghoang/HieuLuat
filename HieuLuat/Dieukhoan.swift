@@ -16,6 +16,8 @@ class Dieukhoan: NSObject {
     var minhhoa:[String]=[]
     var cha:Int64
     var vanban:Vanban
+    var hinhphatbosung = ""
+    var bienphapkhacphuc = ""
     var sortPoint: Int16 = 0
     
     //    init(id:Int64,so:String,tieude:String,noidung:String,minhhoa:[String],cha:Int64,vanbanid:Int64) {
@@ -81,6 +83,22 @@ class Dieukhoan: NSObject {
     
     func setNoidung(noidung:String) {
         self.noidung=String(describing: noidung.trimmingCharacters(in: .whitespacesAndNewlines))
+    }
+    
+    func getHinhphatbosung() -> String {
+        return hinhphatbosung
+    }
+    
+    func setHinhphatbosung(hinhphatbosung:String) {
+        self.hinhphatbosung=String(describing: hinhphatbosung.trimmingCharacters(in: .whitespacesAndNewlines))
+    }
+    
+    func getBienphapkhacphuc() -> String {
+        return bienphapkhacphuc
+    }
+    
+    func setBienphapkhacphuc(bienphapkhacphuc:String) {
+        self.bienphapkhacphuc=String(describing: bienphapkhacphuc.trimmingCharacters(in: .whitespacesAndNewlines))
     }
     
     func getMinhhoa() -> [String] {

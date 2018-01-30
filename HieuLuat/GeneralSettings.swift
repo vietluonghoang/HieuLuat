@@ -16,6 +16,7 @@ class GeneralSettings {
     let lgtId = "4"
     let lxlvphcId = "5"
     
+    
 //    static var mucphatRange: [String] {
 //        get{
 //            return self.mucphatRange
@@ -88,16 +89,16 @@ class GeneralSettings {
     
     func getRecordCapByRam(ram: UInt64) -> Int16 {
         if ram <= 1 {
-            return 250
+            return 3000
         }
         if ram <= 2 {
-            return 500
+            return 600
         }
         if ram <= 3 {
-            return 750
+            return 900
         }
         if ram <= 4 {
-            return 1000
+            return 1200
         }
         
         //no cap if more than 4GB RAM

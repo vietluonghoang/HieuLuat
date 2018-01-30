@@ -27,6 +27,14 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet var lblPhuongtien: UILabel!
     @IBOutlet var lblLinhvuc: UILabel!
     @IBOutlet var lblDoituong: UILabel!
+    @IBOutlet var viewBosungKhacphuc: UIView!
+    @IBOutlet var viewHinhphatbosung: UIView!
+    @IBOutlet var viewBienphapkhacphuc: UIView!
+    @IBOutlet var lblHinhphatbosungTitle: UILabel!
+    @IBOutlet var lblHinhphatbosungDetails: UILabel!
+    @IBOutlet var lblBienphapkhacphucTitle: UILabel!
+    @IBOutlet var lblBienphapkhacphucDetails: UILabel!
+    
     @IBOutlet var consSvStackviewHeightBig: NSLayoutConstraint!
     @IBOutlet var consSvStackviewHeightSmall: NSLayoutConstraint!
     @IBOutlet var consExtraViewHeight: NSLayoutConstraint!
@@ -40,7 +48,10 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet var consLblDoituongDetailsHeight: NSLayoutConstraint!
     @IBOutlet var consLblSeeMoreHeight: NSLayoutConstraint!
     @IBOutlet var consViewMinhhoaHeight: NSLayoutConstraint!
+    @IBOutlet var consViewHinhphatbosungHeight: NSLayoutConstraint!
     
+    @IBOutlet var consViewBienphapkhacphucHeight: NSLayoutConstraint!
+    @IBOutlet var consViewBosungKhacphucHeight: NSLayoutConstraint!
     @IBOutlet var viewMinhhoa: UIView!
     @IBOutlet var tblView: UITableView!
     @IBOutlet var consHeightTblView: NSLayoutConstraint!
@@ -49,6 +60,8 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     var children = [Dieukhoan]()
     var parentDieukhoan: Dieukhoan? = nil
     var relatedChildren = [Dieukhoan]()
+    var hinhphatbosungList = [BosungKhacphuc]()
+    var bienphapkhacphucList = [BosungKhacphuc]()
     var dieukhoan: Dieukhoan? = nil
     var search = SearchFor()
     var specificVanbanId = [String]()
@@ -84,9 +97,6 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         tblView.reloadData()
         updateTableViewHeight()
         initAds()
-        
-        //        svStackview.contentMode = UIViewContentMode.scaleAspectFit
-        //        print(svStackview.frame.size)
     }
     
     override func didReceiveMemoryWarning() {
@@ -128,33 +138,18 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     func updateDetails(dieukhoan: Dieukhoan) {
         self.dieukhoan = dieukhoan
         specificVanbanId.append( String(describing:dieukhoan.getVanban().getId()))
-        let noidung = "\(String(describing: dieukhoan.getTieude())) \n \(String(describing: dieukhoan.getNoidung()))"
         
         for child in getChildren(keyword: String(describing: dieukhoan.id)) {
             children.append(child)
         }
         rowCount = children.count
         
-        for child in getRelatedDieukhoan(noidung: noidung) {
+        for child in Queries.getAllRelatedDieukhoan(dieukhoanId: dieukhoan.getId()) {
             relatedChildren.append(child)
         }
-        let relatedPlateKeywords = getRelatedPlatKeywords(content: noidung)
-        var sortedRelatedPlat = [Dieukhoan]()
-        let sortIt = SortUtil()
         
-        for k in relatedPlateKeywords {
-            var key = k.lowercased()
-            var finalQuery = ""
-            if key.characters.count > 0 {
-                finalQuery = Queries.rawSqlQuery + " (dkCha in (select id from tblChitietvanban where forsearch like 'phụ lục%') or dkCha in (select id from tblchitietvanban where cha in (select id from tblChitietvanban where forsearch like 'phụ lục%')) or dkCha in (select id from tblchitietvanban where cha in (select id from tblchitietvanban where cha in (select id from tblChitietvanban where forsearch like 'phụ lục%')))) and forsearch like '% \(key) %'"
-                let relatedChild = Queries.searchDieukhoanByQuery(query: finalQuery, vanbanid: ["\(settings.getQC41ID())"])
-                sortedRelatedPlat.append(contentsOf: sortIt.sortByBestMatch(listDieukhoan: relatedChild, keyword: key))
-            }
-        }
-        
-        for relatedPlateItem in sortIt.sortBySortPoint(listDieukhoan: sortedRelatedPlat,isAscending: true) {
-            appendRelatedChild(child: relatedPlateItem)
-        }
+        hinhphatbosungList = Queries.getAllHinhphatbosung(dieukhoanId: dieukhoan.getId())
+        bienphapkhacphucList = Queries.getAllBienphapkhacphuc(dieukhoanId: dieukhoan.getId())
         
         for parent in getParent(keyword: String(describing: dieukhoan.cha)) {
             parentDieukhoan = parent
@@ -162,20 +157,6 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
     
-    func appendRelatedChild(child: Dieukhoan) {
-        if child.id != self.dieukhoan?.id {
-            var isExisted = false
-            for c in relatedChildren {
-                if c.getId() == child.getId(){
-                    isExisted = true
-                    break
-                }
-            }
-            if !isExisted {
-                relatedChildren.append(child)
-            }
-        }
-    }
     
     func hideMinhhoaStackview(isHidden: Bool)  {
         consSvStackviewHeightSmall.constant = 0
@@ -209,245 +190,47 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func getRelatedChildren(keyword:String) -> [Dieukhoan] {
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
+    func hideBosungKhacphucView(isHidden: Bool)  {
+        if(isHidden){
+            consViewBosungKhacphucHeight.constant = 0
+            consViewBosungKhacphucHeight.isActive = true
+            consViewHinhphatbosungHeight.isActive = true
+            consViewBienphapkhacphucHeight.isActive = true
+            viewBosungKhacphuc.isHidden = true
+        }else{
+            consViewBosungKhacphucHeight.isActive = false
+            consViewHinhphatbosungHeight.isActive = false
+            consViewBienphapkhacphucHeight.isActive = false
+            viewBosungKhacphuc.isHidden = false
         }
-        return Queries.searchDieukhoan(keyword: "\(keyword)", vanbanid: specificVanbanId)
     }
     
-    func getRelatedDieukhoan(noidung:String) -> [Dieukhoan] {
-        var nd = noidung.lowercased()
-        
-        var relatedDieukhoan = [Dieukhoan]()
-        
-        var pattern = "((điểm\\s+(((\\p{L}{1})|(\\d\\.*)+)(,|;)*\\s+(và)*\\s*)+)*(khoản\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+)*((điều\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+)+(((của)|(tại)|(theo))*\\s*((luật)|(nghị định)|(quy chuẩn)|(thông tư))\\s*((này)|(giao thông đường bộ)|(xử lý vi phạm hành chính)))"
-        let vanbanPattern = "(((của)|(tại)|(theo))*\\s*((luật)|(nghị định)|(quy chuẩn)|(thông tư))\\s*((này)|(giao thông đường bộ)|(xử lý vi phạm hành chính)))"
-        
-        let fullMatches = search.regexSearch(pattern: pattern, searchIn: nd)
-        
-        for fmatch in fullMatches {
-            var keywords = [String]()
-            for vbMatch in search.regexSearch(pattern: vanbanPattern, searchIn: fmatch) {
-                if vbMatch.contains("này") {
-                    specificVanbanId = [String(describing: dieukhoan!.getVanban().getId())]
-                }
-                if vbMatch.contains("luật giao thông") {
-                    specificVanbanId = [settings.getLGTID()]
-                }
-                if vbMatch.contains("luật xử lý vi phạm hành chính") {
-                    specificVanbanId = [settings.getLXLVPHCID()]
-                }
-                if vbMatch.contains("nghị định 46") {
-                    specificVanbanId = [settings.getND46ID()]
-                }
-                if vbMatch.contains("thông tư 01") {
-                    specificVanbanId = [settings.getTT01ID()]
-                }
-                if vbMatch.contains("quy chuẩn 41") {
-                    specificVanbanId = [settings.getQC41ID()]
-                }
-            }
-            
-            nd = nd.replacingOccurrences(of: fmatch, with: "")
-            
-            pattern = "((điểm\\s+(((\\p{L}{1})|(\\d\\.*)+)(,|;)*\\s+(và)*\\s*)+)*(khoản\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+)*((điều\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+)+"
-            
-            let longMatches = search.regexSearch(pattern: pattern, searchIn: fmatch)
-            
-            for match in longMatches{
-                if(!search.isStringExisted(str: match, strArr: keywords)){
-                    keywords.append(match.trimmingCharacters(in: .whitespacesAndNewlines))
-                }
-            }
-            
-            for key in keywords {
-                let dk = parseRelatedDieukhoan(keyword: key)
-                if dk.count > 0{
-                    for dkh in dk {
-                        relatedDieukhoan.append(dkh)
-                    }
-                }
-            }
+    func hideHinhphatbosungView(isHidden: Bool)  {
+        if(isHidden){
+//            consViewBosungKhacphucHeight.constant = 0
+            consViewHinhphatbosungHeight.constant = 0
+//            consViewBosungKhacphucHeight.isActive = true
+            consViewHinhphatbosungHeight.isActive = true
+//            viewBosungKhacphuc.isHidden = true
+        }else{
+            consViewBosungKhacphucHeight.isActive = false
+            consViewHinhphatbosungHeight.isActive = false
+            viewBosungKhacphuc.isHidden = false
         }
-        
-        specificVanbanId = [String(describing: dieukhoan!.getVanban().getId())]
-        
-        pattern = "((điểm\\s+(((\\p{L}{1})|(\\d\\.*)+)(,|;)*\\s+(và)*\\s*)+)*(khoản\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+)+((điều\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+)+"
-        
-        let longMatches = search.regexSearch(pattern: pattern, searchIn: nd)
-        
-        for lmatch in longMatches{
-            var keywords = [String]()
-            nd = nd.replacingOccurrences(of: lmatch, with: "")
-            
-            if(!search.isStringExisted(str: lmatch, strArr: keywords)){
-                if lmatch.contains("điều này") {
-                    keywords.append(lmatch.replacingOccurrences(of: "điều này", with: search.getDieunay(currentDieukhoan: dieukhoan!, vanbanId: specificVanbanId).getSo()).trimmingCharacters(in: .whitespacesAndNewlines))
-                }else{
-                    keywords.append(lmatch.trimmingCharacters(in: .whitespacesAndNewlines))
-                }
-            }
-            for key in keywords {
-                let dk = parseRelatedDieukhoan(keyword: key)
-                if dk.count > 0{
-                    for dkh in dk {
-                        relatedDieukhoan.append(dkh)
-                    }
-                }
-            }
-        }
-        
-        pattern = "(điểm\\s+(((\\p{L}{1})|(\\d\\.*)+)(,|;)*\\s+(và)*\\s*)+)*(khoản\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+"
-        
-        let shortMatches = search.regexSearch(pattern: pattern, searchIn: nd)
-        
-        for smatch in shortMatches{
-            var keywords = [String]()
-            nd = nd.replacingOccurrences(of: smatch, with: "")
-            var key = smatch
-            
-            if(!search.isStringExisted(str: smatch, strArr: keywords)){
-                if smatch.contains("điều này") {
-                    key = key.replacingOccurrences(of: "điều này", with: search.getDieunay(currentDieukhoan: dieukhoan!, vanbanId: specificVanbanId).getSo()).trimmingCharacters(in: .whitespacesAndNewlines)
-                }else{
-                    key = key + " " + search.getDieunay(currentDieukhoan: dieukhoan!, vanbanId: specificVanbanId).getSo().trimmingCharacters(in: .whitespacesAndNewlines)
-                }
-                
-                if smatch.contains("khoản này") {
-                    key = key.replacingOccurrences(of: "khoản này", with: search.getKhoannay(currentDieukhoan: dieukhoan!, vanbanId: specificVanbanId).getSo()).trimmingCharacters(in: .whitespacesAndNewlines)
-                }
-                
-                keywords.append(key.trimmingCharacters(in: .whitespacesAndNewlines))
-                
-            }
-            for key in keywords {
-                let dk = parseRelatedDieukhoan(keyword: key.lowercased())
-                if dk.count > 0{
-                    for dkh in dk {
-                        relatedDieukhoan.append(dkh)
-                    }
-                }
-            }
-        }
-        
-        return relatedDieukhoan
     }
     
-    func parseRelatedDieukhoan(keyword: String) -> [Dieukhoan] {
-        let key = keyword.lowercased()
-        var relatedDieukhoan = [Dieukhoan]()
-        var finalQuery = ""
-        
-        var pattern = "(điều\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+"
-        
-        let dieuMatches = search.regexSearch(pattern: pattern, searchIn: key)
-        
-        for dm in dieuMatches{
-            var convertedDieu = dm.replacingOccurrences(of: " và", with: ",")
-            convertedDieu = convertedDieu.replacingOccurrences(of: ";", with: ",")
-            var dieu = [String]()
-            var dieuQuery = ""
-            var tempQuery = ""
-            if search.regexSearch(pattern: "(\\d+,\\s*\\d+)+", searchIn: convertedDieu).count > 0 {
-                convertedDieu = convertedDieu.replacingOccurrences(of: "điều", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
-                for eachDm in convertedDieu.components(separatedBy: ","){
-                    if(!search.isStringExisted(str: eachDm, strArr: dieu) && eachDm.characters.count > 0){
-                        dieu.append("điều "+eachDm.trimmingCharacters(in: .whitespacesAndNewlines))
-                    }
-                }
-            }else{
-                if(!search.isStringExisted(str: convertedDieu, strArr: dieu)){
-                    convertedDieu = convertedDieu.replacingOccurrences(of: ",", with: "")
-                    dieu.append(convertedDieu.trimmingCharacters(in: .whitespacesAndNewlines))
-                }
-            }
-            
-            for d  in dieu {
-                tempQuery += "forsearch like \"\(d) %\" or forsearch like \"\(d). %\" or "
-            }
-            
-            dieuQuery = "select distinct id from tblChitietvanban where (\(tempQuery.substring(to: tempQuery.index(tempQuery.endIndex, offsetBy: -4)))) and vanbanid = \(specificVanbanId[0])"
-            
-            pattern = "(điểm\\s+(((\\p{L}{1})|(\\d\\.*)+)(,|;)*\\s+(và)*\\s*)+)*(khoản\\s+(((này)|(\\d\\.*)+)(,|;)*\\s*(và)*\\s*)+)+"
-            
-            let khoanMatches = search.regexSearch(pattern: pattern, searchIn: key)
-            
-            for km in khoanMatches{
-                var query = ""
-                var khoan = [String]()
-                var convertedKhoan = km.replacingOccurrences(of: " và", with: ",")
-                convertedKhoan = convertedKhoan.replacingOccurrences(of: ";", with: ",")
-                pattern = "khoản\\s+((\\d+\\.*(,|;)*\\s*)+)"
-                for matchKhoan in search.regexSearch(pattern: pattern, searchIn: convertedKhoan){
-                    var mk = matchKhoan
-                    if search.regexSearch(pattern: "(\\d+,\\s*\\d+)+", searchIn: mk).count > 0 {
-                        mk = mk.replacingOccurrences(of: "khoản", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
-                        for eachKm in mk.components(separatedBy: ","){
-                            if(!search.isStringExisted(str: eachKm, strArr: khoan) && eachKm.characters.count > 0){
-                                khoan.append(eachKm.trimmingCharacters(in: .whitespacesAndNewlines))
-                            }
-                        }
-                    }else{
-                        if(!search.isStringExisted(str: matchKhoan, strArr: khoan)){
-                            mk = mk.replacingOccurrences(of: ",", with: "")
-                            khoan.append(mk.replacingOccurrences(of: "khoản", with: "").trimmingCharacters(in: .whitespacesAndNewlines))
-                        }
-                    }
-                }
-                tempQuery = ""
-                for d in khoan {
-                    tempQuery += "forsearch like \"\(d) %\" or forsearch like \"\(d). %\" or "
-                }
-                if khoan.count > 0 {
-                    query = "select distinct id from tblChitietvanban where (\(tempQuery.substring(to: tempQuery.index(tempQuery.endIndex, offsetBy: -4)))) and cha in (\(dieuQuery))"
-                }
-                
-                pattern = "điểm\\s+(((\\p{L}{1})|(\\d\\.*)+)(,|;)*\\s+(và)*\\s*)+"
-                
-                let diemMatches = search.regexSearch(pattern: pattern, searchIn: convertedKhoan)
-                
-                var diem = [String]()
-                for d in diemMatches{
-                    var convertedDiem = d.replacingOccurrences(of: " và", with: ",")
-                    convertedDiem = convertedDiem.replacingOccurrences(of: ";", with: ",")
-                    pattern = "điểm\\s+(((\\p{L}{1})|(\\d\\.*)+)(,|;)*\\s+(và)*\\s*)+"
-                    for matchDiem in search.regexSearch(pattern: pattern, searchIn: convertedDiem) {
-                        var md = matchDiem
-                        md = md.replacingOccurrences(of: "điểm", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
-                        if search.regexSearch(pattern: "((((\\p{L}{1})|(\\d\\.*)+)(,\\s+)((\\p{L}{1})|(\\d\\.*)+))+", searchIn: md).count > 0 {
-                            for eachD in md.components(separatedBy: ","){
-                                if(!search.isStringExisted(str: eachD, strArr: diem) && eachD.characters.count > 0){
-                                    diem.append(eachD.trimmingCharacters(in: .whitespacesAndNewlines))
-                                }
-                            }
-                        }else{
-                            if(!search.isStringExisted(str: md, strArr: diem)){
-                                md = md.replacingOccurrences(of: ",", with: "")
-                                diem.append(md.replacingOccurrences(of: "điểm", with: "").trimmingCharacters(in: .whitespacesAndNewlines))
-                            }
-                        }
-                    }
-                    tempQuery = ""
-                    for d in diem {
-                        tempQuery += "forsearch like \"\(d) %\" or forsearch like \"\(d). %\" or "
-                    }
-                }
-                if diem.count > 0{
-                    query = "select distinct id from tblChitietvanban where (\(tempQuery.substring(to: tempQuery.index(tempQuery.endIndex, offsetBy: -4)))) and cha in (\(query))"
-                }
-                finalQuery += "dkid in (\(query)) or "
-            }
-            
-            if finalQuery.characters.count < 1 {
-                //in case no 'khoan' and 'diem' available, the query should be initialized (' or ' is added because it will be removed when initializing final query
-                finalQuery = "dkid in (\(dieuQuery)) or "
-            }
+    func hideBienphapkhacphucView(isHidden: Bool)  {
+        if(isHidden){
+//            consViewBosungKhacphucHeight.constant = 0
+            consViewBienphapkhacphucHeight.constant = 0
+//            consViewBosungKhacphucHeight.isActive = true
+            consViewBienphapkhacphucHeight.isActive = true
+//            viewBosungKhacphuc.isHidden = true
+        }else{
+            consViewBosungKhacphucHeight.isActive = false
+            consViewBienphapkhacphucHeight.isActive = false
+            viewBosungKhacphuc.isHidden = false
         }
-        finalQuery = Queries.rawSqlQuery + " \(finalQuery.substring(to: finalQuery.index(finalQuery.endIndex, offsetBy: -4)))"
-        
-        relatedDieukhoan.append(contentsOf: Queries.searchDieukhoanByQuery(query: finalQuery, vanbanid: specificVanbanId))
-        return relatedDieukhoan
     }
     
     func showDieukhoan() {
@@ -468,15 +251,9 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         images = dieukhoan!.getMinhhoa()
         
         if(images.count > 0){
-            //            fillMinhhoaToStackview(images: images)
-            //            viewMinhhoa.translatesAutoresizingMaskIntoConstraints = false
-            //            viewMinhhoa.sizeToFit()
-            //            viewMinhhoa.layoutSubviews()
-            //            print("view Minh hoa: \(viewMinhhoa.frame.size.height)")
             fillMinhhoaToViewMinhhoa(images: images)
         }else{
             hideMinhhoaView(isHidden: true)
-            //            hideMinhhoaStackview(isHidden: true)
         }
         
         // Enable extra section for details of ND46
@@ -530,28 +307,147 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }else{
             hideExtraInfoView(isHidden: true)
         }
-    }
-    
-    func getChildren(keyword:String) -> [Dieukhoan] {
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
+        if hinhphatbosungList.count < 1 && bienphapkhacphucList.count < 1 {
+            hideBosungKhacphucView(isHidden: true)
+        } else {
+            if hinhphatbosungList.count > 0 {
+                hideHinhphatbosungView(isHidden: false)
+                lblHinhphatbosungTitle.numberOfLines = 0
+                lblHinhphatbosungTitle.lineBreakMode = NSLineBreakMode.byWordWrapping
+                lblHinhphatbosungTitle.text = "Hình phạt bổ sung:"
+                lblHinhphatbosungDetails.numberOfLines = 0
+                lblHinhphatbosungDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
+                lblHinhphatbosungDetails.text = ""
+                for bosung in hinhphatbosungList {
+                    lblHinhphatbosungDetails.text = "\(lblHinhphatbosungDetails.text!)\(bosung.getNoidung())\n"
+                }
+//                let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+//                label.text = "Hình phạt bổ sung:"
+//                label.numberOfLines = 0
+//                label.lineBreakMode = NSLineBreakMode.byWordWrapping
+//                generateNewComponentConstraints(parent: viewHinhphatbosung, topComponent: viewHinhphatbosung, component: label, top: 0, left: 0, right: 0)
+//                
+//                var order = 0
+//                var previousComponent = label
+//                for bosung in hinhphatbosungList {
+//                    let details = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+//                    details.text = "\(bosung.getNoidung())"
+//                    details.numberOfLines = 0
+//                    details.lineBreakMode = NSLineBreakMode.byWordWrapping
+//                    if order < hinhphatbosungList.count - 1 {
+//                        generateNewComponentConstraints(parent: viewHinhphatbosung, topComponent: previousComponent, component: details, top: 2, left: 8, right: 0)
+//                    }else{
+//                        generateNewComponentConstraints(parent: viewHinhphatbosung, topComponent: previousComponent, bottomComponent: viewHinhphatbosung, component: details, top: 2, left: 8, right: 0, bottom: 0)
+//                    }
+//                    order += 1
+//                    previousComponent = details
+//                }
+            } else {
+                hideHinhphatbosungView(isHidden: true)
+            }
+            
+            if bienphapkhacphucList.count > 0 {
+                hideBienphapkhacphucView(isHidden: false)
+                lblBienphapkhacphucTitle.numberOfLines = 0
+                lblBienphapkhacphucTitle.lineBreakMode = NSLineBreakMode.byWordWrapping
+                lblBienphapkhacphucTitle.text = "Biện pháp khắc phục:"
+                lblBienphapkhacphucDetails.numberOfLines = 0
+                lblBienphapkhacphucDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
+                lblBienphapkhacphucDetails.text = ""
+                for khacphuc in bienphapkhacphucList {
+                    lblBienphapkhacphucDetails.text = "\(lblBienphapkhacphucDetails.text!)\(khacphuc.getNoidung())\n"
+                }
+                
+//                let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+//                label.text = "Biện pháp khắc phục:"
+//                label.numberOfLines = 0
+//                label.lineBreakMode = NSLineBreakMode.byWordWrapping
+//                generateNewComponentConstraints(parent: viewBienphapkhacphuc, topComponent: viewBienphapkhacphuc, component: label, top: 0, left: 0, right: 0)
+//                
+//                var order = 0
+//                var previousComponent = label
+//                for khacphuc in bienphapkhacphucList {
+//                    let details = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+//                    details.text = "\(khacphuc.getNoidung())"
+//                    details.numberOfLines = 0
+//                    details.lineBreakMode = NSLineBreakMode.byWordWrapping
+//                    if order < hinhphatbosungList.count - 1 {
+//                        generateNewComponentConstraints(parent: viewBienphapkhacphuc, topComponent: previousComponent, component: details, top: 2, left: 8, right: 0)
+//                    }else{
+//                        generateNewComponentConstraints(parent: viewBienphapkhacphuc, topComponent: previousComponent, bottomComponent: viewBienphapkhacphuc, component: details, top: 2, left: 8, right: 0, bottom: 0)
+//                    }
+//                    order += 1
+//                    previousComponent = details
+//                }
+            }else{
+                hideBienphapkhacphucView(isHidden: true)
+            }
         }
-        return Queries.searchChildren(keyword: "\(keyword)", vanbanid: specificVanbanId)
     }
     
-    func getParent(keyword:String) -> [Dieukhoan] {
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
-        return Queries.searchDieukhoanByID(keyword: "\(keyword)", vanbanid: specificVanbanId)
+    func generateNewComponentConstraints(parent: UIView, topComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, right: CGFloat) {
+        parent.addSubview(component)
+        parent.addConstraints(
+            [
+                NSLayoutConstraint(item: component,
+                                   attribute: .leading,
+                                   relatedBy: .equal,
+                                   toItem: parent,
+                                   attribute: .leading,
+                                   multiplier: 1,
+                                   constant: left),
+                NSLayoutConstraint(item: component,
+                                   attribute: .trailing,
+                                   relatedBy: .equal,
+                                   toItem: parent,
+                                   attribute: .trailing,
+                                   multiplier: 1,
+                                   constant: right),
+                NSLayoutConstraint(item: component,
+                                   attribute: .top,
+                                   relatedBy: .equal,
+                                   toItem: topComponent,
+                                   attribute: .top,
+                                   multiplier: 1,
+                                   constant: top)
+            ])
     }
     
-    func getRelatedPlatKeywords(content:String) -> [String] {
-        let input = content.lowercased()
-        
-        let pattern = "(\\b(([a-zA-Z]{1,2})(\\.|,)+)+(\\d)+(\\.\\d)*([a-zA-Z])*\\b)|(\\b(vạch)(\\ssố)*\\s(\\d)+(\\.\\d)*(\\.)*\\b)"
-        return search.regexSearch(pattern: pattern, searchIn: input)
+    func generateNewComponentConstraints(parent: UIView, topComponent: UIView, bottomComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, right: CGFloat, bottom: CGFloat) {
+        parent.addSubview(component)
+        parent.addConstraints(
+            [
+                NSLayoutConstraint(item: component,
+                                   attribute: .leading,
+                                   relatedBy: .equal,
+                                   toItem: parent,
+                                   attribute: .leading,
+                                   multiplier: 1,
+                                   constant: left),
+                NSLayoutConstraint(item: component,
+                                   attribute: .trailing,
+                                   relatedBy: .equal,
+                                   toItem: parent,
+                                   attribute: .trailing,
+                                   multiplier: 1,
+                                   constant: right),
+                NSLayoutConstraint(item: component,
+                                   attribute: .top,
+                                   relatedBy: .equal,
+                                   toItem: topComponent,
+                                   attribute: .top,
+                                   multiplier: 1,
+                                   constant: top),
+                NSLayoutConstraint(item: component,
+                                   attribute: .bottom,
+                                   relatedBy: .equal,
+                                   toItem: bottomComponent,
+                                   attribute: .bottom,
+                                   multiplier: 1,
+                                   constant: bottom)
+            ])
     }
+    
     
     func scaleImage(image: UIImage, targetWidth: CGFloat) -> UIImage {
         let size = image.size
@@ -601,121 +497,15 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                 viewMinhhoa.addSubview(imgView)
                 if order == 0 {
                     if images.count == 1 {
-                        viewMinhhoa.addConstraints(
-                            [
-                                NSLayoutConstraint(item: imgView,
-                                                   attribute: .leading,
-                                                   relatedBy: .equal,
-                                                   toItem: viewMinhhoa,
-                                                   attribute: .leading,
-                                                   multiplier: 1,
-                                                   constant: 0),
-                                NSLayoutConstraint(item: imgView,
-                                                   attribute: .trailing,
-                                                   relatedBy: .equal,
-                                                   toItem: viewMinhhoa,
-                                                   attribute: .trailing,
-                                                   multiplier: 1,
-                                                   constant: 0),
-                                NSLayoutConstraint(item: imgView,
-                                                   attribute: .top,
-                                                   relatedBy: .equal,
-                                                   toItem: viewMinhhoa,
-                                                   attribute: .top,
-                                                   multiplier: 1,
-                                                   constant: 0),
-                                NSLayoutConstraint(item: imgView,
-                                                   attribute: .bottom,
-                                                   relatedBy: .equal,
-                                                   toItem: viewMinhhoa,
-                                                   attribute: .bottom,
-                                                   multiplier: 1,
-                                                   constant: 0)
-                            ])
+                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: viewMinhhoa, bottomComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, bottom: 0)
                     }else{
-                        viewMinhhoa.addConstraints(
-                            [
-                                NSLayoutConstraint(item: imgView,
-                                                   attribute: .leading,
-                                                   relatedBy: .equal,
-                                                   toItem: viewMinhhoa,
-                                                   attribute: .leading,
-                                                   multiplier: 1,
-                                                   constant: 0),
-                                NSLayoutConstraint(item: imgView,
-                                                   attribute: .trailing,
-                                                   relatedBy: .equal,
-                                                   toItem: viewMinhhoa,
-                                                   attribute: .trailing,
-                                                   multiplier: 1,
-                                                   constant: 0),
-                                NSLayoutConstraint(item: imgView,
-                                                   attribute: .top,
-                                                   relatedBy: .equal,
-                                                   toItem: viewMinhhoa,
-                                                   attribute: .top,
-                                                   multiplier: 1,
-                                                   constant: 0)
-                            ])
+                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0)
                     }
                 }else{
                     if order < (images.count - 1) {
-                        viewMinhhoa.addConstraints(
-                            [
-                                NSLayoutConstraint(item: imgView,
-                                                   attribute: .leading,
-                                                   relatedBy: .equal,
-                                                   toItem: viewMinhhoa,
-                                                   attribute: .leading,
-                                                   multiplier: 1,
-                                                   constant: 0),
-                                NSLayoutConstraint(item: imgView,
-                                                   attribute: .trailing,
-                                                   relatedBy: .equal,
-                                                   toItem: viewMinhhoa,
-                                                   attribute: .trailing,
-                                                   multiplier: 1,
-                                                   constant: 0),
-                                NSLayoutConstraint(item: imgView,
-                                                   attribute: .top,
-                                                   relatedBy: .equal,
-                                                   toItem:previousImageView,
-                                                   attribute: .bottom,
-                                                   multiplier: 1,
-                                                   constant: 0)
-                            ])
+                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: previousImageView, component: imgView, top: 0, left: 0, right: 0)
                     }else{
-                        viewMinhhoa.addConstraints(
-                            [
-                                NSLayoutConstraint(item: imgView,
-                                                   attribute: .leading,
-                                                   relatedBy: .equal,
-                                                   toItem: viewMinhhoa,
-                                                   attribute: .leading,
-                                                   multiplier: 1,
-                                                   constant: 0),
-                                NSLayoutConstraint(item: imgView,
-                                                   attribute: .trailing,
-                                                   relatedBy: .equal,
-                                                   toItem: viewMinhhoa,
-                                                   attribute: .trailing,
-                                                   multiplier: 1,
-                                                   constant: 0),
-                                NSLayoutConstraint(item: imgView,
-                                                   attribute: .top,
-                                                   relatedBy: .equal,
-                                                   toItem: previousImageView,
-                                                   attribute: .bottom,
-                                                   multiplier: 1,
-                                                   constant: 0),
-                                NSLayoutConstraint(item: imgView,
-                                                   attribute: .bottom,
-                                                   relatedBy: .equal,
-                                                   toItem: viewMinhhoa,
-                                                   attribute: .bottom,
-                                                   multiplier: 1,
-                                                   constant: 0)
-                            ])
+                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: previousImageView, bottomComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, bottom: 0)
                     }
                 }
                 previousImageView = imgView
@@ -727,46 +517,6 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }
         print("image view: \(previousImageView.frame.size.height)")
     }
-    //    func fillMinhhoaToStackview(images: [String]) {
-    //        hideMinhhoaStackview(isHidden: false)
-    //        for img in images {
-    //            if (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines).characters.count < 1{
-    //
-    //            }else{
-    //                let image = UIImage(named: (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines))!
-    //
-    //                let imgView = UIImageView(image: image)
-    //
-    //
-    //                imgView.clipsToBounds = true
-    //                imgView.contentMode = UIViewContentMode.scaleAspectFit
-    //                imgView.autoresizesSubviews = true
-    //                imgView.translatesAutoresizingMaskIntoConstraints = false
-    //                svStackview.addArrangedSubview(imgView)
-    //                svStackview.addConstraints(
-    //                    [
-    //                        NSLayoutConstraint(item: imgView,
-    //                                           attribute: .leading,
-    //                                           relatedBy: .equal,
-    //                                           toItem: svStackview,
-    //                                           attribute: .leading,
-    //                                           multiplier: 1,
-    //                                           constant: 0),
-    //                        NSLayoutConstraint(item: imgView,
-    //                                           attribute: .trailing,
-    //                                           relatedBy: .equal,
-    //                                           toItem: svStackview,
-    //                                           attribute: .trailing,
-    //                                           multiplier: 1,
-    //                                           constant: 0)
-    //                    ])
-    //
-    //                let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
-    //                imgView.isUserInteractionEnabled = true
-    //                imgView.addGestureRecognizer(tap)
-    //            }
-    //        }
-    //    }
     
     func getMucphat(id: String) -> String {
         if DataConnection.database == nil {
@@ -794,6 +544,20 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             DataConnection.databaseSetup()
         }
         return Queries.searchDoituongInfo(id: id)
+    }
+    
+    func getChildren(keyword:String) -> [Dieukhoan] {
+        if DataConnection.database == nil {
+            DataConnection.databaseSetup()
+        }
+        return Queries.searchChildren(keyword: "\(keyword)", vanbanid: specificVanbanId)
+    }
+    
+    func getParent(keyword:String) -> [Dieukhoan] {
+        if DataConnection.database == nil {
+            DataConnection.databaseSetup()
+        }
+        return Queries.searchDieukhoanByID(keyword: "\(keyword)", vanbanid: specificVanbanId)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

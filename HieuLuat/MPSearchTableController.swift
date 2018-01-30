@@ -297,17 +297,16 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         let query = Queries.rawSqlQuery
         
         var appendString = ""
-        if keyword.characters.count > 0 {
-            for k in Queries.convertKeywordsForDifferentAccentType(keyword: keyword.lowercased()) {
-                var str = ""
-                for key in k.components(separatedBy: " ") {
-                    str += "dkSearch like '%\(key)%' and "
-                }
-                str = str.substring(to: str.index(str.endIndex, offsetBy: -5))
-                appendString += "(\(str)) or "
+        for k in Queries.convertKeywordsForDifferentAccentType(keyword: keyword.lowercased()) {
+            var str = ""
+            for key in k.components(separatedBy: " ") {
+                str += "dkSearch like '%\(key)%' and "
             }
-            appendString = "(\(appendString.substring(to: appendString.index(appendString.endIndex, offsetBy: -4))))"
+            str = str.substring(to: str.index(str.endIndex, offsetBy: -5))
+            appendString += "(\(str)) or "
         }
+        appendString = "(\(appendString.substring(to: appendString.index(appendString.endIndex, offsetBy: -4))))"
+        
         if searchFilters["Mucphat"]!["tu"]!["chon"] != "0" && searchFilters["Mucphat"]!["den"]!["chon"] != "0" {
             appendString += getWhereClauseForMucphat(tu: searchFilters["Mucphat"]!["tu"]!["chon"]!, den: searchFilters["Mucphat"]!["den"]!["chon"]!)
         }
@@ -329,7 +328,9 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         inClause = inClause.substring(to: inClause.index(inClause.endIndex, offsetBy: -1))
-        return " and dkId in (select distinct dieukhoanID from tblMucphat where canhanTu in (\(inClause)) or canhanDen in (\(inClause)) or tochucTu in (\(inClause)) or tochucDen in (\(inClause)))"
+        
+        // a typo in create table query caused the column name "tochucDen" becomes "tuchucDen"
+        return " and dkId in (select distinct dieukhoanID from tblMucphat where canhanTu in (\(inClause)) or canhanDen in (\(inClause)) or tochucTu in (\(inClause)) or tuchucDen in (\(inClause)))"
     }
     
     func getWhereClauseForPhuongtien() -> String {
