@@ -15,58 +15,59 @@ class GeneralSettings {
     let tt01Id = "3"
     let lgtId = "4"
     let lxlvphcId = "5"
+    static var tamgiuPhuongtienDieukhoanID = "2820"
     
     
-//    static var mucphatRange: [String] {
-//        get{
-//            return self.mucphatRange
-//        }
-//        set(v){
-//            self.mucphatRange = v;
-//        }
-//    }
-//    
-//    static var nd46Id: String {
-//        get{
-//            return self.nd46Id
-//        }
-//        set(v){
-//            self.nd46Id = v;
-//        }
-//    }
-//    
-//    static var qc41Id: String {
-//        get{
-//            return self.qc41Id
-//        }
-//        set(v){
-//            self.qc41Id = v;
-//        }
-//    }
-//    static var tt01Id: String {
-//        get{
-//            return self.tt01Id
-//        }
-//        set(v){
-//            self.tt01Id = v;
-//        }
-//    }
-//    static var lgtId: String {
-//        get{
-//            return self.lgtId
-//        }
-//        set(v){
-//            self.lgtId = v;
-//        }
-//    }
-//    static var lxlvphcId: String {
-//        get{
-//            return self.lxlvphcId
-//        }
-//        set(v){
-//            self.lxlvphcId = v;
-//        }
-//    }
+    //    static var mucphatRange: [String] {
+    //        get{
+    //            return self.mucphatRange
+    //        }
+    //        set(v){
+    //            self.mucphatRange = v;
+    //        }
+    //    }
+    //
+    //    static var nd46Id: String {
+    //        get{
+    //            return self.nd46Id
+    //        }
+    //        set(v){
+    //            self.nd46Id = v;
+    //        }
+    //    }
+    //
+    //    static var qc41Id: String {
+    //        get{
+    //            return self.qc41Id
+    //        }
+    //        set(v){
+    //            self.qc41Id = v;
+    //        }
+    //    }
+    //    static var tt01Id: String {
+    //        get{
+    //            return self.tt01Id
+    //        }
+    //        set(v){
+    //            self.tt01Id = v;
+    //        }
+    //    }
+    //    static var lgtId: String {
+    //        get{
+    //            return self.lgtId
+    //        }
+    //        set(v){
+    //            self.lgtId = v;
+    //        }
+    //    }
+    //    static var lxlvphcId: String {
+    //        get{
+    //            return self.lxlvphcId
+    //        }
+    //        set(v){
+    //            self.lxlvphcId = v;
+    //        }
+    //    }
     
     func getMucphatRange() -> [String] {
         return mucphatRange
@@ -87,21 +88,24 @@ class GeneralSettings {
         return qc41Id
     }
     
+    static var tamgiuPhuongtienParentID: String {
+        get{
+            return self.tamgiuPhuongtienDieukhoanID
+        }
+        set(v){
+            self.tamgiuPhuongtienDieukhoanID = v;
+        }
+    }
+    
     func getRecordCapByRam(ram: UInt64) -> Int16 {
         if ram <= 1 {
-            return 3000
+            return 300
         }
         if ram <= 2 {
-            return 600
-        }
-        if ram <= 3 {
-            return 900
-        }
-        if ram <= 4 {
-            return 1200
+            return 700
         }
         
-        //no cap if more than 4GB RAM
+        //no cap if more than 2GB RAM
         return 0
     }
 }

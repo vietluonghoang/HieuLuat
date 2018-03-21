@@ -329,8 +329,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         }
         inClause = inClause.substring(to: inClause.index(inClause.endIndex, offsetBy: -1))
         
-        // a typo in create table query caused the column name "tochucDen" becomes "tuchucDen"
-        return " and dkId in (select distinct dieukhoanID from tblMucphat where canhanTu in (\(inClause)) or canhanDen in (\(inClause)) or tochucTu in (\(inClause)) or tuchucDen in (\(inClause)))"
+        return " and dkId in (select distinct dieukhoanID from tblMucphat where canhanTu in (\(inClause)) or canhanDen in (\(inClause)) or tochucTu in (\(inClause)) or tochucDen in (\(inClause)))"
     }
     
     func getWhereClauseForPhuongtien() -> String {

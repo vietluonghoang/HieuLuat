@@ -30,12 +30,19 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet var viewBosungKhacphuc: UIView!
     @IBOutlet var viewHinhphatbosung: UIView!
     @IBOutlet var viewBienphapkhacphuc: UIView!
+    @IBOutlet var viewTamgiuPhuongtien: UIView!
+    @IBOutlet var viewThamquyen: UIView!
     @IBOutlet var lblHinhphatbosungTitle: UILabel!
     @IBOutlet var lblHinhphatbosungDetails: UILabel!
     @IBOutlet var lblBienphapkhacphucTitle: UILabel!
     @IBOutlet var lblBienphapkhacphucDetails: UILabel!
+    @IBOutlet var lblTamgiuPhuongtienTitle: UILabel!
+    @IBOutlet var lblTamgiuPhuongtienDetails: UILabel!
+    @IBOutlet var lblThamquyenTitle: UILabel!
+    @IBOutlet var lblThamquyenDetails: UILabel!
     
-    @IBOutlet var consSvStackviewHeightBig: NSLayoutConstraint!
+    @IBOutlet var consViewThamquyenHeight: NSLayoutConstraint!
+    @IBOutlet var consViewTamgiuPhuongtienHeight: NSLayoutConstraint!
     @IBOutlet var consSvStackviewHeightSmall: NSLayoutConstraint!
     @IBOutlet var consExtraViewHeight: NSLayoutConstraint!
     @IBOutlet var consLblMucphatHeight: NSLayoutConstraint!
@@ -62,6 +69,8 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     var relatedChildren = [Dieukhoan]()
     var hinhphatbosungList = [BosungKhacphuc]()
     var bienphapkhacphucList = [BosungKhacphuc]()
+    var thamquyenList = [Dieukhoan]()
+    var tamgiuphuongtienList = [Dieukhoan]()
     var dieukhoan: Dieukhoan? = nil
     var search = SearchFor()
     var specificVanbanId = [String]()
@@ -144,12 +153,18 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }
         rowCount = children.count
         
-        for child in Queries.getAllRelatedDieukhoan(dieukhoanId: dieukhoan.getId()) {
+        for child in Queries.getAllDirectRelatedDieukhoan(dieukhoanId: dieukhoan.getId()) {
+            relatedChildren.append(child)
+        }
+        
+        for child in Queries.getAllRelativeRelatedDieukhoan(dieukhoanId: dieukhoan.getId()) {
             relatedChildren.append(child)
         }
         
         hinhphatbosungList = Queries.getAllHinhphatbosung(dieukhoanId: dieukhoan.getId())
         bienphapkhacphucList = Queries.getAllBienphapkhacphuc(dieukhoanId: dieukhoan.getId())
+        tamgiuphuongtienList = getTamgiuPhuongtienList()
+        thamquyenList = getThamquyenList()
         
         for parent in getParent(keyword: String(describing: dieukhoan.cha)) {
             parentDieukhoan = parent
@@ -165,7 +180,6 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consSvStackviewHeightSmall.isActive = true
         }else{
             svStackview.isHidden = false
-            //            consSvStackviewHeightBig.isActive = true
             consSvStackviewHeightSmall.isActive = false
         }
     }
@@ -196,22 +210,23 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consViewBosungKhacphucHeight.isActive = true
             consViewHinhphatbosungHeight.isActive = true
             consViewBienphapkhacphucHeight.isActive = true
+            consViewTamgiuPhuongtienHeight.isActive = true
+            consViewThamquyenHeight.isActive = true
             viewBosungKhacphuc.isHidden = true
         }else{
             consViewBosungKhacphucHeight.isActive = false
             consViewHinhphatbosungHeight.isActive = false
             consViewBienphapkhacphucHeight.isActive = false
+            consViewTamgiuPhuongtienHeight.isActive = false
+            consViewThamquyenHeight.isActive = false
             viewBosungKhacphuc.isHidden = false
         }
     }
     
     func hideHinhphatbosungView(isHidden: Bool)  {
         if(isHidden){
-//            consViewBosungKhacphucHeight.constant = 0
             consViewHinhphatbosungHeight.constant = 0
-//            consViewBosungKhacphucHeight.isActive = true
             consViewHinhphatbosungHeight.isActive = true
-//            viewBosungKhacphuc.isHidden = true
         }else{
             consViewBosungKhacphucHeight.isActive = false
             consViewHinhphatbosungHeight.isActive = false
@@ -221,14 +236,33 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func hideBienphapkhacphucView(isHidden: Bool)  {
         if(isHidden){
-//            consViewBosungKhacphucHeight.constant = 0
             consViewBienphapkhacphucHeight.constant = 0
-//            consViewBosungKhacphucHeight.isActive = true
             consViewBienphapkhacphucHeight.isActive = true
-//            viewBosungKhacphuc.isHidden = true
         }else{
             consViewBosungKhacphucHeight.isActive = false
             consViewBienphapkhacphucHeight.isActive = false
+            viewBosungKhacphuc.isHidden = false
+        }
+    }
+    
+    func hideTamgiuPhuongtienView(isHidden: Bool)  {
+        if(isHidden){
+            consViewTamgiuPhuongtienHeight.constant = 0
+            consViewTamgiuPhuongtienHeight.isActive = true
+        }else{
+            consViewBosungKhacphucHeight.isActive = false
+            consViewTamgiuPhuongtienHeight.isActive = false
+            viewBosungKhacphuc.isHidden = false
+        }
+    }
+    
+    func hideThamquyenView(isHidden: Bool)  {
+        if(isHidden){
+            consViewThamquyenHeight.constant = 0
+            consViewThamquyenHeight.isActive = true
+        }else{
+            consViewBosungKhacphucHeight.isActive = false
+            consViewThamquyenHeight.isActive = false
             viewBosungKhacphuc.isHidden = false
         }
     }
@@ -307,7 +341,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }else{
             hideExtraInfoView(isHidden: true)
         }
-        if hinhphatbosungList.count < 1 && bienphapkhacphucList.count < 1 {
+        if hinhphatbosungList.count < 1 && bienphapkhacphucList.count < 1 && thamquyenList.count < 1 && tamgiuphuongtienList.count < 1{
             hideBosungKhacphucView(isHidden: true)
         } else {
             if hinhphatbosungList.count > 0 {
@@ -321,27 +355,6 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                 for bosung in hinhphatbosungList {
                     lblHinhphatbosungDetails.text = "\(lblHinhphatbosungDetails.text!)\(bosung.getNoidung())\n"
                 }
-//                let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-//                label.text = "Hình phạt bổ sung:"
-//                label.numberOfLines = 0
-//                label.lineBreakMode = NSLineBreakMode.byWordWrapping
-//                generateNewComponentConstraints(parent: viewHinhphatbosung, topComponent: viewHinhphatbosung, component: label, top: 0, left: 0, right: 0)
-//                
-//                var order = 0
-//                var previousComponent = label
-//                for bosung in hinhphatbosungList {
-//                    let details = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-//                    details.text = "\(bosung.getNoidung())"
-//                    details.numberOfLines = 0
-//                    details.lineBreakMode = NSLineBreakMode.byWordWrapping
-//                    if order < hinhphatbosungList.count - 1 {
-//                        generateNewComponentConstraints(parent: viewHinhphatbosung, topComponent: previousComponent, component: details, top: 2, left: 8, right: 0)
-//                    }else{
-//                        generateNewComponentConstraints(parent: viewHinhphatbosung, topComponent: previousComponent, bottomComponent: viewHinhphatbosung, component: details, top: 2, left: 8, right: 0, bottom: 0)
-//                    }
-//                    order += 1
-//                    previousComponent = details
-//                }
             } else {
                 hideHinhphatbosungView(isHidden: true)
             }
@@ -357,30 +370,35 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                 for khacphuc in bienphapkhacphucList {
                     lblBienphapkhacphucDetails.text = "\(lblBienphapkhacphucDetails.text!)\(khacphuc.getNoidung())\n"
                 }
-                
-//                let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-//                label.text = "Biện pháp khắc phục:"
-//                label.numberOfLines = 0
-//                label.lineBreakMode = NSLineBreakMode.byWordWrapping
-//                generateNewComponentConstraints(parent: viewBienphapkhacphuc, topComponent: viewBienphapkhacphuc, component: label, top: 0, left: 0, right: 0)
-//                
-//                var order = 0
-//                var previousComponent = label
-//                for khacphuc in bienphapkhacphucList {
-//                    let details = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-//                    details.text = "\(khacphuc.getNoidung())"
-//                    details.numberOfLines = 0
-//                    details.lineBreakMode = NSLineBreakMode.byWordWrapping
-//                    if order < hinhphatbosungList.count - 1 {
-//                        generateNewComponentConstraints(parent: viewBienphapkhacphuc, topComponent: previousComponent, component: details, top: 2, left: 8, right: 0)
-//                    }else{
-//                        generateNewComponentConstraints(parent: viewBienphapkhacphuc, topComponent: previousComponent, bottomComponent: viewBienphapkhacphuc, component: details, top: 2, left: 8, right: 0, bottom: 0)
-//                    }
-//                    order += 1
-//                    previousComponent = details
-//                }
             }else{
                 hideBienphapkhacphucView(isHidden: true)
+            }
+            
+            if tamgiuphuongtienList.count > 0 {
+                hideTamgiuPhuongtienView(isHidden: false)
+                lblTamgiuPhuongtienTitle.numberOfLines = 0
+                lblTamgiuPhuongtienTitle.lineBreakMode = NSLineBreakMode.byWordWrapping
+                lblTamgiuPhuongtienTitle.text = "Tạm giữ phương tiện:"
+                lblTamgiuPhuongtienDetails.numberOfLines = 0
+                lblTamgiuPhuongtienDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
+                lblTamgiuPhuongtienDetails.text = "07 ngày"
+            }else{
+                hideTamgiuPhuongtienView(isHidden: true)
+            }
+            
+            if thamquyenList.count > 0 {
+                hideThamquyenView(isHidden: false)
+                lblThamquyenTitle.numberOfLines = 0
+                lblThamquyenTitle.lineBreakMode = NSLineBreakMode.byWordWrapping
+                lblThamquyenTitle.text = "Biện pháp khắc phục:"
+                lblThamquyenDetails.numberOfLines = 0
+                lblThamquyenDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
+                lblThamquyenDetails.text = ""
+                for thamquyen in thamquyenList {
+                    lblThamquyenDetails.text = "\(lblThamquyenDetails.text!)\(thamquyen.getNoidung())\n"
+                }
+            }else{
+                hideThamquyenView(isHidden: true)
             }
         }
     }
@@ -516,6 +534,19 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         print("image view: \(previousImageView.frame.size.height)")
+    }
+    
+    func getThamquyenList() -> [Dieukhoan] {
+        var thamquyen = [Dieukhoan]()
+        
+        return thamquyen
+    }
+    
+    func getTamgiuPhuongtienList() -> [Dieukhoan] {
+        var tamgiu = [Dieukhoan]()
+        let qry = "select distinct dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id join tblRelatedDieukhoan as rdk on dk.id = rdk.dieukhoanId where (dkCha = \(GeneralSettings.tamgiuPhuongtienParentID) or dkCha in (select id from tblchitietvanban where cha = \(GeneralSettings.tamgiuPhuongtienParentID)) or dkCha in (select id from tblchitietvanban where cha in (select id from tblchitietvanban where cha = \(GeneralSettings.tamgiuPhuongtienParentID)))) and rdk.relatedDieukhoanID = \(dieukhoan!.getId())"
+        tamgiu = Queries.searchDieukhoanByQuery(query: qry, vanbanid: specificVanbanId)
+        return tamgiu
     }
     
     func getMucphat(id: String) -> String {

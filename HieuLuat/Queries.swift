@@ -174,9 +174,26 @@ class Queries: NSObject {
         return dieukhoanArray
     }
     
-    class func getAllRelatedDieukhoan(dieukhoanId: Int64) -> [Dieukhoan] {
+    class func getAllDirectRelatedDieukhoan(dieukhoanId: Int64) -> [Dieukhoan] {
         DataConnection.database!.open()
-        let sql = rawSqlQuery + " dkId in (select dieukhoanId from tblRelatedDieukhoan where relatedDieukhoanId = \(dieukhoanId)) or dkId in (select relatedDieukhoanId from tblRelatedDieukhoan where dieukhoanId = \(dieukhoanId))"
+        let sql = rawSqlQuery + " dkId in (select relatedDieukhoanId from tblRelatedDieukhoan where dieukhoanId = \(dieukhoanId))"
+        
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        
+        var dieukhoanArray = Array<Dieukhoan>()
+        
+        if resultSet != nil {
+            dieukhoanArray = generateDieukhoanList(resultSet: resultSet)
+        }
+        
+        DataConnection.database!.close()
+        
+        return dieukhoanArray
+    }
+    
+    class func getAllRelativeRelatedDieukhoan(dieukhoanId: Int64) -> [Dieukhoan] {
+        DataConnection.database!.open()
+        let sql = rawSqlQuery + " dkId in (select dieukhoanId from tblRelatedDieukhoan where relatedDieukhoanId = \(dieukhoanId))"
         
         let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
         
@@ -228,9 +245,7 @@ class Queries: NSObject {
     class func searchMucphatInfo(id: String) -> String {
         DataConnection.database!.open()
         
-        //there is an 'typo' in the create table query then the column named 'tochucDen' became 'tuchucDen'
-        
-        let sql = "select distinct canhanTu, canhanDen, tochucTu, tuchucDen from tblMucphat where dieukhoanId = ?"
+        let sql = "select distinct canhanTu, canhanDen, tochucTu, tochucDen from tblMucphat where dieukhoanId = ?"
         
         let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [id])!
         var result = ""
@@ -239,7 +254,7 @@ class Queries: NSObject {
                 let cnTu = resultSet.string(forColumn: "canhanTu")!
                 let cnDen = resultSet.string(forColumn: "canhanDen")!
                 let tcTu = resultSet.string(forColumn: "tochucTu")!
-                let tcDen = resultSet.string(forColumn: "tuchucDen")!
+                let tcDen = resultSet.string(forColumn: "tochucDen")!
                 if tcTu != "" && tcDen != "" {
                     result = "cá nhân: \(cnTu) - \(cnDen)\ntổ chức: \(tcTu) - \(tcDen)"
                 }else{
