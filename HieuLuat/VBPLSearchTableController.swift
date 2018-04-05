@@ -12,10 +12,12 @@ import GoogleMobileAds
 
 class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
+    @IBOutlet var viewTop: UIView!
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet var lblLoctheo: UILabel!
     @IBOutlet weak var searchbarView: UIView!
     @IBOutlet weak var consHeightTableView: NSLayoutConstraint!
+    @IBOutlet var consSearchViewHeight: NSLayoutConstraint!
     @IBOutlet var viewBottom: UIView!
     
     var dieukhoanList = [Dieukhoan]()
@@ -23,6 +25,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     var rowCount = 0
     var filterSettings = [String:String]()
     var bannerView: GADBannerView!
+    let btnFBBanner = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +98,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
                                 multiplier: 1,
                                 constant: 0)
             ])
+        consSearchViewHeight.constant = sBar.frame.height
     }
     
     func setupSearchBarSize(){
@@ -110,9 +114,26 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func initAds() {
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-        AdsHelper.addBannerViewToView(bannerView: bannerView,toView: viewBottom, root: self)
+        if GeneralSettings.isAdEnabled && AdsHelper.isConnectedToNetwork() {
+            bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+            AdsHelper.addBannerViewToView(bannerView: bannerView,toView: viewBottom, root: self)
+        }else{
+            btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
+            AdsHelper.addButtonToView(btnFBBanner: btnFBBanner, toView: viewBottom)
+        }
     }
+    
+    func btnFouderFBAction() {
+        let url = URL(string: GeneralSettings.getFBLink)
+        if UIApplication.shared.canOpenURL(url!) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url!)
+            }
+        }
+    }
+
     
     func initFilterConfig() {
         if(filterSettings.count < 1){
@@ -128,13 +149,14 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         var newLabel = ""
         for filter in filterSettings {
             if filter.value.lowercased() == "on" {
-                newLabel += filter.key + ", "
+                newLabel += GeneralSettings.getVanbanInfo(name: filter.key, info: "fullName") + ", "
             }
         }
         if newLabel.characters.count > 2 {
             newLabel = newLabel.substring(to: newLabel.index(newLabel.endIndex, offsetBy: -2))
         }
         lblLoctheo.text = newLabel
+        viewTop.layoutIfNeeded()
     }
     
     func getActiveFilter() -> [String] {
@@ -277,9 +299,9 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     }
     
     public func updateSearchResults(for searchController: UISearchController) {
-//        if searchController.searchBar.text!.characters.count > 1 {
-            filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
-//        }
+        //        if searchController.searchBar.text!.characters.count > 1 {
+        filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
+        //        }
     }
     
 }

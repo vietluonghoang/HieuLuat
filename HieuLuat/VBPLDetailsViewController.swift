@@ -10,6 +10,7 @@ import UIKit
 import os.log
 import GoogleMobileAds
 
+@available(iOS 9.0, *)
 class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
     //MARK: Properties
@@ -79,6 +80,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     var rowCount = 0
     var settings = GeneralSettings()
     var bannerView: GADBannerView!
+    let btnFBBanner = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,8 +142,24 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func initAds() {
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-        AdsHelper.addBannerViewToView(bannerView: bannerView,toView: viewAds, root: self)
+        if GeneralSettings.isAdEnabled && AdsHelper.isConnectedToNetwork() {
+            bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+            AdsHelper.addBannerViewToView(bannerView: bannerView,toView: viewAds, root: self)
+        }else{
+            btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
+            AdsHelper.addButtonToView(btnFBBanner: btnFBBanner, toView: viewAds)
+        }
+    }
+    
+    func btnFouderFBAction() {
+        let url = URL(string: GeneralSettings.getFBLink)
+        if UIApplication.shared.canOpenURL(url!) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url!)
+            }
+        }
     }
     
     func updateDetails(dieukhoan: Dieukhoan) {
@@ -291,7 +309,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         // Enable extra section for details of ND46
-        if String(describing:dieukhoan!.vanban.getId()) == settings.getND46ID() {
+        if String(describing:dieukhoan!.vanban.getId()) == GeneralSettings.getVanbanInfo(name: "ND46", info: "id") {
             hideExtraInfoView(isHidden: false)
             let mpText = getMucphat(id: String(describing: dieukhoan!.getId()))
             let ptText = getPhuongtien(id: String(describing: dieukhoan!.getId()))

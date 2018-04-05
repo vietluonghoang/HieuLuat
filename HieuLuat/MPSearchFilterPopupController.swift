@@ -18,6 +18,7 @@ class MPSearchFilterPopupController: UIViewController {
     @IBOutlet var swtMucphat: UISwitch!
     @IBOutlet var viewMucphat: UIView!
     //    @IBOutlet var consMucphatViewHeightEmpty: NSLayoutConstraint!
+    @IBOutlet var consMucphatViewWidth: NSLayoutConstraint!
     @IBOutlet var consMucphatViewHeight: NSLayoutConstraint!
     @IBOutlet var lblTu: UILabel!
     @IBOutlet var btnTu: UIButton!
@@ -154,7 +155,8 @@ class MPSearchFilterPopupController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        consScrollviewWidth.constant = self.view.frame.size.width
+        consMucphatViewWidth.constant = self.view.frame.size.width
         // Do any additional setup after loading the view.
         initFilters()
         
@@ -164,7 +166,6 @@ class MPSearchFilterPopupController: UIViewController {
         
         //enable this initialization will cause the layout to be broken (wider than actual size)
         //        initPhuongtienButtons()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -658,6 +659,7 @@ class MPSearchFilterPopupController: UIViewController {
         }
         grayoutOptionText(label: lblMucphat, enable: swtMucphat.isOn)
         updateMucphatView()
+        consScrollviewWidth.constant = self.view.frame.size.width
     }
     
     func updateMucphatView() {
@@ -1080,9 +1082,17 @@ class MPSearchFilterPopupController: UIViewController {
     
     func updateOptionText(label: UILabel, enable: Bool) {
         if enable {
-            appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFontWeightRegular), color: UIColor.black)
+            if #available(iOS 8.2, *) {
+                appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFontWeightRegular), color: UIColor.black)
+            } else {
+                // Fallback on earlier versions
+            }
         }else{
-            appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFontWeightThin), color: UIColor.gray)
+            if #available(iOS 8.2, *) {
+                appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFontWeightThin), color: UIColor.gray)
+            } else {
+                // Fallback on earlier versions
+            }
         }
     }
     

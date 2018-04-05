@@ -20,6 +20,7 @@ class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, U
     let searchController = UISearchController(searchResultsController: nil)
     var rowCount = 0
     var bannerView: GADBannerView!
+    let btnFBBanner = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +57,24 @@ class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, U
     }
     
     func initAds() {
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-        AdsHelper.addBannerViewToView(bannerView: bannerView,toView: viewAds, root: self)
+        if GeneralSettings.isAdEnabled && AdsHelper.isConnectedToNetwork() {
+            bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+            AdsHelper.addBannerViewToView(bannerView: bannerView,toView: viewAds, root: self)
+        }else{
+            btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
+            AdsHelper.addButtonToView(btnFBBanner: btnFBBanner, toView: viewAds)
+        }
+    }
+    
+    func btnFouderFBAction() {
+        let url = URL(string: GeneralSettings.getFBLink)
+        if UIApplication.shared.canOpenURL(url!) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url!)
+            }
+        }
     }
     
     func updateDieukhoanList(arrDieukhoan: Array<Dieukhoan>)  {

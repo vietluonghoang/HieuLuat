@@ -46,11 +46,19 @@ class VBPLTableViewCell: UITableViewCell{
             lblParentBreadscrub.isHidden = false
             lblVanban.numberOfLines = 0
             lblVanban.lineBreakMode = NSLineBreakMode.byWordWrapping
-            lblVanban.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+            if #available(iOS 8.2, *) {
+                lblVanban.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+            } else {
+                // Fallback on earlier versions
+            }
             lblVanban.textAlignment = NSTextAlignment.left
             lblParentBreadscrub.numberOfLines = 0
             lblParentBreadscrub.lineBreakMode = NSLineBreakMode.byWordWrapping
-            lblParentBreadscrub.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightRegular)
+            if #available(iOS 8.2, *) {
+                lblParentBreadscrub.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightRegular)
+            } else {
+                // Fallback on earlier versions
+            }
             lblParentBreadscrub.textAlignment = NSTextAlignment.right
         }
         lblDieukhoan.numberOfLines = 0

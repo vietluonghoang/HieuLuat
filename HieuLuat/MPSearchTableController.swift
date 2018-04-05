@@ -16,6 +16,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var lblLoctheo: UILabel!
     @IBOutlet weak var searchbarView: UIView!
     @IBOutlet var bottomView: UIView!
+    @IBOutlet var consSearchViewHeight: NSLayoutConstraint!
     @IBOutlet weak var consHeightTableView: NSLayoutConstraint!
     var dieukhoanList = [Dieukhoan]()
     let searchController = UISearchController(searchResultsController: nil)
@@ -25,6 +26,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     var builtQuery = ""
     var settings = GeneralSettings()
     var bannerView: GADBannerView!
+    let btnFBBanner = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,11 +100,28 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
                                 multiplier: 1,
                                 constant: 0)
             ])
+        consSearchViewHeight.constant = sBar.frame.height
     }
     
     func initAds() {
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-        AdsHelper.addBannerViewToView(bannerView: bannerView,toView: bottomView, root: self)
+        if GeneralSettings.isAdEnabled && AdsHelper.isConnectedToNetwork() {
+            bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+            AdsHelper.addBannerViewToView(bannerView: bannerView,toView: bottomView, root: self)
+        }else{
+            btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
+            AdsHelper.addButtonToView(btnFBBanner: btnFBBanner, toView: bottomView)
+        }
+    }
+    
+    func btnFouderFBAction() {
+        let url = URL(string: GeneralSettings.getFBLink)
+        if UIApplication.shared.canOpenURL(url!) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url!)
+            }
+        }
     }
     
     func setupSearchBarSize(){
