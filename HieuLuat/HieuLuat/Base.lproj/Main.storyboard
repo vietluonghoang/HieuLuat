@@ -2652,11 +2652,11 @@ kết cấu hạ tầng đường sắt</string>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqc-2M-hRr">
                                         <rect key="frame" x="2" y="77" width="316" height="0.0"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" id="5Kz-X1-gkl"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" id="5Kz-X1-gkl"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WN0-hA-aTQ">
-                                        <rect key="frame" x="0.0" y="79" width="320" height="94"/>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WN0-hA-aTQ">
+                                        <rect key="frame" x="0.0" y="79" width="320" height="71"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mức phạt:" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUK-AA-Wad">
                                                 <rect key="frame" x="2" y="2" width="281" height="15"/>
@@ -2697,7 +2697,7 @@ kết cấu hạ tầng đường sắt</string>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRF-C1-3kv">
                                                 <rect key="frame" x="285" y="2" width="33" height="16"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="16" id="zOI-4m-GrY"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="zOI-4m-GrY"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" red="0.85459844559585496" green="0.36233157317427667" blue="0.40953077415044614" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -2706,7 +2706,7 @@ kết cấu hạ tầng đường sắt</string>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIc-lp-G8Z">
                                                 <rect key="frame" x="285" y="19" width="33" height="16"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="16" id="ANt-7K-WGk"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="ANt-7K-WGk"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
@@ -2715,16 +2715,16 @@ kết cấu hạ tầng đường sắt</string>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7X3-dc-l3h">
                                                 <rect key="frame" x="285" y="37" width="33" height="16"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="16" id="9Jw-Eh-Qnb"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="9Jw-Eh-Qnb"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwa-Pz-f5g">
-                                                <rect key="frame" x="285" y="53" width="33" height="39"/>
+                                                <rect key="frame" x="285" y="53" width="33" height="16"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="39" id="sef-7A-9QS"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="sef-7A-9QS"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
@@ -2749,7 +2749,7 @@ kết cấu hạ tầng đường sắt</string>
                                             <constraint firstItem="P2E-Tq-DQO" firstAttribute="width" secondItem="XUK-AA-Wad" secondAttribute="width" id="Kxh-dH-YbG"/>
                                             <constraint firstItem="Jfp-Dt-frI" firstAttribute="width" secondItem="XUK-AA-Wad" secondAttribute="width" id="La5-uP-lMS"/>
                                             <constraint firstItem="XUK-AA-Wad" firstAttribute="top" secondItem="WN0-hA-aTQ" secondAttribute="top" constant="2" id="Ogr-gD-Ko2"/>
-                                            <constraint firstAttribute="height" constant="94" id="Tfd-uq-ClW"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="94" id="Tfd-uq-ClW"/>
                                             <constraint firstItem="7X3-dc-l3h" firstAttribute="top" secondItem="RIc-lp-G8Z" secondAttribute="bottom" constant="2" id="ZOH-Ig-6Xv"/>
                                             <constraint firstItem="RIc-lp-G8Z" firstAttribute="top" secondItem="uRF-C1-3kv" secondAttribute="bottom" constant="1" id="ZwA-3I-yRm"/>
                                             <constraint firstItem="rwa-Pz-f5g" firstAttribute="top" secondItem="7X3-dc-l3h" secondAttribute="bottom" id="i0h-fy-hXe"/>
@@ -2761,11 +2761,11 @@ kết cấu hạ tầng đường sắt</string>
                                             <constraint firstItem="RIc-lp-G8Z" firstAttribute="trailing" secondItem="WN0-hA-aTQ" secondAttribute="trailing" constant="-2" id="xy0-OE-iiC"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Iu-E9-goo">
-                                        <rect key="frame" x="0.0" y="175" width="320" height="206"/>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Iu-E9-goo">
+                                        <rect key="frame" x="0.0" y="152" width="320" height="150"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2mS-58-4G5">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kin-6w-MtK">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="17"/>
@@ -2774,7 +2774,7 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVo-85-3jR">
-                                                        <rect key="frame" x="8" y="19" width="312" height="31"/>
+                                                        <rect key="frame" x="8" y="19" width="312" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2783,7 +2783,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="eVo-85-3jR" firstAttribute="bottom" secondItem="2mS-58-4G5" secondAttribute="bottom" id="CWf-Eu-oK0"/>
-                                                    <constraint firstAttribute="height" constant="50" id="TZi-nS-Lxb"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="TZi-nS-Lxb"/>
                                                     <constraint firstItem="eVo-85-3jR" firstAttribute="trailing" secondItem="2mS-58-4G5" secondAttribute="trailing" id="Vy2-JM-C52"/>
                                                     <constraint firstItem="eVo-85-3jR" firstAttribute="leading" secondItem="2mS-58-4G5" secondAttribute="leading" constant="8" id="amO-TD-qYE"/>
                                                     <constraint firstItem="kin-6w-MtK" firstAttribute="leading" secondItem="2mS-58-4G5" secondAttribute="leading" id="hnI-XT-jWh"/>
@@ -2793,7 +2793,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kb1-YC-BiG">
-                                                <rect key="frame" x="0.0" y="52" width="320" height="50"/>
+                                                <rect key="frame" x="0.0" y="38" width="320" height="36"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Bw-eX-yva">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="17"/>
@@ -2802,7 +2802,7 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpG-Kc-VnZ">
-                                                        <rect key="frame" x="8" y="19" width="312" height="31"/>
+                                                        <rect key="frame" x="8" y="19" width="312" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2817,20 +2817,20 @@ kết cấu hạ tầng đường sắt</string>
                                                     <constraint firstItem="2Bw-eX-yva" firstAttribute="top" secondItem="Kb1-YC-BiG" secondAttribute="top" id="ZmC-Lk-asa"/>
                                                     <constraint firstItem="ZpG-Kc-VnZ" firstAttribute="leading" secondItem="Kb1-YC-BiG" secondAttribute="leading" constant="8" id="ang-MQ-Dic"/>
                                                     <constraint firstItem="ZpG-Kc-VnZ" firstAttribute="trailing" secondItem="Kb1-YC-BiG" secondAttribute="trailing" id="voO-vv-ZTH"/>
-                                                    <constraint firstAttribute="height" constant="50" id="wYS-Ov-bKv"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="wYS-Ov-bKv"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uGA-oD-9pX">
-                                                <rect key="frame" x="0.0" y="104" width="320" height="50"/>
+                                                <rect key="frame" x="0.0" y="76" width="320" height="36"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ty-VZ-x6q">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="31"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="17"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAf-VX-xIX">
-                                                        <rect key="frame" x="8" y="33" width="312" height="17"/>
+                                                        <rect key="frame" x="8" y="19" width="312" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2839,7 +2839,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="1ty-VZ-x6q" firstAttribute="top" secondItem="uGA-oD-9pX" secondAttribute="top" id="Q4B-mi-pbU"/>
-                                                    <constraint firstAttribute="height" constant="50" id="Rxz-Q9-Qd4"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="Rxz-Q9-Qd4"/>
                                                     <constraint firstItem="qAf-VX-xIX" firstAttribute="leading" secondItem="uGA-oD-9pX" secondAttribute="leading" constant="8" id="aW7-4y-OS1"/>
                                                     <constraint firstItem="1ty-VZ-x6q" firstAttribute="leading" secondItem="uGA-oD-9pX" secondAttribute="leading" id="lnW-ah-13r"/>
                                                     <constraint firstItem="qAf-VX-xIX" firstAttribute="bottom" secondItem="uGA-oD-9pX" secondAttribute="bottom" id="nHP-AE-6Gk"/>
@@ -2849,7 +2849,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3UL-mQ-L9r">
-                                                <rect key="frame" x="0.0" y="156" width="320" height="50"/>
+                                                <rect key="frame" x="0.0" y="114" width="320" height="36"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b39-Ew-4Hc">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="17"/>
@@ -2858,7 +2858,7 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8W4-Td-OaK">
-                                                        <rect key="frame" x="8" y="19" width="312" height="31"/>
+                                                        <rect key="frame" x="8" y="19" width="312" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2867,7 +2867,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="b39-Ew-4Hc" firstAttribute="top" secondItem="3UL-mQ-L9r" secondAttribute="top" id="8uW-qu-vJg"/>
-                                                    <constraint firstAttribute="height" constant="50" id="QEp-pf-OV4"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="QEp-pf-OV4"/>
                                                     <constraint firstItem="8W4-Td-OaK" firstAttribute="leading" secondItem="3UL-mQ-L9r" secondAttribute="leading" constant="8" id="Ubf-tT-GfF"/>
                                                     <constraint firstItem="8W4-Td-OaK" firstAttribute="bottom" secondItem="3UL-mQ-L9r" secondAttribute="bottom" id="X1p-4k-Gk1"/>
                                                     <constraint firstItem="b39-Ew-4Hc" firstAttribute="trailing" secondItem="3UL-mQ-L9r" secondAttribute="trailing" id="dYR-pi-3Ud"/>
@@ -2891,12 +2891,12 @@ kết cấu hạ tầng đường sắt</string>
                                             <constraint firstItem="uGA-oD-9pX" firstAttribute="top" secondItem="Kb1-YC-BiG" secondAttribute="bottom" constant="2" id="ibA-iG-ZhW"/>
                                             <constraint firstItem="Kb1-YC-BiG" firstAttribute="trailing" secondItem="1Iu-E9-goo" secondAttribute="trailing" id="otN-UC-ERY"/>
                                             <constraint firstItem="2mS-58-4G5" firstAttribute="top" secondItem="1Iu-E9-goo" secondAttribute="top" id="pDI-VP-cbK"/>
-                                            <constraint firstAttribute="height" constant="206" id="rT7-7s-kVb"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="406" id="rT7-7s-kVb"/>
                                             <constraint firstItem="Kb1-YC-BiG" firstAttribute="leading" secondItem="1Iu-E9-goo" secondAttribute="leading" id="xCr-t4-H9g"/>
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="115" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pk2-KJ-EXR">
-                                        <rect key="frame" x="0.0" y="383" width="320" height="87"/>
+                                        <rect key="frame" x="0.0" y="304" width="320" height="87"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="87" id="QJR-8X-BeA"/>
@@ -2990,11 +2990,11 @@ kết cấu hạ tầng đường sắt</string>
                                     <constraint firstItem="MIa-qb-scZ" firstAttribute="trailing" secondItem="SFG-ng-sUY" secondAttribute="trailing" constant="-8" id="E2t-JK-B1V"/>
                                     <constraint firstItem="jqc-2M-hRr" firstAttribute="leading" secondItem="SFG-ng-sUY" secondAttribute="leading" constant="2" id="Eyc-DX-2PK"/>
                                     <constraint firstItem="MIa-qb-scZ" firstAttribute="top" secondItem="NK0-Td-euH" secondAttribute="bottom" constant="2" id="HRG-T8-Dxv"/>
+                                    <constraint firstItem="Pk2-KJ-EXR" firstAttribute="bottom" secondItem="SFG-ng-sUY" secondAttribute="bottom" id="Och-pj-If0"/>
                                     <constraint firstItem="qJA-Tf-GrX" firstAttribute="leading" secondItem="SFG-ng-sUY" secondAttribute="leading" constant="8" id="PT7-AD-AK7"/>
                                     <constraint firstItem="NK0-Td-euH" firstAttribute="trailing" secondItem="iYh-ox-bra" secondAttribute="leading" constant="-2" id="WZ1-i2-Di6"/>
                                     <constraint firstItem="iYh-ox-bra" firstAttribute="leading" secondItem="NK0-Td-euH" secondAttribute="trailing" constant="2" id="XtZ-HS-br2"/>
                                     <constraint firstItem="1Iu-E9-goo" firstAttribute="top" secondItem="WN0-hA-aTQ" secondAttribute="bottom" constant="2" id="YeI-ha-rvZ"/>
-                                    <constraint firstItem="Pk2-KJ-EXR" firstAttribute="bottom" secondItem="SFG-ng-sUY" secondAttribute="bottom" constant="22" id="aJ3-5G-GPo"/>
                                     <constraint firstItem="qJA-Tf-GrX" firstAttribute="trailing" secondItem="SFG-ng-sUY" secondAttribute="trailing" constant="-8" id="bBb-gX-lry"/>
                                     <constraint firstItem="OgF-st-Uxu" firstAttribute="top" secondItem="MIa-qb-scZ" secondAttribute="bottom" constant="2" id="bid-sA-v9d"/>
                                     <constraint firstItem="jqc-2M-hRr" firstAttribute="top" secondItem="OgF-st-Uxu" secondAttribute="bottom" id="cj5-ql-3Iy"/>

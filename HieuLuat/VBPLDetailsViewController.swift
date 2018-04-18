@@ -215,6 +215,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         if(isHidden){
             consExtraViewHeight.constant = 0
             consExtraViewHeight.isActive = true
+            populateExtraInfoView()
             viewExtraInfo.isHidden = true
         }else{
             consExtraViewHeight.isActive = false
@@ -224,12 +225,12 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func hideBosungKhacphucView(isHidden: Bool)  {
         if(isHidden){
-            consViewBosungKhacphucHeight.constant = 0
-            consViewBosungKhacphucHeight.isActive = true
             consViewHinhphatbosungHeight.isActive = true
             consViewBienphapkhacphucHeight.isActive = true
             consViewTamgiuPhuongtienHeight.isActive = true
             consViewThamquyenHeight.isActive = true
+            consViewBosungKhacphucHeight.constant = 0
+            consViewBosungKhacphucHeight.isActive = true
             viewBosungKhacphuc.isHidden = true
         }else{
             consViewBosungKhacphucHeight.isActive = false
@@ -311,177 +312,248 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         // Enable extra section for details of ND46
         if String(describing:dieukhoan!.vanban.getId()) == GeneralSettings.getVanbanInfo(name: "ND46", info: "id") {
             hideExtraInfoView(isHidden: false)
-            let mpText = getMucphat(id: String(describing: dieukhoan!.getId()))
-            let ptText = getPhuongtien(id: String(describing: dieukhoan!.getId()))
-            let lvText = getLinhvuc(id: String(describing: dieukhoan!.getId()))
-            let dtText = getDoituong(id: String(describing: dieukhoan!.getId()))
-            
-            if mpText.characters.count > 0 {
-                consLblMucphatHeight.isActive = false
-                consLblMucphatDetailsHeight.isActive = false
-                lblMucphat.text = mpText
-            }else{
-                consLblMucphatHeight.isActive = true
-                consLblMucphatDetailsHeight.isActive = true
-                consLblMucphatHeight.constant =  0
-                consLblMucphatDetailsHeight.constant =  0
-            }
-            if ptText.characters.count > 0 {
-                consLblPhuongtienHeight.isActive = false
-                consLblPhuongtienDetailsHeight.isActive = false
-                lblPhuongtien.text = ptText
-            }else{
-                consLblPhuongtienHeight.isActive = true
-                consLblPhuongtienDetailsHeight.isActive = true
-                consLblPhuongtienHeight.constant =  0
-                consLblPhuongtienDetailsHeight.constant =  0
-            }
-            if lvText.characters.count > 0 {
-                consLblLinhvucHeight.isActive = false
-                consLblLinhvucDetailsHeight.isActive = false
-                lblLinhvuc.text = lvText
-            }else{
-                consLblLinhvucHeight.isActive = true
-                consLblLinhvucDetailsHeight.isActive = true
-                consLblLinhvucHeight.constant =  0
-                consLblLinhvucDetailsHeight.constant =  0
-            }
-            if dtText.characters.count > 0 {
-                consLblDoituongHeight.isActive = false
-                consLblDoituongDetailsHeight.isActive = false
-                lblDoituong.text = dtText
-            }else{
-                consLblDoituongHeight.isActive = true
-                consLblDoituongDetailsHeight.isActive = true
-                consLblDoituongHeight.constant =  0
-                consLblDoituongDetailsHeight.constant =  0
-            }
+            populateExtraInfoView()
         }else{
             hideExtraInfoView(isHidden: true)
         }
         if hinhphatbosungList.count < 1 && bienphapkhacphucList.count < 1 && thamquyenList.count < 1 && tamgiuphuongtienList.count < 1{
             hideBosungKhacphucView(isHidden: true)
         } else {
-            if hinhphatbosungList.count > 0 {
-                hideHinhphatbosungView(isHidden: false)
-                lblHinhphatbosungTitle.numberOfLines = 0
-                lblHinhphatbosungTitle.lineBreakMode = NSLineBreakMode.byWordWrapping
-                lblHinhphatbosungTitle.text = "Hình phạt bổ sung:"
-                lblHinhphatbosungDetails.numberOfLines = 0
-                lblHinhphatbosungDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
-                lblHinhphatbosungDetails.text = ""
-                for bosung in hinhphatbosungList {
-                    lblHinhphatbosungDetails.text = "\(lblHinhphatbosungDetails.text!)\(bosung.getNoidung())\n"
-                }
-            } else {
-                hideHinhphatbosungView(isHidden: true)
-            }
-            
-            if bienphapkhacphucList.count > 0 {
-                hideBienphapkhacphucView(isHidden: false)
-                lblBienphapkhacphucTitle.numberOfLines = 0
-                lblBienphapkhacphucTitle.lineBreakMode = NSLineBreakMode.byWordWrapping
-                lblBienphapkhacphucTitle.text = "Biện pháp khắc phục:"
-                lblBienphapkhacphucDetails.numberOfLines = 0
-                lblBienphapkhacphucDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
-                lblBienphapkhacphucDetails.text = ""
-                for khacphuc in bienphapkhacphucList {
-                    lblBienphapkhacphucDetails.text = "\(lblBienphapkhacphucDetails.text!)\(khacphuc.getNoidung())\n"
-                }
-            }else{
-                hideBienphapkhacphucView(isHidden: true)
-            }
-            
-            if tamgiuphuongtienList.count > 0 {
-                hideTamgiuPhuongtienView(isHidden: false)
-                lblTamgiuPhuongtienTitle.numberOfLines = 0
-                lblTamgiuPhuongtienTitle.lineBreakMode = NSLineBreakMode.byWordWrapping
-                lblTamgiuPhuongtienTitle.text = "Tạm giữ phương tiện:"
-                lblTamgiuPhuongtienDetails.numberOfLines = 0
-                lblTamgiuPhuongtienDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
-                lblTamgiuPhuongtienDetails.text = "07 ngày"
-            }else{
-                hideTamgiuPhuongtienView(isHidden: true)
-            }
-            
-            if thamquyenList.count > 0 {
-                hideThamquyenView(isHidden: false)
-                lblThamquyenTitle.numberOfLines = 0
-                lblThamquyenTitle.lineBreakMode = NSLineBreakMode.byWordWrapping
-                lblThamquyenTitle.text = "Biện pháp khắc phục:"
-                lblThamquyenDetails.numberOfLines = 0
-                lblThamquyenDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
-                lblThamquyenDetails.text = ""
-                for thamquyen in thamquyenList {
-                    lblThamquyenDetails.text = "\(lblThamquyenDetails.text!)\(thamquyen.getNoidung())\n"
-                }
-            }else{
-                hideThamquyenView(isHidden: true)
-            }
+            populateBosungKhacphucView()
         }
     }
     
-    func generateNewComponentConstraints(parent: UIView, topComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, right: CGFloat) {
-        parent.addSubview(component)
-        parent.addConstraints(
-            [
-                NSLayoutConstraint(item: component,
-                                   attribute: .leading,
-                                   relatedBy: .equal,
-                                   toItem: parent,
-                                   attribute: .leading,
-                                   multiplier: 1,
-                                   constant: left),
-                NSLayoutConstraint(item: component,
-                                   attribute: .trailing,
-                                   relatedBy: .equal,
-                                   toItem: parent,
-                                   attribute: .trailing,
-                                   multiplier: 1,
-                                   constant: right),
-                NSLayoutConstraint(item: component,
-                                   attribute: .top,
-                                   relatedBy: .equal,
-                                   toItem: topComponent,
-                                   attribute: .top,
-                                   multiplier: 1,
-                                   constant: top)
-            ])
+    func populateBosungKhacphucView(){
+        if hinhphatbosungList.count > 0 {
+            hideHinhphatbosungView(isHidden: false)
+            lblHinhphatbosungTitle.numberOfLines = 0
+            lblHinhphatbosungTitle.lineBreakMode = NSLineBreakMode.byWordWrapping
+            lblHinhphatbosungTitle.text = "Hình phạt bổ sung:"
+            lblHinhphatbosungDetails.numberOfLines = 0
+            lblHinhphatbosungDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
+            lblHinhphatbosungDetails.text = ""
+            for bosung in hinhphatbosungList {
+                lblHinhphatbosungDetails.text = "\(lblHinhphatbosungDetails.text!)\(bosung.getNoidung())\n"
+            }
+        } else {
+            hideHinhphatbosungView(isHidden: true)
+        }
+        
+        if bienphapkhacphucList.count > 0 {
+            hideBienphapkhacphucView(isHidden: false)
+            lblBienphapkhacphucTitle.numberOfLines = 0
+            lblBienphapkhacphucTitle.lineBreakMode = NSLineBreakMode.byWordWrapping
+            lblBienphapkhacphucTitle.text = "Biện pháp khắc phục:"
+            lblBienphapkhacphucDetails.numberOfLines = 0
+            lblBienphapkhacphucDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
+            lblBienphapkhacphucDetails.text = ""
+            for khacphuc in bienphapkhacphucList {
+                lblBienphapkhacphucDetails.text = "\(lblBienphapkhacphucDetails.text!)\(khacphuc.getNoidung())\n"
+            }
+        }else{
+            hideBienphapkhacphucView(isHidden: true)
+        }
+        
+        if tamgiuphuongtienList.count > 0 {
+            hideTamgiuPhuongtienView(isHidden: false)
+            lblTamgiuPhuongtienTitle.numberOfLines = 0
+            lblTamgiuPhuongtienTitle.lineBreakMode = NSLineBreakMode.byWordWrapping
+            lblTamgiuPhuongtienTitle.text = "Tạm giữ phương tiện:"
+            lblTamgiuPhuongtienDetails.numberOfLines = 0
+            lblTamgiuPhuongtienDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
+            lblTamgiuPhuongtienDetails.text = "07 ngày"
+        }else{
+            hideTamgiuPhuongtienView(isHidden: true)
+        }
+        
+        if thamquyenList.count > 0 {
+            hideThamquyenView(isHidden: false)
+            lblThamquyenTitle.numberOfLines = 0
+            lblThamquyenTitle.lineBreakMode = NSLineBreakMode.byWordWrapping
+            lblThamquyenTitle.text = "Biện pháp khắc phục:"
+            lblThamquyenDetails.numberOfLines = 0
+            lblThamquyenDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
+            lblThamquyenDetails.text = ""
+            for thamquyen in thamquyenList {
+                lblThamquyenDetails.text = "\(lblThamquyenDetails.text!)\(thamquyen.getNoidung())\n"
+            }
+        }else{
+            hideThamquyenView(isHidden: true)
+        }
     }
     
-    func generateNewComponentConstraints(parent: UIView, topComponent: UIView, bottomComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, right: CGFloat, bottom: CGFloat) {
+    func populateExtraInfoView(){
+        let mpText = getMucphat(id: String(describing: dieukhoan!.getId()))
+        let ptText = getPhuongtien(id: String(describing: dieukhoan!.getId()))
+        let lvText = getLinhvuc(id: String(describing: dieukhoan!.getId()))
+        let dtText = getDoituong(id: String(describing: dieukhoan!.getId()))
+        
+        if mpText.characters.count > 0 {
+            consLblMucphatHeight.isActive = false
+            consLblMucphatDetailsHeight.isActive = false
+            lblMucphat.text = mpText
+        }else{
+            consLblMucphatHeight.isActive = true
+            consLblMucphatDetailsHeight.isActive = true
+            consLblMucphatHeight.constant =  0
+            consLblMucphatDetailsHeight.constant =  0
+        }
+        if ptText.characters.count > 0 {
+            consLblPhuongtienHeight.isActive = false
+            consLblPhuongtienDetailsHeight.isActive = false
+            lblPhuongtien.text = ptText
+        }else{
+            consLblPhuongtienHeight.isActive = true
+            consLblPhuongtienDetailsHeight.isActive = true
+            consLblPhuongtienHeight.constant =  0
+            consLblPhuongtienDetailsHeight.constant =  0
+        }
+        if lvText.characters.count > 0 {
+            consLblLinhvucHeight.isActive = false
+            consLblLinhvucDetailsHeight.isActive = false
+            lblLinhvuc.text = lvText
+        }else{
+            consLblLinhvucHeight.isActive = true
+            consLblLinhvucDetailsHeight.isActive = true
+            consLblLinhvucHeight.constant =  0
+            consLblLinhvucDetailsHeight.constant =  0
+        }
+        if dtText.characters.count > 0 {
+            consLblDoituongHeight.isActive = false
+            consLblDoituongDetailsHeight.isActive = false
+            lblDoituong.text = dtText
+        }else{
+            consLblDoituongHeight.isActive = true
+            consLblDoituongDetailsHeight.isActive = true
+            consLblDoituongHeight.constant =  0
+            consLblDoituongDetailsHeight.constant =  0
+        }
+    }
+    
+    func generateNewComponentConstraints(parent: UIView, topComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, right: CGFloat, isInside: Bool) {
+        component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
-        parent.addConstraints(
-            [
-                NSLayoutConstraint(item: component,
-                                   attribute: .leading,
-                                   relatedBy: .equal,
-                                   toItem: parent,
-                                   attribute: .leading,
-                                   multiplier: 1,
-                                   constant: left),
-                NSLayoutConstraint(item: component,
-                                   attribute: .trailing,
-                                   relatedBy: .equal,
-                                   toItem: parent,
-                                   attribute: .trailing,
-                                   multiplier: 1,
-                                   constant: right),
-                NSLayoutConstraint(item: component,
-                                   attribute: .top,
-                                   relatedBy: .equal,
-                                   toItem: topComponent,
-                                   attribute: .top,
-                                   multiplier: 1,
-                                   constant: top),
-                NSLayoutConstraint(item: component,
-                                   attribute: .bottom,
-                                   relatedBy: .equal,
-                                   toItem: bottomComponent,
-                                   attribute: .bottom,
-                                   multiplier: 1,
-                                   constant: bottom)
-            ])
+        if isInside {
+            parent.addConstraints(
+                [
+                    NSLayoutConstraint(item: component,
+                                       attribute: .leading,
+                                       relatedBy: .equal,
+                                       toItem: parent,
+                                       attribute: .leading,
+                                       multiplier: 1,
+                                       constant: left),
+                    NSLayoutConstraint(item: component,
+                                       attribute: .trailing,
+                                       relatedBy: .equal,
+                                       toItem: parent,
+                                       attribute: .trailing,
+                                       multiplier: 1,
+                                       constant: right),
+                    NSLayoutConstraint(item: component,
+                                       attribute: .top,
+                                       relatedBy: .equal,
+                                       toItem: topComponent,
+                                       attribute: .top,
+                                       multiplier: 1,
+                                       constant: top)
+                ])
+        }else {
+            parent.addConstraints(
+                [
+                    NSLayoutConstraint(item: component,
+                                       attribute: .leading,
+                                       relatedBy: .equal,
+                                       toItem: parent,
+                                       attribute: .leading,
+                                       multiplier: 1,
+                                       constant: left),
+                    NSLayoutConstraint(item: component,
+                                       attribute: .trailing,
+                                       relatedBy: .equal,
+                                       toItem: parent,
+                                       attribute: .trailing,
+                                       multiplier: 1,
+                                       constant: right),
+                    NSLayoutConstraint(item: component,
+                                       attribute: .top,
+                                       relatedBy: .equal,
+                                       toItem: topComponent,
+                                       attribute: .bottom,
+                                       multiplier: 1,
+                                       constant: top)
+                ])
+        }
+    }
+    
+    func generateNewComponentConstraints(parent: UIView, topComponent: UIView, bottomComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, right: CGFloat, bottom: CGFloat, isInside: Bool) {
+        component.translatesAutoresizingMaskIntoConstraints = false
+        parent.addSubview(component)
+        if isInside {
+            parent.addConstraints(
+                [
+                    NSLayoutConstraint(item: component,
+                                       attribute: .leading,
+                                       relatedBy: .equal,
+                                       toItem: parent,
+                                       attribute: .leading,
+                                       multiplier: 1,
+                                       constant: left),
+                    NSLayoutConstraint(item: component,
+                                       attribute: .trailing,
+                                       relatedBy: .equal,
+                                       toItem: parent,
+                                       attribute: .trailing,
+                                       multiplier: 1,
+                                       constant: right),
+                    NSLayoutConstraint(item: component,
+                                       attribute: .top,
+                                       relatedBy: .equal,
+                                       toItem: topComponent,
+                                       attribute: .top,
+                                       multiplier: 1,
+                                       constant: top),
+                    NSLayoutConstraint(item: component,
+                                       attribute: .bottom,
+                                       relatedBy: .equal,
+                                       toItem: bottomComponent,
+                                       attribute: .bottom,
+                                       multiplier: 1,
+                                       constant: bottom)
+                ])
+        }else {
+            parent.addConstraints(
+                [
+                    NSLayoutConstraint(item: component,
+                                       attribute: .leading,
+                                       relatedBy: .equal,
+                                       toItem: parent,
+                                       attribute: .leading,
+                                       multiplier: 1,
+                                       constant: left),
+                    NSLayoutConstraint(item: component,
+                                       attribute: .trailing,
+                                       relatedBy: .equal,
+                                       toItem: parent,
+                                       attribute: .trailing,
+                                       multiplier: 1,
+                                       constant: right),
+                    NSLayoutConstraint(item: component,
+                                       attribute: .top,
+                                       relatedBy: .equal,
+                                       toItem: topComponent,
+                                       attribute: .bottom,
+                                       multiplier: 1,
+                                       constant: top),
+                    NSLayoutConstraint(item: component,
+                                       attribute: .bottom,
+                                       relatedBy: .equal,
+                                       toItem: bottomComponent,
+                                       attribute: .bottom,
+                                       multiplier: 1,
+                                       constant: bottom)
+                ])
+        }
     }
     
     
@@ -515,9 +587,10 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func fillMinhhoaToViewMinhhoa(images: [String]) {
         hideMinhhoaView(isHidden: false)
+        viewMinhhoa.translatesAutoresizingMaskIntoConstraints = false
         
         var order = 0
-        var previousImageView = UIImageView()
+//        var previousImageView = UIImageView()
         
         for img in images {
             if (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines).characters.count < 1{
@@ -530,28 +603,40 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                 imgView.clipsToBounds = true
                 imgView.contentMode = UIViewContentMode.scaleAspectFit
                 imgView.autoresizesSubviews = true
-                viewMinhhoa.addSubview(imgView)
+//                viewMinhhoa.insertSubview(imgView, at: order)
                 if order == 0 {
                     if images.count == 1 {
-                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: viewMinhhoa, bottomComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, bottom: 0)
+                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: viewMinhhoa, bottomComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, bottom: 0, isInside: true)
                     }else{
-                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0)
+                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, isInside: true)
                     }
                 }else{
                     if order < (images.count - 1) {
-                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: previousImageView, component: imgView, top: 0, left: 0, right: 0)
+//                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: previousImageView, component: imgView, top: 0, left: 0, right: 0)
+                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: (viewMinhhoa.subviews.last)!, component: imgView, top: 0, left: 0, right: 0, isInside: false)
                     }else{
-                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: previousImageView, bottomComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, bottom: 0)
+//                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: previousImageView, bottomComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, bottom: 0)
+                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: (viewMinhhoa.subviews.last)!, bottomComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, bottom: 0, isInside: false)
                     }
                 }
-                previousImageView = imgView
+//                previousImageView = imgView
                 order += 1
                 let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
                 imgView.isUserInteractionEnabled = true
                 imgView.addGestureRecognizer(tap)
             }
+            
+//            print("============image view: \(previousImageView.frame.size.height)")
+//            print("============child view: \(viewMinhhoa.subviews.last?.frame.size.height)")
+//            for v in viewMinhhoa.subviews {
+//                print("============child view pos: \(v.frame.origin.x) - \(v.frame.origin.y) - \(v.layer.zPosition)")
+//            }
+//            print("============cons count: \(viewMinhhoa.constraints.count)")
+//            for cons in viewMinhhoa.constraints {
+//                print("======= cons: \n - isActive: \(cons.isActive) \n - constant: \(cons.constant) \n - first attribute: \(cons.firstAttribute.rawValue) \n - second attribute: \(cons.secondAttribute.rawValue) \n - relation: \(cons.relation.rawValue) \n - first item: \(cons.firstItem) \n - second item \(cons.secondItem)")
+//            }
+            
         }
-        print("image view: \(previousImageView.frame.size.height)")
     }
     
     func getThamquyenList() -> [Dieukhoan] {
