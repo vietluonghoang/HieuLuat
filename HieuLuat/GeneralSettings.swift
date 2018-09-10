@@ -18,7 +18,7 @@ class GeneralSettings {
     let danhsachvanban  = ["nd46","qc41","tt01","lgtdb","lxlvphc"]
     private static var vanbanInfo = [String:[String:String]]()
     private static var tamgiuPhuongtienDieukhoanID = "2820"
-    private static var adEnabled = false
+    private static var adEnabled = true
     private static var developementMode = true
     private static var fbWeThoong = "http://fb.me/wethoong"
     private static var emailWeThoong = "wethoong@gmail.com"

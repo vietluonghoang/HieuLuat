@@ -18,6 +18,7 @@
 		3394A2782072236C00831E69 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3394A2772072236C00831E69 /* AboutViewController.swift */; };
 		339B43431FFBAE6C00149B09 /* BosungKhacphuc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B43421FFBAE6C00149B09 /* BosungKhacphuc.swift */; };
 		339E7EA61F6181810048B0E8 /* VBPLHomeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339E7EA51F6181810048B0E8 /* VBPLHomeDetailsViewController.swift */; };
+		33BCFF0921451FEE004804F7 /* BBSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BCFF0821451FEE004804F7 /* BBSearchTableController.swift */; };
 		33C8670A1FAA02AC0090D954 /* AppearanceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C867091FAA02AC0090D954 /* AppearanceUtil.swift */; };
 		33C87DFC1F604C0200D8B198 /* ConfigAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C87DFB1F604C0200D8B198 /* ConfigAttribute.swift */; };
 		33C87DFE1F6052B100D8B198 /* FilterPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C87DFD1F6052B100D8B198 /* FilterPopupViewController.swift */; };
@@ -69,6 +70,7 @@
 		3394A2772072236C00831E69 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		339B43421FFBAE6C00149B09 /* BosungKhacphuc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BosungKhacphuc.swift; sourceTree = "<group>"; };
 		339E7EA51F6181810048B0E8 /* VBPLHomeDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLHomeDetailsViewController.swift; sourceTree = "<group>"; };
+		33BCFF0821451FEE004804F7 /* BBSearchTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBSearchTableController.swift; sourceTree = "<group>"; };
 		33C867091FAA02AC0090D954 /* AppearanceUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceUtil.swift; sourceTree = "<group>"; };
 		33C87DFB1F604C0200D8B198 /* ConfigAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigAttribute.swift; sourceTree = "<group>"; };
 		33C87DFD1F6052B100D8B198 /* FilterPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPopupViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				336C485A1FA0D7D200A154D9 /* PickerViewSelectPopup.swift */,
 				3331E6631FA3092000219B19 /* MPSearchTableController.swift */,
 				3394A2772072236C00831E69 /* AboutViewController.swift */,
+				33BCFF0821451FEE004804F7 /* BBSearchTableController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -325,7 +328,7 @@
 					33D305241F51794F00547497 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = D95825NFBM;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					33D305381F51794F00547497 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -452,6 +455,7 @@
 				339B43431FFBAE6C00149B09 /* BosungKhacphuc.swift in Sources */,
 				335078EC1F5D166A00D52741 /* VBPLSearchTableController.swift in Sources */,
 				33D305641F517FF500547497 /* Coquanbanhanh.swift in Sources */,
+				33BCFF0921451FEE004804F7 /* BBSearchTableController.swift in Sources */,
 				339E7EA61F6181810048B0E8 /* VBPLHomeDetailsViewController.swift in Sources */,
 				33D31DE41F77BEF700A46E62 /* MPSearchFilterPopupController.swift in Sources */,
 				33D305681F51804F00547497 /* Vanban.swift in Sources */,
@@ -629,15 +633,17 @@
 			baseConfigurationReference = 72E93BC1C30A83EE28D1AC21 /* Pods-HieuLuat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = D95825NFBM;
 				INFOPLIST_FILE = HieuLuat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.WeThoong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "bc0a0a2f-83da-4684-891a-688eeedab843";
+				PROVISIONING_PROFILE_SPECIFIER = WeThoongDevProvisioningProfile;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -647,15 +653,17 @@
 			baseConfigurationReference = 9017557B072E220F7AC12647 /* Pods-HieuLuat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = D95825NFBM;
 				INFOPLIST_FILE = HieuLuat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.WeThoong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "06379570-42b2-4eec-bd05-8d6a130ff4e6";
+				PROVISIONING_PROFILE_SPECIFIER = WeThoongDistributionProvisioningProfile;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

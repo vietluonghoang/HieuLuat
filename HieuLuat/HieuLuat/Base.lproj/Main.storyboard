@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F2104" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BqM-hL-PoV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BqM-hL-PoV">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -595,7 +596,7 @@ Xe thô sơ</string>
                                         <rect key="frame" x="0.0" y="312" width="308" height="1697.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cá nhân" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfG-H3-cY2">
-                                                <rect key="frame" x="8" y="2" width="249" height="15"/>
+                                                <rect key="frame" x="8" y="2" width="249" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -613,7 +614,7 @@ Xe thô sơ</string>
                                                         <rect key="frame" x="0.0" y="2" width="308" height="31"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chủ phương tiện" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EoG-s0-bTP">
-                                                                <rect key="frame" x="20" y="2" width="233" height="21"/>
+                                                                <rect key="frame" x="20" y="2" width="233" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -646,7 +647,7 @@ Xe thô sơ</string>
                                                                 </connections>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Người Điều khiển" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2b-ck-17w">
-                                                                <rect key="frame" x="20" y="2" width="233" height="21"/>
+                                                                <rect key="frame" x="20" y="2" width="233" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -673,7 +674,7 @@ Xe thô sơ</string>
                                                                 </connections>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Người đua xe" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCf-Ki-97O">
-                                                                <rect key="frame" x="20" y="2" width="233" height="21"/>
+                                                                <rect key="frame" x="20" y="2" width="233" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -700,7 +701,7 @@ Xe thô sơ</string>
                                                                 </connections>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giáo viên dạy Lái xe" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9SG-NI-wT4">
-                                                                <rect key="frame" x="20" y="2" width="233" height="21"/>
+                                                                <rect key="frame" x="20" y="2" width="233" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -767,7 +768,7 @@ Xe thô sơ</string>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tổ chức" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wY-iN-7ss">
-                                                <rect key="frame" x="8" y="218" width="249" height="15"/>
+                                                <rect key="frame" x="8" y="218" width="249" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -839,7 +840,7 @@ Xe thô sơ</string>
                                                         <rect key="frame" x="0.0" y="90" width="308" height="33"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tổ chức thu phí đường bộ" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJ9-js-Tvk">
-                                                                <rect key="frame" x="20" y="2" width="233" height="21"/>
+                                                                <rect key="frame" x="20" y="2" width="233" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -999,7 +1000,7 @@ Xe thô sơ</string>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Doanh nghiệp" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uf2-Ul-E6z">
-                                                <rect key="frame" x="8" y="622" width="249" height="15"/>
+                                                <rect key="frame" x="8" y="622" width="249" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1173,7 +1174,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nhân viên" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDR-yg-rSw">
-                                                <rect key="frame" x="8" y="958.5" width="249" height="15"/>
+                                                <rect key="frame" x="8" y="958.5" width="249" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1645,7 +1646,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trung tâm" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2o-Kb-Rah">
-                                                <rect key="frame" x="8" y="1524.5" width="249" height="15"/>
+                                                <rect key="frame" x="8" y="1524.5" width="249" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1727,7 +1728,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cơ sở đào tạo Lái xe" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Th-wX-1Je">
-                                                <rect key="frame" x="8" y="1631.5" width="249" height="14"/>
+                                                <rect key="frame" x="8" y="1631.5" width="249" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1739,7 +1740,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ga" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1K0-CS-RHn">
-                                                <rect key="frame" x="8" y="1663.5" width="249" height="14"/>
+                                                <rect key="frame" x="8" y="1664" width="249" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2108,7 +2109,7 @@ kết cấu hạ tầng đường sắt</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uS-1s-Pis">
-                                                            <rect key="frame" x="4" y="25" width="272" height="21"/>
+                                                            <rect key="frame" x="4" y="25" width="272" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -2207,7 +2208,7 @@ kết cấu hạ tầng đường sắt</string>
         <!--Biển báo hiệu-->
         <scene sceneID="4NU-84-wGY">
             <objects>
-                <viewController title="Biển báo hiệu" id="UDc-4c-lDr" sceneMemberID="viewController">
+                <viewController title="Biển báo hiệu" id="UDc-4c-lDr" customClass="BBSearchTableController" customModule="HieuLuat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hHv-23-uck"/>
                         <viewControllerLayoutGuide type="bottom" id="51x-yv-Pdi"/>
@@ -2217,7 +2218,7 @@ kết cấu hạ tầng đường sắt</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sẽ sẵn sàng vào một ngày gần đây" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnI-kI-82V">
-                                <rect key="frame" x="16" y="104" width="288" height="21"/>
+                                <rect key="frame" x="16" y="104" width="288" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2400,7 +2401,7 @@ kết cấu hạ tầng đường sắt</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sẽ sẵn sàng vào một ngày gần đây" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEw-XK-5FK">
-                                <rect key="frame" x="16" y="104" width="288" height="21"/>
+                                <rect key="frame" x="16" y="104" width="288" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2468,7 +2469,7 @@ kết cấu hạ tầng đường sắt</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BqM-hL-PoV" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NJa-kp-03l">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2504,7 +2505,7 @@ kết cấu hạ tầng đường sắt</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgv-gS-Y6O">
-                                                    <rect key="frame" x="114" y="8" width="198" height="15"/>
+                                                    <rect key="frame" x="114" y="11" width="191" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="FtF-4V-nEM"/>
                                                     </constraints>
@@ -2513,13 +2514,13 @@ kết cấu hạ tầng đường sắt</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNi-YM-7Dd">
-                                                    <rect key="frame" x="114" y="37" width="37.5" height="17"/>
+                                                    <rect key="frame" x="114" y="40" width="37.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwW-q0-alh">
-                                                    <rect key="frame" x="114" y="66" width="198" height="57"/>
+                                                    <rect key="frame" x="114" y="69" width="198" height="54"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2533,7 +2534,7 @@ kết cấu hạ tầng đường sắt</string>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpP-UL-kpO">
-                                                    <rect key="frame" x="153.5" y="37" width="166.5" height="17"/>
+                                                    <rect key="frame" x="153.5" y="40" width="159.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2567,9 +2568,7 @@ kết cấu hạ tầng đường sắt</string>
                                             <outlet property="lblNoidung" destination="rwW-q0-alh" id="YZH-vP-nya"/>
                                             <outlet property="lblParentBreadscrub" destination="fpP-UL-kpO" id="stL-1V-HCh"/>
                                             <outlet property="lblVanban" destination="dgv-gS-Y6O" id="mqJ-Xv-FNW"/>
-                                            <segue destination="a1g-wb-2BY" kind="show" identifier="showDieukhoan" id="7gr-Mf-3CD">
-                                                <nil key="action"/>
-                                            </segue>
+                                            <segue destination="a1g-wb-2BY" kind="show" identifier="showDieukhoan" id="7gr-Mf-3CD"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2618,19 +2617,19 @@ kết cấu hạ tầng đường sắt</string>
                                 <rect key="frame" x="0.0" y="64" width="320" height="404"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJA-Tf-GrX">
-                                        <rect key="frame" x="8" y="8" width="304" height="15"/>
+                                        <rect key="frame" x="8" y="8" width="304" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NK0-Td-euH">
-                                        <rect key="frame" x="8" y="25" width="38" height="28"/>
+                                        <rect key="frame" x="8" y="24.5" width="37.5" height="28"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYh-ox-bra">
-                                        <rect key="frame" x="48" y="25" width="270" height="28"/>
+                                        <rect key="frame" x="47.5" y="24.5" width="270.5" height="28"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
@@ -2638,25 +2637,25 @@ kết cấu hạ tầng đường sắt</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIa-qb-scZ">
-                                        <rect key="frame" x="8" y="55" width="304" height="20"/>
+                                        <rect key="frame" x="8" y="54.5" width="304" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="OgF-st-Uxu">
-                                        <rect key="frame" x="0.0" y="77" width="320" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="76" width="320" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="YNX-2u-dtn"/>
                                         </constraints>
                                     </stackView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqc-2M-hRr">
-                                        <rect key="frame" x="2" y="77" width="316" height="0.0"/>
+                                        <rect key="frame" x="2" y="76" width="316" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" id="5Kz-X1-gkl"/>
                                         </constraints>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WN0-hA-aTQ">
-                                        <rect key="frame" x="0.0" y="79" width="320" height="71"/>
+                                        <rect key="frame" x="0.0" y="78" width="320" height="71"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mức phạt:" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUK-AA-Wad">
                                                 <rect key="frame" x="2" y="2" width="281" height="15"/>
@@ -2762,7 +2761,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </constraints>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Iu-E9-goo">
-                                        <rect key="frame" x="0.0" y="152" width="320" height="150"/>
+                                        <rect key="frame" x="0.0" y="151" width="320" height="150"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2mS-58-4G5">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
@@ -2896,7 +2895,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="115" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pk2-KJ-EXR">
-                                        <rect key="frame" x="0.0" y="304" width="320" height="87"/>
+                                        <rect key="frame" x="0.0" y="303" width="320" height="87"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="87" id="QJR-8X-BeA"/>
@@ -3106,7 +3105,7 @@ kết cấu hạ tầng đường sắt</string>
         <image name="vietcat_crop" width="572" height="507"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="x0c-Xv-FUh"/>
+        <segue reference="KwK-7q-h5m"/>
         <segue reference="Dwh-PK-agn"/>
     </inferredMetricsTieBreakers>
 </document>
