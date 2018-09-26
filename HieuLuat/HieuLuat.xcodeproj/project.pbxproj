@@ -13,6 +13,7 @@
 		334AAFB21FC1E0A300A5BE0F /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AAFB11FC1E0A300A5BE0F /* GeneralSettings.swift */; };
 		335078EA1F5B099100D52741 /* VBPLDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335078E91F5B099100D52741 /* VBPLDetailsViewController.swift */; };
 		335078EC1F5D166A00D52741 /* VBPLSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335078EB1F5D166A00D52741 /* VBPLSearchTableController.swift */; };
+		3350DB31214A8EBC008D0AE4 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3350DB30214A8EBC008D0AE4 /* Utils.swift */; };
 		3357C5321F86547700B963E6 /* SortUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357C5311F86547700B963E6 /* SortUtil.swift */; };
 		336C485B1FA0D7D200A154D9 /* PickerViewSelectPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336C485A1FA0D7D200A154D9 /* PickerViewSelectPopup.swift */; };
 		3394A2782072236C00831E69 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3394A2772072236C00831E69 /* AboutViewController.swift */; };
@@ -39,7 +40,9 @@
 		33D305661F51802700547497 /* Loaivanban.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305651F51802700547497 /* Loaivanban.swift */; };
 		33D305681F51804F00547497 /* Vanban.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305671F51804F00547497 /* Vanban.swift */; };
 		33D31DE41F77BEF700A46E62 /* MPSearchFilterPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D31DE31F77BEF700A46E62 /* MPSearchFilterPopupController.swift */; };
+		33EB998D215A229D0097827A /* VKDTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EB998C215A229D0097827A /* VKDTableViewController.swift */; };
 		33F06FF9212439DD00A69431 /* Hieuluat.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 33F06FF8212439DD00A69431 /* Hieuluat.sqlite */; };
+		33F87E182152509400B04A94 /* BBFilterPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F87E172152509400B04A94 /* BBFilterPopupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,7 @@
 		334AAFB11FC1E0A300A5BE0F /* GeneralSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
 		335078E91F5B099100D52741 /* VBPLDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLDetailsViewController.swift; sourceTree = "<group>"; };
 		335078EB1F5D166A00D52741 /* VBPLSearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLSearchTableController.swift; sourceTree = "<group>"; };
+		3350DB30214A8EBC008D0AE4 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		3357C5311F86547700B963E6 /* SortUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortUtil.swift; sourceTree = "<group>"; };
 		336C485A1FA0D7D200A154D9 /* PickerViewSelectPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewSelectPopup.swift; sourceTree = "<group>"; };
 		3394A2772072236C00831E69 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -97,7 +101,9 @@
 		33D305651F51802700547497 /* Loaivanban.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loaivanban.swift; sourceTree = "<group>"; };
 		33D305671F51804F00547497 /* Vanban.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vanban.swift; sourceTree = "<group>"; };
 		33D31DE31F77BEF700A46E62 /* MPSearchFilterPopupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPSearchFilterPopupController.swift; sourceTree = "<group>"; };
+		33EB998C215A229D0097827A /* VKDTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKDTableViewController.swift; sourceTree = "<group>"; };
 		33F06FF8212439DD00A69431 /* Hieuluat.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hieuluat.sqlite; sourceTree = "<group>"; };
+		33F87E172152509400B04A94 /* BBFilterPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBFilterPopupViewController.swift; sourceTree = "<group>"; };
 		72E93BC1C30A83EE28D1AC21 /* Pods-HieuLuat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat.debug.xcconfig"; sourceTree = "<group>"; };
 		9017557B072E220F7AC12647 /* Pods-HieuLuat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.release.xcconfig"; path = "Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat.release.xcconfig"; sourceTree = "<group>"; };
 		CA2F4D9953D61DA1A8A51262 /* Pods_HieuLuat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HieuLuat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +209,7 @@
 				3357C5311F86547700B963E6 /* SortUtil.swift */,
 				334939881FA8A74F0037305C /* AdsHelper.swift */,
 				33C867091FAA02AC0090D954 /* AppearanceUtil.swift */,
+				3350DB30214A8EBC008D0AE4 /* Utils.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -235,6 +242,8 @@
 				3331E6631FA3092000219B19 /* MPSearchTableController.swift */,
 				3394A2772072236C00831E69 /* AboutViewController.swift */,
 				33BCFF0821451FEE004804F7 /* BBSearchTableController.swift */,
+				33F87E172152509400B04A94 /* BBFilterPopupViewController.swift */,
+				33EB998C215A229D0097827A /* VKDTableViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -268,7 +277,6 @@
 				33D305221F51794F00547497 /* Frameworks */,
 				33D305231F51794F00547497 /* Resources */,
 				7E01514F7D3D0D5E06B4A2AD /* [CP] Embed Pods Frameworks */,
-				820A3110A9E91F5AC6F3EBC0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -328,7 +336,7 @@
 					33D305241F51794F00547497 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = D95825NFBM;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					33D305381F51794F00547497 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -411,21 +419,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		820A3110A9E91F5AC6F3EBC0 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CC81A362C19F5B1802AC5F2E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -453,6 +446,7 @@
 			files = (
 				33D3055F1F517F5800547497 /* Queries.swift in Sources */,
 				339B43431FFBAE6C00149B09 /* BosungKhacphuc.swift in Sources */,
+				3350DB31214A8EBC008D0AE4 /* Utils.swift in Sources */,
 				335078EC1F5D166A00D52741 /* VBPLSearchTableController.swift in Sources */,
 				33D305641F517FF500547497 /* Coquanbanhanh.swift in Sources */,
 				33BCFF0921451FEE004804F7 /* BBSearchTableController.swift in Sources */,
@@ -470,6 +464,7 @@
 				33C8670A1FAA02AC0090D954 /* AppearanceUtil.swift in Sources */,
 				33D3055B1F517D6F00547497 /* DataConnection.swift in Sources */,
 				33D305621F517FB900547497 /* Dieukhoan.swift in Sources */,
+				33EB998D215A229D0097827A /* VKDTableViewController.swift in Sources */,
 				3394A2782072236C00831E69 /* AboutViewController.swift in Sources */,
 				336C485B1FA0D7D200A154D9 /* PickerViewSelectPopup.swift in Sources */,
 				335078EA1F5B099100D52741 /* VBPLDetailsViewController.swift in Sources */,
@@ -477,6 +472,7 @@
 				33D3055D1F517F2B00547497 /* SearchFor.swift in Sources */,
 				33C87DFC1F604C0200D8B198 /* ConfigAttribute.swift in Sources */,
 				3331E6641FA3092000219B19 /* MPSearchTableController.swift in Sources */,
+				33F87E182152509400B04A94 /* BBFilterPopupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,15 +631,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = D95825NFBM;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = HieuLuat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.WeThoong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bc0a0a2f-83da-4684-891a-688eeedab843";
-				PROVISIONING_PROFILE_SPECIFIER = WeThoongDevProvisioningProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -655,15 +651,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = D95825NFBM;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = HieuLuat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.WeThoong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "06379570-42b2-4eec-bd05-8d6a130ff4e6";
-				PROVISIONING_PROFILE_SPECIFIER = WeThoongDistributionProvisioningProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

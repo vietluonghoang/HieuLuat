@@ -128,6 +128,35 @@ class Queries: NSObject {
         return dieukhoanArray
     }
     
+    class func searchDieukhoanByIDs(keyword:[String],vanbanid:[String]) -> [Dieukhoan] {
+        DataConnection.database!.open()
+        let specificVanban = generateWhereClauseForVanbanid(vanbanid: vanbanid, vanbanIdColumnName: "vbId")
+        var idGroup = ""
+        for id in keyword {
+            idGroup += "dkId = " + id + " or "
+        }
+        
+        var sql = rawSqlQuery
+            
+        if idGroup.count > 3 {
+            sql += "(" + Utils.removeLastCharacters(result: idGroup,length: 4) + ")" + specificVanban
+        } else {
+            sql += Utils.removeFirstCharacters(result: specificVanban, length: 4)
+        }
+        
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(setRecordsCap(query: sql), withArgumentsIn: [])!
+        
+        var dieukhoanArray = Array<Dieukhoan>()
+        
+        if resultSet != nil {
+            dieukhoanArray = generateDieukhoanList(resultSet: resultSet)
+        }
+        
+        DataConnection.database!.close()
+        
+        return dieukhoanArray
+    }
+    
     class func searchDieukhoanBySo(keyword:String,vanbanid:[String]) -> [Dieukhoan] {
         DataConnection.database!.open()
         let specificVanban = generateWhereClauseForVanbanid(vanbanid: vanbanid, vanbanIdColumnName: "vbId")
@@ -534,6 +563,98 @@ class Queries: NSObject {
         return result
     }
     
+    class func getPlateGroups() -> [String]{
+        DataConnection.database!.open()
+        
+        let sql = "select ten from tblShapeGroups"
+        
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        var result = [String]()
+        if resultSet != nil {
+            while resultSet.next() {
+                let type = resultSet.string(forColumn: "ten")!
+                if type != "" {
+                    result.append(type)
+                }
+            }
+        }
+        
+        DataConnection.database!.close()
+        
+        return result
+    }
+    
+    class func getPlateShapeByGroup(groups: [String]) -> [String] {
+        DataConnection.database!.open()
+        var whereClause = ""
+        for group in groups {
+            whereClause += "ten = '\(group)' or "
+        }
+        let sql = "select ten from tblPlateShapes where type in (select id from tblShapeGroups where (\(Utils.removeLastCharacters(result: whereClause, length: 4))))"
+        
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        var result = [String]()
+        if resultSet != nil {
+            while resultSet.next() {
+                let type = resultSet.string(forColumn: "ten")!
+                if type != "" {
+                    result.append(type)
+                }
+            }
+        }
+        
+        DataConnection.database!.close()
+        
+        return result
+    }
+    
+    class func getPlateByParams(params: [String]) -> [Dieukhoan] {
+        DataConnection.database!.open()
+        
+        var sql = ""
+        var index = 0
+        if params.count == 0 {
+            sql = "select plateId as pid from tblPlateReferences"
+        }
+        for type in params {
+            var details = type.split(separator: ":")
+            if index == 0 {
+                sql = "select a0.plateId as pid from (select * from tblPlateReferences where type = '" + details[0] + "'"
+                if details.count > 1 {
+                    sql +=  " and refId = (select id from '" + details[0] + "' where ten = '" + details[1] + "')"
+                }
+                sql += ") as a0"
+            } else {
+                sql += " JOIN (select * from tblPlateReferences where type = '" + details[0] + "'"
+                if details.count > 1 {
+                    sql +=  " and refId = (select id from '" + details[0] + "' where ten = '" + details[1] + "')"
+                }
+                
+                sql += ") as a\(index) on a0.name = a\(index).name"
+            }
+            index += 1
+        }
+        
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        var result = [String]()
+        if resultSet != nil {
+            while resultSet.next() {
+                let pid = resultSet.string(forColumn: "pid")!
+                if pid != "" {
+                    result.append(pid)
+                }
+            }
+        }
+        
+        DataConnection.database!.close()
+        
+        if result.count < 1 {
+            return [Dieukhoan]()
+        }
+        
+        return searchDieukhoanByIDs(keyword: result, vanbanid: [GeneralSettings.getQc41Id])
+    }
+    
     class func appendDieukhoan(dieukhoan: Dieukhoan, dkArr: [Dieukhoan]) -> [Dieukhoan] {
         var dieukhoanArray = dkArr
         for dk in dieukhoanArray {
@@ -544,6 +665,7 @@ class Queries: NSObject {
         dieukhoanArray.append(dieukhoan)
         return dieukhoanArray
     }
+    
     class func getPhysicalMemorySize() -> UInt64 {
         return ProcessInfo.processInfo.physicalMemory / UInt64(1024.0 * 1024.0 * 1024.0)
     }

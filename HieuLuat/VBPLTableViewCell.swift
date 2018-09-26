@@ -35,7 +35,7 @@ class VBPLTableViewCell: UITableViewCell{
         // Configure the view for the selected state
     }
    
-    func updateDieukhoan(dieukhoan: Dieukhoan,fullDetails: Bool,showVanban: Bool) {
+    func updateDieukhoan(dieukhoan: Dieukhoan,fullDetails: Bool,showVanban: Bool, maxText: Int = 250) {
         if(!showVanban){
             lblVanban.isHidden = true
             lblParentBreadscrub.isHidden = true
@@ -77,7 +77,6 @@ class VBPLTableViewCell: UITableViewCell{
         lblParentBreadscrub.text = breadscrub
         var noidung = "\(dieukhoan.getTieude()) \n \(dieukhoan.getNoidung())"
         
-        let maxText = 250
         if(!fullDetails){
             if(noidung.characters.count > maxText){
                 noidung = noidung.substring(to: noidung.index(noidung.startIndex, offsetBy: maxText))

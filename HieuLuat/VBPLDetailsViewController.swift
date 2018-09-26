@@ -300,9 +300,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
         let noidung = "\(String(describing: dieukhoan!.getTieude())) \n \(String(describing: dieukhoan!.getNoidung()))"
         lblNoidung.text = noidung
-        
         images = dieukhoan!.getMinhhoa()
-        
         if(images.count > 0){
             fillMinhhoaToViewMinhhoa(images: images)
         }else{
@@ -418,7 +416,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblLinhvucHeight.constant =  0
             consLblLinhvucDetailsHeight.constant =  0
         }
-        if dtText.characters.count > 0 {
+        if dtText.count > 0 {
             consLblDoituongHeight.isActive = false
             consLblDoituongDetailsHeight.isActive = false
             lblDoituong.text = dtText
@@ -428,161 +426,6 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblDoituongHeight.constant =  0
             consLblDoituongDetailsHeight.constant =  0
         }
-    }
-    
-    func generateNewComponentConstraints(parent: UIView, topComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, right: CGFloat, isInside: Bool) {
-        component.translatesAutoresizingMaskIntoConstraints = false
-        parent.addSubview(component)
-        if isInside {
-            parent.addConstraints(
-                [
-                    NSLayoutConstraint(item: component,
-                                       attribute: .leading,
-                                       relatedBy: .equal,
-                                       toItem: parent,
-                                       attribute: .leading,
-                                       multiplier: 1,
-                                       constant: left),
-                    NSLayoutConstraint(item: component,
-                                       attribute: .trailing,
-                                       relatedBy: .equal,
-                                       toItem: parent,
-                                       attribute: .trailing,
-                                       multiplier: 1,
-                                       constant: right),
-                    NSLayoutConstraint(item: component,
-                                       attribute: .top,
-                                       relatedBy: .equal,
-                                       toItem: topComponent,
-                                       attribute: .top,
-                                       multiplier: 1,
-                                       constant: top)
-                ])
-        }else {
-            parent.addConstraints(
-                [
-                    NSLayoutConstraint(item: component,
-                                       attribute: .leading,
-                                       relatedBy: .equal,
-                                       toItem: parent,
-                                       attribute: .leading,
-                                       multiplier: 1,
-                                       constant: left),
-                    NSLayoutConstraint(item: component,
-                                       attribute: .trailing,
-                                       relatedBy: .equal,
-                                       toItem: parent,
-                                       attribute: .trailing,
-                                       multiplier: 1,
-                                       constant: right),
-                    NSLayoutConstraint(item: component,
-                                       attribute: .top,
-                                       relatedBy: .equal,
-                                       toItem: topComponent,
-                                       attribute: .bottom,
-                                       multiplier: 1,
-                                       constant: top)
-                ])
-        }
-    }
-    
-    func generateNewComponentConstraints(parent: UIView, topComponent: UIView, bottomComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, right: CGFloat, bottom: CGFloat, isInside: Bool) {
-        component.translatesAutoresizingMaskIntoConstraints = false
-        parent.addSubview(component)
-        if isInside {
-            parent.addConstraints(
-                [
-                    NSLayoutConstraint(item: component,
-                                       attribute: .leading,
-                                       relatedBy: .equal,
-                                       toItem: parent,
-                                       attribute: .leading,
-                                       multiplier: 1,
-                                       constant: left),
-                    NSLayoutConstraint(item: component,
-                                       attribute: .trailing,
-                                       relatedBy: .equal,
-                                       toItem: parent,
-                                       attribute: .trailing,
-                                       multiplier: 1,
-                                       constant: right),
-                    NSLayoutConstraint(item: component,
-                                       attribute: .top,
-                                       relatedBy: .equal,
-                                       toItem: topComponent,
-                                       attribute: .top,
-                                       multiplier: 1,
-                                       constant: top),
-                    NSLayoutConstraint(item: component,
-                                       attribute: .bottom,
-                                       relatedBy: .equal,
-                                       toItem: bottomComponent,
-                                       attribute: .bottom,
-                                       multiplier: 1,
-                                       constant: bottom)
-                ])
-        }else {
-            parent.addConstraints(
-                [
-                    NSLayoutConstraint(item: component,
-                                       attribute: .leading,
-                                       relatedBy: .equal,
-                                       toItem: parent,
-                                       attribute: .leading,
-                                       multiplier: 1,
-                                       constant: left),
-                    NSLayoutConstraint(item: component,
-                                       attribute: .trailing,
-                                       relatedBy: .equal,
-                                       toItem: parent,
-                                       attribute: .trailing,
-                                       multiplier: 1,
-                                       constant: right),
-                    NSLayoutConstraint(item: component,
-                                       attribute: .top,
-                                       relatedBy: .equal,
-                                       toItem: topComponent,
-                                       attribute: .bottom,
-                                       multiplier: 1,
-                                       constant: top),
-                    NSLayoutConstraint(item: component,
-                                       attribute: .bottom,
-                                       relatedBy: .equal,
-                                       toItem: bottomComponent,
-                                       attribute: .bottom,
-                                       multiplier: 1,
-                                       constant: bottom)
-                ])
-        }
-    }
-    
-    
-    func scaleImage(image: UIImage, targetWidth: CGFloat) -> UIImage {
-        let size = image.size
-        
-        let widthRatio  = targetWidth / image.size.width
-        
-        //        let ratio:Float = Float(size.width)/Float(size.height)
-        
-        
-        // Figure out what our orientation is, and use that to form the rectangle
-        var newSize: CGSize
-        newSize = CGSize(width: size.width * widthRatio, height: CGFloat(Float(size.height) * Float(widthRatio)))
-        
-        // This is the rect that we've calculated out and this is what is actually used below
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-        
-        // Actually do the resizing to the rect using the ImageContext stuff
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage!
-    }
-    
-    func getScreenWidth() -> CGFloat {
-        return UIScreen.main.bounds.width
     }
     
     func fillMinhhoaToViewMinhhoa(images: [String]) {
@@ -598,7 +441,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             }else{
                 let image = UIImage(named: (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines))!
                 
-                let imgView = UIImageView(image: scaleImage(image: image, targetWidth: getScreenWidth()))
+                let imgView = UIImageView(image: Utils.scaleImage(image: image, targetWidth: Utils.getScreenWidth()))
                 imgView.translatesAutoresizingMaskIntoConstraints = false
                 imgView.clipsToBounds = true
                 imgView.contentMode = UIViewContentMode.scaleAspectFit
@@ -606,17 +449,17 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
 //                viewMinhhoa.insertSubview(imgView, at: order)
                 if order == 0 {
                     if images.count == 1 {
-                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: viewMinhhoa, bottomComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, bottom: 0, isInside: true)
+                        Utils.generateNewComponentConstraints(parent: viewMinhhoa, topComponent: viewMinhhoa, bottomComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, bottom: 0, isInside: true)
                     }else{
-                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, isInside: true)
+                        Utils.generateNewComponentConstraints(parent: viewMinhhoa, topComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, isInside: true)
                     }
                 }else{
                     if order < (images.count - 1) {
 //                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: previousImageView, component: imgView, top: 0, left: 0, right: 0)
-                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: (viewMinhhoa.subviews.last)!, component: imgView, top: 0, left: 0, right: 0, isInside: false)
+                        Utils.generateNewComponentConstraints(parent: viewMinhhoa, topComponent: (viewMinhhoa.subviews.last)!, component: imgView, top: 0, left: 0, right: 0, isInside: false)
                     }else{
 //                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: previousImageView, bottomComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, bottom: 0)
-                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: (viewMinhhoa.subviews.last)!, bottomComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, bottom: 0, isInside: false)
+                        Utils.generateNewComponentConstraints(parent: viewMinhhoa, topComponent: (viewMinhhoa.subviews.last)!, bottomComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, bottom: 0, isInside: false)
                     }
                 }
 //                previousImageView = imgView

@@ -198,23 +198,23 @@ class MPSearchFilterPopupController: UIViewController {
     func initPhuongtienButtons() {
         let buttonWidth = (self.view.frame.size.width/3) - 3
         consBtnOtoWidth.constant = buttonWidth
-        updatePhuongtienButtonState(button: btnOto, state: root.searchFilters["Phuongtien"]!["Oto"]!["chon"] != "0")
+        Utils.updateButtonState(button: btnOto, state: root.searchFilters["Phuongtien"]!["Oto"]!["chon"] != "0", onColor: UIColor.blue,offColor: UIColor.white)
         consBtnXemayWidth.constant = buttonWidth
-        updatePhuongtienButtonState(button: btnXemay, state: root.searchFilters["Phuongtien"]!["Xemay"]!["chon"] != "0")
+        Utils.updateButtonState(button: btnXemay, state: root.searchFilters["Phuongtien"]!["Xemay"]!["chon"] != "0", onColor: UIColor.blue,offColor: UIColor.white)
         consBtnXechuyendungWidth.constant = buttonWidth
-        updatePhuongtienButtonState(button: btnXechuyendung, state: root.searchFilters["Phuongtien"]!["Xechuyendung"]!["chon"] != "0")
+        Utils.updateButtonState(button: btnXechuyendung, state: root.searchFilters["Phuongtien"]!["Xechuyendung"]!["chon"] != "0", onColor: UIColor.blue,offColor: UIColor.white)
         consBtnTauhoaWidth.constant = buttonWidth
-        updatePhuongtienButtonState(button: btnTauhoa, state: root.searchFilters["Phuongtien"]!["Tauhoa"]!["chon"] != "0")
+        Utils.updateButtonState(button: btnTauhoa, state: root.searchFilters["Phuongtien"]!["Tauhoa"]!["chon"] != "0", onColor: UIColor.blue,offColor: UIColor.white)
         consBtnXedapWidth.constant = buttonWidth
-        updatePhuongtienButtonState(button: btnXedap, state: root.searchFilters["Phuongtien"]!["Xedap"]!["chon"] != "0")
+        Utils.updateButtonState(button: btnXedap, state: root.searchFilters["Phuongtien"]!["Xedap"]!["chon"] != "0", onColor: UIColor.blue,offColor: UIColor.white)
         consBtnDiboWidth.constant = buttonWidth
-        updatePhuongtienButtonState(button: btnDibo, state: root.searchFilters["Phuongtien"]!["Dibo"]!["chon"] != "0")
+        Utils.updateButtonState(button: btnDibo, state: root.searchFilters["Phuongtien"]!["Dibo"]!["chon"] != "0", onColor: UIColor.blue,offColor: UIColor.white)
         consScrollviewWidth.constant = self.view.frame.size.width
         
     }
     
     @IBAction func btnOtoAction(_ sender: Any) {
-        updatePhuongtienButtonState(button: btnOto, state: root.searchFilters["Phuongtien"]!["Oto"]!["chon"] == "0")
+        Utils.updateButtonState(button: btnOto, state: root.searchFilters["Phuongtien"]!["Oto"]!["chon"] == "0", onColor: UIColor.blue,offColor: UIColor.white)
         if root.searchFilters["Phuongtien"]!["Oto"]!["chon"] == "0" {
             root.searchFilters["Phuongtien"]!["Oto"]!["chon"] = "1"
         }else{
@@ -223,7 +223,7 @@ class MPSearchFilterPopupController: UIViewController {
     }
     
     @IBAction func btnXemayAction(_ sender: Any) {
-        updatePhuongtienButtonState(button: btnXemay, state: root.searchFilters["Phuongtien"]!["Xemay"]!["chon"] == "0")
+        Utils.updateButtonState(button: btnXemay, state: root.searchFilters["Phuongtien"]!["Xemay"]!["chon"] == "0", onColor: UIColor.blue,offColor: UIColor.white)
         if root.searchFilters["Phuongtien"]!["Xemay"]!["chon"] == "0" {
             root.searchFilters["Phuongtien"]!["Xemay"]!["chon"] = "1"
         }else{
@@ -232,7 +232,7 @@ class MPSearchFilterPopupController: UIViewController {
     }
     
     @IBAction func btnXechuyendungAction(_ sender: Any) {
-        updatePhuongtienButtonState(button: btnXechuyendung, state: root.searchFilters["Phuongtien"]!["Xechuyendung"]!["chon"] == "0")
+        Utils.updateButtonState(button: btnXechuyendung, state: root.searchFilters["Phuongtien"]!["Xechuyendung"]!["chon"] == "0", onColor: UIColor.blue,offColor: UIColor.white)
         if root.searchFilters["Phuongtien"]!["Xechuyendung"]!["chon"] == "0" {
             root.searchFilters["Phuongtien"]!["Xechuyendung"]!["chon"] = "1"
         }else{
@@ -241,7 +241,7 @@ class MPSearchFilterPopupController: UIViewController {
     }
     
     @IBAction func btnTauhoaAction(_ sender: Any) {
-        updatePhuongtienButtonState(button: btnTauhoa, state: root.searchFilters["Phuongtien"]!["Tauhoa"]!["chon"] == "0")
+        Utils.updateButtonState(button: btnTauhoa, state: root.searchFilters["Phuongtien"]!["Tauhoa"]!["chon"] == "0", onColor: UIColor.blue,offColor: UIColor.white)
         if root.searchFilters["Phuongtien"]!["Tauhoa"]!["chon"] == "0" {
             root.searchFilters["Phuongtien"]!["Tauhoa"]!["chon"] = "1"
         }else{
@@ -250,7 +250,7 @@ class MPSearchFilterPopupController: UIViewController {
     }
     
     @IBAction func btnXedapAction(_ sender: Any) {
-        updatePhuongtienButtonState(button: btnXedap, state: root.searchFilters["Phuongtien"]!["Xedap"]!["chon"] == "0")
+        Utils.updateButtonState(button: btnXedap, state: root.searchFilters["Phuongtien"]!["Xedap"]!["chon"] == "0", onColor: UIColor.blue,offColor: UIColor.white)
         if root.searchFilters["Phuongtien"]!["Xedap"]!["chon"] == "0" {
             root.searchFilters["Phuongtien"]!["Xedap"]!["chon"] = "1"
         }else{
@@ -259,7 +259,7 @@ class MPSearchFilterPopupController: UIViewController {
     }
     
     @IBAction func btnDiboAction(_ sender: Any) {
-        updatePhuongtienButtonState(button: btnDibo, state: root.searchFilters["Phuongtien"]!["Dibo"]!["chon"] == "0")
+        Utils.updateButtonState(button: btnDibo, state: root.searchFilters["Phuongtien"]!["Dibo"]!["chon"] == "0", onColor: UIColor.blue,offColor: UIColor.white)
         if root.searchFilters["Phuongtien"]!["Dibo"]!["chon"] == "0" {
             root.searchFilters["Phuongtien"]!["Dibo"]!["chon"] = "1"
         }else{
@@ -1101,17 +1101,6 @@ class MPSearchFilterPopupController: UIViewController {
             appearanceUtil.changeLabelText(label: label, color: UIColor.black)
         }else{
             appearanceUtil.changeLabelText(label: label, color: UIColor.gray)
-        }
-    }
-    
-    func updatePhuongtienButtonState(button: UIButton, state: Bool) {
-        
-        if state {
-            button.backgroundColor = UIColor.blue
-            button.setTitleColor(UIColor.white, for: .normal)
-        }else{
-            button.backgroundColor = UIColor.white
-            button.setTitleColor(UIColor.blue, for: .normal)
         }
     }
     
