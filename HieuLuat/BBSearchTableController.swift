@@ -446,13 +446,12 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     public func updateSearchResults(for searchController: UISearchController) {
-        //        if searchController.searchBar.text!.characters.count > 1 {
         filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
-        //        }
     }
     
     func updateSearchResults() {
         updateDieukhoanList(arrDieukhoan: search())
+        //not sure why by when commenting out this line, the result table appears properly when there are no results.
 //        Utils.updateTableViewHeight(consHeightTblView: consHeightTblView, tblView: tblView, minimumHeight: 170)
         tblView.reloadData()
         tblView.layoutIfNeeded()

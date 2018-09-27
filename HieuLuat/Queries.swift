@@ -614,12 +614,12 @@ class Queries: NSObject {
         var sql = ""
         var index = 0
         if params.count == 0 {
-            sql = "select plateId as pid from tblPlateReferences"
+            sql = "select plateId as pid, name from tblPlateReferences"
         }
         for type in params {
             var details = type.split(separator: ":")
             if index == 0 {
-                sql = "select a0.plateId as pid from (select * from tblPlateReferences where type = '" + details[0] + "'"
+                sql = "select a0.plateId as pid, a0.name as name from (select * from tblPlateReferences where type = '" + details[0] + "'"
                 if details.count > 1 {
                     sql +=  " and refId = (select id from '" + details[0] + "' where ten = '" + details[1] + "')"
                 }
@@ -636,12 +636,13 @@ class Queries: NSObject {
         }
         
         let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
-        var result = [String]()
+        var result = [String:String]()
         if resultSet != nil {
             while resultSet.next() {
                 let pid = resultSet.string(forColumn: "pid")!
+                let pname = resultSet.string(forColumn: "name")!
                 if pid != "" {
-                    result.append(pid)
+                    result[pname] = pid
                 }
             }
         }
@@ -652,7 +653,20 @@ class Queries: NSObject {
             return [Dieukhoan]()
         }
         
-        return searchDieukhoanByIDs(keyword: result, vanbanid: [GeneralSettings.getQc41Id])
+        var dkList = [String:Dieukhoan]()
+        var finalResult = [Dieukhoan]()
+        for dk in searchDieukhoanByIDs(keyword: Array(result.values), vanbanid: [GeneralSettings.getQc41Id]) {
+            dkList["\(dk.getId())"] = dk
+        }
+        
+        for rs in result {
+            let dk = dkList[rs.value]!
+            let fdk = Dieukhoan(dk: dk)
+            fdk.setDefaultMinhhoa(name: rs.key)
+            finalResult.append(fdk)
+        }
+        
+        return finalResult
     }
     
     class func appendDieukhoan(dieukhoan: Dieukhoan, dkArr: [Dieukhoan]) -> [Dieukhoan] {

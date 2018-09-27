@@ -35,7 +35,7 @@ class VBPLTableViewCell: UITableViewCell{
         // Configure the view for the selected state
     }
    
-    func updateDieukhoan(dieukhoan: Dieukhoan,fullDetails: Bool,showVanban: Bool, maxText: Int = 250) {
+    func updateDieukhoan(dieukhoan: Dieukhoan,fullDetails: Bool,showVanban: Bool, maxText: Int = 250, defaultImage: Int = 0) {
         if(!showVanban){
             lblVanban.isHidden = true
             lblParentBreadscrub.isHidden = true
@@ -78,15 +78,21 @@ class VBPLTableViewCell: UITableViewCell{
         var noidung = "\(dieukhoan.getTieude()) \n \(dieukhoan.getNoidung())"
         
         if(!fullDetails){
-            if(noidung.characters.count > maxText){
+            if(noidung.count > maxText){
                 noidung = noidung.substring(to: noidung.index(noidung.startIndex, offsetBy: maxText))
                 noidung.append("...")
             }
         }
         lblNoidung.text = noidung
         
-        if(dieukhoan.getMinhhoa()[0].trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "").characters.count>0){
-            let image = UIImage(named: (dieukhoan.getMinhhoa()[0].trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: ".png", with: "")).replacingOccurrences(of: "\n", with: ""))!
+        if(dieukhoan.getMinhhoa()[0].trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "").count>0){
+            
+            //check if dieukhoan gets default minhhoa set internally. By default, minhhoa will be shown with the default value set internally (through .getDefaultMinhhoa). In the case if defaultImage is set (not equal to 0), then the value of defaultImage will overwrites the internal default minhhoa value (defaultImage will be the one to show).
+            var dftImg = dieukhoan.getDefaultMinhhoa()
+            if dieukhoan.getDefaultMinhhoa() != dftImg && defaultImage != 0 {
+                dftImg = defaultImage
+            }
+            let image = UIImage(named: (dieukhoan.getMinhhoa()[dftImg].trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: ".png", with: "")).replacingOccurrences(of: "\n", with: ""))!
             imgView.image = image
             consWidthImageViewEmpty.isActive = false
             consWidthImageView.isActive = true

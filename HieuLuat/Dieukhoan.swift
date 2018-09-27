@@ -19,6 +19,7 @@ class Dieukhoan: NSObject {
     var hinhphatbosung = ""
     var bienphapkhacphuc = ""
     var sortPoint: Int16 = 0
+    var defaultMinhhoa = 0
     
     //    init(id:Int64,so:String,tieude:String,noidung:String,minhhoa:[String],cha:Int64,vanbanid:Int64) {
     //        self.id=id
@@ -51,6 +52,20 @@ class Dieukhoan: NSObject {
         self.tieude=""
         self.noidung=""
         self.sortPoint = 0
+    }
+    
+    init(dk: Dieukhoan) {
+        self.id = dk.getId()
+        self.so = dk.getSo()
+        self.tieude = dk.getTieude()
+        self.noidung = dk.getNoidung()
+        self.minhhoa = dk.getMinhhoa()
+        self.cha = dk.getCha()
+        self.vanban = dk.getVanban()
+        self.hinhphatbosung = dk.getHinhphatbosung()
+        self.bienphapkhacphuc = dk.getBienphapkhacphuc()
+        self.sortPoint = dk.getSortPoint()
+        self.defaultMinhhoa = dk.getDefaultMinhhoa()
     }
     
     func getId() -> Int64 {
@@ -135,6 +150,40 @@ class Dieukhoan: NSObject {
     
     func setSortPoint(sortPoint:Int16) {
         self.sortPoint=sortPoint
+    }
+    
+    func getDefaultMinhhoa() -> Int {
+        return defaultMinhhoa
+    }
+    
+    func setDefaultMinhhoa(name: String) {
+        var order = 0
+        for mh in minhhoa {
+            if mh.contains(name) {
+                self.defaultMinhhoa = order
+            }
+            order += 1
+        }
+    }
+    
+    func setDefaultMinhhoa(order: Int) {
+        if order >= 0 && order < minhhoa.count {
+            self.defaultMinhhoa = order
+        }
+    }
+    
+    func cloneDieukhoan(dk: Dieukhoan) {
+        self.id = dk.getId()
+        self.so = dk.getSo()
+        self.tieude = dk.getTieude()
+        self.noidung = dk.getNoidung()
+        self.minhhoa = dk.getMinhhoa()
+        self.cha = dk.getCha()
+        self.vanban = dk.getVanban()
+        self.hinhphatbosung = dk.getHinhphatbosung()
+        self.bienphapkhacphuc = dk.getBienphapkhacphuc()
+        self.sortPoint = dk.getSortPoint()
+        self.defaultMinhhoa = dk.getDefaultMinhhoa()
     }
 }
 
