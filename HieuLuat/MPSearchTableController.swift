@@ -404,11 +404,6 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         
         switch(segue.identifier ?? "") {
             
-        case "vanbanHome":
-            guard segue.destination is VBPLHomeDetailsViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
         case "filterPopup":
             guard let filterPopup = segue.destination as? MPSearchFilterPopupController else {
                 fatalError("Unexpected destination: \(segue.destination)")

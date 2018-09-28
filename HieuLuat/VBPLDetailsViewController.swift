@@ -84,7 +84,6 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //            scvDetails.autoresizingMask = UIViewAutoresizing.flexibleHeight
         
         tblView.delegate = self
         tblView.dataSource = self
@@ -178,6 +177,17 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         for child in Queries.getAllRelativeRelatedDieukhoan(dieukhoanId: dieukhoan.getId()) {
             relatedChildren.append(child)
         }
+        
+        //filter out all duplicated dieukhoan in relatedChildren but still keep the original order of direct then relative
+        var tempRelatedChildren = [Dieukhoan]()
+        var referer = [String:Bool]()
+        for dk in relatedChildren {
+            if referer["\(dk.getId())"] == nil {
+                tempRelatedChildren.append(dk)
+            }
+            referer["\(dk.getId())"] = true
+        }
+        relatedChildren = tempRelatedChildren
         
         hinhphatbosungList = Queries.getAllHinhphatbosung(dieukhoanId: dieukhoan.getId())
         bienphapkhacphucList = Queries.getAllBienphapkhacphuc(dieukhoanId: dieukhoan.getId())
@@ -290,7 +300,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         lblVanban.text = dieukhoan!.getVanban().getMa()
         lblDieukhoan.text = dieukhoan!.getSo()
         let breadscrubText = search.getAncestersNumber(dieukhoan: dieukhoan!, vanbanId: [String(describing: dieukhoan!.getVanban().getId())])
-        if breadscrubText.characters.count > 0 {
+        if breadscrubText.count > 0 {
             btnParentBreadscrub.setTitle(breadscrubText, for: .normal)
             btnParentBreadscrub.isEnabled = true
         }else {
@@ -386,7 +396,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         let lvText = getLinhvuc(id: String(describing: dieukhoan!.getId()))
         let dtText = getDoituong(id: String(describing: dieukhoan!.getId()))
         
-        if mpText.characters.count > 0 {
+        if mpText.count > 0 {
             consLblMucphatHeight.isActive = false
             consLblMucphatDetailsHeight.isActive = false
             lblMucphat.text = mpText
@@ -396,7 +406,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblMucphatHeight.constant =  0
             consLblMucphatDetailsHeight.constant =  0
         }
-        if ptText.characters.count > 0 {
+        if ptText.count > 0 {
             consLblPhuongtienHeight.isActive = false
             consLblPhuongtienDetailsHeight.isActive = false
             lblPhuongtien.text = ptText
@@ -406,7 +416,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblPhuongtienHeight.constant =  0
             consLblPhuongtienDetailsHeight.constant =  0
         }
-        if lvText.characters.count > 0 {
+        if lvText.count > 0 {
             consLblLinhvucHeight.isActive = false
             consLblLinhvucDetailsHeight.isActive = false
             lblLinhvuc.text = lvText
@@ -433,10 +443,9 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         viewMinhhoa.translatesAutoresizingMaskIntoConstraints = false
         
         var order = 0
-//        var previousImageView = UIImageView()
         
         for img in images {
-            if (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines).characters.count < 1{
+            if (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines).count < 1{
                 
             }else{
                 let image = UIImage(named: (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines))!
@@ -446,7 +455,6 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                 imgView.clipsToBounds = true
                 imgView.contentMode = UIViewContentMode.scaleAspectFit
                 imgView.autoresizesSubviews = true
-//                viewMinhhoa.insertSubview(imgView, at: order)
                 if order == 0 {
                     if images.count == 1 {
                         Utils.generateNewComponentConstraints(parent: viewMinhhoa, topComponent: viewMinhhoa, bottomComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, bottom: 0, isInside: true)
@@ -455,30 +463,16 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                 }else{
                     if order < (images.count - 1) {
-//                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: previousImageView, component: imgView, top: 0, left: 0, right: 0)
                         Utils.generateNewComponentConstraints(parent: viewMinhhoa, topComponent: (viewMinhhoa.subviews.last)!, component: imgView, top: 0, left: 0, right: 0, isInside: false)
                     }else{
-//                        generateNewComponentConstraints(parent: viewMinhhoa, topComponent: previousImageView, bottomComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, bottom: 0)
                         Utils.generateNewComponentConstraints(parent: viewMinhhoa, topComponent: (viewMinhhoa.subviews.last)!, bottomComponent: viewMinhhoa, component: imgView, top: 0, left: 0, right: 0, bottom: 0, isInside: false)
                     }
                 }
-//                previousImageView = imgView
                 order += 1
                 let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
                 imgView.isUserInteractionEnabled = true
                 imgView.addGestureRecognizer(tap)
             }
-            
-//            print("============image view: \(previousImageView.frame.size.height)")
-//            print("============child view: \(viewMinhhoa.subviews.last?.frame.size.height)")
-//            for v in viewMinhhoa.subviews {
-//                print("============child view pos: \(v.frame.origin.x) - \(v.frame.origin.y) - \(v.layer.zPosition)")
-//            }
-//            print("============cons count: \(viewMinhhoa.constraints.count)")
-//            for cons in viewMinhhoa.constraints {
-//                print("======= cons: \n - isActive: \(cons.isActive) \n - constant: \(cons.constant) \n - first attribute: \(cons.firstAttribute.rawValue) \n - second attribute: \(cons.secondAttribute.rawValue) \n - relation: \(cons.relation.rawValue) \n - first item: \(cons.firstItem) \n - second item \(cons.secondItem)")
-//            }
-            
         }
     }
     

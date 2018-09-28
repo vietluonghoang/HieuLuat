@@ -137,7 +137,7 @@ class Queries: NSObject {
         }
         
         var sql = rawSqlQuery
-            
+        
         if idGroup.count > 3 {
             sql += "(" + Utils.removeLastCharacters(result: idGroup,length: 4) + ")" + specificVanban
         } else {
@@ -590,6 +590,11 @@ class Queries: NSObject {
         for group in groups {
             whereClause += "ten = '\(group)' or "
         }
+        
+        //workaround for no group selected
+        if groups.count < 1 {
+            whereClause = "ten = '' or "
+        }
         let sql = "select ten from tblPlateShapes where type in (select id from tblShapeGroups where (\(Utils.removeLastCharacters(result: whereClause, length: 4))))"
         
         let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
@@ -608,31 +613,40 @@ class Queries: NSObject {
         return result
     }
     
-    class func getPlateByParams(params: [String]) -> [Dieukhoan] {
+    class func getPlateByParams(params: [String], groups: [String]) -> [Dieukhoan] {
         DataConnection.database!.open()
         
         var sql = ""
         var index = 0
-        if params.count == 0 {
-            sql = "select plateId as pid, name from tblPlateReferences"
+        var inGroup = ""
+        for group in groups {
+            inGroup += "'\(group)', "
         }
-        for type in params {
-            var details = type.split(separator: ":")
-            if index == 0 {
-                sql = "select a0.plateId as pid, a0.name as name from (select * from tblPlateReferences where type = '" + details[0] + "'"
-                if details.count > 1 {
-                    sql +=  " and refId = (select id from '" + details[0] + "' where ten = '" + details[1] + "')"
+        
+        // if no params or groups set, get all plates
+        if params.count == 0 && groups.count < 1 {
+            sql = "select plateId as pid, name from tblPlateReferences"
+        } else if params.count == 0 { // if no params but groups set, select plates that has type of 'tblPlateShapes' and refID is one of the selected shapes
+            sql = "select plateId as pid, name from tblPlateReferences where type = 'tblPlateShapes' and refId in (select id from tblPlateShapes where type in (select id from tblShapeGroups where ten in (\(Utils.removeLastCharacters(result: inGroup, length: 2)))))"
+        } else { //if at list 1 param set, select plate that matched that param
+            for type in params {
+                var details = type.split(separator: ":")
+                if index == 0 {
+                    sql = "select a0.plateId as pid, a0.name as name from (select * from tblPlateReferences where type = '" + details[0] + "'"
+                    if details.count > 1 {
+                        sql +=  " and refId = (select id from '" + details[0] + "' where ten = '" + details[1] + "')"
+                    }
+                    sql += " and (plateId in (select plateID from tblPlateReferences where type = 'tblPlateShapes' and refid in (select id from tblPlateShapes where type in (select id from tblShapeGroups where ten in (\(Utils.removeLastCharacters(result: inGroup, length: 2)))))))) as a0"
+                } else {
+                    sql += " JOIN (select * from tblPlateReferences where type = '" + details[0] + "'"
+                    if details.count > 1 {
+                        sql +=  " and refId = (select id from '" + details[0] + "' where ten = '" + details[1] + "')"
+                    }
+                    
+                    sql += ") as a\(index) on a0.name = a\(index).name"
                 }
-                sql += ") as a0"
-            } else {
-                sql += " JOIN (select * from tblPlateReferences where type = '" + details[0] + "'"
-                if details.count > 1 {
-                    sql +=  " and refId = (select id from '" + details[0] + "' where ten = '" + details[1] + "')"
-                }
-                
-                sql += ") as a\(index) on a0.name = a\(index).name"
+                index += 1
             }
-            index += 1
         }
         
         let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!

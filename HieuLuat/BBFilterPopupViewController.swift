@@ -110,6 +110,7 @@ class BBFilterPopupViewController: UIViewController {
     @IBAction func btnXongOnTouchDown(_ sender: Any) {
         root?.updateFilterLabel()
         root?.updatePlateGroupsScrollView()
+        root?.updateSearchResults()
         self.dismiss(animated: true, completion: nil)
     }
    

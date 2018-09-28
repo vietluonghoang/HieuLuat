@@ -19,6 +19,7 @@ class GeneralSettings {
     let danhsachvanban  = ["nd46","qc41","tt01","lgtdb","lxlvphc"]
     private static var vanbanInfo = [String:[String:String]]()
     private static var tamgiuPhuongtienDieukhoanID = "2820"
+    private static var allowMultipleShapePlateSelect = false
     private static var adEnabled = true
     private static var developementMode = true
     private static var fbWeThoong = "http://fb.me/wethoong"
@@ -79,21 +80,15 @@ class GeneralSettings {
     func getMucphatRange() -> [String] {
         return mucphatRange
     }
-    //    func getND46ID() -> String {
-    //        return nd46Id
-    //    }
-    //    func getTT01ID() -> String {
-    //        return tt01Id
-    //    }
-    //    func getLGTID() -> String {
-    //        return lgtId
-    //    }
-    //    func getLXLVPHCID() -> String {
-    //        return lxlvphcId
-    //    }
-    //    func getQC41ID() -> String {
-    //        return qc41Id
-    //    }
+    
+    static var isAllowMultipleShapePlateSelect: Bool {
+        get{
+            return self.allowMultipleShapePlateSelect
+        }
+        set(v){
+            self.allowMultipleShapePlateSelect = v;
+        }
+    }
     
     static var tamgiuPhuongtienParentID: String {
         get{

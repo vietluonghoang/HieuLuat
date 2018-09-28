@@ -18,7 +18,6 @@
 		336C485B1FA0D7D200A154D9 /* PickerViewSelectPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336C485A1FA0D7D200A154D9 /* PickerViewSelectPopup.swift */; };
 		3394A2782072236C00831E69 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3394A2772072236C00831E69 /* AboutViewController.swift */; };
 		339B43431FFBAE6C00149B09 /* BosungKhacphuc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B43421FFBAE6C00149B09 /* BosungKhacphuc.swift */; };
-		339E7EA61F6181810048B0E8 /* VBPLHomeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339E7EA51F6181810048B0E8 /* VBPLHomeDetailsViewController.swift */; };
 		33BCFF0921451FEE004804F7 /* BBSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BCFF0821451FEE004804F7 /* BBSearchTableController.swift */; };
 		33C8670A1FAA02AC0090D954 /* AppearanceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C867091FAA02AC0090D954 /* AppearanceUtil.swift */; };
 		33C87DFC1F604C0200D8B198 /* ConfigAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C87DFB1F604C0200D8B198 /* ConfigAttribute.swift */; };
@@ -73,7 +72,6 @@
 		336C485A1FA0D7D200A154D9 /* PickerViewSelectPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewSelectPopup.swift; sourceTree = "<group>"; };
 		3394A2772072236C00831E69 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		339B43421FFBAE6C00149B09 /* BosungKhacphuc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BosungKhacphuc.swift; sourceTree = "<group>"; };
-		339E7EA51F6181810048B0E8 /* VBPLHomeDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLHomeDetailsViewController.swift; sourceTree = "<group>"; };
 		33BCFF0821451FEE004804F7 /* BBSearchTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBSearchTableController.swift; sourceTree = "<group>"; };
 		33C867091FAA02AC0090D954 /* AppearanceUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceUtil.swift; sourceTree = "<group>"; };
 		33C87DFB1F604C0200D8B198 /* ConfigAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigAttribute.swift; sourceTree = "<group>"; };
@@ -236,7 +234,6 @@
 				335078EB1F5D166A00D52741 /* VBPLSearchTableController.swift */,
 				33CE51FB1F5E788C008AB4D4 /* VBPLTableViewCell.swift */,
 				33C87DFD1F6052B100D8B198 /* FilterPopupViewController.swift */,
-				339E7EA51F6181810048B0E8 /* VBPLHomeDetailsViewController.swift */,
 				33D31DE31F77BEF700A46E62 /* MPSearchFilterPopupController.swift */,
 				336C485A1FA0D7D200A154D9 /* PickerViewSelectPopup.swift */,
 				3331E6631FA3092000219B19 /* MPSearchTableController.swift */,
@@ -450,7 +447,6 @@
 				335078EC1F5D166A00D52741 /* VBPLSearchTableController.swift in Sources */,
 				33D305641F517FF500547497 /* Coquanbanhanh.swift in Sources */,
 				33BCFF0921451FEE004804F7 /* BBSearchTableController.swift in Sources */,
-				339E7EA61F6181810048B0E8 /* VBPLHomeDetailsViewController.swift in Sources */,
 				33D31DE41F77BEF700A46E62 /* MPSearchFilterPopupController.swift in Sources */,
 				33D305681F51804F00547497 /* Vanban.swift in Sources */,
 				33D3052B1F51794F00547497 /* ViewController.swift in Sources */,

@@ -1130,11 +1130,6 @@ class MPSearchFilterPopupController: UIViewController {
         
         switch(segue.identifier ?? "") {
             
-        case "vanbanHome":
-            guard segue.destination is VBPLHomeDetailsViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
         case "mucphatTu":
             guard let pickerview = segue.destination as? PickerViewSelectPopup else {
                 fatalError("Unexpected destination: \(segue.destination)")

@@ -613,12 +613,17 @@ class Utils {
     }
     
     class func removeLastCharacters(result:String,length:Int) -> String {
+        if result.count < length {
+            return ""
+        }
         return result.substring(to: result.index(result.endIndex, offsetBy: (0 - length)))
     }
     
     class func removeFirstCharacters(result:String,length:Int) -> String {
-        let str = result.substring(from: result.index(result.startIndex, offsetBy: (length)))
-        return str
+        if result.count < length {
+            return ""
+        }
+        return result.substring(from: result.index(result.startIndex, offsetBy: (length)))
     }
     
     class func updateTableViewHeight(consHeightTblView: NSLayoutConstraint, tblView: UITableView, minimumHeight: CGFloat) {

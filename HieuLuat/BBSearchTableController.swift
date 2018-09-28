@@ -168,13 +168,25 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         
+        //get current selected shapes. Only selected shapes will be added to the list and get marked as false. If it appears in the as a shape in the filtered shape group, it will be turned to true. After updating filterd shapes, the shapes that is not in the list (still false) will be removed from plateShapesSelected (turn to false)
+        var currentSelectedShapes = [String:Bool]()
+        for s in plateShapesSelected {
+            if s.value {
+                currentSelectedShapes[s.key] = false
+            }
+        }
+        
         let allShapes = Queries.getPlateShapeByGroup(groups: selectedPlateGroups)
-        for group in allShapes {
-            let imgName = group.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+        for shape in allShapes {
+            let imgName = shape.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
             
             //add plate shape name to a list for referencing when user selects a shape. Order of this list must be the same as image view to make sure that the correct plate shape will be refered properly.
             plateShapesFiltered.append(imgName)
             let plateShapeImage = UIImage(named: imgName)!
+            
+            if currentSelectedShapes[imgName] != nil {
+                currentSelectedShapes[imgName] = true
+            }
             
             let imgView = UIImageView(image: Utils.scaleImageSideward(image: plateShapeImage, targetHeight: 40))
             let imgViewWrapper = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
@@ -212,7 +224,13 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
             order += 1
-            
+        }
+        
+        //remove already selected shapes but the shape is not available due to new shape groups filtered
+        for s in plateShapesSelected {
+            if s.value && currentSelectedShapes[s.key] == false {
+                plateShapesSelected[s.key] = false
+            }
         }
     }
     
@@ -233,7 +251,14 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     
     func search() -> [Dieukhoan]{
         let kw = populatePlateParams()
-        let rs = Queries.getPlateByParams(params: kw)
+        var groups = [String]()
+        
+        for group in plateShapeGroupFiltersSelected {
+            if group.value {
+                groups.append(group.key)
+            }
+        }
+        let rs = Queries.getPlateByParams(params: kw, groups: groups)
         rowCount = rs.count
         
         return rs
@@ -241,15 +266,27 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     
     func populatePlateParams() -> [String] {
         var params = [String]()
-        for shapeGroup in plateShapesSelected {
-            if shapeGroup.value {
-                params.append("tblPlateShapes:\(shapeGroup.key)".trimmingCharacters(in: .whitespacesAndNewlines))
+        for shape in plateShapesSelected {
+            if shape.value {
+                params.append("tblPlateShapes:\(shape.key)".trimmingCharacters(in: .whitespacesAndNewlines))
             }
         }
-        for group in plateDetailsGroupsSelected {
+        //this check is for the case where user changes the filter of shape groups but does not select any plate shape
+        //since it shows empty result then comment it out for now
+//        if params.count < 1 {
+//            for shape in plateShapesFiltered {
+//                updatePlateShapeSelected(plateShapeName: shape)
+//            }
+//            for selectedShape in plateShapesSelected {
+//                if selectedShape.value {
+//                    params.append("tblPlateShapes:\(selectedShape.key)".trimmingCharacters(in: .whitespacesAndNewlines))
+//                }
+//            }
+//        }
+        for detailsGroup in plateDetailsGroupsSelected {
             //TO DO: in future, if we support advance search which allows user to select a (or many) figures/signs in each group, the value that appends to 'params' should has the same form of 'plateShape' above (with colon in the midlle of group and figure/sign name)
-            if group.value {
-                params.append("\(group.key)".trimmingCharacters(in: .whitespacesAndNewlines))
+            if detailsGroup.value {
+                params.append("\(detailsGroup.key)".trimmingCharacters(in: .whitespacesAndNewlines))
             }
         }
         return params
@@ -278,8 +315,13 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         for view in viewScrollviewContent.subviews {
             for iv in view.subviews {
                 if iv.tag == sender.view?.tag {
-                    updateShapeGroupSelected(plateShapeName: plateShapesFiltered[iv.tag])
+                    updatePlateShapeSelected(plateShapeName: plateShapesFiltered[iv.tag])
                     Utils.updateViewState(view: view, state: isPlateShapeSelected(plateShapeName: plateShapesFiltered[iv.tag]), onColor: onColor, offColor: offColor)
+                } else {
+                    if !GeneralSettings.isAllowMultipleShapePlateSelect && isPlateShapeSelected(plateShapeName: plateShapesFiltered[iv.tag]){
+                        updatePlateShapeSelected(plateShapeName: plateShapesFiltered[iv.tag])
+                        Utils.updateViewState(view: view, state: isPlateShapeSelected(plateShapeName: plateShapesFiltered[iv.tag]), onColor: onColor, offColor: offColor)
+                    }
                 }
             }
         }
@@ -293,7 +335,7 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         return plateShapesSelected[plateShapeName]!
     }
     
-    func updateShapeGroupSelected(plateShapeName: String) {
+    func updatePlateShapeSelected(plateShapeName: String) {
         if plateShapesSelected[plateShapeName] == nil {
             plateShapesSelected[plateShapeName] = true
         } else {
@@ -366,10 +408,10 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         
         switch(segue.identifier ?? "") {
             
-        case "vanbanHome":
-            guard segue.destination is VBPLHomeDetailsViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
+//        case "vanbanHome":
+//            guard segue.destination is VBPLHomeDetailsViewController else {
+//                fatalError("Unexpected destination: \(segue.destination)")
+//            }
             
         case "filterPopup":
             guard let filterPopup = segue.destination as? BBFilterPopupViewController else {
