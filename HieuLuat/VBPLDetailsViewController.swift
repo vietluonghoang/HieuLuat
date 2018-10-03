@@ -340,9 +340,11 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             lblHinhphatbosungDetails.numberOfLines = 0
             lblHinhphatbosungDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
             lblHinhphatbosungDetails.text = ""
+            var hpbs = ""
             for bosung in hinhphatbosungList {
-                lblHinhphatbosungDetails.text = "\(lblHinhphatbosungDetails.text!)\(bosung.getNoidung())\n"
+                hpbs += "\(lblHinhphatbosungDetails.text!)\(Utils.removeLastCharacters(result: bosung.getNoidung(), length: (bosung.getNoidung().count - 1)).uppercased())\(Utils.removeFirstCharacters(result: bosung.getNoidung(), length: 1))\n"
             }
+            lblHinhphatbosungDetails.text = "\(Utils.removeLastCharacters(result: hpbs, length: (hpbs.count - 1)).uppercased())\(Utils.removeFirstCharacters(result: hpbs, length: 1))"
         } else {
             hideHinhphatbosungView(isHidden: true)
         }
@@ -355,9 +357,11 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             lblBienphapkhacphucDetails.numberOfLines = 0
             lblBienphapkhacphucDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
             lblBienphapkhacphucDetails.text = ""
+            var bpkp = ""
             for khacphuc in bienphapkhacphucList {
-                lblBienphapkhacphucDetails.text = "\(lblBienphapkhacphucDetails.text!)\(khacphuc.getNoidung())\n"
+                bpkp += "\(lblBienphapkhacphucDetails.text!)\(Utils.removeLastCharacters(result: khacphuc.getNoidung(), length: (khacphuc.getNoidung().count - 1)).uppercased())\(Utils.removeFirstCharacters(result: khacphuc.getNoidung(), length: 1))\n"
             }
+            lblBienphapkhacphucDetails.text = bpkp
         }else{
             hideBienphapkhacphucView(isHidden: true)
         }

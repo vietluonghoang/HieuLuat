@@ -224,7 +224,7 @@
                                     <constraint firstItem="hzo-mm-S5N" firstAttribute="trailing" secondItem="USH-f0-yJp" secondAttribute="trailing" constant="-8" id="w9w-4A-1Re"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QQF-w1-IS5">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="QQF-w1-IS5">
                                 <rect key="frame" x="0.0" y="131" width="320" height="387"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="300" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jet-0s-42E">
@@ -2074,7 +2074,7 @@ kết cấu hạ tầng đường sắt</string>
                                     <constraint firstItem="Lfr-Yu-OvU" firstAttribute="top" secondItem="BfU-Cr-Vpp" secondAttribute="top" id="p6a-ZE-U2Y"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ow-ol-5NG">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="6Ow-ol-5NG">
                                 <rect key="frame" x="0.0" y="163" width="320" height="355"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="102" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mx8-OQ-qrN">
