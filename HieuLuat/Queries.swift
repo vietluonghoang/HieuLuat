@@ -634,13 +634,13 @@ class Queries: NSObject {
                 if index == 0 {
                     sql = "select a0.plateId as pid, a0.name as name from (select * from tblPlateReferences where type = '" + details[0] + "'"
                     if details.count > 1 {
-                        sql +=  " and refId = (select id from '" + details[0] + "' where ten = '" + details[1] + "')"
+                        sql +=  " and refId in (select id from '" + details[0] + "' where ten = '" + details[1] + "' or ten = '" + details[1] + "-diagonal')"
                     }
                     sql += " and (plateId in (select plateID from tblPlateReferences where type = 'tblPlateShapes' and refid in (select id from tblPlateShapes where type in (select id from tblShapeGroups where ten in (\(Utils.removeLastCharacters(result: inGroup, length: 2)))))))) as a0"
                 } else {
                     sql += " JOIN (select * from tblPlateReferences where type = '" + details[0] + "'"
                     if details.count > 1 {
-                        sql +=  " and refId = (select id from '" + details[0] + "' where ten = '" + details[1] + "')"
+                        sql +=  " and refId in (select id from '" + details[0] + "' where ten = '" + details[1] + "' or ten = '" + details[1] + "-diagonal')"
                     }
                     
                     sql += ") as a\(index) on a0.name = a\(index).name"
