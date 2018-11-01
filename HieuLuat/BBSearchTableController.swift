@@ -10,7 +10,7 @@ import UIKit
 import os.log
 import GoogleMobileAds
 
-class BBSearchTableController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UIGestureRecognizerDelegate {
+class BBSearchTableController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UIGestureRecognizerDelegate, SearchControllers {
     
     @IBOutlet var adsView: UIView!
     @IBOutlet var svResult: UIScrollView!
@@ -65,7 +65,7 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         }
         initPlateShapeGroupsList()
         updateFilterLabel()
-        updatePlateGroupsScrollView()
+        updateGroupsScrollView()
         if(dieukhoanList.count<1){
             updateSearchResults()
         }
@@ -149,7 +149,7 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    func updatePlateGroupsScrollView() {
+    func updateGroupsScrollView() {
         viewScrollviewWrapper.translatesAutoresizingMaskIntoConstraints = false
         svPlateShapeSelect.translatesAutoresizingMaskIntoConstraints = false
         
@@ -180,10 +180,9 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         for shape in allShapes {
             let imgName = shape.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
             
-            //add plate shape name to a list for referencing when user selects a shape. Order of this list must be the same as image view to make sure that the correct plate shape will be refered properly.
+            //add plate shape name to a list for referencing when user selects a shape. Order of this list must be the same as image view to make sure that the correct plate shape will be refered properly. Rectangle-bg_blue-bd_white-partial_triagle_white_bg
             plateShapesFiltered.append(imgName)
             let plateShapeImage = UIImage(named: imgName)!
-            
             if currentSelectedShapes[imgName] != nil {
                 currentSelectedShapes[imgName] = true
             }
@@ -294,6 +293,10 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     
     func updateFilter(key: String, value: Bool) {
         plateShapeGroupFiltersSelected[key] = value
+    }
+    
+    func isFilterSelected(key: String) -> Bool {
+        return plateShapeGroupFiltersSelected[key]!
     }
     
     func updateFilterLabel() {

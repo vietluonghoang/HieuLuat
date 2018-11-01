@@ -584,6 +584,29 @@ class Queries: NSObject {
         return result
     }
     
+    class func getVachGroups() -> [String:String]{
+        DataConnection.database!.open()
+        
+        let sql = "select ten, displayName from tblVachGroups"
+        
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        var result = [String:String]()
+        if resultSet != nil {
+            while resultSet.next() {
+                let type = resultSet.string(forColumn: "ten")!
+                let dname = resultSet.string(forColumn: "displayName")!
+                
+                if type != "" {
+                    result[type] = dname
+                }
+            }
+        }
+        
+        DataConnection.database!.close()
+        
+        return result
+    }
+    
     class func getPlateShapeByGroup(groups: [String]) -> [String] {
         DataConnection.database!.open()
         var whereClause = ""
@@ -596,6 +619,35 @@ class Queries: NSObject {
             whereClause = "ten = '' or "
         }
         let sql = "select ten from tblPlateShapes where type in (select id from tblShapeGroups where (\(Utils.removeLastCharacters(result: whereClause, length: 4))))"
+        
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        var result = [String]()
+        if resultSet != nil {
+            while resultSet.next() {
+                let type = resultSet.string(forColumn: "ten")!
+                if type != "" {
+                    result.append(type)
+                }
+            }
+        }
+        
+        DataConnection.database!.close()
+        
+        return result
+    }
+    
+    class func getVachShapeByGroup(groups: [String]) -> [String] {
+        DataConnection.database!.open()
+        var whereClause = ""
+        for group in groups {
+            whereClause += "ten = '\(group)' or "
+        }
+        
+        //workaround for no group selected
+        if groups.count < 1 {
+            whereClause = "ten = '' or "
+        }
+        let sql = "select distinct ten from tblVachShapes where type in (select id from tblVachGroups where (\(Utils.removeLastCharacters(result: whereClause, length: 4))))"
         
         let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
         var result = [String]()
@@ -641,6 +693,76 @@ class Queries: NSObject {
                     sql += " JOIN (select * from tblPlateReferences where type = '" + details[0] + "'"
                     if details.count > 1 {
                         sql +=  " and refId in (select id from '\(details[0])' where ten = '\(details[1])' or ten = '\(details[1])-diagonal')"
+                    }
+                    
+                    sql += ") as a\(index) on a0.name = a\(index).name"
+                }
+                index += 1
+            }
+        }
+        
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        var result = [String:String]()
+        if resultSet != nil {
+            while resultSet.next() {
+                let pid = resultSet.string(forColumn: "pid")!
+                let pname = resultSet.string(forColumn: "name")!
+                if pid != "" {
+                    result[pname] = pid
+                }
+            }
+        }
+        
+        DataConnection.database!.close()
+        
+        if result.count < 1 {
+            return [Dieukhoan]()
+        }
+        
+        var dkList = [String:Dieukhoan]()
+        var finalResult = [Dieukhoan]()
+        for dk in searchDieukhoanByIDs(keyword: Array(result.values), vanbanid: [GeneralSettings.getQc41Id]) {
+            dkList["\(dk.getId())"] = dk
+        }
+        
+        for rs in result {
+            let dk = dkList[rs.value]!
+            let fdk = Dieukhoan(dk: dk)
+            fdk.setDefaultMinhhoa(name: rs.key)
+            finalResult.append(fdk)
+        }
+        
+        return finalResult
+    }
+    
+    class func getVachByParams(params: [String], groups: [String]) -> [Dieukhoan] {
+        DataConnection.database!.open()
+        
+        var sql = ""
+        var index = 0
+        var inGroup = ""
+        for group in groups {
+            inGroup += "'\(group)', "
+        }
+        
+        // if no params or groups set, get all plates
+        if params.count == 0 && groups.count < 1 {
+            sql = "select plateId as pid, name from tblVachReferences"
+        } else if params.count == 0 { // if no params but groups set, select plates that has type of 'tblVachShapes' and refID is one of the selected shapes
+            sql = "select plateId as pid, name from tblVachReferences where type = 'tblVachShapes' and refId in (select id from tblVachShapes where type in (select id from tblVachGroups where ten in (\(Utils.removeLastCharacters(result: inGroup, length: 2)))))"
+        } else { //if at list 1 param set, select plate that matched that param
+            for type in params {
+                var details = type.split(separator: ":")
+                if index == 0 {
+                    sql = "select a0.plateId as pid, a0.name as name from (select * from tblVachReferences where type = '" + details[0] + "'"
+                    if details.count > 1 {
+                        sql +=  " and refId in (select id from '\(details[0])' where ten = '\(details[1])')"
+                    }
+                    sql += " and (plateId in (select plateID from tblVachReferences where type = 'tblVachShapes' and refid in (select id from tblVachShapes where type in (select id from tblVachGroups where ten in (\(Utils.removeLastCharacters(result: inGroup, length: 2)))))))) as a0"
+                } else {
+                    sql += " JOIN (select * from tblVachReferences where type = '" + details[0] + "'"
+                    if details.count > 1 {
+                        sql +=  " and refId in (select id from '\(details[0])' where ten = '\(details[1])')"
                     }
                     
                     sql += ") as a\(index) on a0.name = a\(index).name"

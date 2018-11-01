@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		20279DE0C4C4A62F0030B572 /* Pods_HieuLuat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2F4D9953D61DA1A8A51262 /* Pods_HieuLuat.framework */; };
+		330A22142188AF6C0082A4A6 /* SearchControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A22132188AF6C0082A4A6 /* SearchControllers.swift */; };
 		3331E6641FA3092000219B19 /* MPSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3331E6631FA3092000219B19 /* MPSearchTableController.swift */; };
 		334939891FA8A74F0037305C /* AdsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334939881FA8A74F0037305C /* AdsHelper.swift */; };
 		334AAFB21FC1E0A300A5BE0F /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AAFB11FC1E0A300A5BE0F /* GeneralSettings.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		330A22132188AF6C0082A4A6 /* SearchControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControllers.swift; sourceTree = "<group>"; };
 		3331E6631FA3092000219B19 /* MPSearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPSearchTableController.swift; sourceTree = "<group>"; };
 		334939881FA8A74F0037305C /* AdsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsHelper.swift; sourceTree = "<group>"; };
 		334AAFB11FC1E0A300A5BE0F /* GeneralSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				33C87DFB1F604C0200D8B198 /* ConfigAttribute.swift */,
 				334AAFB11FC1E0A300A5BE0F /* GeneralSettings.swift */,
 				339B43421FFBAE6C00149B09 /* BosungKhacphuc.swift */,
+				330A22132188AF6C0082A4A6 /* SearchControllers.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				336C485B1FA0D7D200A154D9 /* PickerViewSelectPopup.swift in Sources */,
 				335078EA1F5B099100D52741 /* VBPLDetailsViewController.swift in Sources */,
 				33D305661F51802700547497 /* Loaivanban.swift in Sources */,
+				330A22142188AF6C0082A4A6 /* SearchControllers.swift in Sources */,
 				33D3055D1F517F2B00547497 /* SearchFor.swift in Sources */,
 				33C87DFC1F604C0200D8B198 /* ConfigAttribute.swift in Sources */,
 				3331E6641FA3092000219B19 /* MPSearchTableController.swift in Sources */,

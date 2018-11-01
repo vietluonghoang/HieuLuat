@@ -14,7 +14,7 @@ class BBFilterPopupViewController: UIViewController {
     @IBOutlet var svOptions: UIScrollView!
     @IBOutlet var btnXong: UIButton!
 
-    var root: BBSearchTableController? = nil
+    var root: SearchControllers? = nil
     var optionList = [String]()
     var optionListText = [String:String]()
     var headerText = ""
@@ -37,8 +37,14 @@ class BBFilterPopupViewController: UIViewController {
     }
     
     //optionText will be the list of display name for options. Therefore, the order of optionText and options must be the same since the corresponding text will be replaced for option
-    func updateFilterPopup(root: BBSearchTableController, options: [String], optionsText: [String:String], headerText: String) {
+    func updateFilterPopup(root: SearchControllers, options: [String], optionsText: [String:String], headerText: String) {
         self.root = root
+        if root.isKind(of: BBSearchTableController.self) {
+            self.root = root as! BBSearchTableController
+        }
+        if root.isKind(of: VKDTableController.self) {
+            self.root = root as! VKDTableController
+        }
         self.optionList = options
         self.optionListText = optionsText
         self.headerText = headerText
@@ -47,7 +53,7 @@ class BBFilterPopupViewController: UIViewController {
     func updateSwitches() {
         var order = 0
         for opt in (optionList) {
-            switches[order].isOn = (root?.plateShapeGroupFiltersSelected[opt])!
+            switches[order].isOn = (root?.isFilterSelected(key: opt))!
             order += 1
         }
     }
@@ -109,7 +115,7 @@ class BBFilterPopupViewController: UIViewController {
     
     @IBAction func btnXongOnTouchDown(_ sender: Any) {
         root?.updateFilterLabel()
-        root?.updatePlateGroupsScrollView()
+        root?.updateGroupsScrollView()
         root?.updateSearchResults()
         self.dismiss(animated: true, completion: nil)
     }
