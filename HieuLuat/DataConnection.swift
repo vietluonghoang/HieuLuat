@@ -10,7 +10,7 @@ import UIKit
 import FMDB
 
 class DataConnection: NSObject {
-    static let databaseVersion = 3
+    static let databaseVersion = 4
     static var isDatabaseUpdated = false
     static var database: FMDatabase? = nil
     class func databaseSetup() {

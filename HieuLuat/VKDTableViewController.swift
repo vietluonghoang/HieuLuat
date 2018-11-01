@@ -170,7 +170,7 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
                 currentSelectedShapes[imgName] = true
             }
             
-            let imgView = UIImageView(image: Utils.scaleImageSideward(image: vachShapeImage, targetHeight: 40))
+            let imgView = UIImageView(image: Utils.scaleImageSideward(image: vachShapeImage, targetHeight: 70))
             let imgViewWrapper = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
             
             

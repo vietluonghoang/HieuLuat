@@ -159,7 +159,7 @@ class Dieukhoan: NSObject {
     func setDefaultMinhhoa(name: String) {
         var order = 0
         for mh in minhhoa {
-            if mh.contains(name) {
+            if mh.lowercased().contains(name.lowercased()) {
                 self.defaultMinhhoa = order
             }
             order += 1

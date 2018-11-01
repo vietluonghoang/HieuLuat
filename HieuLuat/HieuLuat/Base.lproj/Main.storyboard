@@ -3066,7 +3066,7 @@ kết cấu hạ tầng đường sắt</string>
                                 <rect key="frame" x="0.0" y="258" width="320" height="260"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9tx-I4-bLN">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="268"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="238"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="250" id="ZX3-Zx-Zrg"/>
@@ -3145,6 +3145,7 @@ kết cấu hạ tầng đường sắt</string>
                                                     <outlet property="lblNoidung" destination="SuN-OF-Xmb" id="fd3-F0-F0N"/>
                                                     <outlet property="lblParentBreadscrub" destination="MiF-JX-KVv" id="7Mf-27-TgA"/>
                                                     <outlet property="lblVanban" destination="oFY-xj-oVO" id="BqQ-Az-ouR"/>
+                                                    <segue destination="a1g-wb-2BY" kind="show" identifier="showDieukhoan" id="h7z-qI-2JY"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -3167,10 +3168,10 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQ4-3b-Xtc">
-                                <rect key="frame" x="0.0" y="64" width="320" height="186"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="216"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q2p-rP-VcW">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="94"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAW-2v-mV1" userLabel="ViewPlateShapeSelectTittle">
                                                 <rect key="frame" x="6" y="0.0" width="308" height="12"/>
@@ -3191,13 +3192,13 @@ kết cấu hạ tầng đường sắt</string>
                                                 </constraints>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigate_left" translatesAutoresizingMaskIntoConstraints="NO" id="qxZ-ZM-qQA" userLabel="Image View Left">
-                                                <rect key="frame" x="2" y="14" width="20" height="50"/>
+                                                <rect key="frame" x="2" y="14" width="20" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="Qf6-sx-X3F"/>
                                                 </constraints>
                                             </imageView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RHL-Ng-zH7">
-                                                <rect key="frame" x="22" y="14" width="276" height="50"/>
+                                                <rect key="frame" x="22" y="14" width="276" height="80"/>
                                                 <subviews>
                                                     <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="INJ-g6-rvo">
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
@@ -3217,20 +3218,20 @@ kết cấu hạ tầng đường sắt</string>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="INJ-g6-rvo" firstAttribute="bottom" secondItem="RHL-Ng-zH7" secondAttribute="bottom" id="CxS-la-oeJ"/>
-                                                    <constraint firstAttribute="height" constant="50" id="GhV-Qb-kks"/>
+                                                    <constraint firstAttribute="height" constant="80" id="GhV-Qb-kks"/>
                                                     <constraint firstItem="INJ-g6-rvo" firstAttribute="top" secondItem="RHL-Ng-zH7" secondAttribute="top" id="Gox-Bk-2jY"/>
                                                     <constraint firstItem="INJ-g6-rvo" firstAttribute="leading" secondItem="RHL-Ng-zH7" secondAttribute="leading" id="Qbz-L9-vTX"/>
                                                     <constraint firstItem="INJ-g6-rvo" firstAttribute="trailing" secondItem="RHL-Ng-zH7" secondAttribute="trailing" id="dDJ-ep-skk"/>
                                                 </constraints>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigate_right" translatesAutoresizingMaskIntoConstraints="NO" id="bnw-Jp-JJN" userLabel="Image View Right">
-                                                <rect key="frame" x="298" y="14" width="20" height="50"/>
+                                                <rect key="frame" x="298" y="14" width="20" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="HTd-Ky-xRE"/>
                                                 </constraints>
                                             </imageView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="POm-lo-Z5B">
-                                                <rect key="frame" x="0.0" y="64" width="320" height="30"/>
+                                                <rect key="frame" x="0.0" y="94" width="320" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lnm-MZ-yoP">
                                                         <rect key="frame" x="2" y="0.0" width="65" height="30"/>
@@ -3287,7 +3288,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </constraints>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RSv-X0-HIW">
-                                        <rect key="frame" x="0.0" y="96" width="320" height="90"/>
+                                        <rect key="frame" x="0.0" y="126" width="320" height="90"/>
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppn-Ku-D9B" userLabel="ViewDetailsSelectTittle">
                                                 <rect key="frame" x="6" y="2" width="308" height="10"/>
@@ -3320,7 +3321,7 @@ kết cấu hạ tầng đường sắt</string>
                                                                     <constraint firstAttribute="width" constant="35" id="Axx-y7-0rs"/>
                                                                     <constraint firstAttribute="height" constant="35" id="MDA-2e-5Ab"/>
                                                                 </constraints>
-                                                                <state key="normal" title="Mũi tên" image="Arrow"/>
+                                                                <state key="normal" title="Mũi tên" image="onroad"/>
                                                                 <connections>
                                                                     <action selector="btnArrowAct:" destination="UDc-4c-lDr" eventType="touchDown" id="Fyi-g7-Pnv"/>
                                                                     <action selector="btnOnroadAct:" destination="70T-2Q-g9y" eventType="touchUpInside" id="xzD-g6-5KD"/>
@@ -3349,7 +3350,7 @@ kết cấu hạ tầng đường sắt</string>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IuV-ow-j4s">
                                                                 <rect key="frame" x="20" y="2" width="35" height="35"/>
                                                                 <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <state key="normal" title="Chữ số" image="Alphanumeric" backgroundImage="Alphanumeric"/>
+                                                                <state key="normal" title="Chữ số" image="cross"/>
                                                                 <connections>
                                                                     <action selector="btnAlphanumericAct:" destination="UDc-4c-lDr" eventType="touchDown" id="cNo-LE-5cv"/>
                                                                     <action selector="btnCrossAct:" destination="70T-2Q-g9y" eventType="touchUpInside" id="z44-Iw-KXw"/>
@@ -3384,7 +3385,7 @@ kết cấu hạ tầng đường sắt</string>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nXk-Xj-eug">
                                                                 <rect key="frame" x="19.5" y="2" width="35" height="35"/>
                                                                 <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <state key="normal" title="Người, vật" image="Creatures"/>
+                                                                <state key="normal" title="Người, vật" image="sidewalk"/>
                                                                 <connections>
                                                                     <action selector="btnCreaturesAct:" destination="UDc-4c-lDr" eventType="touchDown" id="QbO-rV-ERW"/>
                                                                     <action selector="btnSidewalkAct:" destination="70T-2Q-g9y" eventType="touchUpInside" id="lKa-ji-UcQ"/>
@@ -3407,7 +3408,7 @@ kết cấu hạ tầng đường sắt</string>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fka-af-nau">
                                                                 <rect key="frame" x="20" y="2" width="35" height="35"/>
                                                                 <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <state key="normal" title="Phương tiện" image="Vehicles"/>
+                                                                <state key="normal" title="Phương tiện" image="obstacles"/>
                                                                 <connections>
                                                                     <action selector="btnObstacleAct:" destination="70T-2Q-g9y" eventType="touchUpInside" id="E8c-GB-7LE"/>
                                                                     <action selector="btnVehiclesAct:" destination="UDc-4c-lDr" eventType="touchDown" id="bEN-63-T9I"/>
@@ -4217,12 +4218,16 @@ kết cấu hạ tầng đường sắt</string>
         <image name="Signs" width="90" height="90"/>
         <image name="Structures" width="90" height="90"/>
         <image name="Vehicles" width="90" height="90"/>
+        <image name="cross" width="301" height="301"/>
         <image name="navigate_left" width="40" height="100"/>
         <image name="navigate_right" width="40" height="100"/>
+        <image name="obstacles" width="100" height="100"/>
+        <image name="onroad" width="100" height="100"/>
+        <image name="sidewalk" width="100" height="100"/>
         <image name="vietcat_crop" width="572" height="507"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fx5-Wp-0nq"/>
+        <segue reference="h7z-qI-2JY"/>
         <segue reference="Dwh-PK-agn"/>
         <segue reference="wfD-bY-mxt"/>
     </inferredMetricsTieBreakers>
