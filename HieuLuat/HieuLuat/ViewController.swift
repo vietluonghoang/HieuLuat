@@ -9,10 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet var lblVersion: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        lblVersion.text = getVersion()
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +22,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    func getVersion() -> String {
+        let bundleCode: AnyObject? = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as AnyObject
+        let bundleVersion: AnyObject? = Bundle.main.infoDictionary!["CFBundleVersion"] as AnyObject
+        let versionInfo = "v.\(bundleCode as! String)(\(bundleVersion as! String)) - db.\(GeneralSettings.getDatabaseVersion)"
+//        print("=========== \(versionInfo)")
+        return versionInfo
+    }
 }
 
