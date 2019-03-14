@@ -176,12 +176,12 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
             
             imgViewWrapper.translatesAutoresizingMaskIntoConstraints = false
             imgViewWrapper.clipsToBounds = true
-            imgViewWrapper.contentMode = UIViewContentMode.scaleAspectFit
+            imgViewWrapper.contentMode = UIView.ContentMode.scaleAspectFit
             imgViewWrapper.autoresizesSubviews = true
             
             imgView.translatesAutoresizingMaskIntoConstraints = false
             imgView.clipsToBounds = true
-            imgView.contentMode = UIViewContentMode.scaleAspectFit
+            imgView.contentMode = UIView.ContentMode.scaleAspectFit
             imgView.autoresizesSubviews = true
             let tap = UITapGestureRecognizer(target: self, action: #selector(selectVachShapeActionListener))
             imgView.isUserInteractionEnabled = true
@@ -216,11 +216,11 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func btnFouderFBAction() {
+    @objc func btnFouderFBAction() {
         let url = URL(string: GeneralSettings.getFBLink)
         if UIApplication.shared.canOpenURL(url!) {
             if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(url!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {
                 UIApplication.shared.openURL(url!)
             }
@@ -297,7 +297,7 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
     }
-    func selectVachShapeActionListener(sender: UITapGestureRecognizer) {
+    @objc func selectVachShapeActionListener(sender: UITapGestureRecognizer) {
         for view in viewScrollviewContent.subviews {
             for iv in view.subviews {
                 if iv.tag == sender.view?.tag {
@@ -461,11 +461,11 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
                    heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
@@ -485,4 +485,9 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
         tblView.layoutIfNeeded()
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

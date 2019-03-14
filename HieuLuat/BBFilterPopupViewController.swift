@@ -108,7 +108,7 @@ class BBFilterPopupViewController: UIViewController {
         }
     }
     
-    func swtValueChanged(sender: Any) {
+    @objc func swtValueChanged(sender: Any) {
         let name = optionList[(sender as! UISwitch).tag]
         root?.updateFilter(key: name, value: (sender as! UISwitch).isOn)
     }

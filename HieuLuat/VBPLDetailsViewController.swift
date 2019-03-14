@@ -65,7 +65,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet var consHeightTblView: NSLayoutConstraint!
     @IBOutlet var viewAds: UIView!
     
-    var children = [Dieukhoan]()
+    var dkChild = [Dieukhoan]()
     var parentDieukhoan: Dieukhoan? = nil
     var relatedChildren = [Dieukhoan]()
     var hinhphatbosungList = [BosungKhacphuc]()
@@ -150,11 +150,11 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func btnFouderFBAction() {
+    @objc func btnFouderFBAction() {
         let url = URL(string: GeneralSettings.getFBLink)
         if UIApplication.shared.canOpenURL(url!) {
             if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(url!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {
                 UIApplication.shared.openURL(url!)
             }
@@ -166,9 +166,9 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         specificVanbanId.append( String(describing:dieukhoan.getVanban().getId()))
         
         for child in getChildren(keyword: String(describing: dieukhoan.id)) {
-            children.append(child)
+            dkChild.append(child)
         }
-        rowCount = children.count
+        rowCount = dkChild.count
         
         for child in Queries.getAllDirectRelatedDieukhoan(dieukhoanId: dieukhoan.getId()) {
             relatedChildren.append(child)
@@ -447,7 +447,6 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         viewMinhhoa.translatesAutoresizingMaskIntoConstraints = false
         
         var order = 0
-        
         for img in images {
             if (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines).count < 1{
                 
@@ -457,7 +456,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                 let imgView = UIImageView(image: Utils.scaleImage(image: image, targetWidth: Utils.getScreenWidth()))
                 imgView.translatesAutoresizingMaskIntoConstraints = false
                 imgView.clipsToBounds = true
-                imgView.contentMode = UIViewContentMode.scaleAspectFit
+                imgView.contentMode = UIView.ContentMode.scaleAspectFit
                 imgView.autoresizesSubviews = true
                 if order == 0 {
                     if images.count == 1 {
@@ -569,7 +568,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                 fatalError("The selected cell is not being displayed by the table")
             }
             
-            let selectedDieukhoan = children[indexPath.row]
+            let selectedDieukhoan = dkChild[indexPath.row]
             dieukhoanDetails.updateDetails(dieukhoan: selectedDieukhoan)
             
         default:
@@ -577,7 +576,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func seeMore(sender: UITapGestureRecognizer) {
+    @objc func seeMore(sender: UITapGestureRecognizer) {
         print("----------------------------\nI want to show image in zoom view but it could take more time to implement this while the benefit from this is not really high, then i'll let it like this until i have more time or i change my mind.\n----------------------------")
     }
     
@@ -593,14 +592,14 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         var dieukhoan:Dieukhoan
         
         if searchController.isActive && searchController.searchBar.text != "" {
-            if children.count>0 {
-                dieukhoan = children[indexPath.row]
+            if dkChild.count>0 {
+                dieukhoan = dkChild[indexPath.row]
             }else{
                 dieukhoan = Dieukhoan(id: 0, cha: 0, vanban: Vanban(id: 0, ten: "", loai: Loaivanban(id: 0, ten: ""), so: "", nam: "", ma: "", coquanbanhanh: Coquanbanhanh(id: 0, ten: ""), noidung: ""))
                 dieukhoan.setMinhhoa(minhhoa: [""])
             }
         } else {
-            dieukhoan = children[indexPath.row]
+            dieukhoan = dkChild[indexPath.row]
         }
         
         cell.updateDieukhoan(dieukhoan: dieukhoan, fullDetails: true, showVanban: false)
@@ -616,20 +615,25 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                    heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         //        updateDieukhoanList(arrDieukhoan: search(keyword: searchText))
-        rowCount = children.count
+        rowCount = dkChild.count
         tblView.reloadData()
     }
     
     public func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

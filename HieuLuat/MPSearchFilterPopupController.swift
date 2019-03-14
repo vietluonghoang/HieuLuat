@@ -1052,13 +1052,13 @@ class MPSearchFilterPopupController: UIViewController {
     
     func updateMucphatTu(tu: String) {
         root.searchFilters["Mucphat"]!["tu"]!["chon"] = tu
-        btnTu.setTitle(tu, for: UIControlState.normal)
+        btnTu.setTitle(tu, for: UIControl.State.normal)
         
         switchMucphatTuDen()
     }
     
     func updateMucphatDen(den: String) {
-        btnDen.setTitle(den, for: UIControlState.normal)
+        btnDen.setTitle(den, for: UIControl.State.normal)
         root.searchFilters["Mucphat"]!["den"]!["chon"] = den
         
         switchMucphatTuDen()
@@ -1074,8 +1074,8 @@ class MPSearchFilterPopupController: UIViewController {
                 let newDen = root.searchFilters["Mucphat"]!["tu"]!["chon"]!
                 root.searchFilters["Mucphat"]!["den"]!["chon"] = newDen
                 root.searchFilters["Mucphat"]!["tu"]!["chon"] = newTu
-                btnTu.setTitle(newTu, for: UIControlState.normal)
-                btnDen.setTitle(newDen, for: UIControlState.normal)
+                btnTu.setTitle(newTu, for: UIControl.State.normal)
+                btnDen.setTitle(newDen, for: UIControl.State.normal)
             }
         }
     }
@@ -1083,13 +1083,13 @@ class MPSearchFilterPopupController: UIViewController {
     func updateOptionText(label: UILabel, enable: Bool) {
         if enable {
             if #available(iOS 8.2, *) {
-                appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFontWeightRegular), color: UIColor.black)
+                appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular), color: UIColor.black)
             } else {
                 // Fallback on earlier versions
             }
         }else{
             if #available(iOS 8.2, *) {
-                appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFontWeightThin), color: UIColor.gray)
+                appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.thin), color: UIColor.gray)
             } else {
                 // Fallback on earlier versions
             }

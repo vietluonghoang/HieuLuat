@@ -34,7 +34,7 @@ class VBPLTableViewCell: UITableViewCell{
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
-   
+    
     func updateDieukhoan(dieukhoan: Dieukhoan,fullDetails: Bool,showVanban: Bool, maxText: Int = 250, defaultImage: Int = 0) {
         if(!showVanban){
             lblVanban.isHidden = true
@@ -47,7 +47,7 @@ class VBPLTableViewCell: UITableViewCell{
             lblVanban.numberOfLines = 0
             lblVanban.lineBreakMode = NSLineBreakMode.byWordWrapping
             if #available(iOS 8.2, *) {
-                lblVanban.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightThin)
+                lblVanban.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.thin)
             } else {
                 // Fallback on earlier versions
             }
@@ -55,7 +55,7 @@ class VBPLTableViewCell: UITableViewCell{
             lblParentBreadscrub.numberOfLines = 0
             lblParentBreadscrub.lineBreakMode = NSLineBreakMode.byWordWrapping
             if #available(iOS 8.2, *) {
-                lblParentBreadscrub.font = UIFont.systemFont(ofSize: 12, weight: UIFontWeightRegular)
+                lblParentBreadscrub.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.regular)
             } else {
                 // Fallback on earlier versions
             }
@@ -85,7 +85,7 @@ class VBPLTableViewCell: UITableViewCell{
         }
         lblNoidung.text = noidung
         
-        if(dieukhoan.getMinhhoa()[0].trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "").count>0){
+        if(dieukhoan.getMinhhoa().count > 0){
             
             //check if dieukhoan gets default minhhoa set internally. By default, minhhoa will be shown with the default value set internally (through .getDefaultMinhhoa). In the case if defaultImage is set (not equal to 0), then the value of defaultImage will overwrites the internal default minhhoa value (defaultImage will be the one to show).
             var dftImg = dieukhoan.getDefaultMinhhoa()

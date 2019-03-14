@@ -39,7 +39,9 @@ class Dieukhoan: NSObject {
         self.cha=cha
         self.vanban=vanban
         for mh in minhhoa.components(separatedBy: ";") {
-            self.minhhoa.append(String(describing: mh.trimmingCharacters(in: .whitespacesAndNewlines)))
+            if (mh.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines).count > 0 {
+                self.minhhoa.append(String(describing: mh.trimmingCharacters(in: .whitespacesAndNewlines)))
+            }
         }
         self.sortPoint = 0
     }
@@ -121,11 +123,21 @@ class Dieukhoan: NSObject {
     }
     
     func setMinhhoa(minhhoa:[String]) {
-        self.minhhoa=minhhoa
+        var images = minhhoa
+        var order = 0
+        for img in images {
+            if (img.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines).count < 1{
+                images.remove(at: order)
+            }
+            order += 1
+        }
+        self.minhhoa=images
     }
     
     func addMinhhoa(minhhoa:String) {
-        self.minhhoa.append(String(describing: minhhoa.trimmingCharacters(in: .whitespacesAndNewlines)))
+        if (minhhoa.replacingOccurrences(of: ".png", with: "").replacingOccurrences(of: "\n", with: "")).trimmingCharacters(in: .whitespacesAndNewlines).count > 0 {
+            self.minhhoa.append(String(describing: minhhoa.trimmingCharacters(in: .whitespacesAndNewlines)))
+        }
     }
     
     func getCha() -> Int64 {

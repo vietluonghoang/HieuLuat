@@ -123,11 +123,11 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func btnFouderFBAction() {
+    @objc func btnFouderFBAction() {
         let url = URL(string: GeneralSettings.getFBLink)
         if UIApplication.shared.canOpenURL(url!) {
             if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(url!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {
                 UIApplication.shared.openURL(url!)
             }
@@ -285,11 +285,11 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
                    heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
@@ -304,4 +304,9 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         //        }
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
