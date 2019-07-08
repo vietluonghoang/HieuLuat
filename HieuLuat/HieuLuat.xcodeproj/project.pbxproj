@@ -40,6 +40,7 @@
 		33D305661F51802700547497 /* Loaivanban.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305651F51802700547497 /* Loaivanban.swift */; };
 		33D305681F51804F00547497 /* Vanban.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305671F51804F00547497 /* Vanban.swift */; };
 		33D31DE41F77BEF700A46E62 /* MPSearchFilterPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D31DE31F77BEF700A46E62 /* MPSearchFilterPopupController.swift */; };
+		33E82BD222CC6708008CFB34 /* VideoCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E82BD122CC6708008CFB34 /* VideoCaptureViewController.swift */; };
 		33EB998D215A229D0097827A /* VKDTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EB998C215A229D0097827A /* VKDTableViewController.swift */; };
 		33F06FF9212439DD00A69431 /* Hieuluat.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 33F06FF8212439DD00A69431 /* Hieuluat.sqlite */; };
 		33F87E182152509400B04A94 /* BBFilterPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F87E172152509400B04A94 /* BBFilterPopupViewController.swift */; };
@@ -101,6 +102,7 @@
 		33D305651F51802700547497 /* Loaivanban.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loaivanban.swift; sourceTree = "<group>"; };
 		33D305671F51804F00547497 /* Vanban.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vanban.swift; sourceTree = "<group>"; };
 		33D31DE31F77BEF700A46E62 /* MPSearchFilterPopupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPSearchFilterPopupController.swift; sourceTree = "<group>"; };
+		33E82BD122CC6708008CFB34 /* VideoCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCaptureViewController.swift; sourceTree = "<group>"; };
 		33EB998C215A229D0097827A /* VKDTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKDTableViewController.swift; sourceTree = "<group>"; };
 		33F06FF8212439DD00A69431 /* Hieuluat.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hieuluat.sqlite; sourceTree = "<group>"; };
 		33F87E172152509400B04A94 /* BBFilterPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBFilterPopupViewController.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				33BCFF0821451FEE004804F7 /* BBSearchTableController.swift */,
 				33F87E172152509400B04A94 /* BBFilterPopupViewController.swift */,
 				33EB998C215A229D0097827A /* VKDTableViewController.swift */,
+				33E82BD122CC6708008CFB34 /* VideoCaptureViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				33D3055B1F517D6F00547497 /* DataConnection.swift in Sources */,
 				33D305621F517FB900547497 /* Dieukhoan.swift in Sources */,
 				33EB998D215A229D0097827A /* VKDTableViewController.swift in Sources */,
+				33E82BD222CC6708008CFB34 /* VideoCaptureViewController.swift in Sources */,
 				3394A2782072236C00831E69 /* AboutViewController.swift in Sources */,
 				336C485B1FA0D7D200A154D9 /* PickerViewSelectPopup.swift in Sources */,
 				335078EA1F5B099100D52741 /* VBPLDetailsViewController.swift in Sources */,
