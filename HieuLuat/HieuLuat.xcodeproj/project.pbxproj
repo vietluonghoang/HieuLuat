@@ -44,6 +44,12 @@
 		33EB998D215A229D0097827A /* VKDTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EB998C215A229D0097827A /* VKDTableViewController.swift */; };
 		33F06FF9212439DD00A69431 /* Hieuluat.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 33F06FF8212439DD00A69431 /* Hieuluat.sqlite */; };
 		33F87E182152509400B04A94 /* BBFilterPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F87E172152509400B04A94 /* BBFilterPopupViewController.swift */; };
+		33FD3B6E2329E86D00DD7087 /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B6D2329E86D00DD7087 /* NetworkHandler.swift */; };
+		33FD3B702329FE0B00DD7087 /* DeviceInfoCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B6F2329FE0B00DD7087 /* DeviceInfoCollector.swift */; };
+		33FD3B72232A284A00DD7087 /* MessagingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B71232A284A00DD7087 /* MessagingContainer.swift */; };
+		33FD3B74232A537700DD7087 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B73232A537700DD7087 /* AppConfiguration.swift */; };
+		33FD3B76232A5A5800DD7087 /* UpdatePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B75232A5A5800DD7087 /* UpdatePopupViewController.swift */; };
+		33FD3B78232A6BBC00DD7087 /* RedirectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B77232A6BBC00DD7087 /* RedirectionHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +112,12 @@
 		33EB998C215A229D0097827A /* VKDTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKDTableViewController.swift; sourceTree = "<group>"; };
 		33F06FF8212439DD00A69431 /* Hieuluat.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hieuluat.sqlite; sourceTree = "<group>"; };
 		33F87E172152509400B04A94 /* BBFilterPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBFilterPopupViewController.swift; sourceTree = "<group>"; };
+		33FD3B6D2329E86D00DD7087 /* NetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
+		33FD3B6F2329FE0B00DD7087 /* DeviceInfoCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoCollector.swift; sourceTree = "<group>"; };
+		33FD3B71232A284A00DD7087 /* MessagingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingContainer.swift; sourceTree = "<group>"; };
+		33FD3B73232A537700DD7087 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		33FD3B75232A5A5800DD7087 /* UpdatePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePopupViewController.swift; sourceTree = "<group>"; };
+		33FD3B77232A6BBC00DD7087 /* RedirectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectionHelper.swift; sourceTree = "<group>"; };
 		72E93BC1C30A83EE28D1AC21 /* Pods-HieuLuat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat.debug.xcconfig"; sourceTree = "<group>"; };
 		9017557B072E220F7AC12647 /* Pods-HieuLuat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.release.xcconfig"; path = "Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat.release.xcconfig"; sourceTree = "<group>"; };
 		CA2F4D9953D61DA1A8A51262 /* Pods_HieuLuat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HieuLuat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +152,7 @@
 		33D3051C1F51794F00547497 = {
 			isa = PBXGroup;
 			children = (
+				33FD3B6C2329E82F00DD7087 /* Networking */,
 				33D305691F51F73500547497 /* UI */,
 				33D305601F517F8600547497 /* Entities */,
 				33D305591F517D5000547497 /* Utils */,
@@ -212,6 +225,7 @@
 				334939881FA8A74F0037305C /* AdsHelper.swift */,
 				33C867091FAA02AC0090D954 /* AppearanceUtil.swift */,
 				3350DB30214A8EBC008D0AE4 /* Utils.swift */,
+				33FD3B77232A6BBC00DD7087 /* RedirectionHelper.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -227,6 +241,7 @@
 				334AAFB11FC1E0A300A5BE0F /* GeneralSettings.swift */,
 				339B43421FFBAE6C00149B09 /* BosungKhacphuc.swift */,
 				330A22132188AF6C0082A4A6 /* SearchControllers.swift */,
+				33FD3B73232A537700DD7087 /* AppConfiguration.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -247,8 +262,19 @@
 				33F87E172152509400B04A94 /* BBFilterPopupViewController.swift */,
 				33EB998C215A229D0097827A /* VKDTableViewController.swift */,
 				33E82BD122CC6708008CFB34 /* VideoCaptureViewController.swift */,
+				33FD3B75232A5A5800DD7087 /* UpdatePopupViewController.swift */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		33FD3B6C2329E82F00DD7087 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				33FD3B6D2329E86D00DD7087 /* NetworkHandler.swift */,
+				33FD3B6F2329FE0B00DD7087 /* DeviceInfoCollector.swift */,
+				33FD3B71232A284A00DD7087 /* MessagingContainer.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		591EC7CE7A54DABE4D14BD32 /* Pods */ = {
@@ -363,6 +389,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -456,22 +483,28 @@
 				335078EC1F5D166A00D52741 /* VBPLSearchTableController.swift in Sources */,
 				33D305641F517FF500547497 /* Coquanbanhanh.swift in Sources */,
 				33BCFF0921451FEE004804F7 /* BBSearchTableController.swift in Sources */,
+				33FD3B76232A5A5800DD7087 /* UpdatePopupViewController.swift in Sources */,
+				33FD3B6E2329E86D00DD7087 /* NetworkHandler.swift in Sources */,
 				33D31DE41F77BEF700A46E62 /* MPSearchFilterPopupController.swift in Sources */,
 				33D305681F51804F00547497 /* Vanban.swift in Sources */,
 				33D3052B1F51794F00547497 /* ViewController.swift in Sources */,
 				334939891FA8A74F0037305C /* AdsHelper.swift in Sources */,
 				33C87DFE1F6052B100D8B198 /* FilterPopupViewController.swift in Sources */,
 				33D305291F51794F00547497 /* AppDelegate.swift in Sources */,
+				33FD3B72232A284A00DD7087 /* MessagingContainer.swift in Sources */,
 				33CB16001F5AF9A700AD2C45 /* VBPLDetailsSearchTableController.swift in Sources */,
 				33CE51FC1F5E788C008AB4D4 /* VBPLTableViewCell.swift in Sources */,
 				334AAFB21FC1E0A300A5BE0F /* GeneralSettings.swift in Sources */,
+				33FD3B78232A6BBC00DD7087 /* RedirectionHelper.swift in Sources */,
 				3357C5321F86547700B963E6 /* SortUtil.swift in Sources */,
 				33C8670A1FAA02AC0090D954 /* AppearanceUtil.swift in Sources */,
 				33D3055B1F517D6F00547497 /* DataConnection.swift in Sources */,
+				33FD3B74232A537700DD7087 /* AppConfiguration.swift in Sources */,
 				33D305621F517FB900547497 /* Dieukhoan.swift in Sources */,
 				33EB998D215A229D0097827A /* VKDTableViewController.swift in Sources */,
 				33E82BD222CC6708008CFB34 /* VideoCaptureViewController.swift in Sources */,
 				3394A2782072236C00831E69 /* AboutViewController.swift in Sources */,
+				33FD3B702329FE0B00DD7087 /* DeviceInfoCollector.swift in Sources */,
 				336C485B1FA0D7D200A154D9 /* PickerViewSelectPopup.swift in Sources */,
 				335078EA1F5B099100D52741 /* VBPLDetailsViewController.swift in Sources */,
 				33D305661F51802700547497 /* Loaivanban.swift in Sources */,

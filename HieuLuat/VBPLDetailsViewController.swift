@@ -81,6 +81,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     var settings = GeneralSettings()
     var bannerView: GADBannerView!
     let btnFBBanner = UIButton()
+    let redirectionHelper = RedirectionHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,14 +152,8 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @objc func btnFouderFBAction() {
-        let url = URL(string: GeneralSettings.getFBLink)
-        if UIApplication.shared.canOpenURL(url!) {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url!)
-            }
-        }
+        let url = URL(string: GeneralSettings.getFBLink)!
+        redirectionHelper.openUrl(url: url)
     }
     
     func updateDetails(dieukhoan: Dieukhoan) {

@@ -47,6 +47,7 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     let offColor = UIColor(red:0.39377 , green: 0.891997, blue: 0.793788, alpha: 1.0)
     let shapeGroupNamePair = ["Circle":"Hình tròn","Rectangle":"Hình chữ nhật","Arrow":"Hình mũi tên","Octagon":"Hình bát giác","Triangle":"Hình tam giác","Square":"Hình vuông","Rhombus":"Hình quả trám","Xshape":"Hình chữ X"]
     //    var offColor = UIColor.cyan
+    let redirectionHelper = RedirectionHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -234,14 +235,8 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @objc func btnFouderFBAction() {
-        let url = URL(string: GeneralSettings.getFBLink)
-        if UIApplication.shared.canOpenURL(url!) {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url!)
-            }
-        }
+        let url = URL(string: GeneralSettings.getFBLink)!
+        redirectionHelper.openUrl(url: url)
     }
     
     func updateDieukhoanList(arrDieukhoan: Array<Dieukhoan>)  {
