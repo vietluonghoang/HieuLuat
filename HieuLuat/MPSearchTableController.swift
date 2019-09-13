@@ -115,8 +115,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @objc func btnFouderFBAction() {
-        let url = URL(string: GeneralSettings.getFBLink)!
-        redirectionHelper.openUrl(url: url)
+        redirectionHelper.openUrl(urls: GeneralSettings.getFBLink)
     }
     
     func setupSearchBarSize(){

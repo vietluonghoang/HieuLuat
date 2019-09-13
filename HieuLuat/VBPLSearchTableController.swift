@@ -125,8 +125,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @objc func btnFouderFBAction() {
-        let url = URL(string: GeneralSettings.getFBLink)!
-        redirectionHelper.openUrl(url: url)
+        redirectionHelper.openUrl(urls: GeneralSettings.getFBLink)
     }
 
     

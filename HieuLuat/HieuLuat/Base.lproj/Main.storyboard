@@ -107,28 +107,44 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0f-nB-WP8">
                                 <rect key="frame" x="15" y="100" width="290" height="30"/>
-                                <state key="normal" title="Tra cứu Văn bản Pháp luật"/>
+                                <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Tra cứu Văn bản Pháp luật">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="0Yw-pY-oe6" kind="show" id="mzu-Np-Gb0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBg-Lu-M8e">
                                 <rect key="frame" x="16" y="143" width="290" height="30"/>
-                                <state key="normal" title="Tra cứu Mức phạt"/>
+                                <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Tra cứu Mức phạt">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="n4D-Vs-mwJ" kind="show" id="bCe-lV-SqL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuL-cL-rMh">
                                 <rect key="frame" x="16" y="186" width="290" height="30"/>
-                                <state key="normal" title="Tra cứu Biển báo hiệu"/>
+                                <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Tra cứu Biển báo hiệu">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="UDc-4c-lDr" kind="show" id="uJ4-eV-f50"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-N0-zsP">
                                 <rect key="frame" x="15" y="229" width="290" height="30"/>
-                                <state key="normal" title="Tra cứu Vạch kẻ đường"/>
+                                <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Tra cứu Vạch kẻ đường">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="70T-2Q-g9y" kind="show" id="ISc-qj-nJd"/>
                                 </connections>
@@ -146,12 +162,6 @@
                                     <segue destination="Giw-NA-bau" kind="show" id="5Tx-B1-RX9"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJ5-Ox-1Bq">
-                                <rect key="frame" x="2" y="269" width="316" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -163,7 +173,6 @@
                             <constraint firstItem="cBg-Lu-M8e" firstAttribute="leading" secondItem="7w3-PR-1RA" secondAttribute="leading" constant="16" id="6rP-px-fr7"/>
                             <constraint firstItem="v5S-ek-gTo" firstAttribute="top" secondItem="RHM-Cd-kKk" secondAttribute="bottom" constant="2" id="6y2-sR-pn5"/>
                             <constraint firstItem="RHM-Cd-kKk" firstAttribute="leading" secondItem="7w3-PR-1RA" secondAttribute="leading" constant="15" id="8Ar-by-ioZ"/>
-                            <constraint firstAttribute="trailing" secondItem="RJ5-Ox-1Bq" secondAttribute="trailing" constant="2" id="B4M-96-qam"/>
                             <constraint firstAttribute="trailing" secondItem="9G5-v8-uGX" secondAttribute="trailing" constant="15" id="Kuc-yc-AhN"/>
                             <constraint firstAttribute="trailing" secondItem="cBg-Lu-M8e" secondAttribute="trailing" constant="14" id="MYC-Ka-KT0"/>
                             <constraint firstAttribute="trailing" secondItem="cuL-cL-rMh" secondAttribute="trailing" constant="14" id="MxY-Ua-LAe"/>
@@ -171,9 +180,7 @@
                             <constraint firstItem="9G5-v8-uGX" firstAttribute="leading" secondItem="7w3-PR-1RA" secondAttribute="leading" constant="15" id="TBz-hJ-lUb"/>
                             <constraint firstAttribute="trailing" secondItem="BkZ-N0-zsP" secondAttribute="trailing" constant="15" id="etz-Ju-x9g"/>
                             <constraint firstAttribute="trailing" secondItem="RHM-Cd-kKk" secondAttribute="trailing" constant="14" id="evZ-CK-HYp"/>
-                            <constraint firstItem="RJ5-Ox-1Bq" firstAttribute="top" secondItem="BkZ-N0-zsP" secondAttribute="bottom" constant="10" id="h15-p9-hh1"/>
                             <constraint firstItem="cuL-cL-rMh" firstAttribute="leading" secondItem="7w3-PR-1RA" secondAttribute="leading" constant="16" id="mbf-2E-uxZ"/>
-                            <constraint firstItem="RJ5-Ox-1Bq" firstAttribute="leading" secondItem="7w3-PR-1RA" secondAttribute="leading" constant="2" id="qoG-aF-X8J"/>
                             <constraint firstItem="cBg-Lu-M8e" firstAttribute="top" secondItem="b0f-nB-WP8" secondAttribute="bottom" constant="13" id="rJV-e8-MwD"/>
                             <constraint firstAttribute="trailing" secondItem="b0f-nB-WP8" secondAttribute="trailing" constant="15" id="tLm-8s-2qe"/>
                         </constraints>
@@ -181,12 +188,12 @@
                     <navigationItem key="navigationItem" title="WeThoong" id="BiX-nn-hGR">
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="z3y-cG-dNd">
                             <connections>
-                                <segue destination="E5G-dj-sU3" kind="show" id="UCR-b1-den"/>
+                                <action selector="btnCameraAct:" destination="zLc-SN-foh" id="e7i-SL-nMC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="lblData" destination="RJ5-Ox-1Bq" id="Xfy-eh-2qV"/>
+                        <outlet property="btnCamera" destination="z3y-cG-dNd" id="jPY-aw-Wgd"/>
                         <outlet property="lblVersion" destination="RHM-Cd-kKk" id="KmK-MD-ewa"/>
                     </connections>
                 </viewController>
@@ -1883,10 +1890,14 @@ kết cấu hạ tầng đường sắt</string>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1BN-KM-F23">
                                 <rect key="frame" x="0.0" y="1980" width="320" height="50"/>
+                                <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="3ss-Ke-Kbx"/>
                                 </constraints>
-                                <state key="normal" title="Xong"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Xong">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="btnXongAction:" destination="z67-X4-AOs" eventType="touchDown" id="gC7-cH-Dsi"/>
                                 </connections>
@@ -2881,7 +2892,7 @@ kết cấu hạ tầng đường sắt</string>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAe-Yo-byZ">
                                         <rect key="frame" x="50" y="8" width="220" height="34"/>
-                                        <color key="backgroundColor" red="0.1670550099" green="0.51721207140000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                                         <state key="normal" title="Xong">
                                             <color key="titleColor" red="0.97405253599999997" green="1" blue="0.98692935439999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -3044,10 +3055,14 @@ kết cấu hạ tầng đường sắt</string>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdN-SI-HIm">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="wRU-Yc-X9n"/>
                                 </constraints>
-                                <state key="normal" title="Xong"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Xong">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="btnXongOnTouchDown:" destination="xmY-Cs-zLN" eventType="touchDown" id="tM3-mk-mJN"/>
                                 </connections>
@@ -3106,7 +3121,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JUv-Sl-hcV">
-                                <rect key="frame" x="5" y="95" width="30" height="30"/>
+                                <rect key="frame" x="5" y="51" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="sr1-SP-u8o"/>
                                     <constraint firstAttribute="height" constant="30" id="tzb-t5-Ykp"/>
@@ -3117,7 +3132,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRj-Zs-sux" userLabel="viewSplit">
-                                <rect key="frame" x="224" y="66" width="86" height="59"/>
+                                <rect key="frame" x="224" y="22" width="86" height="59"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chia nhỏ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIK-rM-oAG">
                                         <rect key="frame" x="2" y="2" width="82" height="22"/>
@@ -3145,10 +3160,10 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rO3-3d-gMG">
-                                <rect key="frame" x="5" y="130" width="310" height="348"/>
+                                <rect key="frame" x="5" y="86" width="310" height="392"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKO-G2-Hvn">
-                                        <rect key="frame" x="0.0" y="0.0" width="310" height="300"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="310" height="344"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iFr-fs-Eo2">
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="447.5"/>
@@ -3333,7 +3348,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </constraints>
                                     </scrollView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPH-kO-uXM" userLabel="viewGotit">
-                                        <rect key="frame" x="0.0" y="302" width="310" height="46"/>
+                                        <rect key="frame" x="0.0" y="346" width="310" height="46"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWW-da-8t1">
                                                 <rect key="frame" x="105" y="8" width="100" height="30"/>
@@ -3433,7 +3448,7 @@ kết cấu hạ tầng đường sắt</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCg-jZ-ElV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-680.625" y="-711.97183098591552"/>
+            <point key="canvasLocation" x="-683" y="-808"/>
         </scene>
         <!--Vạch kẻ đường-->
         <scene sceneID="Hg7-Bf-1jv">
@@ -3930,7 +3945,11 @@ kết cấu hạ tầng đường sắt</string>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yul-xe-bL2">
                                 <rect key="frame" x="0.0" y="538" width="320" height="30"/>
-                                <state key="normal" title="Xong"/>
+                                <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Xong">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="btnXongAction:" destination="mVo-FR-jcp" eventType="touchUpInside" id="g3E-Ag-mce"/>
                                 </connections>
@@ -4690,8 +4709,8 @@ kết cấu hạ tầng đường sắt</string>
         <image name="wethoong_logo" width="264" height="263"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="h7z-qI-2JY"/>
+        <segue reference="fx5-Wp-0nq"/>
         <segue reference="Dwh-PK-agn"/>
-        <segue reference="wfD-bY-mxt"/>
+        <segue reference="cxy-pQ-lPK"/>
     </inferredMetricsTieBreakers>
 </document>

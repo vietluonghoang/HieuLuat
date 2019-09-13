@@ -68,8 +68,7 @@ class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, U
     }
     
     @objc func btnFouderFBAction() {
-        let url = URL(string: GeneralSettings.getFBLink)!
-        redirectionHelper.openUrl(url: url)
+        redirectionHelper.openUrl(urls: GeneralSettings.getFBLink)
     }
     
     func updateDieukhoanList(arrDieukhoan: Array<Dieukhoan>)  {

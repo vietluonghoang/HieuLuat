@@ -25,4 +25,22 @@ class RedirectionHelper {
             }
         }
     }
+    
+    func openUrl(urls: [URL]) {
+        for url in urls {
+            if UIApplication.shared.canOpenURL(url) {
+                // Attempt to open the URL.
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: {(success: Bool) in
+                        if success {
+                            print("Launching \(url) was successful")
+                        }})
+                } else {
+                    // Fallback on earlier versions
+                    UIApplication.shared.openURL(url)
+                }
+                return
+            }
+        }
+    }
 }
