@@ -44,6 +44,7 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
     let offColor = UIColor(red:0.39377 , green: 0.891997, blue: 0.793788, alpha: 1.0)
     var shapeGroupNamePair = [String:String]()
     //    var offColor = UIColor.cyan
+    let redirectionHelper = RedirectionHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -217,14 +218,8 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func btnFouderFBAction() {
-        let url = URL(string: GeneralSettings.getFBLink)
-        if UIApplication.shared.canOpenURL(url!) {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url!)
-            }
-        }
+        let url = URL(string: GeneralSettings.getFBLink)!
+        redirectionHelper.openUrl(url: url)
     }
     
     func updateDieukhoanList(arrDieukhoan: Array<Dieukhoan>)  {
