@@ -16,7 +16,7 @@ class AboutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        btnFounderFB.setTitle(GeneralSettings.getFBLink, for: .normal)
+        btnFounderFB.setTitle((GeneralSettings.getFBLink[1]).absoluteString, for: .normal)
         btnFounderE.setTitle(GeneralSettings.getEmailAddress, for: .normal)
         // Do any additional setup after loading the view.
     }
@@ -27,8 +27,7 @@ class AboutViewController: UIViewController {
     }
     
     @IBAction func btnFouderFBAction(_ sender: Any) {
-        let url = URL(string: GeneralSettings.getFBLink)!
-        redirectionHelper.openUrl(url: url)
+        redirectionHelper.openUrl(urls: GeneralSettings.getFBLink)
     }
     
     

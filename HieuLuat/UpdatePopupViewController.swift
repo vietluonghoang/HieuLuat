@@ -26,20 +26,7 @@ class UpdatePopupViewController: UIViewController {
         
         /* First create a URL, then check whether there is an installed app that can
          open it on the device. */
-        if let url = URL(string: appStoreLink), UIApplication.shared.canOpenURL(url) {
-            // Attempt to open the URL.
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: {(success: Bool) in
-                    if success {
-                        print("Launching \(url) was successful")
-                    }})
-            } else {
-                // Fallback on earlier versions
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.openURL(url)
-                }
-            }
-        }
+        RedirectionHelper().openUrl(url: URL(string: appStoreLink)!)
     }
 
     /*

@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet var lblVersion: UILabel!
-    @IBOutlet var lblData: UILabel!
+    @IBOutlet var btnCamera: UIBarButtonItem!
     
     let network = NetworkHandler()
     var appConfiguration = [String:String]()
@@ -26,12 +26,6 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         updateConfig()
-        var text = ""
-        
-        for key in appConfiguration.keys {
-            text += "\(appConfiguration[key]!) \n"
-        }
-        lblData.text = text
         
         if checkIfNeedToUpdate() {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -42,6 +36,11 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func btnCameraAct(_ sender: Any) {
+        let weQuayAppStoreLink = "https://apps.apple.com/us/app/wequay/id1470215783"
+        RedirectionHelper().openUrl(url: URL(string: weQuayAppStoreLink)!)
     }
     
     func getVersion() -> String {

@@ -22,7 +22,7 @@ class GeneralSettings {
     private static var allowMultipleShapePlateSelect = false
     private static var adEnabled = true
     private static var developementMode = true
-    private static var fbWeThoong = "http://fb.me/wethoong"
+    private static var fbWeThoong = [URL(string: "fb://profile/224587561051762"),URL(string: "http://fb.me/wethoong")]
     private static var emailWeThoong = "wethoong@gmail.com"
     
     
@@ -127,9 +127,9 @@ class GeneralSettings {
         }
     }
     
-    static var getFBLink: String {
+    static var getFBLink: [URL] {
         get{
-            return self.fbWeThoong
+            return self.fbWeThoong as! [URL]
         }
         set(v){
             self.fbWeThoong = v;
