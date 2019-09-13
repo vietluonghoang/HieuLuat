@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BqM-hL-PoV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BqM-hL-PoV">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -146,6 +146,12 @@
                                     <segue destination="Giw-NA-bau" kind="show" id="5Tx-B1-RX9"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJ5-Ox-1Bq">
+                                <rect key="frame" x="2" y="269" width="316" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -157,6 +163,7 @@
                             <constraint firstItem="cBg-Lu-M8e" firstAttribute="leading" secondItem="7w3-PR-1RA" secondAttribute="leading" constant="16" id="6rP-px-fr7"/>
                             <constraint firstItem="v5S-ek-gTo" firstAttribute="top" secondItem="RHM-Cd-kKk" secondAttribute="bottom" constant="2" id="6y2-sR-pn5"/>
                             <constraint firstItem="RHM-Cd-kKk" firstAttribute="leading" secondItem="7w3-PR-1RA" secondAttribute="leading" constant="15" id="8Ar-by-ioZ"/>
+                            <constraint firstAttribute="trailing" secondItem="RJ5-Ox-1Bq" secondAttribute="trailing" constant="2" id="B4M-96-qam"/>
                             <constraint firstAttribute="trailing" secondItem="9G5-v8-uGX" secondAttribute="trailing" constant="15" id="Kuc-yc-AhN"/>
                             <constraint firstAttribute="trailing" secondItem="cBg-Lu-M8e" secondAttribute="trailing" constant="14" id="MYC-Ka-KT0"/>
                             <constraint firstAttribute="trailing" secondItem="cuL-cL-rMh" secondAttribute="trailing" constant="14" id="MxY-Ua-LAe"/>
@@ -164,7 +171,9 @@
                             <constraint firstItem="9G5-v8-uGX" firstAttribute="leading" secondItem="7w3-PR-1RA" secondAttribute="leading" constant="15" id="TBz-hJ-lUb"/>
                             <constraint firstAttribute="trailing" secondItem="BkZ-N0-zsP" secondAttribute="trailing" constant="15" id="etz-Ju-x9g"/>
                             <constraint firstAttribute="trailing" secondItem="RHM-Cd-kKk" secondAttribute="trailing" constant="14" id="evZ-CK-HYp"/>
+                            <constraint firstItem="RJ5-Ox-1Bq" firstAttribute="top" secondItem="BkZ-N0-zsP" secondAttribute="bottom" constant="10" id="h15-p9-hh1"/>
                             <constraint firstItem="cuL-cL-rMh" firstAttribute="leading" secondItem="7w3-PR-1RA" secondAttribute="leading" constant="16" id="mbf-2E-uxZ"/>
+                            <constraint firstItem="RJ5-Ox-1Bq" firstAttribute="leading" secondItem="7w3-PR-1RA" secondAttribute="leading" constant="2" id="qoG-aF-X8J"/>
                             <constraint firstItem="cBg-Lu-M8e" firstAttribute="top" secondItem="b0f-nB-WP8" secondAttribute="bottom" constant="13" id="rJV-e8-MwD"/>
                             <constraint firstAttribute="trailing" secondItem="b0f-nB-WP8" secondAttribute="trailing" constant="15" id="tLm-8s-2qe"/>
                         </constraints>
@@ -177,6 +186,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="lblData" destination="RJ5-Ox-1Bq" id="Xfy-eh-2qV"/>
                         <outlet property="lblVersion" destination="RHM-Cd-kKk" id="KmK-MD-ewa"/>
                     </connections>
                 </viewController>
@@ -3184,7 +3194,7 @@ kết cấu hạ tầng đường sắt</string>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="14C-Fu-RC4" userLabel="lblTut2">
                                                                 <rect key="frame" x="54" y="2" width="250" height="229.5"/>
-                                                                <mutableString key="text">Tap on the red circle to start recording.  The screen will be covered by a black screen with a blinking logo for 3 seconds to indicate that the recording goes well. The logo will then scale down, move to the bottom right corner and rotate to indicate that the recording is in progress. You can freely to touch on the screen without interrupting recording.</mutableString>
+                                                                <string key="text">Tap on the red circle to start recording.  The screen will be covered by a black screen with a blinking logo for 3 seconds to indicate that the recording goes well. The logo will then scale down, move to the bottom right corner and rotate to indicate that the recording is in progress. You can freely to touch on the screen without interrupting recording.</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -3963,7 +3973,78 @@ kết cấu hạ tầng đường sắt</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qbz-Qn-9qd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-786" y="135"/>
+            <point key="canvasLocation" x="-1669" y="-226"/>
+        </scene>
+        <!--Update Popup View Controller-->
+        <scene sceneID="4Oe-zT-zho">
+            <objects>
+                <viewController storyboardIdentifier="updatePopup" id="7BN-pc-rUz" customClass="UpdatePopupViewController" customModule="HieuLuat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EJm-3X-1eF"/>
+                        <viewControllerLayoutGuide type="bottom" id="FJq-7c-lNL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ldf-69-6HT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qHl-Uu-Cke" userLabel="popupView">
+                                <rect key="frame" x="66" y="178.5" width="188" height="211.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phiên bản mới đã sẵn sàng. Bạn hãy cập nhật để có trải nghiệm tốt hơn nhé!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hML-TF-Szk" userLabel="lblMessage">
+                                        <rect key="frame" x="20" y="40" width="148" height="101.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sX4-Og-0I1">
+                                        <rect key="frame" x="44" y="161.5" width="100" height="30"/>
+                                        <color key="backgroundColor" red="0.37880462650000002" green="0.71022214400000006" blue="0.88248866579999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="L8Y-K7-zQ5"/>
+                                        </constraints>
+                                        <state key="normal" title="Cập nhật">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnUpdateAct:" destination="7BN-pc-rUz" eventType="touchUpInside" id="GTO-eo-VjF"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car_1024x1024_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="E0g-lj-htM">
+                                        <rect key="frame" x="5" y="5" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Iw9-Vc-3eS"/>
+                                            <constraint firstAttribute="width" constant="30" id="WxF-tw-x8X"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="sX4-Og-0I1" firstAttribute="top" secondItem="hML-TF-Szk" secondAttribute="bottom" constant="20" id="TLU-VZ-d5D"/>
+                                    <constraint firstAttribute="bottom" secondItem="sX4-Og-0I1" secondAttribute="bottom" constant="20" id="Wbo-pe-qF6"/>
+                                    <constraint firstAttribute="trailing" secondItem="hML-TF-Szk" secondAttribute="trailing" constant="20" id="adE-Yk-P7o"/>
+                                    <constraint firstItem="hML-TF-Szk" firstAttribute="leading" secondItem="qHl-Uu-Cke" secondAttribute="leading" constant="20" id="bDW-FI-GEk"/>
+                                    <constraint firstItem="hML-TF-Szk" firstAttribute="top" secondItem="qHl-Uu-Cke" secondAttribute="top" constant="40" id="dlh-c1-y4H"/>
+                                    <constraint firstItem="sX4-Og-0I1" firstAttribute="centerX" secondItem="qHl-Uu-Cke" secondAttribute="centerX" id="enG-do-V1j"/>
+                                    <constraint firstItem="E0g-lj-htM" firstAttribute="top" secondItem="qHl-Uu-Cke" secondAttribute="top" constant="5" id="kEJ-m4-Uj9"/>
+                                    <constraint firstItem="E0g-lj-htM" firstAttribute="leading" secondItem="qHl-Uu-Cke" secondAttribute="leading" constant="5" id="qaL-ob-4Zr"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qHl-Uu-Cke" firstAttribute="leading" secondItem="Ldf-69-6HT" secondAttribute="leadingMargin" constant="50" id="4WM-i4-7eE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qHl-Uu-Cke" secondAttribute="trailing" constant="50" id="Um1-AW-goa"/>
+                            <constraint firstItem="qHl-Uu-Cke" firstAttribute="centerY" secondItem="Ldf-69-6HT" secondAttribute="centerY" id="V95-J6-fsx"/>
+                            <constraint firstItem="qHl-Uu-Cke" firstAttribute="centerX" secondItem="Ldf-69-6HT" secondAttribute="centerX" id="qci-7V-Tnf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnUpdate" destination="sX4-Og-0I1" id="X4z-RN-g4j"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="65f-0f-WlG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-682.5" y="-55.985915492957744"/>
         </scene>
         <!--Liên quan-->
         <scene sceneID="Mcl-FL-kJz">
@@ -4593,6 +4674,7 @@ kết cấu hạ tầng đường sắt</string>
         <image name="Signs" width="90" height="90"/>
         <image name="Structures" width="90" height="90"/>
         <image name="Vehicles" width="90" height="90"/>
+        <image name="car_1024x1024_transparent" width="1024" height="1024"/>
         <image name="cross" width="301" height="301"/>
         <image name="handpoint_left_rigt" width="300" height="300"/>
         <image name="handpoint_up" width="200" height="200"/>

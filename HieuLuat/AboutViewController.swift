@@ -9,6 +9,8 @@
 import UIKit
 
 class AboutViewController: UIViewController {
+    let redirectionHelper = RedirectionHelper()
+    
     @IBOutlet var btnFounderFB: UIButton!
     @IBOutlet var btnFounderE: UIButton!
     
@@ -25,26 +27,14 @@ class AboutViewController: UIViewController {
     }
     
     @IBAction func btnFouderFBAction(_ sender: Any) {
-        let url = URL(string: btnFounderFB.titleLabel!.text!)
-        if UIApplication.shared.canOpenURL(url!) {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url!)
-            }
-        }
+        let url = URL(string: GeneralSettings.getFBLink)!
+        redirectionHelper.openUrl(url: url)
     }
     
     
     @IBAction func btnFounderEAction(_ sender: Any) {
-        let url = URL(string: "mailto:\(btnFounderE.titleLabel!.text!)")
-        if UIApplication.shared.canOpenURL(url!) {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url!)
-            }
-        }
+        let url = URL(string: "mailto:\(btnFounderE.titleLabel!.text!)")!
+        redirectionHelper.openUrl(url: url)
     }
     
     /*
