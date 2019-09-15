@@ -21,7 +21,7 @@ class GeneralSettings {
     private static var tamgiuPhuongtienDieukhoanID = "2820"
     private static var allowMultipleShapePlateSelect = false
     private static var adEnabled = true
-    private static var developementMode = true
+    private static var developementMode = false
     private static var fbWeThoong = [URL(string: "fb://profile/224587561051762"),URL(string: "http://fb.me/wethoong")]
     private static var fbCongdonghieuluat = [URL(string: "fb://profile/2262780957320858"),URL(string: "https://www.facebook.com/groups/congdonghieuluat/")]
     private static var emailWeThoong = "wethoong@gmail.com"
