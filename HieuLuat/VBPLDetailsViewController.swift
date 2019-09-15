@@ -11,7 +11,7 @@ import os.log
 import GoogleMobileAds
 
 @available(iOS 9.0, *)
-class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, TJPlacementDelegate {
     
     //MARK: Properties
     
@@ -22,7 +22,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet var btnParentBreadscrub: UIButton!
     @IBOutlet weak var scvDetails: UIScrollView!
     @IBOutlet weak var svStackview: UIStackView!
-    @IBOutlet weak var lblSeeMore: UIButton!
+    @IBOutlet weak var btnSeeMore: UIButton!
     @IBOutlet var viewExtraInfo: UIView!
     @IBOutlet var lblMucphat: UILabel!
     @IBOutlet var lblPhuongtien: UILabel!
@@ -82,6 +82,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     var bannerView: GADBannerView!
     let btnFBBanner = UIButton()
     let redirectionHelper = RedirectionHelper()
+    var placement = TJPlacement()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,10 +98,12 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         // Do any additional setup after loading the view.
         
         if(relatedChildren.count>0){
-            lblSeeMore.isEnabled = true
+            btnSeeMore.isEnabled = true
+            btnSeeMore.isHidden = false
             consLblSeeMoreHeight.constant = 50
         }else{
-            lblSeeMore.isEnabled = false
+            btnSeeMore.isHidden = true
+            btnSeeMore.isEnabled = false
             consLblSeeMoreHeight.constant = 0
         }
         showDieukhoan()
@@ -142,7 +145,12 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func initAds() {
-        if GeneralSettings.isAdEnabled && AdsHelper.isConnectedToNetwork() {
+        //Initialize Tapjoy Ads
+        placement = AdsHelper.initTJPlacement(name: "WeThoongPlacement", delegate: self)
+        placement.requestContent()
+        
+        //Initialize Google Admob
+        if GeneralSettings.isEnableBannerAds && AdsHelper.isConnectedToNetwork() {
             bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
             AdsHelper.addBannerViewToView(bannerView: bannerView,toView: viewAds, root: self)
         }else{
@@ -625,9 +633,45 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     public func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
     }
+    
+    //Tapjoy Ads delegate
+    // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
+    func requestDidSucceed(_ placement: TJPlacement){
+        print("Request to TJ server successfully made")
+    }
+    
+    // Called when there was a problem during connecting Tapjoy servers.
+    func requestDidFail(_ placement: TJPlacement!, error: Error!) {
+        print("Request to TJ server failed to make")
+    }
+    
+    // Called when the content is actually available to display.
+    func contentIsReady(_ placement: TJPlacement!) {
+        print("Tj ads content is ready")
+        if AdsHelper.isValidToShowIntestitialAds() {
+            //log the timestamp of showing Interstitial ads
+            GeneralSettings.getLastInterstitialAdsOpenTimestamp = Int(NSDate().timeIntervalSince1970)
+            //log the number of time the the ads was shown during the day
+            GeneralSettings.getInterstitialAdsOpenTimes += 1
+            
+            //show the ad
+            placement.showContent(with: self)
+        }
+        
+    }
+    
+    // Called when the content is showed.
+    func contentDidAppear(_ placement: TJPlacement!) {
+        print("Tj ads content showing")
+    }
+    
+    // Called when the content is dismissed.
+    func contentDidDisappear(_ placement: TJPlacement!) {
+        print("Tj ads content went away")
+    }
 }
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

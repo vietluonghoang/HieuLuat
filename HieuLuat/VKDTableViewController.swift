@@ -114,7 +114,7 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func initAds() {
-        if GeneralSettings.isAdEnabled && AdsHelper.isConnectedToNetwork() {
+        if GeneralSettings.isEnableBannerAds && AdsHelper.isConnectedToNetwork() {
             bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
             AdsHelper.addBannerViewToView(bannerView: bannerView,toView: adsView, root: self)
         }else{

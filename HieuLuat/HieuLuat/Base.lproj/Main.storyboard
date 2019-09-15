@@ -4220,7 +4220,7 @@ kết cấu hạ tầng đường sắt</string>
                                             <segue destination="a1g-wb-2BY" kind="show" identifier="seeParent" id="YJT-ih-Blf"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIa-qb-scZ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIa-qb-scZ" customClass="TapAndCopyLabel" customModule="HieuLuat" customModuleProvider="target">
                                         <rect key="frame" x="8" y="54.5" width="304" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
@@ -4277,7 +4277,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRF-C1-3kv">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRF-C1-3kv" customClass="TapAndCopyLabel" customModule="HieuLuat" customModuleProvider="target">
                                                 <rect key="frame" x="285" y="2" width="33" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="zOI-4m-GrY"/>
@@ -4356,7 +4356,7 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVo-85-3jR">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVo-85-3jR" customClass="TapAndCopyLabel" customModule="HieuLuat" customModuleProvider="target">
                                                         <rect key="frame" x="8" y="19" width="312" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -4384,7 +4384,7 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpG-Kc-VnZ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpG-Kc-VnZ" customClass="TapAndCopyLabel" customModule="HieuLuat" customModuleProvider="target">
                                                         <rect key="frame" x="8" y="19" width="312" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -4412,7 +4412,7 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAf-VX-xIX">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAf-VX-xIX" customClass="TapAndCopyLabel" customModule="HieuLuat" customModuleProvider="target">
                                                         <rect key="frame" x="8" y="19" width="312" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -4493,7 +4493,7 @@ kết cấu hạ tầng đường sắt</string>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F9M-C1-XXq">
-                                                            <rect key="frame" x="5" y="5" width="0.0" height="100"/>
+                                                            <rect key="frame" x="1" y="1" width="0.0" height="100"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="IF5-jv-VGc"/>
                                                                 <constraint firstAttribute="height" constant="100" id="U4J-W1-L5p"/>
@@ -4501,7 +4501,7 @@ kết cấu hạ tầng đường sắt</string>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="occ-pL-nMb">
-                                                            <rect key="frame" x="13" y="0.0" width="307" height="21"/>
+                                                            <rect key="frame" x="2" y="0.0" width="318" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="s91-ab-SVp"/>
                                                             </constraints>
@@ -4510,19 +4510,19 @@ kết cấu hạ tầng đường sắt</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fb0-xt-94D">
-                                                            <rect key="frame" x="13" y="24" width="263" height="21"/>
+                                                            <rect key="frame" x="2" y="22" width="274" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vk-J3-pjv">
-                                                            <rect key="frame" x="13" y="53" width="307" height="59.5"/>
+                                                            <rect key="frame" x="2" y="44" width="318" height="69.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bea-Hi-H0Z">
-                                                            <rect key="frame" x="278" y="24" width="42" height="21"/>
+                                                            <rect key="frame" x="278" y="22" width="42" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -4531,19 +4531,18 @@ kết cấu hạ tầng đường sắt</string>
                                                     <constraints>
                                                         <constraint firstItem="Bea-Hi-H0Z" firstAttribute="trailing" secondItem="KkI-Sa-gxZ" secondAttribute="trailing" id="0Vo-av-Red"/>
                                                         <constraint firstItem="occ-pL-nMb" firstAttribute="trailing" secondItem="KkI-Sa-gxZ" secondAttribute="trailing" id="AbN-zD-6SL"/>
-                                                        <constraint firstItem="F9M-C1-XXq" firstAttribute="top" secondItem="KkI-Sa-gxZ" secondAttribute="top" constant="5" id="F4K-pO-8c6"/>
-                                                        <constraint firstItem="F9M-C1-XXq" firstAttribute="leading" secondItem="KkI-Sa-gxZ" secondAttribute="leading" constant="5" id="GEz-Vs-biJ"/>
-                                                        <constraint firstItem="occ-pL-nMb" firstAttribute="leading" secondItem="F9M-C1-XXq" secondAttribute="trailing" constant="8" id="HhP-hW-1IF"/>
-                                                        <constraint firstItem="Bea-Hi-H0Z" firstAttribute="top" secondItem="occ-pL-nMb" secondAttribute="bottom" constant="3" id="KGM-2Q-TyP"/>
+                                                        <constraint firstItem="F9M-C1-XXq" firstAttribute="top" secondItem="KkI-Sa-gxZ" secondAttribute="top" constant="1" id="F4K-pO-8c6"/>
+                                                        <constraint firstItem="F9M-C1-XXq" firstAttribute="leading" secondItem="KkI-Sa-gxZ" secondAttribute="leading" constant="1" id="GEz-Vs-biJ"/>
+                                                        <constraint firstItem="occ-pL-nMb" firstAttribute="leading" secondItem="F9M-C1-XXq" secondAttribute="trailing" constant="1" id="HhP-hW-1IF"/>
+                                                        <constraint firstItem="Bea-Hi-H0Z" firstAttribute="top" secondItem="occ-pL-nMb" secondAttribute="bottom" constant="1" id="KGM-2Q-TyP"/>
                                                         <constraint firstItem="fb0-xt-94D" firstAttribute="trailing" secondItem="Bea-Hi-H0Z" secondAttribute="leading" constant="-2" id="Q4f-01-8l8"/>
-                                                        <constraint firstItem="fb0-xt-94D" firstAttribute="leading" secondItem="F9M-C1-XXq" secondAttribute="trailing" constant="8" id="U81-BJ-Nw7"/>
-                                                        <constraint firstItem="4vk-J3-pjv" firstAttribute="leading" secondItem="F9M-C1-XXq" secondAttribute="trailing" constant="8" id="Vnf-Rb-fSv"/>
-                                                        <constraint firstItem="fb0-xt-94D" firstAttribute="top" secondItem="occ-pL-nMb" secondAttribute="bottom" constant="3" id="a8D-Gj-IiJ"/>
+                                                        <constraint firstItem="fb0-xt-94D" firstAttribute="leading" secondItem="F9M-C1-XXq" secondAttribute="trailing" constant="1" id="U81-BJ-Nw7"/>
+                                                        <constraint firstItem="4vk-J3-pjv" firstAttribute="leading" secondItem="F9M-C1-XXq" secondAttribute="trailing" constant="1" id="Vnf-Rb-fSv"/>
+                                                        <constraint firstItem="fb0-xt-94D" firstAttribute="top" secondItem="occ-pL-nMb" secondAttribute="bottom" constant="1" id="a8D-Gj-IiJ"/>
                                                         <constraint firstItem="occ-pL-nMb" firstAttribute="top" secondItem="KkI-Sa-gxZ" secondAttribute="top" id="cKB-th-aBj"/>
-                                                        <constraint firstItem="Bea-Hi-H0Z" firstAttribute="leading" secondItem="fb0-xt-94D" secondAttribute="trailing" constant="2" id="drO-SA-Uqj"/>
                                                         <constraint firstItem="4vk-J3-pjv" firstAttribute="trailing" secondItem="KkI-Sa-gxZ" secondAttribute="trailing" id="eOm-EX-6gT"/>
-                                                        <constraint firstItem="4vk-J3-pjv" firstAttribute="bottom" secondItem="KkI-Sa-gxZ" secondAttribute="bottom" constant="-2" id="ghE-ne-95U"/>
-                                                        <constraint firstItem="4vk-J3-pjv" firstAttribute="top" secondItem="Bea-Hi-H0Z" secondAttribute="bottom" constant="8" id="trf-BF-UpW"/>
+                                                        <constraint firstItem="4vk-J3-pjv" firstAttribute="bottom" secondItem="KkI-Sa-gxZ" secondAttribute="bottom" constant="-1" id="ghE-ne-95U"/>
+                                                        <constraint firstItem="4vk-J3-pjv" firstAttribute="top" secondItem="Bea-Hi-H0Z" secondAttribute="bottom" constant="1" id="trf-BF-UpW"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
@@ -4633,6 +4632,7 @@ kết cấu hạ tầng đường sắt</string>
                     </view>
                     <connections>
                         <outlet property="btnParentBreadscrub" destination="iYh-ox-bra" id="y0c-7T-Asg"/>
+                        <outlet property="btnSeeMore" destination="gMa-kk-YOR" id="5fk-LJ-Km3"/>
                         <outlet property="consExtraViewHeight" destination="Tfd-uq-ClW" id="FHq-7b-t7i"/>
                         <outlet property="consHeightTblView" destination="QJR-8X-BeA" id="FWd-ui-3EH"/>
                         <outlet property="consLblDoituongDetailsHeight" destination="sef-7A-9QS" id="yt9-bE-E3G"/>
@@ -4661,7 +4661,6 @@ kết cấu hạ tầng đường sắt</string>
                         <outlet property="lblMucphat" destination="uRF-C1-3kv" id="XDA-sm-Pjs"/>
                         <outlet property="lblNoidung" destination="MIa-qb-scZ" id="Kme-7B-HnG"/>
                         <outlet property="lblPhuongtien" destination="RIc-lp-G8Z" id="Cxa-lQ-vZ4"/>
-                        <outlet property="lblSeeMore" destination="gMa-kk-YOR" id="5fk-LJ-Km3"/>
                         <outlet property="lblTamgiuPhuongtienDetails" destination="qAf-VX-xIX" id="ZQw-SD-mAZ"/>
                         <outlet property="lblTamgiuPhuongtienTitle" destination="1ty-VZ-x6q" id="FKf-mm-nhb"/>
                         <outlet property="lblThamquyenDetails" destination="8W4-Td-OaK" id="8wT-Hj-yWf"/>

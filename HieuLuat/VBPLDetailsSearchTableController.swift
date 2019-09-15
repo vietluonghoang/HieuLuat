@@ -58,7 +58,7 @@ class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, U
     }
     
     func initAds() {
-        if GeneralSettings.isAdEnabled && AdsHelper.isConnectedToNetwork() {
+        if GeneralSettings.isEnableBannerAds && AdsHelper.isConnectedToNetwork() {
             bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
             AdsHelper.addBannerViewToView(bannerView: bannerView,toView: viewAds, root: self)
         }else{
