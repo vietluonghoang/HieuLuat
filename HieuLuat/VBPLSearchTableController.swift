@@ -115,7 +115,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func initAds() {
-        if GeneralSettings.isAdEnabled && AdsHelper.isConnectedToNetwork() {
+        if GeneralSettings.isEnableBannerAds && AdsHelper.isConnectedToNetwork() {
             bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
             AdsHelper.addBannerViewToView(bannerView: bannerView,toView: viewBottom, root: self)
         }else{

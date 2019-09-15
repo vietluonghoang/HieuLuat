@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,TJPlacementDelegate {
     @IBOutlet var lblVersion: UILabel!
     @IBOutlet var btnCamera: UIBarButtonItem!
     
@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         getAppConfiguration()
         RunLoop.current.run(until: Date(timeIntervalSinceNow : 2.0)) //delay 2 seconds to view splash screen longer
         lblVersion.text = getVersion()
+        GeneralSettings.getLastAppOpenTimestamp = Int(NSDate().timeIntervalSince1970)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,9 +82,16 @@ class ViewController: UIViewController {
                     
                     switch cf["configname"]{
                     case AppConfiguration.Configuration.minimumappversion.rawValue:
-                        appConfiguration[AppConfiguration.Configuration.minimumappversion.rawValue] = cf["configvalue"]
+                        GeneralSettings.minimumAppVersionRequired = cf["configvalue"]!
                     case AppConfiguration.Configuration.enableappnotification.rawValue:
-                        appConfiguration[AppConfiguration.Configuration.enableappnotification.rawValue] = cf["configvalue"]
+                        GeneralSettings.isEnableInappNotif = (cf["configvalue"]! == "1")
+                    case AppConfiguration.Configuration.enablebannerads.rawValue:
+                        GeneralSettings.isEnableBannerAds = (cf["configvalue"]! == "1")
+                    case AppConfiguration.Configuration.enableinterstitialads.rawValue:
+                        GeneralSettings.isEnableInterstitialAds = (cf["configvalue"]! == "1")
+                    case AppConfiguration.Configuration.minimumadsinterval.rawValue:
+                        GeneralSettings.minimumAdsIntervalInSeconds = Int(cf["configvalue"]!)!
+                        
                     default:
                         print("not any defined config!")
                     }
@@ -95,10 +103,7 @@ class ViewController: UIViewController {
     }
     
     func checkIfNeedToUpdate() -> Bool {
-        if appConfiguration[AppConfiguration.Configuration.minimumappversion.rawValue] == nil {
-            return false
-        }
-        if (Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String).compare((appConfiguration[AppConfiguration.Configuration.minimumappversion.rawValue]!)) == .orderedAscending {
+        if (Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String).compare((GeneralSettings.minimumAppVersionRequired)) == .orderedAscending {
             return true
         }
         return false

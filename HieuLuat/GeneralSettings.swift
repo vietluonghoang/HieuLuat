@@ -23,8 +23,18 @@ class GeneralSettings {
     private static var adEnabled = true
     private static var developementMode = true
     private static var fbWeThoong = [URL(string: "fb://profile/224587561051762"),URL(string: "http://fb.me/wethoong")]
+    private static var fbCongdonghieuluat = [URL(string: "fb://profile/2262780957320858"),URL(string: "https://www.facebook.com/groups/congdonghieuluat/")]
     private static var emailWeThoong = "wethoong@gmail.com"
     
+    private static var minimumAppVersion = "1.0"
+    private static var enableInappNotif = false
+    private static var enableBannerAds = false
+    private static var enableInterstitialAds = false
+    private static var minimumAdsInterval = 300 //in seconds
+    private static var interstitialAdsOpenTime = 0
+    
+    private static var lastAppOpenTimestamp = 0
+    private static var lastInterstitialAdsOpenTimestamp = 0
     
     //    static var mucphatRange: [String] {
     //        get{
@@ -127,12 +137,35 @@ class GeneralSettings {
         }
     }
     
-    static var getFBLink: [URL] {
+    static var getFBWethoongLink: [URL] {
         get{
             return self.fbWeThoong as! [URL]
         }
         set(v){
             self.fbWeThoong = v;
+        }
+    }
+    
+    static var getFBCongdonghieuluatLink: [URL] {
+        get{
+            return self.fbCongdonghieuluat as! [URL]
+        }
+        set(v){
+            self.fbCongdonghieuluat = v;
+        }
+    }
+    
+    static var getFBLink: [URL]{
+        get{
+            let number = Int.random(in: 0 ... 1)
+            switch number{
+            case 0:
+                return self.fbWeThoong as! [URL]
+            case 1:
+                return self.fbCongdonghieuluat as! [URL]
+            default:
+                return self.fbWeThoong as! [URL]
+            }
         }
     }
     
@@ -192,5 +225,78 @@ class GeneralSettings {
         
         //no cap if more than 2GB RAM
         return 0
+    }
+    
+    //app configuration
+    static var minimumAppVersionRequired: String {
+        get{
+            return self.minimumAppVersion
+        }
+        set(v){
+            self.minimumAppVersion = v;
+        }
+    }
+    
+    static var isEnableInappNotif: Bool {
+        get{
+            return self.enableInappNotif
+        }
+        set(v){
+            self.enableInappNotif = v;
+        }
+    }
+    
+    static var isEnableBannerAds: Bool {
+        get{
+            return self.enableBannerAds
+        }
+        set(v){
+            self.enableBannerAds = v;
+        }
+    }
+    
+    static var isEnableInterstitialAds: Bool {
+        get{
+            return self.enableInterstitialAds
+        }
+        set(v){
+            self.enableInterstitialAds = v;
+        }
+    }
+    
+    static var minimumAdsIntervalInSeconds: Int {
+        get{
+            return self.minimumAdsInterval
+        }
+        set(v){
+            self.minimumAdsInterval = v;
+        }
+    }
+    
+    static var getLastAppOpenTimestamp: Int {
+        get{
+            return self.lastAppOpenTimestamp
+        }
+        set(v){
+            self.lastAppOpenTimestamp = v;
+        }
+    }
+    
+    static var getLastInterstitialAdsOpenTimestamp: Int {
+        get{
+            return self.lastInterstitialAdsOpenTimestamp
+        }
+        set(v){
+            self.lastInterstitialAdsOpenTimestamp = v;
+        }
+    }
+    
+    static var getInterstitialAdsOpenTimes: Int {
+        get{
+            return self.interstitialAdsOpenTime
+        }
+        set(v){
+            self.interstitialAdsOpenTime = v;
+        }
     }
 }
