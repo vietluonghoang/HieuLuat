@@ -146,7 +146,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
                 newLabel += GeneralSettings.getVanbanInfo(name: filter.key, info: "fullName") + ", "
             }
         }
-        if newLabel.characters.count > 2 {
+        if newLabel.count > 2 {
             newLabel = newLabel.substring(to: newLabel.index(newLabel.endIndex, offsetBy: -2))
         }
         lblLoctheo.text = newLabel
@@ -182,7 +182,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         var rs = [Dieukhoan]()
         var kw = keyword.trimmingCharacters(in: .whitespacesAndNewlines)
         //print(getActiveFilter())
-        if(kw.characters.count > 0){
+        if(kw.count > 0){
             rs = Queries.searchDieukhoan(keyword: "\(kw)", vanbanid: getActiveFilter())
         }else{
             rs = Queries.searchChildren(keyword: "\(kw)", vanbanid: getActiveFilter())

@@ -262,7 +262,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
             newLabel += "Ga" + ", "
         }
         
-        if newLabel.characters.count > 2 {
+        if newLabel.count > 2 {
             newLabel = newLabel.substring(to: newLabel.index(newLabel.endIndex, offsetBy: -2))
         }
         lblLoctheo.text = newLabel
@@ -297,7 +297,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         var rs = [Dieukhoan]()
         var kw = keyword.trimmingCharacters(in: .whitespacesAndNewlines)
         //print(getActiveFilter())
-        if(kw.characters.count > 0 || (lblLoctheo.text?.characters.count)! > 0){
+        if(kw.count > 0 || (lblLoctheo.text?.count)! > 0){
             rs = Queries.searchDieukhoanByQuery(query: "\(builtQuery)", vanbanid: getActiveFilter())
         }else{
             rs = Queries.searchChildren(keyword: "\(kw)", vanbanid: getActiveFilter())
