@@ -10,7 +10,6 @@ import Foundation
 
 class GeneralSettings {
     let mucphatRange = ["50.000","60.000","80.000","100.000","120.000","200.000","300.000","400.000","500.000","600.000","800.000","1.000.000","1.200.000","500.000","1.600.000","2.000.000","2.500.000","3.000.000","4.000.000","5.000.000","6.000.000","7.000.000","8.000.000","10.000.000","12.000.000","14.000.000","15.000.000","16.000.000","18.000.000","20.000.000","25.000.000","28.000.000","30.000.000","32.000.000","36.000.000","37.500.000","40.000.000","50.000.000","52.500.000","56.000.000","64.000.000","70.000.000","75.000.000","80.000.000","150.000.000"]
-    private static var dbVersion = 3
     private static var nd46Id = "2"
     private static var qc41Id = "1"
     private static var tt01Id = "3"
@@ -20,8 +19,6 @@ class GeneralSettings {
     private static var vanbanInfo = [String:[String:String]]()
     private static var tamgiuPhuongtienDieukhoanID = "2820"
     private static var allowMultipleShapePlateSelect = false
-    private static var adEnabled = true
-    private static var developementMode = true
     private static var fbWeThoong = [URL(string: "fb://profile/224587561051762"),URL(string: "http://fb.me/wethoong")]
     private static var fbCongdonghieuluat = [URL(string: "fb://profile/2262780957320858"),URL(string: "https://www.facebook.com/groups/congdonghieuluat/")]
     private static var emailWeThoong = "wethoong@gmail.com"
@@ -35,6 +32,10 @@ class GeneralSettings {
     
     private static var lastAppOpenTimestamp = 0
     private static var lastInterstitialAdsOpenTimestamp = 0
+    
+    private static var dbVersion = 3
+    private static var adEnabled = true
+    private static var developementMode = true
     
     //    static var mucphatRange: [String] {
     //        get{

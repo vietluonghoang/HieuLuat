@@ -641,4 +641,8 @@ class Utils {
         tblView.sizeToFit()
         tblView.layoutIfNeeded()
     }
+    
+    class func updateContentTextFont(label: UILabel)  {
+        label.font = UIFont.systemFont(ofSize: 15.0)
+    }
 }
