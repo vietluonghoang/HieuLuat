@@ -182,7 +182,7 @@ class Queries: NSObject {
         var searchKeyword = ""
         searchKeyword = keyword.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        if(searchKeyword.characters.count == 0){
+        if(searchKeyword.count == 0){
             searchArgurment = "is null"
         }else{
             searchArgurment = "= ?"
@@ -350,7 +350,7 @@ class Queries: NSObject {
         }
         
         DataConnection.database!.close()
-        if result.characters.count >= 2 {
+        if result.count >= 2 {
             result = result.substring(to: result.index(result.endIndex, offsetBy: -2))
         }
         return result
@@ -556,7 +556,7 @@ class Queries: NSObject {
         
         DataConnection.database!.close()
         
-        if result.characters.count >= 2 {
+        if result.count >= 2 {
             result = result.substring(to: result.index(result.endIndex, offsetBy: -2))
         }
         
@@ -805,6 +805,89 @@ class Queries: NSObject {
         return finalResult
     }
     
+    class func getAllPhantich() -> [String:Phantich]{
+        DataConnection.database!.open()
+        let sql = "select p.id_key,p.author,p.title,p.shortdescription,p.source,p.revision,d.contentorder,d.content,d.minhhoa,d.minhhoatype from phantich as p join phantich_details as d on p.id_key = d.id_key order by p.id_key, d.contentorder"
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        var result = [String:Phantich]()
+        if resultSet != nil {
+            while resultSet.next() {
+                let idKey = resultSet.string(forColumn: "id_key")!
+                var rawContentDetailed = [String:String]()
+                rawContentDetailed["contentorder"] = "\(resultSet.int(forColumn: "contentorder"))"
+                rawContentDetailed["content"] = resultSet.string(forColumn: "content")
+                rawContentDetailed["minhhoa"] = resultSet.string(forColumn: "minhhoa")
+                rawContentDetailed["minhhoatype"] = resultSet.string(forColumn: "minhhoatype")
+                
+                if let pt = result[idKey] {
+                    pt.updateRawContentDetailed(rawContentDetailed: rawContentDetailed)
+                }else{
+                    let phantich = Phantich(idKey: idKey, author: resultSet.string(forColumn: "author")!, title: resultSet.string(forColumn: "title")!, shortContent: resultSet.string(forColumn: "shortdescription")!, source: resultSet.string(forColumn: "source")!, revision: "\(resultSet.int(forColumn: "revision"))", rawContentDetailed: rawContentDetailed)
+                    result[idKey] = phantich
+                }
+            }
+        }
+        return result
+    }
+    
+    class func getPhantichByKeyword(keyword: String) -> [String:Phantich]{
+        let kw = keyword.lowercased()
+        
+        DataConnection.database!.open()
+        let sql = "select p.id_key,p.author,p.title,p.shortdescription,p.source,p.revision,d.contentorder,d.content,d.minhhoa,d.minhhoatype from phantich as p join phantich_details as d on p.id_key = d.id_key where d.forsearch like '%\(kw)%' order by p.id_key, d.contentorder"
+        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        var result = [String:Phantich]()
+        if resultSet != nil {
+            while resultSet.next() {
+                let idKey = resultSet.string(forColumn: "id_key")!
+                var rawContentDetailed = [String:String]()
+                rawContentDetailed["contentorder"] = "\(resultSet.int(forColumn: "contentorder"))"
+                rawContentDetailed["content"] = resultSet.string(forColumn: "content")
+                rawContentDetailed["minhhoa"] = resultSet.string(forColumn: "minhhoa")
+                rawContentDetailed["minhhoatype"] = resultSet.string(forColumn: "minhhoatype")
+                
+                if let pt = result[idKey] {
+                    pt.updateRawContentDetailed(rawContentDetailed: rawContentDetailed)
+                }else{
+                    let phantich = Phantich(idKey: idKey, author: resultSet.string(forColumn: "author")!, title: resultSet.string(forColumn: "title")!, shortContent: resultSet.string(forColumn: "shortdescription")!, source: resultSet.string(forColumn: "source")!, revision: "\(resultSet.int(forColumn: "revision"))", rawContentDetailed: rawContentDetailed)
+                    result[idKey] = phantich
+                }
+            }
+        }
+        return result
+    }
+    
+    class func insertPhantichToDatabase(phantichList: [String:Phantich]) -> Bool {
+        DataConnection.database!.open()
+        
+        var addedPhantichList = [String:Phantich]()
+        DataConnection.database!.executeUpdate("delete from phantich", withArgumentsIn: [])
+        DataConnection.database!.executeUpdate("delete from phantich_details", withArgumentsIn: [])
+        
+        for ptich in phantichList {
+            let keyId = ptich.value.getIdKey()
+            let title = ptich.value.getTittle()
+            if addedPhantichList[keyId] == nil {
+                let sqlPhantich = "insert into phantich (id_key,author,title,shortdescription,source,revision) values ('\(keyId)','\(ptich.value.getAuthor())','\(title)','\(ptich.value.getShortContent())','\(ptich.value.getSource())',\(ptich.value.getRevision()));"
+                DataConnection.database!.executeUpdate(sqlPhantich, withArgumentsIn: [])
+                addedPhantichList[keyId] = ptich.value
+            }
+            for rawContent in ptich.value.getRawContentDetailed() {
+                let sqlPhantichDetails = "insert into phantich_details (id_key,contentorder,content,minhhoa,minhhoatype,forsearch) values ('\(keyId)','\(rawContent["contentorder"]!)','\(rawContent["content"]!)','\(rawContent["minhhoa"]!)','\(rawContent["minhhoatype"]!)','\(title.lowercased()) \(rawContent["content"]!.lowercased())');"
+                DataConnection.database!.executeUpdate(sqlPhantichDetails, withArgumentsIn: [])
+            }
+            
+        }
+        DataConnection.database!.close()
+        return true
+    }
+    
+    class func executeUpdateQuery(query: String){
+        DataConnection.database!.open()
+        DataConnection.database!.executeUpdate(query, withArgumentsIn: [])
+        DataConnection.database!.close()
+    }
+    
     class func appendDieukhoan(dieukhoan: Dieukhoan, dkArr: [Dieukhoan]) -> [Dieukhoan] {
         var dieukhoanArray = dkArr
         for dk in dieukhoanArray {
@@ -840,10 +923,10 @@ class Queries: NSObject {
         for sStr in splittedStr {
             var matchChars = [Int16]()
             var matchAccents = [Int16]()
-            for char in sStr.characters {
+            for char in sStr {
                 var count = 0
                 for vnC in vnChars {
-                    if char == vnC.characters.first {
+                    if char == vnC.first {
                         matchChars.append(Int16(count/6))
                         matchAccents.append(Int16(count%6))
                     }
@@ -884,7 +967,7 @@ class Queries: NSObject {
         if vanbanid.count > 0 {
             specificVanban = " and ("
             for id in vanbanid {
-                if id.characters.count > 0 {
+                if id.count > 0 {
                     specificVanban = specificVanban + "\(vanbanIdColumnName) = "+id.trimmingCharacters(in: .whitespacesAndNewlines) + " or "
                 }
             }
