@@ -33,7 +33,7 @@ class GeneralSettings {
     private static var lastAppOpenTimestamp = 0
     private static var lastInterstitialAdsOpenTimestamp = 0
     
-    private static var dbVersion = 5
+    private static var dbVersion = 3
     private static var adEnabled = true
     private static var developementMode = true
     
