@@ -77,7 +77,7 @@ class NetworkHandler {
             
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                print("json: \(json)")
+//                print("json: \(json)")
                 self.msg.setValue(key: MessagingContainer.MessageKey.message.rawValue, value: "Success" as AnyObject)
                 self.msg.setValue(key: MessagingContainer.MessageKey.data.rawValue, value: json as AnyObject)
             } catch {
