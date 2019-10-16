@@ -12,6 +12,14 @@ import SystemConfiguration
 
 class AdsHelper {
     
+    class func initBannerAds(btnFBBanner: UIButton, bannerView: GADBannerView, toView: UIView, root: UIViewController){
+        if GeneralSettings.isEnableBannerAds && AdsHelper.isConnectedToNetwork() {
+            addBannerViewToView(bannerView: bannerView,toView: toView, root: root)
+        }else{
+            addButtonToView(btnFBBanner: btnFBBanner, toView: toView)
+        }
+    }
+    
     class func addBannerViewToView(bannerView: GADBannerView, toView: UIView, root: UIViewController) {
         bannerView.translatesAutoresizingMaskIntoConstraints = false
         toView.addSubview(bannerView)
@@ -158,6 +166,7 @@ class AdsHelper {
         print("isEnableInterstitialAds: \(GeneralSettings.isEnableInterstitialAds)")
         print("minimumAdsIntervalInSeconds: \(GeneralSettings.minimumAdsIntervalInSeconds)")
         print("getLastInterstitialAdsOpenTimestamp: \(GeneralSettings.getLastInterstitialAdsOpenTimestamp)")
+        print("is Ads optout: \(GeneralSettings.isAdsOptout)")
         //If the app was opened more than a day, let reset the opening timestamp and interstitial ads open counter
         if Int(NSDate().timeIntervalSince1970) - GeneralSettings.getLastAppOpenTimestamp > 86400 {
             GeneralSettings.getLastAppOpenTimestamp = Int(NSDate().timeIntervalSince1970)
@@ -168,7 +177,7 @@ class AdsHelper {
         //1. Interstitial ads is enabled
         //2. It's long enough since the last time the ads shown (ex: at least 5 mins between shows)
         //3. The more time the ads shown, the longer interval until the next shown (ex: 5 mins for the first show, 10 mins for the second show, 15 mins for the third show and so on...)
-        if GeneralSettings.isEnableInterstitialAds && (Int(NSDate().timeIntervalSince1970) - GeneralSettings.getLastAppOpenTimestamp > GeneralSettings.minimumAdsIntervalInSeconds * (GeneralSettings.getInterstitialAdsOpenTimes + 1)) && (Int(NSDate().timeIntervalSince1970) - GeneralSettings.getLastInterstitialAdsOpenTimestamp > GeneralSettings.minimumAdsIntervalInSeconds) {
+        if !GeneralSettings.isAdsOptout && GeneralSettings.isEnableInterstitialAds && (Int(NSDate().timeIntervalSince1970) - GeneralSettings.getLastAppOpenTimestamp > GeneralSettings.minimumAdsIntervalInSeconds * (GeneralSettings.getInterstitialAdsOpenTimes + 1)) && (Int(NSDate().timeIntervalSince1970) - GeneralSettings.getLastInterstitialAdsOpenTimestamp > GeneralSettings.minimumAdsIntervalInSeconds) {
             return true
         }
         return false

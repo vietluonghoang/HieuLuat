@@ -52,13 +52,9 @@ class InstructionDetailsViewController: UIViewController, TJPlacementDelegate {
         placement.requestContent()
         
         //Initialize Google Admob
-        if GeneralSettings.isEnableBannerAds && AdsHelper.isConnectedToNetwork() {
-            bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-            AdsHelper.addBannerViewToView(bannerView: bannerView,toView: viewBottom, root: self)
-        }else{
-            btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
-            AdsHelper.addButtonToView(btnFBBanner: btnFBBanner, toView: viewBottom)
-        }
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
+        AdsHelper.initBannerAds(btnFBBanner: btnFBBanner, bannerView: bannerView, toView: viewBottom, root: self)
     }
     
     @objc func btnFouderFBAction() {

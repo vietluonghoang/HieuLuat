@@ -134,13 +134,13 @@ class Phantich {
         
         private func generateWrapper(noidung: String)  {
             lblNoidung.text = noidung
-            Utils.generateNewComponentConstraints(parent: wrapper, topComponent: wrapper, bottomComponent: wrapper, component: lblNoidung, top: 0, left: 0, right: 0, bottom: 0, isInside: true)
+            Utils.generateNewComponentConstraints(parent: wrapper, topComponent: wrapper, bottomComponent: wrapper, component: lblNoidung, top: 4, left: 4, right: 4, bottom: 0, isInside: true)
         }
         
         private func generateWrapper(noidung: String, minhhoa: UIView)  {
             lblNoidung.text = noidung
-            Utils.generateNewComponentConstraints(parent: wrapper, topComponent: wrapper, component: lblNoidung, top: 0, left: 0, right: 0, isInside: true)
-            Utils.generateNewComponentConstraints(parent: wrapper, topComponent: wrapper.subviews.last!, bottomComponent: wrapper, component: minhhoa, top: 1, left: 20, right: 20, bottom: 0, isInside: false)
+            Utils.generateNewComponentConstraints(parent: wrapper, topComponent: wrapper, component: lblNoidung, top: 4, left: 4, right: 4, isInside: true)
+            Utils.generateNewComponentConstraints(parent: wrapper, topComponent: wrapper.subviews.last!, bottomComponent: wrapper, component: minhhoa, top: 2, left: 20, right: 20, bottom: 0, isInside: false)
         }
         
     }

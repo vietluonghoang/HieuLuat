@@ -34,7 +34,7 @@ class GeneralSettings {
     private static var lastInterstitialAdsOpenTimestamp = 0
     
     private static var dbVersion = 3
-    private static var adEnabled = true
+    private static var adsOptout = false //true means the user will not see Ads
     private static var developementMode = true
     
     //    static var mucphatRange: [String] {
@@ -120,12 +120,15 @@ class GeneralSettings {
         }
     }
     
-    static var isAdEnabled: Bool {
+    static var isAdsOptout: Bool {
         get{
-            return self.adEnabled
+            if !self.adsOptout {
+                //TO DO: update optout state
+            }
+            return self.adsOptout
         }
         set(v){
-            self.adEnabled = v;
+            self.adsOptout = v;
         }
     }
     
