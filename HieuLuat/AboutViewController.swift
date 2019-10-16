@@ -13,6 +13,7 @@ class AboutViewController: UIViewController {
     
     @IBOutlet var btnFounderFB: UIButton!
     @IBOutlet var btnFounderE: UIButton!
+    @IBOutlet var btnAdsOptout: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

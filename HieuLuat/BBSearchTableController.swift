@@ -133,13 +133,9 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func initAds() {
-        if GeneralSettings.isEnableBannerAds && AdsHelper.isConnectedToNetwork() {
-            bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-            AdsHelper.addBannerViewToView(bannerView: bannerView,toView: adsView, root: self)
-        }else{
-            btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
-            AdsHelper.addButtonToView(btnFBBanner: btnFBBanner, toView: adsView)
-        }
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
+        AdsHelper.initBannerAds(btnFBBanner: btnFBBanner, bannerView: bannerView, toView: adsView, root: self)
     }
     
     func initPlateShapeGroupsList() {

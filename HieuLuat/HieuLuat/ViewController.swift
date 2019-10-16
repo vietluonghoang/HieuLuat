@@ -13,13 +13,21 @@ class ViewController: UIViewController,TJPlacementDelegate {
     @IBOutlet var btnCamera: UIBarButtonItem!
     
     let network = NetworkHandler()
+    let networkCall = NetworkHandler()
     var appConfiguration = [String:String]()
+    
+    var networkCallTimer = Timer()
+    let networkCallInterval = 10.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         sendAnalytics() //send analytics for tracking user usage
         getAppConfiguration()
+        if DataConnection.database == nil {
+            DataConnection.databaseSetup()
+        }
+        checkAdsOptout() //check ads optout state
         RunLoop.current.run(until: Date(timeIntervalSinceNow : 2.0)) //delay 2 seconds to view splash screen longer
         lblVersion.text = getVersion()
         GeneralSettings.getLastAppOpenTimestamp = Int(NSDate().timeIntervalSince1970)
@@ -107,6 +115,41 @@ class ViewController: UIViewController,TJPlacementDelegate {
             return true
         }
         return false
+    }
+    
+    func checkAdsOptout() {
+        let valueInDatabase = Queries.getAppConfigsFromDatabaseByKey(key: "adsOptout")
+        switch valueInDatabase {
+        case "1":
+            print("adsoptout state set in database")
+            GeneralSettings.isAdsOptout = true
+        case "0":
+            print("adsoptout state set in database")
+            GeneralSettings.isAdsOptout = false
+        default:
+            print("send request to check adsoptout state")
+            let target = "https://wethoong-server.herokuapp.com/hasoptout"
+            let rawData = DeviceInfoCollector().getDeviceInfo()
+            let data = try! JSONSerialization.data(withJSONObject: rawData, options: [])
+            networkCall.sendData(url: target, method: NetworkHandler.HttpMethod.post.rawValue, contentType: NetworkHandler.HttpContentType.applicationjson.rawValue,data: data)
+            networkCallTimer = Timer.scheduledTimer(timeInterval: TimeInterval(networkCallInterval), target: self, selector: #selector(checkCodeState), userInfo: nil, repeats: true)
+        }
+        
+    }
+    
+    @objc func checkCodeState(){
+        print("checking adsoptout state")
+        let result = networkCall.getMessage()
+        
+        if let message = result.getValue(key: MessagingContainer.MessageKey.data.rawValue) as? Dictionary<String,String> {
+            print("message: \(message)")
+            networkCallTimer.invalidate()
+            if message["status"] == "Success" {
+                GeneralSettings.isAdsOptout = Queries.updateAppConfigsToDatabase(configList: ["adsOptout":"1"])
+            }else{
+                GeneralSettings.isAdsOptout = Queries.updateAppConfigsToDatabase(configList: ["adsOptout":"0"])
+            }
+        }
     }
 }
 

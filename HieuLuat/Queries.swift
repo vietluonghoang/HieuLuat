@@ -827,6 +827,7 @@ class Queries: NSObject {
                 }
             }
         }
+        DataConnection.database!.close()
         return result
     }
     
@@ -880,6 +881,45 @@ class Queries: NSObject {
         }
         DataConnection.database!.close()
         return true
+    }
+    
+    class func updateAppConfigsToDatabase(configList: [String:String]) -> Bool {
+        DataConnection.database!.open()
+        
+        for key in configList.keys {
+            var sql = "select * from tblAppConfigs where configKey = ?"
+            let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [key])
+            var isConfigExisted = false
+            if resultSet != nil {
+                while resultSet.next() {
+                    isConfigExisted = true
+                    sql = "update tblAppConfigs set configValue = ? where configKey = ?"
+                    DataConnection.database!.executeUpdate(sql, withArgumentsIn: [configList[key]!,key])
+                }
+            }
+            if !isConfigExisted {
+                sql = "insert into tblAppConfigs(configKey, configValue) values (?, ?)"
+                DataConnection.database!.executeUpdate(sql, withArgumentsIn: [key,configList[key]!])
+            }
+        }
+        
+        DataConnection.database!.close()
+        return true
+    }
+    
+    class func getAppConfigsFromDatabaseByKey(key: String) -> String {
+        DataConnection.database!.open()
+        var configValue = ""
+        let sql = "select configValue from tblAppConfigs where configKey = ?"
+            let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [key])
+            if resultSet != nil {
+                while resultSet.next() {
+                    configValue = resultSet.string(forColumn: "configValue")!
+                }
+            }
+        
+        DataConnection.database!.close()
+        return configValue
     }
     
     class func executeUpdateQuery(query: String){

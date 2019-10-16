@@ -150,13 +150,9 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         placement.requestContent()
         
         //Initialize Google Admob
-        if GeneralSettings.isEnableBannerAds && AdsHelper.isConnectedToNetwork() {
-            bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-            AdsHelper.addBannerViewToView(bannerView: bannerView,toView: viewAds, root: self)
-        }else{
-            btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
-            AdsHelper.addButtonToView(btnFBBanner: btnFBBanner, toView: viewAds)
-        }
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
+        AdsHelper.initBannerAds(btnFBBanner: btnFBBanner, bannerView: bannerView, toView: viewAds, root: self)
     }
     
     @objc func btnFouderFBAction() {

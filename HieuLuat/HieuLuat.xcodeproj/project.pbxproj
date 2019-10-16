@@ -16,6 +16,7 @@
 		332C10DE2350353A00EDD3AE /* GifImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332C10DD2350353A00EDD3AE /* GifImageView.swift */; };
 		332C10E0235038CC00EDD3AE /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332C10DF235038CC00EDD3AE /* LoadingView.swift */; };
 		332C10E2235089F000EDD3AE /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332C10E1235089F000EDD3AE /* WebImage.swift */; };
+		332C10E62356EE6800EDD3AE /* CouponInputScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332C10E52356EE6800EDD3AE /* CouponInputScreenViewController.swift */; };
 		3331E6641FA3092000219B19 /* MPSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3331E6631FA3092000219B19 /* MPSearchTableController.swift */; };
 		334939891FA8A74F0037305C /* AdsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334939881FA8A74F0037305C /* AdsHelper.swift */; };
 		334AAFB21FC1E0A300A5BE0F /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AAFB11FC1E0A300A5BE0F /* GeneralSettings.swift */; };
@@ -86,6 +87,7 @@
 		332C10DD2350353A00EDD3AE /* GifImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageView.swift; sourceTree = "<group>"; };
 		332C10DF235038CC00EDD3AE /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		332C10E1235089F000EDD3AE /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
+		332C10E52356EE6800EDD3AE /* CouponInputScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponInputScreenViewController.swift; sourceTree = "<group>"; };
 		3331E6631FA3092000219B19 /* MPSearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPSearchTableController.swift; sourceTree = "<group>"; };
 		334939881FA8A74F0037305C /* AdsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsHelper.swift; sourceTree = "<group>"; };
 		334AAFB11FC1E0A300A5BE0F /* GeneralSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				3322B221234B592B004584B1 /* InstructionSearchViewController.swift */,
 				3322B225234D93E2004584B1 /* InstructionTableViewCell.swift */,
 				3322B227234DB7CA004584B1 /* InstructionDetailsViewController.swift */,
+				332C10E52356EE6800EDD3AE /* CouponInputScreenViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				33D3052B1F51794F00547497 /* ViewController.swift in Sources */,
 				334939891FA8A74F0037305C /* AdsHelper.swift in Sources */,
 				33C87DFE1F6052B100D8B198 /* FilterPopupViewController.swift in Sources */,
+				332C10E62356EE6800EDD3AE /* CouponInputScreenViewController.swift in Sources */,
 				33D305291F51794F00547497 /* AppDelegate.swift in Sources */,
 				33FD3B72232A284A00DD7087 /* MessagingContainer.swift in Sources */,
 				33CB16001F5AF9A700AD2C45 /* VBPLDetailsSearchTableController.swift in Sources */,
