@@ -62,7 +62,17 @@ class InstructionDetailsViewController: UIViewController, TJPlacementDelegate {
     }
     
     @IBAction func btnSourceAct(_ sender: Any) {
-        redirectionHelper.openUrl(url: URL(string: btnSource.title(for: .normal)!)!)
+        /*
+         wethoong: fb://profile/224587561051762
+         Congdonghieuluat: fb://profile/2262780957320858
+         post:1299801006863740
+         */
+        if phantich.getSourceInapp().count > 0 {
+            redirectionHelper.openUrl(urls: [URL(string: phantich.getSourceInapp())!,URL(string: phantich.getSource())!])
+        }else{
+        redirectionHelper.openUrl(url: URL(string: phantich.getSource())!)
+        }
+//        redirectionHelper.openUrl(url: URL(string: "fb://story?id=2368088400123446")!)
     }
     
     func addViewToContainer(parent: UIView, orderedList: [Int:UIView]) {

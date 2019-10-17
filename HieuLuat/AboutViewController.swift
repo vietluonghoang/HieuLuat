@@ -20,6 +20,10 @@ class AboutViewController: UIViewController {
         btnFounderFB.setTitle((GeneralSettings.getFBLink[1]).absoluteString, for: .normal)
         btnFounderE.setTitle(GeneralSettings.getEmailAddress, for: .normal)
         // Do any additional setup after loading the view.
+        
+        if GeneralSettings.isAdsOptout {
+            btnAdsOptout.isEnabled = false
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -807,7 +807,7 @@ class Queries: NSObject {
     
     class func getAllPhantich() -> [String:Phantich]{
         DataConnection.database!.open()
-        let sql = "select p.id_key,p.author,p.title,p.shortdescription,p.source,p.revision,d.contentorder,d.content,d.minhhoa,d.minhhoatype from phantich as p join phantich_details as d on p.id_key = d.id_key order by p.id_key, d.contentorder"
+        let sql = "select p.id_key,p.author,p.title,p.shortdescription,p.source,p.source_inapp,p.revision,d.contentorder,d.content,d.minhhoa,d.minhhoatype from phantich as p join phantich_details as d on p.id_key = d.id_key order by p.id_key, d.contentorder"
         let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
         var result = [String:Phantich]()
         if resultSet != nil {
@@ -822,7 +822,8 @@ class Queries: NSObject {
                 if let pt = result[idKey] {
                     pt.updateRawContentDetailed(rawContentDetailed: rawContentDetailed)
                 }else{
-                    let phantich = Phantich(idKey: idKey, author: resultSet.string(forColumn: "author")!, title: resultSet.string(forColumn: "title")!, shortContent: resultSet.string(forColumn: "shortdescription")!, source: resultSet.string(forColumn: "source")!, revision: "\(resultSet.int(forColumn: "revision"))", rawContentDetailed: rawContentDetailed)
+                    let sia = resultSet.string(forColumn: "source_inapp")!
+                    let phantich = Phantich(idKey: idKey, author: resultSet.string(forColumn: "author")!, title: resultSet.string(forColumn: "title")!, shortContent: resultSet.string(forColumn: "shortdescription")!, source: resultSet.string(forColumn: "source")!, sourceInapp: resultSet.string(forColumn: "source_inapp")!, revision: "\(resultSet.int(forColumn: "revision"))", rawContentDetailed: rawContentDetailed)
                     result[idKey] = phantich
                 }
             }
@@ -835,7 +836,7 @@ class Queries: NSObject {
         let kw = keyword.lowercased()
         
         DataConnection.database!.open()
-        let sql = "select p.id_key,p.author,p.title,p.shortdescription,p.source,p.revision,d.contentorder,d.content,d.minhhoa,d.minhhoatype from phantich as p join phantich_details as d on p.id_key = d.id_key where d.forsearch like '%\(kw)%' order by p.id_key, d.contentorder"
+        let sql = "select p.id_key,p.author,p.title,p.shortdescription,p.source,p.source_inapp,p.revision,d.contentorder,d.content,d.minhhoa,d.minhhoatype from phantich as p join phantich_details as d on p.id_key = d.id_key where d.forsearch like '%\(kw)%' order by p.id_key, d.contentorder"
         let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
         var result = [String:Phantich]()
         if resultSet != nil {
@@ -850,7 +851,7 @@ class Queries: NSObject {
                 if let pt = result[idKey] {
                     pt.updateRawContentDetailed(rawContentDetailed: rawContentDetailed)
                 }else{
-                    let phantich = Phantich(idKey: idKey, author: resultSet.string(forColumn: "author")!, title: resultSet.string(forColumn: "title")!, shortContent: resultSet.string(forColumn: "shortdescription")!, source: resultSet.string(forColumn: "source")!, revision: "\(resultSet.int(forColumn: "revision"))", rawContentDetailed: rawContentDetailed)
+                    let phantich = Phantich(idKey: idKey, author: resultSet.string(forColumn: "author")!, title: resultSet.string(forColumn: "title")!, shortContent: resultSet.string(forColumn: "shortdescription")!, source: resultSet.string(forColumn: "source")!, sourceInapp: resultSet.string(forColumn: "source_inapp")!, revision: "\(resultSet.int(forColumn: "revision"))", rawContentDetailed: rawContentDetailed)
                     result[idKey] = phantich
                 }
             }
@@ -869,7 +870,7 @@ class Queries: NSObject {
             let keyId = ptich.value.getIdKey()
             let title = ptich.value.getTittle()
             if addedPhantichList[keyId] == nil {
-                let sqlPhantich = "insert into phantich (id_key,author,title,shortdescription,source,revision) values ('\(keyId)','\(ptich.value.getAuthor())','\(title)','\(ptich.value.getShortContent())','\(ptich.value.getSource())',\(ptich.value.getRevision()));"
+                let sqlPhantich = "insert into phantich (id_key,author,title,shortdescription,source,source_inapp,revision) values ('\(keyId)','\(ptich.value.getAuthor())','\(title)','\(ptich.value.getShortContent())','\(ptich.value.getSource())','\(ptich.value.getSourceInapp())',\(ptich.value.getRevision()));"
                 DataConnection.database!.executeUpdate(sqlPhantich, withArgumentsIn: [])
                 addedPhantichList[keyId] = ptich.value
             }
