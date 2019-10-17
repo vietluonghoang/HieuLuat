@@ -15,18 +15,31 @@ class Phantich {
     private var title: String
     private var shortContent: String
     private var source: String
+    private var sourceInapp: String
     private var revision: Int
     private var rawContentDetailed = [[String:String]]()
     
-    init(idKey: String, author: String, title: String, shortContent: String,source: String, revision: String, rawContentDetailed: [String:String]) {
+    init(idKey: String, author: String, title: String, shortContent: String, source: String, sourceInapp: String, revision: String, rawContentDetailed: [String:String]) {
         self.idKey = idKey
         self.author = author
         self.title = title
         self.shortContent = shortContent
         self.source = source
+        self.sourceInapp = sourceInapp
         self.revision = Int(revision)!
         self.rawContentDetailed.append(rawContentDetailed)
     }
+    
+//    init(idKey: String, author: String, title: String, shortContent: String, source: String, revision: String, rawContentDetailed: [String:String]) {
+//        self.idKey = idKey
+//        self.author = author
+//        self.title = title
+//        self.shortContent = shortContent
+//        self.source = source
+//        self.sourceInapp = ""
+//        self.revision = Int(revision)!
+//        self.rawContentDetailed.append(rawContentDetailed)
+//    }
     
     init(){
         self.idKey = ""
@@ -34,6 +47,7 @@ class Phantich {
         self.title = ""
         self.shortContent = ""
         self.source = ""
+        self.sourceInapp = ""
         self.revision = 0
     }
     
@@ -51,6 +65,9 @@ class Phantich {
     }
     func getSource() -> String {
         return source
+    }
+    func getSourceInapp() -> String {
+        return sourceInapp
     }
     func getRevision() -> Int {
         return revision

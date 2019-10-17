@@ -213,7 +213,7 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
                 for ptich in phantich{
                     if let pt = ptich as? Dictionary<String, String> {
                         if rawPhantichList[pt["id_key"]!] == nil {
-                            let phantichRaw = Phantich(idKey: pt["id_key"]!, author: pt["author"]!,title: pt["title"]!,shortContent: pt["shortdescription"]!, source: pt["source"]!, revision: pt["revision"]!,rawContentDetailed: pt )
+                            let phantichRaw = Phantich(idKey: pt["id_key"]!, author: pt["author"]!,title: pt["title"]!,shortContent: pt["shortdescription"]!, source: pt["source"]!, sourceInapp: pt["source_inapp"]!, revision: pt["revision"]!,rawContentDetailed: pt )
                             rawPhantichList[pt["id_key"]!] = phantichRaw
                         } else {
                             rawPhantichList[pt["id_key"]!]!.updateRawContentDetailed(rawContentDetailed: pt)
@@ -228,6 +228,7 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
                         newPt["title"] = pt!["title"] as! String
                         newPt["shortdescription"] = pt!["shortdescription"] as! String
                         newPt["source"] = pt!["source"] as! String
+                        newPt["source_inapp"] = pt!["source_inapp"] as! String
                         newPt["minhhoa"] = pt!["minhhoa"] as! String
                         newPt["content"] = pt!["content"] as! String
                         newPt["minhhoatype"] = pt!["minhhoatype"] as! String
@@ -235,7 +236,7 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
                         newPt["revision"] = "\(pt!["revision"] as! Int)"
                         
                         if rawPhantichList[newPt["id_key"]!] == nil {
-                            let phantichRaw = Phantich(idKey: newPt["id_key"]!, author: newPt["author"]!,title: newPt["title"]!,shortContent: newPt["shortdescription"]!, source: newPt["source"]!, revision: newPt["revision"]!,rawContentDetailed: newPt )
+                            let phantichRaw = Phantich(idKey: newPt["id_key"]!, author: newPt["author"]!,title: newPt["title"]!,shortContent: newPt["shortdescription"]!, source: newPt["source"]!, sourceInapp: newPt["source_inapp"]!, revision: newPt["revision"]!,rawContentDetailed: newPt )
                             rawPhantichList[newPt["id_key"]!] = phantichRaw
                         } else {
                             rawPhantichList[newPt["id_key"]!]!.updateRawContentDetailed(rawContentDetailed: newPt)
