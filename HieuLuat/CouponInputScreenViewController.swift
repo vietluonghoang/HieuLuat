@@ -70,7 +70,7 @@ class CouponInputScreenViewController: UIViewController {
         let result = network.getMessage()
         
         if let message = result.getValue(key: MessagingContainer.MessageKey.data.rawValue) as? Dictionary<String,String> {
-            print("message: \(message)")
+            print("check code message: \(message)")
             updateCheckStatusTimer.invalidate()
             if message["status"] == "Success" {
                 updateStatusMessage(state: 1)

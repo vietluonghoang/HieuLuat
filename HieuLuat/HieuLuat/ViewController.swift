@@ -147,7 +147,7 @@ class ViewController: UIViewController,TJPlacementDelegate {
             if message["status"] == "Success" {
                 GeneralSettings.isAdsOptout = Queries.updateAppConfigsToDatabase(configList: ["adsOptout":"1"])
             }else{
-                GeneralSettings.isAdsOptout = Queries.updateAppConfigsToDatabase(configList: ["adsOptout":"0"])
+                Queries.updateAppConfigsToDatabase(configList: ["adsOptout":"0"])
             }
         }
     }
