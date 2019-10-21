@@ -28,6 +28,7 @@ class InstructionDetailsViewController: UIViewController, TJPlacementDelegate {
     var bannerView: GADBannerView!
     let btnFBBanner = UIButton()
     var placement = TJPlacement()
+    let network = NetworkHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,7 @@ class InstructionDetailsViewController: UIViewController, TJPlacementDelegate {
         }else{
             initAds()
             showPhantich()
+            sendAnalytics()
         }
     }
     
@@ -124,6 +126,18 @@ class InstructionDetailsViewController: UIViewController, TJPlacementDelegate {
         viewContent.translatesAutoresizingMaskIntoConstraints = false
         addViewToContainer(parent: viewContent, orderedList: orderList)
     }
+    
+    func sendAnalytics() {
+        let target = "https://wethoong-server.herokuapp.com/analytics"
+        var rawData = DeviceInfoCollector().getDeviceInfo()
+        rawData["action"] = "view_phantich"
+        rawData["actiontype"] = "view_detail"
+        rawData["actionvalue"] = phantich.getIdKey().lowercased()
+        
+        let data = try! JSONSerialization.data(withJSONObject: rawData, options: [])
+        network.sendData(url: target, method: NetworkHandler.HttpMethod.post.rawValue, contentType: NetworkHandler.HttpContentType.applicationjson.rawValue,data: data)
+    }
+    
     //TODO: implement content
     
     /*
