@@ -33,6 +33,8 @@ class GeneralSettings {
     private static var lastAppOpenTimestamp = 0
     private static var lastInterstitialAdsOpenTimestamp = 0
     
+    private static var defaultConnectionTries = 30
+    
     private static var dbVersion = 3
     private static var adsOptout = false //true means the user will not see Ads
     private static var developementMode = true
@@ -46,6 +48,16 @@ class GeneralSettings {
     //        }
     //    }
     //
+    
+    
+    static var remainingConnectionTries: Int {
+        get{
+            return self.defaultConnectionTries
+        }
+        set(v){
+            self.defaultConnectionTries = v;
+        }
+    }
     
     static var getDatabaseVersion: Int {
         get{

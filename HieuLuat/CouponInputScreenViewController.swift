@@ -16,10 +16,11 @@ class CouponInputScreenViewController: UIViewController {
     let network = NetworkHandler()
     var updateCheckStatusTimer = Timer()
     var checkStatusInterval = 1.0
+    var retries = GeneralSettings.remainingConnectionTries
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -68,7 +69,6 @@ class CouponInputScreenViewController: UIViewController {
     
     @objc func checkCodeState(){
         let result = network.getMessage()
-        
         if let message = result.getValue(key: MessagingContainer.MessageKey.data.rawValue) as? Dictionary<String,String> {
             print("check code message: \(message)")
             updateCheckStatusTimer.invalidate()
@@ -80,17 +80,23 @@ class CouponInputScreenViewController: UIViewController {
             }
             enableConfirmButton(enable: true)
         }
+        
+        if retries < 1 {
+            updateCheckStatusTimer.invalidate()
+        }else{
+            retries -= 1
+        }
     }
     
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

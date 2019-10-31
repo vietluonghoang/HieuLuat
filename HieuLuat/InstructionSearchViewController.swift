@@ -21,7 +21,7 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
     var isPhantichListReady = false
     var updatePhantichListTimer = Timer()
     var checkPhantichListInterval = 1 //in seconds
-    var checkPhantichListTimeout = 90 //in seconds
+    var retries = GeneralSettings.remainingConnectionTries
     var rawPhantichList = [String:Phantich]()
     var phantichList = [String:Phantich]()
     var phantichListKeys = [String]()
@@ -102,7 +102,7 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
         btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
         AdsHelper.initBannerAds(btnFBBanner: btnFBBanner, bannerView: bannerView, toView: viewBottom, root: self)
     }
-   
+    
     func initSearch() {
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -182,6 +182,11 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
             isPhantichListReady = true
             print("Done updating data!")
         }
+        if retries < 1 {
+            updatePhantichListTimer.invalidate()
+        }else{
+            retries -= 1
+        }
     }
     
     func getPhantichList() {
@@ -209,7 +214,7 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
             let rawData = result.getValue(key: MessagingContainer.MessageKey.data.rawValue)
             //                let configs = try JSONSerialization.data(withJSONObject: rawData, options: [])
             if let phantich = rawData as? [AnyObject]   {
-//                print("configs: \(phantich)")
+                //                print("configs: \(phantich)")
                 for ptich in phantich{
                     if let pt = ptich as? Dictionary<String, String> {
                         if rawPhantichList[pt["id_key"]!] == nil {
@@ -264,12 +269,12 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
     func search( keyword: String) -> [String:Phantich] {
         if isPhantichListReady {
             var rs = [String:Phantich]()
-                    let kw = keyword.trimmingCharacters(in: .whitespacesAndNewlines)
-                    if(kw.count > 0){
-                        rs = Queries.getPhantichByKeyword(keyword: kw)
-                    }else{
-                        rs = Queries.getAllPhantich()
-                    }
+            let kw = keyword.trimmingCharacters(in: .whitespacesAndNewlines)
+            if(kw.count > 0){
+                rs = Queries.getPhantichByKeyword(keyword: kw)
+            }else{
+                rs = Queries.getAllPhantich()
+            }
             return rs
         }
         return phantichList
@@ -295,11 +300,11 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
         
         var phantich:Phantich
         
-//        if searchController.isActive && searchController.searchBar.text != "" && phantichList.count > 0 {
-            phantich = phantichList[phantichListKeys[indexPath.row]]!
-//        }else{
-//            phantich = Phantich(idKey: "", author: "", title: "Đang cập nhật dữ liệu...", shortContent: "", source: "", revision: "0", rawContentDetailed: [String:String]())
-//        }
+        //        if searchController.isActive && searchController.searchBar.text != "" && phantichList.count > 0 {
+        phantich = phantichList[phantichListKeys[indexPath.row]]!
+        //        }else{
+        //            phantich = Phantich(idKey: "", author: "", title: "Đang cập nhật dữ liệu...", shortContent: "", source: "", revision: "0", rawContentDetailed: [String:String]())
+        //        }
         
         cell.updatePhantich(phantich: phantich)
         return cell
