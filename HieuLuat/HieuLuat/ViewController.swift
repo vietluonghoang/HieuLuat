@@ -18,6 +18,7 @@ class ViewController: UIViewController,TJPlacementDelegate {
     
     var networkCallTimer = Timer()
     let networkCallInterval = 10.0
+    var retries = GeneralSettings.remainingConnectionTries
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,6 +150,11 @@ class ViewController: UIViewController,TJPlacementDelegate {
             }else{
                 Queries.updateAppConfigsToDatabase(configList: ["adsOptout":"0"])
             }
+        }
+        if retries < 1 {
+            networkCallTimer.invalidate()
+        }else{
+            retries -= 1
         }
     }
 }
