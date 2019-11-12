@@ -43,6 +43,28 @@ class InstructionDetailsViewController: UIViewController, TJPlacementDelegate {
             showPhantich()
             sendAnalytics()
         }
+        listAllChildComponentOfPhantichDetails()
+    }
+    
+    func listAllChildComponentOfPhantichDetails() {
+        print("----------------------")
+        print("- viewContent size: \(viewContent.frame)")
+        print("=== viewContent: is user interact enabled: \(viewContent.isUserInteractionEnabled)")
+        for wrapper in viewContent.subviews {
+            print("++ wrapper size: \(wrapper.frame)")
+            print("=== wrapper: is user interact enabled: \(wrapper.isUserInteractionEnabled)")
+            for item in wrapper.subviews {
+                print("============================================")
+                print("========+++++++ is View: \(item.isKind(of: UIView.self)) - is Button: \(item.isKind(of: UIButton.self)) - is Image: \(item.isKind(of: UIImageView.self))")
+                print("++ item size: \(item.frame)")
+                print("=== is user interact enabled: \(item.isUserInteractionEnabled)")
+                if item.isKind(of: UIButton.self) {
+                    (item as! UIButton).addTarget(self, action: #selector(buttonAction), for: UIControl.Event.touchDown)
+                }
+                print("============================================")
+            }
+        }
+        print("----------------------")
     }
     
     func updateDetails(phantich: Phantich) {
@@ -72,9 +94,9 @@ class InstructionDetailsViewController: UIViewController, TJPlacementDelegate {
         if phantich.getSourceInapp().count > 0 {
             redirectionHelper.openUrl(urls: [URL(string: phantich.getSourceInapp())!,URL(string: phantich.getSource())!])
         }else{
-        redirectionHelper.openUrl(url: URL(string: phantich.getSource())!)
+            redirectionHelper.openUrl(url: URL(string: phantich.getSource())!)
         }
-//        redirectionHelper.openUrl(url: URL(string: "fb://story?id=2368088400123446")!)
+        //        redirectionHelper.openUrl(url: URL(string: "fb://story?id=2368088400123446")!)
     }
     
     func addViewToContainer(parent: UIView, orderedList: [Int:UIView]) {
@@ -82,10 +104,10 @@ class InstructionDetailsViewController: UIViewController, TJPlacementDelegate {
         var order = 0
         while order < orderedList.count {
             let wrapper = orderedList[order]
-            ////            Utils.generateNewComponentWidthConstraint(component: wrapper!, width: parent.frame.width)
-            //            for subView in wrapper!.subviews {
-            ////                Utils.generateNewComponentWidthConstraint(component: subView, width: parent.frame.width)
-            //            }
+            Utils.generateNewComponentWidthConstraint(component: wrapper!, width: parent.frame.width)
+            for subView in wrapper!.subviews {
+                Utils.generateNewComponentWidthConstraint(component: subView, width: parent.frame.width)
+            }
             let topPadding = CGFloat(3)
             if order == 0 {
                 if orderedList.count == 1 {
@@ -138,7 +160,9 @@ class InstructionDetailsViewController: UIViewController, TJPlacementDelegate {
         network.sendData(url: target, method: NetworkHandler.HttpMethod.post.rawValue, contentType: NetworkHandler.HttpContentType.applicationjson.rawValue,data: data)
     }
     
-    //TODO: implement content
+    @objc func buttonAction(sender: UIButton!) {
+        redirectionHelper.openUrl(url: URL(string: sender.titleLabel!.text!)!)
+    }
     
     /*
      // MARK: - Navigation

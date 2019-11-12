@@ -39,9 +39,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         initSearch()
         initFilterConfig()
         updateFilterLabel()
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
+
         if(dieukhoanList.count<1){
             updateDieukhoanList(arrDieukhoan: search(keyword: searchController.searchBar.text!))
         }

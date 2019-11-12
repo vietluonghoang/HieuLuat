@@ -10,13 +10,15 @@ import UIKit
 import FMDB
 
 class Queries: NSObject {
+    private static var physMemSize:UInt64 = 0
+    private static var rawQuery: String = ""
     
     static var physicalMemorySize: UInt64 {
         get{
-            return self.physicalMemorySize
+            return self.physMemSize
         }
         set(v){
-            self.physicalMemorySize = getPhysicalMemorySize();
+            self.physMemSize = getPhysicalMemorySize();
         }
     }
     
@@ -25,7 +27,7 @@ class Queries: NSObject {
             return "select distinct dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id where "
         }
         set(v) {
-            self.rawSqlQuery = v
+            self.rawQuery = v
         }
     }
     
@@ -58,19 +60,19 @@ class Queries: NSObject {
     }
     
     class func selectAllDieukhoan() -> [Dieukhoan] {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         let sql = "SELECT * FROM tblChitietvanban"
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(setRecordsCap(query: sql), withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(setRecordsCap(query: sql), withArgumentsIn: [])!
         var dieukhoanArray = Array<Dieukhoan>()
         if resultSet != nil {
             dieukhoanArray = generateDieukhoanList(resultSet: resultSet)
         }
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         return dieukhoanArray
     }
     
     class func searchDieukhoan(keyword:String, vanbanid: [String]) -> [Dieukhoan] {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         
         let specificVanban = generateWhereClauseForVanbanid(vanbanid: vanbanid, vanbanIdColumnName: "vbId")
         let appendString = generateWhereClauseForKeywordsWithDifferentAccentType(keyword: keyword, targetColumn: "dkSearch")
@@ -78,7 +80,7 @@ class Queries: NSObject {
         
         let sql = "\(rawSqlQuery) (\(appendString)) \(specificVanban)"
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(setRecordsCap(query: sql), withArgumentsIn: appendKeyword)!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(setRecordsCap(query: sql), withArgumentsIn: appendKeyword)!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -86,18 +88,18 @@ class Queries: NSObject {
             dieukhoanArray = generateDieukhoanList(resultSet: resultSet)
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return dieukhoanArray
     }
     
     class func searchDieukhoanByQuery(query:String, vanbanid: [String]) -> [Dieukhoan] {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         let specificVanban = generateWhereClauseForVanbanid(vanbanid: vanbanid, vanbanIdColumnName: "vbId")
         let appendKeyword = [String]()
         let sql = query.lowercased() + specificVanban
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(setRecordsCap(query: sql), withArgumentsIn: appendKeyword)!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(setRecordsCap(query: sql), withArgumentsIn: appendKeyword)!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -105,17 +107,17 @@ class Queries: NSObject {
             dieukhoanArray = generateDieukhoanList(resultSet: resultSet)
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return dieukhoanArray
     }
     
     class func searchDieukhoanByID(keyword:String,vanbanid:[String]) -> [Dieukhoan] {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         let specificVanban = generateWhereClauseForVanbanid(vanbanid: vanbanid, vanbanIdColumnName: "vbId")
         let sql = rawSqlQuery + " dkId = ? "+specificVanban
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(setRecordsCap(query: sql), withArgumentsIn: [keyword,keyword,keyword,keyword])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(setRecordsCap(query: sql), withArgumentsIn: [keyword,keyword,keyword,keyword])!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -123,13 +125,13 @@ class Queries: NSObject {
             dieukhoanArray = generateDieukhoanList(resultSet: resultSet)
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return dieukhoanArray
     }
     
     class func searchDieukhoanByIDs(keyword:[String],vanbanid:[String]) -> [Dieukhoan] {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         let specificVanban = generateWhereClauseForVanbanid(vanbanid: vanbanid, vanbanIdColumnName: "vbId")
         var idGroup = ""
         for id in keyword {
@@ -144,7 +146,7 @@ class Queries: NSObject {
             sql += Utils.removeFirstCharacters(result: specificVanban, length: 4)
         }
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(setRecordsCap(query: sql), withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(setRecordsCap(query: sql), withArgumentsIn: [])!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -152,17 +154,17 @@ class Queries: NSObject {
             dieukhoanArray = generateDieukhoanList(resultSet: resultSet)
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return dieukhoanArray
     }
     
     class func searchDieukhoanBySo(keyword:String,vanbanid:[String]) -> [Dieukhoan] {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         let specificVanban = generateWhereClauseForVanbanid(vanbanid: vanbanid, vanbanIdColumnName: "vbId")
         let sql = rawSqlQuery + "(dkSo = ? or dk.forsearch like ? or dk.forsearch like ?)" + specificVanban
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(setRecordsCap(query: sql), withArgumentsIn: [keyword,"\(keyword) %","\(keyword). %"])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(setRecordsCap(query: sql), withArgumentsIn: [keyword,"\(keyword) %","\(keyword). %"])!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -170,13 +172,13 @@ class Queries: NSObject {
             dieukhoanArray = generateDieukhoanList(resultSet: resultSet)
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return dieukhoanArray
     }
     
     class func searchChildren(keyword:String,vanbanid:[String]) -> [Dieukhoan] {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         let specificVanban = generateWhereClauseForVanbanid(vanbanid: vanbanid, vanbanIdColumnName: "vbId")
         var searchArgurment = ""
         var searchKeyword = ""
@@ -190,7 +192,7 @@ class Queries: NSObject {
         
         let sql = rawSqlQuery + "dkCha "+searchArgurment+specificVanban
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(setRecordsCap(query: sql), withArgumentsIn: [keyword,keyword,keyword,keyword])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(setRecordsCap(query: sql), withArgumentsIn: [keyword,keyword,keyword,keyword])!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -198,16 +200,16 @@ class Queries: NSObject {
             dieukhoanArray = generateDieukhoanList(resultSet: resultSet)
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return dieukhoanArray
     }
     
     class func getAllDirectRelatedDieukhoan(dieukhoanId: Int64) -> [Dieukhoan] {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         let sql = rawSqlQuery + " dkId in (select relatedDieukhoanId from tblRelatedDieukhoan where dieukhoanId = \(dieukhoanId))"
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -215,16 +217,16 @@ class Queries: NSObject {
             dieukhoanArray = generateDieukhoanList(resultSet: resultSet)
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return dieukhoanArray
     }
     
     class func getAllRelativeRelatedDieukhoan(dieukhoanId: Int64) -> [Dieukhoan] {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         let sql = rawSqlQuery + " dkId in (select dieukhoanId from tblRelatedDieukhoan where relatedDieukhoanId = \(dieukhoanId))"
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -232,16 +234,16 @@ class Queries: NSObject {
             dieukhoanArray = generateDieukhoanList(resultSet: resultSet)
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return dieukhoanArray
     }
     
     class func getAllHinhphatbosung(dieukhoanId: Int64) -> [BosungKhacphuc] {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         let sql = "select distinct dk.id as dkId, dk.so as dkSo, dk.tieude as dkTieude, dk.noidung as dkNoidung, dk.minhhoa as dkMinhhoa, dk.cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, dk.vanbanid as vbId, vb.ten as vbTen, vb.nam as vbNam, vb.ma as vbMa, vb.noidung as vbNoidung, vb.coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch, rdk.id as rdkId, rdk.so as rdkSo, rdk.tieude as rdkTieude, rdk.noidung as rdkNoidung, rdk.minhhoa as rdkMinhhoa, rdk.cha as rdkCha, rvb.loai as rlvbID, rlvb.ten as rlvbTen, rvb.so as rvbSo, rdk.vanbanid as rvbId, rvb.ten as rvbTen, rvb.nam as rvbNam, rvb.ma as rvbMa, rvb.noidung as rvbNoidung, rvb.coquanbanhanh as rvbCoquanbanhanhId, rcq.ten as rcqTen, rdk.forSearch as rdkSearch, hp.noidung as noidung from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id join tblHinhphatbosung as hp on dk.id = hp.dieukhoanId join tblChitietvanban as rdk on hp.dieukhoanQuydinhId = rdk.id join tblVanban as rvb on rdk.vanbanid=rvb.id join tblLoaivanban as rlvb on rvb.loai=rlvb.id join tblCoquanbanhanh as rcq on rvb.coquanbanhanh=rcq.id where hp.dieukhoanId = \(dieukhoanId)"
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
         
         var bosungKhacphucArray = Array<BosungKhacphuc>()
         
@@ -249,16 +251,16 @@ class Queries: NSObject {
             bosungKhacphucArray = generateBosungKhacphucList(resultSet: resultSet)
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return bosungKhacphucArray
     }
     
     class func getAllBienphapkhacphuc(dieukhoanId: Int64) -> [BosungKhacphuc] {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         let sql = "select distinct dk.id as dkId, dk.so as dkSo, dk.tieude as dkTieude, dk.noidung as dkNoidung, dk.minhhoa as dkMinhhoa, dk.cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, dk.vanbanid as vbId, vb.ten as vbTen, vb.nam as vbNam, vb.ma as vbMa, vb.noidung as vbNoidung, vb.coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch, rdk.id as rdkId, rdk.so as rdkSo, rdk.tieude as rdkTieude, rdk.noidung as rdkNoidung, rdk.minhhoa as rdkMinhhoa, rdk.cha as rdkCha, rvb.loai as rlvbID, rlvb.ten as rlvbTen, rvb.so as rvbSo, rdk.vanbanid as rvbId, rvb.ten as rvbTen, rvb.nam as rvbNam, rvb.ma as rvbMa, rvb.noidung as rvbNoidung, rvb.coquanbanhanh as rvbCoquanbanhanhId, rcq.ten as rcqTen, rdk.forSearch as rdkSearch, kp.noidung as noidung from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id join tblBienphapkhacphuc as kp on dk.id = kp.dieukhoanId join tblChitietvanban as rdk on kp.dieukhoanQuydinhId = rdk.id join tblVanban as rvb on rdk.vanbanid=rvb.id join tblLoaivanban as rlvb on rvb.loai=rlvb.id join tblCoquanbanhanh as rcq on rvb.coquanbanhanh=rcq.id where kp.dieukhoanId = \(dieukhoanId)"
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
         
         var bosungKhacphucArray = Array<BosungKhacphuc>()
         
@@ -266,17 +268,17 @@ class Queries: NSObject {
             bosungKhacphucArray = generateBosungKhacphucList(resultSet: resultSet)
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return bosungKhacphucArray
     }
     
     class func searchMucphatInfo(id: String) -> String {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         
         let sql = "select distinct canhanTu, canhanDen, tochucTu, tochucDen from tblMucphat where dieukhoanId = ?"
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [id])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [id])!
         var result = ""
         if resultSet != nil {
             while resultSet.next() {
@@ -298,18 +300,18 @@ class Queries: NSObject {
             }
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return result
         
     }
     
     class func searchPhuongtienInfo(id: String) -> String {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         
         let sql = "select distinct oto, otoTai, maykeo, xechuyendung, tau, moto, xeganmay, xemaydien, xedapmay, xedap, xedapdien, xethoso, sucvat, xichlo, dibo from tblPhuongtien where dieukhoanId = ?"
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [id])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [id])!
         var result = ""
         if resultSet != nil {
             while resultSet.next() {
@@ -349,7 +351,7 @@ class Queries: NSObject {
             }
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         if result.count >= 2 {
             result = result.substring(to: result.index(result.endIndex, offsetBy: -2))
         }
@@ -357,11 +359,11 @@ class Queries: NSObject {
     }
     
     class func searchLinhvucInfo(id: String) -> String {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         
         let sql = "select distinct duongbo, duongsat from tblLinhvuc where dieukhoanId = ?"
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [id])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [id])!
         var result = ""
         if resultSet != nil {
             while resultSet.next() {
@@ -380,18 +382,18 @@ class Queries: NSObject {
             }
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return result
     }
     
     //TODO: implement doituong info
     class func searchDoituongInfo(id: String) -> String {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         
         let sql = "select distinct canhan, tochuc, doanhnghiep, trungtam, daotao, nguoidieukhien, nguoingoitrenxe, nguoiduoctro, giaovien, ga, chuphuongtien, nhanvien, dangkiemvien, laitau, truongdon, truongtau, dieukhienmaydon, trucban, duaxe, kinhdoanh, vanchuyen, vantai, hanhkhach, hanghoa, ketcau, hatang, luukho, laprap, xepdo, quanly, thuphi, dangkiem, sathach, dichvu, hotro, ghepnoi, gacchan, khamxe, thuham, phucvu, baoquan, sanxuat, hoancai, phuchoi, khaithac, baotri from tblKeywords where dieukhoanId = ?"
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [id])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [id])!
         var result = ""
         if resultSet != nil {
             while resultSet.next() {
@@ -554,7 +556,7 @@ class Queries: NSObject {
             }
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         if result.count >= 2 {
             result = result.substring(to: result.index(result.endIndex, offsetBy: -2))
@@ -564,11 +566,11 @@ class Queries: NSObject {
     }
     
     class func getPlateGroups() -> [String]{
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         
         let sql = "select ten from tblShapeGroups"
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
         var result = [String]()
         if resultSet != nil {
             while resultSet.next() {
@@ -579,17 +581,17 @@ class Queries: NSObject {
             }
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return result
     }
     
     class func getVachGroups() -> [String:String]{
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         
         let sql = "select ten, displayName from tblVachGroups"
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
         var result = [String:String]()
         if resultSet != nil {
             while resultSet.next() {
@@ -602,13 +604,13 @@ class Queries: NSObject {
             }
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return result
     }
     
     class func getPlateShapeByGroup(groups: [String]) -> [String] {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         var whereClause = ""
         for group in groups {
             whereClause += "ten = '\(group)' or "
@@ -620,7 +622,7 @@ class Queries: NSObject {
         }
         let sql = "select ten from tblPlateShapes where type in (select id from tblShapeGroups where (\(Utils.removeLastCharacters(result: whereClause, length: 4))))"
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
         var result = [String]()
         if resultSet != nil {
             while resultSet.next() {
@@ -631,13 +633,13 @@ class Queries: NSObject {
             }
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return result
     }
     
     class func getVachShapeByGroup(groups: [String]) -> [String] {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         var whereClause = ""
         for group in groups {
             whereClause += "ten = '\(group)' or "
@@ -649,7 +651,7 @@ class Queries: NSObject {
         }
         let sql = "select distinct ten from tblVachShapes where type in (select id from tblVachGroups where (\(Utils.removeLastCharacters(result: whereClause, length: 4))))"
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
         var result = [String]()
         if resultSet != nil {
             while resultSet.next() {
@@ -660,13 +662,13 @@ class Queries: NSObject {
             }
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         return result
     }
     
     class func getPlateByParams(params: [String], groups: [String]) -> [Dieukhoan] {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         
         var sql = ""
         var index = 0
@@ -701,7 +703,7 @@ class Queries: NSObject {
             }
         }
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
         var result = [String:String]()
         if resultSet != nil {
             while resultSet.next() {
@@ -713,7 +715,7 @@ class Queries: NSObject {
             }
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         if result.count < 1 {
             return [Dieukhoan]()
@@ -736,7 +738,7 @@ class Queries: NSObject {
     }
     
     class func getVachByParams(params: [String], groups: [String]) -> [Dieukhoan] {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         
         var sql = ""
         var index = 0
@@ -771,7 +773,7 @@ class Queries: NSObject {
             }
         }
         
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
         var result = [String:String]()
         if resultSet != nil {
             while resultSet.next() {
@@ -783,7 +785,7 @@ class Queries: NSObject {
             }
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         
         if result.count < 1 {
             return [Dieukhoan]()
@@ -806,9 +808,16 @@ class Queries: NSObject {
     }
     
     class func getAllPhantich() -> [String:Phantich]{
-        DataConnection.database!.open()
+        
+        DataConnection.instance().open()
         let sql = "select p.id_key,p.author,p.title,p.shortdescription,p.source,p.source_inapp,p.revision,d.contentorder,d.content,d.minhhoa,d.minhhoatype from phantich as p join phantich_details as d on p.id_key = d.id_key order by p.id_key, d.contentorder"
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet!
+        do{
+            try resultSet = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
+            print("-=-=-=-=-=-=-=- \(DataConnection.instance().lastErrorMessage())")
+        }catch{
+            print("=============###Error: \(error)")
+        }
         var result = [String:Phantich]()
         if resultSet != nil {
             while resultSet.next() {
@@ -828,16 +837,16 @@ class Queries: NSObject {
                 }
             }
         }
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         return result
     }
     
     class func getPhantichByKeyword(keyword: String) -> [String:Phantich]{
         let kw = keyword.lowercased()
         
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         let sql = "select p.id_key,p.author,p.title,p.shortdescription,p.source,p.source_inapp,p.revision,d.contentorder,d.content,d.minhhoa,d.minhhoatype from phantich as p join phantich_details as d on p.id_key = d.id_key where d.forsearch like '%\(kw)%' order by p.id_key, d.contentorder"
-        let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
         var result = [String:Phantich]()
         if resultSet != nil {
             while resultSet.next() {
@@ -860,73 +869,72 @@ class Queries: NSObject {
     }
     
     class func insertPhantichToDatabase(phantichList: [String:Phantich]) -> Bool {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         
         var addedPhantichList = [String:Phantich]()
-        DataConnection.database!.executeUpdate("delete from phantich", withArgumentsIn: [])
-        DataConnection.database!.executeUpdate("delete from phantich_details", withArgumentsIn: [])
+        DataConnection.instance().executeUpdate("delete from phantich", withArgumentsIn: [])
+        DataConnection.instance().executeUpdate("delete from phantich_details", withArgumentsIn: [])
         
         for ptich in phantichList {
             let keyId = ptich.value.getIdKey()
             let title = ptich.value.getTittle()
             if addedPhantichList[keyId] == nil {
                 let sqlPhantich = "insert into phantich (id_key,author,title,shortdescription,source,source_inapp,revision) values ('\(keyId)','\(ptich.value.getAuthor())','\(title)','\(ptich.value.getShortContent())','\(ptich.value.getSource())','\(ptich.value.getSourceInapp())',\(ptich.value.getRevision()));"
-                DataConnection.database!.executeUpdate(sqlPhantich, withArgumentsIn: [])
+                DataConnection.instance().executeUpdate(sqlPhantich, withArgumentsIn: [])
                 addedPhantichList[keyId] = ptich.value
             }
             for rawContent in ptich.value.getRawContentDetailed() {
                 let sqlPhantichDetails = "insert into phantich_details (id_key,contentorder,content,minhhoa,minhhoatype,forsearch) values ('\(keyId)','\(rawContent["contentorder"]!)','\(rawContent["content"]!)','\(rawContent["minhhoa"]!)','\(rawContent["minhhoatype"]!)','\(title.lowercased()) \(rawContent["content"]!.lowercased())');"
-                DataConnection.database!.executeUpdate(sqlPhantichDetails, withArgumentsIn: [])
+                DataConnection.instance().executeUpdate(sqlPhantichDetails, withArgumentsIn: [])
             }
             
         }
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         return true
     }
     
     class func updateAppConfigsToDatabase(configList: [String:String]) -> Bool {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         
         for key in configList.keys {
             var sql = "select * from tblAppConfigs where configKey = ?"
-            let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [key])
+            let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [key])
             var isConfigExisted = false
             if resultSet != nil {
                 while resultSet.next() {
                     isConfigExisted = true
                     sql = "update tblAppConfigs set configValue = ? where configKey = ?"
-                    DataConnection.database!.executeUpdate(sql, withArgumentsIn: [configList[key]!,key])
+                    DataConnection.instance().executeUpdate(sql, withArgumentsIn: [configList[key]!,key])
                 }
             }
             if !isConfigExisted {
                 sql = "insert into tblAppConfigs(configKey, configValue) values (?, ?)"
-                DataConnection.database!.executeUpdate(sql, withArgumentsIn: [key,configList[key]!])
+                DataConnection.instance().executeUpdate(sql, withArgumentsIn: [key,configList[key]!])
             }
         }
         
-        DataConnection.database!.close()
+        DataConnection.instance().close()
         return true
     }
     
     class func getAppConfigsFromDatabaseByKey(key: String) -> String {
-        DataConnection.database!.open()
+        DataConnection.instance().open()
         var configValue = ""
         let sql = "select configValue from tblAppConfigs where configKey = ?"
-            let resultSet: FMResultSet! = DataConnection.database!.executeQuery(sql, withArgumentsIn: [key])
-            if resultSet != nil {
-                while resultSet.next() {
-                    configValue = resultSet.string(forColumn: "configValue")!
-                }
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [key])
+        if resultSet != nil {
+            while resultSet.next() {
+                configValue = resultSet.string(forColumn: "configValue")!
             }
-        
-        DataConnection.database!.close()
+        }
+        DataConnection.instance().close()
         return configValue
     }
     
     class func executeUpdateQuery(query: String){
-        DataConnection.database!.open()
-        DataConnection.database!.executeUpdate(query, withArgumentsIn: [])
-        DataConnection.database!.close()
+        DataConnection.instance().open()
+        DataConnection.instance().executeUpdate(query, withArgumentsIn: [])
+        DataConnection.instance().close()
     }
     
     class func appendDieukhoan(dieukhoan: Dieukhoan, dkArr: [Dieukhoan]) -> [Dieukhoan] {

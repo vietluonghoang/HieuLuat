@@ -20,14 +20,16 @@ class ViewController: UIViewController,TJPlacementDelegate {
     let networkCallInterval = 10.0
     var retries = GeneralSettings.remainingConnectionTries
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        _ = DataConnection.instance()
         sendAnalytics() //send analytics for tracking user usage
         getAppConfiguration()
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
         checkAdsOptout() //check ads optout state
         RunLoop.current.run(until: Date(timeIntervalSinceNow : 2.0)) //delay 2 seconds to view splash screen longer
         lblVersion.text = getVersion()
@@ -42,7 +44,11 @@ class ViewController: UIViewController,TJPlacementDelegate {
             let updatePopup = storyBoard.instantiateViewController(withIdentifier: "updatePopup") as! UpdatePopupViewController
             self.present(updatePopup, animated: true, completion: nil)
         }
+        if DataConnection.instance().lastErrorMessage().contains("no such table") {
+            DataConnection.forceInitializeDatabase()
+        }
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -119,7 +125,12 @@ class ViewController: UIViewController,TJPlacementDelegate {
     }
     
     func checkAdsOptout() {
-        let valueInDatabase = Queries.getAppConfigsFromDatabaseByKey(key: "adsOptout")
+        var valueInDatabase = ""
+        do{
+            valueInDatabase = Queries.getAppConfigsFromDatabaseByKey(key: "adsOptout")
+        }catch{
+            print("=========Error: \(error)")
+        }
         switch valueInDatabase {
         case "1":
             print("adsoptout state set in database")

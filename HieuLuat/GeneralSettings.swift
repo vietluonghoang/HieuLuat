@@ -135,7 +135,7 @@ class GeneralSettings {
     static var isAdsOptout: Bool {
         get{
             if !self.adsOptout {
-                //TO DO: update optout state
+                //TODO: update optout state
             }
             return self.adsOptout
         }

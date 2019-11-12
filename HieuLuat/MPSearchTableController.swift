@@ -41,9 +41,6 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         initFilterConfig()
         initSearchFilters()
         updateFilterLabel()
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
         if(dieukhoanList.count<1){
             updateDieukhoanList(arrDieukhoan: search(keyword: searchController.searchBar.text!))
         }
