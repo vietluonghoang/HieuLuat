@@ -35,9 +35,9 @@ class GeneralSettings {
     
     private static var defaultConnectionTries = 30
     
-    private static var dbVersion = 3
+    private static var dbVersion = 7
     private static var adsOptout = false //true means the user will not see Ads
-    private static var developementMode = true
+    private static var developementMode = false
     
     //    static var mucphatRange: [String] {
     //        get{
