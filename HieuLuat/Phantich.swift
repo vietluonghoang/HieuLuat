@@ -30,16 +30,16 @@ class Phantich {
         self.rawContentDetailed.append(rawContentDetailed)
     }
     
-//    init(idKey: String, author: String, title: String, shortContent: String, source: String, revision: String, rawContentDetailed: [String:String]) {
-//        self.idKey = idKey
-//        self.author = author
-//        self.title = title
-//        self.shortContent = shortContent
-//        self.source = source
-//        self.sourceInapp = ""
-//        self.revision = Int(revision)!
-//        self.rawContentDetailed.append(rawContentDetailed)
-//    }
+    //    init(idKey: String, author: String, title: String, shortContent: String, source: String, revision: String, rawContentDetailed: [String:String]) {
+    //        self.idKey = idKey
+    //        self.author = author
+    //        self.title = title
+    //        self.shortContent = shortContent
+    //        self.source = source
+    //        self.sourceInapp = ""
+    //        self.revision = Int(revision)!
+    //        self.rawContentDetailed.append(rawContentDetailed)
+    //    }
     
     init(){
         self.idKey = ""
@@ -102,9 +102,12 @@ class Phantich {
         let lblNoidung = TapAndCopyLabel()
         
         init() {
-            wrapper = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 100))
+            wrapper = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
             wrapper.translatesAutoresizingMaskIntoConstraints = false
             wrapper.clipsToBounds = true
+            wrapper.autoresizesSubviews = true
+            wrapper.isUserInteractionEnabled = true
+            wrapper.contentMode = UIView.ContentMode.scaleAspectFit
             wrapper.autoresizesSubviews = true
             lblNoidung.numberOfLines = 0
             lblNoidung.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -119,7 +122,6 @@ class Phantich {
             return wrapper
         }
         
-        //TO DO: cần xử lý ảnh từ web
         func initChitietWithImage(order: Int, noidung: String, imgSrc: String){
             self.order = order
             self.imageLink = imgSrc
@@ -134,9 +136,17 @@ class Phantich {
         }
         func initChitietWithLink(order: Int, noidung: String, linkUrl: String) {
             self.order = order
-            let minhhoaLink = UIButton()
-            targetLink = URL(string: linkUrl)
+            let minhhoaLink = AutoScaleButton()
+            minhhoaLink.titleLabel?.adjustsFontSizeToFitWidth = true
+            minhhoaLink.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+            minhhoaLink.titleLabel?.numberOfLines = 0
+            minhhoaLink.setTitle(linkUrl, for: .normal)
+            minhhoaLink.setTitleColor(UIColor.blue, for: .normal)
+            minhhoaLink.titleLabel?.font = UIFont.systemFont(ofSize: 10)
             minhhoaLink.addTarget(self, action: #selector(openLinkAction), for: .touchDown)
+     
+            targetLink = URL(string: linkUrl)
+            minhhoaLink.layoutSubviews()
             if linkUrl.count > 0 {
                 generateWrapper(noidung: noidung, minhhoa: minhhoaLink)
             }else{

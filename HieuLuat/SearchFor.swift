@@ -36,10 +36,6 @@ class SearchFor {
     
     func getAncestersID(dieukhoan:Dieukhoan, vanbanId: [String]) -> String {
         var ancesters = ""
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
-        
         if dieukhoan.getCha() == 0 {
             ancesters = "\(dieukhoan.getId())"
         }else{
@@ -57,9 +53,6 @@ class SearchFor {
     func getAncesters(dieukhoan:Dieukhoan, vanbanId: [String]) -> [Dieukhoan] {
         var dk = dieukhoan
         var ancesters = [Dieukhoan]()
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
         while dk.getCha() != 0 {
             dk = Queries.searchDieukhoanByID(keyword: "\(dk.getCha())",vanbanid: vanbanId)[0]
             ancesters.append(dk)
@@ -70,9 +63,6 @@ class SearchFor {
     func getAncestersNumber(dieukhoan:Dieukhoan, vanbanId: [String]) -> String {
         var ancesters = ""
         var dk = dieukhoan
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
         while dk.getCha() != 0 {
             let parent = Queries.searchDieukhoanByID(keyword: "\(dk.getCha())",vanbanid: vanbanId)[0]
             dk = parent

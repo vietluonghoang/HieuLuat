@@ -24,6 +24,7 @@
 		335078EC1F5D166A00D52741 /* VBPLSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335078EB1F5D166A00D52741 /* VBPLSearchTableController.swift */; };
 		3350DB31214A8EBC008D0AE4 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3350DB30214A8EBC008D0AE4 /* Utils.swift */; };
 		3357C5321F86547700B963E6 /* SortUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357C5311F86547700B963E6 /* SortUtil.swift */; };
+		3358D638237574A800DB8463 /* AutoScaleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3358D637237574A800DB8463 /* AutoScaleButton.swift */; };
 		336C485B1FA0D7D200A154D9 /* PickerViewSelectPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336C485A1FA0D7D200A154D9 /* PickerViewSelectPopup.swift */; };
 		3394A2782072236C00831E69 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3394A2772072236C00831E69 /* AboutViewController.swift */; };
 		339B43431FFBAE6C00149B09 /* BosungKhacphuc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B43421FFBAE6C00149B09 /* BosungKhacphuc.swift */; };
@@ -95,6 +96,7 @@
 		335078EB1F5D166A00D52741 /* VBPLSearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLSearchTableController.swift; sourceTree = "<group>"; };
 		3350DB30214A8EBC008D0AE4 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		3357C5311F86547700B963E6 /* SortUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortUtil.swift; sourceTree = "<group>"; };
+		3358D637237574A800DB8463 /* AutoScaleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoScaleButton.swift; sourceTree = "<group>"; };
 		336C485A1FA0D7D200A154D9 /* PickerViewSelectPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewSelectPopup.swift; sourceTree = "<group>"; };
 		3394A2772072236C00831E69 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		339B43421FFBAE6C00149B09 /* BosungKhacphuc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BosungKhacphuc.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				332C10DD2350353A00EDD3AE /* GifImageView.swift */,
 				332C10DF235038CC00EDD3AE /* LoadingView.swift */,
 				332C10E1235089F000EDD3AE /* WebImage.swift */,
+				3358D637237574A800DB8463 /* AutoScaleButton.swift */,
 			);
 			name = CustomComponents;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				330A22142188AF6C0082A4A6 /* SearchControllers.swift in Sources */,
 				33D3055D1F517F2B00547497 /* SearchFor.swift in Sources */,
 				33C87DFC1F604C0200D8B198 /* ConfigAttribute.swift in Sources */,
+				3358D638237574A800DB8463 /* AutoScaleButton.swift in Sources */,
 				3322B222234B592B004584B1 /* InstructionSearchViewController.swift in Sources */,
 				332C10DE2350353A00EDD3AE /* GifImageView.swift in Sources */,
 				3331E6641FA3092000219B19 /* MPSearchTableController.swift in Sources */,

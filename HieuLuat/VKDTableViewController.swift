@@ -57,10 +57,7 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
         
         tblView.delegate = self
         tblView.dataSource = self
-        
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
+
         initVachShapeGroupsList()
         updateFilterLabel()
         updateGroupsScrollView()

@@ -33,9 +33,6 @@ class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, U
         
 //        initSearch()
         
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
         if(dieukhoanList.count<1){
             updateDieukhoanList(arrDieukhoan: Queries.searchChildren(keyword: "", vanbanid: specificVanbanId))
         }

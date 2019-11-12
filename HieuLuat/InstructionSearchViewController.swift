@@ -46,15 +46,10 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
         showCoverLayer(show: true)
         if AdsHelper.isConnectedToNetwork() {
             getPhantichList()
-            if DataConnection.database == nil {
-                DataConnection.databaseSetup()
-            }
-            
             initSearch()
             initAds()
             getPhantichListFromDatabase()
         }
-        //TO DO: viết logic xử lý dữ liệu từ server và chuẩn bị dữ liệu cho phần hiển thị. Cần xử lý thời gian chờ load
     }
     
     
@@ -171,7 +166,7 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
             print("Checking data revison....")
             if (phantichList.count > 0 && (phantichList.first!.value.getRevision() < rawPhantichList.first!.value.getRevision()) || (phantichList.count < 1)){
                 print("Updating local data....")
-                var isSuccess = Queries.insertPhantichToDatabase(phantichList: rawPhantichList) //TO DO: should have a fallback solution for this, in case if it failed to insert data
+                var isSuccess = Queries.insertPhantichToDatabase(phantichList: rawPhantichList) //TODO: should have a fallback solution for this, in case if it failed to insert data
                 getPhantichListFromDatabase()
             }else{
                 print("No newer data!")
@@ -202,8 +197,6 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
         Queries.executeUpdateQuery(query: "delete from phantich")
         Queries.executeUpdateQuery(query: "delete from phantich_details")
     }
-    
-    //TO DO: phần này cần triển khai đoạn tìm kiếm dựa trên tiêu đề và thông tin vắn tắt
     
     func initPhantichList(){
         print("Initializing raw data")
@@ -288,7 +281,6 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
         return rowCount
     }
     
-    //TO DO: đoạn này xử lý để hiển thị dữ liệu vắn tắt cho danh sách các hướng dẫn
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "lawInstructionCell"
         
@@ -310,8 +302,6 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
         return cell
     }
     
-    
-    //TO DO: đoạn này xử lý dữ liệu khi chuyển tiếp xem chi tiết bài hướng dẫn
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

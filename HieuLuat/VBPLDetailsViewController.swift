@@ -491,44 +491,26 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func getMucphat(id: String) -> String {
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
         return Queries.searchMucphatInfo(id: id)
     }
     
     func getPhuongtien(id: String) -> String {
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
         return Queries.searchPhuongtienInfo(id: id)
     }
     
     func getLinhvuc(id: String) -> String {
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
         return Queries.searchLinhvucInfo(id: id)
     }
     
     func getDoituong(id: String) -> String {
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
         return Queries.searchDoituongInfo(id: id)
     }
     
     func getChildren(keyword:String) -> [Dieukhoan] {
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
         return Queries.searchChildren(keyword: "\(keyword)", vanbanid: specificVanbanId)
     }
     
     func getParent(keyword:String) -> [Dieukhoan] {
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
         return Queries.searchDieukhoanByID(keyword: "\(keyword)", vanbanid: specificVanbanId)
     }
     

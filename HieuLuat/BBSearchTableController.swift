@@ -61,9 +61,6 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         tblView.delegate = self
         tblView.dataSource = self
         
-        if DataConnection.database == nil {
-            DataConnection.databaseSetup()
-        }
         initPlateShapeGroupsList()
         updateFilterLabel()
         updateGroupsScrollView()
