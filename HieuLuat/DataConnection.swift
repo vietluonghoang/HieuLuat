@@ -38,9 +38,9 @@ class DataConnection: NSObject {
                 print("===== Database file is outdated")
                 do {
                     print("===== Removing old database file")
-                    try file.removeItem(at: URL(string: getDatabaseFileSourcePath())!)
+                    try file.removeItem(at: URL(fileURLWithPath: getDatabaseFileSourcePath()))
                 }catch {
-                    print("######## Error on removing old database")
+                    print("######## Error on removing old database: \(error.localizedDescription)")
                 }
                 copyDatabase(destinationPath: getDatabaseFileSourcePath())
                 
