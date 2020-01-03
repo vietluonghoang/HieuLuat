@@ -9,15 +9,19 @@
 import Foundation
 
 class GeneralSettings {
-    let mucphatRange = ["50.000","60.000","80.000","100.000","120.000","200.000","300.000","400.000","500.000","600.000","800.000","1.000.000","1.200.000","500.000","1.600.000","2.000.000","2.500.000","3.000.000","4.000.000","5.000.000","6.000.000","7.000.000","8.000.000","10.000.000","12.000.000","14.000.000","15.000.000","16.000.000","18.000.000","20.000.000","25.000.000","28.000.000","30.000.000","32.000.000","36.000.000","37.500.000","40.000.000","50.000.000","52.500.000","56.000.000","64.000.000","70.000.000","75.000.000","80.000.000","150.000.000"]
-    private static var nd46Id = "2"
+//    let mucphatRange = ["50.000","60.000","80.000","100.000","120.000","200.000","300.000","400.000","500.000","600.000","800.000","1.000.000","1.200.000","500.000","1.600.000","2.000.000","2.500.000","3.000.000","4.000.000","5.000.000","6.000.000","7.000.000","8.000.000","10.000.000","12.000.000","14.000.000","15.000.000","16.000.000","18.000.000","20.000.000","25.000.000","28.000.000","30.000.000","32.000.000","36.000.000","37.500.000","40.000.000","50.000.000","52.500.000","56.000.000","64.000.000","70.000.000","75.000.000","80.000.000","150.000.000"]
+    //TO DO: temporarily change to ND100/2019
+    let mucphatRange = ["50.000","60.000","80.000","100.000","200.000","250.000","300.000","400.000","500.000","600.000","800.000","1.000.000","1.200.000","1.500.000","1.600.000","2.000.000","3.000.000","4.000.000","5.000.000","6.000.000","7.000.000","7.500.000","8.000.000","10.000.000","12.000.000","14.000.000","15.000.000","16.000.000","18.000.000","20.000.000","25.000.000","28.000.000","30.000.000","32.000.000","36.000.000","40.000.000","50.000.000","56.000.000","64.000.000","70.000.000","200.000.000"]
+    //TO DO: temporarily change to ND100/2019
+    private static var nd46Id = "6"
     private static var qc41Id = "1"
     private static var tt01Id = "3"
     private static var lgtId = "4"
     private static var lxlvphcId = "5"
     let danhsachvanban  = ["nd46","qc41","tt01","lgtdb","lxlvphc"]
     private static var vanbanInfo = [String:[String:String]]()
-    private static var tamgiuPhuongtienDieukhoanID = "2820"
+    //TO DO: temporarily change to ND100/2019
+    private static var tamgiuPhuongtienDieukhoanID = "6593"
     private static var allowMultipleShapePlateSelect = false
     private static var fbWeThoong = [URL(string: "fb://profile/224587561051762"),URL(string: "http://fb.me/wethoong")]
     private static var fbCongdonghieuluat = [URL(string: "fb://profile/2262780957320858"),URL(string: "https://www.facebook.com/groups/congdonghieuluat/")]
@@ -200,9 +204,10 @@ class GeneralSettings {
         if value == nil{
             var vbInfo = [String:String]()
             switch (name.lowercased()){
+                //TO DO: temporarily change to ND100/2019
             case "nd46":
                 vbInfo["id"] = nd46Id
-                vbInfo["fullName"] = "Nghị định 46 - 2016"
+                vbInfo["fullName"] = "Nghị định 100 - 2019"
                 break;
             case "qc41":
                 vbInfo["id"] = qc41Id
