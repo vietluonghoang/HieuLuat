@@ -153,8 +153,9 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         if(filterSettings["QC41"] == "on"){
             activeFilterList.append("1")
         }
+        //TO DO: temporarily change to ND100/2019
         if(filterSettings["ND46"] == "on"){
-            activeFilterList.append("2")
+            activeFilterList.append("6")
         }
         if(filterSettings["TT01"] == "on"){
             activeFilterList.append("3")
