@@ -41,7 +41,7 @@ class GeneralSettings {
     
     private static var dbVersion = 8
     private static var adsOptout = false //true means the user will not see Ads
-    private static var developementMode = false
+    private static var developementMode = true
     
     //    static var mucphatRange: [String] {
     //        get{
