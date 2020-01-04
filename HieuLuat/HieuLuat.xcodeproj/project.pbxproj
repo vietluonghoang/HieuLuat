@@ -766,7 +766,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20010301;
+				CURRENT_PROJECT_VERSION = 20010401;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = HieuLuat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -790,7 +790,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20010301;
+				CURRENT_PROJECT_VERSION = 20010401;
 				DEVELOPMENT_TEAM = D95825NFBM;
 				INFOPLIST_FILE = HieuLuat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

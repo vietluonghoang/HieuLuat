@@ -46,6 +46,7 @@ class DataConnection: NSObject {
                 
             }else {
                 print("===== Database file is up to date")
+                database = FMDatabase(path: getDatabaseFileSourcePath())
             }
         }
         isInitializing = false
