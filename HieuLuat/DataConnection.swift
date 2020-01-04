@@ -39,18 +39,15 @@ class DataConnection: NSObject {
                 do {
                     print("===== Removing old database file")
                     try file.removeItem(at: URL(fileURLWithPath: getDatabaseFileSourcePath()))
+                    copyDatabase(destinationPath: getDatabaseFileSourcePath())
                 }catch {
                     print("######## Error on removing old database: \(error.localizedDescription)")
                 }
-                copyDatabase(destinationPath: getDatabaseFileSourcePath())
                 
             }else {
                 print("===== Database file is up to date")
             }
         }
-        
-        database = FMDatabase(path: getDatabaseFileSourcePath())
-        updateDatabaseVersion(db: database!, newVersion: databaseVersion)
         isInitializing = false
         print("=========================================================\n------- Finishing the progress of initializing database ------\n=========================================================")
     }
@@ -62,12 +59,13 @@ class DataConnection: NSObject {
         do {
             print("===== Removing old database file")
             try file.removeItem(at: URL(string: getDatabaseFileSourcePath())!)
+            database = FMDatabase(path: getDatabaseFileSourcePath())
+            updateDatabaseVersion(db: database!, newVersion: databaseVersion)
+            isInitializing = false
         }catch {
             print("######## Error on removing old database")
         }
-        database = FMDatabase(path: getDatabaseFileSourcePath())
-        updateDatabaseVersion(db: database!, newVersion: databaseVersion)
-        isInitializing = false
+        
         print("=========================================================\n------- Finished forcing the progress of initializing database ------\n=========================================================")
     }
     
@@ -78,6 +76,8 @@ class DataConnection: NSObject {
         print("+++resPath: \(dpPathApp ?? "failed to get path")")
         do {
             try file.copyItem(atPath: dpPathApp!, toPath: destinationPath)
+            database = FMDatabase(path: getDatabaseFileSourcePath())
+            updateDatabaseVersion(db: database!, newVersion: databaseVersion)
             print("+++copyItemAtPath success")
         } catch {
             print("######## copyItemAtPath fail")
