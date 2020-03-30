@@ -10,9 +10,10 @@ import UIKit
 import FMDB
 
 class DataConnection: NSObject {
-    private static let databaseVersion = GeneralSettings.getDatabaseVersion
+    private static let requiredDatabaseVersion = GeneralSettings.getRequiredDatabaseVersion
     private static var database: FMDatabase? = nil
     private static var isInitializing = false
+    private static var currentVersion = 0
     
     class func instance() -> FMDatabase {
         if database == nil {
@@ -34,7 +35,7 @@ class DataConnection: NSObject {
         if !isDatabaseFileExisted(){
             copyDatabase(destinationPath: getDatabaseFileSourcePath())
         } else {
-            if databaseVersion > getCurrentDBVersion() {
+            if requiredDatabaseVersion > getCurrentDBVersion() {
                 print("===== Database file is outdated")
                 do {
                     print("===== Removing old database file")
@@ -61,7 +62,7 @@ class DataConnection: NSObject {
             print("===== Removing old database file")
             try file.removeItem(at: URL(string: getDatabaseFileSourcePath())!)
             database = FMDatabase(path: getDatabaseFileSourcePath())
-            updateDatabaseVersion(db: database!, newVersion: databaseVersion)
+            updateDatabaseVersion(db: database!, newVersion: requiredDatabaseVersion)
             isInitializing = false
         }catch {
             print("######## Error on removing old database")
@@ -78,7 +79,7 @@ class DataConnection: NSObject {
         do {
             try file.copyItem(atPath: dpPathApp!, toPath: destinationPath)
             database = FMDatabase(path: getDatabaseFileSourcePath())
-            updateDatabaseVersion(db: database!, newVersion: databaseVersion)
+            updateDatabaseVersion(db: database!, newVersion: requiredDatabaseVersion)
             print("+++copyItemAtPath success")
         } catch {
             print("######## copyItemAtPath fail")
@@ -102,28 +103,34 @@ class DataConnection: NSObject {
         return dbFileInDocumentPath.path
     }
     
-    private class func getCurrentDBVersion() -> Int {
-        let db = FMDatabase(path: getDatabaseFileSourcePath())
-        var currentVersion = 0
-        do {
-            print("===== Getting current Database version")
-            db.open()
-            let resultSet: FMResultSet! = try db.executeQuery("pragma user_version", values: nil)
-            while resultSet.next() {
-                currentVersion = Int(resultSet.int(forColumn: "user_version"))
+    class func getCurrentDBVersion() -> Int {
+        if currentVersion != 0 {
+            return currentVersion
+        } else {
+            let db = FMDatabase(path: getDatabaseFileSourcePath())
+            var curVersion = 0
+            do {
+                print("===== Getting current Database version")
+                db.open()
+                let resultSet: FMResultSet! = try db.executeQuery("pragma user_version", values: nil)
+                while resultSet.next() {
+                    curVersion = Int(resultSet.int(forColumn: "user_version"))
+                    currentVersion = curVersion
+                }
+                db.close()
+            }catch {
+                print("######## Error on getting user_version")
             }
-            db.close()
-        }catch {
-            print("######## Error on getting user_version")
+            return curVersion
         }
-        return currentVersion
     }
     
     private class func updateDatabaseVersion (db: FMDatabase, newVersion: Int){
         do{
-            db.open()
-            try database!.executeUpdate("PRAGMA user_version = \(newVersion)", values: nil)
-            db.close()
+            //            db.open()
+            //            try database!.executeUpdate("PRAGMA user_version = \(newVersion)", values: nil)
+            getCurrentDBVersion()
+            //            db.close()
         }catch {
             print("######## Error on updating user_version")
         }
