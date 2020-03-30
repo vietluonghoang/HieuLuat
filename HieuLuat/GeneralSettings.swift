@@ -26,7 +26,7 @@ class GeneralSettings {
     private static var fbWeThoong = [URL(string: "fb://profile/224587561051762"),URL(string: "http://fb.me/wethoong")]
     private static var fbCongdonghieuluat = [URL(string: "fb://profile/2262780957320858"),URL(string: "https://www.facebook.com/groups/congdonghieuluat/")]
     private static var emailWeThoong = "wethoong@gmail.com"
-    
+//    private static var currentDBVersion = 0
     private static var minimumAppVersion = "1.0"
     private static var enableInappNotif = false
     private static var enableBannerAds = false
@@ -39,7 +39,7 @@ class GeneralSettings {
     
     private static var defaultConnectionTries = 30
     
-    private static var dbVersion = 8
+    private static var requiredDBVersion = 8
     private static var adsOptout = false //true means the user will not see Ads
     private static var developementMode = true
     
@@ -63,14 +63,23 @@ class GeneralSettings {
         }
     }
     
-    static var getDatabaseVersion: Int {
+    static var getRequiredDatabaseVersion: Int {
         get{
-            return self.dbVersion
+            return self.requiredDBVersion
         }
         set(v){
-            self.dbVersion = v;
+            self.requiredDBVersion = v;
         }
     }
+    
+//    static var getCurrentDatabaseVersion: Int {
+//        get{
+//            return self.currentDBVersion
+//        }
+//        set(v){
+//            self.currentDBVersion = v;
+//        }
+//    }
     
     static var getNd46Id: String {
         get{

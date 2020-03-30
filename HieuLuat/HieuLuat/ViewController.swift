@@ -32,7 +32,6 @@ class ViewController: UIViewController,TJPlacementDelegate {
         getAppConfiguration()
         checkAdsOptout() //check ads optout state
         RunLoop.current.run(until: Date(timeIntervalSinceNow : 2.0)) //delay 2 seconds to view splash screen longer
-        lblVersion.text = getVersion()
         GeneralSettings.getLastAppOpenTimestamp = Int(NSDate().timeIntervalSince1970)
     }
     
@@ -47,6 +46,7 @@ class ViewController: UIViewController,TJPlacementDelegate {
         if DataConnection.instance().lastErrorMessage().contains("no such table") {
             DataConnection.forceInitializeDatabase()
         }
+        lblVersion.text = getVersion()
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,7 +62,7 @@ class ViewController: UIViewController,TJPlacementDelegate {
     func getVersion() -> String {
         let bundleCode: AnyObject? = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as AnyObject
         let bundleVersion: AnyObject? = Bundle.main.infoDictionary!["CFBundleVersion"] as AnyObject
-        let versionInfo = "v.\(bundleCode as! String)(\(bundleVersion as! String)) - db.\(GeneralSettings.getDatabaseVersion)"
+        let versionInfo = "v.\(bundleCode as! String)(\(bundleVersion as! String)) - db.\(DataConnection.getCurrentDBVersion())"
         return versionInfo
     }
     
@@ -72,6 +72,7 @@ class ViewController: UIViewController,TJPlacementDelegate {
         rawData["action"] = "app_open"
         rawData["actiontype"] = ""
         rawData["actionvalue"] = ""
+        rawData["dbversion"] = "\(DataConnection.getCurrentDBVersion())"
         
         let data = try! JSONSerialization.data(withJSONObject: rawData, options: [])
         network.sendData(url: target, method: NetworkHandler.HttpMethod.post.rawValue, contentType: NetworkHandler.HttpContentType.applicationjson.rawValue,data: data)
@@ -108,7 +109,7 @@ class ViewController: UIViewController,TJPlacementDelegate {
                         GeneralSettings.minimumAdsIntervalInSeconds = Int(cf["configvalue"]!)!
                         
                     default:
-                        print("not any defined config!")
+                        print("'\(cf["configname"]!)' is not a defined config!")
                     }
                 }
             }else{
