@@ -14,14 +14,16 @@ class GeneralSettings {
     let mucphatRange = ["50.000","60.000","80.000","100.000","200.000","250.000","300.000","400.000","500.000","600.000","800.000","1.000.000","1.200.000","1.500.000","1.600.000","2.000.000","3.000.000","4.000.000","5.000.000","6.000.000","7.000.000","7.500.000","8.000.000","10.000.000","12.000.000","14.000.000","15.000.000","16.000.000","18.000.000","20.000.000","25.000.000","28.000.000","30.000.000","32.000.000","36.000.000","40.000.000","50.000.000","56.000.000","64.000.000","70.000.000","200.000.000"]
     //TO DO: temporarily change to ND100/2019
     private static var nd46Id = "6"
-    private static var qc41Id = "1"
+    //TO DO: temporarily change to QC41/2019
+    private static var qc41Id = "7"
     private static var tt01Id = "3"
     private static var lgtId = "4"
     private static var lxlvphcId = "5"
+    private static var tt652020 = "8"
     let danhsachvanban  = ["nd46","qc41","tt01","lgtdb","lxlvphc"]
     private static var vanbanInfo = [String:[String:String]]()
     //TO DO: temporarily change to ND100/2019
-    private static var tamgiuPhuongtienDieukhoanID = "6593"
+    private static var tamgiuPhuongtienDieukhoanID = "6592"
     private static var allowMultipleShapePlateSelect = false
     private static var fbWeThoong = [URL(string: "fb://profile/224587561051762"),URL(string: "http://fb.me/wethoong")]
     private static var fbCongdonghieuluat = [URL(string: "fb://profile/2262780957320858"),URL(string: "https://www.facebook.com/groups/congdonghieuluat/")]
@@ -39,7 +41,7 @@ class GeneralSettings {
     
     private static var defaultConnectionTries = 30
     
-    private static var requiredDBVersion = 8
+    private static var requiredDBVersion = 9
     private static var adsOptout = false //true means the user will not see Ads
     private static var developementMode = true
     
@@ -216,15 +218,16 @@ class GeneralSettings {
                 //TO DO: temporarily change to ND100/2019
             case "nd46":
                 vbInfo["id"] = nd46Id
-                vbInfo["fullName"] = "Nghị định 100 - 2019"
+                vbInfo["fullName"] = "Nghị định 100/2019"
                 break;
+                //TO DO: temporarily change to ND100/2019
             case "qc41":
                 vbInfo["id"] = qc41Id
-                vbInfo["fullName"] = "Quy chuẩn 41 - 2016"
+                vbInfo["fullName"] = "Quy chuẩn 41/2019"
                 break;
             case "tt01":
                 vbInfo["id"] = tt01Id
-                vbInfo["fullName"] = "Thông tư 01 - 2016"
+                vbInfo["fullName"] = "Thông tư 01/2016"
                 break;
             case "lgtdb":
                 vbInfo["id"] = lgtId
@@ -233,6 +236,10 @@ class GeneralSettings {
             case "lxlvphc":
                 vbInfo["id"] = lxlvphcId
                 vbInfo["fullName"] = "Luật xử lý vi phạm hành chính 2012"
+                break;
+                case "tt652020":
+                vbInfo["id"] = tt652020
+                vbInfo["fullName"] = "Thông tư 65/2020"
                 break;
             default:
                 break;

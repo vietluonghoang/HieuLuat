@@ -14,6 +14,7 @@ class FilterPopupViewController: UIViewController {
     @IBOutlet weak var swtND46: UISwitch!
     @IBOutlet var swtLGTDB2008: UISwitch!
     @IBOutlet var swtLXLVPHC2012: UISwitch!
+    @IBOutlet var swtTT652020: UISwitch!
     
     var root: VBPLSearchTableController? = nil
     
@@ -57,6 +58,11 @@ class FilterPopupViewController: UIViewController {
         }else{
             swtLXLVPHC2012.isOn = false
         }
+        if(root?.filterSettings["TT652020"] == "on"){
+            swtTT652020.isOn = true
+        }else{
+            swtTT652020.isOn = false
+        }
     }
     
     @IBAction func btnXongOnTouchDown(_ sender: Any) {
@@ -97,6 +103,13 @@ class FilterPopupViewController: UIViewController {
             root?.filterSettings["LXLVPHC"] = "on"
         }else{
             root?.filterSettings["LXLVPHC"] = "off"
+        }
+    }
+    @IBAction func swtTT652020ValueChange(_ sender: Any) {
+        if (sender as! UISwitch).isOn {
+            root?.filterSettings["TT652020"] = "on"
+        }else{
+            root?.filterSettings["TT652020"] = "off"
         }
     }
 }

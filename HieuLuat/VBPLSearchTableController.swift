@@ -130,6 +130,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
             filterSettings["ND46"] = "on"
             filterSettings["LGTDB"] = "on"
             filterSettings["LXLVPHC"] = "on"
+            filterSettings["TT652020"] = "off"
         }
     }
     
@@ -149,9 +150,9 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     
     func getActiveFilter() -> [String] {
         var activeFilterList = [String]()
-        
+        //TO DO: temporarily change to QC41/2019
         if(filterSettings["QC41"] == "on"){
-            activeFilterList.append("1")
+            activeFilterList.append("7")
         }
         //TO DO: temporarily change to ND100/2019
         if(filterSettings["ND46"] == "on"){
@@ -165,6 +166,9 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         }
         if(filterSettings["LXLVPHC"] == "on"){
             activeFilterList.append("5")
+        }
+        if(filterSettings["TT652020"] == "on"){
+            activeFilterList.append("8")
         }
         return activeFilterList
     }
