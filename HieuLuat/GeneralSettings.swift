@@ -210,7 +210,7 @@ class GeneralSettings {
     }
     
     class func getVanbanInfo(name: String, info: String) -> String{
-        var value = vanbanInfo[name]
+        let value = vanbanInfo[name]
         
         if value == nil{
             var vbInfo = [String:String]()
