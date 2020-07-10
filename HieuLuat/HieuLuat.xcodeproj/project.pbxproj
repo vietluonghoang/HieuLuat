@@ -427,10 +427,9 @@
 			};
 			buildConfigurationList = 33D305201F51794F00547497 /* Build configuration list for PBXProject "HieuLuat" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
