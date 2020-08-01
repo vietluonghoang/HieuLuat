@@ -24,7 +24,7 @@ class SortUtil {
             return listDieukhoan
         }
         
-        var splittedKeyword = keyword.lowercased().components(separatedBy: " ")
+        let splittedKeyword = keyword.lowercased().components(separatedBy: " ")
         let splittedKeywordCount = splittedKeyword.count
         
         for dieukhoan in listDieukhoan {
@@ -65,7 +65,7 @@ class SortUtil {
             return listDieukhoan
         }
         
-        var splittedKeyword = keyword.lowercased().components(separatedBy: " ")
+        let splittedKeyword = keyword.lowercased().components(separatedBy: " ")
         let splittedKeywordCount = splittedKeyword.count
         
         for dk in listDieukhoan {
@@ -102,7 +102,7 @@ class SortUtil {
     }
     
     func sortByBestMatch(listDieukhoan: [Dieukhoan], keyword:String) -> [Dieukhoan]{
-        var rawSorted = sortByRelevent(listDieukhoan: listDieukhoan, keyword: keyword.lowercased())
+        let rawSorted = sortByRelevent(listDieukhoan: listDieukhoan, keyword: keyword.lowercased())
         var sortedList = [Dieukhoan]()
         if !rawSorted.isEmpty {
             var baselinePoint = rawSorted[0].getSortPoint()

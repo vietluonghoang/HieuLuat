@@ -10,7 +10,8 @@ import UIKit
 
 class PickerViewSelectPopup: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    let mucphatRange = GeneralSettings().getMucphatRange()
+//    let mucphatRange = GeneralSettings().getMucphatRange()
+    let mucphatRange = GeneralSettings.getMucphatRange(vanbanId: GeneralSettings.getActiveNDXPId)
     
     @IBOutlet var pvMucphat: UIPickerView!
     @IBOutlet var btnXong: UIButton!

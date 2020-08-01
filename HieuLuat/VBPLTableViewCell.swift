@@ -70,7 +70,8 @@ class VBPLTableViewCell: UITableViewCell{
         lblNoidung.font = UIFont.systemFont(ofSize: 16)
         lblNoidung.textAlignment = NSTextAlignment.left
         
-        lblVanban.text = dieukhoan.getVanban().getMa()
+        //TO DO: Currently, dieukhoan owns Vanban but with limited vanban's data. To get tenRutgon of Vanban, we have to use vanbanInfo, which owns by GeneralSettings. To fix this problem completely, we have to change the rawQuery in Queries. We'll do it later
+        lblVanban.text = "\(GeneralSettings.getVanbanInfo(id: dieukhoan.getVanban().getId(), info: "shortname")) (\(dieukhoan.getVanban().getMa()))"
         lblDieukhoan.text = dieukhoan.getSo()
         
         let breadscrub = search.getAncestersNumber(dieukhoan: dieukhoan, vanbanId: [String(dieukhoan.getVanban().getId())])
@@ -79,7 +80,8 @@ class VBPLTableViewCell: UITableViewCell{
         
         if(!fullDetails){
             if(noidung.count > maxText){
-                noidung = noidung.substring(to: noidung.index(noidung.startIndex, offsetBy: maxText))
+//                noidung = noidung.substring(to: noidung.index(noidung.startIndex, offsetBy: maxText))
+                noidung = Utils.removeLastCharacters(result: noidung, length: noidung.count - maxText)
                 noidung.append("...")
             }
         }

@@ -100,6 +100,8 @@ class DataConnection: NSObject {
     private class func getDatabaseFileSourcePath() -> String {
         let docsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let dbFileInDocumentPath = docsDir.appendingPathComponent("Hieuluat.sqlite")
+        
+        print("=================\nDB File source path:\n\(dbFileInDocumentPath.path)\n==================")
         return dbFileInDocumentPath.path
     }
     

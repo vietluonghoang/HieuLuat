@@ -37,6 +37,7 @@ class ViewController: UIViewController,TJPlacementDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         updateConfig()
+        GeneralSettings.setVanbanInfo(vanbans: Queries.selectAllVanban())
         
         if checkIfNeedToUpdate() {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

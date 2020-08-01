@@ -9,12 +9,11 @@
 import UIKit
 
 class FilterPopupViewController: UIViewController {
-    @IBOutlet weak var swtQC41: UISwitch!
-    @IBOutlet weak var swtTT01: UISwitch!
-    @IBOutlet weak var swtND46: UISwitch!
-    @IBOutlet var swtLGTDB2008: UISwitch!
-    @IBOutlet var swtLXLVPHC2012: UISwitch!
-    @IBOutlet var swtTT652020: UISwitch!
+    @IBOutlet var svPopupContent: UIScrollView!
+    @IBOutlet var viewContent: UIView!
+    @IBOutlet var lblPopupTitle: UILabel!
+    @IBOutlet var viewDetailContent: UIView!
+    
     
     var root: VBPLSearchTableController? = nil
     
@@ -33,36 +32,37 @@ class FilterPopupViewController: UIViewController {
     }
     
     func updateSwitches() {
-        if(root?.filterSettings["QC41"] == "on"){
-            swtQC41.isOn = true
-        }else{
-            swtQC41.isOn = false
+        var swtArray = [UIView]()
+        
+        for id in root!.filterSettings.keys {
+            if root?.filterSettings[id] == "on" {
+                let wrapperView = UIView()
+                let lblVanbanShortname = UILabel()
+                lblVanbanShortname.text = GeneralSettings.getVanbanInfo(id: Int64(id)!, info: "shortname")
+                let swt = UISwitch()
+                swt.isOn = true
+                swt.tag = Int(id)!
+                swt.addTarget(self, action: #selector(swtAction), for: .valueChanged)
+                let componentsList = [lblVanbanShortname,swt]
+                Utils.autoGenerateLinearViewComponents(parent: wrapperView, orderedComponents: componentsList, top: 2, bottom: 2, left: 2, right: 2, isToptoBottom: false)
+                swtArray.append(wrapperView)
+            }
         }
-        if(root?.filterSettings["ND46"] == "on"){
-            swtND46.isOn = true
-        }else{
-            swtND46.isOn = false
+        for id in root!.filterSettings.keys {
+            if root?.filterSettings[id] == "off" {
+                let wrapperView = UIView()
+                let lblVanbanShortname = UILabel()
+                lblVanbanShortname.text = GeneralSettings.getVanbanInfo(id: Int64(id)!, info: "shortname")
+                let swt = UISwitch()
+                swt.isOn = false
+                swt.tag = Int(id)!
+                swt.addTarget(self, action: #selector(swtAction), for: .valueChanged)
+                let componentsList = [lblVanbanShortname,swt]
+                Utils.autoGenerateLinearViewComponents(parent: wrapperView, orderedComponents: componentsList, top: 2, bottom: 2, left: 2, right: 2, isToptoBottom: false)
+                swtArray.append(wrapperView)
+            }
         }
-        if(root?.filterSettings["TT01"] == "on"){
-            swtTT01.isOn = true
-        }else{
-            swtTT01.isOn = false
-        }
-        if(root?.filterSettings["LGTDB"] == "on"){
-            swtLGTDB2008.isOn = true
-        }else{
-            swtLGTDB2008.isOn = false
-        }
-        if(root?.filterSettings["LXLVPHC"] == "on"){
-            swtLXLVPHC2012.isOn = true
-        }else{
-            swtLXLVPHC2012.isOn = false
-        }
-        if(root?.filterSettings["TT652020"] == "on"){
-            swtTT652020.isOn = true
-        }else{
-            swtTT652020.isOn = false
-        }
+        Utils.autoGenerateLinearViewComponents(parent: viewDetailContent, orderedComponents: swtArray, top: 0, bottom: 0, left: 0, right: 0, isToptoBottom: true)
     }
     
     @IBAction func btnXongOnTouchDown(_ sender: Any) {
@@ -70,6 +70,15 @@ class FilterPopupViewController: UIViewController {
         root?.updateFilterLabel()
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @objc func swtAction(sender: UISwitch!) {
+        if (sender!).isOn {
+            root?.filterSettings[String(sender.tag)] = "on"
+        }else{
+            root?.filterSettings[String(sender.tag)] = "off"
+        }
+    }
+    
     @IBAction func swtQC41OnValueChange(_ sender: Any) {
         if (sender as! UISwitch).isOn {
             root?.filterSettings["QC41"] = "on"
