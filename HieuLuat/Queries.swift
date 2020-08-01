@@ -59,6 +59,35 @@ class Queries: NSObject {
         //        Utils.database!.close()
     }
     
+    class func selectAllVanban() -> [Vanban]{
+        DataConnection.instance().open()
+        let sql = "select vb.id as id, vb.ten as ten, vb.loai as lvbId, lvb.ten as lvbTen, vb.so as so, vb.nam as nam, vb.ma as ma, vb.coquanbanhanh as cqId, cq.ten as cqTen, vb.noidung as noidung, vb.hieuluc as hieuluc, vb.vanbanThaytheId as vanbanThaytheId, vb.tenRutgon as tenRutgon from tblVanban as vb join tblLoaiVanban as lvb on vb.loai = lvb.id JOIN tblCoquanbanhanh as cq on vb.coquanbanhanh = cq.id"
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(setRecordsCap(query: sql), withArgumentsIn: [])!
+        var vanbanArray = Array<Vanban>()
+        while resultSet.next() {
+            if resultSet != nil {
+                print(resultSet!)
+                print(resultSet.int(forColumn: "id"))
+                print(resultSet.string(forColumn: "ten")!)
+                print(resultSet.int(forColumn: "lvbId"))
+                print(resultSet.string(forColumn: "lvbTen")!)
+                print(resultSet.string(forColumn: "so")!)
+                print(resultSet.string(forColumn: "nam")!)
+                print(resultSet.string(forColumn: "ma")!)
+                print(resultSet.int(forColumn: "cqId"))
+                print(resultSet.string(forColumn: "cqTen")!)
+                print(resultSet.string(forColumn: "noidung")!)
+                print(resultSet.string(forColumn: "hieuluc")!)
+                print(resultSet.int(forColumn: "vanbanThaytheId"))
+                print(resultSet.string(forColumn: "tenRutgon")!)
+                
+                vanbanArray.append(Vanban(id: Int64(resultSet.int(forColumn: "id")), ten: String(resultSet.string(forColumn: "ten")!), loai: Loaivanban(id: Int64(resultSet.int(forColumn: "lvbId")), ten: String(resultSet.string(forColumn: "lvbTen")!)), so: String(resultSet.string(forColumn: "so")!), nam: String(resultSet.string(forColumn: "nam")!), ma: String(resultSet.string(forColumn: "ma")!), coquanbanhanh: Coquanbanhanh(id: Int64(resultSet.int(forColumn: "cqId")), ten: String(resultSet.string(forColumn: "cqTen")!)), noidung: String(resultSet.string(forColumn: "noidung")!), hieuluc: String(resultSet.string(forColumn: "hieuluc")!), vanbanThaytheId: Int64(resultSet.int(forColumn: "vanbanThaytheId")), tenRutgon: String(resultSet.string(forColumn: "tenRutgon")!)))
+            }
+        }
+        DataConnection.instance().close()
+        return vanbanArray
+    }
+    
     class func selectAllDieukhoan() -> [Dieukhoan] {
         DataConnection.instance().open()
         let sql = "SELECT * FROM tblChitietvanban"
@@ -353,7 +382,8 @@ class Queries: NSObject {
         
         DataConnection.instance().close()
         if result.count >= 2 {
-            result = result.substring(to: result.index(result.endIndex, offsetBy: -2))
+            //            result = result.substring(to: result.index(result.endIndex, offsetBy: -2))
+            result = Utils.removeLastCharacters(result: result, length: 2)
         }
         return result
     }
@@ -559,7 +589,8 @@ class Queries: NSObject {
         DataConnection.instance().close()
         
         if result.count >= 2 {
-            result = result.substring(to: result.index(result.endIndex, offsetBy: -2))
+            //            result = result.substring(to: result.index(result.endIndex, offsetBy: -2))
+            result = Utils.removeLastCharacters(result: result, length: 2)
         }
         
         return result
@@ -684,7 +715,7 @@ class Queries: NSObject {
             sql = "select plateId as pid, name from tblPlateReferences where type = 'tblPlateShapes' and refId in (select id from tblPlateShapes where type in (select id from tblShapeGroups where ten in (\(Utils.removeLastCharacters(result: inGroup, length: 2)))))"
         } else { //if at list 1 param set, select plate that matched that param
             for type in params {
-                var details = type.split(separator: ":")
+                let details = type.split(separator: ":")
                 if index == 0 {
                     sql = "select a0.plateId as pid, a0.name as name from (select * from tblPlateReferences where type = '" + details[0] + "'"
                     if details.count > 1 {
@@ -723,7 +754,7 @@ class Queries: NSObject {
         
         var dkList = [String:Dieukhoan]()
         var finalResult = [Dieukhoan]()
-        for dk in searchDieukhoanByIDs(keyword: Array(result.values), vanbanid: [GeneralSettings.getQc41Id]) {
+        for dk in searchDieukhoanByIDs(keyword: Array(result.values), vanbanid: [String(GeneralSettings.getActiveQC41Id)]) {
             dkList["\(dk.getId())"] = dk
         }
         
@@ -754,7 +785,7 @@ class Queries: NSObject {
             sql = "select plateId as pid, name from tblVachReferences where type = 'tblVachShapes' and refId in (select id from tblVachShapes where type in (select id from tblVachGroups where ten in (\(Utils.removeLastCharacters(result: inGroup, length: 2)))))"
         } else { //if at list 1 param set, select plate that matched that param
             for type in params {
-                var details = type.split(separator: ":")
+                let details = type.split(separator: ":")
                 if index == 0 {
                     sql = "select a0.plateId as pid, a0.name as name from (select * from tblVachReferences where type = '" + details[0] + "'"
                     if details.count > 1 {
@@ -793,7 +824,7 @@ class Queries: NSObject {
         
         var dkList = [String:Dieukhoan]()
         var finalResult = [Dieukhoan]()
-        for dk in searchDieukhoanByIDs(keyword: Array(result.values), vanbanid: [GeneralSettings.getQc41Id]) {
+        for dk in searchDieukhoanByIDs(keyword: Array(result.values), vanbanid: [String(GeneralSettings.getActiveQC41Id)]) {
             dkList["\(dk.getId())"] = dk
         }
         
@@ -965,7 +996,7 @@ class Queries: NSObject {
     class func convertKeywordsForDifferentAccentType(keyword: String) -> [String] {
         var convertedKeyword = ""
         
-        var vnChars = ["á", "à", "ả", "ã", "ạ", "a", "ấ", "ầ", "ẩ", "ẫ", "ậ", "â", "ắ", "ằ", "ẳ", "ẵ", "ặ", "ă", "é", "è", "ẻ", "ẽ", "ẹ", "e", "ế", "ề", "ể", "ễ", "ệ", "ê", "í", "ì", "ỉ", "ĩ", "ị", "i", "ó", "ò", "ỏ", "õ", "ọ", "o", "ố", "ồ", "ổ", "ỗ", "ộ", "ô", "ớ", "ờ", "ở", "ỡ", "ợ", "ơ", "ú", "ù", "ủ", "ũ", "ụ", "u", "ứ", "ừ", "ử", "ữ", "ự", "ư", "ý", "ỳ", "ỷ", "ỹ", "ỵ", "y"]
+        let vnChars = ["á", "à", "ả", "ã", "ạ", "a", "ấ", "ầ", "ẩ", "ẫ", "ậ", "â", "ắ", "ằ", "ẳ", "ẵ", "ặ", "ă", "é", "è", "ẻ", "ẽ", "ẹ", "e", "ế", "ề", "ể", "ễ", "ệ", "ê", "í", "ì", "ỉ", "ĩ", "ị", "i", "ó", "ò", "ỏ", "õ", "ọ", "o", "ố", "ồ", "ổ", "ỗ", "ộ", "ô", "ớ", "ờ", "ở", "ỡ", "ợ", "ơ", "ú", "ù", "ủ", "ũ", "ụ", "u", "ứ", "ừ", "ử", "ữ", "ự", "ư", "ý", "ỳ", "ỷ", "ỹ", "ỵ", "y"]
         
         let splittedStr = keyword.components(separatedBy: " ")
         
@@ -1004,10 +1035,12 @@ class Queries: NSObject {
             for key in k.components(separatedBy: " ") {
                 str += "\(targetColumn) like '%\(key)%' and "
             }
-            str = str.substring(to: str.index(str.endIndex, offsetBy: -5))
+            //            str = str.substring(to: str.index(str.endIndex, offsetBy: -5))
+            str = Utils.removeLastCharacters(result: str, length: 5)
             appendString += "(\(str)) or "
         }
-        appendString = appendString.substring(to: appendString.index(appendString.endIndex, offsetBy: -4))
+        //        appendString = appendString.substring(to: appendString.index(appendString.endIndex, offsetBy: -4))
+        appendString = Utils.removeLastCharacters(result: appendString, length: 4)
         return appendString
     }
     
@@ -1020,7 +1053,8 @@ class Queries: NSObject {
                     specificVanban = specificVanban + "\(vanbanIdColumnName) = "+id.trimmingCharacters(in: .whitespacesAndNewlines) + " or "
                 }
             }
-            specificVanban = specificVanban.substring(to: specificVanban.index(specificVanban.endIndex, offsetBy: -4)) + ")"
+//                        specificVanban = specificVanban.substring(to: specificVanban.index(specificVanban.endIndex, offsetBy: -4)) + ")"
+            specificVanban = Utils.removeLastCharacters(result: specificVanban, length: 4) + ")"
         }
         return specificVanban
     }

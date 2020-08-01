@@ -17,6 +17,25 @@ class Vanban: NSObject {
     var ma:String
     var coquanbanhanh:Coquanbanhanh
     var noidung:String
+    var tenRutgon: String
+    var hieuluc: String
+    var vanbanThaytheId: Int64
+    
+    
+    
+    init(id:Int64,ten:String,loai:Loaivanban,so:String,nam:String,ma:String,coquanbanhanh:Coquanbanhanh,noidung:String, hieuluc: String, vanbanThaytheId: Int64, tenRutgon: String) {
+        self.id=id
+        self.ten=String(describing: ten.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.loai=loai
+        self.so=String(describing: so.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.nam=String(describing: nam.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.ma=String(describing: ma.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.coquanbanhanh=coquanbanhanh
+        self.noidung=String(describing: noidung.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.hieuluc = String(describing: hieuluc.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.tenRutgon = String(describing: tenRutgon.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.vanbanThaytheId = vanbanThaytheId
+    }
     
     init(id:Int64,ten:String,loai:Loaivanban,so:String,nam:String,ma:String,coquanbanhanh:Coquanbanhanh,noidung:String) {
         self.id=id
@@ -27,6 +46,9 @@ class Vanban: NSObject {
         self.ma=String(describing: ma.trimmingCharacters(in: .whitespacesAndNewlines))
         self.coquanbanhanh=coquanbanhanh
         self.noidung=String(describing: noidung.trimmingCharacters(in: .whitespacesAndNewlines))
+        self.hieuluc = ""
+        self.tenRutgon = ""
+        self.vanbanThaytheId = 0
     }
     
     func getId() -> Int64 {
@@ -91,5 +113,29 @@ class Vanban: NSObject {
     
     func setma(ma:String) {
         self.ma=String(describing: ma.trimmingCharacters(in: .whitespacesAndNewlines))
+    }
+    
+    func getHieuluc() -> String {
+        return hieuluc
+    }
+    
+    func setHieuluc(hieuluc:String) {
+        self.hieuluc = String(describing: hieuluc.trimmingCharacters(in: .whitespacesAndNewlines))
+    }
+    
+    func getTenRutgon() -> String {
+        return tenRutgon
+    }
+    
+    func setTenRutgon(tenRutgon:String) {
+        self.tenRutgon = String(describing: tenRutgon.trimmingCharacters(in: .whitespacesAndNewlines))
+    }
+    
+    func getVanbanThaytheId() -> Int64 {
+        return vanbanThaytheId
+    }
+    
+    func setVanbanThaytheId(vanbanThaytheId:Int64) {
+        self.vanbanThaytheId = vanbanThaytheId
     }
 }

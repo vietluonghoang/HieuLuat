@@ -275,9 +275,9 @@
                                     <segue destination="n4D-Vs-mwJ" kind="show" id="bCe-lV-SqL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuL-cL-rMh">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuL-cL-rMh">
                                 <rect key="frame" x="15" y="170" width="290" height="30"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.069372318690000004" green="0.77632451059999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Tra cứu Biển báo hiệu">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -286,9 +286,9 @@
                                     <segue destination="UDc-4c-lDr" kind="show" id="uJ4-eV-f50"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-N0-zsP">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-N0-zsP">
                                 <rect key="frame" x="15" y="215" width="290" height="30"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.069381929930000003" green="0.78833538290000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Tra cứu Vạch kẻ đường">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3107,14 +3107,14 @@ kết cấu hạ tầng đường sắt</string>
                         <viewControllerLayoutGuide type="top" id="NZ9-sD-nJb"/>
                         <viewControllerLayoutGuide type="bottom" id="8LZ-fc-3nY"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3cU-HU-okI">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3cU-HU-okI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rx7-Bz-RSl">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rx7-Bz-RSl">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVd-ED-38T" userLabel="SvContentView">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bVd-ED-38T" userLabel="SvContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lọc theo văn bản:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ouj-31-CZM">
@@ -3123,131 +3123,37 @@ kết cấu hạ tầng đường sắt</string>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quy chuẩn 41/2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsU-n2-hL7">
-                                                <rect key="frame" x="2" y="32" width="265" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gcH-3k-bTY">
-                                                <rect key="frame" x="269" y="25" width="51" height="31"/>
-                                                <connections>
-                                                    <action selector="swtQC41OnValueChange:" destination="xmY-Cs-zLN" eventType="valueChanged" id="wXn-d3-m3T"/>
-                                                </connections>
-                                            </switch>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thông tư 01/2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxU-ZH-exV">
-                                                <rect key="frame" x="2" y="65" width="265" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oz0-rw-thb">
-                                                <rect key="frame" x="269" y="58" width="51" height="31"/>
-                                                <connections>
-                                                    <action selector="swtTT01OnValueChange:" destination="xmY-Cs-zLN" eventType="valueChanged" id="CSz-4N-ADY"/>
-                                                </connections>
-                                            </switch>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nghị định 100/2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdO-r8-92d">
-                                                <rect key="frame" x="2" y="98" width="265" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OgU-aX-czb">
-                                                <rect key="frame" x="269" y="91" width="51" height="31"/>
-                                                <connections>
-                                                    <action selector="swtND46OnValueChange:" destination="xmY-Cs-zLN" eventType="valueChanged" id="qY5-6V-QSI"/>
-                                                </connections>
-                                            </switch>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Luật GTĐB - 2008" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15S-PG-rhJ">
-                                                <rect key="frame" x="2" y="131" width="265" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Af6-MQ-XKf">
-                                                <rect key="frame" x="269" y="124" width="51" height="31"/>
-                                                <connections>
-                                                    <action selector="swtLGTDB2008ValueChange:" destination="xmY-Cs-zLN" eventType="valueChanged" id="HBI-mI-KW7"/>
-                                                </connections>
-                                            </switch>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Luật XLVPHC - 2012" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="px0-r0-m4x">
-                                                <rect key="frame" x="2" y="164" width="265" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="drj-0c-6MX">
-                                                <rect key="frame" x="269" y="157" width="51" height="31"/>
-                                                <connections>
-                                                    <action selector="swtLXLVPHCValueChange:" destination="xmY-Cs-zLN" eventType="valueChanged" id="wFJ-cK-Yra"/>
-                                                </connections>
-                                            </switch>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thông tư 65/2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A26-Sp-fG8">
-                                                <rect key="frame" x="2" y="197" width="265" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dd0-CM-mLC" userLabel="SwtTT652020">
-                                                <rect key="frame" x="269" y="190" width="51" height="31"/>
-                                                <connections>
-                                                    <action selector="swtTT652020ValueChange:" destination="xmY-Cs-zLN" eventType="valueChanged" id="DXo-qG-bCS"/>
-                                                </connections>
-                                            </switch>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HmT-tc-3to" userLabel="viewSwitches">
+                                                <rect key="frame" x="2" y="29" width="316" height="128"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="TsU-n2-hL7" firstAttribute="leading" secondItem="bVd-ED-38T" secondAttribute="leading" constant="2" id="03M-6i-Fro"/>
-                                            <constraint firstItem="OgU-aX-czb" firstAttribute="top" secondItem="oz0-rw-thb" secondAttribute="bottom" constant="2" id="35w-do-diV"/>
-                                            <constraint firstItem="oz0-rw-thb" firstAttribute="centerY" secondItem="wxU-ZH-exV" secondAttribute="centerY" id="6O8-fz-Q9T"/>
-                                            <constraint firstItem="15S-PG-rhJ" firstAttribute="leading" secondItem="bVd-ED-38T" secondAttribute="leading" constant="2" id="7XV-aw-jpW"/>
-                                            <constraint firstItem="gcH-3k-bTY" firstAttribute="centerY" secondItem="TsU-n2-hL7" secondAttribute="centerY" id="92m-7x-f29"/>
-                                            <constraint firstItem="Ouj-31-CZM" firstAttribute="leading" secondItem="bVd-ED-38T" secondAttribute="leading" constant="2" id="A41-cP-4nY"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ouj-31-CZM" secondAttribute="trailing" constant="2" id="B4i-mQ-nPo"/>
-                                            <constraint firstItem="OgU-aX-czb" firstAttribute="centerY" secondItem="vdO-r8-92d" secondAttribute="centerY" id="Dkm-k4-vQ9"/>
-                                            <constraint firstAttribute="trailing" secondItem="drj-0c-6MX" secondAttribute="trailing" constant="2" id="HDh-ad-lFb"/>
-                                            <constraint firstItem="gcH-3k-bTY" firstAttribute="top" secondItem="Ouj-31-CZM" secondAttribute="bottom" constant="4" id="J25-c6-ZXi"/>
-                                            <constraint firstItem="dd0-CM-mLC" firstAttribute="leading" secondItem="A26-Sp-fG8" secondAttribute="trailing" constant="2" id="Jl4-Gg-7Sp"/>
-                                            <constraint firstItem="px0-r0-m4x" firstAttribute="leading" secondItem="bVd-ED-38T" secondAttribute="leading" constant="2" id="KRj-b4-27q"/>
-                                            <constraint firstItem="vdO-r8-92d" firstAttribute="leading" secondItem="bVd-ED-38T" secondAttribute="leading" constant="2" id="L81-Dz-p8Y"/>
-                                            <constraint firstItem="drj-0c-6MX" firstAttribute="leading" secondItem="px0-r0-m4x" secondAttribute="trailing" constant="2" id="QJN-Mg-04P"/>
-                                            <constraint firstItem="drj-0c-6MX" firstAttribute="top" secondItem="Af6-MQ-XKf" secondAttribute="bottom" constant="2" id="Qmp-P9-K8s"/>
-                                            <constraint firstAttribute="trailing" secondItem="oz0-rw-thb" secondAttribute="trailing" constant="2" id="R22-Rn-RLk"/>
-                                            <constraint firstItem="dd0-CM-mLC" firstAttribute="top" secondItem="drj-0c-6MX" secondAttribute="bottom" constant="2" id="RpZ-kl-u7L"/>
-                                            <constraint firstItem="drj-0c-6MX" firstAttribute="centerY" secondItem="px0-r0-m4x" secondAttribute="centerY" id="Wmq-2h-Obc"/>
-                                            <constraint firstAttribute="trailing" secondItem="dd0-CM-mLC" secondAttribute="trailing" constant="2" id="XD8-Mj-Fff"/>
-                                            <constraint firstItem="oz0-rw-thb" firstAttribute="leading" secondItem="wxU-ZH-exV" secondAttribute="trailing" constant="2" id="Z14-h3-XLV"/>
-                                            <constraint firstItem="Ouj-31-CZM" firstAttribute="top" secondItem="bVd-ED-38T" secondAttribute="top" constant="4" id="Zgm-HX-7dR"/>
-                                            <constraint firstAttribute="trailing" secondItem="gcH-3k-bTY" secondAttribute="trailing" constant="2" id="ZsJ-d6-4uu"/>
-                                            <constraint firstAttribute="trailing" secondItem="OgU-aX-czb" secondAttribute="trailing" constant="2" id="e8M-Hq-TJ7"/>
-                                            <constraint firstItem="Af6-MQ-XKf" firstAttribute="centerY" secondItem="15S-PG-rhJ" secondAttribute="centerY" id="fHr-Yj-dj0"/>
-                                            <constraint firstItem="oz0-rw-thb" firstAttribute="top" secondItem="gcH-3k-bTY" secondAttribute="bottom" constant="2" id="gER-WT-fTT"/>
-                                            <constraint firstItem="wxU-ZH-exV" firstAttribute="leading" secondItem="bVd-ED-38T" secondAttribute="leading" constant="2" id="naD-vV-W7a"/>
-                                            <constraint firstItem="gcH-3k-bTY" firstAttribute="leading" secondItem="TsU-n2-hL7" secondAttribute="trailing" constant="2" id="pXa-ey-e0i"/>
-                                            <constraint firstItem="dd0-CM-mLC" firstAttribute="centerY" secondItem="A26-Sp-fG8" secondAttribute="centerY" id="phQ-vf-Dxm"/>
-                                            <constraint firstAttribute="trailing" secondItem="Af6-MQ-XKf" secondAttribute="trailing" constant="2" id="sX3-fT-1UJ"/>
-                                            <constraint firstItem="Af6-MQ-XKf" firstAttribute="top" secondItem="OgU-aX-czb" secondAttribute="bottom" constant="2" id="tQv-P2-Cww"/>
-                                            <constraint firstItem="A26-Sp-fG8" firstAttribute="leading" secondItem="bVd-ED-38T" secondAttribute="leading" constant="2" id="uXk-dd-OD2"/>
-                                            <constraint firstAttribute="bottom" secondItem="dd0-CM-mLC" secondAttribute="bottom" constant="2" id="vx2-bz-3Cv"/>
-                                            <constraint firstItem="OgU-aX-czb" firstAttribute="leading" secondItem="vdO-r8-92d" secondAttribute="trailing" constant="2" id="xWc-Hc-oHu"/>
-                                            <constraint firstItem="Af6-MQ-XKf" firstAttribute="leading" secondItem="15S-PG-rhJ" secondAttribute="trailing" constant="2" id="yY0-um-quY"/>
+                                            <constraint firstItem="HmT-tc-3to" firstAttribute="leading" secondItem="bVd-ED-38T" secondAttribute="leading" constant="2" id="0aO-YJ-YZp"/>
+                                            <constraint firstItem="HmT-tc-3to" firstAttribute="centerX" secondItem="bVd-ED-38T" secondAttribute="centerX" id="9Oj-O9-U86"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ouj-31-CZM" secondAttribute="trailing" constant="2" id="ED2-ef-FnD"/>
+                                            <constraint firstAttribute="bottom" secondItem="HmT-tc-3to" secondAttribute="bottom" id="VFT-ul-HXD"/>
+                                            <constraint firstItem="Ouj-31-CZM" firstAttribute="top" secondItem="bVd-ED-38T" secondAttribute="top" constant="4" id="WqW-9B-CaT"/>
+                                            <constraint firstItem="HmT-tc-3to" firstAttribute="top" secondItem="Ouj-31-CZM" secondAttribute="bottom" constant="8" id="eE8-Ni-MPF"/>
+                                            <constraint firstItem="Ouj-31-CZM" firstAttribute="leading" secondItem="bVd-ED-38T" secondAttribute="leading" constant="2" id="pS5-YB-IRr"/>
+                                            <constraint firstAttribute="trailing" secondItem="HmT-tc-3to" secondAttribute="trailing" constant="2" id="yAc-LT-awS"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="bVd-ED-38T" firstAttribute="leading" secondItem="rx7-Bz-RSl" secondAttribute="leading" id="60O-Cx-JkS"/>
-                                    <constraint firstAttribute="bottom" secondItem="bVd-ED-38T" secondAttribute="bottom" id="Kq3-A2-Cwr"/>
-                                    <constraint firstAttribute="trailing" secondItem="bVd-ED-38T" secondAttribute="trailing" id="rB0-uY-zYA"/>
-                                    <constraint firstItem="bVd-ED-38T" firstAttribute="centerX" secondItem="rx7-Bz-RSl" secondAttribute="centerX" id="vWF-HI-B4K"/>
-                                    <constraint firstItem="bVd-ED-38T" firstAttribute="top" secondItem="rx7-Bz-RSl" secondAttribute="top" id="x9Y-7J-HH2"/>
+                                    <constraint firstItem="bVd-ED-38T" firstAttribute="top" secondItem="rx7-Bz-RSl" secondAttribute="top" id="UVg-6H-v1g"/>
+                                    <constraint firstAttribute="trailing" secondItem="bVd-ED-38T" secondAttribute="trailing" id="VBf-f5-wzo"/>
+                                    <constraint firstItem="bVd-ED-38T" firstAttribute="leading" secondItem="rx7-Bz-RSl" secondAttribute="leading" id="ane-uH-PBY"/>
+                                    <constraint firstItem="bVd-ED-38T" firstAttribute="centerX" secondItem="rx7-Bz-RSl" secondAttribute="centerX" id="hw0-Xm-4yf"/>
+                                    <constraint firstAttribute="bottom" secondItem="bVd-ED-38T" secondAttribute="bottom" id="q0q-io-S2B"/>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdN-SI-HIm">
                                 <rect key="frame" x="0.0" y="498" width="320" height="50"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="wRU-Yc-X9n"/>
+                                    <constraint firstAttribute="height" constant="50" id="L37-Bo-Dma"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Xong">
@@ -3260,23 +3166,20 @@ kết cấu hạ tầng đường sắt</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rx7-Bz-RSl" firstAttribute="trailing" secondItem="3cU-HU-okI" secondAttribute="trailing" id="0Px-ZZ-ugp"/>
-                            <constraint firstItem="GdN-SI-HIm" firstAttribute="trailing" secondItem="rx7-Bz-RSl" secondAttribute="trailing" id="17j-Ki-K01"/>
-                            <constraint firstItem="GdN-SI-HIm" firstAttribute="top" secondItem="rx7-Bz-RSl" secondAttribute="bottom" constant="2" id="DwO-kk-8xp"/>
-                            <constraint firstItem="rx7-Bz-RSl" firstAttribute="top" secondItem="NZ9-sD-nJb" secondAttribute="bottom" id="GxN-9E-8mf"/>
-                            <constraint firstItem="GdN-SI-HIm" firstAttribute="leading" secondItem="rx7-Bz-RSl" secondAttribute="leading" id="SZN-Ow-kOT"/>
-                            <constraint firstItem="GdN-SI-HIm" firstAttribute="top" secondItem="rx7-Bz-RSl" secondAttribute="bottom" constant="2" id="WNr-Af-Nhi"/>
-                            <constraint firstItem="GdN-SI-HIm" firstAttribute="bottom" secondItem="8LZ-fc-3nY" secondAttribute="top" id="asb-aF-B8w"/>
-                            <constraint firstItem="rx7-Bz-RSl" firstAttribute="leading" secondItem="3cU-HU-okI" secondAttribute="leading" id="uuZ-Z9-3ds"/>
+                            <constraint firstItem="8LZ-fc-3nY" firstAttribute="top" secondItem="GdN-SI-HIm" secondAttribute="bottom" id="a4B-5d-5EK"/>
+                            <constraint firstItem="rx7-Bz-RSl" firstAttribute="top" secondItem="NZ9-sD-nJb" secondAttribute="bottom" id="a9y-ks-egn"/>
+                            <constraint firstAttribute="trailing" secondItem="GdN-SI-HIm" secondAttribute="trailing" id="hUp-G3-hhS"/>
+                            <constraint firstItem="GdN-SI-HIm" firstAttribute="leading" secondItem="3cU-HU-okI" secondAttribute="leading" id="hji-di-52w"/>
+                            <constraint firstItem="rx7-Bz-RSl" firstAttribute="leading" secondItem="3cU-HU-okI" secondAttribute="leading" id="ojH-27-7Le"/>
+                            <constraint firstAttribute="trailing" secondItem="rx7-Bz-RSl" secondAttribute="trailing" id="qYr-VL-n0I"/>
+                            <constraint firstItem="GdN-SI-HIm" firstAttribute="top" secondItem="rx7-Bz-RSl" secondAttribute="bottom" constant="2" id="vXw-ci-ZdR"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="swtLGTDB2008" destination="Af6-MQ-XKf" id="cHU-DL-pBf"/>
-                        <outlet property="swtLXLVPHC2012" destination="drj-0c-6MX" id="p8d-Dk-LcB"/>
-                        <outlet property="swtND46" destination="OgU-aX-czb" id="OBc-48-cgP"/>
-                        <outlet property="swtQC41" destination="gcH-3k-bTY" id="fqt-Yx-RRW"/>
-                        <outlet property="swtTT01" destination="oz0-rw-thb" id="rCs-8M-inA"/>
-                        <outlet property="swtTT652020" destination="dd0-CM-mLC" id="J1p-cS-1FX"/>
+                        <outlet property="lblPopupTitle" destination="Ouj-31-CZM" id="MHg-K6-UrF"/>
+                        <outlet property="svPopupContent" destination="rx7-Bz-RSl" id="pLJ-tO-Hh9"/>
+                        <outlet property="viewContent" destination="bVd-ED-38T" id="WQt-ZZ-w0C"/>
+                        <outlet property="viewDetailContent" destination="HmT-tc-3to" id="p0Y-hb-Ce6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b64-eH-tYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3708,13 +3611,13 @@ kết cấu hạ tầng đường sắt</string>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hu3-Tq-VUm">
                                                 <rect key="frame" x="0.0" y="56.5" width="320" height="16"/>
                                                 <subviews>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tác giả: " textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8U-kR-DIp">
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="Tác giả: " textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8U-kR-DIp">
                                                         <rect key="frame" x="2" y="0.0" width="281.5" height="16"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcW-O7-PYQ">
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcW-O7-PYQ">
                                                         <rect key="frame" x="285.5" y="0.0" width="32.5" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                         <nil key="textColor"/>

@@ -125,11 +125,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     
     func initFilterConfig() {
         if(filterSettings.count < 1){
-            //            filterSettings["QC41"] = "on"
-            //            filterSettings["TT01"] = "on"
-            filterSettings["ND46"] = "on"
-            //            filterSettings["LGTDB"] = "on"
-            //            filterSettings["LXLVPHC"] = "on"
+            filterSettings[String(GeneralSettings.getActiveNDXPId)] = "on" //Use default default NDXP id for searching
         }
     }
     
@@ -189,10 +185,10 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         var newLabel = ""
         if searchFilters["Mucphat"]!["tu"]!["chon"] != "0" || searchFilters["Mucphat"]!["den"]!["chon"] != "0" {
             if searchFilters["Mucphat"]!["tu"]!["chon"] != "0" && searchFilters["Mucphat"]!["den"]!["chon"] == "0" {
-                searchFilters["Mucphat"]!["den"]!["chon"] = settings.getMucphatRange()[settings.getMucphatRange().count - 1]
+                searchFilters["Mucphat"]!["den"]!["chon"] = GeneralSettings.getMucphatRange(vanbanId: GeneralSettings.getActiveNDXPId)[GeneralSettings.getMucphatRange(vanbanId: GeneralSettings.getActiveNDXPId).count - 1]
                 newLabel += "Mức phạt (từ \(String(describing: searchFilters["Mucphat"]!["tu"]!["chon"]!)))" + ", "
             }else if searchFilters["Mucphat"]!["tu"]!["chon"] == "0" && searchFilters["Mucphat"]!["den"]!["chon"] != "0"{
-                searchFilters["Mucphat"]!["tu"]!["chon"] = settings.getMucphatRange()[0]
+                searchFilters["Mucphat"]!["tu"]!["chon"] = GeneralSettings.getMucphatRange(vanbanId: GeneralSettings.getActiveNDXPId)[0]
                 newLabel += "Mức phạt (đến \(String(describing: searchFilters["Mucphat"]!["den"]!["chon"]!)))" + ", "
             }else{
                 newLabel += "Mức phạt (\(String(describing: searchFilters["Mucphat"]!["tu"]!["chon"]!))-\(String(describing: searchFilters["Mucphat"]!["den"]!["chon"]!)))" + ", "
@@ -256,29 +252,18 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         if newLabel.count > 2 {
-            newLabel = newLabel.substring(to: newLabel.index(newLabel.endIndex, offsetBy: -2))
+//            newLabel = newLabel.substring(to: newLabel.index(newLabel.endIndex, offsetBy: -2))
+            newLabel = Utils.removeLastCharacters(result: newLabel, length: 2)
         }
         lblLoctheo.text = newLabel
     }
     
     func getActiveFilter() -> [String] {
         var activeFilterList = [String]()
-        
-        if(filterSettings["QC41"] == "on"){
-            activeFilterList.append("1")
-        }
-        //TO DO: temporarily change to ND100/2019
-        if(filterSettings["ND46"] == "on"){
-            activeFilterList.append("6")
-        }
-        if(filterSettings["TT01"] == "on"){
-            activeFilterList.append("3")
-        }
-        if(filterSettings["LGTDB"] == "on"){
-            activeFilterList.append("4")
-        }
-        if(filterSettings["LXLVPHC"] == "on"){
-            activeFilterList.append("5")
+        for id in filterSettings.keys {
+            if filterSettings[id] == "on" {
+                activeFilterList.append(id)
+            }
         }
         return activeFilterList
     }
@@ -289,7 +274,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     
     func search(keyword:String) -> [Dieukhoan]{
         var rs = [Dieukhoan]()
-        var kw = keyword.trimmingCharacters(in: .whitespacesAndNewlines)
+        let kw = keyword.trimmingCharacters(in: .whitespacesAndNewlines)
         //print(getActiveFilter())
         if(kw.count > 0 || (lblLoctheo.text?.count)! > 0){
             rs = Queries.searchDieukhoanByQuery(query: "\(builtQuery)", vanbanid: getActiveFilter())
@@ -309,10 +294,12 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
             for key in k.components(separatedBy: " ") {
                 str += "dkSearch like '%\(key)%' and "
             }
-            str = str.substring(to: str.index(str.endIndex, offsetBy: -5))
+//            str = str.substring(to: str.index(str.endIndex, offsetBy: -5))
+            str = Utils.removeLastCharacters(result: str, length: 5)
             appendString += "(\(str)) or "
         }
-        appendString = "(\(appendString.substring(to: appendString.index(appendString.endIndex, offsetBy: -4))))"
+//        appendString = "(\(appendString.substring(to: appendString.index(appendString.endIndex, offsetBy: -4))))"
+        appendString = "(\(Utils.removeLastCharacters(result: appendString, length: 4)))"
         
         if searchFilters["Mucphat"]!["tu"]!["chon"] != "0" && searchFilters["Mucphat"]!["den"]!["chon"] != "0" {
             appendString += getWhereClauseForMucphat(tu: searchFilters["Mucphat"]!["tu"]!["chon"]!, den: searchFilters["Mucphat"]!["den"]!["chon"]!)
@@ -328,13 +315,14 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         let tuInt = Int32(tu.replacingOccurrences(of: ".", with: ""))
         let denInt = Int32(den.replacingOccurrences(of: ".", with: ""))
         var inClause = ""
-        for item in settings.getMucphatRange() {
+        for item in GeneralSettings.getMucphatRange(vanbanId: GeneralSettings.getActiveNDXPId) {
             let itemInt = Int32(item.replacingOccurrences(of: ".", with: ""))
             if itemInt! >= tuInt! && itemInt! <= denInt! {
                 inClause += "\"\(item)\","
             }
         }
-        inClause = inClause.substring(to: inClause.index(inClause.endIndex, offsetBy: -1))
+//        inClause = inClause.substring(to: inClause.index(inClause.endIndex, offsetBy: -1))
+        inClause = Utils.removeLastCharacters(result: inClause, length: 1)
         
         return " and dkId in (select distinct dieukhoanID from tblMucphat where canhanTu in (\(inClause)) or canhanDen in (\(inClause)) or tochucTu in (\(inClause)) or tochucDen in (\(inClause)))"
     }
@@ -369,7 +357,8 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
             inClause += "dibo = 1 or "
         }
         
-        inClause = inClause.substring(to: inClause.index(inClause.endIndex, offsetBy: -4))
+//        inClause = inClause.substring(to: inClause.index(inClause.endIndex, offsetBy: -4))
+        inClause = Utils.removeLastCharacters(result: inClause, length: 4)
         
         return " and dkID in (select distinct dieukhoanID from tblPhuongtien where \(inClause))"
     }

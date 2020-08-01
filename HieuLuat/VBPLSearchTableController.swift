@@ -125,12 +125,32 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     
     func initFilterConfig() {
         if(filterSettings.count < 1){
-            filterSettings["QC41"] = "on"
-            filterSettings["TT01"] = "on"
-            filterSettings["ND46"] = "on"
-            filterSettings["LGTDB"] = "on"
-            filterSettings["LXLVPHC"] = "on"
-            filterSettings["TT652020"] = "off"
+            //iterate all Vanban to get active ones
+            for id in 0...GeneralSettings.getVanbanIdMax {
+                let valid = GeneralSettings.getVanbanInfo(id: Int64(id), info: "valid")
+                if valid.count > 0 {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "MM/dd/yyyy" //Your date format
+                    dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00") //Current time zone
+                    //according to date format your date string
+                    guard let date = dateFormatter.date(from: valid) else {
+                        fatalError()
+                    }
+                    
+                    if Date() > date {
+                        filterSettings[String(id)] = "on"
+                    } else {
+                        filterSettings[String(id)] = "off"
+                    }
+                }
+            }
+            //iterate active Vanban to deactivate replaced ones
+            //TO DO: multiple replacement
+            for id in filterSettings.keys {
+                if filterSettings[id] == "on" && filterSettings[GeneralSettings.getVanbanInfo(id: Int64(id)!, info: "replace")] == "on" {
+                    filterSettings[GeneralSettings.getVanbanInfo(id: Int64(id)!, info: "replace")] = "off"
+                }
+            }
         }
     }
     
@@ -138,11 +158,12 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         var newLabel = ""
         for filter in filterSettings {
             if filter.value.lowercased() == "on" {
-                newLabel += GeneralSettings.getVanbanInfo(name: filter.key, info: "fullName") + ", "
+                newLabel += GeneralSettings.getVanbanInfo(id: Int64(filter.key)!, info: "shortname") + ", "
             }
         }
         if newLabel.count > 2 {
-            newLabel = newLabel.substring(to: newLabel.index(newLabel.endIndex, offsetBy: -2))
+//            newLabel = newLabel.substring(to: newLabel.index(newLabel.endIndex, offsetBy: -2))
+            newLabel = Utils.removeLastCharacters(result: newLabel, length: 2)
         }
         lblLoctheo.text = newLabel
         viewTop.layoutIfNeeded()
@@ -150,25 +171,10 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     
     func getActiveFilter() -> [String] {
         var activeFilterList = [String]()
-        //TO DO: temporarily change to QC41/2019
-        if(filterSettings["QC41"] == "on"){
-            activeFilterList.append("7")
-        }
-        //TO DO: temporarily change to ND100/2019
-        if(filterSettings["ND46"] == "on"){
-            activeFilterList.append("6")
-        }
-        if(filterSettings["TT01"] == "on"){
-            activeFilterList.append("3")
-        }
-        if(filterSettings["LGTDB"] == "on"){
-            activeFilterList.append("4")
-        }
-        if(filterSettings["LXLVPHC"] == "on"){
-            activeFilterList.append("5")
-        }
-        if(filterSettings["TT652020"] == "on"){
-            activeFilterList.append("8")
+        for id in filterSettings.keys {
+            if filterSettings[id] == "on" {
+                activeFilterList.append(id)
+            }
         }
         return activeFilterList
     }
@@ -179,7 +185,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     
     func search(keyword:String) -> [Dieukhoan]{
         var rs = [Dieukhoan]()
-        var kw = keyword.trimmingCharacters(in: .whitespacesAndNewlines)
+        let kw = keyword.trimmingCharacters(in: .whitespacesAndNewlines)
         //print(getActiveFilter())
         if(kw.count > 0){
             rs = Queries.searchDieukhoan(keyword: "\(kw)", vanbanid: getActiveFilter())

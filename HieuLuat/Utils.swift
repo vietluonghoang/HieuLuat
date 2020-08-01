@@ -107,7 +107,7 @@ class Utils {
                                        attribute: .top,
                                        multiplier: 1,
                                        constant: top)
-                ])
+            ])
         }else {
             parent.addConstraints(
                 [
@@ -132,7 +132,7 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: top)
-                ])
+            ])
         }
     }
     
@@ -170,7 +170,7 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-                ])
+            ])
         }else {
             parent.addConstraints(
                 [
@@ -202,7 +202,7 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-                ])
+            ])
         }
     }
     
@@ -233,7 +233,7 @@ class Utils {
                                        attribute: .top,
                                        multiplier: 1,
                                        constant: top)
-                ])
+            ])
         }else {
             parent.addConstraints(
                 [
@@ -258,7 +258,7 @@ class Utils {
                                        attribute: .top,
                                        multiplier: 1,
                                        constant: top)
-                ])
+            ])
         }
     }
     
@@ -296,7 +296,7 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-                ])
+            ])
         }else {
             parent.addConstraints(
                 [
@@ -328,7 +328,7 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-                ])
+            ])
         }
     }
     
@@ -359,7 +359,7 @@ class Utils {
                                        attribute: .top,
                                        multiplier: 1,
                                        constant: top)
-                ])
+            ])
         }else {
             parent.addConstraints(
                 [
@@ -384,7 +384,7 @@ class Utils {
                                        attribute: .top,
                                        multiplier: 1,
                                        constant: top)
-                ])
+            ])
         }
     }
     
@@ -422,7 +422,7 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-                ])
+            ])
         }else {
             parent.addConstraints(
                 [
@@ -454,7 +454,7 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-                ])
+            ])
         }
     }
     
@@ -492,7 +492,7 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-                ])
+            ])
         }else {
             parent.addConstraints(
                 [
@@ -524,7 +524,7 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-                ])
+            ])
         }
     }
     
@@ -562,7 +562,7 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-                ])
+            ])
         }else {
             parent.addConstraints(
                 [
@@ -594,36 +594,74 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-                ])
+            ])
         }
     }
     
     class func generateNewComponentWidthConstraint(component: UIView, width: CGFloat) {
         component.translatesAutoresizingMaskIntoConstraints = false
-            component.addConstraints(
-                [
-                    NSLayoutConstraint(item: component,
-                                       attribute: .width,
-                                       relatedBy: .equal,
-                                       toItem: nil,
-                                       attribute: .notAnAttribute,
-                                       multiplier: 1,
-                                       constant: width)
-                ])
+        component.addConstraints(
+            [
+                NSLayoutConstraint(item: component,
+                                   attribute: .width,
+                                   relatedBy: .equal,
+                                   toItem: nil,
+                                   attribute: .notAnAttribute,
+                                   multiplier: 1,
+                                   constant: width)
+        ])
+    }
+    
+    class func autoGenerateLinearViewComponents(parent: UIView, orderedComponents: [UIView], top: CGFloat, bottom: CGFloat, left: CGFloat, right: CGFloat, isToptoBottom: Bool){
+        var order = 0
+        for component in orderedComponents {
+            if order == 0 {
+                if orderedComponents.count == 1 {
+                    if isToptoBottom {
+                        Utils.generateNewComponentConstraints(parent: parent, topComponent: parent, bottomComponent: parent, component: component, top: top, left: left, right: right, bottom: bottom, isInside: true)
+                    }else{
+                        Utils.generateNewComponentConstraintsSideward(parent: parent, leftComponent: parent, rightComponent: parent, component: component, top: top, left: left, right: right, bottom: bottom, isInside: true)
+                    }
+                }else{
+                    if isToptoBottom {
+                        Utils.generateNewComponentConstraints(parent: parent, topComponent: parent, component: component, top: top, left: left, right: right, isInside: true)
+                    }else{
+                        Utils.generateNewComponentConstraintsSideward(parent: parent, leftComponent: parent, component: component, top: top, left: left, bottom: bottom, isInside: true)
+                    }
+                }
+            }else{
+                if order < (orderedComponents.count - 1) {
+                    if isToptoBottom {
+                        Utils.generateNewComponentConstraints(parent: parent, topComponent: (parent.subviews.last)!, component: component, top: top, left: left, right: right, isInside: false)
+                    }else{
+                        Utils.generateNewComponentConstraintsSideward(parent: parent, leftComponent: (parent.subviews.last)!, component: component, top: top, left: left, bottom: bottom, isInside: false)
+                    }
+                }else{
+                    if isToptoBottom {
+                        Utils.generateNewComponentConstraints(parent: parent, topComponent: (parent.subviews.last)!, bottomComponent: parent, component: component, top: top, left: left, right: right, bottom: bottom, isInside: false)
+                    }else{
+                        Utils.generateNewComponentConstraintsSideward(parent: parent, leftComponent: (parent.subviews.last)!, rightComponent: parent, component: component, top: top, left: left, right: right, bottom: bottom, isInside: false)
+                    }
+                }
+            }
+            order += 1
+        }
     }
     
     class func removeLastCharacters(result:String,length:Int) -> String {
         if result.count < length {
             return ""
         }
-        return result.substring(to: result.index(result.endIndex, offsetBy: (0 - length)))
+        return String(result[..<(result.index(result.endIndex, offsetBy: (0 - length)))])
+        //        return result.substring(to: result.index(result.endIndex, offsetBy: (0 - length)))
     }
     
     class func removeFirstCharacters(result:String,length:Int) -> String {
         if result.count < length {
             return ""
         }
-        return result.substring(from: result.index(result.startIndex, offsetBy: (length)))
+        return String(result[(result.index(result.startIndex, offsetBy: length))...])
+        //        return result.substring(from: result.index(result.startIndex, offsetBy: (length)))
     }
     
     class func updateTableViewHeight(consHeightTblView: NSLayoutConstraint, tblView: UITableView, minimumHeight: CGFloat) {

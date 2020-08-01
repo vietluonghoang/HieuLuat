@@ -223,7 +223,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         if(isHidden){
             consExtraViewHeight.constant = 0
             consExtraViewHeight.isActive = true
-            populateExtraInfoView()
+//            populateExtraInfoView()
             viewExtraInfo.isHidden = true
         }else{
             consExtraViewHeight.isActive = false
@@ -295,7 +295,8 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func showDieukhoan() {
-        lblVanban.text = dieukhoan!.getVanban().getMa()
+        //TO DO: Currently, dieukhoan owns Vanban but with limited vanban's data. To get tenRutgon of Vanban, we have to use vanbanInfo, which owns by GeneralSettings. To fix this problem completely, we have to change the rawQuery in Queries. We'll do it later
+        lblVanban.text = "\(GeneralSettings.getVanbanInfo(id: dieukhoan!.getVanban().getId(), info: "shortname")) (\(dieukhoan!.getVanban().getMa()))"
         lblDieukhoan.text = dieukhoan!.getSo()
         let breadscrubText = search.getAncestersNumber(dieukhoan: dieukhoan!, vanbanId: [String(describing: dieukhoan!.getVanban().getId())])
         if breadscrubText.count > 0 {
@@ -316,12 +317,14 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         // Enable extra section for details of ND46
-        if String(describing:dieukhoan!.vanban.getId()) == GeneralSettings.getVanbanInfo(name: "ND46", info: "id") {
-            hideExtraInfoView(isHidden: false)
-            populateExtraInfoView()
-        }else{
-            hideExtraInfoView(isHidden: true)
-        }
+        // this section was comment out since we change the checking mechnic to be in the populateExtraInfoView() method. The idea is if there is any available info, we will show the extraInfoView or vice versa
+        //        if String(describing:dieukhoan!.vanban.getId()) == GeneralSettings.getVanbanInfo(name: "ND46", info: "id") {
+        //            hideExtraInfoView(isHidden: false)
+        //            populateExtraInfoView()
+        //        }else{
+        //            hideExtraInfoView(isHidden: true)
+        //        }
+        populateExtraInfoView()
         if hinhphatbosungList.count < 1 && bienphapkhacphucList.count < 1 && thamquyenList.count < 1 && tamgiuphuongtienList.count < 1{
             hideBosungKhacphucView(isHidden: true)
         } else {
@@ -393,6 +396,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func populateExtraInfoView(){
+        var isExtraInfoAvailable = false
         let mpText = getMucphat(id: String(describing: dieukhoan!.getId()))
         let ptText = getPhuongtien(id: String(describing: dieukhoan!.getId()))
         let lvText = getLinhvuc(id: String(describing: dieukhoan!.getId()))
@@ -402,6 +406,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblMucphatHeight.isActive = false
             consLblMucphatDetailsHeight.isActive = false
             lblMucphat.text = mpText
+            isExtraInfoAvailable = true
         }else{
             consLblMucphatHeight.isActive = true
             consLblMucphatDetailsHeight.isActive = true
@@ -412,6 +417,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblPhuongtienHeight.isActive = false
             consLblPhuongtienDetailsHeight.isActive = false
             lblPhuongtien.text = ptText
+            isExtraInfoAvailable = true
         }else{
             consLblPhuongtienHeight.isActive = true
             consLblPhuongtienDetailsHeight.isActive = true
@@ -422,6 +428,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblLinhvucHeight.isActive = false
             consLblLinhvucDetailsHeight.isActive = false
             lblLinhvuc.text = lvText
+            isExtraInfoAvailable = true
         }else{
             consLblLinhvucHeight.isActive = true
             consLblLinhvucDetailsHeight.isActive = true
@@ -432,12 +439,16 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblDoituongHeight.isActive = false
             consLblDoituongDetailsHeight.isActive = false
             lblDoituong.text = dtText
+            isExtraInfoAvailable = true
         }else{
             consLblDoituongHeight.isActive = true
             consLblDoituongDetailsHeight.isActive = true
             consLblDoituongHeight.constant =  0
             consLblDoituongDetailsHeight.constant =  0
         }
+        
+        //show or hide extra info view
+        hideExtraInfoView(isHidden: !isExtraInfoAvailable)
     }
     
     func fillMinhhoaToViewMinhhoa(images: [String]) {
@@ -485,8 +496,14 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func getTamgiuPhuongtienList() -> [Dieukhoan] {
         var tamgiu = [Dieukhoan]()
-        let qry = "select distinct dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id join tblRelatedDieukhoan as rdk on dk.id = rdk.dieukhoanId where (dkCha = \(GeneralSettings.tamgiuPhuongtienParentID) or dkCha in (select id from tblchitietvanban where cha = \(GeneralSettings.tamgiuPhuongtienParentID)) or dkCha in (select id from tblchitietvanban where cha in (select id from tblchitietvanban where cha = \(GeneralSettings.tamgiuPhuongtienParentID)))) and (rdk.relatedDieukhoanID = \(dieukhoan!.getId()) or rdk.relatedDieukhoanID = \(dieukhoan!.getCha()) or rdk.relatedDieukhoanID = (select cha from tblchitietvanban where id = \(dieukhoan!.getCha())))"
-        tamgiu = Queries.searchDieukhoanByQuery(query: qry, vanbanid: specificVanbanId)
+        //        let qry = "select distinct dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id join tblRelatedDieukhoan as rdk on dk.id = rdk.dieukhoanId where (dkCha = \(GeneralSettings.tamgiuPhuongtienParentID) or dkCha in (select id from tblchitietvanban where cha = \(GeneralSettings.tamgiuPhuongtienParentID)) or dkCha in (select id from tblchitietvanban where cha in (select id from tblchitietvanban where cha = \(GeneralSettings.tamgiuPhuongtienParentID)))) and (rdk.relatedDieukhoanID = \(dieukhoan!.getId()) or rdk.relatedDieukhoanID = \(dieukhoan!.getCha()) or rdk.relatedDieukhoanID = (select cha from tblchitietvanban where id = \(dieukhoan!.getCha())))"
+        
+        //check if there is any tamgiuPhuongtienParentId available
+        if GeneralSettings.getTamgiuPhuongtienParentID(vanbanId: dieukhoan!.getVanban().getId()).count > 0 {
+            
+            let qry = "select distinct dk.id as dkId, dk.so as dkSo, tieude as dkTieude, dk.noidung as dkNoidung, minhhoa as dkMinhhoa, cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, vanbanid as vbId, vb.ten as vbTen, nam as vbNam, ma as vbMa, vb.noidung as vbNoidung, coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id join tblRelatedDieukhoan as rdk on dk.id = rdk.dieukhoanId where (dkCha = \(GeneralSettings.getTamgiuPhuongtienParentID(vanbanId: dieukhoan!.getVanban().getId())) or dkCha in (select id from tblchitietvanban where cha = \(GeneralSettings.getTamgiuPhuongtienParentID(vanbanId: dieukhoan!.getVanban().getId()))) or dkCha in (select id from tblchitietvanban where cha in (select id from tblchitietvanban where cha = \(GeneralSettings.getTamgiuPhuongtienParentID(vanbanId: dieukhoan!.getVanban().getId()))))) and (rdk.relatedDieukhoanID = \(dieukhoan!.getId()) or rdk.relatedDieukhoanID = \(dieukhoan!.getCha()) or rdk.relatedDieukhoanID = (select cha from tblchitietvanban where id = \(dieukhoan!.getCha())))"
+            tamgiu = Queries.searchDieukhoanByQuery(query: qry, vanbanid: specificVanbanId)
+        }
         return tamgiu
     }
     
