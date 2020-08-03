@@ -9,7 +9,9 @@
 import UIKit
 
 @IBDesignable
-class TapAndCopyLabel: UILabel {
+class CustomizedLabel: UILabel {
+    private var contentString = ""
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         //1.Here i am Adding UILongPressGestureRecognizer by which copy popup will Appears
@@ -43,5 +45,38 @@ class TapAndCopyLabel: UILabel {
     override func copy(_ sender: Any?) {
         //4.copy current Text to the paste board
         UIPasteboard.general.string = text
+        print("==+++ \(contentString)")
+    }
+    
+    private func setDefaultLabelConfig(){
+        numberOfLines = 0
+        lineBreakMode = NSLineBreakMode.byWordWrapping
+        textAlignment = NSTextAlignment.left
+    }
+    
+    func setContentString(contentString: String) {
+        self.contentString = contentString
+    }
+    
+    func setLightCaptionLabel() {
+        setDefaultLabelConfig()
+        font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.light)
+    }
+    func setBoldCaptionLabel() {
+        setDefaultLabelConfig()
+        font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.bold)
+    }
+    func setRegularCaptionLabel() {
+        setDefaultLabelConfig()
+        font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.regular)
+    }
+    func setRegularCaptionLabelRightAligned() {
+        setDefaultLabelConfig()
+        font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.regular)
+        textAlignment = NSTextAlignment.right
+    }
+    func setNormalCaptionLabel() {
+        setDefaultLabelConfig()
+        font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.regular)
     }
 }

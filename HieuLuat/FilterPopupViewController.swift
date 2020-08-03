@@ -34,35 +34,37 @@ class FilterPopupViewController: UIViewController {
     func updateSwitches() {
         var swtArray = [UIView]()
         
-        for id in root!.filterSettings.keys {
-            if root?.filterSettings[id] == "on" {
-                let wrapperView = UIView()
-                let lblVanbanShortname = UILabel()
-                lblVanbanShortname.text = GeneralSettings.getVanbanInfo(id: Int64(id)!, info: "shortname")
-                let swt = UISwitch()
-                swt.isOn = true
-                swt.tag = Int(id)!
-                swt.addTarget(self, action: #selector(swtAction), for: .valueChanged)
-                let componentsList = [lblVanbanShortname,swt]
-                Utils.autoGenerateLinearViewComponents(parent: wrapperView, orderedComponents: componentsList, top: 2, bottom: 2, left: 2, right: 2, isToptoBottom: false)
-                swtArray.append(wrapperView)
+        for id in 0...GeneralSettings.getVanbanIdMax {
+            if root?.filterSettings[String(id)] == "on" {
+                swtArray.append(generateFilterSwitchItem(id: Int(id), shortname: GeneralSettings.getVanbanInfo(id: Int64(id), info: "shortname"), fullname: GeneralSettings.getVanbanInfo(id: Int64(id), info: "fullname"), isOn: true))
             }
         }
-        for id in root!.filterSettings.keys {
-            if root?.filterSettings[id] == "off" {
-                let wrapperView = UIView()
-                let lblVanbanShortname = UILabel()
-                lblVanbanShortname.text = GeneralSettings.getVanbanInfo(id: Int64(id)!, info: "shortname")
-                let swt = UISwitch()
-                swt.isOn = false
-                swt.tag = Int(id)!
-                swt.addTarget(self, action: #selector(swtAction), for: .valueChanged)
-                let componentsList = [lblVanbanShortname,swt]
-                Utils.autoGenerateLinearViewComponents(parent: wrapperView, orderedComponents: componentsList, top: 2, bottom: 2, left: 2, right: 2, isToptoBottom: false)
-                swtArray.append(wrapperView)
+        for id in 0...GeneralSettings.getVanbanIdMax {
+            if root?.filterSettings[String(id)] == "off" {
+                swtArray.append(generateFilterSwitchItem(id: Int(id), shortname: GeneralSettings.getVanbanInfo(id: Int64(id), info: "shortname"), fullname: GeneralSettings.getVanbanInfo(id: Int64(id), info: "fullname"), isOn: false))
             }
         }
         Utils.autoGenerateLinearViewComponents(parent: viewDetailContent, orderedComponents: swtArray, top: 0, bottom: 0, left: 0, right: 0, isToptoBottom: true)
+    }
+    
+    private func generateFilterSwitchItem(id: Int,shortname: String, fullname: String, isOn: Bool) -> UIView{
+        let wrapperView = UIView()
+        let wrapperTitleView = UIView()
+        let lblVanbanShortname = CustomizedLabel()
+        lblVanbanShortname.setBoldCaptionLabel()
+        lblVanbanShortname.text = shortname
+        let lblVanbanFullname = CustomizedLabel()
+        lblVanbanFullname.setLightCaptionLabel()
+        lblVanbanFullname.text = fullname
+        let titleComponentsList = [lblVanbanShortname,lblVanbanFullname]
+        Utils.autoGenerateLinearViewComponents(parent: wrapperTitleView, orderedComponents: titleComponentsList, top: 1, bottom: 1, left: 1, right: 1, isToptoBottom: true)
+        let swt = UISwitch()
+        swt.isOn = isOn
+        swt.tag = id
+        swt.addTarget(self, action: #selector(swtAction), for: .valueChanged)
+        let componentsList = [wrapperTitleView,swt]
+        Utils.autoGenerateLinearViewComponentsConstraintByFirstComponent(parent: wrapperView, orderedComponents: componentsList, top: 2, bottom: 2, left: 2, right: 2, isToptoBottom: false)
+        return wrapperView
     }
     
     @IBAction func btnXongOnTouchDown(_ sender: Any) {
@@ -76,49 +78,6 @@ class FilterPopupViewController: UIViewController {
             root?.filterSettings[String(sender.tag)] = "on"
         }else{
             root?.filterSettings[String(sender.tag)] = "off"
-        }
-    }
-    
-    @IBAction func swtQC41OnValueChange(_ sender: Any) {
-        if (sender as! UISwitch).isOn {
-            root?.filterSettings["QC41"] = "on"
-        }else{
-            root?.filterSettings["QC41"] = "off"
-        }
-    }
-    @IBAction func swtTT01OnValueChange(_ sender: Any) {
-        if (sender as! UISwitch).isOn {
-            root?.filterSettings["TT01"] = "on"
-        }else{
-            root?.filterSettings["TT01"] = "off"
-        }
-    }
-    @IBAction func swtND46OnValueChange(_ sender: Any) {
-        if (sender as! UISwitch).isOn {
-            root?.filterSettings["ND46"] = "on"
-        }else{
-            root?.filterSettings["ND46"] = "off"
-        }
-    }
-    @IBAction func swtLGTDB2008ValueChange(_ sender: Any) {
-        if (sender as! UISwitch).isOn {
-            root?.filterSettings["LGTDB"] = "on"
-        }else{
-            root?.filterSettings["LGTDB"] = "off"
-        }
-    }
-    @IBAction func swtLXLVPHCValueChange(_ sender: Any) {
-        if (sender as! UISwitch).isOn {
-            root?.filterSettings["LXLVPHC"] = "on"
-        }else{
-            root?.filterSettings["LXLVPHC"] = "off"
-        }
-    }
-    @IBAction func swtTT652020ValueChange(_ sender: Any) {
-        if (sender as! UISwitch).isOn {
-            root?.filterSettings["TT652020"] = "on"
-        }else{
-            root?.filterSettings["TT652020"] = "off"
         }
     }
 }

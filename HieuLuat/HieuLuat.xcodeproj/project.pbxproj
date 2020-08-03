@@ -59,7 +59,7 @@
 		33FD3B74232A537700DD7087 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B73232A537700DD7087 /* AppConfiguration.swift */; };
 		33FD3B76232A5A5800DD7087 /* UpdatePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B75232A5A5800DD7087 /* UpdatePopupViewController.swift */; };
 		33FD3B78232A6BBC00DD7087 /* RedirectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B77232A6BBC00DD7087 /* RedirectionHelper.swift */; };
-		33FD3B7A232B50B700DD7087 /* TapAndCopyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B79232B50B600DD7087 /* TapAndCopyLabel.swift */; };
+		33FD3B7A232B50B700DD7087 /* CustomizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B79232B50B600DD7087 /* CustomizedLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,7 +137,7 @@
 		33FD3B73232A537700DD7087 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		33FD3B75232A5A5800DD7087 /* UpdatePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePopupViewController.swift; sourceTree = "<group>"; };
 		33FD3B77232A6BBC00DD7087 /* RedirectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectionHelper.swift; sourceTree = "<group>"; };
-		33FD3B79232B50B600DD7087 /* TapAndCopyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapAndCopyLabel.swift; sourceTree = "<group>"; };
+		33FD3B79232B50B600DD7087 /* CustomizedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedLabel.swift; sourceTree = "<group>"; };
 		33FD3B7B232B963300DD7087 /* WeThoong-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeThoong-Bridging-Header.h"; sourceTree = "<group>"; };
 		72E93BC1C30A83EE28D1AC21 /* Pods-HieuLuat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat.debug.xcconfig"; sourceTree = "<group>"; };
 		9017557B072E220F7AC12647 /* Pods-HieuLuat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.release.xcconfig"; path = "Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat.release.xcconfig"; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 		332C10DC235034EB00EDD3AE /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
-				33FD3B79232B50B600DD7087 /* TapAndCopyLabel.swift */,
+				33FD3B79232B50B600DD7087 /* CustomizedLabel.swift */,
 				332C10DD2350353A00EDD3AE /* GifImageView.swift */,
 				332C10DF235038CC00EDD3AE /* LoadingView.swift */,
 				332C10E1235089F000EDD3AE /* WebImage.swift */,
@@ -546,7 +546,7 @@
 			files = (
 				33D3055F1F517F5800547497 /* Queries.swift in Sources */,
 				339B43431FFBAE6C00149B09 /* BosungKhacphuc.swift in Sources */,
-				33FD3B7A232B50B700DD7087 /* TapAndCopyLabel.swift in Sources */,
+				33FD3B7A232B50B700DD7087 /* CustomizedLabel.swift in Sources */,
 				3350DB31214A8EBC008D0AE4 /* Utils.swift in Sources */,
 				335078EC1F5D166A00D52741 /* VBPLSearchTableController.swift in Sources */,
 				33D305641F517FF500547497 /* Coquanbanhanh.swift in Sources */,

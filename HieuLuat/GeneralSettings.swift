@@ -181,12 +181,12 @@ class GeneralSettings {
         
         if vanban != nil{
             switch (info.lowercased()){
-            //TO DO: temporarily change to ND100/2019
             case "valid":
                 return vanban!.getHieuluc()
-            //TO DO: temporarily change to ND100/2019
             case "shortname":
                 return vanban!.getTenRutgon()
+            case "fullname":
+                return vanban!.getTen()
             case "replace":
                 return "\(vanban!.getVanbanThaytheId())"
             default:
