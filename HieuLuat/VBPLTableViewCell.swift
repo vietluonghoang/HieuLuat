@@ -11,10 +11,10 @@ import UIKit
 class VBPLTableViewCell: UITableViewCell{
     //MARK: Properties
     
-    @IBOutlet weak var lblVanban: UILabel!
-    @IBOutlet weak var lblDieukhoan: UILabel!
-    @IBOutlet weak var lblNoidung: UILabel!
-    @IBOutlet var lblParentBreadscrub: UILabel!
+    @IBOutlet weak var lblVanban: CustomizedLabel!
+    @IBOutlet weak var lblDieukhoan: CustomizedLabel!
+    @IBOutlet weak var lblNoidung: CustomizedLabel!
+    @IBOutlet var lblParentBreadscrub: CustomizedLabel!
     
     @IBOutlet var consHeightLblVanban: NSLayoutConstraint!
     @IBOutlet var consWidthImageView: NSLayoutConstraint!
@@ -44,34 +44,14 @@ class VBPLTableViewCell: UITableViewCell{
             lblVanban.isHidden = false
             consHeightLblVanban.constant = 15
             lblParentBreadscrub.isHidden = false
-            lblVanban.numberOfLines = 0
-            lblVanban.lineBreakMode = NSLineBreakMode.byWordWrapping
-            if #available(iOS 8.2, *) {
-                lblVanban.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.thin)
-            } else {
-                // Fallback on earlier versions
-            }
-            lblVanban.textAlignment = NSTextAlignment.left
-            lblParentBreadscrub.numberOfLines = 0
-            lblParentBreadscrub.lineBreakMode = NSLineBreakMode.byWordWrapping
-            if #available(iOS 8.2, *) {
-                lblParentBreadscrub.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.regular)
-            } else {
-                // Fallback on earlier versions
-            }
-            lblParentBreadscrub.textAlignment = NSTextAlignment.right
+            lblVanban.setLightCaptionLabel()
+            lblParentBreadscrub.setRegularCaptionLabelRightAligned()
         }
-        lblDieukhoan.numberOfLines = 0
-        lblDieukhoan.lineBreakMode = NSLineBreakMode.byWordWrapping
-        lblDieukhoan.font = UIFont.boldSystemFont(ofSize: 14)
-        lblDieukhoan.textAlignment = NSTextAlignment.left
-        lblNoidung.numberOfLines = 0
-        lblNoidung.lineBreakMode = NSLineBreakMode.byWordWrapping
-        lblNoidung.font = UIFont.systemFont(ofSize: 16)
-        lblNoidung.textAlignment = NSTextAlignment.left
+        lblDieukhoan.setBoldCaptionLabel()
+        lblNoidung.setNormalCaptionLabel()
         
         //TO DO: Currently, dieukhoan owns Vanban but with limited vanban's data. To get tenRutgon of Vanban, we have to use vanbanInfo, which owns by GeneralSettings. To fix this problem completely, we have to change the rawQuery in Queries. We'll do it later
-        lblVanban.text = "\(GeneralSettings.getVanbanInfo(id: dieukhoan.getVanban().getId(), info: "shortname")) (\(dieukhoan.getVanban().getMa()))"
+        lblVanban.text = "\(GeneralSettings.getVanbanInfo(id: dieukhoan.getVanban().getId(), info: "shortname"))"
         lblDieukhoan.text = dieukhoan.getSo()
         
         let breadscrub = search.getAncestersNumber(dieukhoan: dieukhoan, vanbanId: [String(dieukhoan.getVanban().getId())])

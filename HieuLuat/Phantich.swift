@@ -99,7 +99,7 @@ class Phantich {
         var targetLink = URL(string: "")
         var imageLink = ""
         let redirectionHelper = RedirectionHelper()
-        let lblNoidung = TapAndCopyLabel()
+        let lblNoidung = CustomizedLabel()
         
         init() {
             wrapper = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))

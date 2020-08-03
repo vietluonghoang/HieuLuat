@@ -15,9 +15,9 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     //MARK: Properties
     
-    @IBOutlet weak var lblVanban: UILabel!
-    @IBOutlet weak var lblDieukhoan: UILabel!
-    @IBOutlet weak var lblNoidung: UILabel!
+    @IBOutlet weak var lblVanban: CustomizedLabel!
+    @IBOutlet weak var lblDieukhoan: CustomizedLabel!
+    @IBOutlet weak var lblNoidung: CustomizedLabel!
     
     @IBOutlet var btnParentBreadscrub: UIButton!
     @IBOutlet weak var scvDetails: UIScrollView!
@@ -89,12 +89,9 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
         tblView.delegate = self
         tblView.dataSource = self
-        lblVanban.numberOfLines = 0
-        lblVanban.lineBreakMode = NSLineBreakMode.byWordWrapping
-        lblDieukhoan.numberOfLines = 0
-        lblDieukhoan.lineBreakMode = NSLineBreakMode.byWordWrapping
-        lblNoidung.numberOfLines = 0
-        lblNoidung.lineBreakMode = NSLineBreakMode.byWordWrapping
+        lblVanban.setLightCaptionLabel()
+        lblDieukhoan.setBoldCaptionLabel()
+        lblNoidung.setNormalCaptionLabel()
         // Do any additional setup after loading the view.
         
         if(relatedChildren.count>0){

@@ -136,6 +136,33 @@ class Utils {
         }
     }
     
+    class func generateNewComponentConstraints(parent: UIView, topComponent: UIView, component: UIView, top: CGFloat, isInside: Bool) {
+        component.translatesAutoresizingMaskIntoConstraints = false
+        parent.addSubview(component)
+        if isInside {
+            parent.addConstraints(
+                [
+                    NSLayoutConstraint(item: component,
+                                       attribute: .top,
+                                       relatedBy: .equal,
+                                       toItem: topComponent,
+                                       attribute: .top,
+                                       multiplier: 1,
+                                       constant: top)
+            ])
+        }else {
+            parent.addConstraints(
+                [
+                    NSLayoutConstraint(item: component,
+                                       attribute: .top,
+                                       relatedBy: .equal,
+                                       toItem: topComponent,
+                                       attribute: .bottom,
+                                       multiplier: 1,
+                                       constant: top)
+            ])
+        }
+    }
     class func generateNewComponentConstraints(parent: UIView, topComponent: UIView, bottomComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, right: CGFloat, bottom: CGFloat, isInside: Bool) {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
@@ -205,7 +232,47 @@ class Utils {
             ])
         }
     }
-    
+    class func generateNewComponentConstraints(parent: UIView, topComponent: UIView, bottomComponent: UIView, component: UIView, top: CGFloat, bottom: CGFloat, isInside: Bool) {
+        component.translatesAutoresizingMaskIntoConstraints = false
+        parent.addSubview(component)
+        if isInside {
+            parent.addConstraints(
+                [
+                    NSLayoutConstraint(item: component,
+                                       attribute: .top,
+                                       relatedBy: .equal,
+                                       toItem: topComponent,
+                                       attribute: .top,
+                                       multiplier: 1,
+                                       constant: top),
+                    NSLayoutConstraint(item: component,
+                                       attribute: .bottom,
+                                       relatedBy: .equal,
+                                       toItem: bottomComponent,
+                                       attribute: .bottom,
+                                       multiplier: 1,
+                                       constant: (0 - bottom))
+            ])
+        }else {
+            parent.addConstraints(
+                [
+                    NSLayoutConstraint(item: component,
+                                       attribute: .top,
+                                       relatedBy: .equal,
+                                       toItem: topComponent,
+                                       attribute: .bottom,
+                                       multiplier: 1,
+                                       constant: top),
+                    NSLayoutConstraint(item: component,
+                                       attribute: .bottom,
+                                       relatedBy: .equal,
+                                       toItem: bottomComponent,
+                                       attribute: .bottom,
+                                       multiplier: 1,
+                                       constant: (0 - bottom))
+            ])
+        }
+    }
     class func generateNewComponentConstraintsSideward(parent: UIView, leftComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, bottom: CGFloat, isInside: Bool) {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
@@ -262,6 +329,33 @@ class Utils {
         }
     }
     
+    class func generateNewComponentConstraintsSideward(parent: UIView, leftComponent: UIView, component: UIView, left: CGFloat, isInside: Bool) {
+        component.translatesAutoresizingMaskIntoConstraints = false
+        parent.addSubview(component)
+        if isInside {
+            parent.addConstraints(
+                [
+                    NSLayoutConstraint(item: component,
+                                       attribute: .leading,
+                                       relatedBy: .equal,
+                                       toItem: leftComponent,
+                                       attribute: .leading,
+                                       multiplier: 1,
+                                       constant: left)
+            ])
+        }else {
+            parent.addConstraints(
+                [
+                    NSLayoutConstraint(item: component,
+                                       attribute: .leading,
+                                       relatedBy: .equal,
+                                       toItem: leftComponent,
+                                       attribute: .trailing,
+                                       multiplier: 1,
+                                       constant: left)
+            ])
+        }
+    }
     class func generateNewComponentConstraintsSideward(parent: UIView, leftComponent: UIView, rightComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, right: CGFloat, bottom: CGFloat, isInside: Bool) {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
@@ -331,7 +425,47 @@ class Utils {
             ])
         }
     }
-    
+    class func generateNewComponentConstraintsSideward(parent: UIView, leftComponent: UIView, rightComponent: UIView, component: UIView, left: CGFloat, right: CGFloat, isInside: Bool) {
+        component.translatesAutoresizingMaskIntoConstraints = false
+        parent.addSubview(component)
+        if isInside {
+            parent.addConstraints(
+                [
+                    NSLayoutConstraint(item: component,
+                                       attribute: .leading,
+                                       relatedBy: .equal,
+                                       toItem: leftComponent,
+                                       attribute: .leading,
+                                       multiplier: 1,
+                                       constant: left),
+                    NSLayoutConstraint(item: component,
+                                       attribute: .trailing,
+                                       relatedBy: .equal,
+                                       toItem: rightComponent,
+                                       attribute: .trailing,
+                                       multiplier: 1,
+                                       constant: (0 - right))
+            ])
+        }else {
+            parent.addConstraints(
+                [
+                    NSLayoutConstraint(item: component,
+                                       attribute: .leading,
+                                       relatedBy: .equal,
+                                       toItem: leftComponent,
+                                       attribute: .trailing,
+                                       multiplier: 1,
+                                       constant: left),
+                    NSLayoutConstraint(item: component,
+                                       attribute: .trailing,
+                                       relatedBy: .equal,
+                                       toItem: rightComponent,
+                                       attribute: .trailing,
+                                       multiplier: 1,
+                                       constant: (0 - right))
+            ])
+        }
+    }
     class func generateNewComponentConstraintsRightward(parent: UIView, rightComponent: UIView, component: UIView, top: CGFloat, right: CGFloat, bottom: CGFloat, isInside: Bool) {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
@@ -641,6 +775,41 @@ class Utils {
                         Utils.generateNewComponentConstraints(parent: parent, topComponent: (parent.subviews.last)!, bottomComponent: parent, component: component, top: top, left: left, right: right, bottom: bottom, isInside: false)
                     }else{
                         Utils.generateNewComponentConstraintsSideward(parent: parent, leftComponent: (parent.subviews.last)!, rightComponent: parent, component: component, top: top, left: left, right: right, bottom: bottom, isInside: false)
+                    }
+                }
+            }
+            order += 1
+        }
+    }
+    class func autoGenerateLinearViewComponentsConstraintByFirstComponent(parent: UIView, orderedComponents: [UIView], top: CGFloat, bottom: CGFloat, left: CGFloat, right: CGFloat, isToptoBottom: Bool){
+        var order = 0
+        for component in orderedComponents {
+            if order == 0 {
+                if orderedComponents.count == 1 {
+                    if isToptoBottom {
+                        Utils.generateNewComponentConstraints(parent: parent, topComponent: parent, bottomComponent: parent, component: component, top: top, left: left, right: right, bottom: bottom, isInside: true)
+                    }else{
+                        Utils.generateNewComponentConstraintsSideward(parent: parent, leftComponent: parent, rightComponent: parent, component: component, top: top, left: left, right: right, bottom: bottom, isInside: true)
+                    }
+                }else{
+                    if isToptoBottom {
+                        Utils.generateNewComponentConstraints(parent: parent, topComponent: parent, component: component, top: top, left: left, right: right, isInside: true)
+                    }else{
+                        Utils.generateNewComponentConstraintsSideward(parent: parent, leftComponent: parent, component: component, top: top, left: left, bottom: bottom, isInside: true)
+                    }
+                }
+            }else{
+                if order < (orderedComponents.count - 1) {
+                    if isToptoBottom {
+                        Utils.generateNewComponentConstraints(parent: parent, topComponent: (parent.subviews.last)!, component: component, top: top, isInside: false)
+                    }else{
+                        Utils.generateNewComponentConstraintsSideward(parent: parent, leftComponent: (parent.subviews.last)!, component: component, left: left, isInside: false)
+                    }
+                }else{
+                    if isToptoBottom {
+                        Utils.generateNewComponentConstraints(parent: parent, topComponent: (parent.subviews.last)!, bottomComponent: parent, component: component, top: top, bottom: bottom, isInside: false)
+                    }else{
+                        Utils.generateNewComponentConstraintsSideward(parent: parent, leftComponent: (parent.subviews.last)!, rightComponent: parent, component: component, left: left, right: right, isInside: false)
                     }
                 }
             }
