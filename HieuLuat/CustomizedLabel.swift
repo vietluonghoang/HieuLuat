@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable
 class CustomizedLabel: UILabel {
-    private var contentString = ""
+    private var root:VBPLDetailsViewController? = nil
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,8 +44,11 @@ class CustomizedLabel: UILabel {
     // MARK: - UIResponderStandardEditActions
     override func copy(_ sender: Any?) {
         //4.copy current Text to the paste board
-        UIPasteboard.general.string = text
-        print("==+++ \(contentString)")
+        if root == nil {
+            UIPasteboard.general.string = text
+        }else{
+            UIPasteboard.general.string = "\(root!.getContentString())"
+        }
     }
     
     private func setDefaultLabelConfig(){
@@ -54,8 +57,8 @@ class CustomizedLabel: UILabel {
         textAlignment = NSTextAlignment.left
     }
     
-    func setContentString(contentString: String) {
-        self.contentString = contentString
+    func setRoot(root: UIViewController) {
+        self.root = root as? VBPLDetailsViewController
     }
     
     func setLightCaptionLabel() {
