@@ -24,23 +24,23 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var svStackview: UIStackView!
     @IBOutlet weak var btnSeeMore: UIButton!
     @IBOutlet var viewExtraInfo: UIView!
-    @IBOutlet var lblMucphat: UILabel!
-    @IBOutlet var lblPhuongtien: UILabel!
-    @IBOutlet var lblLinhvuc: UILabel!
-    @IBOutlet var lblDoituong: UILabel!
+    @IBOutlet var lblMucphat: CustomizedLabel!
+    @IBOutlet var lblPhuongtien: CustomizedLabel!
+    @IBOutlet var lblLinhvuc: CustomizedLabel!
+    @IBOutlet var lblDoituong: CustomizedLabel!
     @IBOutlet var viewBosungKhacphuc: UIView!
     @IBOutlet var viewHinhphatbosung: UIView!
     @IBOutlet var viewBienphapkhacphuc: UIView!
     @IBOutlet var viewTamgiuPhuongtien: UIView!
     @IBOutlet var viewThamquyen: UIView!
-    @IBOutlet var lblHinhphatbosungTitle: UILabel!
-    @IBOutlet var lblHinhphatbosungDetails: UILabel!
-    @IBOutlet var lblBienphapkhacphucTitle: UILabel!
-    @IBOutlet var lblBienphapkhacphucDetails: UILabel!
-    @IBOutlet var lblTamgiuPhuongtienTitle: UILabel!
-    @IBOutlet var lblTamgiuPhuongtienDetails: UILabel!
-    @IBOutlet var lblThamquyenTitle: UILabel!
-    @IBOutlet var lblThamquyenDetails: UILabel!
+    @IBOutlet var lblHinhphatbosungTitle: CustomizedLabel!
+    @IBOutlet var lblHinhphatbosungDetails: CustomizedLabel!
+    @IBOutlet var lblBienphapkhacphucTitle: CustomizedLabel!
+    @IBOutlet var lblBienphapkhacphucDetails: CustomizedLabel!
+    @IBOutlet var lblTamgiuPhuongtienTitle: CustomizedLabel!
+    @IBOutlet var lblTamgiuPhuongtienDetails: CustomizedLabel!
+    @IBOutlet var lblThamquyenTitle: CustomizedLabel!
+    @IBOutlet var lblThamquyenDetails: CustomizedLabel!
     
     @IBOutlet var consViewThamquyenHeight: NSLayoutConstraint!
     @IBOutlet var consViewTamgiuPhuongtienHeight: NSLayoutConstraint!
@@ -83,6 +83,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     let btnFBBanner = UIButton()
     let redirectionHelper = RedirectionHelper()
     var placement = TJPlacement()
+    var contentString = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,8 +91,11 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         tblView.delegate = self
         tblView.dataSource = self
         lblVanban.setLightCaptionLabel()
+        lblVanban.setRoot(root: self)
         lblDieukhoan.setBoldCaptionLabel()
+        lblDieukhoan.setRoot(root: self)
         lblNoidung.setNormalCaptionLabel()
+        lblNoidung.setRoot(root: self)
         // Do any additional setup after loading the view.
         
         if(relatedChildren.count>0){
@@ -220,7 +224,6 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         if(isHidden){
             consExtraViewHeight.constant = 0
             consExtraViewHeight.isActive = true
-//            populateExtraInfoView()
             viewExtraInfo.isHidden = true
         }else{
             consExtraViewHeight.isActive = false
@@ -313,14 +316,8 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             hideMinhhoaView(isHidden: true)
         }
         
-        // Enable extra section for details of ND46
-        // this section was comment out since we change the checking mechnic to be in the populateExtraInfoView() method. The idea is if there is any available info, we will show the extraInfoView or vice versa
-        //        if String(describing:dieukhoan!.vanban.getId()) == GeneralSettings.getVanbanInfo(name: "ND46", info: "id") {
-        //            hideExtraInfoView(isHidden: false)
-        //            populateExtraInfoView()
-        //        }else{
-        //            hideExtraInfoView(isHidden: true)
-        //        }
+        contentString = "\(breadscrubText.split(separator: "/").reversed().joined(separator: " "))\n\(dieukhoan!.getSo()) \(dieukhoan!.getTieude())\n\(dieukhoan!.getNoidung())"
+        
         populateExtraInfoView()
         if hinhphatbosungList.count < 1 && bienphapkhacphucList.count < 1 && thamquyenList.count < 1 && tamgiuphuongtienList.count < 1{
             hideBosungKhacphucView(isHidden: true)
@@ -338,11 +335,14 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             lblHinhphatbosungDetails.numberOfLines = 0
             lblHinhphatbosungDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
             lblHinhphatbosungDetails.text = ""
+            lblHinhphatbosungDetails.setRoot(root: self)
+            lblHinhphatbosungTitle.setRoot(root: self)
             var hpbs = ""
             for bosung in hinhphatbosungList {
                 hpbs += "- \(lblHinhphatbosungDetails.text!)\(Utils.removeLastCharacters(result: bosung.getNoidung(), length: (bosung.getNoidung().count - 1)).uppercased())\(Utils.removeFirstCharacters(result: bosung.getNoidung(), length: 1))\n"
             }
             lblHinhphatbosungDetails.text = hpbs
+            contentString += "\nHình phạt bổ sung: \(hpbs)"
         } else {
             hideHinhphatbosungView(isHidden: true)
         }
@@ -355,11 +355,14 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             lblBienphapkhacphucDetails.numberOfLines = 0
             lblBienphapkhacphucDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
             lblBienphapkhacphucDetails.text = ""
+            lblBienphapkhacphucTitle.setRoot(root: self)
+            lblBienphapkhacphucDetails.setRoot(root: self)
             var bpkp = ""
             for khacphuc in bienphapkhacphucList {
                 bpkp += "- \(lblBienphapkhacphucDetails.text!)\(Utils.removeLastCharacters(result: khacphuc.getNoidung(), length: (khacphuc.getNoidung().count - 1)).uppercased())\(Utils.removeFirstCharacters(result: khacphuc.getNoidung(), length: 1))\n"
             }
             lblBienphapkhacphucDetails.text = bpkp
+            contentString += "\nBiện pháp khắc phục: \(bpkp)"
         }else{
             hideBienphapkhacphucView(isHidden: true)
         }
@@ -372,6 +375,9 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             lblTamgiuPhuongtienDetails.numberOfLines = 0
             lblTamgiuPhuongtienDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
             lblTamgiuPhuongtienDetails.text = "07 ngày"
+            lblTamgiuPhuongtienTitle.setRoot(root: self)
+            lblTamgiuPhuongtienDetails.setRoot(root: self)
+            contentString += "\nTạm giữ phương tiện: 07 ngày"
         }else{
             hideTamgiuPhuongtienView(isHidden: true)
         }
@@ -384,6 +390,8 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             lblThamquyenDetails.numberOfLines = 0
             lblThamquyenDetails.lineBreakMode = NSLineBreakMode.byWordWrapping
             lblThamquyenDetails.text = ""
+            lblThamquyenTitle.setRoot(root: self)
+            lblThamquyenDetails.setRoot(root: self)
             for thamquyen in thamquyenList {
                 lblThamquyenDetails.text = "\(lblThamquyenDetails.text!)\(thamquyen.getNoidung())\n"
             }
@@ -403,6 +411,8 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblMucphatHeight.isActive = false
             consLblMucphatDetailsHeight.isActive = false
             lblMucphat.text = mpText
+            lblMucphat.setRoot(root: self)
+            contentString += "\nMức phạt: \(mpText)"
             isExtraInfoAvailable = true
         }else{
             consLblMucphatHeight.isActive = true
@@ -414,6 +424,8 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblPhuongtienHeight.isActive = false
             consLblPhuongtienDetailsHeight.isActive = false
             lblPhuongtien.text = ptText
+            lblPhuongtien.setRoot(root: self)
+            contentString += "\nPhương tiện: \(ptText)"
             isExtraInfoAvailable = true
         }else{
             consLblPhuongtienHeight.isActive = true
@@ -425,6 +437,8 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblLinhvucHeight.isActive = false
             consLblLinhvucDetailsHeight.isActive = false
             lblLinhvuc.text = lvText
+            lblLinhvuc.setRoot(root: self)
+            contentString += "\nLĩnh vực: \(lvText)"
             isExtraInfoAvailable = true
         }else{
             consLblLinhvucHeight.isActive = true
@@ -436,6 +450,8 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblDoituongHeight.isActive = false
             consLblDoituongDetailsHeight.isActive = false
             lblDoituong.text = dtText
+            lblDoituong.setRoot(root: self)
+            contentString += "\nĐối tượng: \(dtText)"
             isExtraInfoAvailable = true
         }else{
             consLblDoituongHeight.isActive = true
@@ -595,7 +611,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         } else {
             dieukhoan = dkChild[indexPath.row]
         }
-        
+        contentString += "\n\(dieukhoan.getSo()) \(dieukhoan.getTieude())\n\(dieukhoan.getNoidung())"
         cell.updateDieukhoan(dieukhoan: dieukhoan, fullDetails: true, showVanban: false)
         return cell
     }
@@ -660,6 +676,10 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     // Called when the content is dismissed.
     func contentDidDisappear(_ placement: TJPlacement!) {
         print("Tj ads content went away")
+    }
+    
+    func getContentString() -> String {
+        return contentString
     }
 }
 
