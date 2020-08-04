@@ -3047,7 +3047,7 @@ kết cấu hạ tầng đường sắt</string>
                                     <constraint firstItem="GQh-tF-zO4" firstAttribute="trailing" secondItem="cgu-0x-Cj7" secondAttribute="trailing" constant="-8" id="pa0-S7-qpm"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JiJ-sa-jsp">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JiJ-sa-jsp">
                                 <rect key="frame" x="0.0" y="60.5" width="414" height="697.5"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ite-zt-jvo" userLabel="ViewBottom">
@@ -5168,9 +5168,9 @@ kết cấu hạ tầng đường sắt</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="x0c-Xv-FUh"/>
+        <segue reference="fx5-Wp-0nq"/>
         <segue reference="Dwh-PK-agn"/>
-        <segue reference="wfD-bY-mxt"/>
+        <segue reference="cxy-pQ-lPK"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Alphanumeric" width="90" height="90"/>

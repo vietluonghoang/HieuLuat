@@ -162,6 +162,16 @@ class Utils {
                                        constant: top)
             ])
         }
+        parent.addConstraints(
+            [
+                NSLayoutConstraint(item: component,
+                                   attribute: .centerX,
+                                   relatedBy: .equal,
+                                   toItem: parent,
+                                   attribute: .centerX,
+                                   multiplier: 1,
+                                   constant: 0)
+        ])
     }
     class func generateNewComponentConstraints(parent: UIView, topComponent: UIView, bottomComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, right: CGFloat, bottom: CGFloat, isInside: Bool) {
         component.translatesAutoresizingMaskIntoConstraints = false
@@ -272,6 +282,16 @@ class Utils {
                                        constant: (0 - bottom))
             ])
         }
+        parent.addConstraints(
+            [
+                NSLayoutConstraint(item: component,
+                                   attribute: .centerX,
+                                   relatedBy: .equal,
+                                   toItem: parent,
+                                   attribute: .centerX,
+                                   multiplier: 1,
+                                   constant: 0)
+        ])
     }
     class func generateNewComponentConstraintsSideward(parent: UIView, leftComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, bottom: CGFloat, isInside: Bool) {
         component.translatesAutoresizingMaskIntoConstraints = false
@@ -355,6 +375,16 @@ class Utils {
                                        constant: left)
             ])
         }
+        parent.addConstraints(
+            [
+                NSLayoutConstraint(item: component,
+                                   attribute: .centerY,
+                                   relatedBy: .equal,
+                                   toItem: parent,
+                                   attribute: .centerY,
+                                   multiplier: 1,
+                                   constant: 0)
+        ])
     }
     class func generateNewComponentConstraintsSideward(parent: UIView, leftComponent: UIView, rightComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, right: CGFloat, bottom: CGFloat, isInside: Bool) {
         component.translatesAutoresizingMaskIntoConstraints = false
@@ -465,6 +495,16 @@ class Utils {
                                        constant: (0 - right))
             ])
         }
+        parent.addConstraints(
+            [
+                NSLayoutConstraint(item: component,
+                                   attribute: .centerY,
+                                   relatedBy: .equal,
+                                   toItem: parent,
+                                   attribute: .centerY,
+                                   multiplier: 1,
+                                   constant: 0)
+        ])
     }
     class func generateNewComponentConstraintsRightward(parent: UIView, rightComponent: UIView, component: UIView, top: CGFloat, right: CGFloat, bottom: CGFloat, isInside: Bool) {
         component.translatesAutoresizingMaskIntoConstraints = false
