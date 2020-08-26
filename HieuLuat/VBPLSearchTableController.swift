@@ -25,6 +25,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     
     private var dieukhoanList = [Dieukhoan]()
     let searchController = UISearchController(searchResultsController: nil)
+    private var searchKeyword = ""
     private var rowCount = 0
     var filterSettings = [String:String]()
     private var bannerView: GADBannerView!
@@ -293,7 +294,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
             dieukhoan = dieukhoanList[indexPath.row]
         }
         
-        cell.updateDieukhoan(dieukhoan: dieukhoan, fullDetails: false, showVanban: true)
+        cell.updateDieukhoan(dieukhoan: dieukhoan, fullDetails: false, showVanban: true,keywork: searchKeyword)
         return cell
     }
     
@@ -314,6 +315,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
+        self.searchKeyword = searchText
         updateDieukhoanList(arrDieukhoan: search(keyword: searchText))
         rowCount = dieukhoanList.count
         tblView.reloadData()

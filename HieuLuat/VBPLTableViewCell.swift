@@ -24,7 +24,9 @@ class VBPLTableViewCell: UITableViewCell{
     @IBOutlet var consWidthImageViewEmpty: NSLayoutConstraint!
     @IBOutlet weak var imgView: UIImageView!
     
-    var search = SearchFor()
+    private var search = SearchFor()
+    private var keyword = ""
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,6 +38,15 @@ class VBPLTableViewCell: UITableViewCell{
     }
     
     func updateDieukhoan(dieukhoan: Dieukhoan,fullDetails: Bool,showVanban: Bool, maxText: Int = 250, defaultImage: Int = 0) {
+        polulateContent(dieukhoan: dieukhoan, fullDetails: fullDetails, showVanban: showVanban, maxText: maxText, defaultImage: defaultImage)
+    }
+    
+    func updateDieukhoan(dieukhoan: Dieukhoan,fullDetails: Bool,showVanban: Bool, maxText: Int = 250, defaultImage: Int = 0, keywork: String) {
+        self.keyword = keywork
+        polulateContent(dieukhoan: dieukhoan, fullDetails: fullDetails, showVanban: showVanban, maxText: maxText, defaultImage: defaultImage)
+    }
+    
+    private func polulateContent(dieukhoan: Dieukhoan,fullDetails: Bool,showVanban: Bool, maxText: Int, defaultImage: Int){
         if(!showVanban){
             lblVanban.isHidden = true
             lblParentBreadscrub.isHidden = true
@@ -56,13 +67,17 @@ class VBPLTableViewCell: UITableViewCell{
         
         let breadscrub = search.getAncestersNumber(dieukhoan: dieukhoan, vanbanId: [String(dieukhoan.getVanban().getId())])
         lblParentBreadscrub.text = breadscrub
-        var noidung = "\(dieukhoan.getTieude()) \n \(dieukhoan.getNoidung())"
+        var noidung = dieukhoan.getTieude().count > 0 ?"\(dieukhoan.getTieude()) \n \(dieukhoan.getNoidung())":"\(dieukhoan.getNoidung())"
         
         if(!fullDetails){
             if(noidung.count > maxText){
-//                noidung = noidung.substring(to: noidung.index(noidung.startIndex, offsetBy: maxText))
-                noidung = Utils.removeLastCharacters(result: noidung, length: noidung.count - maxText)
-                noidung.append("...")
+                let matchingNoidung = populateMatchingKeyword(noidung: noidung)
+                if matchingNoidung.count > maxText {
+                    noidung = Utils.removeLastCharacters(result: matchingNoidung, length: matchingNoidung.count - maxText)
+                    noidung.append("...")
+                }else{
+                    noidung = matchingNoidung
+                }
             }
         }
         lblNoidung.text = noidung
@@ -82,7 +97,31 @@ class VBPLTableViewCell: UITableViewCell{
             consWidthImageView.isActive = false
             consWidthImageViewEmpty.isActive = true
         }
-        
-        
+    }
+    
+    private func populateMatchingKeyword(noidung: String) -> String{
+        if keyword.count > 0 {
+            let slicedKeyword = keyword.split(separator: " ")
+            var matchingLength = slicedKeyword.count
+            
+            while matchingLength > 0 {
+                let chunks = stride(from: 0, to: slicedKeyword.count, by: matchingLength).map {
+                    Array(slicedKeyword[$0..<min($0 + matchingLength, slicedKeyword.count)])
+                }
+                let matchingKeyword = chunks[0].joined(separator: " ")
+                
+                if noidung.lowercased().contains(matchingKeyword.lowercased()) {
+                    let slicedNoidung = noidung.lowercased().replacingOccurrences(of: matchingKeyword.lowercased(), with: "|").split(separator: "|")
+                    if slicedNoidung.count > 1 {
+                        let truncatedNoidung = Utils.removeFirstCharacters(result: noidung, length: slicedNoidung[0].count)
+                        return "...\(truncatedNoidung)"
+                    }else {
+                        return noidung
+                    }
+                }
+                matchingLength -= 1
+            }
+        }
+        return noidung
     }
 }
