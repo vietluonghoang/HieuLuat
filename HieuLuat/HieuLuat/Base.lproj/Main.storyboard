@@ -380,9 +380,46 @@
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="6vu-mv-Eda">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbp-D2-PKj">
+                                                <rect key="frame" x="0.0" y="0.0" width="379" height="35"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhb-SV-Rp4">
+                                                <rect key="frame" x="379" y="0.0" width="35" height="35"/>
+                                                <subviews>
+                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1S-8h-arS">
+                                                        <rect key="frame" x="3" y="6" width="29" height="23"/>
+                                                        <state key="normal" title="Button" image="micro"/>
+                                                        <connections>
+                                                            <action selector="btnMicroAction:" destination="0Yw-pY-oe6" eventType="touchDown" id="byq-pz-zfx"/>
+                                                            <segue destination="3kr-rx-vyq" kind="popoverPresentation" identifier="speechRecognizer" popoverAnchorView="a1S-8h-arS" id="DsF-CY-Ktp">
+                                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                            </segue>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="a1S-8h-arS" secondAttribute="bottom" constant="6" id="9vP-W4-rCe"/>
+                                                    <constraint firstAttribute="width" constant="35" id="N3V-6B-bQ8"/>
+                                                    <constraint firstItem="a1S-8h-arS" firstAttribute="top" secondItem="bhb-SV-Rp4" secondAttribute="top" constant="6" id="RuW-0I-nN9"/>
+                                                    <constraint firstAttribute="trailing" secondItem="a1S-8h-arS" secondAttribute="trailing" constant="3" id="SCA-zm-49a"/>
+                                                    <constraint firstItem="a1S-8h-arS" firstAttribute="leading" secondItem="bhb-SV-Rp4" secondAttribute="leading" constant="3" id="SCq-nq-Utr"/>
+                                                    <constraint firstAttribute="height" constant="35" id="oRV-Xs-yPz"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="bhb-SV-Rp4" secondAttribute="bottom" id="4DI-k1-5nW"/>
+                                            <constraint firstAttribute="trailing" secondItem="bhb-SV-Rp4" secondAttribute="trailing" id="8Mo-iz-xtc"/>
+                                            <constraint firstItem="gbp-D2-PKj" firstAttribute="leading" secondItem="6vu-mv-Eda" secondAttribute="leading" id="FBa-Iq-DLI"/>
+                                            <constraint firstItem="gbp-D2-PKj" firstAttribute="top" secondItem="6vu-mv-Eda" secondAttribute="top" id="FHv-96-hRR"/>
                                             <constraint firstAttribute="height" constant="35" id="IDl-V4-JMV"/>
+                                            <constraint firstItem="bhb-SV-Rp4" firstAttribute="leading" secondItem="gbp-D2-PKj" secondAttribute="trailing" id="LnH-ga-ADg"/>
+                                            <constraint firstAttribute="bottom" secondItem="gbp-D2-PKj" secondAttribute="bottom" id="S0y-cS-d5k"/>
+                                            <constraint firstItem="bhb-SV-Rp4" firstAttribute="top" secondItem="6vu-mv-Eda" secondAttribute="top" id="yuR-TX-dPk"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OHz-lN-dnb">
@@ -540,9 +577,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnMicro" destination="a1S-8h-arS" id="wDd-FG-53X"/>
                         <outlet property="consHeightTableView" destination="S7b-8c-jb7" id="0KW-LW-SEZ"/>
                         <outlet property="consSearchViewHeight" destination="IDl-V4-JMV" id="nno-Ju-tcd"/>
                         <outlet property="lblLoctheo" destination="hzo-mm-S5N" id="uA7-5s-Izi"/>
+                        <outlet property="microView" destination="bhb-SV-Rp4" id="cVt-cL-WBv"/>
+                        <outlet property="searchTextView" destination="gbp-D2-PKj" id="Wr6-xW-Hpq"/>
                         <outlet property="searchbarView" destination="6vu-mv-Eda" id="cv6-Eo-zsg"/>
                         <outlet property="tblView" destination="Jet-0s-42E" id="h6a-kP-OH6"/>
                         <outlet property="viewBottom" destination="cE9-Q3-Cw0" id="Nyy-A7-maJ"/>
@@ -551,7 +591,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="58L-AE-YRk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1492.5" y="-177.46478873239437"/>
+            <point key="canvasLocation" x="1491.304347826087" y="-178.125"/>
         </scene>
         <!--Lọc-->
         <scene sceneID="8Um-eG-czK">
@@ -2236,8 +2276,44 @@ kết cấu hạ tầng đường sắt</string>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lfr-Yu-OvU">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E4I-Jy-TV2">
+                                                <rect key="frame" x="0.0" y="0.0" width="379" height="65"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bu8-7e-2g2">
+                                                <rect key="frame" x="379" y="0.0" width="35" height="35"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsW-E2-v8K">
+                                                        <rect key="frame" x="3" y="6" width="29" height="23"/>
+                                                        <state key="normal" title="Button" image="micro"/>
+                                                        <connections>
+                                                            <segue destination="3kr-rx-vyq" kind="popoverPresentation" identifier="speechRecognizer" popoverAnchorView="zsW-E2-v8K" id="4Sv-Gj-def">
+                                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                            </segue>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="zsW-E2-v8K" secondAttribute="bottom" constant="6" id="0Ob-Iw-Kkk"/>
+                                                    <constraint firstItem="zsW-E2-v8K" firstAttribute="leading" secondItem="bu8-7e-2g2" secondAttribute="leading" constant="3" id="9De-dT-OIV"/>
+                                                    <constraint firstAttribute="width" constant="35" id="JWL-nR-YeW"/>
+                                                    <constraint firstAttribute="trailing" secondItem="zsW-E2-v8K" secondAttribute="trailing" constant="3" id="dY8-Jm-6k6"/>
+                                                    <constraint firstItem="zsW-E2-v8K" firstAttribute="top" secondItem="bu8-7e-2g2" secondAttribute="top" constant="6" id="lLk-Wz-egF"/>
+                                                    <constraint firstAttribute="height" constant="35" id="szI-cd-vMe"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="bu8-7e-2g2" secondAttribute="bottom" id="50W-wl-zf0"/>
                                             <constraint firstAttribute="height" constant="65" id="8DN-PA-6PS"/>
+                                            <constraint firstAttribute="trailing" secondItem="bu8-7e-2g2" secondAttribute="trailing" id="Qlb-bH-g71"/>
+                                            <constraint firstAttribute="bottom" secondItem="E4I-Jy-TV2" secondAttribute="bottom" id="XXJ-rk-wfU"/>
+                                            <constraint firstItem="bu8-7e-2g2" firstAttribute="top" secondItem="Lfr-Yu-OvU" secondAttribute="top" id="d2l-Yi-ygy"/>
+                                            <constraint firstItem="bu8-7e-2g2" firstAttribute="leading" secondItem="E4I-Jy-TV2" secondAttribute="trailing" id="qHl-NE-rtl"/>
+                                            <constraint firstItem="E4I-Jy-TV2" firstAttribute="leading" secondItem="Lfr-Yu-OvU" secondAttribute="leading" id="rfH-Gf-fgU"/>
+                                            <constraint firstItem="E4I-Jy-TV2" firstAttribute="top" secondItem="Lfr-Yu-OvU" secondAttribute="top" id="tSn-9s-d4F"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1jM-cT-ntc">
@@ -2395,16 +2471,19 @@ kết cấu hạ tầng đường sắt</string>
                     </view>
                     <connections>
                         <outlet property="bottomView" destination="fiT-02-e1A" id="T1l-w4-suH"/>
+                        <outlet property="btnMicro" destination="zsW-E2-v8K" id="wYY-jt-8gj"/>
                         <outlet property="consHeightTableView" destination="LWh-fi-gJW" id="W1u-Av-Bpa"/>
                         <outlet property="consSearchViewHeight" destination="8DN-PA-6PS" id="yRC-Du-RRn"/>
                         <outlet property="lblLoctheo" destination="Osf-7w-wvO" id="mIh-Dg-c9x"/>
+                        <outlet property="microView" destination="bu8-7e-2g2" id="Bxk-9p-ZCo"/>
+                        <outlet property="searchTextView" destination="E4I-Jy-TV2" id="YrJ-iA-Xl3"/>
                         <outlet property="searchbarView" destination="Lfr-Yu-OvU" id="GWy-Db-c4V"/>
                         <outlet property="tblView" destination="mx8-OQ-qrN" id="XrB-qg-eCu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n6H-mG-ydm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-69.375" y="663.38028169014081"/>
+            <point key="canvasLocation" x="-69.565217391304358" y="662.94642857142856"/>
         </scene>
         <!--Biển báo hiệu-->
         <scene sceneID="4NU-84-wGY">
@@ -3098,6 +3177,74 @@ kết cấu hạ tầng đường sắt</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUl-kH-grQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1597.5" y="661.26760563380287"/>
+        </scene>
+        <!--Speech Recognizer Controller-->
+        <scene sceneID="4kS-s2-VdK">
+            <objects>
+                <viewController id="3kr-rx-vyq" customClass="SpeechRecognizerController" customModule="HieuLuat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iSe-Vs-V5R"/>
+                        <viewControllerLayoutGuide type="bottom" id="C3y-Ay-GKb"/>
+                    </layoutGuides>
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="y40-Bx-qYc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Z6-rg-ZiO">
+                                <rect key="frame" x="82" y="296" width="250" height="250"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hãy nói từ khoá bạn muốn tra cứu và bấm nút &quot;Xong&quot;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Q0-em-zHS">
+                                        <rect key="frame" x="10" y="20" width="230" height="33.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="micro" translatesAutoresizingMaskIntoConstraints="NO" id="MtK-WK-IF2">
+                                        <rect key="frame" x="75" y="75" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="1M2-No-OcB"/>
+                                            <constraint firstAttribute="width" constant="100" id="gcr-TO-hHs"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6HX-1G-jkm">
+                                        <rect key="frame" x="10" y="210" width="230" height="30"/>
+                                        <color key="backgroundColor" red="0.069381929930000003" green="0.78833538290000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Xong">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnDoneAction:" destination="3kr-rx-vyq" eventType="touchDown" id="yzK-d8-29M"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="6HX-1G-jkm" secondAttribute="trailing" constant="10" id="9zT-SO-jSL"/>
+                                    <constraint firstItem="9Q0-em-zHS" firstAttribute="top" secondItem="5Z6-rg-ZiO" secondAttribute="top" constant="20" id="Abc-0U-eTM"/>
+                                    <constraint firstItem="MtK-WK-IF2" firstAttribute="centerX" secondItem="5Z6-rg-ZiO" secondAttribute="centerX" id="NyX-Jr-0Rg"/>
+                                    <constraint firstAttribute="width" constant="250" id="Vkv-1q-eAH"/>
+                                    <constraint firstItem="9Q0-em-zHS" firstAttribute="leading" secondItem="5Z6-rg-ZiO" secondAttribute="leading" constant="10" id="Vls-Ow-YeB"/>
+                                    <constraint firstItem="MtK-WK-IF2" firstAttribute="centerY" secondItem="5Z6-rg-ZiO" secondAttribute="centerY" id="io3-aX-Vsz"/>
+                                    <constraint firstAttribute="height" constant="250" id="ksq-M6-12t"/>
+                                    <constraint firstItem="6HX-1G-jkm" firstAttribute="leading" secondItem="5Z6-rg-ZiO" secondAttribute="leading" constant="10" id="maf-Am-9UG"/>
+                                    <constraint firstAttribute="bottom" secondItem="6HX-1G-jkm" secondAttribute="bottom" constant="10" id="vW9-LE-Yn8"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Q0-em-zHS" secondAttribute="trailing" constant="10" id="vjB-gO-oAg"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="5Z6-rg-ZiO" firstAttribute="centerX" secondItem="y40-Bx-qYc" secondAttribute="centerX" id="Nxr-0U-bYJ"/>
+                            <constraint firstItem="5Z6-rg-ZiO" firstAttribute="centerY" secondItem="y40-Bx-qYc" secondAttribute="centerY" id="OmS-xa-1Dn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnDone" destination="6HX-1G-jkm" id="9Fa-5K-SC5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nlf-q7-adP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2398.5507246376815" y="662.94642857142856"/>
         </scene>
         <!--Filter Popup View Controller-->
         <scene sceneID="okb-2h-OLv">
@@ -5208,8 +5355,9 @@ kết cấu hạ tầng đường sắt</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fx5-Wp-0nq"/>
+        <segue reference="KwK-7q-h5m"/>
         <segue reference="Dwh-PK-agn"/>
+        <segue reference="4Sv-Gj-def"/>
         <segue reference="cxy-pQ-lPK"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -5225,6 +5373,7 @@ kết cấu hạ tầng đường sắt</string>
         <image name="handpoint_left_rigt" width="300" height="300"/>
         <image name="handpoint_up" width="200" height="200"/>
         <image name="help_logo" width="512" height="512"/>
+        <image name="micro" width="225" height="421"/>
         <image name="navigate_left" width="40" height="100"/>
         <image name="navigate_right" width="40" height="100"/>
         <image name="obstacles" width="100" height="100"/>

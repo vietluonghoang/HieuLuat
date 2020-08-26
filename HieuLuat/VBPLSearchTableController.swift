@@ -16,17 +16,20 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet var lblLoctheo: UILabel!
     @IBOutlet weak var searchbarView: UIView!
+    @IBOutlet var searchTextView: UIView!
+    @IBOutlet var microView: UIView!
+    @IBOutlet var btnMicro: UIButton!
     @IBOutlet weak var consHeightTableView: NSLayoutConstraint!
     @IBOutlet var consSearchViewHeight: NSLayoutConstraint!
     @IBOutlet var viewBottom: UIView!
     
-    var dieukhoanList = [Dieukhoan]()
+    private var dieukhoanList = [Dieukhoan]()
     let searchController = UISearchController(searchResultsController: nil)
-    var rowCount = 0
+    private var rowCount = 0
     var filterSettings = [String:String]()
-    var bannerView: GADBannerView!
-    let btnFBBanner = UIButton()
-    let redirectionHelper = RedirectionHelper()
+    private var bannerView: GADBannerView!
+    private let btnFBBanner = UIButton()
+    private let redirectionHelper = RedirectionHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +42,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         initSearch()
         initFilterConfig()
         updateFilterLabel()
-
+        
         if(dieukhoanList.count<1){
             updateDieukhoanList(arrDieukhoan: search(keyword: searchController.searchBar.text!))
         }
@@ -59,49 +62,53 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         let sBar = searchController.searchBar
-        searchbarView.addSubview(sBar)
-        searchbarView.addConstraints(
+        searchTextView.addSubview(sBar)
+        searchTextView.addConstraints(
             [NSLayoutConstraint(item: sBar,
                                 attribute: .top,
                                 relatedBy: .equal,
-                                toItem: searchbarView,
+                                toItem: searchTextView,
                                 attribute: .top,
                                 multiplier: 1,
                                 constant: 0),
              NSLayoutConstraint(item: sBar,
                                 attribute: .bottom,
                                 relatedBy: .equal,
-                                toItem: searchbarView,
+                                toItem: searchTextView,
                                 attribute: .bottom,
                                 multiplier: 1,
                                 constant: 0),
              NSLayoutConstraint(item: sBar,
                                 attribute: .leading,
                                 relatedBy: .equal,
-                                toItem: searchbarView,
+                                toItem: searchTextView,
                                 attribute: .leading,
                                 multiplier: 1,
                                 constant: 0),
              NSLayoutConstraint(item: sBar,
                                 attribute: .trailing,
                                 relatedBy: .equal,
-                                toItem: searchbarView,
+                                toItem: searchTextView,
                                 attribute: .trailing,
                                 multiplier: 1,
                                 constant: 0),
              NSLayoutConstraint(item: sBar,
                                 attribute: .centerX,
                                 relatedBy: .equal,
-                                toItem: searchbarView,
+                                toItem: searchTextView,
                                 attribute: .centerX,
                                 multiplier: 1,
                                 constant: 0)
-            ])
+        ])
         consSearchViewHeight.constant = sBar.frame.height
+        if #available(iOS 10.0, *) {
+        }else{
+            btnMicro.isHidden = true
+        }
     }
     
     func setupSearchBarSize(){
-        self.searchController.searchBar.frame.size.width = self.view.frame.size.width
+        self.searchController.searchBar.frame.size.width = self.view.frame.size.width - microView.frame.size.width
     }
     
     func didDismissSearchController(searchController: UISearchController) {
@@ -118,10 +125,13 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         AdsHelper.initBannerAds(btnFBBanner: btnFBBanner, bannerView: bannerView, toView: viewBottom, root: self)
     }
     
+    @IBAction func btnMicroAction(_ sender: Any) {
+    }
+    
     @objc func btnFouderFBAction() {
         redirectionHelper.openUrl(urls: GeneralSettings.getFBLink)
     }
-
+    
     
     func initFilterConfig() {
         if(filterSettings.count < 1){
@@ -162,7 +172,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         if newLabel.count > 2 {
-//            newLabel = newLabel.substring(to: newLabel.index(newLabel.endIndex, offsetBy: -2))
+            //            newLabel = newLabel.substring(to: newLabel.index(newLabel.endIndex, offsetBy: -2))
             newLabel = Utils.removeLastCharacters(result: newLabel, length: 2)
         }
         lblLoctheo.text = newLabel
@@ -196,6 +206,9 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         return sortIt.sortByBestMatch(listDieukhoan: rs, keyword: kw)
     }
     
+    public func updateSearchBarText(keyword: String){
+        searchController.searchBar.text = keyword
+    }
     
     /*
      // MARK: - Navigation
@@ -215,10 +228,10 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         
         switch(segue.identifier ?? "") {
             
-//        case "vanbanHome":
-//            guard segue.destination is VBPLHomeDetailsViewController else {
-//                fatalError("Unexpected destination: \(segue.destination)")
-//            }
+            //        case "vanbanHome":
+            //            guard segue.destination is VBPLHomeDetailsViewController else {
+            //                fatalError("Unexpected destination: \(segue.destination)")
+            //            }
             
         case "filterPopup":
             guard let filterPopup = segue.destination as? FilterPopupViewController else {
@@ -243,6 +256,15 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
             let selectedDieukhoan = dieukhoanList[indexPath.row]
             dieukhoanDetails.updateDetails(dieukhoan: selectedDieukhoan)
             
+        case "speechRecognizer":
+            if #available(iOS 10.0, *) {
+                guard let target = segue.destination as? SpeechRecognizerController else {
+                    fatalError("Unexpected destination: \(segue.destination)")
+                }
+                target.setParentUI(parentUI: self)
+            } else {
+                // Fallback on earlier versions
+            }
         default:
             fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
@@ -307,5 +329,5 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
