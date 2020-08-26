@@ -9,9 +9,10 @@
 import UIKit
 import os.log
 import GoogleMobileAds
+import AVFoundation
 
 @available(iOS 9.0, *)
-class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, TJPlacementDelegate {
+class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, TJPlacementDelegate, AVSpeechSynthesizerDelegate {
     
     //MARK: Properties
     
@@ -63,7 +64,18 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet var viewMinhhoa: UIView!
     @IBOutlet var tblView: UITableView!
     @IBOutlet var consHeightTblView: NSLayoutConstraint!
+    @IBOutlet var viewBottomButtons: UIView!
+    @IBOutlet var btnRead: UIButton!
     @IBOutlet var viewAds: UIView!
+    
+    @IBAction func actBtnRead(_ sender: Any) {
+        if utterance.voice?.language != nil {
+            speakContent(utterance: utterance)
+        }else {
+            
+        }
+    }
+    
     
     var dkChild = [Dieukhoan]()
     var parentDieukhoan: Dieukhoan? = nil
@@ -84,12 +96,15 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     let redirectionHelper = RedirectionHelper()
     var placement = TJPlacement()
     var contentString = ""
+    let synthesizer = AVSpeechSynthesizer()
+    var utterance = AVSpeechUtterance(string: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tblView.delegate = self
         tblView.dataSource = self
+        synthesizer.delegate = self
         lblVanban.setLightCaptionLabel()
         lblVanban.setRoot(root: self)
         lblDieukhoan.setBoldCaptionLabel()
@@ -98,20 +113,31 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         lblNoidung.setRoot(root: self)
         // Do any additional setup after loading the view.
         
-        if(relatedChildren.count>0){
-            btnSeeMore.isEnabled = true
-            btnSeeMore.isHidden = false
-            consLblSeeMoreHeight.constant = 50
-        }else{
-            btnSeeMore.isHidden = true
-            btnSeeMore.isEnabled = false
-            consLblSeeMoreHeight.constant = 0
-        }
         showDieukhoan()
         
         tblView.reloadData()
         updateTableViewHeight()
         initAds()
+        
+        //check if speaker is availalbe for the text language
+        setSpeakerLanguage()
+        if utterance.voice?.language != nil {
+            updateSpeakerButton(onNow: true)
+        }else {
+            btnRead.isHidden = true
+        }
+        if relatedChildren.count > 0{
+            btnSeeMore.isHidden = false
+        }else{
+            btnSeeMore.isHidden = true
+        }
+        if(relatedChildren.count < 1 && utterance.voice?.language == nil){
+            consLblSeeMoreHeight.constant = 0
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        synthesizer.stopSpeaking(at: .immediate)
     }
     
     override func didReceiveMemoryWarning() {
@@ -199,6 +225,52 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
     
+    func speakContent(utterance: AVSpeechUtterance) {
+        if synthesizer.isSpeaking {
+            synthesizer.stopSpeaking(at: .immediate)
+        } else {
+            synthesizer.speak(utterance)
+        }
+    }
+    
+    // will be called when speech did finish
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        updateSpeakerButton(onNow: true)
+    }
+    // will be called when speech did start
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+        updateSpeakerButton(onNow: false)
+    }
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
+        updateSpeakerButton(onNow: true)
+    }
+    private func updateSpeakerButton(onNow: Bool){
+        if onNow {
+            btnRead.setImage(UIImage(named: "speaker_on"), for: .normal)
+            btnRead.backgroundColor = UIColor.init(red: 56/255, green: 207/255, blue: 109/255, alpha: 1)
+        }else{
+            btnRead.setImage(UIImage(named: "speaker_off"), for: .normal)
+            btnRead.backgroundColor = UIColor.init(red: 255/255, green: 64/255, blue: 129/255, alpha: 1)
+        }
+    }
+    
+    private func setSpeakerLanguage(){
+        var language = "en"
+        if #available(iOS 11.0, *) {
+            language = NSLinguisticTagger.dominantLanguage(for: contentString)!
+            if language != ""  {
+                print("***** Language: \(language)")
+            } else {
+                print("***** Language: Unknown language")
+            }
+        } else {
+            // Fallback on earlier versions
+            language = "vi"
+        }
+        utterance = AVSpeechUtterance(string: contentString)
+        utterance.voice = AVSpeechSynthesisVoice(language: language)
+        print("+++++++=====++++++ Voice Language: \(utterance.voice?.language)")
+    }
     
     func hideMinhhoaStackview(isHidden: Bool)  {
         consSvStackviewHeightSmall.constant = 0
@@ -316,7 +388,25 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             hideMinhhoaView(isHidden: true)
         }
         
-        contentString = "\(breadscrubText.split(separator: "/").reversed().joined(separator: " "))\n\(dieukhoan!.getSo()) \(dieukhoan!.getTieude())\n\(dieukhoan!.getNoidung())"
+        //reverse breadsrub text to the right order
+        let aces = breadscrubText.split(separator: "/").reversed()
+        //insert prefix for dieukhoan
+        var pref = "";
+        var edittedAces = [String]();
+        for scrub in aces{
+            edittedAces.append(pref + scrub)
+            if scrub.trimmingCharacters(in: .whitespacesAndNewlines).lowercased().hasPrefix("điều"){
+                pref = "khoản ";
+            }else if(pref == "khoản "){
+                pref = "điểm ";
+            } else {
+                pref = "";
+            }
+        }
+        
+        //update content string
+        let so = dieukhoan!.getSo().hasSuffix(".") ? dieukhoan!.getSo() : dieukhoan!.getSo() + "."
+        contentString = "\(edittedAces.joined(separator: " "))\n\(pref)\(so) \(dieukhoan!.getTieude())\n\(dieukhoan!.getNoidung())"
         
         populateExtraInfoView()
         if hinhphatbosungList.count < 1 && bienphapkhacphucList.count < 1 && thamquyenList.count < 1 && tamgiuphuongtienList.count < 1{
