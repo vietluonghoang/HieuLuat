@@ -23,6 +23,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var consHeightTableView: NSLayoutConstraint!
     var dieukhoanList = [Dieukhoan]()
     let searchController = UISearchController(searchResultsController: nil)
+    private var searchKeyword = ""
     var rowCount = 0
     var filterSettings = [String:String]()
     var searchFilters = [String:[String:[String:String]]]()
@@ -453,7 +454,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
             dieukhoan = dieukhoanList[indexPath.row]
         }
         
-        cell.updateDieukhoan(dieukhoan: dieukhoan, fullDetails: false, showVanban: true)
+        cell.updateDieukhoan(dieukhoan: dieukhoan, fullDetails: false, showVanban: true, keywork: searchKeyword)
         return cell
     }
     
@@ -474,6 +475,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
+        self.searchKeyword = searchText
         updateDieukhoanList(arrDieukhoan: search(keyword: searchText))
         rowCount = dieukhoanList.count
         tblView.reloadData()
