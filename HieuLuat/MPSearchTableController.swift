@@ -15,6 +15,9 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet var lblLoctheo: UILabel!
     @IBOutlet weak var searchbarView: UIView!
+    @IBOutlet var searchTextView: UIView!
+    @IBOutlet var microView: UIView!
+    @IBOutlet var btnMicro: UIButton!
     @IBOutlet var bottomView: UIView!
     @IBOutlet var consSearchViewHeight: NSLayoutConstraint!
     @IBOutlet weak var consHeightTableView: NSLayoutConstraint!
@@ -60,45 +63,49 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         let sBar = searchController.searchBar
-        searchbarView.addSubview(sBar)
-        searchbarView.addConstraints(
+        searchTextView.addSubview(sBar)
+        searchTextView.addConstraints(
             [NSLayoutConstraint(item: sBar,
                                 attribute: .top,
                                 relatedBy: .equal,
-                                toItem: searchbarView,
+                                toItem: searchTextView,
                                 attribute: .top,
                                 multiplier: 1,
                                 constant: 0),
              NSLayoutConstraint(item: sBar,
                                 attribute: .bottom,
                                 relatedBy: .equal,
-                                toItem: searchbarView,
+                                toItem: searchTextView,
                                 attribute: .bottom,
                                 multiplier: 1,
                                 constant: 0),
              NSLayoutConstraint(item: sBar,
                                 attribute: .leading,
                                 relatedBy: .equal,
-                                toItem: searchbarView,
+                                toItem: searchTextView,
                                 attribute: .leading,
                                 multiplier: 1,
                                 constant: 0),
              NSLayoutConstraint(item: sBar,
                                 attribute: .trailing,
                                 relatedBy: .equal,
-                                toItem: searchbarView,
+                                toItem: searchTextView,
                                 attribute: .trailing,
                                 multiplier: 1,
                                 constant: 0),
              NSLayoutConstraint(item: sBar,
                                 attribute: .centerX,
                                 relatedBy: .equal,
-                                toItem: searchbarView,
+                                toItem: searchTextView,
                                 attribute: .centerX,
                                 multiplier: 1,
                                 constant: 0)
-            ])
+        ])
         consSearchViewHeight.constant = sBar.frame.height
+        if #available(iOS 10.0, *) {
+        }else{
+            btnMicro.isHidden = true
+        }
     }
     
     func initAds() {
@@ -112,7 +119,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func setupSearchBarSize(){
-        self.searchController.searchBar.frame.size.width = self.view.frame.size.width
+        self.searchController.searchBar.frame.size.width = self.view.frame.size.width - microView.frame.size.width
     }
     
     func didDismissSearchController(searchController: UISearchController) {
@@ -252,7 +259,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         if newLabel.count > 2 {
-//            newLabel = newLabel.substring(to: newLabel.index(newLabel.endIndex, offsetBy: -2))
+            //            newLabel = newLabel.substring(to: newLabel.index(newLabel.endIndex, offsetBy: -2))
             newLabel = Utils.removeLastCharacters(result: newLabel, length: 2)
         }
         lblLoctheo.text = newLabel
@@ -294,11 +301,11 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
             for key in k.components(separatedBy: " ") {
                 str += "dkSearch like '%\(key)%' and "
             }
-//            str = str.substring(to: str.index(str.endIndex, offsetBy: -5))
+            //            str = str.substring(to: str.index(str.endIndex, offsetBy: -5))
             str = Utils.removeLastCharacters(result: str, length: 5)
             appendString += "(\(str)) or "
         }
-//        appendString = "(\(appendString.substring(to: appendString.index(appendString.endIndex, offsetBy: -4))))"
+        //        appendString = "(\(appendString.substring(to: appendString.index(appendString.endIndex, offsetBy: -4))))"
         appendString = "(\(Utils.removeLastCharacters(result: appendString, length: 4)))"
         
         if searchFilters["Mucphat"]!["tu"]!["chon"] != "0" && searchFilters["Mucphat"]!["den"]!["chon"] != "0" {
@@ -321,7 +328,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
                 inClause += "\"\(item)\","
             }
         }
-//        inClause = inClause.substring(to: inClause.index(inClause.endIndex, offsetBy: -1))
+        //        inClause = inClause.substring(to: inClause.index(inClause.endIndex, offsetBy: -1))
         inClause = Utils.removeLastCharacters(result: inClause, length: 1)
         
         return " and dkId in (select distinct dieukhoanID from tblMucphat where canhanTu in (\(inClause)) or canhanDen in (\(inClause)) or tochucTu in (\(inClause)) or tochucDen in (\(inClause)))"
@@ -357,10 +364,14 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
             inClause += "dibo = 1 or "
         }
         
-//        inClause = inClause.substring(to: inClause.index(inClause.endIndex, offsetBy: -4))
+        //        inClause = inClause.substring(to: inClause.index(inClause.endIndex, offsetBy: -4))
         inClause = Utils.removeLastCharacters(result: inClause, length: 4)
         
         return " and dkID in (select distinct dieukhoanID from tblPhuongtien where \(inClause))"
+    }
+    
+    public func updateSearchBarText(keyword: String){
+        searchController.searchBar.text = keyword
     }
     
     /*
@@ -405,6 +416,15 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
             let selectedDieukhoan = dieukhoanList[indexPath.row]
             dieukhoanDetails.updateDetails(dieukhoan: selectedDieukhoan)
             
+        case "speechRecognizer":
+            if #available(iOS 10.0, *) {
+                guard let target = segue.destination as? SpeechRecognizerController else {
+                    fatalError("Unexpected destination: \(segue.destination)")
+                }
+                target.setParentUI(parentUI: self)
+            } else {
+                // Fallback on earlier versions
+            }
         default:
             fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
@@ -470,5 +490,5 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

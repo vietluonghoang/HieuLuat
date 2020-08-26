@@ -49,6 +49,7 @@
 		33D305661F51802700547497 /* Loaivanban.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305651F51802700547497 /* Loaivanban.swift */; };
 		33D305681F51804F00547497 /* Vanban.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305671F51804F00547497 /* Vanban.swift */; };
 		33D31DE41F77BEF700A46E62 /* MPSearchFilterPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D31DE31F77BEF700A46E62 /* MPSearchFilterPopupController.swift */; };
+		33DBF79A24F6453A007925DF /* SpeechRecognizerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DBF79924F6453A007925DF /* SpeechRecognizerController.swift */; };
 		33E82BD222CC6708008CFB34 /* VideoCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E82BD122CC6708008CFB34 /* VideoCaptureViewController.swift */; };
 		33EB998D215A229D0097827A /* VKDTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EB998C215A229D0097827A /* VKDTableViewController.swift */; };
 		33F06FF9212439DD00A69431 /* Hieuluat.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 33F06FF8212439DD00A69431 /* Hieuluat.sqlite */; };
@@ -127,6 +128,7 @@
 		33D305651F51802700547497 /* Loaivanban.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loaivanban.swift; sourceTree = "<group>"; };
 		33D305671F51804F00547497 /* Vanban.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vanban.swift; sourceTree = "<group>"; };
 		33D31DE31F77BEF700A46E62 /* MPSearchFilterPopupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPSearchFilterPopupController.swift; sourceTree = "<group>"; };
+		33DBF79924F6453A007925DF /* SpeechRecognizerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerController.swift; sourceTree = "<group>"; };
 		33E82BD122CC6708008CFB34 /* VideoCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCaptureViewController.swift; sourceTree = "<group>"; };
 		33EB998C215A229D0097827A /* VKDTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKDTableViewController.swift; sourceTree = "<group>"; };
 		33F06FF8212439DD00A69431 /* Hieuluat.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hieuluat.sqlite; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				3322B225234D93E2004584B1 /* InstructionTableViewCell.swift */,
 				3322B227234DB7CA004584B1 /* InstructionDetailsViewController.swift */,
 				332C10E52356EE6800EDD3AE /* CouponInputScreenViewController.swift */,
+				33DBF79924F6453A007925DF /* SpeechRecognizerController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				334AAFB21FC1E0A300A5BE0F /* GeneralSettings.swift in Sources */,
 				33FD3B78232A6BBC00DD7087 /* RedirectionHelper.swift in Sources */,
 				3357C5321F86547700B963E6 /* SortUtil.swift in Sources */,
+				33DBF79A24F6453A007925DF /* SpeechRecognizerController.swift in Sources */,
 				33C8670A1FAA02AC0090D954 /* AppearanceUtil.swift in Sources */,
 				33D3055B1F517D6F00547497 /* DataConnection.swift in Sources */,
 				33FD3B74232A537700DD7087 /* AppConfiguration.swift in Sources */,
