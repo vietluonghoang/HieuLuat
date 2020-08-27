@@ -26,6 +26,7 @@ class VBPLTableViewCell: UITableViewCell{
     
     private var search = SearchFor()
     private var keyword = ""
+    private let matchingPrefixThreshold = 10
     
     
     override func awakeFromNib() {
@@ -113,8 +114,13 @@ class VBPLTableViewCell: UITableViewCell{
                 if noidung.lowercased().contains(matchingKeyword.lowercased()) {
                     let slicedNoidung = noidung.lowercased().replacingOccurrences(of: matchingKeyword.lowercased(), with: "|").split(separator: "|")
                     if slicedNoidung.count > 1 {
-                        let truncatedNoidung = Utils.removeFirstCharacters(result: noidung, length: slicedNoidung[0].count)
-                        return "...\(truncatedNoidung)"
+                        var truncatedNoidung = ""
+                        if slicedNoidung[0].count > matchingPrefixThreshold {
+                            truncatedNoidung = "...\(Utils.removeFirstCharacters(result: noidung, length: slicedNoidung[0].count - matchingPrefixThreshold))"
+                        } else {
+                            truncatedNoidung = Utils.removeFirstCharacters(result: noidung, length: slicedNoidung[0].count)
+                        }
+                        return truncatedNoidung
                     }else {
                         return noidung
                     }
