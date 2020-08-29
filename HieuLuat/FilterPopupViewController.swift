@@ -34,12 +34,12 @@ class FilterPopupViewController: UIViewController {
     func updateSwitches() {
         var swtArray = [UIView]()
         
-        for id in 0...GeneralSettings.getVanbanIdMax {
+        for id in stride(from: GeneralSettings.getVanbanIdMax, through: 0, by: -1) {
             if root?.filterSettings[String(id)] == "on" {
                 swtArray.append(generateFilterSwitchItem(id: Int(id), shortname: GeneralSettings.getVanbanInfo(id: Int64(id), info: "shortname"), fullname: GeneralSettings.getVanbanInfo(id: Int64(id), info: "fullname"), isOn: true))
             }
         }
-        for id in 0...GeneralSettings.getVanbanIdMax {
+        for id in stride(from: GeneralSettings.getVanbanIdMax, through: 0, by: -1){
             if root?.filterSettings[String(id)] == "off" {
                 swtArray.append(generateFilterSwitchItem(id: Int(id), shortname: GeneralSettings.getVanbanInfo(id: Int64(id), info: "shortname"), fullname: GeneralSettings.getVanbanInfo(id: Int64(id), info: "fullname"), isOn: false))
             }

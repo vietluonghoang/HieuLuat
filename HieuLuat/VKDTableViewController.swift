@@ -230,7 +230,7 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
         let rs = Queries.getVachByParams(params: kw, groups: groups)
         rowCount = rs.count
         
-        return rs
+        return rs.sorted(by: {$0.id < $1.id} ) //sort result by the order of id to make the display to be clear
     }
     
     func populateVachParams() -> [String] {

@@ -247,7 +247,7 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         let rs = Queries.getPlateByParams(params: kw, groups: groups)
         rowCount = rs.count
         
-        return rs
+        return rs.sorted(by: {$0.id < $1.id} ) //sort result by the order of id to make the display to be clear
     }
     
     func populatePlateParams() -> [String] {

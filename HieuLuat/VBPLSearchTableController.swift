@@ -14,7 +14,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet var viewTop: UIView!
     @IBOutlet weak var tblView: UITableView!
-    @IBOutlet var lblLoctheo: UILabel!
+    @IBOutlet var lblLoctheo: CustomizedLabel!
     @IBOutlet weak var searchbarView: UIView!
     @IBOutlet var searchTextView: UIView!
     @IBOutlet var microView: UIView!
@@ -177,6 +177,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
             newLabel = Utils.removeLastCharacters(result: newLabel, length: 2)
         }
         lblLoctheo.text = newLabel
+        lblLoctheo.setRegularCaptionLabel()
         viewTop.layoutIfNeeded()
     }
     
