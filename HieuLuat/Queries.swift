@@ -66,21 +66,6 @@ class Queries: NSObject {
         var vanbanArray = Array<Vanban>()
         while resultSet.next() {
             if resultSet != nil {
-                print(resultSet!)
-                print(resultSet.int(forColumn: "id"))
-                print(resultSet.string(forColumn: "ten")!)
-                print(resultSet.int(forColumn: "lvbId"))
-                print(resultSet.string(forColumn: "lvbTen")!)
-                print(resultSet.string(forColumn: "so")!)
-                print(resultSet.string(forColumn: "nam")!)
-                print(resultSet.string(forColumn: "ma")!)
-                print(resultSet.int(forColumn: "cqId"))
-                print(resultSet.string(forColumn: "cqTen")!)
-                print(resultSet.string(forColumn: "noidung")!)
-                print(resultSet.string(forColumn: "hieuluc")!)
-                print(resultSet.int(forColumn: "vanbanThaytheId"))
-                print(resultSet.string(forColumn: "tenRutgon")!)
-                
                 vanbanArray.append(Vanban(id: Int64(resultSet.int(forColumn: "id")), ten: String(resultSet.string(forColumn: "ten")!), loai: Loaivanban(id: Int64(resultSet.int(forColumn: "lvbId")), ten: String(resultSet.string(forColumn: "lvbTen")!)), so: String(resultSet.string(forColumn: "so")!), nam: String(resultSet.string(forColumn: "nam")!), ma: String(resultSet.string(forColumn: "ma")!), coquanbanhanh: Coquanbanhanh(id: Int64(resultSet.int(forColumn: "cqId")), ten: String(resultSet.string(forColumn: "cqTen")!)), noidung: String(resultSet.string(forColumn: "noidung")!), hieuluc: String(resultSet.string(forColumn: "hieuluc")!), vanbanThaytheId: Int64(resultSet.int(forColumn: "vanbanThaytheId")), tenRutgon: String(resultSet.string(forColumn: "tenRutgon")!)))
             }
         }

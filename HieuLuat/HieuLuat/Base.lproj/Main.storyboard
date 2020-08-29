@@ -434,7 +434,7 @@
                                             <segue destination="xmY-Cs-zLN" kind="presentation" identifier="filterPopup" id="jJP-B0-pmj"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hzo-mm-S5N">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hzo-mm-S5N" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
                                         <rect key="frame" x="80" y="37" width="326" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="DZ8-bY-Xg1"/>
@@ -3258,20 +3258,33 @@ kết cấu hạ tầng đường sắt</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMl-ey-5dX" userLabel="viewTitle">
+                                <rect key="frame" x="22" y="2" width="370" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lọc theo văn bản:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ouj-31-CZM" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
+                                        <rect key="frame" x="2" y="2" width="366" height="26"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Ouj-31-CZM" secondAttribute="trailing" constant="2" id="HVq-mn-PWu"/>
+                                    <constraint firstItem="Ouj-31-CZM" firstAttribute="top" secondItem="GMl-ey-5dX" secondAttribute="top" constant="2" id="MGl-R5-TtX"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ouj-31-CZM" secondAttribute="bottom" constant="2" id="NTv-Ra-iTZ"/>
+                                    <constraint firstAttribute="height" constant="30" id="gXS-L0-IbP"/>
+                                    <constraint firstItem="Ouj-31-CZM" firstAttribute="leading" secondItem="GMl-ey-5dX" secondAttribute="leading" constant="2" id="jNY-sy-guL"/>
+                                </constraints>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rx7-Bz-RSl">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="496"/>
+                                <rect key="frame" x="0.0" y="34" width="414" height="722"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bVd-ED-38T" userLabel="SvContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="223"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lọc theo văn bản:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ouj-31-CZM" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="2" y="4" width="410" height="17"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HmT-tc-3to" userLabel="viewSwitches">
-                                                <rect key="frame" x="2" y="29" width="410" height="128"/>
+                                                <rect key="frame" x="2" y="29" width="410" height="194"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </view>
                                         </subviews>
@@ -3279,11 +3292,8 @@ kết cấu hạ tầng đường sắt</string>
                                         <constraints>
                                             <constraint firstItem="HmT-tc-3to" firstAttribute="leading" secondItem="bVd-ED-38T" secondAttribute="leading" constant="2" id="0aO-YJ-YZp"/>
                                             <constraint firstItem="HmT-tc-3to" firstAttribute="centerX" secondItem="bVd-ED-38T" secondAttribute="centerX" id="9Oj-O9-U86"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ouj-31-CZM" secondAttribute="trailing" constant="2" id="ED2-ef-FnD"/>
                                             <constraint firstAttribute="bottom" secondItem="HmT-tc-3to" secondAttribute="bottom" id="VFT-ul-HXD"/>
-                                            <constraint firstItem="Ouj-31-CZM" firstAttribute="top" secondItem="bVd-ED-38T" secondAttribute="top" constant="4" id="WqW-9B-CaT"/>
-                                            <constraint firstItem="HmT-tc-3to" firstAttribute="top" secondItem="Ouj-31-CZM" secondAttribute="bottom" constant="8" id="eE8-Ni-MPF"/>
-                                            <constraint firstItem="Ouj-31-CZM" firstAttribute="leading" secondItem="bVd-ED-38T" secondAttribute="leading" constant="2" id="pS5-YB-IRr"/>
+                                            <constraint firstItem="HmT-tc-3to" firstAttribute="top" secondItem="bVd-ED-38T" secondAttribute="top" constant="20" symbolic="YES" id="nbA-Ed-4rZ"/>
                                             <constraint firstAttribute="trailing" secondItem="HmT-tc-3to" secondAttribute="trailing" constant="2" id="yAc-LT-awS"/>
                                         </constraints>
                                     </view>
@@ -3313,12 +3323,15 @@ kết cấu hạ tầng đường sắt</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="GMl-ey-5dX" secondAttribute="trailing" constant="2" id="8C9-Wy-lih"/>
+                            <constraint firstItem="GMl-ey-5dX" firstAttribute="top" secondItem="NZ9-sD-nJb" secondAttribute="bottom" constant="2" id="Wdz-Sa-NwX"/>
                             <constraint firstItem="8LZ-fc-3nY" firstAttribute="top" secondItem="GdN-SI-HIm" secondAttribute="bottom" id="a4B-5d-5EK"/>
-                            <constraint firstItem="rx7-Bz-RSl" firstAttribute="top" secondItem="NZ9-sD-nJb" secondAttribute="bottom" id="a9y-ks-egn"/>
                             <constraint firstAttribute="trailing" secondItem="GdN-SI-HIm" secondAttribute="trailing" id="hUp-G3-hhS"/>
                             <constraint firstItem="GdN-SI-HIm" firstAttribute="leading" secondItem="3cU-HU-okI" secondAttribute="leading" id="hji-di-52w"/>
+                            <constraint firstItem="GMl-ey-5dX" firstAttribute="leading" secondItem="3cU-HU-okI" secondAttribute="leadingMargin" constant="2" id="oTC-mg-f6s"/>
                             <constraint firstItem="rx7-Bz-RSl" firstAttribute="leading" secondItem="3cU-HU-okI" secondAttribute="leading" id="ojH-27-7Le"/>
                             <constraint firstAttribute="trailing" secondItem="rx7-Bz-RSl" secondAttribute="trailing" id="qYr-VL-n0I"/>
+                            <constraint firstItem="rx7-Bz-RSl" firstAttribute="top" secondItem="GMl-ey-5dX" secondAttribute="bottom" constant="2" id="tpz-Oj-R2D"/>
                             <constraint firstItem="GdN-SI-HIm" firstAttribute="top" secondItem="rx7-Bz-RSl" secondAttribute="bottom" constant="2" id="vXw-ci-ZdR"/>
                         </constraints>
                     </view>
@@ -3331,7 +3344,7 @@ kết cấu hạ tầng đường sắt</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b64-eH-tYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1490.625" y="-865.14084507042253"/>
+            <point key="canvasLocation" x="1489.8550724637682" y="-865.17857142857144"/>
         </scene>
         <!--Video Capture View Controller-->
         <scene sceneID="HPW-tB-bNB">
@@ -5355,9 +5368,9 @@ kết cấu hạ tầng đường sắt</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KwK-7q-h5m"/>
+        <segue reference="x0c-Xv-FUh"/>
         <segue reference="Dwh-PK-agn"/>
-        <segue reference="4Sv-Gj-def"/>
+        <segue reference="DsF-CY-Ktp"/>
         <segue reference="cxy-pQ-lPK"/>
     </inferredMetricsTieBreakers>
     <resources>
