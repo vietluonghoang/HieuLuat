@@ -43,8 +43,8 @@ class GeneralSettings {
     private static var adsOptout = false //true means the user will not see Ads
     
     //these settings must be updated before making build
-    private static var requiredDBVersion = 10
-    private static var developementMode = true
+    private static var requiredDBVersion = 11
+    private static var developementMode = false
     private static var defaultActiveQC41Id = 7 //this would be used for the search of querying the lastest road sign
     private static var defaultActiveNDXPId = 6 //this would be used for the search of querying the latest NDXP
     
