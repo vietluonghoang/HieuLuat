@@ -255,10 +255,10 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     private func setSpeakerLanguage(){
-        var language = "en"
+        var language = "vi"
         if #available(iOS 11.0, *) {
-            language = NSLinguisticTagger.dominantLanguage(for: contentString)!
-            if language != ""  {
+            if let lang = NSLinguisticTagger.dominantLanguage(for: contentString) {
+                language = lang
                 print("***** Language: \(language)")
             } else {
                 print("***** Language: Unknown language")
