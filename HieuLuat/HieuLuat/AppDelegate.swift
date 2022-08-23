@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMobileAds
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         //Tapjoy connect call
         Tapjoy.connect("yYojHsRCSS2pV8bY5NMqOgEBt4iGX26mfOW99XyTfeLUjC-bN5EnpLQRgpnf")
+        FirebaseApp.configure()
         return true
     }
     

@@ -28,6 +28,7 @@
 		336C485B1FA0D7D200A154D9 /* PickerViewSelectPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336C485A1FA0D7D200A154D9 /* PickerViewSelectPopup.swift */; };
 		3394A2782072236C00831E69 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3394A2772072236C00831E69 /* AboutViewController.swift */; };
 		339B43431FFBAE6C00149B09 /* BosungKhacphuc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B43421FFBAE6C00149B09 /* BosungKhacphuc.swift */; };
+		339E096526FB6E20007686DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 339E096426FB6E20007686DC /* GoogleService-Info.plist */; };
 		33BCFF0921451FEE004804F7 /* BBSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BCFF0821451FEE004804F7 /* BBSearchTableController.swift */; };
 		33C8670A1FAA02AC0090D954 /* AppearanceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C867091FAA02AC0090D954 /* AppearanceUtil.swift */; };
 		33C87DFC1F604C0200D8B198 /* ConfigAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C87DFB1F604C0200D8B198 /* ConfigAttribute.swift */; };
@@ -101,6 +102,7 @@
 		336C485A1FA0D7D200A154D9 /* PickerViewSelectPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewSelectPopup.swift; sourceTree = "<group>"; };
 		3394A2772072236C00831E69 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		339B43421FFBAE6C00149B09 /* BosungKhacphuc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BosungKhacphuc.swift; sourceTree = "<group>"; };
+		339E096426FB6E20007686DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		33BCFF0821451FEE004804F7 /* BBSearchTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBSearchTableController.swift; sourceTree = "<group>"; };
 		33C867091FAA02AC0090D954 /* AppearanceUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceUtil.swift; sourceTree = "<group>"; };
 		33C87DFB1F604C0200D8B198 /* ConfigAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigAttribute.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		33D305271F51794F00547497 /* HieuLuat */ = {
 			isa = PBXGroup;
 			children = (
+				339E096426FB6E20007686DC /* GoogleService-Info.plist */,
 				33D305281F51794F00547497 /* AppDelegate.swift */,
 				33D3052A1F51794F00547497 /* ViewController.swift */,
 				33D3052C1F51794F00547497 /* Main.storyboard */,
@@ -455,6 +458,7 @@
 			files = (
 				33F06FF9212439DD00A69431 /* Hieuluat.sqlite in Resources */,
 				33D305331F51794F00547497 /* LaunchScreen.storyboard in Resources */,
+				339E096526FB6E20007686DC /* GoogleService-Info.plist in Resources */,
 				33D305301F51794F00547497 /* Assets.xcassets in Resources */,
 				33D3052E1F51794F00547497 /* Main.storyboard in Resources */,
 			);
@@ -482,22 +486,18 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-resources.sh",
 				"${PODS_ROOT}/TapjoySDK/TapjoySDK_iOS_v12.3.1/Libraries/Tapjoy.embeddedframework/Resources/TapjoyResources.bundle",
 				"${PODS_ROOT}/TapjoySDK/TapjoySDK_iOS_v12.3.1/Libraries/Tapjoy.embeddedframework/Tapjoy.framework/Versions/A/Resources/TapjoyResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TapjoyResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7E01514F7D3D0D5E06B4A2AD /* [CP] Embed Pods Frameworks */ = {
@@ -506,7 +506,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -519,7 +519,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CC81A362C19F5B1802AC5F2E /* [CP] Check Pods Manifest.lock */ = {
