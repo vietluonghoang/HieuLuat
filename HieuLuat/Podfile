@@ -11,7 +11,7 @@ pod 'Google-Mobile-Ads-SDK'
 pod 'TapjoySDK'
 
 # add the Firebase pod for Google Analytics
-pod 'Firebase/Analytics'
+pod 'FirebaseAnalytics'
 # or pod ‘Firebase/AnalyticsWithoutAdIdSupport’
 # for Analytics without IDFA collection capability
 
