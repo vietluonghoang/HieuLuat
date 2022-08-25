@@ -8,6 +8,9 @@
 
 import UIKit
 import GoogleMobileAds
+import FirebaseCore
+import FirebaseAnalytics
+import FirebaseCrashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Set up success and failure notifications
         NotificationCenter.default.addObserver(self, selector: #selector(tjcConnectSuccess), name: NSNotification.Name(rawValue: TJC_CONNECT_SUCCESS), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(tjcConnectFail), name: NSNotification.Name(rawValue: TJC_CONNECT_FAILED), object: nil)
+        
+        // Use the Firebase library to configure APIs.
+        FirebaseApp.configure()
         //Turn on Tapjoy debug mode
         if GeneralSettings.isDevMode {
             Tapjoy.setDebugEnabled(true)
