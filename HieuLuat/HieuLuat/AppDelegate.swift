@@ -11,6 +11,8 @@ import GoogleMobileAds
 import FirebaseCore
 import FirebaseAnalytics
 import FirebaseCrashlytics
+import FirebaseInAppMessaging
+import FirebaseRemoteConfig
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
