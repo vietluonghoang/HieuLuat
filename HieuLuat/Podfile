@@ -26,5 +26,7 @@ pod 'FirebaseCrashlytics'
 
 #add the Firebase pod for Google InAppMessaging
 pod 'FirebaseInAppMessaging'
+#add the Firebase pod for Google RemoteConfig
+pod 'FirebaseRemoteConfig'
 
 end
