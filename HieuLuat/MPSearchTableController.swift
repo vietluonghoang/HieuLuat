@@ -52,6 +52,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         rowCount = dieukhoanList.count
         tblView.reloadData()
         initAds()
+        AnalyticsHelper.sendAnalyticEvent(eventName: "open_screen", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_TRACUUMUCPHAT])
     }
     
     override func didReceiveMemoryWarning() {

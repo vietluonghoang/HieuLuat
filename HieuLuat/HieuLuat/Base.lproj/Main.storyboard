@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BqM-hL-PoV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BqM-hL-PoV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -39,7 +40,7 @@
                                                     <action selector="txtCodeAct:" destination="pf1-0P-5va" eventType="touchDown" id="7kA-sD-4Ql"/>
                                                 </connections>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZi-Fn-aar">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZi-Fn-aar">
                                                 <rect key="frame" x="4" y="48" width="396" height="30"/>
                                                 <state key="normal" title="Xác nhận"/>
                                                 <connections>
@@ -53,7 +54,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="NMf-WB-Hzh" secondAttribute="trailing" id="2sJ-Y8-A3m"/>
                                             <constraint firstAttribute="trailing" secondItem="tZi-Fn-aar" secondAttribute="trailing" constant="4" id="5Qp-Mc-g99"/>
@@ -70,7 +71,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="4lb-u6-rr2" firstAttribute="leading" secondItem="5qN-dm-9gb" secondAttribute="leading" constant="5" id="Slm-KB-DNz"/>
                                     <constraint firstAttribute="trailing" secondItem="4lb-u6-rr2" secondAttribute="trailing" constant="5" id="TDs-OB-YFN"/>
@@ -78,7 +79,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="nxd-yR-LWm" firstAttribute="top" secondItem="5qN-dm-9gb" secondAttribute="bottom" id="8C0-sq-cQ5"/>
                             <constraint firstItem="5qN-dm-9gb" firstAttribute="top" secondItem="dB1-5n-ouB" secondAttribute="bottom" id="QV1-Zd-7Ro"/>
@@ -137,7 +138,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YcN-lD-jT1">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YcN-lD-jT1">
                                                         <rect key="frame" x="156" y="25" width="256" height="27"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <state key="normal" title="wethoong@gmail.com"/>
@@ -151,7 +152,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="QYf-DN-Caa">
+                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="QYf-DN-Caa">
                                                         <rect key="frame" x="156" y="67" width="256" height="27"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <state key="normal" title="http://fb.me/wethoong"/>
@@ -202,7 +203,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qGV-Wu-F6p">
                                 <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7T-UK-rIq">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7T-UK-rIq">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <state key="normal" title="Tắt Quảng cáo"/>
                                         <connections>
@@ -210,7 +211,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="1Hp-Zg-Jq9"/>
                                     <constraint firstItem="M7T-UK-rIq" firstAttribute="top" secondItem="qGV-Wu-F6p" secondAttribute="top" id="b5P-0P-WLy"/>
@@ -253,7 +254,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0f-nB-WP8">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0f-nB-WP8">
                                 <rect key="frame" x="15" y="124" width="384" height="30"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -264,7 +265,7 @@
                                     <segue destination="0Yw-pY-oe6" kind="show" id="mzu-Np-Gb0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBg-Lu-M8e">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBg-Lu-M8e">
                                 <rect key="frame" x="15" y="169" width="384" height="30"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -275,7 +276,7 @@
                                     <segue destination="n4D-Vs-mwJ" kind="show" id="bCe-lV-SqL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuL-cL-rMh">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuL-cL-rMh">
                                 <rect key="frame" x="15" y="214" width="384" height="30"/>
                                 <color key="backgroundColor" red="0.069372318690000004" green="0.77632451059999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -286,7 +287,7 @@
                                     <segue destination="UDc-4c-lDr" kind="show" id="uJ4-eV-f50"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-N0-zsP">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-N0-zsP">
                                 <rect key="frame" x="15" y="259" width="384" height="30"/>
                                 <color key="backgroundColor" red="0.069381929930000003" green="0.78833538290000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -303,14 +304,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9G5-v8-uGX">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9G5-v8-uGX">
                                 <rect key="frame" x="15" y="816" width="384" height="30"/>
                                 <state key="normal" title="Chúng tôi là ai?"/>
                                 <connections>
                                     <segue destination="Giw-NA-bau" kind="show" id="5Tx-B1-RX9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVc-R6-QUP">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVc-R6-QUP">
                                 <rect key="frame" x="15" y="304" width="384" height="30"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -383,7 +384,7 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbp-D2-PKj">
                                                 <rect key="frame" x="0.0" y="0.0" width="379" height="35"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhb-SV-Rp4">
                                                 <rect key="frame" x="379" y="0.0" width="35" height="35"/>
@@ -399,7 +400,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="a1S-8h-arS" secondAttribute="bottom" constant="6" id="9vP-W4-rCe"/>
                                                     <constraint firstAttribute="width" constant="35" id="N3V-6B-bQ8"/>
@@ -422,7 +423,7 @@
                                             <constraint firstItem="bhb-SV-Rp4" firstAttribute="top" secondItem="6vu-mv-Eda" secondAttribute="top" id="yuR-TX-dPk"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OHz-lN-dnb">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OHz-lN-dnb">
                                         <rect key="frame" x="8" y="37" width="70" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Uv4-YR-Qvh"/>
@@ -468,7 +469,7 @@
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tblDieukhoanCell" rowHeight="300" id="jd3-os-1LB" customClass="VBPLTableViewCell" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="300"/>
+                                                <rect key="frame" x="0.0" y="24.5" width="414" height="300"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jd3-os-1LB" id="TeC-PB-SWO">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
@@ -632,7 +633,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVD-r9-zAO">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVD-r9-zAO">
                                                         <rect key="frame" x="52" y="5" width="236" height="30"/>
                                                         <state key="normal" title="------"/>
                                                         <connections>
@@ -661,7 +662,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkB-oi-4R2">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkB-oi-4R2">
                                                         <rect key="frame" x="52" y="5" width="236" height="30"/>
                                                         <state key="normal" title="------"/>
                                                         <connections>
@@ -712,7 +713,7 @@
                                     <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="7iv-XN-ZfT">
                                         <rect key="frame" x="0.0" y="167" width="308" height="102"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="cM3-Z1-bE0">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="cM3-Z1-bE0">
                                                 <rect key="frame" x="2" y="2" width="100" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="7gu-53-A07"/>
@@ -722,7 +723,7 @@
                                                     <action selector="btnOtoAction:" destination="z67-X4-AOs" eventType="touchDown" id="62J-w7-wlj"/>
                                                 </connections>
                                             </button>
-                                            <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="mMx-1c-OvZ">
+                                            <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="mMx-1c-OvZ">
                                                 <rect key="frame" x="104" y="2" width="100" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="NJK-Ji-632"/>
@@ -735,7 +736,7 @@ Mô tô</string>
                                                     <action selector="btnXemayAction:" destination="z67-X4-AOs" eventType="touchDown" id="6Fb-pi-pih"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="xq8-zl-Kef">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="xq8-zl-Kef">
                                                 <rect key="frame" x="206" y="2" width="100" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="irg-VB-lv4"/>
@@ -749,7 +750,7 @@ chuyên dùng</string>
                                                     <action selector="btnXechuyendungAction:" destination="z67-X4-AOs" eventType="touchDown" id="y4n-UB-2yL"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="zgM-Tv-qgd">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="zgM-Tv-qgd">
                                                 <rect key="frame" x="2" y="52" width="100" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="TdX-1M-bM8"/>
@@ -759,7 +760,7 @@ chuyên dùng</string>
                                                     <action selector="btnTauhoaAction:" destination="z67-X4-AOs" eventType="touchDown" id="mzm-hQ-60M"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vKo-Ox-doF">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vKo-Ox-doF">
                                                 <rect key="frame" x="104" y="52" width="100" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="8D9-fC-VgS"/>
@@ -772,7 +773,7 @@ Xe thô sơ</string>
                                                     <action selector="btnXedapAction:" destination="z67-X4-AOs" eventType="touchDown" id="5in-dC-aaa"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="XAI-Xr-9Ao">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="XAI-Xr-9Ao">
                                                 <rect key="frame" x="206" y="52" width="100" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="ilH-ih-Jgy"/>
@@ -2090,7 +2091,7 @@ kết cấu hạ tầng đường sắt</string>
                                     <constraint firstItem="cqB-bE-sW8" firstAttribute="leading" secondItem="kM2-0a-OSH" secondAttribute="leading" constant="2" id="y5c-02-oHB"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1BN-KM-F23">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1BN-KM-F23">
                                 <rect key="frame" x="0.0" y="1892" width="320" height="50"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -2279,7 +2280,7 @@ kết cấu hạ tầng đường sắt</string>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E4I-Jy-TV2">
                                                 <rect key="frame" x="0.0" y="0.0" width="379" height="65"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bu8-7e-2g2">
                                                 <rect key="frame" x="379" y="0.0" width="35" height="35"/>
@@ -2294,7 +2295,7 @@ kết cấu hạ tầng đường sắt</string>
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="zsW-E2-v8K" secondAttribute="bottom" constant="6" id="0Ob-Iw-Kkk"/>
                                                     <constraint firstItem="zsW-E2-v8K" firstAttribute="leading" secondItem="bu8-7e-2g2" secondAttribute="leading" constant="3" id="9De-dT-OIV"/>
@@ -2316,7 +2317,7 @@ kết cấu hạ tầng đường sắt</string>
                                             <constraint firstItem="E4I-Jy-TV2" firstAttribute="top" secondItem="Lfr-Yu-OvU" secondAttribute="top" id="tSn-9s-d4F"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1jM-cT-ntc">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1jM-cT-ntc">
                                         <rect key="frame" x="8" y="67" width="70" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="HNm-8D-JTh"/>
@@ -2361,7 +2362,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tblDieukhoanCell" rowHeight="102" id="GvJ-9K-D5i" customClass="VBPLTableViewCell" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="102"/>
+                                                <rect key="frame" x="0.0" y="24.5" width="414" height="102"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GvJ-9K-D5i" id="9tT-g1-cQM">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="102"/>
@@ -2565,7 +2566,7 @@ kết cấu hạ tầng đường sắt</string>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5o-Mc-uYm">
                                                 <rect key="frame" x="0.0" y="64" width="414" height="30"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1j-tB-l6r">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1j-tB-l6r">
                                                         <rect key="frame" x="2" y="0.0" width="64" height="30"/>
                                                         <state key="normal" title="Lọc theo:"/>
                                                         <connections>
@@ -2843,7 +2844,7 @@ kết cấu hạ tầng đường sắt</string>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfq-tG-HdR" userLabel="ViewExtras">
                                                         <rect key="frame" x="311.5" y="66" width="98.5" height="62"/>
                                                         <subviews>
-                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvP-HO-Lkk">
+                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvP-HO-Lkk">
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
                                                                 <state key="normal" title=" "/>
                                                                 <connections>
@@ -2958,7 +2959,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tblDieukhoanCell" rowHeight="106" id="ur4-Gk-Ie1" customClass="VBPLTableViewCell" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="106"/>
+                                                <rect key="frame" x="0.0" y="24.5" width="414" height="106"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ur4-Gk-Ie1" id="g4P-qx-Y4N">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="106"/>
@@ -3132,7 +3133,7 @@ kết cấu hạ tầng đường sắt</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ite-zt-jvo" userLabel="ViewBottom">
                                 <rect key="frame" x="0.0" y="758" width="414" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAe-Yo-byZ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAe-Yo-byZ">
                                         <rect key="frame" x="50" y="8" width="314" height="34"/>
                                         <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
@@ -3206,7 +3207,7 @@ kết cấu hạ tầng đường sắt</string>
                                             <constraint firstAttribute="width" constant="100" id="gcr-TO-hHs"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6HX-1G-jkm">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6HX-1G-jkm">
                                         <rect key="frame" x="10" y="210" width="230" height="30"/>
                                         <color key="backgroundColor" red="0.069381929930000003" green="0.78833538290000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -3218,7 +3219,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="6HX-1G-jkm" secondAttribute="trailing" constant="10" id="9zT-SO-jSL"/>
                                     <constraint firstItem="9Q0-em-zHS" firstAttribute="top" secondItem="5Z6-rg-ZiO" secondAttribute="top" constant="20" id="Abc-0U-eTM"/>
@@ -3268,7 +3269,7 @@ kết cấu hạ tầng đường sắt</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Ouj-31-CZM" secondAttribute="trailing" constant="2" id="HVq-mn-PWu"/>
                                     <constraint firstItem="Ouj-31-CZM" firstAttribute="top" secondItem="GMl-ey-5dX" secondAttribute="top" constant="2" id="MGl-R5-TtX"/>
@@ -3285,10 +3286,10 @@ kết cấu hạ tầng đường sắt</string>
                                         <subviews>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HmT-tc-3to" userLabel="viewSwitches">
                                                 <rect key="frame" x="2" y="29" width="410" height="194"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="HmT-tc-3to" firstAttribute="leading" secondItem="bVd-ED-38T" secondAttribute="leading" constant="2" id="0aO-YJ-YZp"/>
                                             <constraint firstItem="HmT-tc-3to" firstAttribute="centerX" secondItem="bVd-ED-38T" secondAttribute="centerX" id="9Oj-O9-U86"/>
@@ -3306,7 +3307,7 @@ kết cấu hạ tầng đường sắt</string>
                                     <constraint firstAttribute="bottom" secondItem="bVd-ED-38T" secondAttribute="bottom" id="q0q-io-S2B"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdN-SI-HIm">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdN-SI-HIm">
                                 <rect key="frame" x="0.0" y="758" width="414" height="50"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -3358,7 +3359,7 @@ kết cấu hạ tầng đường sắt</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KI0-Qw-rfI">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KI0-Qw-rfI">
                                 <rect key="frame" x="177" y="782" width="60" height="60"/>
                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -3604,7 +3605,7 @@ kết cấu hạ tầng đường sắt</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPH-kO-uXM" userLabel="viewGotit">
                                         <rect key="frame" x="0.0" y="616" width="404" height="46"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWW-da-8t1">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWW-da-8t1">
                                                 <rect key="frame" x="152" y="8" width="100" height="30"/>
                                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
@@ -3731,7 +3732,7 @@ kết cấu hạ tầng đường sắt</string>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="yia-Gw-sp7">
+                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="yia-Gw-sp7">
                                                         <rect key="frame" x="53.5" y="0.0" width="358.5" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <state key="normal" title="Button"/>
@@ -3827,13 +3828,13 @@ kết cấu hạ tầng đường sắt</string>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8eF-oJ-J86">
                                 <rect key="frame" x="0.0" y="846" width="414" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="bZw-fJ-xA3"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="8eF-oJ-J86" firstAttribute="top" secondItem="uig-ET-q0T" secondAttribute="bottom" id="04F-b4-L8M"/>
                             <constraint firstAttribute="bottom" secondItem="8eF-oJ-J86" secondAttribute="bottom" id="4f3-xI-9RR"/>
@@ -3883,7 +3884,7 @@ kết cấu hạ tầng đường sắt</string>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7sp-ke-rda">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Wkc-Rr-9ef"/>
                                         </constraints>
@@ -3891,7 +3892,7 @@ kết cấu hạ tầng đường sắt</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="40Z-nq-3b8">
                                         <rect key="frame" x="0.0" y="50" width="414" height="0.0"/>
                                         <subviews>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbC-dR-43T">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbC-dR-43T">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
                                                 <state key="normal" title="Button"/>
                                                 <connections>
@@ -3899,7 +3900,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="tbC-dR-43T" firstAttribute="leading" secondItem="40Z-nq-3b8" secondAttribute="leading" id="Fhs-AB-gbN"/>
                                             <constraint firstAttribute="height" id="STj-Ig-ceP"/>
@@ -3909,7 +3910,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="7sp-ke-rda" firstAttribute="top" secondItem="zLH-sH-XtO" secondAttribute="top" id="7Gf-Cm-gdX"/>
                                     <constraint firstAttribute="bottom" secondItem="40Z-nq-3b8" secondAttribute="bottom" id="HIe-Tw-9GP"/>
@@ -3922,10 +3923,10 @@ kết cấu hạ tầng đường sắt</string>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sTZ-Bi-jvC">
                                 <rect key="frame" x="0.0" y="138" width="414" height="674"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="lawInstructionCell" rowHeight="170" id="HOH-7f-smQ" customClass="InstructionTableViewCell" customModule="HieuLuat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="170"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="170"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HOH-7f-smQ" id="iz1-Cu-dWb">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="170"/>
@@ -3997,7 +3998,7 @@ kết cấu hạ tầng đường sắt</string>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x2z-yc-E3T">
                                 <rect key="frame" x="0.0" y="812" width="414" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Vpy-dh-uAs"/>
                                 </constraints>
@@ -4007,7 +4008,7 @@ kết cấu hạ tầng đường sắt</string>
                                 <subviews>
                                     <view clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8pd-Kg-X4o">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmo-iY-nfa">
                                         <rect key="frame" x="107" y="348" width="200" height="200"/>
@@ -4024,13 +4025,13 @@ kết cấu hạ tầng đường sắt</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đang xử lý dữ liệu....." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aa7-ic-OxK" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="13" y="159.5" width="174.5" height="20.5"/>
+                                                <rect key="frame" x="14.5" y="159.5" width="171.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="backgroundColor" systemColor="darkTextColor"/>
                                         <constraints>
                                             <constraint firstItem="Aa7-ic-OxK" firstAttribute="top" secondItem="rnj-00-SFm" secondAttribute="bottom" constant="10" id="3um-Yj-lqy"/>
                                             <constraint firstItem="Aa7-ic-OxK" firstAttribute="centerX" secondItem="qmo-iY-nfa" secondAttribute="centerX" id="MUk-p2-igI"/>
@@ -4055,7 +4056,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="A4R-o5-X9h" firstAttribute="top" secondItem="x2z-yc-E3T" secondAttribute="bottom" id="9yy-vR-353"/>
                             <constraint firstAttribute="trailing" secondItem="zLH-sH-XtO" secondAttribute="trailing" id="IKV-Aa-qen"/>
@@ -4115,7 +4116,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tblDieukhoanCell" rowHeight="154" id="9wd-tI-IEd" customClass="VBPLTableViewCell" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="154"/>
+                                                <rect key="frame" x="0.0" y="24.5" width="414" height="154"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9wd-tI-IEd" id="7YS-QQ-aZS">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="154"/>
@@ -4275,7 +4276,7 @@ kết cấu hạ tầng đường sắt</string>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="POm-lo-Z5B">
                                                 <rect key="frame" x="0.0" y="94" width="414" height="30"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lnm-MZ-yoP">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lnm-MZ-yoP">
                                                         <rect key="frame" x="2" y="0.0" width="65" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="65" id="mv8-3g-31F"/>
@@ -4585,7 +4586,7 @@ kết cấu hạ tầng đường sắt</string>
                             <pickerView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="ADn-v1-sVi">
                                 <rect key="frame" x="0.0" y="10" width="414" height="763"/>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yul-xe-bL2">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yul-xe-bL2">
                                 <rect key="frame" x="0.0" y="778" width="414" height="30"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -4657,7 +4658,7 @@ kết cấu hạ tầng đường sắt</string>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sX4-Og-0I1">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sX4-Og-0I1">
                                         <rect key="frame" x="87" y="121" width="100" height="30"/>
                                         <color key="backgroundColor" red="0.37880462650000002" green="0.71022214400000006" blue="0.88248866579999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -4724,7 +4725,7 @@ kết cấu hạ tầng đường sắt</string>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" selectionStyle="default" indentationWidth="10" reuseIdentifier="tblDieukhoanCell" rowHeight="131" id="YTk-w3-3p0" customClass="VBPLTableViewCell" customModule="HieuLuat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="131"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="131"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YTk-w3-3p0" id="aG6-vk-5QW">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="131"/>
@@ -4855,7 +4856,7 @@ kết cấu hạ tầng đường sắt</string>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYh-ox-bra">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYh-ox-bra">
                                         <rect key="frame" x="47.5" y="24.5" width="364.5" height="28"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="Button"/>
@@ -4885,7 +4886,7 @@ kết cấu hạ tầng đường sắt</string>
                                         <rect key="frame" x="0.0" y="78" width="414" height="71"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mức phạt:" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUK-AA-Wad" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="2" y="2" width="76" height="15"/>
+                                                <rect key="frame" x="2" y="2" width="74.5" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="qgy-Sk-BrZ"/>
                                                 </constraints>
@@ -4894,7 +4895,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phương tiện:" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2E-Tq-DQO" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="2" y="19" width="76" height="15"/>
+                                                <rect key="frame" x="2" y="19" width="74.5" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="71B-gz-Li2"/>
                                                 </constraints>
@@ -4903,7 +4904,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lĩnh vực:" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLf-ks-7cS" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="2" y="37" width="76" height="14"/>
+                                                <rect key="frame" x="2" y="37" width="74.5" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="Ma8-9l-sZo"/>
                                                 </constraints>
@@ -4912,7 +4913,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Đối tượng:" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfp-Dt-frI" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="2" y="53" width="76" height="14.5"/>
+                                                <rect key="frame" x="2" y="53" width="74.5" height="14.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14.5" id="OHO-sY-MeU"/>
                                                 </constraints>
@@ -4921,7 +4922,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRF-C1-3kv" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="80" y="2" width="332" height="16"/>
+                                                <rect key="frame" x="78.5" y="2" width="333.5" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="zOI-4m-GrY"/>
                                                 </constraints>
@@ -4930,7 +4931,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIc-lp-G8Z" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="80" y="19" width="332" height="16"/>
+                                                <rect key="frame" x="78.5" y="19" width="333.5" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="ANt-7K-WGk"/>
                                                 </constraints>
@@ -4939,7 +4940,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7X3-dc-l3h" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="80" y="37" width="332" height="16"/>
+                                                <rect key="frame" x="78.5" y="37" width="333.5" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="9Jw-Eh-Qnb"/>
                                                 </constraints>
@@ -4948,7 +4949,7 @@ kết cấu hạ tầng đường sắt</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwa-Pz-f5g" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="80" y="53" width="332" height="16"/>
+                                                <rect key="frame" x="78.5" y="53" width="333.5" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="sef-7A-9QS"/>
                                                 </constraints>
@@ -5129,7 +5130,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tblDieukhoanCell" rowHeight="115" id="xT9-D0-91m" customClass="VBPLTableViewCell" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="115"/>
+                                                <rect key="frame" x="0.0" y="24.5" width="414" height="115"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xT9-D0-91m" id="KkI-Sa-gxZ">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="115"/>
@@ -5241,7 +5242,7 @@ kết cấu hạ tầng đường sắt</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xO9-bI-jmM" userLabel="viewBottomButtons">
                                 <rect key="frame" x="2" y="760" width="410" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMa-kk-YOR">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMa-kk-YOR">
                                         <rect key="frame" x="0.0" y="0.0" width="308" height="50"/>
                                         <color key="backgroundColor" red="0.61195748019999996" green="0.79917934329999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -5262,7 +5263,7 @@ kết cấu hạ tầng đường sắt</string>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I0F-f1-HbZ">
                                         <rect key="frame" x="310" y="0.0" width="100" height="50"/>
-                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="jC5-ye-TmJ"/>
                                         </constraints>
@@ -5277,7 +5278,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="gMa-kk-YOR" firstAttribute="top" secondItem="xO9-bI-jmM" secondAttribute="top" id="AMy-lV-036"/>
                                     <constraint firstAttribute="bottom" secondItem="I0F-f1-HbZ" secondAttribute="bottom" id="MpA-U0-RXf"/>
@@ -5367,11 +5368,379 @@ kết cấu hạ tầng đường sắt</string>
             <point key="canvasLocation" x="2356.521739130435" y="-178.125"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="1K0-CS-RHn">
+            <size key="intrinsicContentSize" width="16.5" height="14.5"/>
+        </designable>
+        <designable name="1Th-wX-1Je">
+            <size key="intrinsicContentSize" width="120" height="14.5"/>
+        </designable>
+        <designable name="1ty-VZ-x6q">
+            <size key="intrinsicContentSize" width="37.5" height="17"/>
+        </designable>
+        <designable name="1uS-1s-Pis">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="2Bw-eX-yva">
+            <size key="intrinsicContentSize" width="37.5" height="17"/>
+        </designable>
+        <designable name="3J9-VX-QYr">
+            <size key="intrinsicContentSize" width="82.5" height="20.5"/>
+        </designable>
+        <designable name="3iU-Qi-Kp7">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="41k-SL-lyq">
+            <size key="intrinsicContentSize" width="68" height="18"/>
+        </designable>
+        <designable name="4Kt-MH-ejH">
+            <size key="intrinsicContentSize" width="42.5" height="19.5"/>
+        </designable>
+        <designable name="4vk-J3-pjv">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="63l-31-Frc">
+            <size key="intrinsicContentSize" width="150" height="20.5"/>
+        </designable>
+        <designable name="6TP-bn-vXr">
+            <size key="intrinsicContentSize" width="35.5" height="16"/>
+        </designable>
+        <designable name="7X3-dc-l3h">
+            <size key="intrinsicContentSize" width="33" height="16"/>
+        </designable>
+        <designable name="8W4-Td-OaK">
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
+        </designable>
+        <designable name="8qj-Uu-8OB">
+            <size key="intrinsicContentSize" width="39.5" height="19.5"/>
+        </designable>
+        <designable name="9SG-NI-wT4">
+            <size key="intrinsicContentSize" width="150.5" height="20.5"/>
+        </designable>
+        <designable name="9SK-hN-qMf">
+            <size key="intrinsicContentSize" width="77" height="12"/>
+        </designable>
+        <designable name="9tq-dq-XLc">
+            <size key="intrinsicContentSize" width="107" height="10"/>
+        </designable>
+        <designable name="9wY-iN-7ss">
+            <size key="intrinsicContentSize" width="47" height="14.5"/>
+        </designable>
+        <designable name="A45-td-mMJ">
+            <size key="intrinsicContentSize" width="114.5" height="10"/>
+        </designable>
+        <designable name="Aa7-ic-OxK">
+            <size key="intrinsicContentSize" width="171.5" height="20.5"/>
+        </designable>
+        <designable name="Aj0-y5-oAG">
+            <size key="intrinsicContentSize" width="207" height="41"/>
+        </designable>
+        <designable name="Api-gN-tUm">
+            <size key="intrinsicContentSize" width="184" height="41"/>
+        </designable>
+        <designable name="Bea-Hi-H0Z">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="Bz8-Kh-QJF">
+            <size key="intrinsicContentSize" width="191.5" height="41"/>
+        </designable>
+        <designable name="CgH-DG-Rm1">
+            <size key="intrinsicContentSize" width="42.5" height="19.5"/>
+        </designable>
+        <designable name="DFq-ex-zzn">
+            <size key="intrinsicContentSize" width="40.5" height="12"/>
+        </designable>
+        <designable name="DXk-Vs-pg2">
+            <size key="intrinsicContentSize" width="36" height="12"/>
+        </designable>
+        <designable name="E81-Br-cgX">
+            <size key="intrinsicContentSize" width="183" height="41"/>
+        </designable>
+        <designable name="EW2-gg-xsL">
+            <size key="intrinsicContentSize" width="73.5" height="12"/>
+        </designable>
+        <designable name="EoG-s0-bTP">
+            <size key="intrinsicContentSize" width="126" height="20.5"/>
+        </designable>
+        <designable name="F2o-Kb-Rah">
+            <size key="intrinsicContentSize" width="62" height="14.5"/>
+        </designable>
+        <designable name="FW9-sG-qdi">
+            <size key="intrinsicContentSize" width="109.5" height="10"/>
+        </designable>
+        <designable name="FkU-0F-QDH">
+            <size key="intrinsicContentSize" width="63" height="12"/>
+        </designable>
+        <designable name="GQh-tF-zO4">
+            <size key="intrinsicContentSize" width="44.5" height="20.5"/>
+        </designable>
+        <designable name="HRk-Db-pQL">
+            <size key="intrinsicContentSize" width="163.5" height="20.5"/>
+        </designable>
+        <designable name="Hm0-E9-BXB">
+            <size key="intrinsicContentSize" width="31" height="14.5"/>
+        </designable>
+        <designable name="Imu-W0-IyU">
+            <size key="intrinsicContentSize" width="117.5" height="20.5"/>
+        </designable>
+        <designable name="JND-n2-Fzn">
+            <size key="intrinsicContentSize" width="76.5" height="12"/>
+        </designable>
+        <designable name="Jfp-Dt-frI">
+            <size key="intrinsicContentSize" width="61.5" height="14.5"/>
+        </designable>
+        <designable name="LTh-HH-kGd">
+            <size key="intrinsicContentSize" width="224" height="61"/>
+        </designable>
+        <designable name="Lyr-E5-6JQ">
+            <size key="intrinsicContentSize" width="37.5" height="17"/>
+        </designable>
+        <designable name="MIa-qb-scZ">
+            <size key="intrinsicContentSize" width="39.5" height="19.5"/>
+        </designable>
+        <designable name="MiF-JX-KVv">
+            <size key="intrinsicContentSize" width="31" height="14.5"/>
+        </designable>
+        <designable name="NK0-Td-euH">
+            <size key="intrinsicContentSize" width="37.5" height="17"/>
+        </designable>
+        <designable name="Osf-7w-wvO">
+            <size key="intrinsicContentSize" width="37" height="17"/>
+        </designable>
+        <designable name="Ouj-31-CZM">
+            <size key="intrinsicContentSize" width="121" height="17"/>
+        </designable>
+        <designable name="P2E-Tq-DQO">
+            <size key="intrinsicContentSize" width="74.5" height="14.5"/>
+        </designable>
+        <designable name="QCf-Ki-97O">
+            <size key="intrinsicContentSize" width="100.5" height="20.5"/>
+        </designable>
+        <designable name="QV2-Pj-Wvv">
+            <size key="intrinsicContentSize" width="144" height="20.5"/>
+        </designable>
+        <designable name="R2b-ck-17w">
+            <size key="intrinsicContentSize" width="130.5" height="20.5"/>
+        </designable>
+        <designable name="RBY-sP-IRq">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="RIc-lp-G8Z">
+            <size key="intrinsicContentSize" width="33" height="16"/>
+        </designable>
+        <designable name="Riu-w5-Xva">
+            <size key="intrinsicContentSize" width="67.5" height="17"/>
+        </designable>
+        <designable name="SuN-OF-Xmb">
+            <size key="intrinsicContentSize" width="39.5" height="19.5"/>
+        </designable>
+        <designable name="T4u-a6-tz6">
+            <size key="intrinsicContentSize" width="37.5" height="17"/>
+        </designable>
+        <designable name="UoN-qn-mFb">
+            <size key="intrinsicContentSize" width="198.5" height="61"/>
+        </designable>
+        <designable name="X6n-0M-Qcq">
+            <size key="intrinsicContentSize" width="52" height="12"/>
+        </designable>
+        <designable name="XDy-rz-JpJ">
+            <size key="intrinsicContentSize" width="220.5" height="61"/>
+        </designable>
+        <designable name="XUK-AA-Wad">
+            <size key="intrinsicContentSize" width="59" height="14.5"/>
+        </designable>
+        <designable name="Y9b-6O-Mdg">
+            <size key="intrinsicContentSize" width="207" height="20.5"/>
+        </designable>
+        <designable name="YcW-O7-PYQ">
+            <size key="intrinsicContentSize" width="32.5" height="16"/>
+        </designable>
+        <designable name="Yeb-RP-n7N">
+            <size key="intrinsicContentSize" width="213.5" height="41"/>
+        </designable>
+        <designable name="ZpG-Kc-VnZ">
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
+        </designable>
+        <designable name="a2E-8R-B9k">
+            <size key="intrinsicContentSize" width="49.5" height="16"/>
+        </designable>
+        <designable name="acf-GZ-kyj">
+            <size key="intrinsicContentSize" width="213" height="61"/>
+        </designable>
+        <designable name="afh-su-7Ew">
+            <size key="intrinsicContentSize" width="31" height="14.5"/>
+        </designable>
+        <designable name="b39-Ew-4Hc">
+            <size key="intrinsicContentSize" width="37.5" height="17"/>
+        </designable>
+        <designable name="bIz-YV-gyU">
+            <size key="intrinsicContentSize" width="84.5" height="20.5"/>
+        </designable>
+        <designable name="bef-Dr-xEv">
+            <size key="intrinsicContentSize" width="157.5" height="20.5"/>
+        </designable>
+        <designable name="cqB-bE-sW8">
+            <size key="intrinsicContentSize" width="85.5" height="17"/>
+        </designable>
+        <designable name="dNs-cC-nMb">
+            <size key="intrinsicContentSize" width="39.5" height="19.5"/>
+        </designable>
+        <designable name="dgv-gS-Y6O">
+            <size key="intrinsicContentSize" width="30" height="14.5"/>
+        </designable>
+        <designable name="eVo-85-3jR">
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
+        </designable>
+        <designable name="exI-uC-Mno">
+            <size key="intrinsicContentSize" width="30" height="14.5"/>
+        </designable>
+        <designable name="fLf-ks-7cS">
+            <size key="intrinsicContentSize" width="53.5" height="14.5"/>
+        </designable>
+        <designable name="fb0-xt-94D">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="fpP-UL-kpO">
+            <size key="intrinsicContentSize" width="31" height="14.5"/>
+        </designable>
+        <designable name="gbM-Fi-ZCi">
+            <size key="intrinsicContentSize" width="120" height="10"/>
+        </designable>
+        <designable name="gfG-H3-cY2">
+            <size key="intrinsicContentSize" width="49" height="14.5"/>
+        </designable>
+        <designable name="hML-TF-Szk">
+            <size key="intrinsicContentSize" width="576.5" height="20.5"/>
+        </designable>
+        <designable name="ha5-yw-vc1">
+            <size key="intrinsicContentSize" width="198.5" height="41"/>
+        </designable>
+        <designable name="hzo-mm-S5N">
+            <size key="intrinsicContentSize" width="37" height="17"/>
+        </designable>
+        <designable name="iw9-nt-8KD">
+            <size key="intrinsicContentSize" width="95" height="12"/>
+        </designable>
+        <designable name="kin-6w-MtK">
+            <size key="intrinsicContentSize" width="37.5" height="17"/>
+        </designable>
+        <designable name="kwn-uW-1k8">
+            <size key="intrinsicContentSize" width="39.5" height="19.5"/>
+        </designable>
+        <designable name="l8M-vW-xpE">
+            <size key="intrinsicContentSize" width="141.5" height="20.5"/>
+        </designable>
+        <designable name="lNi-YM-7Dd">
+            <size key="intrinsicContentSize" width="37.5" height="17"/>
+        </designable>
+        <designable name="lRs-BX-X0J">
+            <size key="intrinsicContentSize" width="50.5" height="20.5"/>
+        </designable>
+        <designable name="m3L-x1-3fP">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="mJt-3E-ibJ">
+            <size key="intrinsicContentSize" width="30.5" height="17"/>
+        </designable>
+        <designable name="n1A-ER-8XM">
+            <size key="intrinsicContentSize" width="159" height="41"/>
+        </designable>
+        <designable name="niF-BV-aLp">
+            <size key="intrinsicContentSize" width="206.5" height="81.5"/>
+        </designable>
+        <designable name="oFY-xj-oVO">
+            <size key="intrinsicContentSize" width="30" height="14.5"/>
+        </designable>
+        <designable name="oLu-Ed-WUt">
+            <size key="intrinsicContentSize" width="194.5" height="20.5"/>
+        </designable>
+        <designable name="occ-pL-nMb">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="pTm-yC-UdD">
+            <size key="intrinsicContentSize" width="53" height="12"/>
+        </designable>
+        <designable name="pWj-Px-Js2">
+            <size key="intrinsicContentSize" width="182" height="41"/>
+        </designable>
+        <designable name="qAf-VX-xIX">
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
+        </designable>
+        <designable name="qJA-Tf-GrX">
+            <size key="intrinsicContentSize" width="30" height="14.5"/>
+        </designable>
+        <designable name="rAv-dL-RM0">
+            <size key="intrinsicContentSize" width="20.5" height="17"/>
+        </designable>
+        <designable name="rjk-QT-oC8">
+            <size key="intrinsicContentSize" width="205" height="61"/>
+        </designable>
+        <designable name="rwW-q0-alh">
+            <size key="intrinsicContentSize" width="39.5" height="19.5"/>
+        </designable>
+        <designable name="rwa-Pz-f5g">
+            <size key="intrinsicContentSize" width="33" height="16"/>
+        </designable>
+        <designable name="s5V-Sm-ljj">
+            <size key="intrinsicContentSize" width="150" height="20.5"/>
+        </designable>
+        <designable name="sJ9-js-Tvk">
+            <size key="intrinsicContentSize" width="195" height="20.5"/>
+        </designable>
+        <designable name="sd5-JF-QJe">
+            <size key="intrinsicContentSize" width="37.5" height="17"/>
+        </designable>
+        <designable name="tDR-yg-rSw">
+            <size key="intrinsicContentSize" width="60" height="14.5"/>
+        </designable>
+        <designable name="tdt-F3-5yN">
+            <size key="intrinsicContentSize" width="87.5" height="20.5"/>
+        </designable>
+        <designable name="u4W-PO-QRD">
+            <size key="intrinsicContentSize" width="35" height="12"/>
+        </designable>
+        <designable name="uRF-C1-3kv">
+            <size key="intrinsicContentSize" width="33" height="16"/>
+        </designable>
+        <designable name="uf2-Ul-E6z">
+            <size key="intrinsicContentSize" width="83" height="14.5"/>
+        </designable>
+        <designable name="v8U-kR-DIp">
+            <size key="intrinsicContentSize" width="53.5" height="16"/>
+        </designable>
+        <designable name="vdd-Ed-757">
+            <size key="intrinsicContentSize" width="30" height="14.5"/>
+        </designable>
+        <designable name="w2k-nN-fTP">
+            <size key="intrinsicContentSize" width="58" height="12"/>
+        </designable>
+        <designable name="w72-JV-IvT">
+            <size key="intrinsicContentSize" width="70" height="17"/>
+        </designable>
+        <designable name="xR9-lR-XhZ">
+            <size key="intrinsicContentSize" width="198.5" height="41"/>
+        </designable>
+        <designable name="xZE-7F-I4k">
+            <size key="intrinsicContentSize" width="159" height="20.5"/>
+        </designable>
+        <designable name="xle-YW-fXL">
+            <size key="intrinsicContentSize" width="31" height="14.5"/>
+        </designable>
+        <designable name="xxC-8f-Vt3">
+            <size key="intrinsicContentSize" width="39.5" height="19.5"/>
+        </designable>
+        <designable name="zUU-ja-qJ8">
+            <size key="intrinsicContentSize" width="3" height="12"/>
+        </designable>
+        <designable name="zkB-OG-nMd">
+            <size key="intrinsicContentSize" width="31" height="14.5"/>
+        </designable>
+    </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="x0c-Xv-FUh"/>
+        <segue reference="h7z-qI-2JY"/>
         <segue reference="Dwh-PK-agn"/>
-        <segue reference="DsF-CY-Ktp"/>
-        <segue reference="cxy-pQ-lPK"/>
+        <segue reference="4Sv-Gj-def"/>
+        <segue reference="wfD-bY-mxt"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Alphanumeric" width="90" height="90"/>
@@ -5397,5 +5766,14 @@ kết cấu hạ tầng đường sắt</string>
         <image name="split_video_switch" width="200" height="112"/>
         <image name="vietcat_crop" width="572" height="507"/>
         <image name="wethoong_logo" width="264" height="263"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

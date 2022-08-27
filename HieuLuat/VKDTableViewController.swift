@@ -66,6 +66,7 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         initAds()
+        AnalyticsHelper.sendAnalyticEvent(eventName: "open_screen", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_TRACUUVACHKEDUONG])
     }
     
     override func didReceiveMemoryWarning() {

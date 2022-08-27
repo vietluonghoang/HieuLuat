@@ -29,6 +29,7 @@ class ViewController: UIViewController,TJPlacementDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         _ = DataConnection.instance()
         sendAnalytics() //send analytics for tracking user usage
+        AnalyticsHelper.sendAnalyticEvent(eventName: "app_open", params: [String:String]())
         getAppConfiguration()
         checkAdsOptout() //check ads optout state
         RunLoop.current.run(until: Date(timeIntervalSinceNow : 2.0)) //delay 2 seconds to view splash screen longer

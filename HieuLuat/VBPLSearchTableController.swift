@@ -51,6 +51,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
         rowCount = dieukhoanList.count
         tblView.reloadData()
         initAds()
+        AnalyticsHelper.sendAnalyticEvent(eventName: "open_screen", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_TRACUUVANBAN])
     }
     
     override func didReceiveMemoryWarning() {
