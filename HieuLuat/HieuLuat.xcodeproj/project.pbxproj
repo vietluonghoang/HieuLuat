@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		20279DE0C4C4A62F0030B572 /* Pods_HieuLuat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2F4D9953D61DA1A8A51262 /* Pods_HieuLuat.framework */; };
+		330A1EB728B8D8AF0032840E /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A1EB628B8D8AF0032840E /* AnalyticsHelper.swift */; };
 		330A22142188AF6C0082A4A6 /* SearchControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A22132188AF6C0082A4A6 /* SearchControllers.swift */; };
 		3322B222234B592B004584B1 /* InstructionSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3322B221234B592B004584B1 /* InstructionSearchViewController.swift */; };
 		3322B224234B659B004584B1 /* Phantich.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3322B223234B659B004584B1 /* Phantich.swift */; };
@@ -82,6 +83,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		330A1EB628B8D8AF0032840E /* AnalyticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHelper.swift; sourceTree = "<group>"; };
 		330A22132188AF6C0082A4A6 /* SearchControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControllers.swift; sourceTree = "<group>"; };
 		3322B221234B592B004584B1 /* InstructionSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionSearchViewController.swift; sourceTree = "<group>"; };
 		3322B223234B659B004584B1 /* Phantich.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phantich.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				33C867091FAA02AC0090D954 /* AppearanceUtil.swift */,
 				3350DB30214A8EBC008D0AE4 /* Utils.swift */,
 				33FD3B77232A6BBC00DD7087 /* RedirectionHelper.swift */,
+				330A1EB628B8D8AF0032840E /* AnalyticsHelper.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				33D305641F517FF500547497 /* Coquanbanhanh.swift in Sources */,
 				3322B226234D93E2004584B1 /* InstructionTableViewCell.swift in Sources */,
 				33BCFF0921451FEE004804F7 /* BBSearchTableController.swift in Sources */,
+				330A1EB728B8D8AF0032840E /* AnalyticsHelper.swift in Sources */,
 				33FD3B76232A5A5800DD7087 /* UpdatePopupViewController.swift in Sources */,
 				33FD3B6E2329E86D00DD7087 /* NetworkHandler.swift in Sources */,
 				33D31DE41F77BEF700A46E62 /* MPSearchFilterPopupController.swift in Sources */,

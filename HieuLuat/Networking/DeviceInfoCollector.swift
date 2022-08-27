@@ -43,7 +43,9 @@ class DeviceInfoCollector {
     func getDeviceInfo() -> [String:String] {
         var info = [String:String]()
         info["idforvendor"] = getIdForVendor()
+        AnalyticsHelper.updateIdForVendor(id: getIdForVendor())
         info["adsid"] = getIdentifierForAdvertising()
+        AnalyticsHelper.updateAdsId(aId: getIdentifierForAdvertising()!)
         info["devicename"] = getDeviceName()
         info["osname"] = osName
         info["osversion"] = getOSVersion()

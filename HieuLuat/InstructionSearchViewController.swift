@@ -50,6 +50,7 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
             initAds()
             getPhantichListFromDatabase()
         }
+        AnalyticsHelper.sendAnalyticEvent(eventName: "open_screen", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_HUONGDANLUAT])
     }
     
     

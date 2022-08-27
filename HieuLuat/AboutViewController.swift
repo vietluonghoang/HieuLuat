@@ -24,6 +24,7 @@ class AboutViewController: UIViewController {
         if GeneralSettings.isAdsOptout {
             btnAdsOptout.isEnabled = false
         }
+        AnalyticsHelper.sendAnalyticEvent(eventName: "open_screen", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_CHUNGTOI])
     }
     
     override func didReceiveMemoryWarning() {

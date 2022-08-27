@@ -118,6 +118,7 @@ class DataConnection: NSObject {
                 while resultSet.next() {
                     curVersion = Int(resultSet.int(forColumn: "user_version"))
                     currentVersion = curVersion
+                    AnalyticsHelper.updateDatabaseVersion(versionNumber: curVersion) //update database version for analytics
                 }
                 db.close()
             }catch {
