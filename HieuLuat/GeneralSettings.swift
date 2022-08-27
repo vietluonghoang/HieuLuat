@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class GeneralSettings {
     //get mucphatRange by using vanbanId
@@ -27,6 +28,7 @@ class GeneralSettings {
     private static var fbCongdonghieuluat = [URL(string: "fb://profile/2262780957320858"),URL(string: "https://www.facebook.com/groups/congdonghieuluat/")]
     private static var emailWeThoong = "wethoong@gmail.com"
     
+    public static var isRemoteConfigFetched = false
     //    private static var currentDBVersion = 0
     private static var minimumAppVersion = "1.0"
     private static var enableInappNotif = false
@@ -112,6 +114,13 @@ class GeneralSettings {
             return ""
         }
         return tamgiuPhuongtienDieukhoanID[Int(vanbanId)]!
+    }
+    
+    class func setTamgiuPhuongtienParentID(tamgiuphuongtienArr: Any) {
+        let json = JSON(tamgiuphuongtienArr)
+        for (key,subJson):(String, JSON) in json {
+            tamgiuPhuongtienDieukhoanID[Int(key)!] = subJson.stringValue
+        }
     }
     
     static var isAdsOptout: Bool {

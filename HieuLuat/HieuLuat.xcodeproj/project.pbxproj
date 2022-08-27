@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		20279DE0C4C4A62F0030B572 /* Pods_HieuLuat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2F4D9953D61DA1A8A51262 /* Pods_HieuLuat.framework */; };
 		330A1EB728B8D8AF0032840E /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A1EB628B8D8AF0032840E /* AnalyticsHelper.swift */; };
+		330A1EB928BA14A10032840E /* remote_config_defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 330A1EB828BA14A00032840E /* remote_config_defaults.plist */; };
 		330A22142188AF6C0082A4A6 /* SearchControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A22132188AF6C0082A4A6 /* SearchControllers.swift */; };
 		3322B222234B592B004584B1 /* InstructionSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3322B221234B592B004584B1 /* InstructionSearchViewController.swift */; };
 		3322B224234B659B004584B1 /* Phantich.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3322B223234B659B004584B1 /* Phantich.swift */; };
@@ -84,6 +85,7 @@
 
 /* Begin PBXFileReference section */
 		330A1EB628B8D8AF0032840E /* AnalyticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHelper.swift; sourceTree = "<group>"; };
+		330A1EB828BA14A00032840E /* remote_config_defaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = remote_config_defaults.plist; sourceTree = SOURCE_ROOT; };
 		330A22132188AF6C0082A4A6 /* SearchControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchControllers.swift; sourceTree = "<group>"; };
 		3322B221234B592B004584B1 /* InstructionSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionSearchViewController.swift; sourceTree = "<group>"; };
 		3322B223234B659B004584B1 /* Phantich.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phantich.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				33D3052F1F51794F00547497 /* Assets.xcassets */,
 				33D305311F51794F00547497 /* LaunchScreen.storyboard */,
 				33D305341F51794F00547497 /* Info.plist */,
+				330A1EB828BA14A00032840E /* remote_config_defaults.plist */,
 			);
 			path = HieuLuat;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 			files = (
 				33F06FF9212439DD00A69431 /* Hieuluat.sqlite in Resources */,
 				33D305331F51794F00547497 /* LaunchScreen.storyboard in Resources */,
+				330A1EB928BA14A10032840E /* remote_config_defaults.plist in Resources */,
 				339E096526FB6E20007686DC /* GoogleService-Info.plist in Resources */,
 				33D305301F51794F00547497 /* Assets.xcassets in Resources */,
 				33D3052E1F51794F00547497 /* Main.storyboard in Resources */,
@@ -535,6 +539,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -543,6 +548,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

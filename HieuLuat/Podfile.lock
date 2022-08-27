@@ -98,6 +98,7 @@ PODS:
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.12)
   - Protobuf (3.21.5)
+  - SwiftyJSON (5.0.1)
   - TapjoySDK (12.3.1)
 
 DEPENDENCIES:
@@ -107,6 +108,7 @@ DEPENDENCIES:
   - FirebaseRemoteConfig
   - FMDB
   - Google-Mobile-Ads-SDK
+  - SwiftyJSON
   - TapjoySDK
 
 SPEC REPOS:
@@ -131,6 +133,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - Protobuf
+    - SwiftyJSON
     - TapjoySDK
 
 SPEC CHECKSUMS:
@@ -154,8 +157,9 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Protobuf: 7504b04fffcf6662ad629694db8231f5e744327f
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   TapjoySDK: 753e103874719a63dd37c479bd8046db3c274cd6
 
-PODFILE CHECKSUM: 71a44c45d989ef6e6d19cf7774bd179e427fd24b
+PODFILE CHECKSUM: 152017fc461240530167451ab23925ed1da2f04c
 
 COCOAPODS: 1.11.3

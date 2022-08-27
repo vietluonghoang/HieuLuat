@@ -28,5 +28,7 @@ pod 'FirebaseCrashlytics'
 pod 'FirebaseInAppMessaging'
 #add the Firebase pod for Google RemoteConfig
 pod 'FirebaseRemoteConfig'
+#install SwiftyJSON
+pod 'SwiftyJSON'
 
 end
