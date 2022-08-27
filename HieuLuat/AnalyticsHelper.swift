@@ -26,6 +26,7 @@ class AnalyticsHelper{
     //these parameters are cross-updated by DeviceInfoCollector. Always make sure that it runs first before sending any analytics event
     
     class func sendAnalyticEvent(eventName: String, params: [String: String]) {
+        print("+++ Sending analytics to Firebase.....")
         var parsingParams = [String:String]()
         if (!idForVendor.isEmpty) {
             parsingParams["idforvendor"] = idForVendor

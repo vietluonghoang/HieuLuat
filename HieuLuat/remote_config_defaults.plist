@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>enableBannerAds</key>
+	<string>true</string>
+	<key>tamgiuPhuongtienDieukhoanID</key>
+	<string>{&quot;6&quot;:&quot;6592&quot;, &quot;2&quot;:&quot;2820&quot;}</string>
+	<key>developementMode</key>
+	<string>false</string>
+	<key>defaultActiveNDXPId</key>
+	<string>6</string>
+	<key>enableInappNotif</key>
+	<string>false</string>
+	<key>enableInterstitialAds</key>
+	<string>false</string>
+	<key>defaultConnectionTries</key>
+	<string>30</string>
+	<key>requiredDBVersion</key>
+	<string>11</string>
+	<key>defaultActiveQC41Id</key>
+	<string>7</string>
+	<key>minimumAppVersion</key>
+	<string>1.0</string>
+	<key>minimumAdsInterval</key>
+	<string>350</string>
+</dict>
+</plist>

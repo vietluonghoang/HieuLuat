@@ -19,9 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Use the Firebase library to configure APIs.
+        print("--- Configuring Firebase library......")
+        FirebaseApp.configure()
         
         // Initialize the Google Mobile Ads SDK.
         // Sample AdMob app ID: ca-app-pub-3940256099942544~1458002511
@@ -34,8 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(tjcConnectSuccess), name: NSNotification.Name(rawValue: TJC_CONNECT_SUCCESS), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(tjcConnectFail), name: NSNotification.Name(rawValue: TJC_CONNECT_FAILED), object: nil)
         
-        // Use the Firebase library to configure APIs.
-        FirebaseApp.configure()
         //Turn on Tapjoy debug mode
         if GeneralSettings.isDevMode {
             Tapjoy.setDebugEnabled(true)
