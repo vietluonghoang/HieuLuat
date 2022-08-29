@@ -221,6 +221,7 @@ class ViewController: UIViewController,TJPlacementDelegate {
         print("--- defaultActiveQC41Id: \(GeneralSettings.getActiveQC41Id)")
         GeneralSettings.getActiveNDXPId = remoteConfig.configValue(forKey: "defaultActiveNDXPId").numberValue!.int64Value
         print("--- defaultActiveNDXPId: \(GeneralSettings.getActiveNDXPId)")
+        print("--- tamgiuPhuongtienDieukhoanID: ")
         GeneralSettings.setTamgiuPhuongtienParentID(tamgiuphuongtienArr: remoteConfig.configValue(forKey: "tamgiuPhuongtienDieukhoanID").jsonValue!)
         print("RemoteConfig fetched successfully")
         GeneralSettings.isRemoteConfigFetched = true
