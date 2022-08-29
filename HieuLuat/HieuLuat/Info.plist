@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Chúng tôi cần quyền truy cập vào Microphone của bạn để tìm kiếm bằng giọng nói</string>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -26,6 +22,8 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-1832172217205335~6889602059</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -58,6 +56,8 @@
 	<string>Chúng tôi cần quyền truy cập vào Photos của bạn để lưu video</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Chúng tôi cần quyền truy cập vào Photos của bạn để lưu video</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Chúng tôi cần quyền truy cập vào Microphone của bạn để tìm kiếm bằng giọng nói</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
