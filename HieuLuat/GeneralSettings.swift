@@ -14,7 +14,7 @@ class GeneralSettings {
     private static let mucphatRangePerVanban = [6:["50.000","60.000","80.000","100.000","200.000","250.000","300.000","400.000","500.000","600.000","800.000","1.000.000","1.200.000","1.500.000","1.600.000","2.000.000","3.000.000","4.000.000","5.000.000","6.000.000","7.000.000","7.500.000","8.000.000","10.000.000","12.000.000","14.000.000","15.000.000","16.000.000","18.000.000","20.000.000","25.000.000","28.000.000","30.000.000","32.000.000","36.000.000","40.000.000","50.000.000","56.000.000","64.000.000","70.000.000","200.000.000"], 2:["50.000","60.000","80.000","100.000","120.000","200.000","300.000","400.000","500.000","600.000","800.000","1.000.000","1.200.000","500.000","1.600.000","2.000.000","2.500.000","3.000.000","4.000.000","5.000.000","6.000.000","7.000.000","8.000.000","10.000.000","12.000.000","14.000.000","15.000.000","16.000.000","18.000.000","20.000.000","25.000.000","28.000.000","30.000.000","32.000.000","36.000.000","37.500.000","40.000.000","50.000.000","52.500.000","56.000.000","64.000.000","70.000.000","75.000.000","80.000.000","150.000.000"]]
     
     //get tamgiuPhuongtienDieukhoanID by using vanbanId
-    private static var tamgiuPhuongtienDieukhoanID = [6:"6592", 2:"2820"]
+    private static var tamgiuPhuongtienDieukhoanID = [6:"6592", 2:"2820", 17:"12819"]
     
     //based data for Vanban
     private static var vanbanInfo = [Int64:Vanban]()
@@ -45,10 +45,10 @@ class GeneralSettings {
     private static var adsOptout = false //true means the user will not see Ads
     
     //these settings must be updated before making build
-    private static var requiredDBVersion = 10
+    private static var requiredDBVersion = 12
     private static var developementMode = true
     private static var defaultActiveQC41Id = 7 //this would be used for the search of querying the lastest road sign
-    private static var defaultActiveNDXPId = 6 //this would be used for the search of querying the latest NDXP
+    private static var defaultActiveNDXPId = 17 //this would be used for the search of querying the latest NDXP
     
     
     static var remainingConnectionTries: Int {
@@ -120,6 +120,7 @@ class GeneralSettings {
         let json = JSON(tamgiuphuongtienArr)
         for (key,subJson):(String, JSON) in json {
             tamgiuPhuongtienDieukhoanID[Int(key)!] = subJson.stringValue
+            print("\(key): \(subJson.stringValue)")
         }
     }
     
