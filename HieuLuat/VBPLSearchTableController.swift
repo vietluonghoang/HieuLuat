@@ -137,7 +137,8 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
     
     func initFilterConfig() {
         if(filterSettings.count < 1){
-            //iterate all Vanban to get active ones
+            //iterate all Vanban to get active ones.
+            print("++++++ Setting up filter settings")
             for id in 0...GeneralSettings.getVanbanIdMax {
                 let valid = GeneralSettings.getVanbanInfo(id: Int64(id), info: "valid")
                 if valid.count > 0 {
@@ -151,16 +152,27 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate, UITableV
                     
                     if Date() > date {
                         filterSettings[String(id)] = "on"
+                        print("vanban \(id) is valid => ON")
                     } else {
                         filterSettings[String(id)] = "off"
+                        print("vanban \(id) is valid => ON")
                     }
                 }
             }
             //iterate active Vanban to deactivate replaced ones
             //TO DO: multiple replacement
             for id in filterSettings.keys {
-                if filterSettings[id] == "on" && filterSettings[GeneralSettings.getVanbanInfo(id: Int64(id)!, info: "replace")] == "on" {
-                    filterSettings[GeneralSettings.getVanbanInfo(id: Int64(id)!, info: "replace")] = "off"
+                if filterSettings[id] == "on" { //only check if the filter is on, which means either it's valid or not being replaced
+                    print("Checking vanban \(id) for replacement")
+                    var toReplaceVanbanId = GeneralSettings.getVanbanInfo(id: Int64(id)!, info: "replace")
+                    print("vanban \(id) to replace vanban \(toReplaceVanbanId)")
+                    while toReplaceVanbanId != "0"{ //turn off all vanban until the last one in the hierarchy
+                        filterSettings[toReplaceVanbanId] = "off"
+                        print("vanban \(toReplaceVanbanId) is turning off")
+                        print("vanban \(toReplaceVanbanId) to replace vanban....")
+                        toReplaceVanbanId = GeneralSettings.getVanbanInfo(id: Int64( toReplaceVanbanId)!, info: "replace")
+                        print("...... \(toReplaceVanbanId)")
+                    }
                 }
             }
         }
