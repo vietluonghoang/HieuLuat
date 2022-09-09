@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseRemoteConfig
 
 class ViewController: UIViewController,TJPlacementDelegate {
     @IBOutlet var lblVersion: UILabel!
@@ -21,8 +20,6 @@ class ViewController: UIViewController,TJPlacementDelegate {
     let networkCallInterval = 10.0
     var retries = GeneralSettings.remainingConnectionTries
     
-    var remoteConfig: RemoteConfig!
-    
     override func viewWillAppear(_ animated: Bool) {
         
     }
@@ -30,13 +27,9 @@ class ViewController: UIViewController,TJPlacementDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        _ = DataConnection.instance()
         sendAnalytics() //send analytics for tracking user usage
         AnalyticsHelper.sendAnalyticEvent(eventName: "app_open", params: [String:String]())
-        updateRemoteConfig() //update remote config from firebase
         checkAdsOptout() //check ads optout state
-        RunLoop.current.run(until: Date(timeIntervalSinceNow : 5.0)) //delay 2 seconds to view splash screen longer
         GeneralSettings.getLastAppOpenTimestamp = Int(NSDate().timeIntervalSince1970)
         getAppConfiguration()
     }
@@ -180,51 +173,6 @@ class ViewController: UIViewController,TJPlacementDelegate {
         }
     }
     
-    func updateRemoteConfig(){
-        print("--- Getting RemoteConfig from Firebase")
-        
-        remoteConfig = RemoteConfig.remoteConfig()
-        let settings = RemoteConfigSettings()
-        settings.minimumFetchInterval = 0
-        remoteConfig.configSettings = settings
-        remoteConfig.setDefaults(fromPlist: "remote_config_defaults")
-        remoteConfig.fetch { (status, error) -> Void in
-            if status == .success {
-                print("RemoteConfig fetched!")
-                self.remoteConfig.activate { changed, error in
-                    // ...
-                }
-            } else {
-                print("RemoteConfig not fetched")
-                print("Error: \(error?.localizedDescription ?? "No error available.")")
-            }
-        }
-        fetchRemoteConfig()
-    }
     
-    func fetchRemoteConfig(){
-        GeneralSettings.getRequiredDatabaseVersion = remoteConfig.configValue(forKey: "requiredDBVersion").numberValue!.intValue
-        print("--- requiredDBVersion: \(GeneralSettings.getRequiredDatabaseVersion)")
-        GeneralSettings.minimumAppVersionRequired = remoteConfig.configValue(forKey: "minimumAppVersion").stringValue!
-        print("--- minimumAppVersion: \(GeneralSettings.minimumAppVersionRequired)")
-        GeneralSettings.minimumAdsIntervalInSeconds = remoteConfig.configValue(forKey: "minimumAdsInterval").numberValue!.intValue
-        print("--- minimumAdsInterval: \(GeneralSettings.minimumAdsIntervalInSeconds)")
-        GeneralSettings.isEnableInterstitialAds = remoteConfig.configValue(forKey: "enableInterstitialAds").boolValue
-        print("--- enableInterstitialAds: \(GeneralSettings.isEnableInterstitialAds)")
-        GeneralSettings.isEnableInappNotif = remoteConfig.configValue(forKey: "enableInappNotif").boolValue
-        print("--- enableInappNotif: \(GeneralSettings.isEnableInappNotif)")
-        GeneralSettings.isEnableBannerAds = remoteConfig.configValue(forKey: "enableBannerAds").boolValue
-        print("--- enableBannerAds: \(GeneralSettings.isEnableBannerAds)")
-        GeneralSettings.isDevMode = remoteConfig.configValue(forKey: "developementMode").boolValue
-        print("--- developementMode: \(GeneralSettings.isDevMode)")
-        GeneralSettings.getActiveQC41Id = remoteConfig.configValue(forKey: "defaultActiveQC41Id").numberValue!.int64Value
-        print("--- defaultActiveQC41Id: \(GeneralSettings.getActiveQC41Id)")
-        GeneralSettings.getActiveNDXPId = remoteConfig.configValue(forKey: "defaultActiveNDXPId").numberValue!.int64Value
-        print("--- defaultActiveNDXPId: \(GeneralSettings.getActiveNDXPId)")
-        print("--- tamgiuPhuongtienDieukhoanID: ")
-        GeneralSettings.setTamgiuPhuongtienParentID(tamgiuphuongtienArr: remoteConfig.configValue(forKey: "tamgiuPhuongtienDieukhoanID").jsonValue!)
-        print("RemoteConfig fetched successfully")
-        GeneralSettings.isRemoteConfigFetched = true
-    }
 }
 

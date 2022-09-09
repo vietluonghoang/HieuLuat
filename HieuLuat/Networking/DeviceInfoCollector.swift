@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import AdSupport
+import FirebaseInstallations
 
 class DeviceInfoCollector {
     var idForVendor = ""
@@ -43,9 +44,7 @@ class DeviceInfoCollector {
     func getDeviceInfo() -> [String:String] {
         var info = [String:String]()
         info["idforvendor"] = getIdForVendor()
-        AnalyticsHelper.updateIdForVendor(id: getIdForVendor())
         info["adsid"] = getIdentifierForAdvertising()
-        AnalyticsHelper.updateAdsId(aId: getIdentifierForAdvertising()!)
         info["devicename"] = getDeviceName()
         info["osname"] = osName
         info["osversion"] = getOSVersion()
@@ -56,13 +55,35 @@ class DeviceInfoCollector {
     }
     
     func getIdentifierForAdvertising() -> String? {
-        // Check whether advertising tracking is enabled
+        //if adsid has been set, use that id
+        if !self.adsId.isEmpty{
+            return self.adsId
+        }
+        
+        //consider the default ID is undefined
+        var defaultID = "undefined"
+        // Check whether advertising tracking is enabled. By any chance that the id hasn't been specified, just leave adsID empty
         guard ASIdentifierManager.shared().isAdvertisingTrackingEnabled else {
-            return nil
+            //if ads tracking is not enable, use Firebase Installation id instead
+            Installations.installations().installationID { [self] (id, error) in
+                if let error = error {
+                    print("Error fetching id: \(error)")
+                    return
+                }
+                guard let id = id else { return }
+                print("Installation ID: \(id)")
+                defaultID = id
+                //once the installation id is set, update it to adsID
+                self.updateAdsId(adsId: id)
+            }
+            return defaultID
         }
         
         // Get and return IDFA
-        return ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        defaultID = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        //update adsID
+        updateAdsId(adsId: defaultID)
+        return defaultID
     }
     
     func modelName() -> String {
@@ -77,8 +98,12 @@ class DeviceInfoCollector {
         return mapToDevice(identifier: identifier)
     }
     
+    func updateAdsId(adsId: String){
+        self.adsId = adsId
+    }
+    
     func mapToDevice(identifier: String) -> String { // swiftlint:disable:this cyclomatic_complexity
-        #if os(iOS)
+#if os(iOS)
         switch identifier {
         case "iPod5,1":                                 return "iPod Touch 5"
         case "iPod7,1":                                 return "iPod Touch 6"
@@ -125,13 +150,13 @@ class DeviceInfoCollector {
         case "i386", "x86_64":                          return "Simulator \(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "iOS"))"
         default:                                        return identifier
         }
-        #elseif os(tvOS)
+#elseif os(tvOS)
         switch identifier {
         case "AppleTV5,3": return "Apple TV 4"
         case "AppleTV6,2": return "Apple TV 4K"
         case "i386", "x86_64": return "Simulator \(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "tvOS"))"
         default: return identifier
         }
-        #endif
+#endif
     }
 }

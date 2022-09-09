@@ -8,6 +8,9 @@
 
 import Foundation
 import FirebaseAnalytics
+import AppTrackingTransparency
+import AdSupport
+import FirebaseInstallations
 
 class AnalyticsHelper{
     
@@ -36,7 +39,7 @@ class AnalyticsHelper{
             parsingParams["adsid"] = adsId
         }
         
-        var payload = "\(eventName) &/idforvendor*\(parsingParams["idforvendor"]!)//adsid*\(String(describing: parsingParams["adsid"]!))//dbVersion*\(parsingParams["dbVersion"]!)/"
+        var payload = "\(eventName) &/idforvendor*\(idForVendor)//adsid*\(adsId)//dbVersion*\(parsingParams["dbVersion"]!)/"
         if (!params.isEmpty) {
             for (key, value) in params{
                 payload += "/" + key + "*" + value + "/"
@@ -53,7 +56,70 @@ class AnalyticsHelper{
     class func updateIdForVendor(id: String){
         idForVendor = id
     }
-    class func updateAdsId(aId: String){
-        adsId = aId
+    class func updateAdsId(adsId: String){
+        self.adsId = adsId
+    }
+    
+    class func generateIdForVendor() -> String {
+        return UIDevice.current.identifierForVendor!.uuidString
+    }
+    class func getIdForVendor() -> String {
+        return self.idForVendor
+    }
+    class func getAdsId() -> String{
+        return self.adsId
+    }
+    //NEWLY ADDED PERMISSIONS FOR iOS 14
+    class func requestPermission() {
+        //update id for vender
+        updateIdForVendor(id: generateIdForVendor())
+        
+        //request to access ads id. In the case if the user denies to grant the access, we'll use Firebase installation id
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                switch status {
+                case .authorized:
+                    // Tracking authorization dialog was shown
+                    // and we are authorized
+                    print("Authorized")
+                    
+                    // Now that we are authorized we can get the IDFA
+                    print("Updating ads id: \(ASIdentifierManager.shared().advertisingIdentifier)")
+                    self.updateAdsId(adsId: ASIdentifierManager.shared().advertisingIdentifier.uuidString)
+                case .denied:
+                    // Tracking authorization dialog was
+                    // shown and permission is denied
+                    print("Denied")
+                    getFireBaseInstallationId()
+                case .notDetermined:
+                    // Tracking authorization dialog has not been shown
+                    print("Not Determined")
+                    getFireBaseInstallationId()
+                case .restricted:
+                    print("Restricted")
+                    getFireBaseInstallationId()
+                @unknown default:
+                    print("Unknown")
+                    getFireBaseInstallationId()
+                }
+            }
+        }else{
+            updateAdsId(adsId: ASIdentifierManager.shared().advertisingIdentifier.uuidString)
+        }
+    }
+    
+    class func getFireBaseInstallationId(){
+        //if ads tracking is not enable, use Firebase Installation id instead
+        Installations.installations().installationID { [self] (id, error) in
+            if let error = error {
+                print("Error fetching id: \(error)\nAssigning defaultID.....")
+                self.updateAdsId(adsId: "undefinedID") //assigning "undefinedID" to adsID to avoid leaving it blank
+                return
+            }
+            guard let aId = id else { return }
+            print("Installation ID: \(aId)")
+            //once the installation id is set, update it to adsID
+            self.updateAdsId(adsId: aId)
+        }
     }
 }
