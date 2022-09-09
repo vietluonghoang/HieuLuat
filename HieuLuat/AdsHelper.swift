@@ -61,11 +61,14 @@ class AdsHelper {
                                 constant: 0)
             ])
         
-        //test ad id
-        //bannerView.adUnitID = "ca-app-pub-3940256099942544/6300978111"
         
-        //my ad id
-        bannerView.adUnitID = "ca-app-pub-1832172217205335/8933489074"
+        if GeneralSettings.isDevMode {
+            //test ad id
+            bannerView.adUnitID = "ca-app-pub-3940256099942544/6300978111"
+        }else{
+            //my ad id
+            bannerView.adUnitID = "ca-app-pub-1832172217205335/8933489074"
+        }
         bannerView.rootViewController = root
         let request = GADRequest()
         if GeneralSettings.isDevMode {
