@@ -49,7 +49,7 @@ class GeneralSettings {
     
     //these settings must be updated before making build
     private static var requiredDBVersion = 12
-    private static var developementMode = true
+    private static var developementMode = false
     private static var defaultActiveQC41Id = 7 //this would be used for the search of querying the lastest road sign
     private static var defaultActiveNDXPId = 17 //this would be used for the search of querying the latest NDXP
     
