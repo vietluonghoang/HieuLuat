@@ -28,6 +28,7 @@
 		3357C5321F86547700B963E6 /* SortUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357C5311F86547700B963E6 /* SortUtil.swift */; };
 		3358D638237574A800DB8463 /* AutoScaleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3358D637237574A800DB8463 /* AutoScaleButton.swift */; };
 		336C485B1FA0D7D200A154D9 /* PickerViewSelectPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336C485A1FA0D7D200A154D9 /* PickerViewSelectPopup.swift */; };
+		338C6B5028CB297000E9CDAC /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338C6B4F28CB297000E9CDAC /* SplashScreenViewController.swift */; };
 		3394A2782072236C00831E69 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3394A2772072236C00831E69 /* AboutViewController.swift */; };
 		339B43431FFBAE6C00149B09 /* BosungKhacphuc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B43421FFBAE6C00149B09 /* BosungKhacphuc.swift */; };
 		339E096526FB6E20007686DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 339E096426FB6E20007686DC /* GoogleService-Info.plist */; };
@@ -41,7 +42,6 @@
 		33D3052B1F51794F00547497 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3052A1F51794F00547497 /* ViewController.swift */; };
 		33D3052E1F51794F00547497 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33D3052C1F51794F00547497 /* Main.storyboard */; };
 		33D305301F51794F00547497 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33D3052F1F51794F00547497 /* Assets.xcassets */; };
-		33D305331F51794F00547497 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33D305311F51794F00547497 /* LaunchScreen.storyboard */; };
 		33D3053E1F51794F00547497 /* HieuLuatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3053D1F51794F00547497 /* HieuLuatTests.swift */; };
 		33D305491F51794F00547497 /* HieuLuatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D305481F51794F00547497 /* HieuLuatUITests.swift */; };
 		33D3055B1F517D6F00547497 /* DataConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3055A1F517D6F00547497 /* DataConnection.swift */; };
@@ -104,6 +104,7 @@
 		3357C5311F86547700B963E6 /* SortUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortUtil.swift; sourceTree = "<group>"; };
 		3358D637237574A800DB8463 /* AutoScaleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoScaleButton.swift; sourceTree = "<group>"; };
 		336C485A1FA0D7D200A154D9 /* PickerViewSelectPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewSelectPopup.swift; sourceTree = "<group>"; };
+		338C6B4F28CB297000E9CDAC /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		3394A2772072236C00831E69 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		339B43421FFBAE6C00149B09 /* BosungKhacphuc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BosungKhacphuc.swift; sourceTree = "<group>"; };
 		339E096426FB6E20007686DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -118,7 +119,6 @@
 		33D3052A1F51794F00547497 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		33D3052D1F51794F00547497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		33D3052F1F51794F00547497 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		33D305321F51794F00547497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		33D305341F51794F00547497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33D305391F51794F00547497 /* HieuLuatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HieuLuatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33D3053D1F51794F00547497 /* HieuLuatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HieuLuatTests.swift; sourceTree = "<group>"; };
@@ -226,9 +226,9 @@
 				33D3052A1F51794F00547497 /* ViewController.swift */,
 				33D3052C1F51794F00547497 /* Main.storyboard */,
 				33D3052F1F51794F00547497 /* Assets.xcassets */,
-				33D305311F51794F00547497 /* LaunchScreen.storyboard */,
 				33D305341F51794F00547497 /* Info.plist */,
 				330A1EB828BA14A00032840E /* remote_config_defaults.plist */,
+				338C6B4F28CB297000E9CDAC /* SplashScreenViewController.swift */,
 			);
 			path = HieuLuat;
 			sourceTree = "<group>";
@@ -464,7 +464,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				33F06FF9212439DD00A69431 /* Hieuluat.sqlite in Resources */,
-				33D305331F51794F00547497 /* LaunchScreen.storyboard in Resources */,
 				330A1EB928BA14A10032840E /* remote_config_defaults.plist in Resources */,
 				339E096526FB6E20007686DC /* GoogleService-Info.plist in Resources */,
 				33D305301F51794F00547497 /* Assets.xcassets in Resources */,
@@ -618,6 +617,7 @@
 				3322B224234B659B004584B1 /* Phantich.swift in Sources */,
 				33FD3B702329FE0B00DD7087 /* DeviceInfoCollector.swift in Sources */,
 				336C485B1FA0D7D200A154D9 /* PickerViewSelectPopup.swift in Sources */,
+				338C6B5028CB297000E9CDAC /* SplashScreenViewController.swift in Sources */,
 				335078EA1F5B099100D52741 /* VBPLDetailsViewController.swift in Sources */,
 				3322B228234DB7CA004584B1 /* InstructionDetailsViewController.swift in Sources */,
 				33D305661F51802700547497 /* Loaivanban.swift in Sources */,
@@ -670,14 +670,6 @@
 				33D3052D1F51794F00547497 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		33D305311F51794F00547497 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				33D305321F51794F00547497 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -804,7 +796,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22083001;
+				CURRENT_PROJECT_VERSION = 22090801;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = HieuLuat/Info.plist;
@@ -829,7 +821,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22083001;
+				CURRENT_PROJECT_VERSION = 22090801;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = HieuLuat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
