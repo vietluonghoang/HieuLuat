@@ -7,7 +7,7 @@
 	<key>tamgiuPhuongtienDieukhoanID</key>
 	<string>{&quot;6&quot;:&quot;6592&quot;, &quot;2&quot;:&quot;2820&quot;, &quot;17&quot;:&quot;12819&quot;}</string>
 	<key>developementMode</key>
-	<string>false</string>
+	<string>true</string>
 	<key>defaultActiveNDXPId</key>
 	<string>17</string>
 	<key>enableInappNotif</key>
