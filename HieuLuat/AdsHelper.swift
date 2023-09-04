@@ -72,7 +72,9 @@ class AdsHelper {
         bannerView.rootViewController = root
         let request = GADRequest()
         if GeneralSettings.isDevMode {
-            request.testDevices = [ "80d71213058fcf16c5bdb59a1fb12840" ]
+            //            deprecated 'testDevices' method
+            //            request.testDevices = [ "80d71213058fcf16c5bdb59a1fb12840" ]
+            GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "80d71213058fcf16c5bdb59a1fb12840" ]
         }
         bannerView.load(request)
     }
@@ -158,7 +160,7 @@ class AdsHelper {
     }
     
     class func initTJPlacement(name: String, delegate: TJPlacementDelegate) -> TJPlacement{
-        let placement = TJPlacement.placement(withName: name, delegate: delegate)
+        let placement = TJPlacement(name: name, delegate: delegate)
         
         return placement as! TJPlacement
     }

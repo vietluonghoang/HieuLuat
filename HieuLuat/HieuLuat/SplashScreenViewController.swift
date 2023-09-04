@@ -63,11 +63,11 @@ class SplashScreenViewController: UIViewController {
     }
     
     func fetchRemoteConfig(){
-        GeneralSettings.getRequiredDatabaseVersion = remoteConfig.configValue(forKey: "requiredDBVersion").numberValue!.intValue
+        GeneralSettings.getRequiredDatabaseVersion = remoteConfig.configValue(forKey: "requiredDBVersion").numberValue.intValue
         print("--- requiredDBVersion: \(GeneralSettings.getRequiredDatabaseVersion)")
         GeneralSettings.minimumAppVersionRequired = remoteConfig.configValue(forKey: "minimumAppVersion").stringValue!
         print("--- minimumAppVersion: \(GeneralSettings.minimumAppVersionRequired)")
-        GeneralSettings.minimumAdsIntervalInSeconds = remoteConfig.configValue(forKey: "minimumAdsInterval").numberValue!.intValue
+        GeneralSettings.minimumAdsIntervalInSeconds = remoteConfig.configValue(forKey: "minimumAdsInterval").numberValue.intValue
         print("--- minimumAdsInterval: \(GeneralSettings.minimumAdsIntervalInSeconds)")
         GeneralSettings.isEnableInterstitialAds = remoteConfig.configValue(forKey: "enableInterstitialAds").boolValue
         print("--- enableInterstitialAds: \(GeneralSettings.isEnableInterstitialAds)")
@@ -77,9 +77,9 @@ class SplashScreenViewController: UIViewController {
         print("--- enableBannerAds: \(GeneralSettings.isEnableBannerAds)")
         GeneralSettings.isDevMode = remoteConfig.configValue(forKey: "developementMode").boolValue
         print("--- developementMode: \(GeneralSettings.isDevMode)")
-        GeneralSettings.getActiveQC41Id = remoteConfig.configValue(forKey: "defaultActiveQC41Id").numberValue!.int64Value
+        GeneralSettings.getActiveQC41Id = remoteConfig.configValue(forKey: "defaultActiveQC41Id").numberValue.int64Value
         print("--- defaultActiveQC41Id: \(GeneralSettings.getActiveQC41Id)")
-        GeneralSettings.getActiveNDXPId = remoteConfig.configValue(forKey: "defaultActiveNDXPId").numberValue!.int64Value
+        GeneralSettings.getActiveNDXPId = remoteConfig.configValue(forKey: "defaultActiveNDXPId").numberValue.int64Value
         print("--- defaultActiveNDXPId: \(GeneralSettings.getActiveNDXPId)")
         print("--- tamgiuPhuongtienDieukhoanID: ")
         GeneralSettings.setTamgiuPhuongtienParentID(tamgiuphuongtienArr: remoteConfig.configValue(forKey: "tamgiuPhuongtienDieukhoanID").jsonValue!)

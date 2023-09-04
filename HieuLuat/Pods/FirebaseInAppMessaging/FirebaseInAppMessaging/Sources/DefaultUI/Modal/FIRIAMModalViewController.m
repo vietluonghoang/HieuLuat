@@ -14,10 +14,13 @@
  * limitations under the License.
  */
 
+#import <TargetConditionals.h>
+#if TARGET_OS_IOS
+
 #import <UIKit/UIKit.h>
 
-#import "FIRCore+InAppMessagingDisplay.h"
-#import "FIRIAMModalViewController.h"
+#import "FirebaseInAppMessaging/Sources/DefaultUI/FIRCore+InAppMessagingDisplay.h"
+#import "FirebaseInAppMessaging/Sources/DefaultUI/Modal/FIRIAMModalViewController.h"
 
 @interface FIRIAMModalViewController ()
 
@@ -127,6 +130,9 @@ static CGFloat LandScapePaddingBetweenImageAndTextColumn = 24;
     [self.imageView
         setImage:[UIImage imageWithData:self.modalDisplayMessage.imageData.imageRawData]];
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.imageView.accessibilityLabel = self.inAppMessage.campaignInfo.campaignName;
+  } else {
+    self.imageView.isAccessibilityElement = NO;
   }
 
   self.messageCardView.backgroundColor = self.modalDisplayMessage.displayBackgroundColor;
@@ -160,6 +166,12 @@ static CGFloat LandScapePaddingBetweenImageAndTextColumn = 24;
   [self.view addConstraint:self.imageActualHeightConstraint];
   self.imageActualHeightConstraint.active = YES;
   self.fixedMessageCardHeightConstraint.active = NO;
+
+  // Close button should be announced last for better VoiceOver experience.
+  self.view.accessibilityElements = @[
+    self.titleLabel, self.imageView, self.bodyTextView, self.actionButton, self.closeButton,
+    self.messageCardView
+  ];
 }
 
 // for text display UIview, which could be a UILabel or UITextView, decide the fit height under a
@@ -453,6 +465,13 @@ struct TitleBodyButtonHeightInfo {
   }
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+
+  // Announce via VoiceOver that the modal message has appeared. Highlight the title label.
+  UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.titleLabel);
+}
+
 - (void)flashCloseButton:(UIButton *)closeButton {
   closeButton.alpha = 1.0f;
   [UIView animateWithDuration:2.0
@@ -468,3 +487,5 @@ struct TitleBodyButtonHeightInfo {
                    }];
 }
 @end
+
+#endif  // TARGET_OS_IOS

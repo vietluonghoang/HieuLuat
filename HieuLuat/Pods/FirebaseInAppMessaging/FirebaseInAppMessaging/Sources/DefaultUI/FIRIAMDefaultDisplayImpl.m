@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
+#import <TargetConditionals.h>
+#if TARGET_OS_IOS
 
-#import <FirebaseCore/FIRAppInternal.h>
+#import "FirebaseCore/Extension/FirebaseCoreInternal.h"
 
-#import <FirebaseInAppMessaging/FIRInAppMessaging.h>
-#import <FirebaseInAppMessaging/FIRInAppMessagingRendering.h>
-#import "FIRCore+InAppMessagingDisplay.h"
-#import "FIRIAMBannerViewController.h"
-#import "FIRIAMCardViewController.h"
-#import "FIRIAMDefaultDisplayImpl.h"
-#import "FIRIAMImageOnlyViewController.h"
-#import "FIRIAMModalViewController.h"
-#import "FIRIAMRenderingWindowHelper.h"
-#import "FIRIAMTimeFetcher.h"
+#import "FirebaseInAppMessaging/Sources/DefaultUI/Banner/FIRIAMBannerViewController.h"
+#import "FirebaseInAppMessaging/Sources/DefaultUI/Card/FIRIAMCardViewController.h"
+#import "FirebaseInAppMessaging/Sources/DefaultUI/FIRCore+InAppMessagingDisplay.h"
+#import "FirebaseInAppMessaging/Sources/DefaultUI/FIRIAMDefaultDisplayImpl.h"
+#import "FirebaseInAppMessaging/Sources/DefaultUI/FIRIAMRenderingWindowHelper.h"
+#import "FirebaseInAppMessaging/Sources/DefaultUI/ImageOnly/FIRIAMImageOnlyViewController.h"
+#import "FirebaseInAppMessaging/Sources/DefaultUI/Modal/FIRIAMModalViewController.h"
+#import "FirebaseInAppMessaging/Sources/Private/Util/FIRIAMTimeFetcher.h"
+#import "FirebaseInAppMessaging/Sources/Public/FirebaseInAppMessaging/FIRInAppMessaging.h"
 
 @implementation FIRIAMDefaultDisplayImpl
 
@@ -50,14 +50,28 @@
 + (NSBundle *)getViewResourceBundle {
   static NSBundle *resourceBundle;
   static dispatch_once_t onceToken;
+  Class myClass = [self class];
 
   dispatch_once(&onceToken, ^{
-    // TODO. This logic of finding the resource bundle may need to change once it's open
-    // sourced
-    NSBundle *containingBundle = [NSBundle mainBundle];
-    // This is assuming the display resource bundle is contained in the main bundle
-    NSURL *bundleURL = [containingBundle URLForResource:@"InAppMessagingDisplayResources"
-                                          withExtension:@"bundle"];
+    NSString *bundledResource;
+
+    // When using SPM, Xcode scopes resources to a target, creating a bundle.
+#if SWIFT_PACKAGE
+    // FIAM only provides default UIs for iOS. FIAM for tvOS will not attempt to provide a default
+    // display.
+    bundledResource = @"Firebase_FirebaseInAppMessaging_iOS";
+#else
+    bundledResource = @"InAppMessagingDisplayResources";
+#endif  // SWIFT_PACKAGE
+
+    NSBundle *containingBundle;
+    NSURL *bundleURL;
+    // The containing bundle is different whether FIAM is statically or dynamically linked.
+    for (containingBundle in @[ [NSBundle mainBundle], [NSBundle bundleForClass:myClass] ]) {
+      bundleURL = [containingBundle URLForResource:bundledResource withExtension:@"bundle"];
+      if (bundleURL != nil) break;
+    }
+
     if (bundleURL == nil) {
       FIRLogWarning(kFIRLoggerInAppMessagingDisplay, @"I-FID100007",
                     @"FIAM Display Resource bundle "
@@ -110,7 +124,7 @@
       return;
     }
 
-    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper UIWindowForModalView];
+    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper windowForBlockingView];
     displayUIWindow.rootViewController = cardVC;
     [displayUIWindow setHidden:NO];
   });
@@ -147,7 +161,7 @@
       return;
     }
 
-    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper UIWindowForModalView];
+    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper windowForBlockingView];
     displayUIWindow.rootViewController = modalVC;
     [displayUIWindow setHidden:NO];
   });
@@ -184,7 +198,7 @@
       return;
     }
 
-    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper UIWindowForBannerView];
+    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper windowForNonBlockingView];
     displayUIWindow.rootViewController = bannerVC;
     [displayUIWindow setHidden:NO];
   });
@@ -222,7 +236,7 @@
       return;
     }
 
-    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper UIWindowForImageOnlyView];
+    UIWindow *displayUIWindow = [FIRIAMRenderingWindowHelper windowForBlockingView];
     displayUIWindow.rootViewController = imageOnlyVC;
     [displayUIWindow setHidden:NO];
   });
@@ -265,3 +279,5 @@
   }
 }
 @end
+
+#endif  // TARGET_OS_IOS

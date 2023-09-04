@@ -15,9 +15,9 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "FIRIAMBookKeeper.h"
-#import "FIRIAMFetchResponseParser.h"
-#import "FIRIAMMessageDefinition.h"
+#import "FirebaseInAppMessaging/Sources/Private/Data/FIRIAMFetchResponseParser.h"
+#import "FirebaseInAppMessaging/Sources/Private/Data/FIRIAMMessageDefinition.h"
+#import "FirebaseInAppMessaging/Sources/Private/Flows/FIRIAMBookKeeper.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @protocol FIRIAMCacheDataObserver
-- (void)dataChanged;
+- (void)messageDataChanged;
 @end
 
 // This class serves as an in-memory cache of the messages that would be searched for finding next
@@ -49,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 //
 // This class exists so that we can do message match more efficiently (in-memory search vs search
 // in local persistent storage) by using appropriate in-memory data structure.
+NS_EXTENSION_UNAVAILABLE("Firebase In App Messaging is not supported for iOS extensions.")
 @interface FIRIAMMessageClientCache : NSObject
 
 // used to inform the analytics event display check flow about whether it should start/stop

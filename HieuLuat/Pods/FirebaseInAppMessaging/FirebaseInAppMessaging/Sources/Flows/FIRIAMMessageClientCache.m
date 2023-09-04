@@ -14,14 +14,17 @@
  * limitations under the License.
  */
 
-#import <FirebaseCore/FIRLogger.h>
+#import <TargetConditionals.h>
+#if TARGET_OS_IOS || TARGET_OS_TV
 
-#import "FIRCore+InAppMessaging.h"
-#import "FIRIAMDisplayCheckOnAnalyticEventsFlow.h"
-#import "FIRIAMDisplayTriggerDefinition.h"
-#import "FIRIAMFetchResponseParser.h"
-#import "FIRIAMMessageClientCache.h"
-#import "FIRIAMServerMsgFetchStorage.h"
+#import "FirebaseCore/Extension/FirebaseCoreInternal.h"
+
+#import "FirebaseInAppMessaging/Sources/FIRCore+InAppMessaging.h"
+#import "FirebaseInAppMessaging/Sources/Private/Data/FIRIAMFetchResponseParser.h"
+#import "FirebaseInAppMessaging/Sources/Private/DisplayTrigger/FIRIAMDisplayTriggerDefinition.h"
+#import "FirebaseInAppMessaging/Sources/Private/Flows/FIRIAMDisplayCheckOnAnalyticEventsFlow.h"
+#import "FirebaseInAppMessaging/Sources/Private/Flows/FIRIAMMessageClientCache.h"
+#import "FirebaseInAppMessaging/Sources/Private/Flows/FIRIAMServerMsgFetchStorage.h"
 
 @interface FIRIAMMessageClientCache ()
 
@@ -89,7 +92,7 @@
                "resetting the message cache",
               (unsigned long)self.testMessages.count, (unsigned long)self.regularMessages.count,
               (unsigned long)self.firebaseAnalyticEventsToWatch.count);
-  [self.observer dataChanged];
+  [self.observer messageDataChanged];
 }
 
 // triggered after self.messages are updated so that we can correctly enable/disable listening
@@ -210,7 +213,7 @@
 
   // triggers the observer outside synchronization block
   if (msgToRemove) {
-    [self.observer dataChanged];
+    [self.observer messageDataChanged];
   }
 }
 
@@ -232,3 +235,5 @@
   }];
 }
 @end
+
+#endif  // TARGET_OS_IOS || TARGET_OS_TV

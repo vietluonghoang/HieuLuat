@@ -16,14 +16,14 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FIRIAMActionURLFollower.h"
-#import "FIRIAMActivityLogger.h"
-#import "FIRIAMBookKeeper.h"
-#import "FIRIAMClearcutLogger.h"
-#import "FIRIAMMessageClientCache.h"
-#import "FIRIAMTimeFetcher.h"
-#import "FIRInAppMessaging.h"
-#import "FIRInAppMessagingRendering.h"
+#import "FirebaseInAppMessaging/Sources/Private/Analytics/FIRIAMClearcutLogger.h"
+#import "FirebaseInAppMessaging/Sources/Private/Flows/FIRIAMActivityLogger.h"
+#import "FirebaseInAppMessaging/Sources/Private/Flows/FIRIAMBookKeeper.h"
+#import "FirebaseInAppMessaging/Sources/Private/Flows/FIRIAMMessageClientCache.h"
+#import "FirebaseInAppMessaging/Sources/Private/Runtime/FIRIAMActionURLFollower.h"
+#import "FirebaseInAppMessaging/Sources/Private/Util/FIRIAMTimeFetcher.h"
+#import "FirebaseInAppMessaging/Sources/Public/FirebaseInAppMessaging/FIRInAppMessaging.h"
+#import "FirebaseInAppMessaging/Sources/Public/FirebaseInAppMessaging/FIRInAppMessagingRendering.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface FIRIAMDisplaySetting : NSObject
@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 // conditions are satisfied for the rendering
 //   1 No current in-app message is being displayed
 //   2 For non-contextual messages, the display interval in display setting is met.
+NS_EXTENSION_UNAVAILABLE("Firebase In App Messaging is not supported for iOS extensions.")
 @interface FIRIAMDisplayExecutor : NSObject
 
 - (instancetype)initWithInAppMessaging:(FIRInAppMessaging *)inAppMessaging
