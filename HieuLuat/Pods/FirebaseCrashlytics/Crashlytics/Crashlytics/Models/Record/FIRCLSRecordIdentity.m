@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Google
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#import "FIRCLSRecordIdentity.h"
+#import "Crashlytics/Crashlytics/Models/Record/FIRCLSRecordIdentity.h"
 
 @implementation FIRCLSRecordIdentity
 
@@ -22,7 +22,7 @@
   self = [super initWithDict:dict];
   if (self) {
     _build_version = dict[@"build_version"];
-    _install_id = dict[@"install_id"];
+    _app_quality_session_id = dict[@"app_quality_session_id"];
   }
   return self;
 }

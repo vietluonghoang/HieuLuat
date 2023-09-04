@@ -16,12 +16,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FIRIAMBaseRenderingViewController.h"
+#import "FirebaseInAppMessaging/Sources/DefaultUI/FIRIAMBaseRenderingViewController.h"
 
 @class FIRInAppMessagingModalDisplay;
 @protocol FIRInAppMessagingDisplayDelegate;
 
 NS_ASSUME_NONNULL_BEGIN
+NS_EXTENSION_UNAVAILABLE("Firebase In App Messaging is not supported for iOS extensions.")
 @interface FIRIAMModalViewController : FIRIAMBaseRenderingViewController
 + (FIRIAMModalViewController *)
     instantiateViewControllerWithResourceBundle:(NSBundle *)resourceBundle

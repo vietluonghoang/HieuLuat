@@ -16,12 +16,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FIRIAMActivityLogger.h"
-#import "FIRIAMBookKeeper.h"
-#import "FIRIAMDisplayExecutor.h"
-#import "FIRIAMMessageClientCache.h"
-#import "FIRIAMSDKModeManager.h"
-#import "FIRIAMTimeFetcher.h"
+#import "FirebaseInAppMessaging/Sources/Private/Flows/FIRIAMActivityLogger.h"
+#import "FirebaseInAppMessaging/Sources/Private/Flows/FIRIAMBookKeeper.h"
+#import "FirebaseInAppMessaging/Sources/Private/Flows/FIRIAMDisplayExecutor.h"
+#import "FirebaseInAppMessaging/Sources/Private/Flows/FIRIAMMessageClientCache.h"
+#import "FirebaseInAppMessaging/Sources/Private/Runtime/FIRIAMSDKModeManager.h"
+#import "FirebaseInAppMessaging/Sources/Private/Util/FIRIAMTimeFetcher.h"
 
 @protocol FIRIAMAnalyticsEventLogger;
 
@@ -43,6 +43,7 @@ typedef void (^FIRIAMFetchMessageCompletionHandler)(
 
 // Parent class for supporting different fetching flows. Subclass is supposed to trigger
 // checkAndFetch at appropriate moments based on its fetch strategy
+NS_EXTENSION_UNAVAILABLE("Firebase In App Messaging is not supported for iOS extensions.")
 @interface FIRIAMFetchFlow : NSObject
 - (instancetype)initWithSetting:(FIRIAMFetchSetting *)setting
                    messageCache:(FIRIAMMessageClientCache *)cache

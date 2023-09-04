@@ -16,12 +16,14 @@
 
 #import <UIKit/UIKit.h>
 
-#import <FirebaseInAppMessaging/FIRInAppMessagingRendering.h>
-#import "FIRIAMTimeFetcher.h"
+#import "FirebaseInAppMessaging/Sources/Private/Util/FIRIAMTimeFetcher.h"
+#import "FirebaseInAppMessaging/Sources/Public/FirebaseInAppMessaging/FIRInAppMessagingRendering.h"
 
 @protocol FIRInAppMessagingDisplayDelegate;
 
 NS_ASSUME_NONNULL_BEGIN
+
+NS_EXTENSION_UNAVAILABLE("Firebase In App Messaging is not supported for iOS extensions.")
 @interface FIRIAMBaseRenderingViewController : UIViewController
 @property(nonatomic, readwrite) id<FIRIAMTimeFetcher> timeFetcher;
 
@@ -34,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)appDidBecomeActive:(NSNotification *)notification;
 
 // Tracking the aggregate impression time for the rendered message. Used to determine when
-// we are eaching the minimal iimpression time requirements. Exposed so that sub banner vc
+// we are eaching the minimal impression time requirements. Exposed so that sub banner vc
 // class can use it for auto dismiss tracking
 @property(nonatomic) double aggregateImpressionTimeInSeconds;
 

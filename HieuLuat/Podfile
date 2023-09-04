@@ -1,11 +1,15 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '13.0'
 
 target 'HieuLuat' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for HieuLuat
+
+#add the Firebase pod for Google InAppMessaging
+pod 'Firebase/InAppMessaging'
+
 pod 'FMDB'
 pod 'Google-Mobile-Ads-SDK'
 pod 'TapjoySDK'
@@ -24,11 +28,16 @@ pod 'FirebaseCrashlytics'
 #{}"${PODS_ROOT}/FirebaseCrashlytics/run"
 #{}"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols" -gsp "${PROJECT_DIR}/GoogleService-Info.plist" -p ios "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}"
 
-#add the Firebase pod for Google InAppMessaging
-pod 'FirebaseInAppMessaging'
 #add the Firebase pod for Google RemoteConfig
 pod 'FirebaseRemoteConfig'
 #install SwiftyJSON
 pod 'SwiftyJSON'
 
+post_install do |installer|
+ installer.pods_project.targets.each do |target|
+  target.build_configurations.each do |config|
+   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+  end
+ end
+end
 end

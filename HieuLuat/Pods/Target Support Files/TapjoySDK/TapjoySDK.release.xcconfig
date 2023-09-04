@@ -1,10 +1,11 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/TapjoySDK
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/TapjoySDK/TapjoySDK_iOS_v12.3.1/Libraries/Tapjoy.embeddedframework" "$(PODS_ROOT)/TapjoySDK/**"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/TapjoySDK/TapjoySDK_iOS_v13.1.2/Libraries" "${PODS_XCFRAMEWORKS_BUILD_DIR}/TapjoySDK"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-OTHER_LDFLAGS = $(inherited) -l"c++" -l"sqlite3.0" -l"xml2" -l"z" -framework "CFNetwork" -framework "CoreData" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMotion" -framework "Foundation" -framework "ImageIO" -framework "MapKit" -framework "MediaPlayer" -framework "MobileCoreServices" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration" -framework "UIKit" -framework "WebKit" -weak_framework "AdSupport" -weak_framework "CoreTelephony" -weak_framework "StoreKit"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"z" -framework "AdSupport" -framework "CFNetwork" -framework "CoreServices" -framework "CoreTelephony" -framework "StoreKit" -framework "SystemConfiguration" -framework "UIKit" -framework "WebKit"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_DEVELOPMENT_LANGUAGE = ${DEVELOPMENT_LANGUAGE}
 PODS_ROOT = ${SRCROOT}
 PODS_TARGET_SRCROOT = ${PODS_ROOT}/TapjoySDK
 PODS_XCFRAMEWORKS_BUILD_DIR = $(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates

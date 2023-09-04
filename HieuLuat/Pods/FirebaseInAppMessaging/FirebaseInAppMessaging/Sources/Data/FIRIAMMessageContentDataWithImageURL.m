@@ -14,18 +14,20 @@
  * limitations under the License.
  */
 
-#import <FirebaseCore/FIRAppInternal.h>
-#import <FirebaseCore/FIRLogger.h>
+#import <TargetConditionals.h>
+#if TARGET_OS_IOS || TARGET_OS_TV
 
-#import "FIRCore+InAppMessaging.h"
-#import "FIRIAMMessageContentData.h"
-#import "FIRIAMMessageContentDataWithImageURL.h"
-#import "FIRIAMSDKRuntimeErrorCodes.h"
+#import "FirebaseCore/Extension/FirebaseCoreInternal.h"
+
+#import "FirebaseInAppMessaging/Sources/FIRCore+InAppMessaging.h"
+#import "FirebaseInAppMessaging/Sources/Private/Data/FIRIAMMessageContentData.h"
+#import "FirebaseInAppMessaging/Sources/Private/Data/FIRIAMMessageContentDataWithImageURL.h"
+#import "FirebaseInAppMessaging/Sources/Runtime/FIRIAMSDKRuntimeErrorCodes.h"
 
 static NSInteger const SuccessHTTPStatusCode = 200;
 
 @interface FIRIAMMessageContentDataWithImageURL ()
-@property(nonatomic, readwrite, nonnull, copy) NSString *titleText;
+@property(nonatomic, readwrite, nullable, copy) NSString *titleText;
 @property(nonatomic, readwrite, nonnull, copy) NSString *bodyText;
 @property(nonatomic, copy, nullable) NSString *actionButtonText;
 @property(nonatomic, copy, nullable) NSString *secondaryActionButtonText;
@@ -37,7 +39,7 @@ static NSInteger const SuccessHTTPStatusCode = 200;
 @end
 
 @implementation FIRIAMMessageContentDataWithImageURL
-- (instancetype)initWithMessageTitle:(NSString *)title
+- (instancetype)initWithMessageTitle:(nullable NSString *)title
                          messageBody:(NSString *)body
                     actionButtonText:(nullable NSString *)actionButtonText
            secondaryActionButtonText:(nullable NSString *)secondaryActionButtonText
@@ -203,3 +205,5 @@ static NSInteger const SuccessHTTPStatusCode = 200;
 }
 
 @end
+
+#endif  // TARGET_OS_IOS || TARGET_OS_TV

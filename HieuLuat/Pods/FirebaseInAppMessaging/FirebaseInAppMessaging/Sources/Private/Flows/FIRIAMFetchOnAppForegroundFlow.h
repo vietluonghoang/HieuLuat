@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#import "FIRIAMFetchFlow.h"
+#import "FirebaseInAppMessaging/Sources/Private/Runtime/FIRIAMFetchFlow.h"
 
 // an implementation of FIRIAMDisplayExecutor by triggering the display when app is foregrounded
+NS_EXTENSION_UNAVAILABLE("Firebase In App Messaging is not supported for iOS extensions.")
 @interface FIRIAMFetchOnAppForegroundFlow : FIRIAMFetchFlow
 - (void)start;
 - (void)stop;

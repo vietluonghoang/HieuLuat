@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20279DE0C4C4A62F0030B572 /* Pods_HieuLuat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2F4D9953D61DA1A8A51262 /* Pods_HieuLuat.framework */; };
 		330A1EB728B8D8AF0032840E /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A1EB628B8D8AF0032840E /* AnalyticsHelper.swift */; };
 		330A1EB928BA14A10032840E /* remote_config_defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 330A1EB828BA14A00032840E /* remote_config_defaults.plist */; };
 		330A22142188AF6C0082A4A6 /* SearchControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A22132188AF6C0082A4A6 /* SearchControllers.swift */; };
@@ -64,6 +63,7 @@
 		33FD3B76232A5A5800DD7087 /* UpdatePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B75232A5A5800DD7087 /* UpdatePopupViewController.swift */; };
 		33FD3B78232A6BBC00DD7087 /* RedirectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B77232A6BBC00DD7087 /* RedirectionHelper.swift */; };
 		33FD3B7A232B50B700DD7087 /* CustomizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B79232B50B600DD7087 /* CustomizedLabel.swift */; };
+		F3496ED8629233F246F7241A /* Pods_HieuLuat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFE2F7FD06EFE3C0182DCF6 /* Pods_HieuLuat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,9 +147,9 @@
 		33FD3B77232A6BBC00DD7087 /* RedirectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectionHelper.swift; sourceTree = "<group>"; };
 		33FD3B79232B50B600DD7087 /* CustomizedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedLabel.swift; sourceTree = "<group>"; };
 		33FD3B7B232B963300DD7087 /* WeThoong-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeThoong-Bridging-Header.h"; sourceTree = "<group>"; };
-		72E93BC1C30A83EE28D1AC21 /* Pods-HieuLuat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat.debug.xcconfig"; sourceTree = "<group>"; };
-		9017557B072E220F7AC12647 /* Pods-HieuLuat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.release.xcconfig"; path = "Pods/Target Support Files/Pods-HieuLuat/Pods-HieuLuat.release.xcconfig"; sourceTree = "<group>"; };
-		CA2F4D9953D61DA1A8A51262 /* Pods_HieuLuat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HieuLuat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CFE2F7FD06EFE3C0182DCF6 /* Pods_HieuLuat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HieuLuat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5AEB76F78499DA0C4B45CCC /* Pods-HieuLuat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.release.xcconfig"; path = "Target Support Files/Pods-HieuLuat/Pods-HieuLuat.release.xcconfig"; sourceTree = "<group>"; };
+		D6E1636B56AABF4ED831A738 /* Pods-HieuLuat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.debug.xcconfig"; path = "Target Support Files/Pods-HieuLuat/Pods-HieuLuat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,7 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20279DE0C4C4A62F0030B572 /* Pods_HieuLuat.framework in Frameworks */,
+				F3496ED8629233F246F7241A /* Pods_HieuLuat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,8 +203,8 @@
 				33D3053C1F51794F00547497 /* HieuLuatTests */,
 				33D305471F51794F00547497 /* HieuLuatUITests */,
 				33D305261F51794F00547497 /* Products */,
-				591EC7CE7A54DABE4D14BD32 /* Pods */,
-				CD71561126F08633F40F836C /* Frameworks */,
+				798C4911FEB8C9CC817D678C /* Pods */,
+				7594F57D13B31CDFC8D80E9C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -329,21 +329,21 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		591EC7CE7A54DABE4D14BD32 /* Pods */ = {
+		7594F57D13B31CDFC8D80E9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				72E93BC1C30A83EE28D1AC21 /* Pods-HieuLuat.debug.xcconfig */,
-				9017557B072E220F7AC12647 /* Pods-HieuLuat.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		CD71561126F08633F40F836C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				CA2F4D9953D61DA1A8A51262 /* Pods_HieuLuat.framework */,
+				4CFE2F7FD06EFE3C0182DCF6 /* Pods_HieuLuat.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		798C4911FEB8C9CC817D678C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D6E1636B56AABF4ED831A738 /* Pods-HieuLuat.debug.xcconfig */,
+				D5AEB76F78499DA0C4B45CCC /* Pods-HieuLuat.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,13 +353,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 33D3054D1F51794F00547497 /* Build configuration list for PBXNativeTarget "HieuLuat" */;
 			buildPhases = (
-				CC81A362C19F5B1802AC5F2E /* [CP] Check Pods Manifest.lock */,
+				06F1E2810D7AD0070AAD672E /* [CP] Check Pods Manifest.lock */,
 				33D305211F51794F00547497 /* Sources */,
 				33D305221F51794F00547497 /* Frameworks */,
 				33D305231F51794F00547497 /* Resources */,
-				7E01514F7D3D0D5E06B4A2AD /* [CP] Embed Pods Frameworks */,
-				04908965EC3A3038BFB703CC /* [CP] Copy Pods Resources */,
 				330A1EB528B768460032840E /* ShellScript */,
+				372C91C9CE311E2B0C9DFD40 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -488,25 +487,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		04908965EC3A3038BFB703CC /* [CP] Copy Pods Resources */ = {
+		06F1E2810D7AD0070AAD672E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseInAppMessaging/InAppMessagingDisplayResources.bundle",
-				"${PODS_ROOT}/TapjoySDK/TapjoySDK_iOS_v12.3.1/Libraries/Tapjoy.embeddedframework/Resources/TapjoyResources.bundle",
-				"${PODS_ROOT}/TapjoySDK/TapjoySDK_iOS_v12.3.1/Libraries/Tapjoy.embeddedframework/Tapjoy.framework/Versions/A/Resources/TapjoyResources.bundle",
+			inputFileListPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/InAppMessagingDisplayResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TapjoyResources.bundle",
+				"$(DERIVED_FILE_DIR)/Pods-HieuLuat-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		330A1EB528B768460032840E /* ShellScript */ = {
@@ -527,7 +527,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp \"${PROJECT_DIR}/GoogleService-Info.plist\" -p ios \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n";
 		};
-		7E01514F7D3D0D5E06B4A2AD /* [CP] Embed Pods Frameworks */ = {
+		372C91C9CE311E2B0C9DFD40 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -535,42 +535,44 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreExtension/FirebaseCoreExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInAppMessaging/FirebaseInAppMessaging.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseRemoteConfig/FirebaseRemoteConfig.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseSessions/FirebaseSessions.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesSwift/Promises.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseABTesting.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInAppMessaging.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseRemoteConfig.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseSessions.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Promises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HieuLuat/Pods-HieuLuat-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CC81A362C19F5B1802AC5F2E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-HieuLuat-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -790,7 +792,7 @@
 		};
 		33D3054E1F51794F00547497 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 72E93BC1C30A83EE28D1AC21 /* Pods-HieuLuat.debug.xcconfig */;
+			baseConfigurationReference = D6E1636B56AABF4ED831A738 /* Pods-HieuLuat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -800,7 +802,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = HieuLuat/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.WeThoong;
@@ -815,7 +817,7 @@
 		};
 		33D3054F1F51794F00547497 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9017557B072E220F7AC12647 /* Pods-HieuLuat.release.xcconfig */;
+			baseConfigurationReference = D5AEB76F78499DA0C4B45CCC /* Pods-HieuLuat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -824,7 +826,7 @@
 				CURRENT_PROJECT_VERSION = 22090801;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = HieuLuat/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.WeThoong;

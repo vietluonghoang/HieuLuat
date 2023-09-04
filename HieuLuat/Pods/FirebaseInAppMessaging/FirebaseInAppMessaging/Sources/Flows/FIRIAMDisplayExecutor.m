@@ -14,19 +14,23 @@
  * limitations under the License.
  */
 
-#import <FirebaseCore/FIRLogger.h>
+#import <TargetConditionals.h>
+#if TARGET_OS_IOS || TARGET_OS_TV
+
 #import <UIKit/UIKit.h>
+#import "FirebaseCore/Extension/FirebaseCoreInternal.h"
 
-#import "FIRCore+InAppMessaging.h"
-#import "FIRIAMActivityLogger.h"
-#import "FIRIAMDisplayExecutor.h"
-#import "FIRIAMMessageContentData.h"
-#import "FIRIAMMessageDefinition.h"
-#import "FIRIAMSDKRuntimeErrorCodes.h"
-#import "FIRInAppMessaging.h"
-#import "FIRInAppMessagingRenderingPrivate.h"
+#import "FirebaseInAppMessaging/Sources/FIRCore+InAppMessaging.h"
+#import "FirebaseInAppMessaging/Sources/Private/Data/FIRIAMMessageContentData.h"
+#import "FirebaseInAppMessaging/Sources/Private/Data/FIRIAMMessageDefinition.h"
+#import "FirebaseInAppMessaging/Sources/Private/Flows/FIRIAMActivityLogger.h"
+#import "FirebaseInAppMessaging/Sources/Private/Flows/FIRIAMDisplayExecutor.h"
+#import "FirebaseInAppMessaging/Sources/Private/Util/UIApplication+FIRForegroundWindowScene.h"
+#import "FirebaseInAppMessaging/Sources/Public/FirebaseInAppMessaging/FIRInAppMessaging.h"
+#import "FirebaseInAppMessaging/Sources/RenderingObjects/FIRInAppMessagingRenderingPrivate.h"
+#import "FirebaseInAppMessaging/Sources/Runtime/FIRIAMSDKRuntimeErrorCodes.h"
 
-#import <FirebaseABTesting/FIRExperimentController.h>
+#import "FirebaseABTesting/Sources/Private/FirebaseABTestingInternal.h"
 
 @implementation FIRIAMDisplaySetting
 @end
@@ -52,6 +56,17 @@
   FIRIAMMessageDefinition *_currentMsgBeingDisplayed;
 }
 
++ (NSString *)logStringForNilMessageDisplayComponent {
+#if TARGET_OS_IOS
+  return @"Message display component is not present yet. No display should happen.";
+#else  // TARGET_OS_TV
+  return @"There is no default UI for tvOS. You must implement a messageDisplayComponent and set "
+         @"it on the InAppMessaging singleton. See "
+         @"https://firebase.google.com/docs/in-app-messaging/"
+         @"customize-messages#create_your_own_message_display_library.";
+#endif
+}
+
 #pragma mark - FIRInAppMessagingDisplayDelegate methods
 - (void)messageClicked:(FIRInAppMessagingDisplayMessage *)inAppMessage
             withAction:(FIRInAppMessagingAction *)action {
@@ -59,12 +74,6 @@
   __weak id<FIRInAppMessagingDisplayDelegate> appSideDelegate = self.inAppMessaging.delegate;
   if ([appSideDelegate respondsToSelector:@selector(messageClicked:withAction:)]) {
     [appSideDelegate messageClicked:inAppMessage withAction:action];
-  } else if ([appSideDelegate respondsToSelector:@selector(messageClicked:)]) {
-    // Deprecated method is called only as a fall-back.
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [appSideDelegate messageClicked:inAppMessage];
-#pragma clang diagnostic pop
   }
 
   self.isMsgBeingDisplayed = NO;
@@ -105,16 +114,22 @@
     [self recordValidImpression:_currentMsgBeingDisplayed.renderData.messageID
                 withMessageName:_currentMsgBeingDisplayed.renderData.name];
 
-    [self.analyticsEventLogger
-        logAnalyticsEventForType:FIRIAMAnalyticsEventActionURLFollow
-                   forCampaignID:_currentMsgBeingDisplayed.renderData.messageID
-                withCampaignName:_currentMsgBeingDisplayed.renderData.name
-                   eventTimeInMs:nil
-                      completion:^(BOOL success) {
-                        FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM400032",
-                                    @"Logging analytics event for url following %@",
-                                    success ? @"succeeded" : @"failed");
-                      }];
+    if (action.actionURL) {
+      [self.analyticsEventLogger
+          logAnalyticsEventForType:FIRIAMAnalyticsEventActionURLFollow
+                     forCampaignID:_currentMsgBeingDisplayed.renderData.messageID
+                  withCampaignName:_currentMsgBeingDisplayed.renderData.name
+                     eventTimeInMs:nil
+                        completion:^(BOOL success) {
+                          FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM400032",
+                                      @"Logging analytics event for url following %@",
+                                      success ? @"succeeded" : @"failed");
+                        }];
+
+      // Also start tracking conversions.
+      [self.analyticsEventLogger
+          logConversionTrackingEventForCampaignID:_currentMsgBeingDisplayed.renderData.messageID];
+    }
   }
 
   NSURL *actionURL = action.actionURL;
@@ -222,11 +237,23 @@
     // Displayed long enough to be a valid impression.
     [self recordValidImpression:_currentMsgBeingDisplayed.renderData.messageID
                 withMessageName:_currentMsgBeingDisplayed.renderData.name];
+
+    if ([self shouldTrackConversionsOnImpressionForCurrentInAppMessage:_currentMsgBeingDisplayed]) {
+      [self.analyticsEventLogger
+          logConversionTrackingEventForCampaignID:_currentMsgBeingDisplayed.renderData.messageID];
+    }
   } else {
     FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM400011",
                 @"A test message. Record the test message impression event.");
     return;
   }
+}
+
+- (BOOL)shouldTrackConversionsOnImpressionForCurrentInAppMessage:
+    (FIRIAMMessageDefinition *)inAppMessage {
+  // If the message has no action URL, an impression is enough to start tracking conversions.
+  id<FIRIAMMessageContentData> contentData = inAppMessage.renderData.contentData;
+  return contentData.actionURL == nil && contentData.secondaryActionURL == nil;
 }
 
 - (void)displayErrorForMessage:(FIRInAppMessagingDisplayMessage *)inAppMessage
@@ -290,8 +317,9 @@
 
 - (void)recordValidImpression:(NSString *)messageID withMessageName:(NSString *)messageName {
   if (!self.impressionRecorded) {
-    [self.displayBookKeeper recordNewImpressionForMessage:messageID
-                              withStartTimestampInSeconds:self.lastDisplayTime];
+    [self.displayBookKeeper
+        recordNewImpressionForMessage:messageID
+          withStartTimestampInSeconds:[self.timeFetcher currentTimestampInSeconds]];
     self.impressionRecorded = YES;
     [self.messageCache removeMessageWithId:messageID];
     // Log an impression analytics event as well.
@@ -311,13 +339,13 @@
 - (void)displayMessageLoadError:(NSError *)error {
   NSString *errorMsg = error.userInfo[NSLocalizedDescriptionKey]
                            ? error.userInfo[NSLocalizedDescriptionKey]
-                           : @"Message loading failed";
+                           : NSLocalizedString(@"Message loading failed", nil);
   UIAlertController *alert = [UIAlertController
       alertControllerWithTitle:@"Firebase InAppMessaging fail to load a test message"
                        message:errorMsg
                 preferredStyle:UIAlertControllerStyleAlert];
 
-  UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK"
+  UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
                                                           style:UIAlertActionStyleDefault
                                                         handler:^(UIAlertAction *action) {
                                                           self.alertWindow.hidden = NO;
@@ -328,14 +356,9 @@
 
   dispatch_async(dispatch_get_main_queue(), ^{
 #if defined(__IPHONE_13_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000
-    if (@available(iOS 13.0, *)) {
-      UIWindowScene *foregroundedScene = nil;
-      for (UIWindowScene *connectedScene in [UIApplication sharedApplication].connectedScenes) {
-        if (connectedScene.activationState == UISceneActivationStateForegroundActive) {
-          foregroundedScene = connectedScene;
-          break;
-        }
-      }
+    if (@available(iOS 13.0, tvOS 13.0, *)) {
+      UIWindowScene *foregroundedScene =
+          [[UIApplication sharedApplication] fir_foregroundWindowScene];
 
       if (foregroundedScene == nil) {
         return;
@@ -387,8 +410,8 @@
     }
 
     if (!self.messageDisplayComponent) {
-      FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM400026",
-                  @"Message display component is not present yet. No display should happen.");
+      FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM400026", @"%@",
+                  [[self class] logStringForNilMessageDisplayComponent]);
       return;
     }
 
@@ -413,7 +436,7 @@
 
 - (FIRInAppMessagingCardDisplay *)
     cardDisplayMessageWithMessageDefinition:(FIRIAMMessageDefinition *)definition
-                          portraitImageData:(nonnull FIRInAppMessagingImageData *)portraitImageData
+                          portraitImageData:(FIRInAppMessagingImageData *)portraitImageData
                          landscapeImageData:
                              (nullable FIRInAppMessagingImageData *)landscapeImageData
                                 triggerType:(FIRInAppMessagingDisplayTriggerType)triggerType {
@@ -445,24 +468,22 @@
   }
 
   FIRInAppMessagingCardDisplay *cardMessage = [[FIRInAppMessagingCardDisplay alloc]
-        initWithMessageID:renderData.messageID
-             campaignName:renderData.name
-        experimentPayload:definition.experimentPayload
-      renderAsTestMessage:definition.isTestMessage
-              triggerType:triggerType
-                titleText:title
-                textColor:renderData.renderingEffectSettings.textColor
-        portraitImageData:portraitImageData
-          backgroundColor:renderData.renderingEffectSettings.displayBGColor
-      primaryActionButton:primaryActionButton
-         primaryActionURL:definition.renderData.contentData.actionURL
-                  appData:definition.appData];
-
-  cardMessage.body = body;
-  cardMessage.landscapeImageData = landscapeImageData;
-  cardMessage.secondaryActionButton = secondaryActionButton;
-  cardMessage.secondaryActionURL = definition.renderData.contentData.secondaryActionURL;
-
+          initWithMessageID:renderData.messageID
+               campaignName:renderData.name
+          experimentPayload:definition.experimentPayload
+        renderAsTestMessage:definition.isTestMessage
+                triggerType:triggerType
+                  titleText:title
+                   bodyText:body
+                  textColor:renderData.renderingEffectSettings.textColor
+          portraitImageData:portraitImageData
+         landscapeImageData:landscapeImageData
+            backgroundColor:renderData.renderingEffectSettings.displayBGColor
+        primaryActionButton:primaryActionButton
+      secondaryActionButton:secondaryActionButton
+           primaryActionURL:definition.renderData.contentData.actionURL
+         secondaryActionURL:definition.renderData.contentData.secondaryActionURL
+                    appData:definition.appData];
   return cardMessage;
 }
 
@@ -563,8 +584,8 @@
                             triggerType:(FIRInAppMessagingDisplayTriggerType)triggerType {
   switch (definition.renderData.renderingEffectSettings.viewMode) {
     case FIRIAMRenderAsCardView:
-      // Image data should never nil for a valid card message.
       if (imageData == nil) {
+        // Image data should never nil for a valid card message.
         return nil;
       }
       return [self cardDisplayMessageWithMessageDefinition:definition
@@ -591,6 +612,8 @@
 - (void)displayForMessage:(FIRIAMMessageDefinition *)message
               triggerType:(FIRInAppMessagingDisplayTriggerType)triggerType {
   _currentMsgBeingDisplayed = message;
+  self.isMsgBeingDisplayed = YES;
+
   [message.renderData.contentData
       loadImageDataWithBlock:^(NSData *_Nullable standardImageRawData,
                                NSData *_Nullable landscapeImageRawData, NSError *_Nullable error) {
@@ -608,6 +631,7 @@
                                             triggerType:triggerType];
           // short-circuit to display error handling
           [self displayErrorForMessage:erroredMessage error:error];
+          self.isMsgBeingDisplayed = NO;
           return;
         } else {
           if (standardImageRawData) {
@@ -628,14 +652,30 @@
           }
         }
 
+        // On slow networks, image loading may take significant time,
+        // in which the value of `suppressMessageDisplay` could change.
+        if (self.suppressMessageDisplay) {
+          FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM400042",
+                      @"Message display suppressed by developer at message display time.");
+          self.isMsgBeingDisplayed = NO;
+          return;
+        }
+
         self.impressionRecorded = NO;
-        self.isMsgBeingDisplayed = YES;
 
         FIRInAppMessagingDisplayMessage *displayMessage =
             [self displayMessageWithMessageDefinition:message
                                             imageData:imageData
                                    landscapeImageData:landscapeImageData
                                           triggerType:triggerType];
+
+        // A final `nil`-check, performed to avoid crashing the client app.
+        if (!displayMessage) {
+          FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM400043",
+                      @"Failed to construct a non-nil display message.");
+          return;
+        }
+
         [self.messageDisplayComponent displayMessage:displayMessage displayDelegate:self];
       }];
 }
@@ -655,8 +695,8 @@
   // threads.
   @synchronized(self) {
     if (!self.messageDisplayComponent) {
-      FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM400028",
-                  @"Message display component is not present yet. No display should happen.");
+      FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM400028", @"%@",
+                  [[self class] logStringForNilMessageDisplayComponent]);
       return;
     }
 
@@ -699,8 +739,8 @@
   // triggered message concurrently
   @synchronized(self) {
     if (!self.messageDisplayComponent) {
-      FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM400027",
-                  @"Message display component is not present yet. No display should happen.");
+      FIRLogDebug(kFIRLoggerInAppMessaging, @"I-IAM400027", @"%@",
+                  [[self class] logStringForNilMessageDisplayComponent]);
       return;
     }
 
@@ -737,3 +777,5 @@
   }
 }
 @end
+
+#endif  // TARGET_OS_IOS || TARGET_OS_TV
