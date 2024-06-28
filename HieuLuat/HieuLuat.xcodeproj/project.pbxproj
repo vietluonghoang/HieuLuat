@@ -63,6 +63,7 @@
 		33FD3B76232A5A5800DD7087 /* UpdatePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B75232A5A5800DD7087 /* UpdatePopupViewController.swift */; };
 		33FD3B78232A6BBC00DD7087 /* RedirectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B77232A6BBC00DD7087 /* RedirectionHelper.swift */; };
 		33FD3B7A232B50B700DD7087 /* CustomizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B79232B50B600DD7087 /* CustomizedLabel.swift */; };
+		69CA5C872C2EDBF10049C4E1 /* CustomUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CA5C862C2EDBF10049C4E1 /* CustomUINavigationController.swift */; };
 		F3496ED8629233F246F7241A /* Pods_HieuLuat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFE2F7FD06EFE3C0182DCF6 /* Pods_HieuLuat.framework */; };
 /* End PBXBuildFile section */
 
@@ -148,6 +149,7 @@
 		33FD3B79232B50B600DD7087 /* CustomizedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedLabel.swift; sourceTree = "<group>"; };
 		33FD3B7B232B963300DD7087 /* WeThoong-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeThoong-Bridging-Header.h"; sourceTree = "<group>"; };
 		4CFE2F7FD06EFE3C0182DCF6 /* Pods_HieuLuat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HieuLuat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		69CA5C862C2EDBF10049C4E1 /* CustomUINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUINavigationController.swift; sourceTree = "<group>"; };
 		D5AEB76F78499DA0C4B45CCC /* Pods-HieuLuat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.release.xcconfig"; path = "Target Support Files/Pods-HieuLuat/Pods-HieuLuat.release.xcconfig"; sourceTree = "<group>"; };
 		D6E1636B56AABF4ED831A738 /* Pods-HieuLuat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.debug.xcconfig"; path = "Target Support Files/Pods-HieuLuat/Pods-HieuLuat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,6 +188,7 @@
 				332C10DF235038CC00EDD3AE /* LoadingView.swift */,
 				332C10E1235089F000EDD3AE /* WebImage.swift */,
 				3358D637237574A800DB8463 /* AutoScaleButton.swift */,
+				69CA5C862C2EDBF10049C4E1 /* CustomUINavigationController.swift */,
 			);
 			name = CustomComponents;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				3322B228234DB7CA004584B1 /* InstructionDetailsViewController.swift in Sources */,
 				33D305661F51802700547497 /* Loaivanban.swift in Sources */,
 				330A22142188AF6C0082A4A6 /* SearchControllers.swift in Sources */,
+				69CA5C872C2EDBF10049C4E1 /* CustomUINavigationController.swift in Sources */,
 				33D3055D1F517F2B00547497 /* SearchFor.swift in Sources */,
 				33C87DFC1F604C0200D8B198 /* ConfigAttribute.swift in Sources */,
 				3358D638237574A800DB8463 /* AutoScaleButton.swift in Sources */,

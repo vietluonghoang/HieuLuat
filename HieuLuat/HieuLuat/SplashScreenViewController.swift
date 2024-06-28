@@ -106,20 +106,20 @@ class SplashScreenViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
-        super.prepare(for: segue, sender: sender)
-        
-        switch(segue.identifier ?? "") {
-        case "showHome":
-            guard let home = segue.destination as? ViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
-            
-        default:
-            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        // Get the new view controller using segue.destinationViewController.
+//        // Pass the selected object to the new view controller.
+//        
+//        super.prepare(for: segue, sender: sender)
+//        
+//        switch(segue.identifier ?? "") {
+//        case "showHome":
+//            guard let home = segue.destination as? UIViewController else {
+//                fatalError("Unexpected destination: \(segue.destination)")
+//            }
+//            
+//        default:
+//            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
+//        }
+//    }
 }
