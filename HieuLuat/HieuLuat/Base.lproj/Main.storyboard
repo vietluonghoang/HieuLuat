@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tdM-sV-GZl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tdM-sV-GZl">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,11 +17,11 @@
                         <viewControllerLayoutGuide type="bottom" id="nxd-yR-LWm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4Sk-5R-ck7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5qN-dm-9gb">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="770"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4lb-u6-rr2">
                                         <rect key="frame" x="5" y="5" width="404" height="97"/>
@@ -107,11 +107,11 @@
                         <viewControllerLayoutGuide type="bottom" id="LcC-Bb-Ik7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UsH-11-bii">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLX-Ws-XgI">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="758"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="720"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1s-kz-Ac0">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="145"/>
@@ -201,7 +201,7 @@
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qGV-Wu-F6p">
-                                <rect key="frame" x="0.0" y="758" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7T-UK-rIq">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -252,22 +252,24 @@
                         <viewControllerLayoutGuide type="bottom" id="v5S-ek-gTo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7w3-PR-1RA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0f-nB-WP8">
-                                <rect key="frame" x="15" y="36" width="384" height="30"/>
+                                <rect key="frame" x="15" y="128" width="384" height="30"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Tra cứu Văn bản Pháp luật">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="0Yw-pY-oe6" kind="show" id="mzu-Np-Gb0"/>
+                                    <segue destination="0Yw-pY-oe6" kind="popoverPresentation" popoverAnchorView="b0f-nB-WP8" id="mzu-Np-Gb0">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBg-Lu-M8e">
-                                <rect key="frame" x="15" y="81" width="384" height="30"/>
+                                <rect key="frame" x="15" y="173" width="384" height="30"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Tra cứu Mức phạt">
@@ -278,7 +280,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuL-cL-rMh">
-                                <rect key="frame" x="15" y="126" width="384" height="30"/>
+                                <rect key="frame" x="15" y="218" width="384" height="30"/>
                                 <color key="backgroundColor" red="0.069372318690000004" green="0.77632451059999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Tra cứu Biển báo hiệu">
@@ -289,7 +291,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-N0-zsP">
-                                <rect key="frame" x="15" y="171" width="384" height="30"/>
+                                <rect key="frame" x="15" y="263" width="384" height="30"/>
                                 <color key="backgroundColor" red="0.069381929930000003" green="0.78833538290000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Tra cứu Vạch kẻ đường">
@@ -300,20 +302,20 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHM-Cd-kKk">
-                                <rect key="frame" x="15" y="794" width="384" height="11"/>
+                                <rect key="frame" x="15" y="848" width="384" height="11"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="9"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9G5-v8-uGX">
-                                <rect key="frame" x="15" y="762" width="384" height="30"/>
+                                <rect key="frame" x="15" y="816" width="384" height="30"/>
                                 <state key="normal" title="Chúng tôi là ai?"/>
                                 <connections>
                                     <segue destination="Giw-NA-bau" kind="show" id="5Tx-B1-RX9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVc-R6-QUP">
-                                <rect key="frame" x="15" y="216" width="384" height="30"/>
+                                <rect key="frame" x="15" y="308" width="384" height="30"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Hướng dẫn luật">
@@ -374,7 +376,7 @@
                         <viewControllerLayoutGuide type="bottom" id="VYM-9k-WhA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="B5X-3b-Ovw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="USH-f0-yJp" userLabel="ViewTop">
@@ -460,17 +462,17 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="QQF-w1-IS5">
-                                <rect key="frame" x="0.0" y="67" width="414" height="691"/>
+                                <rect key="frame" x="0.0" y="67" width="414" height="769"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="300" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jet-0s-42E">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="691"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="250" id="S7b-8c-jb7"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tblDieukhoanCell" rowHeight="300" id="jd3-os-1LB" customClass="VBPLTableViewCell" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="414" height="300"/>
+                                                <rect key="frame" x="0.0" y="50" width="414" height="300"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jd3-os-1LB" id="TeC-PB-SWO">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
@@ -557,7 +559,7 @@
                                 </constraints>
                             </scrollView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cE9-Q3-Cw0" userLabel="ViewBottom">
-                                <rect key="frame" x="0.0" y="758" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="836" width="414" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="EPx-vb-cNT"/>
@@ -605,11 +607,11 @@
                         <viewControllerLayoutGuide type="bottom" id="30P-5a-PUu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gOV-iz-N5B">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1976"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="2020"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kM2-0a-OSH">
-                                <rect key="frame" x="0.0" y="26" width="320" height="1866"/>
+                                <rect key="frame" x="0.0" y="26" width="320" height="1944"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mức phạt:" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Riu-w5-Xva" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
                                         <rect key="frame" x="2" y="2" width="255" height="17"/>
@@ -2094,7 +2096,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1BN-KM-F23">
-                                <rect key="frame" x="0.0" y="1892" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="1970" width="320" height="50"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="3ss-Ke-Kbx"/>
@@ -2271,11 +2273,11 @@ kết cấu hạ tầng đường sắt</string>
                         <viewControllerLayoutGuide type="bottom" id="Ney-WJ-CVC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3ad-B3-r0N">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BfU-Cr-Vpp">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="97"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="97"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lfr-Yu-OvU">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
@@ -2354,17 +2356,17 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="6Ow-ol-5NG">
-                                <rect key="frame" x="0.0" y="99" width="414" height="659"/>
+                                <rect key="frame" x="0.0" y="191" width="414" height="621"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="102" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mx8-OQ-qrN">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="659"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="621"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="250" id="LWh-fi-gJW"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tblDieukhoanCell" rowHeight="102" id="GvJ-9K-D5i" customClass="VBPLTableViewCell" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="414" height="102"/>
+                                                <rect key="frame" x="0.0" y="50" width="414" height="102"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GvJ-9K-D5i" id="9tT-g1-cQM">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="102"/>
@@ -2451,7 +2453,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fiT-02-e1A" userLabel="ViewBottom">
-                                <rect key="frame" x="0.0" y="758" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ler-iO-EV2"/>
@@ -2498,11 +2500,11 @@ kết cấu hạ tầng đường sắt</string>
                         <viewControllerLayoutGuide type="bottom" id="51x-yv-Pdi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ajz-WZ-QDp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8P-8c-RI4">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="236"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NkM-rY-owG">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
@@ -2952,17 +2954,17 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUj-vD-a6o">
-                                <rect key="frame" x="0.0" y="238" width="414" height="520"/>
+                                <rect key="frame" x="0.0" y="330" width="414" height="482"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qzc-wz-PQq">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="520"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="482"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="250" id="KvQ-XR-okW"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tblDieukhoanCell" rowHeight="106" id="ur4-Gk-Ie1" customClass="VBPLTableViewCell" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="414" height="106"/>
+                                                <rect key="frame" x="0.0" y="50" width="414" height="106"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ur4-Gk-Ie1" id="g4P-qx-Y4N">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="106"/>
@@ -3051,7 +3053,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsk-Cm-efP">
-                                <rect key="frame" x="0.0" y="758" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="2wy-6j-pDi"/>
@@ -3110,7 +3112,7 @@ kết cấu hạ tầng đường sắt</string>
                         <viewControllerLayoutGuide type="bottom" id="BqF-ZN-E90"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qpE-6s-eCP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgu-0x-Cj7" userLabel="ViewTop">
@@ -3132,10 +3134,10 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JiJ-sa-jsp">
-                                <rect key="frame" x="0.0" y="60.5" width="414" height="697.5"/>
+                                <rect key="frame" x="0.0" y="60.5" width="414" height="775.5"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ite-zt-jvo" userLabel="ViewBottom">
-                                <rect key="frame" x="0.0" y="758" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="836" width="414" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAe-Yo-byZ">
                                         <rect key="frame" x="50" y="8" width="314" height="34"/>
@@ -3192,11 +3194,11 @@ kết cấu hạ tầng đường sắt</string>
                         <viewControllerLayoutGuide type="bottom" id="C3y-Ay-GKb"/>
                     </layoutGuides>
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="y40-Bx-qYc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Z6-rg-ZiO">
-                                <rect key="frame" x="82" y="296" width="250" height="250"/>
+                                <rect key="frame" x="82" y="318" width="250" height="250"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hãy nói từ khoá bạn muốn tra cứu và bấm nút &quot;Xong&quot;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Q0-em-zHS">
                                         <rect key="frame" x="10" y="20" width="230" height="33.5"/>
@@ -3260,7 +3262,7 @@ kết cấu hạ tầng đường sắt</string>
                         <viewControllerLayoutGuide type="bottom" id="8LZ-fc-3nY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3cU-HU-okI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMl-ey-5dX" userLabel="viewTitle">
@@ -3312,7 +3314,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdN-SI-HIm">
-                                <rect key="frame" x="0.0" y="758" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="836" width="414" height="50"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="L37-Bo-Dma"/>
@@ -3380,7 +3382,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JUv-Sl-hcV">
-                                <rect key="frame" x="5" y="75" width="30" height="30"/>
+                                <rect key="frame" x="5" y="79" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="sr1-SP-u8o"/>
                                     <constraint firstAttribute="height" constant="30" id="tzb-t5-Ykp"/>
@@ -3391,7 +3393,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRj-Zs-sux" userLabel="viewSplit">
-                                <rect key="frame" x="318" y="46" width="86" height="59"/>
+                                <rect key="frame" x="318" y="50" width="86" height="59"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chia nhỏ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIK-rM-oAG">
                                         <rect key="frame" x="2" y="2" width="82" height="22"/>
@@ -3419,10 +3421,10 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rO3-3d-gMG">
-                                <rect key="frame" x="5" y="110" width="404" height="662"/>
+                                <rect key="frame" x="5" y="114" width="404" height="658"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKO-G2-Hvn">
-                                        <rect key="frame" x="0.0" y="0.0" width="404" height="614"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="404" height="610"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iFr-fs-Eo2">
                                                 <rect key="frame" x="0.0" y="0.0" width="404" height="332.5"/>
@@ -3607,7 +3609,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </constraints>
                                     </scrollView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPH-kO-uXM" userLabel="viewGotit">
-                                        <rect key="frame" x="0.0" y="616" width="404" height="46"/>
+                                        <rect key="frame" x="0.0" y="612" width="404" height="46"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWW-da-8t1">
                                                 <rect key="frame" x="152" y="8" width="100" height="30"/>
@@ -3718,7 +3720,7 @@ kết cấu hạ tầng đường sắt</string>
                         <viewControllerLayoutGuide type="bottom" id="MJs-GI-3mI"/>
                     </layoutGuides>
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="bBq-Gf-z3D">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" delaysContentTouches="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="uig-ET-q0T">
@@ -3776,13 +3778,13 @@ kết cấu hạ tầng đường sắt</string>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hu3-Tq-VUm">
                                                 <rect key="frame" x="0.0" y="56.5" width="414" height="16"/>
                                                 <subviews>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="Tác giả: " textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8U-kR-DIp" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tác giả: " textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8U-kR-DIp" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
                                                         <rect key="frame" x="2" y="0.0" width="375.5" height="16"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcW-O7-PYQ" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcW-O7-PYQ" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
                                                         <rect key="frame" x="379.5" y="0.0" width="32.5" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                         <nil key="textColor"/>
@@ -3831,7 +3833,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8eF-oJ-J86">
-                                <rect key="frame" x="0.0" y="792" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="846" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="bZw-fJ-xA3"/>
@@ -3880,11 +3882,11 @@ kết cấu hạ tầng đường sắt</string>
                         <viewControllerLayoutGuide type="bottom" id="A4R-o5-X9h"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gvN-my-yTV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zLH-sH-XtO">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7sp-ke-rda">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -3926,11 +3928,11 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sTZ-Bi-jvC">
-                                <rect key="frame" x="0.0" y="50" width="414" height="708"/>
+                                <rect key="frame" x="0.0" y="142" width="414" height="670"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="lawInstructionCell" rowHeight="170" id="HOH-7f-smQ" customClass="InstructionTableViewCell" customModule="HieuLuat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="170"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="170"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HOH-7f-smQ" id="iz1-Cu-dWb">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="170"/>
@@ -3949,13 +3951,13 @@ kết cấu hạ tầng đường sắt</string>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CgH-DG-Rm1" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CgH-DG-Rm1" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
                                                     <rect key="frame" x="4" y="20" width="42.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwn-uW-1k8" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwn-uW-1k8" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
                                                     <rect key="frame" x="48.5" y="19" width="363.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
@@ -4001,21 +4003,21 @@ kết cấu hạ tầng đường sắt</string>
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x2z-yc-E3T">
-                                <rect key="frame" x="0.0" y="758" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Vpy-dh-uAs"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ia-Ph-TJA">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8pd-Kg-X4o">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmo-iY-nfa">
-                                        <rect key="frame" x="107" y="321" width="200" height="200"/>
+                                        <rect key="frame" x="107" y="348" width="200" height="200"/>
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rnj-00-SFm" customClass="LoadingView" customModule="HieuLuat" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="149.5"/>
@@ -4106,21 +4108,21 @@ kết cấu hạ tầng đường sắt</string>
                         <viewControllerLayoutGuide type="bottom" id="mPd-FD-COa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lz3-ut-BnS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a2M-5e-dpe">
                                 <rect key="frame" x="0.0" y="258" width="320" height="260"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9tx-I4-bLN">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="554"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="516"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="250" id="ZX3-Zx-Zrg"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tblDieukhoanCell" rowHeight="154" id="9wd-tI-IEd" customClass="VBPLTableViewCell" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="414" height="154"/>
+                                                <rect key="frame" x="0.0" y="50" width="414" height="154"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9wd-tI-IEd" id="7YS-QQ-aZS">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="154"/>
@@ -4208,14 +4210,14 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVK-of-88Z">
-                                <rect key="frame" x="0.0" y="758" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="UFq-eF-R8H"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQ4-3b-Xtc">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="204"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="204"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q2p-rP-VcW">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="124"/>
@@ -4585,14 +4587,14 @@ kết cấu hạ tầng đường sắt</string>
                         <viewControllerLayoutGuide type="bottom" id="Rrt-gR-hEl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Jvf-cF-PMn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="ADn-v1-sVi">
-                                <rect key="frame" x="0.0" y="10" width="414" height="763"/>
+                                <rect key="frame" x="0.0" y="10" width="414" height="841"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yul-xe-bL2">
-                                <rect key="frame" x="0.0" y="778" width="414" height="30"/>
+                                <rect key="frame" x="0.0" y="856" width="414" height="30"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Xong">
@@ -4630,7 +4632,7 @@ kết cấu hạ tầng đường sắt</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BqM-hL-PoV" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NJa-kp-03l">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -4722,22 +4724,22 @@ kết cấu hạ tầng đường sắt</string>
                         <viewControllerLayoutGuide type="bottom" id="f1N-Jv-Ziq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1XC-64-EkF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="131" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iI3-4B-4Tm">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="718"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" selectionStyle="default" indentationWidth="10" reuseIdentifier="tblDieukhoanCell" rowHeight="131" id="YTk-w3-3p0" customClass="VBPLTableViewCell" customModule="HieuLuat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="131"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="131"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YTk-w3-3p0" id="aG6-vk-5QW">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="131"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgv-gS-Y6O" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
-                                                    <rect key="frame" x="114" y="11" width="280" height="15"/>
+                                                    <rect key="frame" x="114" y="12" width="280" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="FtF-4V-nEM"/>
                                                     </constraints>
@@ -4746,13 +4748,13 @@ kết cấu hạ tầng đường sắt</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNi-YM-7Dd" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
-                                                    <rect key="frame" x="114" y="40" width="37.5" height="17"/>
+                                                    <rect key="frame" x="114" y="41" width="37.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwW-q0-alh" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
-                                                    <rect key="frame" x="114" y="69" width="292" height="54.5"/>
+                                                    <rect key="frame" x="114" y="70" width="292" height="53.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -4766,7 +4768,7 @@ kết cấu hạ tầng đường sắt</string>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpP-UL-kpO" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
-                                                    <rect key="frame" x="153.5" y="40" width="248.5" height="17"/>
+                                                    <rect key="frame" x="153.5" y="41" width="248.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -4806,7 +4808,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqn-Yk-PJf">
-                                <rect key="frame" x="0.0" y="758" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Ee1-NR-JgG"/>
@@ -4843,11 +4845,11 @@ kết cấu hạ tầng đường sắt</string>
                         <viewControllerLayoutGuide type="bottom" id="lzo-QI-Ukz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iha-2M-tuj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SFG-ng-sUY">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="704"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="666"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJA-Tf-GrX" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
                                         <rect key="frame" x="8" y="8" width="398" height="14.5"/>
@@ -5135,7 +5137,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tblDieukhoanCell" rowHeight="115" id="xT9-D0-91m" customClass="VBPLTableViewCell" customModule="HieuLuat" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="414" height="115"/>
+                                                <rect key="frame" x="0.0" y="50" width="414" height="115"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xT9-D0-91m" id="KkI-Sa-gxZ">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="115"/>
@@ -5245,7 +5247,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xO9-bI-jmM" userLabel="viewBottomButtons">
-                                <rect key="frame" x="2" y="706" width="410" height="50"/>
+                                <rect key="frame" x="2" y="760" width="410" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMa-kk-YOR">
                                         <rect key="frame" x="0.0" y="0.0" width="308" height="50"/>
@@ -5295,7 +5297,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="68I-w5-UTy">
-                                <rect key="frame" x="0.0" y="758" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="hUz-Qw-kJ5"/>
@@ -5782,7 +5784,7 @@ kết cấu hạ tầng đường sắt</string>
         <segue reference="Dwh-PK-agn"/>
         <segue reference="4Sv-Gj-def"/>
         <segue reference="wfD-bY-mxt"/>
-        <segue reference="R5X-Q5-nao"/>
+        <segue reference="qFC-1m-SJT"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Alphanumeric" width="90" height="90"/>
