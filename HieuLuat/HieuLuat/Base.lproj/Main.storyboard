@@ -54,7 +54,6 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="NMf-WB-Hzh" secondAttribute="trailing" id="2sJ-Y8-A3m"/>
                                             <constraint firstAttribute="trailing" secondItem="tZi-Fn-aar" secondAttribute="trailing" constant="4" id="5Qp-Mc-g99"/>
@@ -71,7 +70,6 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="4lb-u6-rr2" firstAttribute="leading" secondItem="5qN-dm-9gb" secondAttribute="leading" constant="5" id="Slm-KB-DNz"/>
                                     <constraint firstAttribute="trailing" secondItem="4lb-u6-rr2" secondAttribute="trailing" constant="5" id="TDs-OB-YFN"/>
@@ -211,7 +209,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="1Hp-Zg-Jq9"/>
                                     <constraint firstItem="M7T-UK-rIq" firstAttribute="top" secondItem="qGV-Wu-F6p" secondAttribute="top" id="b5P-0P-WLy"/>
@@ -221,7 +218,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="qGV-Wu-F6p" secondAttribute="trailing" id="D4F-ps-mHf"/>
                             <constraint firstItem="qGV-Wu-F6p" firstAttribute="top" secondItem="hLX-Ws-XgI" secondAttribute="bottom" id="G2s-RG-9DQ"/>
@@ -255,32 +252,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0f-nB-WP8">
-                                <rect key="frame" x="15" y="80" width="384" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0f-nB-WP8">
+                                <rect key="frame" x="15" y="80" width="384" height="34"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Tra cứu Văn bản Pháp luật">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                <state key="normal" title="Tra cứu Văn bản Pháp luật"/>
                                 <connections>
                                     <segue destination="0Yw-pY-oe6" kind="show" id="mzu-Np-Gb0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBg-Lu-M8e">
-                                <rect key="frame" x="15" y="125" width="384" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBg-Lu-M8e">
+                                <rect key="frame" x="15" y="129" width="384" height="34"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Tra cứu Mức phạt">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                <state key="normal" title="Tra cứu Mức phạt"/>
                                 <connections>
                                     <segue destination="n4D-Vs-mwJ" kind="show" id="bCe-lV-SqL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuL-cL-rMh">
-                                <rect key="frame" x="15" y="170" width="384" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuL-cL-rMh">
+                                <rect key="frame" x="15" y="178" width="384" height="34"/>
                                 <color key="backgroundColor" red="0.069372318690000004" green="0.77632451059999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                 <state key="normal" title="Tra cứu Biển báo hiệu">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -288,10 +281,10 @@
                                     <segue destination="UDc-4c-lDr" kind="show" id="uJ4-eV-f50"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-N0-zsP">
-                                <rect key="frame" x="15" y="215" width="384" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-N0-zsP">
+                                <rect key="frame" x="15" y="227" width="384" height="34"/>
                                 <color key="backgroundColor" red="0.069381929930000003" green="0.78833538290000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                 <state key="normal" title="Tra cứu Vạch kẻ đường">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -312,10 +305,10 @@
                                     <segue destination="Giw-NA-bau" kind="show" id="5Tx-B1-RX9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVc-R6-QUP">
-                                <rect key="frame" x="15" y="260" width="384" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVc-R6-QUP">
+                                <rect key="frame" x="15" y="276" width="384" height="34"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                 <state key="normal" title="Hướng dẫn luật">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -324,7 +317,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="BkZ-N0-zsP" firstAttribute="leading" secondItem="7w3-PR-1RA" secondAttribute="leading" constant="15" id="01e-98-JQf"/>
                             <constraint firstItem="b0f-nB-WP8" firstAttribute="top" secondItem="6PV-Cc-OhQ" secondAttribute="bottom" constant="36" id="1Ll-Bf-0gw"/>
@@ -384,7 +377,6 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbp-D2-PKj">
                                                 <rect key="frame" x="0.0" y="0.0" width="379" height="35"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhb-SV-Rp4">
                                                 <rect key="frame" x="379" y="0.0" width="35" height="35"/>
@@ -400,7 +392,6 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="a1S-8h-arS" secondAttribute="bottom" constant="6" id="9vP-W4-rCe"/>
                                                     <constraint firstAttribute="width" constant="35" id="N3V-6B-bQ8"/>
@@ -411,7 +402,6 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="bhb-SV-Rp4" secondAttribute="bottom" id="4DI-k1-5nW"/>
                                             <constraint firstAttribute="trailing" secondItem="bhb-SV-Rp4" secondAttribute="trailing" id="8Mo-iz-xtc"/>
@@ -429,7 +419,6 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Uv4-YR-Qvh"/>
                                             <constraint firstAttribute="width" constant="70" id="ecz-6S-Z2E"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="Lọc theo"/>
                                         <connections>
                                             <segue destination="xmY-Cs-zLN" kind="presentation" identifier="filterPopup" id="jJP-B0-pmj"/>
@@ -445,7 +434,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="6vu-mv-Eda" firstAttribute="trailing" secondItem="USH-f0-yJp" secondAttribute="trailing" id="1et-3n-HaK"/>
                                     <constraint firstItem="6vu-mv-Eda" firstAttribute="top" secondItem="USH-f0-yJp" secondAttribute="top" id="Evb-2D-sqn"/>
@@ -557,13 +545,12 @@
                             </scrollView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cE9-Q3-Cw0" userLabel="ViewBottom">
                                 <rect key="frame" x="0.0" y="846" width="414" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="EPx-vb-cNT"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cE9-Q3-Cw0" firstAttribute="bottom" secondItem="VYM-9k-WhA" secondAttribute="top" id="3qY-ct-Gwu"/>
                             <constraint firstItem="cE9-Q3-Cw0" firstAttribute="leading" secondItem="B5X-3b-Ovw" secondAttribute="leading" id="455-I6-ZtF"/>
@@ -642,7 +629,6 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="BVD-r9-zAO" firstAttribute="top" secondItem="9u6-nR-uHp" secondAttribute="top" constant="5" id="41a-eL-XZp"/>
                                                     <constraint firstItem="BVD-r9-zAO" firstAttribute="trailing" secondItem="9u6-nR-uHp" secondAttribute="trailing" constant="-20" id="7WL-G0-mGp"/>
@@ -671,7 +657,6 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="mJt-3E-ibJ" firstAttribute="trailing" secondItem="IkB-oi-4R2" secondAttribute="leading" constant="-2" id="78v-kL-ug3"/>
                                                     <constraint firstItem="IkB-oi-4R2" firstAttribute="top" secondItem="cOc-r2-pes" secondAttribute="top" constant="5" id="HHa-DY-bCw"/>
@@ -684,7 +669,6 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="9u6-nR-uHp" firstAttribute="top" secondItem="GCg-M1-s8u" secondAttribute="top" id="4Y8-4v-0gF"/>
                                             <constraint firstItem="cOc-r2-pes" firstAttribute="trailing" secondItem="GCg-M1-s8u" secondAttribute="trailing" id="AXx-7w-UTx"/>
@@ -785,7 +769,6 @@ Xe thô sơ</string>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="vKo-Ox-doF" firstAttribute="bottom" secondItem="7iv-XN-ZfT" secondAttribute="bottom" constant="-2" id="33T-Kr-hYa"/>
                                             <constraint firstItem="xq8-zl-Kef" firstAttribute="bottom" secondItem="XAI-Xr-9Ao" secondAttribute="top" constant="-2" id="60O-pe-YEr"/>
@@ -864,7 +847,6 @@ Xe thô sơ</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="mDx-mJ-h6d" firstAttribute="leading" secondItem="EoG-s0-bTP" secondAttribute="trailing" constant="2" id="3aI-J1-gfa"/>
                                                             <constraint firstItem="mDx-mJ-h6d" firstAttribute="bottom" secondItem="eHN-bK-aMD" secondAttribute="bottom" id="5rY-0L-wuh"/>
@@ -891,7 +873,6 @@ Xe thô sơ</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="R2b-ck-17w" firstAttribute="leading" secondItem="sfz-SK-D8I" secondAttribute="leading" constant="20" id="1JV-kT-c9T"/>
                                                             <constraint firstItem="R2b-ck-17w" firstAttribute="trailing" secondItem="DU5-7C-hIh" secondAttribute="leading" constant="-2" id="Alb-uV-IpK"/>
@@ -918,7 +899,6 @@ Xe thô sơ</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="QCf-Ki-97O" firstAttribute="trailing" secondItem="OBN-Y3-Xds" secondAttribute="leading" constant="-2" id="Kvt-AH-R9c"/>
                                                             <constraint firstItem="QCf-Ki-97O" firstAttribute="leading" secondItem="fpN-BS-l2c" secondAttribute="leading" constant="20" id="iOP-eT-Xga"/>
@@ -945,7 +925,6 @@ Xe thô sơ</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="9SG-NI-wT4" firstAttribute="trailing" secondItem="rQ3-Zy-HjY" secondAttribute="leading" constant="-2" id="4aO-g7-b5L"/>
                                                             <constraint firstItem="9SG-NI-wT4" firstAttribute="leading" secondItem="U6V-R7-jPj" secondAttribute="leading" constant="20" id="CLg-0R-YK6"/>
@@ -972,7 +951,6 @@ Xe thô sơ</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="TJP-DP-33A" firstAttribute="trailing" secondItem="vsf-Qx-RpI" secondAttribute="trailing" constant="-4" id="1js-9g-ZCu"/>
                                                             <constraint firstItem="Yeb-RP-n7N" firstAttribute="top" secondItem="vsf-Qx-RpI" secondAttribute="top" id="J84-Si-028"/>
@@ -984,7 +962,6 @@ Xe thô sơ</string>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="fpN-BS-l2c" firstAttribute="leading" secondItem="Ton-Ij-QOg" secondAttribute="leading" id="2xo-Sz-YnR"/>
                                                     <constraint firstItem="U6V-R7-jPj" firstAttribute="top" secondItem="fpN-BS-l2c" secondAttribute="bottom" constant="2" id="6PA-XY-FRj"/>
@@ -1036,7 +1013,6 @@ Xe thô sơ</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="Aj0-y5-oAG" firstAttribute="leading" secondItem="TDJ-y0-Tdt" secondAttribute="leading" constant="20" id="2cf-Qj-0l3"/>
                                                             <constraint firstItem="Aj0-y5-oAG" firstAttribute="bottom" secondItem="TDJ-y0-Tdt" secondAttribute="bottom" id="3OT-TY-sg7"/>
@@ -1063,7 +1039,6 @@ Xe thô sơ</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="KXI-aU-4Pl" firstAttribute="top" secondItem="k7H-Ck-Pir" secondAttribute="top" constant="2" id="Cdt-eB-1QH"/>
                                                             <constraint firstItem="n1A-ER-8XM" firstAttribute="trailing" secondItem="KXI-aU-4Pl" secondAttribute="leading" constant="-2" id="Hjl-gs-uPl"/>
@@ -1090,7 +1065,6 @@ Xe thô sơ</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="sJ9-js-Tvk" firstAttribute="trailing" secondItem="s8a-hb-gkU" secondAttribute="leading" constant="-2" id="7Qj-L4-pBG"/>
                                                             <constraint firstItem="sJ9-js-Tvk" firstAttribute="top" secondItem="LBP-2S-hdi" secondAttribute="top" constant="2" id="7Yy-fh-aXP"/>
@@ -1117,7 +1091,6 @@ Xe thô sơ</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="l0y-Lc-yj7" firstAttribute="trailing" secondItem="v1f-2b-vuP" secondAttribute="trailing" constant="-4" id="9dA-aa-qmV"/>
                                                             <constraint firstItem="E81-Br-cgX" firstAttribute="top" secondItem="v1f-2b-vuP" secondAttribute="top" constant="2" id="GCY-ch-rfu"/>
@@ -1144,7 +1117,6 @@ Xe thô sơ</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="rjk-QT-oC8" firstAttribute="top" secondItem="JJQ-GE-3hb" secondAttribute="top" constant="2" id="3j2-4g-B2N"/>
                                                             <constraint firstItem="tIC-Ee-2ZR" firstAttribute="leading" secondItem="rjk-QT-oC8" secondAttribute="trailing" constant="2" id="FMc-ki-Qob"/>
@@ -1171,7 +1143,6 @@ Xe thô sơ</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="i7T-q2-gic" firstAttribute="leading" secondItem="XDy-rz-JpJ" secondAttribute="trailing" constant="2" id="MEs-M9-RQi"/>
                                                             <constraint firstItem="XDy-rz-JpJ" firstAttribute="leading" secondItem="sde-v1-1Pc" secondAttribute="leading" constant="20" id="NBT-lO-img"/>
@@ -1198,7 +1169,6 @@ Xe thô sơ</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="nSF-k1-l6q" firstAttribute="leading" secondItem="LTh-HH-kGd" secondAttribute="trailing" constant="2" id="2dV-nG-fGo"/>
                                                             <constraint firstItem="LTh-HH-kGd" firstAttribute="leading" secondItem="yZA-yh-dtv" secondAttribute="leading" constant="20" id="6w2-S2-FgJ"/>
@@ -1210,7 +1180,6 @@ Xe thô sơ</string>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="LBP-2S-hdi" firstAttribute="trailing" secondItem="xh1-h9-Xvr" secondAttribute="trailing" id="4sB-iK-gPr"/>
                                                     <constraint firstItem="LBP-2S-hdi" firstAttribute="top" secondItem="k7H-Ck-Pir" secondAttribute="bottom" constant="2" id="5sH-sC-Pv6"/>
@@ -1268,7 +1237,6 @@ Xe thô sơ</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="UoN-qn-mFb" firstAttribute="bottom" secondItem="WMI-tw-I06" secondAttribute="bottom" id="0Kc-bw-KhP"/>
                                                             <constraint firstItem="UoN-qn-mFb" firstAttribute="top" secondItem="WMI-tw-I06" secondAttribute="top" id="3I6-fE-sT4"/>
@@ -1295,7 +1263,6 @@ Xe thô sơ</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="niF-BV-aLp" firstAttribute="bottom" secondItem="OA4-Kg-cmw" secondAttribute="bottom" id="3Ye-Wz-nqS"/>
                                                             <constraint firstItem="23g-YY-BUc" firstAttribute="top" secondItem="OA4-Kg-cmw" secondAttribute="top" id="5LW-la-sWi"/>
@@ -1322,7 +1289,6 @@ Xe thô sơ</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="KoG-bA-e7b" firstAttribute="trailing" secondItem="dnb-87-F98" secondAttribute="trailing" constant="-4" id="2tS-zn-tK9"/>
                                                             <constraint firstItem="xR9-lR-XhZ" firstAttribute="top" secondItem="dnb-87-F98" secondAttribute="top" id="9LR-0A-Vvp"/>
@@ -1349,7 +1315,6 @@ Xe thô sơ</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="TFP-2j-oGb" firstAttribute="top" secondItem="Llm-np-KdF" secondAttribute="top" id="4BD-Zm-sdk"/>
                                                             <constraint firstItem="acf-GZ-kyj" firstAttribute="trailing" secondItem="TFP-2j-oGb" secondAttribute="leading" constant="-2" id="Yzr-9I-RmO"/>
@@ -1378,7 +1343,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="xLN-TE-C14" firstAttribute="top" secondItem="miU-C4-kUc" secondAttribute="top" id="1bX-bc-VIn"/>
                                                             <constraint firstItem="xLN-TE-C14" firstAttribute="leading" secondItem="ha5-yw-vc1" secondAttribute="trailing" constant="2" id="E1a-ES-VFc"/>
@@ -1390,7 +1354,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="OA4-Kg-cmw" firstAttribute="top" secondItem="WMI-tw-I06" secondAttribute="bottom" constant="2" id="028-fJ-Vwv"/>
                                                     <constraint firstItem="Llm-np-KdF" firstAttribute="trailing" secondItem="oZ0-ye-mv8" secondAttribute="trailing" id="3Vv-5z-7wH"/>
@@ -1442,7 +1405,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="Imu-W0-IyU" firstAttribute="trailing" secondItem="c2b-7j-p6U" secondAttribute="leading" constant="-2" id="dBV-AJ-kAp"/>
                                                             <constraint firstItem="c2b-7j-p6U" firstAttribute="bottom" secondItem="kK7-WL-QVs" secondAttribute="bottom" id="jbw-34-wEQ"/>
@@ -1469,7 +1431,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="f8f-9j-mrS" firstAttribute="top" secondItem="8SR-DZ-SNP" secondAttribute="top" id="EN7-qh-rsK"/>
                                                             <constraint firstItem="Bz8-Kh-QJF" firstAttribute="trailing" secondItem="f8f-9j-mrS" secondAttribute="leading" constant="-2" id="dKb-Br-bCb"/>
@@ -1496,7 +1457,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="63l-31-Frc" firstAttribute="top" secondItem="fQw-yl-jta" secondAttribute="top" constant="2" id="060-nE-2lV"/>
                                                             <constraint firstItem="nF2-oD-i7W" firstAttribute="trailing" secondItem="fQw-yl-jta" secondAttribute="trailing" constant="-4" id="HOz-uN-qwz"/>
@@ -1523,7 +1483,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="QV2-Pj-Wvv" firstAttribute="top" secondItem="scM-lS-Q4d" secondAttribute="top" constant="2" id="HBA-5c-o8c"/>
                                                             <constraint firstItem="fMP-WF-zJQ" firstAttribute="leading" secondItem="QV2-Pj-Wvv" secondAttribute="trailing" constant="2" id="JIm-MN-PLC"/>
@@ -1550,7 +1509,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="KGq-Bn-OYx" firstAttribute="trailing" secondItem="YfZ-gE-dtw" secondAttribute="trailing" constant="-4" id="4r2-1P-bra"/>
                                                             <constraint firstItem="pWj-Px-Js2" firstAttribute="trailing" secondItem="KGq-Bn-OYx" secondAttribute="leading" constant="-2" id="6oD-12-1Sr"/>
@@ -1577,7 +1535,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="l8M-vW-xpE" firstAttribute="leading" secondItem="KJc-G3-aHY" secondAttribute="leading" constant="20" id="E6j-kN-sXs"/>
                                                             <constraint firstItem="2N1-4U-dX5" firstAttribute="top" secondItem="KJc-G3-aHY" secondAttribute="top" id="FOa-BI-Tq6"/>
@@ -1604,7 +1561,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="FFE-T7-s7c" firstAttribute="trailing" secondItem="b2Z-YY-gnc" secondAttribute="trailing" constant="-4" id="6r3-63-eqB"/>
                                                             <constraint firstItem="Y9b-6O-Mdg" firstAttribute="trailing" secondItem="FFE-T7-s7c" secondAttribute="leading" constant="-2" id="Bpa-2E-qUc"/>
@@ -1631,7 +1587,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="u0j-fX-LNS" firstAttribute="top" secondItem="9WM-hn-ZVQ" secondAttribute="top" id="01O-0Q-9oX"/>
                                                             <constraint firstItem="bef-Dr-xEv" firstAttribute="leading" secondItem="9WM-hn-ZVQ" secondAttribute="leading" constant="20" id="6Z0-Rl-5Xe"/>
@@ -1658,7 +1613,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="Api-gN-tUm" firstAttribute="leading" secondItem="kUg-tb-gp1" secondAttribute="leading" constant="20" id="59R-ZY-WFk"/>
                                                             <constraint firstItem="SsG-Xs-HCs" firstAttribute="trailing" secondItem="kUg-tb-gp1" secondAttribute="trailing" constant="-4" id="Bmt-gd-0n1"/>
@@ -1685,7 +1639,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="lRs-BX-X0J" firstAttribute="leading" secondItem="YBp-Qa-pc0" secondAttribute="leading" constant="20" id="4x6-Aa-ecY"/>
                                                             <constraint firstItem="lRs-BX-X0J" firstAttribute="top" secondItem="YBp-Qa-pc0" secondAttribute="top" constant="2" id="Owd-ZK-gsU"/>
@@ -1712,7 +1665,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="oS5-7h-Tb2" firstAttribute="top" secondItem="8tR-2t-eg0" secondAttribute="top" id="6rt-CM-WgZ"/>
                                                             <constraint firstItem="bIz-YV-gyU" firstAttribute="trailing" secondItem="oS5-7h-Tb2" secondAttribute="leading" constant="-2" id="LaE-xb-YqF"/>
@@ -1739,7 +1691,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="tdt-F3-5yN" firstAttribute="trailing" secondItem="G4V-Ne-zNy" secondAttribute="leading" constant="-2" id="0pV-4Z-lYr"/>
                                                             <constraint firstItem="tdt-F3-5yN" firstAttribute="leading" secondItem="rNJ-Rl-eJe" secondAttribute="leading" constant="20" id="6eH-v3-FQA"/>
@@ -1766,7 +1717,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="Xjs-2H-VQK" firstAttribute="top" secondItem="rxb-Rv-ezr" secondAttribute="top" id="GZD-Ve-egA"/>
                                                             <constraint firstItem="3J9-VX-QYr" firstAttribute="top" secondItem="rxb-Rv-ezr" secondAttribute="top" constant="2" id="Okm-gS-QuV"/>
@@ -1793,7 +1743,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="leading" secondItem="s5V-Sm-ljj" secondAttribute="leading" constant="-20" id="7yp-KY-dwt"/>
                                                             <constraint firstItem="mB1-ZQ-f73" firstAttribute="bottom" secondItem="RLo-SJ-nda" secondAttribute="bottom" id="T9p-kc-u37"/>
@@ -1820,7 +1769,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="xZE-7F-I4k" firstAttribute="top" secondItem="U2t-Kw-hM3" secondAttribute="top" constant="2" id="0L8-NL-IUm"/>
                                                             <constraint firstItem="bOF-Er-8lY" firstAttribute="trailing" secondItem="U2t-Kw-hM3" secondAttribute="trailing" constant="-4" id="Kct-mf-y5i"/>
@@ -1832,7 +1780,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="YBp-Qa-pc0" firstAttribute="leading" secondItem="ygF-75-yWA" secondAttribute="leading" id="0zM-Tc-ODL"/>
                                                     <constraint firstItem="rNJ-Rl-eJe" firstAttribute="top" secondItem="8tR-2t-eg0" secondAttribute="bottom" constant="2" id="17f-20-RYo"/>
@@ -1914,7 +1861,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="oLu-Ed-WUt" firstAttribute="trailing" secondItem="iae-vQ-0js" secondAttribute="leading" constant="-2" id="4hV-bN-hOM"/>
                                                             <constraint firstItem="oLu-Ed-WUt" firstAttribute="top" secondItem="bPK-bC-8QP" secondAttribute="top" constant="2" id="85f-CQ-Dkt"/>
@@ -1941,7 +1887,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="d4v-Cj-6lz" firstAttribute="trailing" secondItem="7nM-W0-Gtk" secondAttribute="trailing" constant="-4" id="G7X-vF-FJK"/>
                                                             <constraint firstItem="HRk-Db-pQL" firstAttribute="leading" secondItem="7nM-W0-Gtk" secondAttribute="leading" constant="20" id="Pa2-jJ-QXb"/>
@@ -1953,7 +1898,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="7nM-W0-Gtk" firstAttribute="bottom" secondItem="2gE-4c-XvE" secondAttribute="bottom" id="1CZ-KY-L49"/>
                                                     <constraint firstItem="7nM-W0-Gtk" firstAttribute="trailing" secondItem="2gE-4c-XvE" secondAttribute="trailing" id="B20-1V-iSx"/>
@@ -1990,7 +1934,6 @@ kết cấu hạ tầng đường sắt</string>
                                                 </connections>
                                             </switch>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="1Th-wX-1Je" firstAttribute="top" secondItem="2gE-4c-XvE" secondAttribute="bottom" constant="6" id="0FC-K2-CMh"/>
                                             <constraint firstItem="uf2-Ul-E6z" firstAttribute="top" secondItem="xh1-h9-Xvr" secondAttribute="bottom" constant="6" id="0HW-61-1dD"/>
@@ -2113,7 +2056,7 @@ kết cấu hạ tầng đường sắt</string>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="41k-SL-lyq" firstAttribute="top" secondItem="FBk-cA-bTh" secondAttribute="bottom" id="3ey-ah-b9b"/>
                             <constraint firstItem="41k-SL-lyq" firstAttribute="trailing" secondItem="gOV-iz-N5B" secondAttribute="trailing" constant="-8" id="89Q-cU-mLu"/>
@@ -2281,7 +2224,6 @@ kết cấu hạ tầng đường sắt</string>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E4I-Jy-TV2">
                                                 <rect key="frame" x="0.0" y="0.0" width="379" height="65"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bu8-7e-2g2">
                                                 <rect key="frame" x="379" y="0.0" width="35" height="35"/>
@@ -2296,7 +2238,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="zsW-E2-v8K" secondAttribute="bottom" constant="6" id="0Ob-Iw-Kkk"/>
                                                     <constraint firstItem="zsW-E2-v8K" firstAttribute="leading" secondItem="bu8-7e-2g2" secondAttribute="leading" constant="3" id="9De-dT-OIV"/>
@@ -2451,13 +2392,12 @@ kết cấu hạ tầng đường sắt</string>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fiT-02-e1A" userLabel="ViewBottom">
                                 <rect key="frame" x="0.0" y="846" width="414" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ler-iO-EV2"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="BfU-Cr-Vpp" firstAttribute="top" secondItem="gfc-xR-qGh" secondAttribute="bottom" id="7YU-5t-8Fj"/>
                             <constraint firstItem="6Ow-ol-5NG" firstAttribute="leading" secondItem="3ad-B3-r0N" secondAttribute="leading" id="Djk-ts-MkO"/>
@@ -2516,7 +2456,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="9tq-dq-XLc" firstAttribute="leading" secondItem="1Nb-ox-Nrp" secondAttribute="leading" constant="4" id="Uis-Ue-vVr"/>
                                                     <constraint firstItem="9tq-dq-XLc" firstAttribute="top" secondItem="1Nb-ox-Nrp" secondAttribute="top" constant="2" id="Vlr-O4-GV0"/>
@@ -2539,7 +2478,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gms-CH-2cp">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                         </subviews>
                                                         <constraints>
@@ -2582,7 +2520,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="zkB-OG-nMd" firstAttribute="bottom" secondItem="l5o-Mc-uYm" secondAttribute="bottom" id="2nH-tN-fTe"/>
                                                     <constraint firstItem="zkB-OG-nMd" firstAttribute="top" secondItem="l5o-Mc-uYm" secondAttribute="top" id="Qdc-ec-KtH"/>
@@ -2625,7 +2562,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="A45-td-mMJ" firstAttribute="leading" secondItem="wRH-Wp-fsV" secondAttribute="leading" constant="6" id="9dp-Wd-5yr"/>
                                                     <constraint firstAttribute="bottom" secondItem="A45-td-mMJ" secondAttribute="bottom" id="MIr-0K-Htc"/>
@@ -2658,7 +2594,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="DXk-Vs-pg2" firstAttribute="bottom" secondItem="UrZ-tZ-Ou4" secondAttribute="bottom" id="AHW-Ke-63d"/>
                                                             <constraint firstItem="DXk-Vs-pg2" firstAttribute="leading" secondItem="UrZ-tZ-Ou4" secondAttribute="leading" constant="2" id="AY8-30-Grp"/>
@@ -2687,7 +2622,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="DFq-ex-zzn" firstAttribute="leading" secondItem="dzm-A9-o4C" secondAttribute="leading" constant="2" id="DIz-YX-nHo"/>
                                                             <constraint firstItem="DFq-ex-zzn" firstAttribute="centerX" secondItem="dzm-A9-o4C" secondAttribute="centerX" id="Jir-an-fie"/>
@@ -2716,7 +2650,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="9SK-hN-qMf" firstAttribute="leading" secondItem="uCU-Xk-LSH" secondAttribute="leading" constant="2" id="2Wa-Hl-llj"/>
                                                             <constraint firstAttribute="trailing" secondItem="9SK-hN-qMf" secondAttribute="trailing" constant="2" id="3l3-3B-4X5"/>
@@ -2745,7 +2678,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="w2k-nN-fTP" firstAttribute="centerX" secondItem="Txe-G7-gLj" secondAttribute="centerX" id="1SN-3c-EDz"/>
                                                             <constraint firstItem="w2k-nN-fTP" firstAttribute="top" secondItem="Txe-G7-gLj" secondAttribute="bottom" constant="1" id="482-h0-HCh"/>
@@ -2774,7 +2706,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="X6n-0M-Qcq" firstAttribute="leading" secondItem="W9s-4G-ZOE" secondAttribute="leading" constant="2" id="3Uf-pb-RC1"/>
                                                             <constraint firstItem="X6n-0M-Qcq" firstAttribute="centerX" secondItem="AeO-Gc-u7H" secondAttribute="centerX" id="JIE-Nh-oHT"/>
@@ -2803,7 +2734,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="iw9-nt-8KD" firstAttribute="leading" secondItem="y4t-wv-IMc" secondAttribute="leading" constant="2" id="0MC-73-TcV"/>
                                                             <constraint firstItem="iw9-nt-8KD" firstAttribute="trailing" secondItem="y4t-wv-IMc" secondAttribute="trailing" constant="-2" id="PEz-Ud-G81"/>
@@ -2832,7 +2762,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="u4W-PO-QRD" secondAttribute="bottom" id="3fb-8e-u6X"/>
                                                             <constraint firstItem="u4W-PO-QRD" firstAttribute="leading" secondItem="40u-q1-XGi" secondAttribute="leading" constant="2" id="5zG-Sa-3So"/>
@@ -2860,7 +2789,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="zUU-ja-qJ8" firstAttribute="leading" secondItem="gfq-tG-HdR" secondAttribute="leading" constant="2" id="4Fw-Ve-22o"/>
                                                             <constraint firstItem="ZvP-HO-Lkk" firstAttribute="top" secondItem="gfq-tG-HdR" secondAttribute="top" constant="2" id="Qgg-QL-4hY"/>
@@ -2872,7 +2800,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="gDF-b4-dWA" firstAttribute="height" secondItem="7Sd-Nb-cw3" secondAttribute="height" id="2GD-fC-RVN"/>
                                                     <constraint firstItem="uCU-Xk-LSH" firstAttribute="centerY" secondItem="UrZ-tZ-Ou4" secondAttribute="centerY" id="3wI-vt-yqK"/>
@@ -2927,7 +2854,6 @@ kết cấu hạ tầng đường sắt</string>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="bb9-8m-DXQ" firstAttribute="leading" secondItem="5Ox-Ov-yvv" secondAttribute="leading" id="99p-0E-ksI"/>
                                             <constraint firstItem="bb9-8m-DXQ" firstAttribute="trailing" secondItem="5Ox-Ov-yvv" secondAttribute="trailing" id="CVa-7e-eHq"/>
@@ -2939,7 +2865,6 @@ kết cấu hạ tầng đường sắt</string>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="NkM-rY-owG" firstAttribute="leading" secondItem="k8P-8c-RI4" secondAttribute="leading" id="Hvx-wf-D86"/>
                                     <constraint firstItem="NkM-rY-owG" firstAttribute="top" secondItem="k8P-8c-RI4" secondAttribute="top" id="PVI-cw-5b7"/>
@@ -3051,13 +2976,12 @@ kết cấu hạ tầng đường sắt</string>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsk-Cm-efP">
                                 <rect key="frame" x="0.0" y="846" width="414" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="2wy-6j-pDi"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="uUj-vD-a6o" firstAttribute="trailing" secondItem="Ajz-WZ-QDp" secondAttribute="trailing" id="0ie-Hb-1nU"/>
                             <constraint firstItem="k8P-8c-RI4" firstAttribute="leading" secondItem="Ajz-WZ-QDp" secondAttribute="leading" id="169-mi-dAg"/>
@@ -3122,7 +3046,6 @@ kết cấu hạ tầng đường sắt</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="GQh-tF-zO4" firstAttribute="leading" secondItem="cgu-0x-Cj7" secondAttribute="leading" constant="8" id="ByJ-3w-WoY"/>
                                     <constraint firstItem="GQh-tF-zO4" firstAttribute="bottom" secondItem="cgu-0x-Cj7" secondAttribute="bottom" constant="-10" id="Pa5-FN-WT4"/>
@@ -3148,7 +3071,6 @@ kết cấu hạ tầng đường sắt</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="GAe-Yo-byZ" firstAttribute="leading" secondItem="Ite-zt-jvo" secondAttribute="leading" constant="50" id="7ar-Kj-0we"/>
                                     <constraint firstItem="GAe-Yo-byZ" firstAttribute="bottom" secondItem="Ite-zt-jvo" secondAttribute="bottom" constant="-8" id="Op1-WC-YxG"/>
@@ -3158,7 +3080,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cgu-0x-Cj7" firstAttribute="trailing" secondItem="qpE-6s-eCP" secondAttribute="trailing" id="417-rM-6J8"/>
                             <constraint firstItem="Ite-zt-jvo" firstAttribute="trailing" secondItem="qpE-6s-eCP" secondAttribute="trailing" id="IiN-3a-lNg"/>
@@ -3198,9 +3120,9 @@ kết cấu hạ tầng đường sắt</string>
                                 <rect key="frame" x="82" y="318" width="250" height="250"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hãy nói từ khoá bạn muốn tra cứu và bấm nút &quot;Xong&quot;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Q0-em-zHS">
-                                        <rect key="frame" x="10" y="20" width="230" height="33.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="10" y="20" width="230" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="micro" translatesAutoresizingMaskIntoConstraints="NO" id="MtK-WK-IF2">
@@ -3222,7 +3144,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="6HX-1G-jkm" secondAttribute="trailing" constant="10" id="9zT-SO-jSL"/>
                                     <constraint firstItem="9Q0-em-zHS" firstAttribute="top" secondItem="5Z6-rg-ZiO" secondAttribute="top" constant="20" id="Abc-0U-eTM"/>
@@ -3237,6 +3159,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </view>
                         </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="5Z6-rg-ZiO" firstAttribute="centerX" secondItem="y40-Bx-qYc" secondAttribute="centerX" id="Nxr-0U-bYJ"/>
                             <constraint firstItem="5Z6-rg-ZiO" firstAttribute="centerY" secondItem="y40-Bx-qYc" secondAttribute="centerY" id="OmS-xa-1Dn"/>
@@ -3272,7 +3195,6 @@ kết cấu hạ tầng đường sắt</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Ouj-31-CZM" secondAttribute="trailing" constant="2" id="HVq-mn-PWu"/>
                                     <constraint firstItem="Ouj-31-CZM" firstAttribute="top" secondItem="GMl-ey-5dX" secondAttribute="top" constant="2" id="MGl-R5-TtX"/>
@@ -3289,10 +3211,8 @@ kết cấu hạ tầng đường sắt</string>
                                         <subviews>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HmT-tc-3to" userLabel="viewSwitches">
                                                 <rect key="frame" x="2" y="29" width="410" height="194"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="HmT-tc-3to" firstAttribute="leading" secondItem="bVd-ED-38T" secondAttribute="leading" constant="2" id="0aO-YJ-YZp"/>
                                             <constraint firstItem="HmT-tc-3to" firstAttribute="centerX" secondItem="bVd-ED-38T" secondAttribute="centerX" id="9Oj-O9-U86"/>
@@ -3310,13 +3230,12 @@ kết cấu hạ tầng đường sắt</string>
                                     <constraint firstAttribute="bottom" secondItem="bVd-ED-38T" secondAttribute="bottom" id="q0q-io-S2B"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdN-SI-HIm">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdN-SI-HIm">
                                 <rect key="frame" x="0.0" y="836" width="414" height="50"/>
                                 <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="L37-Bo-Dma"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Xong">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -3325,7 +3244,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="GMl-ey-5dX" secondAttribute="trailing" constant="2" id="8C9-Wy-lih"/>
                             <constraint firstItem="GMl-ey-5dX" firstAttribute="top" secondItem="NZ9-sD-nJb" secondAttribute="bottom" constant="2" id="Wdz-Sa-NwX"/>
@@ -3887,7 +3806,6 @@ kết cấu hạ tầng đường sắt</string>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7sp-ke-rda">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Wkc-Rr-9ef"/>
                                         </constraints>
@@ -3903,7 +3821,6 @@ kết cấu hạ tầng đường sắt</string>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="tbC-dR-43T" firstAttribute="leading" secondItem="40Z-nq-3b8" secondAttribute="leading" id="Fhs-AB-gbN"/>
                                             <constraint firstAttribute="height" id="STj-Ig-ceP"/>
@@ -3913,7 +3830,6 @@ kết cấu hạ tầng đường sắt</string>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="7sp-ke-rda" firstAttribute="top" secondItem="zLH-sH-XtO" secondAttribute="top" id="7Gf-Cm-gdX"/>
                                     <constraint firstAttribute="bottom" secondItem="40Z-nq-3b8" secondAttribute="bottom" id="HIe-Tw-9GP"/>
@@ -4001,7 +3917,6 @@ kết cấu hạ tầng đường sắt</string>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x2z-yc-E3T">
                                 <rect key="frame" x="0.0" y="846" width="414" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Vpy-dh-uAs"/>
                                 </constraints>
@@ -4011,7 +3926,6 @@ kết cấu hạ tầng đường sắt</string>
                                 <subviews>
                                     <view clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8pd-Kg-X4o">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmo-iY-nfa">
                                         <rect key="frame" x="107" y="348" width="200" height="200"/>
@@ -4208,7 +4122,6 @@ kết cấu hạ tầng đường sắt</string>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVK-of-88Z">
                                 <rect key="frame" x="0.0" y="846" width="414" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="UFq-eF-R8H"/>
                                 </constraints>
@@ -4229,7 +4142,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="gbM-Fi-ZCi" firstAttribute="leading" secondItem="oAW-2v-mV1" secondAttribute="leading" id="7LB-gw-vNd"/>
                                                     <constraint firstItem="gbM-Fi-ZCi" firstAttribute="top" secondItem="oAW-2v-mV1" secondAttribute="top" constant="2" id="HrO-oI-29k"/>
@@ -4251,7 +4163,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69a-VD-WTz">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                         </subviews>
                                                         <constraints>
@@ -4299,7 +4210,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="afh-su-7Ew" firstAttribute="bottom" secondItem="POm-lo-Z5B" secondAttribute="bottom" id="2R1-sc-k1b"/>
                                                     <constraint firstItem="Lnm-MZ-yoP" firstAttribute="leading" secondItem="POm-lo-Z5B" secondAttribute="leading" constant="2" id="2xJ-n9-yPd"/>
@@ -4346,7 +4256,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="FW9-sG-qdi" firstAttribute="bottom" secondItem="ppn-Ku-D9B" secondAttribute="bottom" id="9Yc-lB-Dcm"/>
                                                     <constraint firstItem="FW9-sG-qdi" firstAttribute="leading" secondItem="ppn-Ku-D9B" secondAttribute="leading" id="Kgc-aR-jbk"/>
@@ -4380,7 +4289,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="JND-n2-Fzn" firstAttribute="trailing" secondItem="IOb-yY-wTe" secondAttribute="trailing" constant="-2" id="CRP-Cm-T7K"/>
                                                             <constraint firstItem="JND-n2-Fzn" firstAttribute="top" secondItem="hFa-1Z-QS0" secondAttribute="bottom" constant="1" id="Dg3-0q-kdG"/>
@@ -4409,7 +4317,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="FkU-0F-QDH" firstAttribute="top" secondItem="IuV-ow-j4s" secondAttribute="bottom" constant="1" id="86V-4I-ha2"/>
                                                             <constraint firstItem="FkU-0F-QDH" firstAttribute="centerX" secondItem="IuV-ow-j4s" secondAttribute="centerX" id="Ax1-kt-Ocb"/>
@@ -4438,7 +4345,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="pTm-yC-UdD" firstAttribute="centerX" secondItem="nXk-Xj-eug" secondAttribute="centerX" id="6YZ-US-LHm"/>
                                                             <constraint firstItem="pTm-yC-UdD" firstAttribute="trailing" secondItem="ehh-eP-OQ8" secondAttribute="trailing" constant="-2" id="7fR-5c-T66"/>
@@ -4467,7 +4373,6 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="EW2-gg-xsL" firstAttribute="centerX" secondItem="fka-af-nau" secondAttribute="centerX" id="6Lw-xS-0Rm"/>
                                                             <constraint firstItem="EW2-gg-xsL" firstAttribute="trailing" secondItem="h3s-G9-heL" secondAttribute="trailing" constant="-2" id="9Ir-2u-iQ4"/>
@@ -4478,7 +4383,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="IOb-yY-wTe" firstAttribute="bottom" secondItem="CKO-fj-jXo" secondAttribute="bottom" id="0Fq-sR-Afg"/>
                                                     <constraint firstItem="fka-af-nau" firstAttribute="height" secondItem="hFa-1Z-QS0" secondAttribute="height" id="6Xc-FM-Oja"/>
@@ -4512,7 +4416,6 @@ kết cấu hạ tầng đường sắt</string>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="CKO-fj-jXo" firstAttribute="top" secondItem="ppn-Ku-D9B" secondAttribute="bottom" constant="8" id="KoZ-EJ-ixu"/>
                                             <constraint firstItem="ppn-Ku-D9B" firstAttribute="top" secondItem="RSv-X0-HIW" secondAttribute="top" constant="2" id="NCF-iH-csd"/>
@@ -4524,7 +4427,6 @@ kết cấu hạ tầng đường sắt</string>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="q2p-rP-VcW" firstAttribute="trailing" secondItem="sQ4-3b-Xtc" secondAttribute="trailing" id="2Gu-w6-60X"/>
                                     <constraint firstItem="q2p-rP-VcW" firstAttribute="leading" secondItem="sQ4-3b-Xtc" secondAttribute="leading" id="5g8-Sp-SaD"/>
@@ -4536,7 +4438,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="a2M-5e-dpe" firstAttribute="top" secondItem="sQ4-3b-Xtc" secondAttribute="bottom" id="9VT-Zh-bru"/>
                             <constraint firstItem="sQ4-3b-Xtc" firstAttribute="trailing" secondItem="lz3-ut-BnS" secondAttribute="trailing" id="A3P-Hm-o8D"/>
@@ -4602,7 +4504,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="yul-xe-bL2" firstAttribute="top" secondItem="ADn-v1-sVi" secondAttribute="bottom" constant="5" id="3II-Dg-3WP"/>
                             <constraint firstItem="ADn-v1-sVi" firstAttribute="top" secondItem="Jvf-cF-PMn" secondAttribute="top" constant="10" id="DJV-dl-kym"/>
@@ -4636,16 +4538,16 @@ kết cấu hạ tầng đường sắt</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qHl-Uu-Cke" userLabel="popupView">
-                                <rect key="frame" x="70" y="362.5" width="274" height="171"/>
+                                <rect key="frame" x="70" y="357" width="274" height="182"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phiên bản mới đã sẵn sàng. Bạn hãy cập nhật để có trải nghiệm tốt hơn nhé!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hML-TF-Szk" userLabel="lblMessage" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="40" width="234" height="61"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phiên bản mới đã sẵn sàng.   Bạn hãy cập nhật để có trải nghiệm tốt hơn nhé!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hML-TF-Szk" userLabel="lblMessage" customClass="CustomizedLabel" customModule="HieuLuat" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="40" width="234" height="72"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sX4-Og-0I1">
-                                        <rect key="frame" x="87" y="121" width="100" height="30"/>
+                                        <rect key="frame" x="87" y="132" width="100" height="30"/>
                                         <color key="backgroundColor" red="0.37880462650000002" green="0.71022214400000006" blue="0.88248866579999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="L8Y-K7-zQ5"/>
@@ -4665,7 +4567,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="sX4-Og-0I1" firstAttribute="top" secondItem="hML-TF-Szk" secondAttribute="bottom" constant="20" id="TLU-VZ-d5D"/>
                                     <constraint firstAttribute="bottom" secondItem="sX4-Og-0I1" secondAttribute="bottom" constant="20" id="Wbo-pe-qF6"/>
@@ -4678,7 +4580,7 @@ kết cấu hạ tầng đường sắt</string>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="qHl-Uu-Cke" firstAttribute="leading" secondItem="Ldf-69-6HT" secondAttribute="leadingMargin" constant="50" id="4WM-i4-7eE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qHl-Uu-Cke" secondAttribute="trailing" constant="50" id="Um1-AW-goa"/>
@@ -4788,13 +4690,12 @@ kết cấu hạ tầng đường sắt</string>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqn-Yk-PJf">
                                 <rect key="frame" x="0.0" y="846" width="414" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Ee1-NR-JgG"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="iI3-4B-4Tm" firstAttribute="leading" secondItem="1XC-64-EkF" secondAttribute="leading" id="7NP-bJ-r29"/>
                             <constraint firstItem="iI3-4B-4Tm" firstAttribute="trailing" secondItem="1XC-64-EkF" secondAttribute="trailing" id="9Vw-U0-kyy"/>
@@ -4944,7 +4845,6 @@ kết cấu hạ tầng đường sắt</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="RIc-lp-G8Z" firstAttribute="top" secondItem="P2E-Tq-DQO" secondAttribute="top" id="10J-Jb-rTm"/>
                                             <constraint firstItem="XUK-AA-Wad" firstAttribute="leading" secondItem="WN0-hA-aTQ" secondAttribute="leading" constant="2" id="1hv-di-4C7"/>
@@ -4993,7 +4893,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="eVo-85-3jR" firstAttribute="bottom" secondItem="2mS-58-4G5" secondAttribute="bottom" id="CWf-Eu-oK0"/>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="TZi-nS-Lxb"/>
@@ -5021,7 +4920,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="2Bw-eX-yva" firstAttribute="trailing" secondItem="Kb1-YC-BiG" secondAttribute="trailing" id="0Qp-g0-PPO"/>
                                                     <constraint firstItem="2Bw-eX-yva" firstAttribute="leading" secondItem="Kb1-YC-BiG" secondAttribute="leading" id="3K2-wR-CRD"/>
@@ -5049,7 +4947,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="1ty-VZ-x6q" firstAttribute="top" secondItem="uGA-oD-9pX" secondAttribute="top" id="Q4B-mi-pbU"/>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="Rxz-Q9-Qd4"/>
@@ -5077,7 +4974,6 @@ kết cấu hạ tầng đường sắt</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="b39-Ew-4Hc" firstAttribute="top" secondItem="3UL-mQ-L9r" secondAttribute="top" id="8uW-qu-vJg"/>
                                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="QEp-pf-OV4"/>
@@ -5090,7 +4986,6 @@ kết cấu hạ tầng đường sắt</string>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="uGA-oD-9pX" firstAttribute="trailing" secondItem="1Iu-E9-goo" secondAttribute="trailing" id="3sn-NV-sEE"/>
                                             <constraint firstItem="uGA-oD-9pX" firstAttribute="leading" secondItem="1Iu-E9-goo" secondAttribute="leading" id="41I-Jm-GiP"/>
@@ -5264,7 +5159,6 @@ kết cấu hạ tầng đường sắt</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="gMa-kk-YOR" firstAttribute="top" secondItem="xO9-bI-jmM" secondAttribute="top" id="AMy-lV-036"/>
                                     <constraint firstAttribute="bottom" secondItem="I0F-f1-HbZ" secondAttribute="bottom" id="MpA-U0-RXf"/>
@@ -5277,13 +5171,12 @@ kết cấu hạ tầng đường sắt</string>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="68I-w5-UTy">
                                 <rect key="frame" x="0.0" y="846" width="414" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="hUz-Qw-kJ5"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="68I-w5-UTy" firstAttribute="leading" secondItem="iha-2M-tuj" secondAttribute="leading" id="58T-7d-9FD"/>
                             <constraint firstItem="xO9-bI-jmM" firstAttribute="leading" secondItem="iha-2M-tuj" secondAttribute="leading" constant="2" id="65g-Uv-p4X"/>
@@ -5651,7 +5544,7 @@ kết cấu hạ tầng đường sắt</string>
             <size key="intrinsicContentSize" width="49" height="14.5"/>
         </designable>
         <designable name="hML-TF-Szk">
-            <size key="intrinsicContentSize" width="576.5" height="20.5"/>
+            <size key="intrinsicContentSize" width="340" height="54"/>
         </designable>
         <designable name="ha5-yw-vc1">
             <size key="intrinsicContentSize" width="198.5" height="41"/>
@@ -5778,7 +5671,7 @@ kết cấu hạ tầng đường sắt</string>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="x0c-Xv-FUh"/>
+        <segue reference="h7z-qI-2JY"/>
         <segue reference="Dwh-PK-agn"/>
         <segue reference="DsF-CY-Ktp"/>
         <segue reference="wfD-bY-mxt"/>
