@@ -1083,13 +1083,17 @@ class MPSearchFilterPopupController: UIViewController {
     func updateOptionText(label: UILabel, enable: Bool) {
         if enable {
             if #available(iOS 8.2, *) {
-                appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular), color: UIColor.black)
+//                appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular), color: UIColor.black)
+                //remove the change for the color to not make the text invisible on Dark mode
+                appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular))
             } else {
                 // Fallback on earlier versions
             }
         }else{
             if #available(iOS 8.2, *) {
-                appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.thin), color: UIColor.gray)
+//                appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.thin), color: UIColor.gray)
+                //remove the change for the color to not make the text invisible on Dark mode
+                appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.thin))
             } else {
                 // Fallback on earlier versions
             }
@@ -1098,9 +1102,13 @@ class MPSearchFilterPopupController: UIViewController {
     
     func grayoutOptionText(label: UILabel, enable: Bool) {
         if enable {
-            appearanceUtil.changeLabelText(label: label, color: UIColor.black)
+//            appearanceUtil.changeLabelText(label: label, color: UIColor.black)
+            //remove the change for the color to not make the text invisible on Dark mode
+            appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular))
         }else{
-            appearanceUtil.changeLabelText(label: label, color: UIColor.gray)
+//            appearanceUtil.changeLabelText(label: label, color: UIColor.gray)
+            //remove the change for the color to not make the text invisible on Dark mode
+            appearanceUtil.changeLabelText(label: label, font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.thin))
         }
     }
     
