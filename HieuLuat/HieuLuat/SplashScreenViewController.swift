@@ -17,14 +17,15 @@ class SplashScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        _ = DataConnection.instance()
-        updateRemoteConfig() //update remote config from firebase
-        //        RunLoop.current.run(until: Date(timeIntervalSinceNow : 5.0)) //delay 2 seconds to view splash screen longer
-        // Do any additional setup after loading the view.
-        self.viewMainView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(moveToHomeAgain)))
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        RunLoop.current.run(until: Date(timeIntervalSinceNow : 2.0)) //delay 2 seconds to view splash screen longer
+        // Do any additional setup after loading the view.
+        self.viewMainView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(moveToHomeAgain)))
+        _ = DataConnection.instance()
+        updateRemoteConfig() //update remote config from firebase
         print("Delay to wait for initialization of Firebase and Device information.....")
         delayTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkIfInitializationDone), userInfo: nil, repeats: true)
         moveToHome()
@@ -91,6 +92,7 @@ class SplashScreenViewController: UIViewController {
         print("Checking the initialization conditions....")
         if (!AnalyticsHelper.getIdForVendor().isEmpty && !AnalyticsHelper.getAdsId().isEmpty && !AnalyticsHelper.getAdsId().contains("undefined")) {
             delayTimer?.invalidate()
+            print(".... Done")
         }
     }
     

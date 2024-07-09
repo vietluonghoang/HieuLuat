@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController,TJPlacementDelegate {
     @IBOutlet var lblVersion: UILabel!
+    @IBOutlet weak var viewTracuu: UIView!
     @IBOutlet var btnCamera: UIBarButtonItem!
     
     let network = NetworkHandler()
@@ -29,7 +30,8 @@ class ViewController: UIViewController,TJPlacementDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         sendAnalytics() //send analytics for tracking user usage
         AnalyticsHelper.sendAnalyticEvent(eventName: "app_open", params: [String:String]())
-        checkAdsOptout() //check ads optout state
+        // Don't check Ads optout since the server was terminated
+//        checkAdsOptout() //check ads optout state
         GeneralSettings.getLastAppOpenTimestamp = Int(NSDate().timeIntervalSince1970)
         getAppConfiguration()
     }
@@ -47,6 +49,10 @@ class ViewController: UIViewController,TJPlacementDelegate {
             DataConnection.forceInitializeDatabase()
         }
         lblVersion.text = getVersion()
+        
+        //Adding border to view tracuu
+        viewTracuu.layer.borderColor = UIColor.cyan.cgColor
+        viewTracuu.layer.borderWidth = 2
     }
     
     override func didReceiveMemoryWarning() {
