@@ -4,7 +4,7 @@ PODS:
   - Firebase/InAppMessaging (10.14.0):
     - Firebase/CoreOnly
     - FirebaseInAppMessaging (~> 10.14.0-beta)
-  - FirebaseABTesting (10.14.0):
+  - FirebaseABTesting (10.29.0):
     - FirebaseCore (~> 10.0)
   - FirebaseAnalytics (10.14.0):
     - FirebaseAnalytics/AdIdSupport (= 10.14.0)
@@ -163,7 +163,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Firebase: 6c1bf3f534bc422d52af2e41fe0d50bf08b6b773
-  FirebaseABTesting: e1535073fac4ff55c7537a6e041155c72d9e6906
+  FirebaseABTesting: d87f56707159bae64e269757a6e963d490f2eebe
   FirebaseAnalytics: 5c6d58814afa4db82cf7fdbc02b0b0e2fa3d43ff
   FirebaseCore: 6fc17ac9f03509d51c131298aacb3ee5698b4f02
   FirebaseCoreExtension: 976638051b1a46b503afce7ec80277f9161f2040
