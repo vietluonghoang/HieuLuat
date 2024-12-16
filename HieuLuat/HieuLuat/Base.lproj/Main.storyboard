@@ -278,6 +278,11 @@
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                                                 <state key="normal" image="tracuumucphat"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <segue destination="n4D-Vs-mwJ" kind="show" id="bCe-lV-SqL"/>
                                                                 </connections>
@@ -314,6 +319,11 @@
                                                                 <state key="normal" image="tracuubienbao">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <segue destination="UDc-4c-lDr" kind="show" id="uJ4-eV-f50"/>
                                                                 </connections>
@@ -348,6 +358,11 @@
                                                                 <state key="normal" image="tracuuvachke">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <segue destination="70T-2Q-g9y" kind="show" id="ISc-qj-nJd"/>
                                                                 </connections>
@@ -404,6 +419,11 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                         <state key="normal" title="Tra cứu nhanh"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="0Yw-pY-oe6" kind="show" id="mzu-Np-Gb0"/>
                                         </connections>
@@ -2189,6 +2209,11 @@ kết cấu hạ tầng đường sắt</string>
                                 <state key="normal" title="Xong">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnXongAction:" destination="z67-X4-AOs" eventType="touchDown" id="gC7-cH-Dsi"/>
                                 </connections>
@@ -2727,6 +2752,11 @@ kết cấu hạ tầng đường sắt</string>
                                                                     <constraint firstAttribute="width" constant="35" id="Wnv-3z-Dqo"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Mũi tên" image="Arrow"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnArrowAct:" destination="UDc-4c-lDr" eventType="touchDown" id="tz0-4I-9Gj"/>
                                                                 </connections>
@@ -2755,6 +2785,11 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
                                                                 <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Chữ số" image="Alphanumeric" backgroundImage="Alphanumeric"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnAlphanumericAct:" destination="UDc-4c-lDr" eventType="touchDown" id="wwI-fa-2yR"/>
                                                                 </connections>
@@ -2789,6 +2824,11 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
                                                                 <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Người, vật" image="Creatures"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnCreaturesAct:" destination="UDc-4c-lDr" eventType="touchDown" id="ymo-94-3fd"/>
                                                                 </connections>
@@ -2811,6 +2851,11 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
                                                                 <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Phương tiện" image="Vehicles"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnVehiclesAct:" destination="UDc-4c-lDr" eventType="touchDown" id="qIP-a2-yRC"/>
                                                                 </connections>
@@ -2839,6 +2884,11 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
                                                                 <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Biểu tượng" image="Signs"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnSignsAct:" destination="UDc-4c-lDr" eventType="touchDown" id="Saz-Bh-8uX"/>
                                                                 </connections>
@@ -2859,6 +2909,11 @@ kết cấu hạ tầng đường sắt</string>
                                                             <constraint firstItem="AeO-Gc-u7H" firstAttribute="top" secondItem="W9s-4G-ZOE" secondAttribute="top" constant="2" id="YoO-oA-2lG"/>
                                                             <constraint firstAttribute="trailing" secondItem="X6n-0M-Qcq" secondAttribute="trailing" constant="2" id="c43-rS-Xv4"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4t-wv-IMc" userLabel="ViewStructures">
                                                         <rect key="frame" x="106.5" y="66" width="98.5" height="62"/>
@@ -2867,6 +2922,11 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
                                                                 <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Công trình, Cấu trúc" image="Structures"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnStructuresAct:" destination="UDc-4c-lDr" eventType="touchDown" id="hBh-Kh-yxt"/>
                                                                 </connections>
@@ -2901,6 +2961,11 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
                                                                 <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Hình dạng" image="Figures"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnFiguresAct:" destination="UDc-4c-lDr" eventType="touchDown" id="Vxa-uv-ol2"/>
                                                                 </connections>
@@ -3210,6 +3275,11 @@ kết cấu hạ tầng đường sắt</string>
                                         <state key="normal" title="Xong">
                                             <color key="titleColor" red="0.97405253599999997" green="1" blue="0.98692935439999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="btnXongOnTouchDown:" destination="bHe-bI-s7N" eventType="touchDown" id="45j-XQ-c3B"/>
                                         </connections>
@@ -3283,6 +3353,11 @@ kết cấu hạ tầng đường sắt</string>
                                         <state key="normal" title="Xong">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="btnDoneAction:" destination="3kr-rx-vyq" eventType="touchDown" id="yzK-d8-29M"/>
                                         </connections>
@@ -3383,6 +3458,11 @@ kết cấu hạ tầng đường sắt</string>
                                 <state key="normal" title="Xong">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnXongOnTouchDown:" destination="xmY-Cs-zLN" eventType="touchDown" id="tM3-mk-mJN"/>
                                 </connections>
@@ -4421,6 +4501,11 @@ kết cấu hạ tầng đường sắt</string>
                                                                     <constraint firstAttribute="height" constant="35" id="MDA-2e-5Ab"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Mũi tên" image="onroad"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnArrowAct:" destination="UDc-4c-lDr" eventType="touchDown" id="Fyi-g7-Pnv"/>
                                                                     <action selector="btnOnroadAct:" destination="70T-2Q-g9y" eventType="touchUpInside" id="xzD-g6-5KD"/>
@@ -4449,6 +4534,11 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
                                                                 <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Chữ số" image="cross"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnAlphanumericAct:" destination="UDc-4c-lDr" eventType="touchDown" id="cNo-LE-5cv"/>
                                                                     <action selector="btnCrossAct:" destination="70T-2Q-g9y" eventType="touchUpInside" id="z44-Iw-KXw"/>
@@ -4483,6 +4573,11 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
                                                                 <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Người, vật" image="sidewalk"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnCreaturesAct:" destination="UDc-4c-lDr" eventType="touchDown" id="QbO-rV-ERW"/>
                                                                     <action selector="btnSidewalkAct:" destination="70T-2Q-g9y" eventType="touchUpInside" id="lKa-ji-UcQ"/>
@@ -4505,6 +4600,11 @@ kết cấu hạ tầng đường sắt</string>
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
                                                                 <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Phương tiện" image="obstacles"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnObstacleAct:" destination="70T-2Q-g9y" eventType="touchUpInside" id="E8c-GB-7LE"/>
                                                                     <action selector="btnVehiclesAct:" destination="UDc-4c-lDr" eventType="touchDown" id="bEN-63-T9I"/>
@@ -4643,6 +4743,11 @@ kết cấu hạ tầng đường sắt</string>
                                 <state key="normal" title="Xong">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnXongAction:" destination="mVo-FR-jcp" eventType="touchUpInside" id="g3E-Ag-mce"/>
                                 </connections>
@@ -4699,6 +4804,11 @@ kết cấu hạ tầng đường sắt</string>
                                         <state key="normal" title="Cập nhật">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="btnUpdateAct:" destination="7BN-pc-rUz" eventType="touchUpInside" id="GTO-eo-VjF"/>
                                         </connections>
@@ -5279,7 +5389,7 @@ kết cấu hạ tầng đường sắt</string>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="20"/>
+                                                <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -5295,7 +5405,7 @@ kết cấu hạ tầng đường sắt</string>
                                         <state key="normal" image="speaker_off"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="20"/>
+                                                <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -5815,10 +5925,10 @@ kết cấu hạ tầng đường sắt</string>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="KwK-7q-h5m"/>
+        <segue reference="fx5-Wp-0nq"/>
         <segue reference="Dwh-PK-agn"/>
         <segue reference="4Sv-Gj-def"/>
-        <segue reference="wfD-bY-mxt"/>
+        <segue reference="cxy-pQ-lPK"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Alphanumeric" width="90" height="90"/>
