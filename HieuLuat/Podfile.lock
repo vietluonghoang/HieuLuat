@@ -115,6 +115,9 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.11.5):
     - GoogleUtilities/Logger
+  - Mixpanel-swift (4.3.0):
+    - Mixpanel-swift/Complete (= 4.3.0)
+  - Mixpanel-swift/Complete (4.3.0)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -133,6 +136,7 @@ DEPENDENCIES:
   - FirebaseRemoteConfig
   - FMDB
   - Google-Mobile-Ads-SDK
+  - Mixpanel-swift
   - SwiftyJSON
   - TapjoySDK
 
@@ -155,6 +159,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUserMessagingPlatform
     - GoogleUtilities
+    - Mixpanel-swift
     - nanopb
     - PromisesObjC
     - PromisesSwift
@@ -179,12 +184,13 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
   GoogleUserMessagingPlatform: dce302b8f1b84d6e945812ee7a15c3f65a102cbf
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
+  Mixpanel-swift: 2192b9a24cf41b870749e4e0e10fbc9822bb2b4a
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   TapjoySDK: 3ae1f259048b6daa4a6ea7c2fcb0d111480d7bb1
 
-PODFILE CHECKSUM: d9c8441fb8b742f401e672710c91e637bd439127
+PODFILE CHECKSUM: 2709c0de7d775867126b0fba71ebdbb9ead466a0
 
 COCOAPODS: 1.15.2

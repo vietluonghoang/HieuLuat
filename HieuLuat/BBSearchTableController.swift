@@ -70,6 +70,7 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         
         initAds()
         AnalyticsHelper.sendAnalyticEvent(eventName: "open_screen", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_TRACUUBIENBAO])
+        AnalyticsHelper.sendAnalyticEventMixPanel(eventName: "screen_open", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_TRACUUBIENBAO])
     }
     
     override func didReceiveMemoryWarning() {

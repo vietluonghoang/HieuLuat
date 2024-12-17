@@ -6,44 +6,53 @@
 //  Copyright © 2022 VietLH. All rights reserved.
 //
 
-import UIKit
 import FirebaseRemoteConfig
+import UIKit
 
 class SplashScreenViewController: UIViewController {
     var remoteConfig: RemoteConfig!
     var delayTimer: Timer?
     @IBOutlet var viewMainView: UIView!
     var homeOpened = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
-        RunLoop.current.run(until: Date(timeIntervalSinceNow : 2.0)) //delay 2 seconds to view splash screen longer
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: 2.0))  //delay 2 seconds to view splash screen longer
         // Do any additional setup after loading the view.
-        self.viewMainView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(moveToHomeAgain)))
+        self.viewMainView.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self, action: #selector(moveToHomeAgain)))
         _ = DataConnection.instance()
-        updateRemoteConfig() //update remote config from firebase
-        print("Delay to wait for initialization of Firebase and Device information.....")
-        delayTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkIfInitializationDone), userInfo: nil, repeats: true)
+        updateRemoteConfig()  //update remote config from firebase
+        print(
+            "Delay to wait for initialization of Firebase and Device information....."
+        )
+        delayTimer = Timer.scheduledTimer(
+            timeInterval: 1, target: self,
+            selector: #selector(checkIfInitializationDone), userInfo: nil,
+            repeats: true)
+        AnalyticsHelper.sendAnalyticEventMixPanel(
+            eventName: "app_open", params: [:])
         moveToHome()
     }
-    
+
     /*
      // MARK: - Navigation
-     
+
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
      }
      */
-    
-    func updateRemoteConfig(){
+
+    func updateRemoteConfig() {
         print("--- Getting RemoteConfig from Firebase")
-        
+
         remoteConfig = RemoteConfig.remoteConfig()
         let settings = RemoteConfigSettings()
         settings.minimumFetchInterval = 0
@@ -55,54 +64,106 @@ class SplashScreenViewController: UIViewController {
                 self.remoteConfig.activate { changed, error in
                     // ...
                 }
+                var params = [
+                    "DefaultActiveNDXPId": String(
+                        GeneralSettings.getActiveNDXPId),
+                    "DefaultActiveQC41Id": String(
+                        GeneralSettings.getActiveQC41Id),
+                    "ENABLE_BANNER_ADS": String(
+                        GeneralSettings.isEnableBannerAds),
+                    "ENABLE_INAPP_NOTIF": String(
+                        GeneralSettings.isEnableInappNotif),
+                    "ENABLE_INTERSTITIAL_ADS": String(
+                        GeneralSettings.isEnableInterstitialAds),
+                    "isDevMode": String(GeneralSettings.isDevMode),
+                    "MINIMUM_ADS_INTERVAL": String(
+                        GeneralSettings.minimumAdsIntervalInSeconds),
+                    "MINIMUM_APP_VERSION_REQUIRED": String(
+                        GeneralSettings.minimumAppVersionRequired),
+                    "requiredDBVersion": String(
+                        GeneralSettings.getRequiredDatabaseVersion),
+                ]
+                AnalyticsHelper.sendAnalyticEventMixPanel(
+                    eventName: "app_config", params: params)
             } else {
                 print("RemoteConfig not fetched")
-                print("Error: \(error?.localizedDescription ?? "No error available.")")
+                print(
+                    "Error: \(error?.localizedDescription ?? "No error available.")"
+                )
             }
         }
         fetchRemoteConfig()
     }
-    
-    func fetchRemoteConfig(){
-        GeneralSettings.getRequiredDatabaseVersion = remoteConfig.configValue(forKey: "requiredDBVersion").numberValue.intValue
-        print("--- requiredDBVersion: \(GeneralSettings.getRequiredDatabaseVersion)")
-        GeneralSettings.minimumAppVersionRequired = remoteConfig.configValue(forKey: "minimumAppVersion").stringValue!
-        print("--- minimumAppVersion: \(GeneralSettings.minimumAppVersionRequired)")
-        GeneralSettings.minimumAdsIntervalInSeconds = remoteConfig.configValue(forKey: "minimumAdsInterval").numberValue.intValue
-        print("--- minimumAdsInterval: \(GeneralSettings.minimumAdsIntervalInSeconds)")
-        GeneralSettings.isEnableInterstitialAds = remoteConfig.configValue(forKey: "enableInterstitialAds").boolValue
-        print("--- enableInterstitialAds: \(GeneralSettings.isEnableInterstitialAds)")
-        GeneralSettings.isEnableInappNotif = remoteConfig.configValue(forKey: "enableInappNotif").boolValue
+
+    func fetchRemoteConfig() {
+
+        GeneralSettings.getRequiredDatabaseVersion =
+            remoteConfig.configValue(forKey: "requiredDBVersion").numberValue
+            .intValue
+        print(
+            "--- requiredDBVersion: \(GeneralSettings.getRequiredDatabaseVersion)"
+        )
+        GeneralSettings.minimumAppVersionRequired = remoteConfig.configValue(
+            forKey: "minimumAppVersion"
+        ).stringValue!
+        print(
+            "--- minimumAppVersion: \(GeneralSettings.minimumAppVersionRequired)"
+        )
+        GeneralSettings.minimumAdsIntervalInSeconds =
+            remoteConfig.configValue(forKey: "minimumAdsInterval").numberValue
+            .intValue
+        print(
+            "--- minimumAdsInterval: \(GeneralSettings.minimumAdsIntervalInSeconds)"
+        )
+        GeneralSettings.isEnableInterstitialAds =
+            remoteConfig.configValue(forKey: "enableInterstitialAds").boolValue
+        print(
+            "--- enableInterstitialAds: \(GeneralSettings.isEnableInterstitialAds)"
+        )
+        GeneralSettings.isEnableInappNotif =
+            remoteConfig.configValue(forKey: "enableInappNotif").boolValue
         print("--- enableInappNotif: \(GeneralSettings.isEnableInappNotif)")
-        GeneralSettings.isEnableBannerAds = remoteConfig.configValue(forKey: "enableBannerAds").boolValue
+        GeneralSettings.isEnableBannerAds =
+            remoteConfig.configValue(forKey: "enableBannerAds").boolValue
         print("--- enableBannerAds: \(GeneralSettings.isEnableBannerAds)")
-        GeneralSettings.isDevMode = remoteConfig.configValue(forKey: "developementMode").boolValue
+        GeneralSettings.isDevMode =
+            remoteConfig.configValue(forKey: "developementMode").boolValue
         print("--- developementMode: \(GeneralSettings.isDevMode)")
-        GeneralSettings.getActiveQC41Id = remoteConfig.configValue(forKey: "defaultActiveQC41Id").numberValue.int64Value
+        GeneralSettings.getActiveQC41Id =
+            remoteConfig.configValue(forKey: "defaultActiveQC41Id").numberValue
+            .int64Value
         print("--- defaultActiveQC41Id: \(GeneralSettings.getActiveQC41Id)")
-        GeneralSettings.getActiveNDXPId = remoteConfig.configValue(forKey: "defaultActiveNDXPId").numberValue.int64Value
+        GeneralSettings.getActiveNDXPId =
+            remoteConfig.configValue(forKey: "defaultActiveNDXPId").numberValue
+            .int64Value
         print("--- defaultActiveNDXPId: \(GeneralSettings.getActiveNDXPId)")
         print("--- tamgiuPhuongtienDieukhoanID: ")
-        GeneralSettings.setTamgiuPhuongtienParentID(tamgiuphuongtienArr: remoteConfig.configValue(forKey: "tamgiuPhuongtienDieukhoanID").jsonValue!)
+        GeneralSettings.setTamgiuPhuongtienParentID(
+            tamgiuphuongtienArr: remoteConfig.configValue(
+                forKey: "tamgiuPhuongtienDieukhoanID"
+            ).jsonValue!)
         print("RemoteConfig fetched successfully")
         GeneralSettings.isRemoteConfigFetched = true
     }
-    
-    @objc func checkIfInitializationDone(){
+
+    @objc func checkIfInitializationDone() {
         print("Checking the initialization conditions....")
-        if (!AnalyticsHelper.getIdForVendor().isEmpty && !AnalyticsHelper.getAdsId().isEmpty && !AnalyticsHelper.getAdsId().contains("undefined")) {
+        if !AnalyticsHelper.getIdForVendor().isEmpty
+            && !AnalyticsHelper.getAdsId().isEmpty
+            && !AnalyticsHelper.getAdsId().contains("undefined")
+        {
             delayTimer?.invalidate()
             print(".... Done")
         }
     }
-    
-    func moveToHome(){
+
+    func moveToHome() {
         print("forwarding to Home")
         performSegue(withIdentifier: "showHome", sender: nil)
         homeOpened = true
     }
-    
-    @objc func moveToHomeAgain(){
+
+    @objc func moveToHomeAgain() {
         if homeOpened {
             moveToHome()
         }

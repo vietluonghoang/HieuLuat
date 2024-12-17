@@ -16,6 +16,7 @@ class UpdatePopupViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         AnalyticsHelper.sendAnalyticEvent(eventName: "open_screen", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_UPDATEVERSION])
+        AnalyticsHelper.sendAnalyticEventMixPanel(eventName: "screen_open", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_UPDATEVERSION])
     }
     
     @IBAction func btnUpdateAct(_ sender: Any) {
