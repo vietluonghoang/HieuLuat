@@ -32,6 +32,8 @@ pod 'FirebaseCrashlytics'
 pod 'FirebaseRemoteConfig'
 #install SwiftyJSON
 pod 'SwiftyJSON'
+#install MixPanel
+pod 'Mixpanel-swift'
 
 post_install do |installer|
  installer.pods_project.targets.each do |target|

@@ -32,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //                GADMobileAds.configure(withApplicationID: "ca-app-pub-1832172217205335~6889602059")
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         
+        // Initialize MixPanel
+        AnalyticsHelper.initMixPanel(userID: "")
+        
         //=====Setup TapjoySDK=====
         //Set up success and failure notifications
         NotificationCenter.default.addObserver(self, selector: #selector(tjcConnectSuccess), name: NSNotification.Name(rawValue: TJC_CONNECT_SUCCESS), object: nil)

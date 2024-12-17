@@ -30,6 +30,11 @@ class GeneralSettings {
     private static var fbWeThoong = [URL(string: "fb://profile/224587561051762"),URL(string: "http://fb.me/wethoong")]
     private static var fbCongdonghieuluat = [URL(string: "fb://profile/2262780957320858"),URL(string: "https://www.facebook.com/groups/congdonghieuluat/")]
     private static var emailWeThoong = "wethoong@gmail.com"
+    private static var mixPanelProjectToken = "df5055fa1fab32aa05305dab957d7674"
+    private static var defaultMixPanelUserID = "USER_ID"
+    private static var trackAutomaticEvents = false
+    private static var mixPanelEnabled = true
+    private static var defaultMixPanelEventSendTimeout = 3000 //in miliseconds to make it consistent with the config on Android (this value will be devided by 1000 when passing to Timer)
     
     public static var isRemoteConfigFetched = false
     //    private static var currentDBVersion = 0
@@ -53,6 +58,50 @@ class GeneralSettings {
     private static var defaultActiveQC41Id = 7 //this would be used for the search of querying the lastest road sign
     private static var defaultActiveNDXPId = 17 //this would be used for the search of querying the latest NDXP
     
+    static var getMixPanelProjectToken: String {
+        get{
+            return self.mixPanelProjectToken
+        }
+        set(v){
+            
+        }
+    }
+    
+    static var getDefaultMixPanelUserID: String {
+        get{
+            return self.defaultMixPanelUserID
+        }
+        set(v){
+            self.defaultMixPanelUserID = v;
+        }
+    }
+    
+    static var isTrackAutomaticEvents: Bool {
+        get{
+            return self.trackAutomaticEvents
+        }
+        set(v){
+            self.trackAutomaticEvents = v;
+        }
+    }
+    
+    static var isMixPanelEnabled: Bool {
+        get{
+            return self.mixPanelEnabled
+        }
+        set(v){
+            self.mixPanelEnabled = v;
+        }
+    }
+    
+    static var getDefaultMixPanelEventSendTimeout: Int {
+        get{
+            return self.defaultMixPanelEventSendTimeout
+        }
+        set(v){
+            self.defaultMixPanelEventSendTimeout = v;
+        }
+    }
     
     static var remainingConnectionTries: Int {
         get{
