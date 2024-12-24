@@ -65,23 +65,28 @@ class SplashScreenViewController: UIViewController {
                     // ...
                 }
                 var params = [
-                    "DefaultActiveNDXPId": String(
+                    "defaultActiveNDXPId": String(
                         GeneralSettings.getActiveNDXPId),
-                    "DefaultActiveQC41Id": String(
+                    "defaultActiveQC41Id": String(
                         GeneralSettings.getActiveQC41Id),
-                    "ENABLE_BANNER_ADS": String(
+                    "defaultConnectionTries": String(GeneralSettings.remainingConnectionTries),
+                    "defaultMixPanelEventSendTimeout": String(GeneralSettings.getDefaultMixPanelEventSendTimeout),
+                    "developementMode": String(GeneralSettings.isDevMode),
+                    "enableBannerAds": String(
                         GeneralSettings.isEnableBannerAds),
-                    "ENABLE_INAPP_NOTIF": String(
+                    "enableInappNotif": String(
                         GeneralSettings.isEnableInappNotif),
-                    "ENABLE_INTERSTITIAL_ADS": String(
+                    "enableInterstitialAds": String(
                         GeneralSettings.isEnableInterstitialAds),
-                    "isDevMode": String(GeneralSettings.isDevMode),
-                    "MINIMUM_ADS_INTERVAL": String(
+                    "minimumAdsInterval": String(
                         GeneralSettings.minimumAdsIntervalInSeconds),
-                    "MINIMUM_APP_VERSION_REQUIRED": String(
+                    "minimumAppVersion": String(
                         GeneralSettings.minimumAppVersionRequired),
+                    "mixPanelEnabled": String(GeneralSettings.isMixPanelEnabled),
                     "requiredDBVersion": String(
                         GeneralSettings.getRequiredDatabaseVersion),
+                    "tamgiuPhuongtienDieukhoanID": String(GeneralSettings.getTamgiuPhuongtienParentID()),
+                    "trackAutomaticEvents": String(GeneralSettings.isTrackAutomaticEvents)
                 ]
                 AnalyticsHelper.sendAnalyticEventMixPanel(
                     eventName: "app_config", params: params)
