@@ -97,17 +97,35 @@ class SplashScreenViewController: UIViewController {
 
     func fetchRemoteConfig() {
 
-        GeneralSettings.getRequiredDatabaseVersion =
-            remoteConfig.configValue(forKey: "requiredDBVersion").numberValue
+        GeneralSettings.getActiveNDXPId =
+            remoteConfig.configValue(forKey: "defaultActiveNDXPId").numberValue
+            .int64Value
+        print("--- defaultActiveNDXPId: \(GeneralSettings.getActiveNDXPId)")
+        GeneralSettings.getActiveQC41Id =
+            remoteConfig.configValue(forKey: "defaultActiveQC41Id").numberValue
+            .int64Value
+        print("--- defaultActiveQC41Id: \(GeneralSettings.getActiveQC41Id)")
+        GeneralSettings.remainingConnectionTries =
+            remoteConfig.configValue(forKey: "defaultConnectionTries").numberValue
             .intValue
+        print("--- defaultConnectionTries: \(GeneralSettings.remainingConnectionTries)")
+        GeneralSettings.getDefaultMixPanelEventSendTimeout =
+            remoteConfig.configValue(forKey: "defaultMixPanelEventSendTimeout").numberValue
+            .intValue
+        print("--- defaultMixPanelEventSendTimeout: \(GeneralSettings.getDefaultMixPanelEventSendTimeout)")
+        GeneralSettings.isDevMode =
+            remoteConfig.configValue(forKey: "developementMode").boolValue
+        print("--- developementMode: \(GeneralSettings.isDevMode)")
+        GeneralSettings.isEnableBannerAds =
+            remoteConfig.configValue(forKey: "enableBannerAds").boolValue
+        print("--- enableBannerAds: \(GeneralSettings.isEnableBannerAds)")
+        GeneralSettings.isEnableInappNotif =
+            remoteConfig.configValue(forKey: "enableInappNotif").boolValue
+        print("--- enableInappNotif: \(GeneralSettings.isEnableInappNotif)")
+        GeneralSettings.isEnableInterstitialAds =
+            remoteConfig.configValue(forKey: "enableInterstitialAds").boolValue
         print(
-            "--- requiredDBVersion: \(GeneralSettings.getRequiredDatabaseVersion)"
-        )
-        GeneralSettings.minimumAppVersionRequired = remoteConfig.configValue(
-            forKey: "minimumAppVersion"
-        ).stringValue!
-        print(
-            "--- minimumAppVersion: \(GeneralSettings.minimumAppVersionRequired)"
+            "--- enableInterstitialAds: \(GeneralSettings.isEnableInterstitialAds)"
         )
         GeneralSettings.minimumAdsIntervalInSeconds =
             remoteConfig.configValue(forKey: "minimumAdsInterval").numberValue
@@ -115,34 +133,31 @@ class SplashScreenViewController: UIViewController {
         print(
             "--- minimumAdsInterval: \(GeneralSettings.minimumAdsIntervalInSeconds)"
         )
-        GeneralSettings.isEnableInterstitialAds =
-            remoteConfig.configValue(forKey: "enableInterstitialAds").boolValue
+        GeneralSettings.minimumAppVersionRequired = remoteConfig.configValue(
+            forKey: "minimumAppVersion"
+        ).stringValue!
         print(
-            "--- enableInterstitialAds: \(GeneralSettings.isEnableInterstitialAds)"
+            "--- minimumAppVersion: \(GeneralSettings.minimumAppVersionRequired)"
         )
-        GeneralSettings.isEnableInappNotif =
-            remoteConfig.configValue(forKey: "enableInappNotif").boolValue
-        print("--- enableInappNotif: \(GeneralSettings.isEnableInappNotif)")
-        GeneralSettings.isEnableBannerAds =
-            remoteConfig.configValue(forKey: "enableBannerAds").boolValue
-        print("--- enableBannerAds: \(GeneralSettings.isEnableBannerAds)")
-        GeneralSettings.isDevMode =
-            remoteConfig.configValue(forKey: "developementMode").boolValue
-        print("--- developementMode: \(GeneralSettings.isDevMode)")
-        GeneralSettings.getActiveQC41Id =
-            remoteConfig.configValue(forKey: "defaultActiveQC41Id").numberValue
-            .int64Value
-        print("--- defaultActiveQC41Id: \(GeneralSettings.getActiveQC41Id)")
-        GeneralSettings.getActiveNDXPId =
-            remoteConfig.configValue(forKey: "defaultActiveNDXPId").numberValue
-            .int64Value
-        print("--- defaultActiveNDXPId: \(GeneralSettings.getActiveNDXPId)")
+        GeneralSettings.isMixPanelEnabled =
+            remoteConfig.configValue(forKey: "mixPanelEnabled").boolValue
+        print("--- mixPanelEnabled: \(GeneralSettings.isMixPanelEnabled)")
+        GeneralSettings.getRequiredDatabaseVersion =
+            remoteConfig.configValue(forKey: "requiredDBVersion").numberValue
+            .intValue
+        print(
+            "--- requiredDBVersion: \(GeneralSettings.getRequiredDatabaseVersion)"
+        )
         print("--- tamgiuPhuongtienDieukhoanID: ")
         GeneralSettings.setTamgiuPhuongtienParentID(
             tamgiuphuongtienArr: remoteConfig.configValue(
                 forKey: "tamgiuPhuongtienDieukhoanID"
             ).jsonValue!)
         print("RemoteConfig fetched successfully")
+        GeneralSettings.isTrackAutomaticEvents =
+            remoteConfig.configValue(forKey: "trackAutomaticEvents").boolValue
+        print("--- trackAutomaticEvents: \(GeneralSettings.isTrackAutomaticEvents)")
+        
         GeneralSettings.isRemoteConfigFetched = true
     }
 
