@@ -161,6 +161,10 @@ class GeneralSettings {
         }
     }
     
+    class func getTamgiuPhuongtienParentID() -> String {
+        return JSON(tamgiuPhuongtienDieukhoanID).stringValue
+    }
+    
     class func getTamgiuPhuongtienParentID(vanbanId: Int64) -> String {
         if tamgiuPhuongtienDieukhoanID[Int(vanbanId)] == nil {
             return ""
