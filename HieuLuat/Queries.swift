@@ -720,13 +720,19 @@ class Queries: NSObject {
         }
         
         let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
-        var result = [String:String]()
+        var result = [String:[String:String]]()
         if resultSet != nil {
             while resultSet.next() {
                 let pid = resultSet.string(forColumn: "pid")!
                 let pname = resultSet.string(forColumn: "name")!
                 if pid != "" {
-                    result[pname] = pid
+                    var info = result[pname]
+                    if info == nil {
+                        result[pname] = [pid:pname]
+                    }else{
+                        info![pid] = pname
+                        result[pname] = info
+                    }
                 }
             }
         }
@@ -739,15 +745,25 @@ class Queries: NSObject {
         
         var dkList = [String:Dieukhoan]()
         var finalResult = [Dieukhoan]()
-        for dk in searchDieukhoanByIDs(keyword: Array(result.values), vanbanid: [String(GeneralSettings.getActiveQC41Id)]) {
+        var idList = [String]()
+        for pinfo in result{
+            for pid in pinfo.value.keys{
+                idList.append(pid)
+            }
+        }
+        for dk in searchDieukhoanByIDs(keyword: idList, vanbanid: [String(GeneralSettings.getActiveQC41Id)]) {
             dkList["\(dk.getId())"] = dk
         }
         
         for rs in result {
-            let dk = dkList[rs.value]!
-            let fdk = Dieukhoan(dk: dk)
-            fdk.setDefaultMinhhoa(name: rs.key)
-            finalResult.append(fdk)
+            for pinfo in rs.value {
+                if dkList[pinfo.key] != nil {
+                    let dk = dkList[pinfo.key]!
+                    let fdk = Dieukhoan(dk: dk)
+                    fdk.setDefaultMinhhoa(name: pinfo.value)
+                    finalResult.append(fdk)
+                }
+            }
         }
         
         return finalResult
@@ -790,13 +806,19 @@ class Queries: NSObject {
         }
         
         let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
-        var result = [String:String]()
+        var result = [String:[String:String]]()
         if resultSet != nil {
             while resultSet.next() {
                 let pid = resultSet.string(forColumn: "pid")!
                 let pname = resultSet.string(forColumn: "name")!
                 if pid != "" {
-                    result[pname] = pid
+                    var info = result[pname]
+                    if info == nil {
+                        result[pname] = [pid:pname]
+                    }else{
+                        info![pid] = pname
+                        result[pname] = info
+                    }
                 }
             }
         }
@@ -809,15 +831,25 @@ class Queries: NSObject {
         
         var dkList = [String:Dieukhoan]()
         var finalResult = [Dieukhoan]()
-        for dk in searchDieukhoanByIDs(keyword: Array(result.values), vanbanid: [String(GeneralSettings.getActiveQC41Id)]) {
+        var idList = [String]()
+        for pinfo in result{
+            for pid in pinfo.value.keys{
+                idList.append(pid)
+            }
+        }
+        for dk in searchDieukhoanByIDs(keyword: idList, vanbanid: [String(GeneralSettings.getActiveQC41Id)]) {
             dkList["\(dk.getId())"] = dk
         }
         
         for rs in result {
-            let dk = dkList[rs.value]!
-            let fdk = Dieukhoan(dk: dk)
-            fdk.setDefaultMinhhoa(name: rs.key)
-            finalResult.append(fdk)
+            for pinfo in rs.value {
+                if dkList[pinfo.key] != nil {
+                    let dk = dkList[pinfo.key]!
+                    let fdk = Dieukhoan(dk: dk)
+                    fdk.setDefaultMinhhoa(name: pinfo.value)
+                    finalResult.append(fdk)
+                }
+            }
         }
         
         return finalResult
