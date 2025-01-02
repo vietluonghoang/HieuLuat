@@ -73,12 +73,12 @@ class AdsHelper {
         }
         bannerView.rootViewController = root
         let request = GADRequest()
-        if GeneralSettings.isDevMode {
-            //            deprecated 'testDevices' method
-            //            request.testDevices = [ "80d71213058fcf16c5bdb59a1fb12840" ]
-            print("========= ADS: signing test device")
-            GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "80d71213058fcf16c5bdb59a1fb12840" ]
-        }
+//        if GeneralSettings.isDevMode {
+//            //            deprecated 'testDevices' method
+//            //            request.testDevices = [ "80d71213058fcf16c5bdb59a1fb12840" ]
+//            print("========= ADS: signing test device")
+//            GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "80d71213058fcf16c5bdb59a1fb12840" ]
+//        }
         bannerView.load(request)
     }
     
