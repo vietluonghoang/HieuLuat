@@ -21,12 +21,12 @@ class SplashScreenViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        RunLoop.current.run(until: Date(timeIntervalSinceNow: 2.0))  //delay 2 seconds to view splash screen longer
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: 5.0))  //delay 5 seconds to view splash screen longer
         // Do any additional setup after loading the view.
         self.viewMainView.addGestureRecognizer(
             UITapGestureRecognizer(
                 target: self, action: #selector(moveToHomeAgain)))
-        _ = DataConnection.instance()
+        _ = DataConnection.instance() 
         updateRemoteConfig()  //update remote config from firebase
         print(
             "Delay to wait for initialization of Firebase and Device information....."

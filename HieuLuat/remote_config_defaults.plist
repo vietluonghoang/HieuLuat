@@ -2,27 +2,33 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>enableBannerAds</key>
-	<string>true</string>
+	<key>requiredDBVersion</key>
+	<string>16</string>
 	<key>tamgiuPhuongtienDieukhoanID</key>
-	<string>{&quot;6&quot;:&quot;6592&quot;, &quot;2&quot;:&quot;2820&quot;, &quot;17&quot;:&quot;12819&quot;}</string>
+	<string>{&quot;6&quot;:&quot;6592&quot;, &quot;2&quot;:&quot;2820&quot;, &quot;17&quot;:&quot;12766&quot;, &quot;23&quot;:&quot;16779&quot;}</string>
+	<key>trackAutomaticEvents</key>
+	<string>false</string>
 	<key>developementMode</key>
 	<string>true</string>
 	<key>defaultActiveNDXPId</key>
-	<string>17</string>
+	<string>23</string>
 	<key>enableInappNotif</key>
 	<string>false</string>
+	<key>enableBannerAds</key>
+	<string>true</string>
 	<key>enableInterstitialAds</key>
 	<string>false</string>
+	<key>mixPanelEnabled</key>
+	<string>true</string>
 	<key>defaultConnectionTries</key>
-	<string>30</string>
-	<key>requiredDBVersion</key>
-	<string>12</string>
+	<string>20</string>
 	<key>defaultActiveQC41Id</key>
-	<string>7</string>
+	<string>22</string>
+	<key>defaultMixPanelEventSendTimeout</key>
+	<string>3000</string>
 	<key>minimumAppVersion</key>
-	<string>1.0</string>
+	<string>2.0</string>
 	<key>minimumAdsInterval</key>
-	<string>350</string>
+	<string>400</string>
 </dict>
 </plist>

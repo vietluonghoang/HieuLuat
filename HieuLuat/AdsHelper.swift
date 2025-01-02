@@ -64,9 +64,11 @@ class AdsHelper {
         
         if GeneralSettings.isDevMode {
             //test ad id
-            bannerView.adUnitID = "ca-app-pub-3940256099942544/6300978111"
+            print("========= ADS: showing test ads")
+            bannerView.adUnitID = "ca-app-pub-3940256099942544/2435281174"
         }else{
             //my ad id
+            print("========= ADS: showing real ads")
             bannerView.adUnitID = "ca-app-pub-1832172217205335/8933489074"
         }
         bannerView.rootViewController = root
@@ -74,6 +76,7 @@ class AdsHelper {
         if GeneralSettings.isDevMode {
             //            deprecated 'testDevices' method
             //            request.testDevices = [ "80d71213058fcf16c5bdb59a1fb12840" ]
+            print("========= ADS: signing test device")
             GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "80d71213058fcf16c5bdb59a1fb12840" ]
         }
         bannerView.load(request)
