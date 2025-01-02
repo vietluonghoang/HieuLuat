@@ -9,7 +9,7 @@
 	<key>trackAutomaticEvents</key>
 	<string>false</string>
 	<key>developementMode</key>
-	<string>true</string>
+	<string>false</string>
 	<key>defaultActiveNDXPId</key>
 	<string>23</string>
 	<key>enableInappNotif</key>
