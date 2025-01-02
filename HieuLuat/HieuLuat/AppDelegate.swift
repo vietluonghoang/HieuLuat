@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize the Google Mobile Ads SDK.
         //         Sample AdMob app ID: ca-app-pub-3940256099942544~1458002511
         //                GADMobileAds.configure(withApplicationID: "cca-app-pub-3940256099942544/6300978111")
-        //                GADMobileAds.configure(withApplicationID: "ca-app-pub-1832172217205335~6889602059")
+//        GADMobileAds.configure(withApplicationID: "ca-app-pub-1832172217205335~6889602059")
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         // Initialize MixPanel

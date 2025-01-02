@@ -16,9 +16,24 @@ class DataConnection: NSObject {
     private static var currentVersion = 0
     
     class func instance() -> FMDatabase {
-        if database == nil {
+        print("=============== Checking ===================")
+        print("===== Is DB Ready: \(database != nil)")
+        print("===== Curent DB Version: \(getCurrentDBVersion())")
+        print("===== Required DB Version: \(requiredDatabaseVersion)")
+        print("=============== Done ===================")
+        if database == nil || requiredDatabaseVersion > getCurrentDBVersion() {
             DataConnection.initDataConnection()
+        }else{
+            
         }
+        do {
+            if !database!.isOpen {
+                database!.open()
+            }
+        } catch {
+            print("=============== ERROR: database error")
+        }
+        print("=============== Returning DB... ready?... => \(database != nil)")
         return database!
     }
     
@@ -35,6 +50,8 @@ class DataConnection: NSObject {
         if !isDatabaseFileExisted(){
             copyDatabase(destinationPath: getDatabaseFileSourcePath())
         } else {
+            print("===== Curent DB Version: \(getCurrentDBVersion())")
+            print("===== Required DB Version: \(requiredDatabaseVersion)")
             if requiredDatabaseVersion > getCurrentDBVersion() {
                 print("===== Database file is outdated")
                 do {
@@ -73,7 +90,7 @@ class DataConnection: NSObject {
     
     private class func copyDatabase(destinationPath: String){
         let file = FileManager.default
-        print("===== Copying Database file")
+        print("===== Copying Database file....")
         let dpPathApp = Bundle.main.path(forResource: "Hieuluat", ofType: "sqlite")
         print("+++resPath: \(dpPathApp ?? "failed to get path")")
         do {
