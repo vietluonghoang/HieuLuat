@@ -166,7 +166,11 @@ class GeneralSettings {
     }
     
     class func getTamgiuPhuongtienParentID() -> String {
-        return JSON(tamgiuPhuongtienDieukhoanID).stringValue
+        var tamgiuConfig = "{"
+        for key in tamgiuPhuongtienDieukhoanID.keys{
+            tamgiuConfig += "\"\(key)\":\"\(tamgiuPhuongtienDieukhoanID[key] ?? "")\", "
+        }
+        return "\(Utils.removeLastCharacters(result: tamgiuConfig, length: 2))}"
     }
     
     class func getTamgiuPhuongtienParentID(vanbanId: Int64) -> String {
