@@ -64,7 +64,7 @@ class SplashScreenViewController: UIViewController {
                 self.remoteConfig.activate { changed, error in
                     // ...
                 }
-                var params = [
+                let params = [
                     "defaultActiveNDXPId": String(
                         GeneralSettings.getActiveNDXPId),
                     "defaultActiveQC41Id": String(
@@ -158,10 +158,11 @@ class SplashScreenViewController: UIViewController {
             tamgiuphuongtienArr: remoteConfig.configValue(
                 forKey: "tamgiuPhuongtienDieukhoanID"
             ).jsonValue!)
-        print("RemoteConfig fetched successfully")
         GeneralSettings.isTrackAutomaticEvents =
             remoteConfig.configValue(forKey: "trackAutomaticEvents").boolValue
         print("--- trackAutomaticEvents: \(GeneralSettings.isTrackAutomaticEvents)")
+        
+    print("RemoteConfig fetched successfully")
         
         GeneralSettings.isRemoteConfigFetched = true
     }
