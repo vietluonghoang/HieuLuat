@@ -287,19 +287,27 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     @objc func selectVachShapeActionListener(sender: UITapGestureRecognizer) {
-        for view in viewScrollviewContent.subviews {
-            for iv in view.subviews {
-                if iv.tag == sender.view?.tag {
-                    updateVachShapeSelected(vachShapeName: vachShapesFiltered[iv.tag])
-                    Utils.updateViewState(view: view, state: isVachShapeSelected(vachShapeName: vachShapesFiltered[iv.tag]), onColor: onColor, offColor: offColor)
-                } else {
-                    if !GeneralSettings.isAllowMultipleShapePlateSelect && isVachShapeSelected(vachShapeName: vachShapesFiltered[iv.tag]){
-                        updateVachShapeSelected(vachShapeName: vachShapesFiltered[iv.tag])
-                        Utils.updateViewState(view: view, state: isVachShapeSelected(vachShapeName: vachShapesFiltered[iv.tag]), onColor: onColor, offColor: offColor)
-                    }
-                }
+        guard let tappedTag = sender.view?.tag,
+              vachShapesFiltered.indices.contains(tappedTag) else { return }
+        
+        let tappedShape = vachShapesFiltered[tappedTag]
+        let wasSelected = isVachShapeSelected(vachShapeName: tappedShape)
+        
+        if !GeneralSettings.isAllowMultipleShapePlateSelect {
+            for key in vachShapesSelected.keys {
+                vachShapesSelected[key] = false
             }
         }
+        
+        vachShapesSelected[tappedShape] = !wasSelected
+        
+        for wrapper in viewScrollviewContent.subviews {
+            guard let imageView = wrapper.subviews.first,
+                  vachShapesFiltered.indices.contains(imageView.tag) else { continue }
+            let shapeName = vachShapesFiltered[imageView.tag]
+            Utils.updateViewState(view: wrapper, state: isVachShapeSelected(vachShapeName: shapeName), onColor: onColor, offColor: offColor)
+        }
+        
         updateSearchResults()
     }
     
