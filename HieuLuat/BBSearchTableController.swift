@@ -304,19 +304,27 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     @objc func selectPlateShapeActionListener(sender: UITapGestureRecognizer) {
-        for view in viewScrollviewContent.subviews {
-            for iv in view.subviews {
-                if iv.tag == sender.view?.tag {
-                    updatePlateShapeSelected(plateShapeName: plateShapesFiltered[iv.tag])
-                    Utils.updateViewState(view: view, state: isPlateShapeSelected(plateShapeName: plateShapesFiltered[iv.tag]), onColor: onColor, offColor: offColor)
-                } else {
-                    if !GeneralSettings.isAllowMultipleShapePlateSelect && isPlateShapeSelected(plateShapeName: plateShapesFiltered[iv.tag]){
-                        updatePlateShapeSelected(plateShapeName: plateShapesFiltered[iv.tag])
-                        Utils.updateViewState(view: view, state: isPlateShapeSelected(plateShapeName: plateShapesFiltered[iv.tag]), onColor: onColor, offColor: offColor)
-                    }
-                }
+        guard let tappedTag = sender.view?.tag,
+              plateShapesFiltered.indices.contains(tappedTag) else { return }
+        
+        let tappedShape = plateShapesFiltered[tappedTag]
+        let wasSelected = isPlateShapeSelected(plateShapeName: tappedShape)
+        
+        if !GeneralSettings.isAllowMultipleShapePlateSelect {
+            for key in plateShapesSelected.keys {
+                plateShapesSelected[key] = false
             }
         }
+        
+        plateShapesSelected[tappedShape] = !wasSelected
+        
+        for wrapper in viewScrollviewContent.subviews {
+            guard let imageView = wrapper.subviews.first,
+                  plateShapesFiltered.indices.contains(imageView.tag) else { continue }
+            let shapeName = plateShapesFiltered[imageView.tag]
+            Utils.updateViewState(view: wrapper, state: isPlateShapeSelected(plateShapeName: shapeName), onColor: onColor, offColor: offColor)
+        }
+        
         updateSearchResults()
     }
     
