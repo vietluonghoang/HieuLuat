@@ -6,6 +6,8 @@
 //  Copyright © 2019 VietLH. All rights reserved.
 //
 
+import UIKit
+
 class LoadingView: UIView {
     func showSpinner() {
         let ai = UIActivityIndicatorView.init(style: .whiteLarge)

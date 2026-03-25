@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMobileAds
 
-class InstructionDetailsViewController: UIViewController, TJPlacementDelegate {
+class InstructionDetailsViewController: UIViewController {
     @IBOutlet var viewBottom: UIView!
     @IBOutlet var scrViewContent: UIScrollView!
     @IBOutlet var viewTop: UIView!
@@ -27,7 +27,6 @@ class InstructionDetailsViewController: UIViewController, TJPlacementDelegate {
     var redirectionHelper = RedirectionHelper()
     var bannerView: GADBannerView!
     let btnFBBanner = UIButton()
-    var placement = TJPlacement()
     let network = NetworkHandler()
     
     override func viewDidLoad() {
@@ -72,11 +71,8 @@ class InstructionDetailsViewController: UIViewController, TJPlacementDelegate {
     }
     
     func initAds() {
-        placement = AdsHelper.initTJPlacement(name: "WeThoongPlacement", delegate: self)
-        placement.requestContent()
-        
         //Initialize Google Admob
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        bannerView = GADBannerView(adSize: GADAdSizeBanner)
         btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
         AdsHelper.initBannerAds(btnFBBanner: btnFBBanner, bannerView: bannerView, toView: viewBottom, root: self)
     }
@@ -174,38 +170,4 @@ class InstructionDetailsViewController: UIViewController, TJPlacementDelegate {
      }
      */
     
-    //Tapjoy Ads delegate
-    // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
-    func requestDidSucceed(_ placement: TJPlacement){
-        print("Request to TJ server successfully made")
-    }
-    
-    // Called when there was a problem during connecting Tapjoy servers.
-    func requestDidFail(_ placement: TJPlacement!, error: Error!) {
-        print("Request to TJ server failed to make")
-    }
-    
-    // Called when the content is actually available to display.
-    func contentIsReady(_ placement: TJPlacement!) {
-        print("Tj ads content is ready")
-        if AdsHelper.isValidToShowIntestitialAds() {
-            //log the timestamp of showing Interstitial ads
-            GeneralSettings.getLastInterstitialAdsOpenTimestamp = Int(NSDate().timeIntervalSince1970)
-            //log the number of time the the ads was shown during the day
-            GeneralSettings.getInterstitialAdsOpenTimes += 1
-            
-            //show the ad
-            placement.showContent(with: self)
-        }
-    }
-    
-    // Called when the content is showed.
-    func contentDidAppear(_ placement: TJPlacement!) {
-        print("Tj ads content showing")
-    }
-    
-    // Called when the content is dismissed.
-    func contentDidDisappear(_ placement: TJPlacement!) {
-        print("Tj ads content went away")
-    }
 }

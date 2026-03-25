@@ -35,28 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize MixPanel
         AnalyticsHelper.initMixPanel(userID: "")
         
-        //=====Setup TapjoySDK=====
-        //Set up success and failure notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(tjcConnectSuccess), name: NSNotification.Name(rawValue: TJC_CONNECT_SUCCESS), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(tjcConnectFail), name: NSNotification.Name(rawValue: TJC_CONNECT_FAILED), object: nil)
-        
-        //Turn on Tapjoy debug mode
-        if GeneralSettings.isDevMode {
-            Tapjoy.setDebugEnabled(true)
-        }else{
-            Tapjoy.setDebugEnabled(false)
-        }
-        //Tapjoy connect call
-        Tapjoy.connect("yYojHsRCSS2pV8bY5NMqOgEBt4iGX26mfOW99XyTfeLUjC-bN5EnpLQRgpnf")
         return true
-    }
-    
-    @objc func tjcConnectSuccess() {
-        print("Connect to TJ success")
-    }
-    
-    @objc func tjcConnectFail() {
-        print("Fail to connect to TJ")
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

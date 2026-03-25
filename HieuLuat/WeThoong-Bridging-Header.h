@@ -9,7 +9,5 @@
 #ifndef WeThoong_Bridging_Header_h
 #define WeThoong_Bridging_Header_h
 
-#import "Tapjoy/Tapjoy.h"
-#import <Tapjoy/TJPlacement.h>
 #endif /* WeThoong_Bridging_Header_h */
 

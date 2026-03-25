@@ -10,7 +10,7 @@ import UIKit
 import ImageIO
 
 
-class GifImageView: UIImage {
+class GifImageView: UIImage, @unchecked Sendable {
     
     func gifImageWithData(data: NSData) -> UIImage? {
         guard let source = CGImageSourceCreateWithData(data, nil) else {

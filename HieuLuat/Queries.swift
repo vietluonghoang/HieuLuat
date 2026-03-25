@@ -31,34 +31,6 @@ class Queries: NSObject {
         }
     }
     
-    class func insert(dieukhoan:Dieukhoan) {
-        //        Utils.database!.open()
-        //        let sql = "INSERT INTO Person (id, name, age) VALUES (?, ?, ?)"
-        //        Utils.database!.executeUpdate(sql, withArgumentsIn: [person.id!,person.name!, person.age!])
-        //        Utils.database!.close()
-    }
-    
-    class func update(dieukhoan:Dieukhoan) {
-        //        Utils.database!.open()
-        //        let sql = "UPDATE Person SET name = ?, age = ? WHERE id = ?"
-        //        Utils.database!.executeUpdate(sql,  withArgumentsIn: [person.name!, person.age!, person.id!])
-        //        Utils.database!.close()
-    }
-    
-    class func delete(dieukhoan:Dieukhoan) {
-        //        Utils.database!.open()
-        //        let sql = "DELETE FROM Person WHERE id = ?"
-        //        Utils.database!.executeUpdate(sql, withArgumentsIn: [person.id!])
-        //        Utils.database!.close()
-    }
-    
-    class func deleteAll() {
-        //        Utils.database!.open()
-        //        let sql = "DELETE FROM Person"
-        //        Utils.database!.executeUpdate(sql, withArgumentsIn: nil)
-        //        Utils.database!.close()
-    }
-    
     class func selectAllVanban() -> [Vanban]{
         let sql = "select vb.id as id, vb.ten as ten, vb.loai as lvbId, lvb.ten as lvbTen, vb.so as so, vb.nam as nam, vb.ma as ma, vb.coquanbanhanh as cqId, cq.ten as cqTen, vb.noidung as noidung, vb.hieuluc as hieuluc, vb.vanbanThaytheId as vanbanThaytheId, vb.tenRutgon as tenRutgon from tblVanban as vb join tblLoaiVanban as lvb on vb.loai = lvb.id JOIN tblCoquanbanhanh as cq on vb.coquanbanhanh = cq.id"
         let resultSet: FMResultSet! = DataConnection.instance().executeQuery(setRecordsCap(query: sql), withArgumentsIn: [])!
@@ -198,9 +170,9 @@ class Queries: NSObject {
     }
     
     class func getAllDirectRelatedDieukhoan(dieukhoanId: Int64) -> [Dieukhoan] {
-        let sql = rawSqlQuery + " dkId in (select relatedDieukhoanId from tblRelatedDieukhoan where dieukhoanId = \(dieukhoanId))"
+        let sql = rawSqlQuery + " dkId in (select relatedDieukhoanId from tblRelatedDieukhoan where dieukhoanId = ?)"
         
-        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [dieukhoanId])!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -212,9 +184,9 @@ class Queries: NSObject {
     }
     
     class func getAllRelativeRelatedDieukhoan(dieukhoanId: Int64) -> [Dieukhoan] {
-        let sql = rawSqlQuery + " dkId in (select dieukhoanId from tblRelatedDieukhoan where relatedDieukhoanId = \(dieukhoanId))"
+        let sql = rawSqlQuery + " dkId in (select dieukhoanId from tblRelatedDieukhoan where relatedDieukhoanId = ?)"
         
-        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [dieukhoanId])!
         
         var dieukhoanArray = Array<Dieukhoan>()
         
@@ -226,9 +198,9 @@ class Queries: NSObject {
     }
     
     class func getAllHinhphatbosung(dieukhoanId: Int64) -> [BosungKhacphuc] {
-        let sql = "select distinct dk.id as dkId, dk.so as dkSo, dk.tieude as dkTieude, dk.noidung as dkNoidung, dk.minhhoa as dkMinhhoa, dk.cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, dk.vanbanid as vbId, vb.ten as vbTen, vb.nam as vbNam, vb.ma as vbMa, vb.noidung as vbNoidung, vb.coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch, rdk.id as rdkId, rdk.so as rdkSo, rdk.tieude as rdkTieude, rdk.noidung as rdkNoidung, rdk.minhhoa as rdkMinhhoa, rdk.cha as rdkCha, rvb.loai as rlvbID, rlvb.ten as rlvbTen, rvb.so as rvbSo, rdk.vanbanid as rvbId, rvb.ten as rvbTen, rvb.nam as rvbNam, rvb.ma as rvbMa, rvb.noidung as rvbNoidung, rvb.coquanbanhanh as rvbCoquanbanhanhId, rcq.ten as rcqTen, rdk.forSearch as rdkSearch, hp.noidung as noidung from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id join tblHinhphatbosung as hp on dk.id = hp.dieukhoanId join tblChitietvanban as rdk on hp.dieukhoanQuydinhId = rdk.id join tblVanban as rvb on rdk.vanbanid=rvb.id join tblLoaivanban as rlvb on rvb.loai=rlvb.id join tblCoquanbanhanh as rcq on rvb.coquanbanhanh=rcq.id where hp.dieukhoanId = \(dieukhoanId)"
+        let sql = "select distinct dk.id as dkId, dk.so as dkSo, dk.tieude as dkTieude, dk.noidung as dkNoidung, dk.minhhoa as dkMinhhoa, dk.cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, dk.vanbanid as vbId, vb.ten as vbTen, vb.nam as vbNam, vb.ma as vbMa, vb.noidung as vbNoidung, vb.coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch, rdk.id as rdkId, rdk.so as rdkSo, rdk.tieude as rdkTieude, rdk.noidung as rdkNoidung, rdk.minhhoa as rdkMinhhoa, rdk.cha as rdkCha, rvb.loai as rlvbID, rlvb.ten as rlvbTen, rvb.so as rvbSo, rdk.vanbanid as rvbId, rvb.ten as rvbTen, rvb.nam as rvbNam, rvb.ma as rvbMa, rvb.noidung as rvbNoidung, rvb.coquanbanhanh as rvbCoquanbanhanhId, rcq.ten as rcqTen, rdk.forSearch as rdkSearch, hp.noidung as noidung from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id join tblHinhphatbosung as hp on dk.id = hp.dieukhoanId join tblChitietvanban as rdk on hp.dieukhoanQuydinhId = rdk.id join tblVanban as rvb on rdk.vanbanid=rvb.id join tblLoaivanban as rlvb on rvb.loai=rlvb.id join tblCoquanbanhanh as rcq on rvb.coquanbanhanh=rcq.id where hp.dieukhoanId = ?"
         
-        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [dieukhoanId])!
         
         var bosungKhacphucArray = Array<BosungKhacphuc>()
         
@@ -240,9 +212,9 @@ class Queries: NSObject {
     }
     
     class func getAllBienphapkhacphuc(dieukhoanId: Int64) -> [BosungKhacphuc] {
-        let sql = "select distinct dk.id as dkId, dk.so as dkSo, dk.tieude as dkTieude, dk.noidung as dkNoidung, dk.minhhoa as dkMinhhoa, dk.cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, dk.vanbanid as vbId, vb.ten as vbTen, vb.nam as vbNam, vb.ma as vbMa, vb.noidung as vbNoidung, vb.coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch, rdk.id as rdkId, rdk.so as rdkSo, rdk.tieude as rdkTieude, rdk.noidung as rdkNoidung, rdk.minhhoa as rdkMinhhoa, rdk.cha as rdkCha, rvb.loai as rlvbID, rlvb.ten as rlvbTen, rvb.so as rvbSo, rdk.vanbanid as rvbId, rvb.ten as rvbTen, rvb.nam as rvbNam, rvb.ma as rvbMa, rvb.noidung as rvbNoidung, rvb.coquanbanhanh as rvbCoquanbanhanhId, rcq.ten as rcqTen, rdk.forSearch as rdkSearch, kp.noidung as noidung from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id join tblBienphapkhacphuc as kp on dk.id = kp.dieukhoanId join tblChitietvanban as rdk on kp.dieukhoanQuydinhId = rdk.id join tblVanban as rvb on rdk.vanbanid=rvb.id join tblLoaivanban as rlvb on rvb.loai=rlvb.id join tblCoquanbanhanh as rcq on rvb.coquanbanhanh=rcq.id where kp.dieukhoanId = \(dieukhoanId)"
+        let sql = "select distinct dk.id as dkId, dk.so as dkSo, dk.tieude as dkTieude, dk.noidung as dkNoidung, dk.minhhoa as dkMinhhoa, dk.cha as dkCha, vb.loai as lvbID, lvb.ten as lvbTen, vb.so as vbSo, dk.vanbanid as vbId, vb.ten as vbTen, vb.nam as vbNam, vb.ma as vbMa, vb.noidung as vbNoidung, vb.coquanbanhanh as vbCoquanbanhanhId, cq.ten as cqTen, dk.forSearch as dkSearch, rdk.id as rdkId, rdk.so as rdkSo, rdk.tieude as rdkTieude, rdk.noidung as rdkNoidung, rdk.minhhoa as rdkMinhhoa, rdk.cha as rdkCha, rvb.loai as rlvbID, rlvb.ten as rlvbTen, rvb.so as rvbSo, rdk.vanbanid as rvbId, rvb.ten as rvbTen, rvb.nam as rvbNam, rvb.ma as rvbMa, rvb.noidung as rvbNoidung, rvb.coquanbanhanh as rvbCoquanbanhanhId, rcq.ten as rcqTen, rdk.forSearch as rdkSearch, kp.noidung as noidung from tblChitietvanban as dk join tblVanban as vb on dk.vanbanid=vb.id join tblLoaivanban as lvb on vb.loai=lvb.id join tblCoquanbanhanh as cq on vb.coquanbanhanh=cq.id join tblBienphapkhacphuc as kp on dk.id = kp.dieukhoanId join tblChitietvanban as rdk on kp.dieukhoanQuydinhId = rdk.id join tblVanban as rvb on rdk.vanbanid=rvb.id join tblLoaivanban as rlvb on rvb.loai=rlvb.id join tblCoquanbanhanh as rcq on rvb.coquanbanhanh=rcq.id where kp.dieukhoanId = ?"
         
-        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [dieukhoanId])!
         
         var bosungKhacphucArray = Array<BosungKhacphuc>()
         
@@ -826,8 +798,8 @@ class Queries: NSObject {
     
     class func getPhantichByKeyword(keyword: String) -> [String:Phantich]{
         let kw = keyword.lowercased()
-        let sql = "select p.id_key,p.author,p.title,p.shortdescription,p.source,p.source_inapp,p.revision,d.contentorder,d.content,d.minhhoa,d.minhhoatype from phantich as p join phantich_details as d on p.id_key = d.id_key where d.forsearch like '%\(kw)%' order by p.id_key, d.contentorder"
-        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [])!
+        let sql = "select p.id_key,p.author,p.title,p.shortdescription,p.source,p.source_inapp,p.revision,d.contentorder,d.content,d.minhhoa,d.minhhoatype from phantich as p join phantich_details as d on p.id_key = d.id_key where d.forsearch like ? order by p.id_key, d.contentorder"
+        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: ["%\(kw)%"])!
         var result = [String:Phantich]()
         if resultSet != nil {
             while resultSet.next() {
@@ -850,22 +822,22 @@ class Queries: NSObject {
     }
     
     class func insertPhantichToDatabase(phantichList: [String:Phantich]) -> Bool {
-        
+        let db = DataConnection.instance()
         var addedPhantichList = [String:Phantich]()
-        DataConnection.instance().executeUpdate("delete from phantich", withArgumentsIn: [])
-        DataConnection.instance().executeUpdate("delete from phantich_details", withArgumentsIn: [])
+        db.executeUpdate("delete from phantich", withArgumentsIn: [])
+        db.executeUpdate("delete from phantich_details", withArgumentsIn: [])
         
         for ptich in phantichList {
             let keyId = ptich.value.getIdKey()
             let title = ptich.value.getTittle()
             if addedPhantichList[keyId] == nil {
-                let sqlPhantich = "insert into phantich (id_key,author,title,shortdescription,source,source_inapp,revision) values ('\(keyId)','\(ptich.value.getAuthor())','\(title)','\(ptich.value.getShortContent())','\(ptich.value.getSource())','\(ptich.value.getSourceInapp())',\(ptich.value.getRevision()));"
-                DataConnection.instance().executeUpdate(sqlPhantich, withArgumentsIn: [])
+                let sqlPhantich = "insert into phantich (id_key,author,title,shortdescription,source,source_inapp,revision) values (?,?,?,?,?,?,?)"
+                db.executeUpdate(sqlPhantich, withArgumentsIn: [keyId, ptich.value.getAuthor(), title, ptich.value.getShortContent(), ptich.value.getSource(), ptich.value.getSourceInapp(), ptich.value.getRevision()])
                 addedPhantichList[keyId] = ptich.value
             }
             for rawContent in ptich.value.getRawContentDetailed() {
-                let sqlPhantichDetails = "insert into phantich_details (id_key,contentorder,content,minhhoa,minhhoatype,forsearch) values ('\(keyId)','\(rawContent["contentorder"]!)','\(rawContent["content"]!)','\(rawContent["minhhoa"]!)','\(rawContent["minhhoatype"]!)','\(title.lowercased()) \(rawContent["content"]!.lowercased())');"
-                DataConnection.instance().executeUpdate(sqlPhantichDetails, withArgumentsIn: [])
+                let sqlPhantichDetails = "insert into phantich_details (id_key,contentorder,content,minhhoa,minhhoatype,forsearch) values (?,?,?,?,?,?)"
+                db.executeUpdate(sqlPhantichDetails, withArgumentsIn: [keyId, rawContent["contentorder"]!, rawContent["content"]!, rawContent["minhhoa"]!, rawContent["minhhoatype"]!, "\(title.lowercased()) \(rawContent["content"]!.lowercased())"])
             }
             
         }
@@ -874,21 +846,21 @@ class Queries: NSObject {
     }
     
     class func updateAppConfigsToDatabase(configList: [String:String]) -> Bool {
-        
+        let db = DataConnection.instance()
         for key in configList.keys {
             var sql = "select * from tblAppConfigs where configKey = ?"
-            let resultSet: FMResultSet! = DataConnection.instance().executeQuery(sql, withArgumentsIn: [key])
+            let resultSet: FMResultSet! = db.executeQuery(sql, withArgumentsIn: [key])
             var isConfigExisted = false
             if resultSet != nil {
                 while resultSet.next() {
                     isConfigExisted = true
                     sql = "update tblAppConfigs set configValue = ? where configKey = ?"
-                    DataConnection.instance().executeUpdate(sql, withArgumentsIn: [configList[key]!,key])
+                    db.executeUpdate(sql, withArgumentsIn: [configList[key]!,key])
                 }
             }
             if !isConfigExisted {
                 sql = "insert into tblAppConfigs(configKey, configValue) values (?, ?)"
-                DataConnection.instance().executeUpdate(sql, withArgumentsIn: [key,configList[key]!])
+                db.executeUpdate(sql, withArgumentsIn: [key,configList[key]!])
             }
         }
         

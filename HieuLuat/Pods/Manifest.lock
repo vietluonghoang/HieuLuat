@@ -127,7 +127,6 @@ PODS:
   - PromisesSwift (2.3.1):
     - PromisesObjC (= 2.3.1)
   - SwiftyJSON (5.0.1)
-  - TapjoySDK (13.1.2)
 
 DEPENDENCIES:
   - Firebase/InAppMessaging
@@ -138,7 +137,6 @@ DEPENDENCIES:
   - Google-Mobile-Ads-SDK
   - Mixpanel-swift
   - SwiftyJSON
-  - TapjoySDK
 
 SPEC REPOS:
   trunk:
@@ -164,7 +162,6 @@ SPEC REPOS:
     - PromisesObjC
     - PromisesSwift
     - SwiftyJSON
-    - TapjoySDK
 
 SPEC CHECKSUMS:
   Firebase: 6c1bf3f534bc422d52af2e41fe0d50bf08b6b773
@@ -189,8 +186,7 @@ SPEC CHECKSUMS:
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
-  TapjoySDK: 3ae1f259048b6daa4a6ea7c2fcb0d111480d7bb1
 
-PODFILE CHECKSUM: 2709c0de7d775867126b0fba71ebdbb9ead466a0
+PODFILE CHECKSUM: 8b1acc79cd730166bee91c3f489f979a28fccc4d
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2
