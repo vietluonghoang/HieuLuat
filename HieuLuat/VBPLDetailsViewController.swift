@@ -11,8 +11,7 @@ import os.log
 import GoogleMobileAds
 import AVFoundation
 
-@available(iOS 9.0, *)
-class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, TJPlacementDelegate, AVSpeechSynthesizerDelegate {
+class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, AVSpeechSynthesizerDelegate {
     
     //MARK: Properties
     
@@ -94,7 +93,6 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     var bannerView: GADBannerView!
     let btnFBBanner = UIButton()
     let redirectionHelper = RedirectionHelper()
-    var placement = TJPlacement()
     var contentString = ""
     let synthesizer = AVSpeechSynthesizer()
     var utterance = AVSpeechUtterance(string: "")
@@ -140,12 +138,6 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         synthesizer.stopSpeaking(at: .immediate)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
     /*
      // MARK: - Navigation
      
@@ -172,12 +164,8 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func initAds() {
-        //Initialize Tapjoy Ads
-        placement = AdsHelper.initTJPlacement(name: "WeThoongPlacement", delegate: self)
-        placement.requestContent()
-        
         //Initialize Google Admob
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        bannerView = GADBannerView(adSize: GADAdSizeBanner)
         btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
         AdsHelper.initBannerAds(btnFBBanner: btnFBBanner, bannerView: bannerView, toView: viewAds, root: self)
     }
@@ -730,42 +718,6 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     public func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
-    }
-    
-    //Tapjoy Ads delegate
-    // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
-    func requestDidSucceed(_ placement: TJPlacement){
-        print("Request to TJ server successfully made")
-    }
-    
-    // Called when there was a problem during connecting Tapjoy servers.
-    func requestDidFail(_ placement: TJPlacement!, error: Error!) {
-        print("Request to TJ server failed to make")
-    }
-    
-    // Called when the content is actually available to display.
-    func contentIsReady(_ placement: TJPlacement!) {
-        print("Tj ads content is ready")
-        if AdsHelper.isValidToShowIntestitialAds() {
-            //log the timestamp of showing Interstitial ads
-            GeneralSettings.getLastInterstitialAdsOpenTimestamp = Int(NSDate().timeIntervalSince1970)
-            //log the number of time the the ads was shown during the day
-            GeneralSettings.getInterstitialAdsOpenTimes += 1
-            
-            //show the ad
-            placement.showContent(with: self)
-        }
-        
-    }
-    
-    // Called when the content is showed.
-    func contentDidAppear(_ placement: TJPlacement!) {
-        print("Tj ads content showing")
-    }
-    
-    // Called when the content is dismissed.
-    func contentDidDisappear(_ placement: TJPlacement!) {
-        print("Tj ads content went away")
     }
     
     func getContentString() -> String {

@@ -12,7 +12,7 @@ pod 'Firebase/InAppMessaging'
 
 pod 'FMDB'
 pod 'Google-Mobile-Ads-SDK'
-pod 'TapjoySDK'
+
 
 # add the Firebase pod for Google Analytics
 pod 'FirebaseAnalytics'

@@ -21,13 +21,12 @@ class SplashScreenViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        RunLoop.current.run(until: Date(timeIntervalSinceNow: 5.0))  //delay 5 seconds to view splash screen longer
-        // Do any additional setup after loading the view.
+        super.viewDidAppear(animated)
         self.viewMainView.addGestureRecognizer(
             UITapGestureRecognizer(
                 target: self, action: #selector(moveToHomeAgain)))
-        _ = DataConnection.instance() 
-        updateRemoteConfig()  //update remote config from firebase
+        _ = DataConnection.instance()
+        updateRemoteConfig()
         print(
             "Delay to wait for initialization of Firebase and Device information....."
         )
@@ -37,7 +36,9 @@ class SplashScreenViewController: UIViewController {
             repeats: true)
         AnalyticsHelper.sendAnalyticEventMixPanel(
             eventName: "app_open", params: [:])
-        moveToHome()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) { [weak self] in
+            self?.moveToHome()
+        }
     }
 
     /*

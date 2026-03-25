@@ -8,18 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController,TJPlacementDelegate {
+class ViewController: UIViewController {
     @IBOutlet var lblVersion: UILabel!
     @IBOutlet weak var viewTracuu: UIView!
     @IBOutlet var btnCamera: UIBarButtonItem!
     
-    let network = NetworkHandler()
-    let networkCall = NetworkHandler()
-    var appConfiguration = [String:String]()
-    
-    var networkCallTimer = Timer()
-    let networkCallInterval = 10.0
-    var retries = GeneralSettings.remainingConnectionTries
+    private var isDataLoaded = false
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -28,17 +22,15 @@ class ViewController: UIViewController,TJPlacementDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        sendAnalytics() //send analytics for tracking user usage
         AnalyticsHelper.sendAnalyticEvent(eventName: "app_open", params: [String:String]())
-        // Don't check Ads optout since the server was terminated
-//        checkAdsOptout() //check ads optout state
         GeneralSettings.getLastAppOpenTimestamp = Int(NSDate().timeIntervalSince1970)
-        getAppConfiguration()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        updateConfig()
-        GeneralSettings.setVanbanInfo(vanbans: Queries.selectAllVanban())
+        if !isDataLoaded {
+            GeneralSettings.setVanbanInfo(vanbans: Queries.selectAllVanban())
+            isDataLoaded = true
+        }
         
         if checkIfNeedToUpdate() {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -72,113 +64,12 @@ class ViewController: UIViewController,TJPlacementDelegate {
         return versionInfo
     }
     
-    func sendAnalytics() {
-        let target = "https://wethoong-server.herokuapp.com/analytics"
-        var rawData = DeviceInfoCollector().getDeviceInfo()
-        rawData["action"] = "app_open"
-        rawData["actiontype"] = ""
-        rawData["actionvalue"] = ""
-        rawData["dbversion"] = "\(DataConnection.getCurrentDBVersion())"
-        
-        let data = try! JSONSerialization.data(withJSONObject: rawData, options: [])
-        network.sendData(url: target, method: NetworkHandler.HttpMethod.post.rawValue, contentType: NetworkHandler.HttpContentType.applicationjson.rawValue,data: data)
-    }
-    
-    func getAppConfiguration() {
-        if !GeneralSettings.isRemoteConfigFetched {
-            print("--- no settings available from Firebase RemoteConfig")
-            let target = "https://wethoong-server.herokuapp.com/getconfig"
-            let mimeType = "application/json"
-            network.requestData(url: target, mimeType: mimeType)
-        }
-    }
-    
-    func updateConfig() {
-        let result = network.getMessage()
-        if result.getValue(key: MessagingContainer.MessageKey.data.rawValue) is String   {
-            print("Error getting data: \(result.getValue(key: MessagingContainer.MessageKey.message.rawValue) as! String)")
-        }else{
-            let rawData = result.getValue(key: MessagingContainer.MessageKey.data.rawValue)
-            //                let configs = try JSONSerialization.data(withJSONObject: rawData, options: [])
-            if let config = rawData as? [AnyObject]   {
-                print("configs: \(config)")
-                for conf in config{
-                    let cf = conf as! Dictionary<String, String>
-                    
-                    switch cf["configname"]{
-                    case AppConfiguration.Configuration.minimumappversion.rawValue:
-                        GeneralSettings.minimumAppVersionRequired = cf["configvalue"]!
-                    case AppConfiguration.Configuration.enableappnotification.rawValue:
-                        GeneralSettings.isEnableInappNotif = (cf["configvalue"]! == "1")
-                    case AppConfiguration.Configuration.enablebannerads.rawValue:
-                        GeneralSettings.isEnableBannerAds = (cf["configvalue"]! == "1")
-                    case AppConfiguration.Configuration.enableinterstitialads.rawValue:
-                        GeneralSettings.isEnableInterstitialAds = (cf["configvalue"]! == "1")
-                    case AppConfiguration.Configuration.minimumadsinterval.rawValue:
-                        GeneralSettings.minimumAdsIntervalInSeconds = Int(cf["configvalue"]!)!
-                        
-                    default:
-                        print("'\(cf["configname"]!)' is not a defined config!")
-                    }
-                }
-            }else{
-                print("Actual type of raw data: \(type(of: rawData))")
-            }
-        }
-    }
-    
     func checkIfNeedToUpdate() -> Bool {
         if (Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String).compare((GeneralSettings.minimumAppVersionRequired)) == .orderedAscending {
             return true
         }
         return false
     }
-    
-    func checkAdsOptout() {
-        var valueInDatabase = ""
-        do{
-            valueInDatabase = Queries.getAppConfigsFromDatabaseByKey(key: "adsOptout")
-        }catch{
-            print("=========Error: \(error)")
-        }
-        switch valueInDatabase {
-        case "1":
-            print("adsoptout state set in database")
-            GeneralSettings.isAdsOptout = true
-        case "0":
-            print("adsoptout state set in database")
-            GeneralSettings.isAdsOptout = false
-        default:
-            print("send request to check adsoptout state")
-            let target = "https://wethoong-server.herokuapp.com/hasoptout"
-            let rawData = DeviceInfoCollector().getDeviceInfo()
-            let data = try! JSONSerialization.data(withJSONObject: rawData, options: [])
-            networkCall.sendData(url: target, method: NetworkHandler.HttpMethod.post.rawValue, contentType: NetworkHandler.HttpContentType.applicationjson.rawValue,data: data)
-            networkCallTimer = Timer.scheduledTimer(timeInterval: TimeInterval(networkCallInterval), target: self, selector: #selector(checkCodeState), userInfo: nil, repeats: true)
-        }
-        
-    }
-    
-    @objc func checkCodeState(){
-        print("checking adsoptout state")
-        let result = networkCall.getMessage()
-        
-        if let message = result.getValue(key: MessagingContainer.MessageKey.data.rawValue) as? Dictionary<String,String> {
-            print("message: \(message)")
-            networkCallTimer.invalidate()
-            if message["status"] == "Success" {
-                GeneralSettings.isAdsOptout = Queries.updateAppConfigsToDatabase(configList: ["adsOptout":"1"])
-            }else{
-                Queries.updateAppConfigsToDatabase(configList: ["adsOptout":"0"])
-            }
-        }
-        if retries < 1 {
-            networkCallTimer.invalidate()
-        }else{
-            retries -= 1
-        }
-    }
-    
     
 }
 

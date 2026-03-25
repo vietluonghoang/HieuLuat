@@ -162,32 +162,4 @@ class AdsHelper {
         return ret
     }
     
-    class func initTJPlacement(name: String, delegate: TJPlacementDelegate) -> TJPlacement{
-        let placement = TJPlacement(name: name, delegate: delegate)
-        
-        return placement as! TJPlacement
-    }
-    
-    class func isValidToShowIntestitialAds() -> Bool {
-        print("getLastAppOpenTimestamp: \(GeneralSettings.getLastAppOpenTimestamp)")
-        print("getInterstitialAdsOpenTimes: \(GeneralSettings.getInterstitialAdsOpenTimes)")
-        print("isEnableInterstitialAds: \(GeneralSettings.isEnableInterstitialAds)")
-        print("minimumAdsIntervalInSeconds: \(GeneralSettings.minimumAdsIntervalInSeconds)")
-        print("getLastInterstitialAdsOpenTimestamp: \(GeneralSettings.getLastInterstitialAdsOpenTimestamp)")
-        print("is Ads optout: \(GeneralSettings.isAdsOptout)")
-        //If the app was opened more than a day, let reset the opening timestamp and interstitial ads open counter
-        if Int(NSDate().timeIntervalSince1970) - GeneralSettings.getLastAppOpenTimestamp > 86400 {
-            GeneralSettings.getLastAppOpenTimestamp = Int(NSDate().timeIntervalSince1970)
-            GeneralSettings.getInterstitialAdsOpenTimes = 0
-        }
-        
-        //Show interstitial ads just in case:
-        //1. Interstitial ads is enabled
-        //2. It's long enough since the last time the ads shown (ex: at least 5 mins between shows)
-        //3. The more time the ads shown, the longer interval until the next shown (ex: 5 mins for the first show, 10 mins for the second show, 15 mins for the third show and so on...)
-        if !GeneralSettings.isAdsOptout && GeneralSettings.isEnableInterstitialAds && (Int(NSDate().timeIntervalSince1970) - GeneralSettings.getLastAppOpenTimestamp > GeneralSettings.minimumAdsIntervalInSeconds * (GeneralSettings.getInterstitialAdsOpenTimes + 1)) && (Int(NSDate().timeIntervalSince1970) - GeneralSettings.getLastInterstitialAdsOpenTimestamp > GeneralSettings.minimumAdsIntervalInSeconds) {
-            return true
-        }
-        return false
-    }
 }
