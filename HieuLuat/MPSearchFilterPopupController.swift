@@ -1115,7 +1115,7 @@ class MPSearchFilterPopupController: UIViewController {
     @IBAction func btnXongAction(_ sender: Any) {
         //Xong button
         root.updateFilterLabel()
-        root.updateSearchResults(for: (root.searchController))
+        root.updateSearchResults()
         self.dismiss(animated: true, completion: nil)
     }
     

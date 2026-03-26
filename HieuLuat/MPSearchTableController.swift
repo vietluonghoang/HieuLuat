@@ -10,7 +10,7 @@ import UIKit
 import os.log
 import GoogleMobileAds
 
-class MPSearchTableController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class MPSearchTableController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet var lblLoctheo: UILabel!
@@ -22,7 +22,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var consSearchViewHeight: NSLayoutConstraint!
     @IBOutlet weak var consHeightTableView: NSLayoutConstraint!
     var dieukhoanList = [Dieukhoan]()
-    let searchController = UISearchController(searchResultsController: nil)
+    let searchBar = UISearchBar()
     private var searchKeyword = ""
     var rowCount = 0
     var filterSettings = [String:String]()
@@ -46,7 +46,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         initSearchFilters()
         updateFilterLabel()
         if(dieukhoanList.count<1){
-            updateDieukhoanList(arrDieukhoan: search(keyword: searchController.searchBar.text!))
+            updateDieukhoanList(arrDieukhoan: search(keyword: searchBar.text ?? ""))
         }
         
         rowCount = dieukhoanList.count
@@ -62,53 +62,25 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func initSearch() {
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        let sBar = searchController.searchBar
-        searchTextView.addSubview(sBar)
-        searchTextView.addConstraints(
-            [NSLayoutConstraint(item: sBar,
-                                attribute: .top,
-                                relatedBy: .equal,
-                                toItem: searchTextView,
-                                attribute: .top,
-                                multiplier: 1,
-                                constant: 0),
-             NSLayoutConstraint(item: sBar,
-                                attribute: .bottom,
-                                relatedBy: .equal,
-                                toItem: searchTextView,
-                                attribute: .bottom,
-                                multiplier: 1,
-                                constant: 0),
-             NSLayoutConstraint(item: sBar,
-                                attribute: .leading,
-                                relatedBy: .equal,
-                                toItem: searchTextView,
-                                attribute: .leading,
-                                multiplier: 1,
-                                constant: 0),
-             NSLayoutConstraint(item: sBar,
-                                attribute: .trailing,
-                                relatedBy: .equal,
-                                toItem: searchTextView,
-                                attribute: .trailing,
-                                multiplier: 1,
-                                constant: 0),
-             NSLayoutConstraint(item: sBar,
-                                attribute: .centerX,
-                                relatedBy: .equal,
-                                toItem: searchTextView,
-                                attribute: .centerX,
-                                multiplier: 1,
-                                constant: 0)
+        searchBar.delegate = self
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchTextView.clipsToBounds = true
+        searchTextView.addSubview(searchBar)
+        NSLayoutConstraint.activate([
+            searchBar.topAnchor.constraint(equalTo: searchTextView.topAnchor),
+            searchBar.bottomAnchor.constraint(equalTo: searchTextView.bottomAnchor),
+            searchBar.leadingAnchor.constraint(equalTo: searchTextView.leadingAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: searchTextView.trailingAnchor),
         ])
-        consSearchViewHeight.constant = sBar.frame.height
         if #available(iOS 10.0, *) {
         }else{
             btnMicro.isHidden = true
         }
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        builtQuery = getBuiltQuery(keyword: searchText)
+        filterContentForSearchText(searchText: searchText)
     }
     
     func initAds() {
@@ -119,18 +91,6 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     
     @objc func btnFouderFBAction() {
         redirectionHelper.openUrl(urls: GeneralSettings.getFBLink)
-    }
-    
-    func setupSearchBarSize(){
-        self.searchController.searchBar.frame.size.width = self.view.frame.size.width - microView.frame.size.width
-    }
-    
-    func didDismissSearchController(searchController: UISearchController) {
-        setupSearchBarSize()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        setupSearchBarSize()
     }
     
     func initFilterConfig() {
@@ -374,7 +334,9 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     public func updateSearchBarText(keyword: String){
-        searchController.searchBar.text = keyword
+        searchBar.text = keyword
+        builtQuery = getBuiltQuery(keyword: keyword)
+        filterContentForSearchText(searchText: keyword)
     }
     
     /*
@@ -445,15 +407,11 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         
         var dieukhoan:Dieukhoan
         
-        if searchController.isActive && searchController.searchBar.text != "" {
-            if dieukhoanList.count>0 {
-                dieukhoan = dieukhoanList[indexPath.row]
-            }else{
-                dieukhoan = Dieukhoan(id: 0, cha: 0, vanban: Vanban(id: 0, ten: "", loai: Loaivanban(id: 0, ten: ""), so: "", nam: "", ma: "", coquanbanhanh: Coquanbanhanh(id: 0, ten: ""), noidung: ""))
-                dieukhoan.setMinhhoa(minhhoa: [""])
-            }
-        } else {
+        if dieukhoanList.count>0 {
             dieukhoan = dieukhoanList[indexPath.row]
+        }else{
+            dieukhoan = Dieukhoan(id: 0, cha: 0, vanban: Vanban(id: 0, ten: "", loai: Loaivanban(id: 0, ten: ""), so: "", nam: "", ma: "", coquanbanhanh: Coquanbanhanh(id: 0, ten: ""), noidung: ""))
+            dieukhoan.setMinhhoa(minhhoa: [""])
         }
         
         cell.updateDieukhoan(dieukhoan: dieukhoan, fullDetails: false, showVanban: true, keywork: searchKeyword)
@@ -483,11 +441,9 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         tblView.reloadData()
     }
     
-    public func updateSearchResults(for searchController: UISearchController) {
-        //        if searchController.searchBar.text!.characters.count > 1 {
-        builtQuery = getBuiltQuery(keyword: searchController.searchBar.text!)
-        filterContentForSearchText(searchText: searchController.searchBar.text!, scope: "All")
-        //        }
+    func updateSearchResults() {
+        builtQuery = getBuiltQuery(keyword: searchBar.text ?? "")
+        filterContentForSearchText(searchText: searchBar.text ?? "")
     }
     
 }
