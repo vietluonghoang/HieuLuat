@@ -84,8 +84,7 @@ class Utils {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
         if isInside {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -107,10 +106,11 @@ class Utils {
                                        attribute: .top,
                                        multiplier: 1,
                                        constant: top)
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }else {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -132,7 +132,9 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: top)
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }
     }
     
@@ -140,8 +142,7 @@ class Utils {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
         if isInside {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .top,
                                        relatedBy: .equal,
@@ -149,10 +150,11 @@ class Utils {
                                        attribute: .top,
                                        multiplier: 1,
                                        constant: top)
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }else {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .top,
                                        relatedBy: .equal,
@@ -160,10 +162,11 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: top)
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }
-        parent.addConstraints(
-            [
+        let centerConstraints = [
                 NSLayoutConstraint(item: component,
                                    attribute: .centerX,
                                    relatedBy: .equal,
@@ -171,14 +174,15 @@ class Utils {
                                    attribute: .centerX,
                                    multiplier: 1,
                                    constant: 0)
-        ])
+        ]
+        centerConstraints.forEach { $0.priority = UILayoutPriority(999) }
+        parent.addConstraints(centerConstraints)
     }
     class func generateNewComponentConstraints(parent: UIView, topComponent: UIView, bottomComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, right: CGFloat, bottom: CGFloat, isInside: Bool) {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
         if isInside {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -207,10 +211,11 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }else {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -239,15 +244,16 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }
     }
     class func generateNewComponentConstraints(parent: UIView, topComponent: UIView, bottomComponent: UIView, component: UIView, top: CGFloat, bottom: CGFloat, isInside: Bool) {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
         if isInside {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .top,
                                        relatedBy: .equal,
@@ -262,10 +268,11 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }else {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .top,
                                        relatedBy: .equal,
@@ -280,10 +287,11 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }
-        parent.addConstraints(
-            [
+        let centerConstraints = [
                 NSLayoutConstraint(item: component,
                                    attribute: .centerX,
                                    relatedBy: .equal,
@@ -291,14 +299,15 @@ class Utils {
                                    attribute: .centerX,
                                    multiplier: 1,
                                    constant: 0)
-        ])
+        ]
+        centerConstraints.forEach { $0.priority = UILayoutPriority(999) }
+        parent.addConstraints(centerConstraints)
     }
     class func generateNewComponentConstraintsSideward(parent: UIView, leftComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, bottom: CGFloat, isInside: Bool) {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
         if isInside {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -320,10 +329,11 @@ class Utils {
                                        attribute: .top,
                                        multiplier: 1,
                                        constant: top)
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }else {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -345,7 +355,9 @@ class Utils {
                                        attribute: .top,
                                        multiplier: 1,
                                        constant: top)
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }
     }
     
@@ -353,8 +365,7 @@ class Utils {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
         if isInside {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -362,10 +373,11 @@ class Utils {
                                        attribute: .leading,
                                        multiplier: 1,
                                        constant: left)
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }else {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -373,10 +385,11 @@ class Utils {
                                        attribute: .trailing,
                                        multiplier: 1,
                                        constant: left)
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }
-        parent.addConstraints(
-            [
+        let centerConstraints = [
                 NSLayoutConstraint(item: component,
                                    attribute: .centerY,
                                    relatedBy: .equal,
@@ -384,14 +397,15 @@ class Utils {
                                    attribute: .centerY,
                                    multiplier: 1,
                                    constant: 0)
-        ])
+        ]
+        centerConstraints.forEach { $0.priority = UILayoutPriority(999) }
+        parent.addConstraints(centerConstraints)
     }
     class func generateNewComponentConstraintsSideward(parent: UIView, leftComponent: UIView, rightComponent: UIView, component: UIView, top: CGFloat, left: CGFloat, right: CGFloat, bottom: CGFloat, isInside: Bool) {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
         if isInside {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -420,10 +434,11 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }else {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -452,15 +467,16 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }
     }
     class func generateNewComponentConstraintsSideward(parent: UIView, leftComponent: UIView, rightComponent: UIView, component: UIView, left: CGFloat, right: CGFloat, isInside: Bool) {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
         if isInside {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -475,10 +491,11 @@ class Utils {
                                        attribute: .trailing,
                                        multiplier: 1,
                                        constant: (0 - right))
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }else {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -493,10 +510,11 @@ class Utils {
                                        attribute: .trailing,
                                        multiplier: 1,
                                        constant: (0 - right))
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }
-        parent.addConstraints(
-            [
+        let centerConstraints = [
                 NSLayoutConstraint(item: component,
                                    attribute: .centerY,
                                    relatedBy: .equal,
@@ -504,14 +522,15 @@ class Utils {
                                    attribute: .centerY,
                                    multiplier: 1,
                                    constant: 0)
-        ])
+        ]
+        centerConstraints.forEach { $0.priority = UILayoutPriority(999) }
+        parent.addConstraints(centerConstraints)
     }
     class func generateNewComponentConstraintsRightward(parent: UIView, rightComponent: UIView, component: UIView, top: CGFloat, right: CGFloat, bottom: CGFloat, isInside: Bool) {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
         if isInside {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .trailing,
                                        relatedBy: .equal,
@@ -533,10 +552,11 @@ class Utils {
                                        attribute: .top,
                                        multiplier: 1,
                                        constant: top)
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }else {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .trailing,
                                        relatedBy: .equal,
@@ -558,7 +578,9 @@ class Utils {
                                        attribute: .top,
                                        multiplier: 1,
                                        constant: top)
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }
     }
     
@@ -566,8 +588,7 @@ class Utils {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
         if isInside {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -596,10 +617,11 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }else {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -628,7 +650,9 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }
     }
     
@@ -636,8 +660,7 @@ class Utils {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
         if isInside {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .greaterThanOrEqual,
@@ -666,10 +689,11 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }else {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .greaterThanOrEqual,
@@ -698,7 +722,9 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }
     }
     
@@ -706,8 +732,7 @@ class Utils {
         component.translatesAutoresizingMaskIntoConstraints = false
         parent.addSubview(component)
         if isInside {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -736,10 +761,11 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }else {
-            parent.addConstraints(
-                [
+            let constraints = [
                     NSLayoutConstraint(item: component,
                                        attribute: .leading,
                                        relatedBy: .equal,
@@ -768,14 +794,15 @@ class Utils {
                                        attribute: .bottom,
                                        multiplier: 1,
                                        constant: (0 - bottom))
-            ])
+            ]
+            constraints.forEach { $0.priority = UILayoutPriority(999) }
+            parent.addConstraints(constraints)
         }
     }
     
     class func generateNewComponentWidthConstraint(component: UIView, width: CGFloat) {
         component.translatesAutoresizingMaskIntoConstraints = false
-        component.addConstraints(
-            [
+        let constraints = [
                 NSLayoutConstraint(item: component,
                                    attribute: .width,
                                    relatedBy: .equal,
@@ -783,9 +810,38 @@ class Utils {
                                    attribute: .notAnAttribute,
                                    multiplier: 1,
                                    constant: width)
-        ])
+        ]
+        constraints.forEach { $0.priority = UILayoutPriority(999) }
+        component.addConstraints(constraints)
     }
     
+    class func lowerInternalConstraintPriorities(_ view: UIView) {
+        let constraintsToReplace = view.constraints.filter { constraint in
+            guard constraint.priority == .required else { return false }
+            let first = constraint.firstItem as? UIView
+            let second = constraint.secondItem as? UIView
+            let involvesSubview = (first != nil && first != view) || (second != nil && second != view)
+            return involvesSubview
+        }
+        for old in constraintsToReplace {
+            old.isActive = false
+            let replacement = NSLayoutConstraint(
+                item: old.firstItem!,
+                attribute: old.firstAttribute,
+                relatedBy: old.relation,
+                toItem: old.secondItem,
+                attribute: old.secondAttribute,
+                multiplier: old.multiplier,
+                constant: old.constant
+            )
+            replacement.priority = UILayoutPriority(999)
+            replacement.isActive = true
+        }
+        for subview in view.subviews {
+            lowerInternalConstraintPriorities(subview)
+        }
+    }
+
     class func autoGenerateLinearViewComponents(parent: UIView, orderedComponents: [UIView], top: CGFloat, bottom: CGFloat, left: CGFloat, right: CGFloat, isToptoBottom: Bool){
         var order = 0
         for component in orderedComponents {
@@ -874,6 +930,12 @@ class Utils {
     }
     
     class func updateTableViewHeight(consHeightTblView: NSLayoutConstraint, tblView: UITableView, minimumHeight: CGFloat) {
+        guard tblView.window != nil else {
+            DispatchQueue.main.async {
+                Utils.updateTableViewHeight(consHeightTblView: consHeightTblView, tblView: tblView, minimumHeight: minimumHeight)
+            }
+            return
+        }
         consHeightTblView.constant = 50000
         tblView.reloadData()
         tblView.layoutIfNeeded()

@@ -38,7 +38,6 @@ class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, U
         }
         rowCount = dieukhoanList.count
         tblView.reloadData()
-        tblView.layoutIfNeeded()
         initAds()
     }
     

@@ -67,6 +67,11 @@ class FilterPopupViewController: UIViewController {
         lblVanbanFullname.translatesAutoresizingMaskIntoConstraints = false
         swt.translatesAutoresizingMaskIntoConstraints = false
         
+        lblVanbanShortname.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        lblVanbanFullname.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        swt.setContentCompressionResistancePriority(.required, for: .horizontal)
+        swt.setContentHuggingPriority(.required, for: .horizontal)
+        
         wrapperView.addSubview(lblVanbanShortname)
         wrapperView.addSubview(lblVanbanFullname)
         wrapperView.addSubview(swt)

@@ -100,6 +100,14 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Utils.lowerInternalConstraintPriorities(viewExtraInfo)
+        Utils.lowerInternalConstraintPriorities(viewBosungKhacphuc)
+        Utils.lowerInternalConstraintPriorities(viewHinhphatbosung)
+        Utils.lowerInternalConstraintPriorities(viewBienphapkhacphuc)
+        Utils.lowerInternalConstraintPriorities(viewTamgiuPhuongtien)
+        Utils.lowerInternalConstraintPriorities(viewThamquyen)
+        Utils.lowerInternalConstraintPriorities(viewMinhhoa)
+        
         tblView.delegate = self
         tblView.dataSource = self
         synthesizer.delegate = self
@@ -148,6 +156,12 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
      }
      */
     func updateTableViewHeight() {
+        guard tblView.window != nil else {
+            DispatchQueue.main.async { [weak self] in
+                self?.updateTableViewHeight()
+            }
+            return
+        }
         consHeightTblView.constant = 50000
         tblView.reloadData()
         tblView.layoutIfNeeded()
@@ -274,8 +288,10 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     func hideMinhhoaView(isHidden: Bool) {
         consViewMinhhoaHeight.constant = 0
         if isHidden {
+            viewMinhhoa.isHidden = true
             consViewMinhhoaHeight.isActive = true
         }else {
+            viewMinhhoa.isHidden = false
             consViewMinhhoaHeight.isActive = false
         }
     }
@@ -300,6 +316,10 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consViewBosungKhacphucHeight.constant = 0
             consViewBosungKhacphucHeight.isActive = true
             viewBosungKhacphuc.isHidden = true
+            viewHinhphatbosung.isHidden = true
+            viewBienphapkhacphuc.isHidden = true
+            viewTamgiuPhuongtien.isHidden = true
+            viewThamquyen.isHidden = true
         }else{
             consViewBosungKhacphucHeight.isActive = false
             consViewHinhphatbosungHeight.isActive = false
@@ -307,6 +327,10 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consViewTamgiuPhuongtienHeight.isActive = false
             consViewThamquyenHeight.isActive = false
             viewBosungKhacphuc.isHidden = false
+            viewHinhphatbosung.isHidden = false
+            viewBienphapkhacphuc.isHidden = false
+            viewTamgiuPhuongtien.isHidden = false
+            viewThamquyen.isHidden = false
         }
     }
     
@@ -314,10 +338,12 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         if(isHidden){
             consViewHinhphatbosungHeight.constant = 0
             consViewHinhphatbosungHeight.isActive = true
+            viewHinhphatbosung.isHidden = true
         }else{
             consViewBosungKhacphucHeight.isActive = false
             consViewHinhphatbosungHeight.isActive = false
             viewBosungKhacphuc.isHidden = false
+            viewHinhphatbosung.isHidden = false
         }
     }
     
@@ -325,10 +351,12 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         if(isHidden){
             consViewBienphapkhacphucHeight.constant = 0
             consViewBienphapkhacphucHeight.isActive = true
+            viewBienphapkhacphuc.isHidden = true
         }else{
             consViewBosungKhacphucHeight.isActive = false
             consViewBienphapkhacphucHeight.isActive = false
             viewBosungKhacphuc.isHidden = false
+            viewBienphapkhacphuc.isHidden = false
         }
     }
     
@@ -336,10 +364,12 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         if(isHidden){
             consViewTamgiuPhuongtienHeight.constant = 0
             consViewTamgiuPhuongtienHeight.isActive = true
+            viewTamgiuPhuongtien.isHidden = true
         }else{
             consViewBosungKhacphucHeight.isActive = false
             consViewTamgiuPhuongtienHeight.isActive = false
             viewBosungKhacphuc.isHidden = false
+            viewTamgiuPhuongtien.isHidden = false
         }
     }
     
@@ -347,10 +377,12 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         if(isHidden){
             consViewThamquyenHeight.constant = 0
             consViewThamquyenHeight.isActive = true
+            viewThamquyen.isHidden = true
         }else{
             consViewBosungKhacphucHeight.isActive = false
             consViewThamquyenHeight.isActive = false
             viewBosungKhacphuc.isHidden = false
+            viewThamquyen.isHidden = false
         }
     }
     
@@ -488,6 +520,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         if mpText.count > 0 {
             consLblMucphatHeight.isActive = false
             consLblMucphatDetailsHeight.isActive = false
+            lblMucphat.isHidden = false
             lblMucphat.text = mpText
             lblMucphat.setRoot(root: self)
             contentString += "\nMức phạt: \(mpText)"
@@ -497,10 +530,12 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblMucphatDetailsHeight.isActive = true
             consLblMucphatHeight.constant =  0
             consLblMucphatDetailsHeight.constant =  0
+            lblMucphat.isHidden = true
         }
         if ptText.count > 0 {
             consLblPhuongtienHeight.isActive = false
             consLblPhuongtienDetailsHeight.isActive = false
+            lblPhuongtien.isHidden = false
             lblPhuongtien.text = ptText
             lblPhuongtien.setRoot(root: self)
             contentString += "\nPhương tiện: \(ptText)"
@@ -510,10 +545,12 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblPhuongtienDetailsHeight.isActive = true
             consLblPhuongtienHeight.constant =  0
             consLblPhuongtienDetailsHeight.constant =  0
+            lblPhuongtien.isHidden = true
         }
         if lvText.count > 0 {
             consLblLinhvucHeight.isActive = false
             consLblLinhvucDetailsHeight.isActive = false
+            lblLinhvuc.isHidden = false
             lblLinhvuc.text = lvText
             lblLinhvuc.setRoot(root: self)
             contentString += "\nLĩnh vực: \(lvText)"
@@ -523,10 +560,12 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblLinhvucDetailsHeight.isActive = true
             consLblLinhvucHeight.constant =  0
             consLblLinhvucDetailsHeight.constant =  0
+            lblLinhvuc.isHidden = true
         }
         if dtText.count > 0 {
             consLblDoituongHeight.isActive = false
             consLblDoituongDetailsHeight.isActive = false
+            lblDoituong.isHidden = false
             lblDoituong.text = dtText
             lblDoituong.setRoot(root: self)
             contentString += "\nĐối tượng: \(dtText)"
@@ -536,6 +575,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
             consLblDoituongDetailsHeight.isActive = true
             consLblDoituongHeight.constant =  0
             consLblDoituongDetailsHeight.constant =  0
+            lblDoituong.isHidden = true
         }
         
         //show or hide extra info view

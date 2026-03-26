@@ -155,6 +155,14 @@ class MPSearchFilterPopupController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Utils.lowerInternalConstraintPriorities(viewMucphat)
+        Utils.lowerInternalConstraintPriorities(viewPhuongtien)
+        Utils.lowerInternalConstraintPriorities(viewDoituong)
+        Utils.lowerInternalConstraintPriorities(viewCanhan)
+        Utils.lowerInternalConstraintPriorities(viewTochuc)
+        Utils.lowerInternalConstraintPriorities(viewDoanhnghiep)
+        Utils.lowerInternalConstraintPriorities(viewNhanvien)
+        Utils.lowerInternalConstraintPriorities(viewTrungtam)
         consScrollviewWidth.constant = self.view.frame.size.width
         consMucphatViewWidth.constant = self.view.frame.size.width
         // Do any additional setup after loading the view.
