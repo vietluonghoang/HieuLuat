@@ -11,7 +11,7 @@ import UIKit
 import os.log
 
 class VBPLSearchTableController: UIViewController, UITableViewDelegate,
-    UITableViewDataSource, UISearchResultsUpdating
+    UITableViewDataSource, UISearchBarDelegate
 {
 
     @IBOutlet var viewTop: UIView!
@@ -26,7 +26,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate,
     @IBOutlet var viewBottom: UIView!
 
     private var dieukhoanList = [Dieukhoan]()
-    let searchController = UISearchController(searchResultsController: nil)
+    let searchBar = UISearchBar()
     private var searchKeyword = ""
     private var rowCount = 0
     var filterSettings = [String: String]()
@@ -54,7 +54,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate,
 
         if dieukhoanList.count < 1 {
             updateDieukhoanList(
-                arrDieukhoan: search(keyword: searchController.searchBar.text!))
+                arrDieukhoan: search(keyword: searchBar.text ?? ""))
         }
 
         rowCount = dieukhoanList.count
@@ -74,72 +74,24 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate,
     }
 
     func initSearch() {
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        let sBar = searchController.searchBar
-        searchTextView.addSubview(sBar)
-        searchTextView.addConstraints(
-            [
-                NSLayoutConstraint(
-                    item: sBar,
-                    attribute: .top,
-                    relatedBy: .equal,
-                    toItem: searchTextView,
-                    attribute: .top,
-                    multiplier: 1,
-                    constant: 0),
-                NSLayoutConstraint(
-                    item: sBar,
-                    attribute: .bottom,
-                    relatedBy: .equal,
-                    toItem: searchTextView,
-                    attribute: .bottom,
-                    multiplier: 1,
-                    constant: 0),
-                NSLayoutConstraint(
-                    item: sBar,
-                    attribute: .leading,
-                    relatedBy: .equal,
-                    toItem: searchTextView,
-                    attribute: .leading,
-                    multiplier: 1,
-                    constant: 0),
-                NSLayoutConstraint(
-                    item: sBar,
-                    attribute: .trailing,
-                    relatedBy: .equal,
-                    toItem: searchTextView,
-                    attribute: .trailing,
-                    multiplier: 1,
-                    constant: 0),
-                NSLayoutConstraint(
-                    item: sBar,
-                    attribute: .centerX,
-                    relatedBy: .equal,
-                    toItem: searchTextView,
-                    attribute: .centerX,
-                    multiplier: 1,
-                    constant: 0),
-            ])
-        consSearchViewHeight.constant = sBar.frame.height
+        searchBar.delegate = self
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchTextView.clipsToBounds = true
+        searchTextView.addSubview(searchBar)
+        NSLayoutConstraint.activate([
+            searchBar.topAnchor.constraint(equalTo: searchTextView.topAnchor),
+            searchBar.bottomAnchor.constraint(equalTo: searchTextView.bottomAnchor),
+            searchBar.leadingAnchor.constraint(equalTo: searchTextView.leadingAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: searchTextView.trailingAnchor),
+        ])
         if #available(iOS 10.0, *) {
         } else {
             btnMicro.isHidden = true
         }
     }
 
-    func setupSearchBarSize() {
-        self.searchController.searchBar.frame.size.width =
-            self.view.frame.size.width - microView.frame.size.width
-    }
-
-    func didDismissSearchController(searchController: UISearchController) {
-        setupSearchBarSize()
-    }
-
-    override func viewDidLayoutSubviews() {
-        setupSearchBarSize()
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterContentForSearchText(searchText: searchText)
     }
 
     func initAds() {
@@ -260,7 +212,8 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate,
     }
 
     public func updateSearchBarText(keyword: String) {
-        searchController.searchBar.text = keyword
+        searchBar.text = keyword
+        filterContentForSearchText(searchText: keyword)
     }
 
     /*
@@ -356,21 +309,17 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate,
 
         var dieukhoan: Dieukhoan
 
-        if searchController.isActive && searchController.searchBar.text != "" {
-            if dieukhoanList.count > 0 {
-                dieukhoan = dieukhoanList[indexPath.row]
-            } else {
-                dieukhoan = Dieukhoan(
-                    id: 0, cha: 0,
-                    vanban: Vanban(
-                        id: 0, ten: "", loai: Loaivanban(id: 0, ten: ""),
-                        so: "", nam: "", ma: "",
-                        coquanbanhanh: Coquanbanhanh(id: 0, ten: ""),
-                        noidung: ""))
-                dieukhoan.setMinhhoa(minhhoa: [""])
-            }
-        } else {
+        if dieukhoanList.count > 0 {
             dieukhoan = dieukhoanList[indexPath.row]
+        } else {
+            dieukhoan = Dieukhoan(
+                id: 0, cha: 0,
+                vanban: Vanban(
+                    id: 0, ten: "", loai: Loaivanban(id: 0, ten: ""),
+                    so: "", nam: "", ma: "",
+                    coquanbanhanh: Coquanbanhanh(id: 0, ten: ""),
+                    noidung: ""))
+            dieukhoan.setMinhhoa(minhhoa: [""])
         }
 
         cell.updateDieukhoan(
@@ -407,11 +356,8 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate,
         tblView.reloadData()
     }
 
-    public func updateSearchResults(for searchController: UISearchController) {
-        //        if searchController.searchBar.text!.characters.count > 1 {
-        filterContentForSearchText(
-            searchText: searchController.searchBar.text!, scope: "All")
-        //        }
+    func updateSearchResults() {
+        filterContentForSearchText(searchText: searchBar.text ?? "")
     }
 
     func triggerDelayedAnalyticEventSendTimer(

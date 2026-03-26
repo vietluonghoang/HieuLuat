@@ -572,8 +572,9 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                 }
                 order += 1
-                let tap = UITapGestureRecognizer(target: self, action: #selector(seeMore))
                 imgView.isUserInteractionEnabled = true
+                imgView.tag = order
+                let tap = UITapGestureRecognizer(target: self, action: #selector(handleImageTap(_:)))
                 imgView.addGestureRecognizer(tap)
             }
         }
@@ -664,8 +665,15 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    @objc func seeMore(sender: UITapGestureRecognizer) {
-        print("----------------------------\nI want to show image in zoom view but it could take more time to implement this while the benefit from this is not really high, then i'll let it like this until i have more time or i change my mind.\n----------------------------")
+    @objc func handleImageTap(_ sender: UITapGestureRecognizer) {
+        guard let tappedImageView = sender.view as? UIImageView,
+              let image = tappedImageView.image else { return }
+        
+        let previewVC = ImagePreviewViewController()
+        previewVC.previewImage = image
+        previewVC.modalPresentationStyle = .overFullScreen
+        previewVC.modalTransitionStyle = .crossDissolve
+        present(previewVC, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -20,6 +20,7 @@
 		332C10E62356EE6800EDD3AE /* CouponInputScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332C10E52356EE6800EDD3AE /* CouponInputScreenViewController.swift */; };
 		3331E6641FA3092000219B19 /* MPSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3331E6631FA3092000219B19 /* MPSearchTableController.swift */; };
 		334939891FA8A74F0037305C /* AdsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334939881FA8A74F0037305C /* AdsHelper.swift */; };
+		DD976512C6EA4AA2897B0B01 /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD976512C6EA4AA2897B0B00 /* ImagePreviewViewController.swift */; };
 		334AAFB21FC1E0A300A5BE0F /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AAFB11FC1E0A300A5BE0F /* GeneralSettings.swift */; };
 		335078EA1F5B099100D52741 /* VBPLDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335078E91F5B099100D52741 /* VBPLDetailsViewController.swift */; };
 		335078EC1F5D166A00D52741 /* VBPLSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335078EB1F5D166A00D52741 /* VBPLSearchTableController.swift */; };
@@ -98,6 +99,7 @@
 		332C10E52356EE6800EDD3AE /* CouponInputScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponInputScreenViewController.swift; sourceTree = "<group>"; };
 		3331E6631FA3092000219B19 /* MPSearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPSearchTableController.swift; sourceTree = "<group>"; };
 		334939881FA8A74F0037305C /* AdsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsHelper.swift; sourceTree = "<group>"; };
+		DD976512C6EA4AA2897B0B00 /* ImagePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewViewController.swift; sourceTree = "<group>"; };
 		334AAFB11FC1E0A300A5BE0F /* GeneralSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
 		335078E91F5B099100D52741 /* VBPLDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLDetailsViewController.swift; sourceTree = "<group>"; };
 		335078EB1F5D166A00D52741 /* VBPLSearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLSearchTableController.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				332C10DC235034EB00EDD3AE /* CustomComponents */,
 				33CB15FF1F5AF9A700AD2C45 /* VBPLDetailsSearchTableController.swift */,
 				335078E91F5B099100D52741 /* VBPLDetailsViewController.swift */,
+				DD976512C6EA4AA2897B0B00 /* ImagePreviewViewController.swift */,
 				335078EB1F5D166A00D52741 /* VBPLSearchTableController.swift */,
 				33CE51FB1F5E788C008AB4D4 /* VBPLTableViewCell.swift */,
 				33C87DFD1F6052B100D8B198 /* FilterPopupViewController.swift */,
@@ -625,6 +628,7 @@
 				336C485B1FA0D7D200A154D9 /* PickerViewSelectPopup.swift in Sources */,
 				338C6B5028CB297000E9CDAC /* SplashScreenViewController.swift in Sources */,
 				335078EA1F5B099100D52741 /* VBPLDetailsViewController.swift in Sources */,
+				DD976512C6EA4AA2897B0B01 /* ImagePreviewViewController.swift in Sources */,
 				3322B228234DB7CA004584B1 /* InstructionDetailsViewController.swift in Sources */,
 				33D305661F51802700547497 /* Loaivanban.swift in Sources */,
 				330A22142188AF6C0082A4A6 /* SearchControllers.swift in Sources */,

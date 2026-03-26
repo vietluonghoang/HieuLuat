@@ -49,26 +49,47 @@ class FilterPopupViewController: UIViewController {
     
     private func generateFilterSwitchItem(id: Int,shortname: String, fullname: String, isOn: Bool) -> UIView{
         let wrapperView = UIView()
-        let wrapperTitleView = UIView()
+        
         let lblVanbanShortname = CustomizedLabel()
         lblVanbanShortname.setBoldCaptionLabel()
         lblVanbanShortname.text = shortname
+        
         let lblVanbanFullname = CustomizedLabel()
         lblVanbanFullname.setLightCaptionLabel()
         lblVanbanFullname.text = fullname
-        let titleComponentsList = [lblVanbanShortname,lblVanbanFullname]
-        Utils.autoGenerateLinearViewComponents(parent: wrapperTitleView, orderedComponents: titleComponentsList, top: 1, bottom: 1, left: 1, right: 1, isToptoBottom: true)
+        
         let swt = UISwitch()
         swt.isOn = isOn
         swt.tag = id
         swt.addTarget(self, action: #selector(swtAction), for: .valueChanged)
-        let componentsList = [wrapperTitleView,swt]
-        Utils.autoGenerateLinearViewComponentsConstraintByFirstComponent(parent: wrapperView, orderedComponents: componentsList, top: 2, bottom: 2, left: 2, right: 2, isToptoBottom: false)
+        
+        lblVanbanShortname.translatesAutoresizingMaskIntoConstraints = false
+        lblVanbanFullname.translatesAutoresizingMaskIntoConstraints = false
+        swt.translatesAutoresizingMaskIntoConstraints = false
+        
+        wrapperView.addSubview(lblVanbanShortname)
+        wrapperView.addSubview(lblVanbanFullname)
+        wrapperView.addSubview(swt)
+        
+        NSLayoutConstraint.activate([
+            lblVanbanShortname.topAnchor.constraint(equalTo: wrapperView.topAnchor, constant: 4),
+            lblVanbanShortname.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor, constant: 4),
+            lblVanbanShortname.trailingAnchor.constraint(lessThanOrEqualTo: swt.leadingAnchor, constant: -8),
+            
+            lblVanbanFullname.topAnchor.constraint(equalTo: lblVanbanShortname.bottomAnchor, constant: 2),
+            lblVanbanFullname.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor, constant: 4),
+            lblVanbanFullname.trailingAnchor.constraint(lessThanOrEqualTo: swt.leadingAnchor, constant: -8),
+            lblVanbanFullname.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor, constant: -4),
+            
+            swt.centerYAnchor.constraint(equalTo: wrapperView.centerYAnchor),
+            swt.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor, constant: -4),
+        ])
+        
         return wrapperView
     }
     
     @IBAction func btnXongOnTouchDown(_ sender: Any) {
-        root?.updateSearchResults(for: (root?.searchController)!)
+        root?.updateSearchResults()
         root?.updateFilterLabel()
         self.dismiss(animated: true, completion: nil)
     }
