@@ -71,11 +71,14 @@ class BBFilterPopupViewController: UIViewController {
             lbl.lineBreakMode = .byWordWrapping
             lbl.text = optionListText[opt] //this is not a good way to apply display name. need to use other solution such as Hash
             lbl.tag = order
+            lbl.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
             
             let swt = UISwitch(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
             swt.translatesAutoresizingMaskIntoConstraints = false
             swt.addTarget(self, action: #selector(swtValueChanged), for: .valueChanged)
             swt.tag = order
+            swt.setContentCompressionResistancePriority(.required, for: .horizontal)
+            swt.setContentHuggingPriority(.required, for: .horizontal)
             
             let view = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 100))
             Utils.generateNewComponentWidthConstraint(component: view, width: svOptions.frame.width)
