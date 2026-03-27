@@ -20,7 +20,6 @@
 		332C10E62356EE6800EDD3AE /* CouponInputScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332C10E52356EE6800EDD3AE /* CouponInputScreenViewController.swift */; };
 		3331E6641FA3092000219B19 /* MPSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3331E6631FA3092000219B19 /* MPSearchTableController.swift */; };
 		334939891FA8A74F0037305C /* AdsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334939881FA8A74F0037305C /* AdsHelper.swift */; };
-		DD976512C6EA4AA2897B0B01 /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD976512C6EA4AA2897B0B00 /* ImagePreviewViewController.swift */; };
 		334AAFB21FC1E0A300A5BE0F /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334AAFB11FC1E0A300A5BE0F /* GeneralSettings.swift */; };
 		335078EA1F5B099100D52741 /* VBPLDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335078E91F5B099100D52741 /* VBPLDetailsViewController.swift */; };
 		335078EC1F5D166A00D52741 /* VBPLSearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335078EB1F5D166A00D52741 /* VBPLSearchTableController.swift */; };
@@ -65,7 +64,13 @@
 		33FD3B78232A6BBC00DD7087 /* RedirectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B77232A6BBC00DD7087 /* RedirectionHelper.swift */; };
 		33FD3B7A232B50B700DD7087 /* CustomizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B79232B50B600DD7087 /* CustomizedLabel.swift */; };
 		69CA5C872C2EDBF10049C4E1 /* CustomUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CA5C862C2EDBF10049C4E1 /* CustomUINavigationController.swift */; };
+		DD976512C6EA4AA2897B0B01 /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD976512C6EA4AA2897B0B00 /* ImagePreviewViewController.swift */; };
 		F3496ED8629233F246F7241A /* Pods_HieuLuat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFE2F7FD06EFE3C0182DCF6 /* Pods_HieuLuat.framework */; };
+		AA0001012D0000010000A001 /* AIModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001012D0000010000A000 /* AIModelManager.swift */; };
+		AA0001022D0000020000A001 /* AIModelDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001022D0000020000A000 /* AIModelDownloader.swift */; };
+		AA0001032D0000030000A001 /* AIModelUnzipper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001032D0000030000A000 /* AIModelUnzipper.swift */; };
+		AA0001042D0000040000A001 /* AIModelOverlayWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001042D0000040000A000 /* AIModelOverlayWindow.swift */; };
+		AA0001052D0000050000A001 /* AIModelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001052D0000050000A000 /* AIModelCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,7 +104,6 @@
 		332C10E52356EE6800EDD3AE /* CouponInputScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponInputScreenViewController.swift; sourceTree = "<group>"; };
 		3331E6631FA3092000219B19 /* MPSearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPSearchTableController.swift; sourceTree = "<group>"; };
 		334939881FA8A74F0037305C /* AdsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsHelper.swift; sourceTree = "<group>"; };
-		DD976512C6EA4AA2897B0B00 /* ImagePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewViewController.swift; sourceTree = "<group>"; };
 		334AAFB11FC1E0A300A5BE0F /* GeneralSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
 		335078E91F5B099100D52741 /* VBPLDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLDetailsViewController.swift; sourceTree = "<group>"; };
 		335078EB1F5D166A00D52741 /* VBPLSearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPLSearchTableController.swift; sourceTree = "<group>"; };
@@ -154,6 +158,12 @@
 		69CA5C862C2EDBF10049C4E1 /* CustomUINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUINavigationController.swift; sourceTree = "<group>"; };
 		D5AEB76F78499DA0C4B45CCC /* Pods-HieuLuat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.release.xcconfig"; path = "Target Support Files/Pods-HieuLuat/Pods-HieuLuat.release.xcconfig"; sourceTree = "<group>"; };
 		D6E1636B56AABF4ED831A738 /* Pods-HieuLuat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.debug.xcconfig"; path = "Target Support Files/Pods-HieuLuat/Pods-HieuLuat.debug.xcconfig"; sourceTree = "<group>"; };
+		DD976512C6EA4AA2897B0B00 /* ImagePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewViewController.swift; sourceTree = "<group>"; };
+		AA0001012D0000010000A000 /* AIModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIModelManager.swift; sourceTree = "<group>"; };
+		AA0001022D0000020000A000 /* AIModelDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIModelDownloader.swift; sourceTree = "<group>"; };
+		AA0001032D0000030000A000 /* AIModelUnzipper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIModelUnzipper.swift; sourceTree = "<group>"; };
+		AA0001042D0000040000A000 /* AIModelOverlayWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIModelOverlayWindow.swift; sourceTree = "<group>"; };
+		AA0001052D0000050000A000 /* AIModelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIModelCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +220,11 @@
 				33D305261F51794F00547497 /* Products */,
 				798C4911FEB8C9CC817D678C /* Pods */,
 				7594F57D13B31CDFC8D80E9C /* Frameworks */,
+				AA0001012D0000010000A000 /* AIModelManager.swift */,
+				AA0001022D0000020000A000 /* AIModelDownloader.swift */,
+				AA0001032D0000030000A000 /* AIModelUnzipper.swift */,
+				AA0001042D0000040000A000 /* AIModelOverlayWindow.swift */,
+				AA0001052D0000050000A000 /* AIModelCoordinator.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -555,6 +570,7 @@
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesSwift/Promises.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/ZIPFoundation/ZIPFoundation.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -575,6 +591,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Promises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZIPFoundation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -640,6 +657,11 @@
 				332C10DE2350353A00EDD3AE /* GifImageView.swift in Sources */,
 				3331E6641FA3092000219B19 /* MPSearchTableController.swift in Sources */,
 				33F87E182152509400B04A94 /* BBFilterPopupViewController.swift in Sources */,
+				AA0001012D0000010000A001 /* AIModelManager.swift in Sources */,
+				AA0001022D0000020000A001 /* AIModelDownloader.swift in Sources */,
+				AA0001032D0000030000A001 /* AIModelUnzipper.swift in Sources */,
+				AA0001042D0000040000A001 /* AIModelOverlayWindow.swift in Sources */,
+				AA0001052D0000050000A001 /* AIModelCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

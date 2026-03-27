@@ -45,6 +45,9 @@ class ViewController: UIViewController {
         //Adding border to view tracuu
         viewTracuu.layer.borderColor = UIColor.cyan.cgColor
         viewTracuu.layer.borderWidth = 2
+        
+        // Check and prompt for AI model download
+        AIModelCoordinator.shared.checkAndPromptIfNeeded(from: self)
     }
     
     override func didReceiveMemoryWarning() {

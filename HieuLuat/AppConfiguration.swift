@@ -14,5 +14,7 @@ class AppConfiguration {
         case enablebannerads = "enable_banner_ads"
         case enableinterstitialads = "enable_interstitial_ads"
         case minimumadsinterval = "minimum_ads_interval"
+        case aimodelurl = "aiModelUrl"
+        case aimodelversion = "aiModelVersion"
     }
 }
