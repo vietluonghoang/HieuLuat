@@ -33,6 +33,10 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     let btnFBBanner = UIButton()
     let redirectionHelper = RedirectionHelper()
     
+    // AI-assisted search
+    private var aiDebounceTimer: Timer?
+    private let aiDebounceInterval: TimeInterval = 0.6
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,8 +83,64 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        builtQuery = getBuiltQuery(keyword: searchText)
-        filterContentForSearchText(searchText: searchText)
+        if AIModelManager.shared.isModelReady {
+            print("AI Model is ready")
+            // AI ready: debounce, then run inference to enhance/extract keywords
+            aiDebounceTimer?.invalidate()
+            aiDebounceTimer = Timer.scheduledTimer(withTimeInterval: aiDebounceInterval, repeats: false) { [weak self] _ in
+                self?.performAISearch(userInput: searchText)
+            }
+        } else {
+            print("AI Model is NOT ready")
+            // AI not ready: use existing flow directly
+            builtQuery = getBuiltQuery(keyword: searchText)
+            filterContentForSearchText(searchText: searchText)
+        }
+    }
+    
+    private func performAISearch(userInput: String) {
+        let trimmed = userInput.trimmingCharacters(in: .whitespacesAndNewlines)
+        print("AI Model kick off: \(trimmed)")
+        guard !trimmed.isEmpty else {
+            builtQuery = getBuiltQuery(keyword: "")
+            filterContentForSearchText(searchText: "")
+            return
+        }
+        
+        let prompt = """
+        ### Role:
+        Bạn là chuyên gia pháp lý cao cấp về Luật Giao thông đường bộ Việt Nam. Nhiệm vụ của bạn là chuẩn hóa ngôn từ đời thường sang thuật ngữ pháp lý chính xác theo Nghị định 168/2024/NĐ-CP (văn bản mới nhất thay thế Nghị định 100 và 123).
+
+        ### Rules:
+        1. Chỉ trả về thuật ngữ pháp lý chuẩn theo Nghị định 168/2024/NĐ-CP.
+        2. Tuyệt đối không giải thích, không thêm lời dẫn.
+        3. Ngôn ngữ phải trang trọng, hành chính, đúng theo văn bản luật
+
+        ### Examples:
+        - User: vượt đèn đỏ
+        - Assistant: Không chấp hành hiệu lệnh của đèn tín hiệu giao thông
+
+        - User: kẹp ba trên xe máy
+        - Assistant: Chở theo từ 02 người trở lên trên xe
+
+        - User: vừa lái xe vừa nghe điện thoại
+        - Assistant: Người đang điều khiển xe sử dụng điện thoại di động, thiết bị âm thanh
+
+        ### Input:
+        User: \(trimmed)
+        Assistant:
+        """
+        print("AI Model prompt: \(prompt)")
+        
+        AIModelManager.shared.runInference(input: prompt) { [weak self] aiResult in
+            guard let self = self else { return }
+            
+            print("AI keyword: \(aiResult)")
+            // Use AI-enhanced keyword if available, otherwise fallback to original
+            let keyword = aiResult.isEmpty ? trimmed : aiResult
+            self.builtQuery = self.getBuiltQuery(keyword: keyword)
+            self.filterContentForSearchText(searchText: keyword)
+        }
     }
     
     func initAds() {
