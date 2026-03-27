@@ -26,6 +26,24 @@ class AboutViewController: UIViewController {
         }
         AnalyticsHelper.sendAnalyticEvent(eventName: "open_screen", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_CHUNGTOI])
         AnalyticsHelper.sendAnalyticEventMixPanel(eventName: "screen_open", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_CHUNGTOI])
+        
+        setupAIAttributionLabel()
+    }
+    
+    private func setupAIAttributionLabel() {
+        let label = UILabel()
+        label.text = "Tính năng AI sử dụng kiến trúc mô hình Gemma® của Google và được chuyển đổi bởi công cụ của ANEMLL (MIT License)."
+        label.font = UIFont.systemFont(ofSize: 10)
+        label.textColor = .gray
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            label.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
+        ])
     }
     
     override func didReceiveMemoryWarning() {

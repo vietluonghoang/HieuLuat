@@ -40,6 +40,9 @@ class AIModelCoordinator: NSObject {
                 overlay.show()
                 listenForModelState()
                 manager.loadModels()
+            } else if !manager.checkModelAvailability() {
+                // User opted in but model not fully downloaded (app was killed mid-download)
+                startFullPipeline()
             }
             return
         }
@@ -112,6 +115,13 @@ class AIModelCoordinator: NSObject {
         overlay.show()
         listenForModelState()
         manager.startDownload()
+        
+        // Try to resume a previous interrupted download first
+        if downloader.hasResumeData {
+            print("AIModelCoordinator: Resuming interrupted download...")
+            downloader.resumeDownload()
+            return
+        }
         
         guard let urlString = getModelURL(), let url = URL(string: urlString) else {
             overlay.showError(message: "Không tìm thấy URL tải mô hình từ cấu hình.")

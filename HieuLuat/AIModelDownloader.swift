@@ -36,7 +36,13 @@ class AIModelDownloader: NSObject, URLSessionDownloadDelegate {
     private let callbackInterval: TimeInterval = 0.5
 
     private var resumeDataFileURL: URL {
-        return URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("aimodel_download_resume.dat")
+        let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        try? FileManager.default.createDirectory(at: appSupport, withIntermediateDirectories: true)
+        return appSupport.appendingPathComponent("aimodel_download_resume.dat")
+    }
+
+    var hasResumeData: Bool {
+        return FileManager.default.fileExists(atPath: resumeDataFileURL.path)
     }
 
     override init() {
