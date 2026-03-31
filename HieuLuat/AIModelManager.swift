@@ -71,6 +71,16 @@ class AIModelManager {
         return false
     }
     
+    /// True when the manager is actively downloading, unzipping, or loading models.
+    var isBusy: Bool {
+        switch state {
+        case .downloading, .unzipping, .loadingModels:
+            return true
+        default:
+            return false
+        }
+    }
+    
     // MARK: - Constants
     
     private static let modelFileNames = [
@@ -83,6 +93,7 @@ class AIModelManager {
     
     private static let modelsFolderName = "AIModels"
     private static let minimumRequiredDiskSpaceBytes: UInt64 = 9 * 1024 * 1024 * 1024 // 9GB
+    private static let minimumRAMBytes: UInt64 = 5 * 1024 * 1024 * 1024 // 5GB RAM minimum
     private static let userDefaultsModelVersionKey = "ai_model_version"
     private static let userDefaultsOptedInKey = "ai_model_opted_in"
     
@@ -91,6 +102,8 @@ class AIModelManager {
     private var loadedModels: [String: MLModel] = [:]
     private var remoteModelUrl: String?
     private var remoteModelVersion: String?
+    private var tokenizer: GemmaTokenizer?
+    private var inferenceEngine: Any? // GemmaInferenceEngine (iOS 18+)
     
     private var modelsDirectoryURL: URL {
         let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
@@ -132,12 +145,135 @@ class AIModelManager {
     
     // MARK: - Memory Warning
     
+    private var memoryWarningsDuringLoad: Int = 0
+    
     @objc private func handleMemoryWarning() {
-        if case .ready = state {
-            print("AIModelManager: Memory warning received, unloading models")
+        print("AIModelManager: ⚠️ Memory warning (state: \(state))")
+        switch state {
+        case .ready:
+            print("AIModelManager: Unloading models to free memory")
+            inferenceEngine = nil
             loadedModels.removeAll()
             state = .idle
+        case .loadingModels:
+            // Do NOT abort — CoreML compile causes temporary memory spikes.
+            // The memory will recover after compilation finishes.
+            memoryWarningsDuringLoad += 1
+            print("AIModelManager: Memory warning #\(memoryWarningsDuringLoad) during load (expected during CoreML compile) - continuing")
+        default:
+            break
         }
+    }
+    
+    // MARK: - Device Capability
+    
+    struct DeviceCapability {
+        let totalRAM: UInt64
+        let availableRAM: UInt64
+        let chipGeneration: Int // A-series number (e.g., 15 for A15)
+        let isSupported: Bool
+        let reason: String?
+    }
+    
+    func checkDeviceCapability() -> DeviceCapability {
+        let totalRAM = ProcessInfo.processInfo.physicalMemory
+        let availableRAM = getAvailableMemory()
+        let chip = detectChipGeneration()
+        
+        print("AIModelManager: Device check - RAM: \(totalRAM / (1024*1024))MB, Available: \(availableRAM / (1024*1024))MB, Chip: A\(chip)")
+        
+        // Check iOS version
+        guard #available(iOS 18.0, *) else {
+            return DeviceCapability(totalRAM: totalRAM, availableRAM: availableRAM,
+                                    chipGeneration: chip, isSupported: false,
+                                    reason: "AI Search yêu cầu iOS 18 trở lên.")
+        }
+        
+        // Check RAM (need 6GB+ total)
+        if totalRAM < AIModelManager.minimumRAMBytes {
+            return DeviceCapability(totalRAM: totalRAM, availableRAM: availableRAM,
+                                    chipGeneration: chip, isSupported: false,
+                                    reason: "Thiết bị cần ít nhất 5GB RAM để chạy AI. Thiết bị hiện có \(totalRAM / (1024*1024))MB.")
+        }
+        
+        // Check chip (A15+ recommended for Neural Engine performance)
+        if chip < 15 {
+            return DeviceCapability(totalRAM: totalRAM, availableRAM: availableRAM,
+                                    chipGeneration: chip, isSupported: false,
+                                    reason: "AI Search yêu cầu chip A15 Bionic trở lên (iPhone 13 trở lên).")
+        }
+        
+        return DeviceCapability(totalRAM: totalRAM, availableRAM: availableRAM,
+                                chipGeneration: chip, isSupported: true, reason: nil)
+    }
+    
+    private func getAvailableMemory() -> UInt64 {
+        // os_proc_available_memory() returns the actual memory available
+        // to this process before the OS will jetsam/kill it.
+        // This is the correct API — NOT (total - resident_size).
+        if #available(iOS 13.0, *) {
+            let available = os_proc_available_memory()
+            return UInt64(available)
+        }
+        return 0
+    }
+    
+    private func getAppUsedMemory() -> UInt64 {
+        var info = mach_task_basic_info()
+        var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size) / 4
+        let result = withUnsafeMutablePointer(to: &info) {
+            $0.withMemoryRebound(to: integer_t.self, capacity: Int(count)) {
+                task_info(mach_task_self_, task_flavor_t(MACH_TASK_BASIC_INFO), $0, &count)
+            }
+        }
+        return result == KERN_SUCCESS ? UInt64(info.resident_size) : 0
+    }
+    
+    private func detectChipGeneration() -> Int {
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machine = withUnsafePointer(to: &systemInfo.machine) {
+            $0.withMemoryRebound(to: CChar.self, capacity: 1) {
+                String(cString: $0)
+            }
+        }
+        // iPhone identifiers: iPhone14,x = A15, iPhone15,x = A16, iPhone16,x = A17, iPhone17,x = A18
+        if machine.hasPrefix("iPhone") {
+            let parts = machine.replacingOccurrences(of: "iPhone", with: "").split(separator: ",")
+            if let major = Int(parts.first ?? "") {
+                switch major {
+                case 17: return 18 // iPhone 16
+                case 16: return 17 // iPhone 15
+                case 15: return 16 // iPhone 14
+                case 14: return 15 // iPhone 13
+                case 13: return 14 // iPhone 12
+                case 12: return 13 // iPhone 11
+                default: return major >= 17 ? 18 : 12
+                }
+            }
+        }
+        // iPad identifiers
+        if machine.hasPrefix("iPad") {
+            let parts = machine.replacingOccurrences(of: "iPad", with: "").split(separator: ",")
+            if let major = Int(parts.first ?? "") {
+                if major >= 16 { return 17 }
+                if major >= 14 { return 15 }
+                return 14
+            }
+        }
+        // Simulator
+        if machine == "x86_64" || machine == "arm64" {
+            return 99
+        }
+        return 12
+    }
+    
+    func checkAvailableMemoryForLoading() -> Bool {
+        let available = getAvailableMemory()
+        let appUsed = getAppUsedMemory()
+        let needed: UInt64 = 800 * 1024 * 1024 // Need ~800MB free to safely load models
+        print("AIModelManager: Memory check - available (os_proc): \(available / (1024*1024))MB, app used: \(appUsed / (1024*1024))MB, needed: \(needed / (1024*1024))MB")
+        return available >= needed
     }
     
     // MARK: - Model Availability
@@ -201,6 +337,12 @@ class AIModelManager {
     // MARK: - Download
     
     func startDownload() {
+        // Prevent duplicate downloads
+        guard !isBusy else {
+            print("AIModelManager: startDownload() skipped — already busy")
+            return
+        }
+        
         guard let urlString = remoteModelUrl, !urlString.isEmpty else {
             state = .error(.downloadFailed("No model URL available from Remote Config"))
             return
@@ -229,6 +371,8 @@ class AIModelManager {
         if let version = remoteModelVersion {
             modelVersion = version
         }
+        // Reset state so loadModels() guard allows it
+        state = .idle
         loadModels()
     }
     
@@ -243,12 +387,28 @@ class AIModelManager {
     // MARK: - Load Models
     
     func loadModels() {
+        // Prevent duplicate loads
+        guard !isModelReady && !isBusy else {
+            print("AIModelManager: loadModels() skipped — already \(isModelReady ? "ready" : "busy")")
+            return
+        }
+        
         let totalModels = AIModelManager.modelFileNames.count
         state = .loadingModels(current: 0, total: totalModels)
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             
+            // Pre-flight memory check
+            if !self.checkAvailableMemoryForLoading() {
+                print("AIModelManager: Insufficient memory to start loading")
+                DispatchQueue.main.async {
+                    self.state = .error(.lowMemory)
+                }
+                return
+            }
+            
+            self.memoryWarningsDuringLoad = 0
             var models = [String: MLModel]()
             
             for (index, fileName) in AIModelManager.modelFileNames.enumerated() {
@@ -258,67 +418,157 @@ class AIModelManager {
                 
                 let fileURL = self.modelsDirectoryURL.appendingPathComponent(fileName)
                 
-                do {
-                    let model = try self.loadSingleModel(at: fileURL)
-                    models[fileName] = model
-                    print("AIModelManager: Loaded model \(fileName) (\(index + 1)/\(totalModels))")
-                } catch {
-                    print("AIModelManager: Failed to load model \(fileName): \(error.localizedDescription)")
+                // Load each model inside autoreleasepool to release intermediate memory
+                var loadError: Error? = nil
+                autoreleasepool {
+                    do {
+                        let model = try self.loadSingleModel(at: fileURL)
+                        models[fileName] = model
+                    } catch {
+                        loadError = error
+                    }
+                }
+                
+                if let error = loadError {
+                    print("AIModelManager: ❌ Failed to load \(fileName): \(error)")
                     DispatchQueue.main.async {
-                        self.state = .error(.modelLoadFailed("Failed to load \(fileName): \(error.localizedDescription)"))
+                        self.state = .error(.modelLoadFailed("\(fileName): \(error.localizedDescription)"))
                     }
                     return
                 }
+                
+                // Check memory AFTER load completes (spike has recovered)
+                let freeAfterLoad = self.getAvailableMemory()
+                if freeAfterLoad < 100 * 1024 * 1024 { // less than 100MB free after recovery
+                    print("AIModelManager: ⚠️ Only \(freeAfterLoad / (1024*1024))MB free after loading \(fileName) - aborting remaining models")
+                    models.removeAll()
+                    DispatchQueue.main.async {
+                        self.state = .error(.lowMemory)
+                    }
+                    return
+                }
+                
+                // Brief pause between models to let system stabilize
+                Thread.sleep(forTimeInterval: 0.3)
+            }
+            
+            // Final memory check after all models loaded
+            let freeAfter = self.getAvailableMemory()
+            print("AIModelManager: All models loaded. Free memory: \(freeAfter / (1024*1024))MB")
+            
+            // Initialize tokenizer
+            let tokenizer = GemmaTokenizer(modelDirectory: self.modelsDirectoryURL)
+            
+            // Initialize inference engine (iOS 18+ only)
+            var engine: Any? = nil
+            if #available(iOS 18.0, *) {
+                let embedModel = models[AIModelManager.modelFileNames[0]]!
+                let ffnModels = [
+                    models[AIModelManager.modelFileNames[1]]!,
+                    models[AIModelManager.modelFileNames[2]]!,
+                    models[AIModelManager.modelFileNames[3]]!
+                ]
+                let lmHeadModel = models[AIModelManager.modelFileNames[4]]!
+                engine = GemmaInferenceEngine(
+                    embedModel: embedModel,
+                    ffnModels: ffnModels,
+                    lmHeadModel: lmHeadModel,
+                    contextLength: 4096,
+                    slidingWindow: 1024
+                )
+                print("AIModelManager: Inference engine initialized")
+            } else {
+                print("AIModelManager: Inference engine requires iOS 18+")
             }
             
             DispatchQueue.main.async {
-                self.loadedModels = models
+                if engine != nil {
+                    // Engine holds its own references to models.
+                    // Don't keep duplicate references in loadedModels to save RAM.
+                    self.loadedModels.removeAll()
+                } else {
+                    self.loadedModels = models
+                }
+                self.tokenizer = tokenizer
+                self.inferenceEngine = engine
                 self.state = .ready
-                print("AIModelManager: All models loaded successfully")
+                let finalFree = self.getAvailableMemory()
+                print("AIModelManager: ✅ All models loaded. Free: \(finalFree / (1024*1024))MB, app used: \(self.getAppUsedMemory() / (1024*1024))MB, mem warnings during load: \(self.memoryWarningsDuringLoad)")
             }
         }
     }
     
     private func loadSingleModel(at url: URL) throws -> MLModel {
+        let fileName = url.lastPathComponent
+        let freeBefore = getAvailableMemory()
+        print("AIModelManager: [LOAD] Starting \(fileName) - free: \(freeBefore / (1024*1024))MB, app used: \(getAppUsedMemory() / (1024*1024))MB")
+        
         let config = MLModelConfiguration()
-        config.computeUnits = .all
+        // Use CPU+NeuralEngine only (matching ANEMLL reference).
+        // .all includes GPU which doubles memory buffers unnecessarily.
+        if #available(iOS 16.0, *) {
+            config.computeUnits = .cpuAndNeuralEngine
+        } else {
+            config.computeUnits = .all
+        }
         
         // Multi-function CoreML models (like Gemma 3n) require
         // specifying functionName on iOS 18+ / macOS 15+.
         // Try without functionName first, then retry with known function names.
         do {
-            return try MLModel(contentsOf: url, configuration: config)
+            print("AIModelManager: [LOAD] \(fileName) - calling MLModel(contentsOf:)...")
+            let model = try MLModel(contentsOf: url, configuration: config)
+            let freeAfter = getAvailableMemory()
+            let deltaMB = Int64(freeBefore / (1024*1024)) - Int64(freeAfter / (1024*1024))
+            print("AIModelManager: [LOAD] \(fileName) - OK, free: \(freeAfter / (1024*1024))MB (delta: \(deltaMB > 0 ? "-" : "+")\(abs(deltaMB))MB)")
+            return model
         } catch {
-            let errorDesc = error.localizedDescription
-            guard errorDesc.contains("multi-function") || errorDesc.contains("multifunction") else {
+            let errorDesc = "\(error)"
+            print("AIModelManager: [LOAD] \(fileName) - first attempt failed: \(errorDesc)")
+            
+            guard errorDesc.contains("multi-function") || errorDesc.contains("multifunction") ||
+                  errorDesc.contains("multi_function") || errorDesc.contains("function") else {
                 throw error
             }
             
-            print("AIModelManager: Multi-function model detected, trying with functionName...")
+            print("AIModelManager: [LOAD] \(fileName) - multi-function detected, trying functionName...")
             
             if #available(iOS 18.0, *) {
                 let functionNames = ["main", "predict", "forward"]
                 for funcName in functionNames {
                     let mfConfig = MLModelConfiguration()
-                    mfConfig.computeUnits = .all
+                    if #available(iOS 16.0, *) {
+                        mfConfig.computeUnits = .cpuAndNeuralEngine
+                    } else {
+                        mfConfig.computeUnits = .all
+                    }
                     mfConfig.functionName = funcName
                     do {
+                        print("AIModelManager: [LOAD] \(fileName) - trying functionName=\"\(funcName)\"...")
                         let model = try MLModel(contentsOf: url, configuration: mfConfig)
-                        print("AIModelManager: Loaded with functionName=\"\(funcName)\"")
+                        let freeAfter = getAvailableMemory()
+                        print("AIModelManager: [LOAD] \(fileName) - OK with \"\(funcName)\", free: \(freeAfter / (1024*1024))MB")
                         return model
                     } catch {
-                        print("AIModelManager: functionName=\"\(funcName)\" failed, trying next...")
+                        print("AIModelManager: [LOAD] \(fileName) - \"\(funcName)\" failed: \(error)")
                         continue
                     }
                 }
-                throw AIModelError.modelLoadFailed("No valid function found in multi-function model at \(url.lastPathComponent)")
+                throw AIModelError.modelLoadFailed("No valid function found in \(fileName)")
             } else {
-                throw AIModelError.modelLoadFailed("Multi-function models require iOS 18.0+. Current device is not supported.")
+                throw AIModelError.modelLoadFailed("Multi-function models require iOS 18.0+")
             }
         }
     }
     
     // MARK: - Inference
+    
+    /// Cancel any in-flight inference so a new one can start cleanly.
+    func cancelInference() {
+        if #available(iOS 18.0, *), let engine = inferenceEngine as? GemmaInferenceEngine {
+            engine.isCancelled = true
+        }
+    }
     
     func runInference(input: String, completion: @escaping (String) -> Void) {
         guard isModelReady else {
@@ -327,28 +577,46 @@ class AIModelManager {
             return
         }
         
-        // Placeholder: chain models in pipeline order
-        // 1. gemma3_embeddings_lut8
-        // 2. gemma3_FFN_PF_lut6_chunk_01of03
-        // 3. gemma3_FFN_PF_lut6_chunk_02of03
-        // 4. gemma3_FFN_PF_lut6_chunk_03of03
-        // 5. gemma3_lm_head_lut6
+        guard let tokenizer = self.tokenizer else {
+            print("AIModelManager: Tokenizer not initialized")
+            completion("")
+            return
+        }
         
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
-            
-            _ = self.loadedModels[AIModelManager.modelFileNames[0]] // embeddings
-            _ = self.loadedModels[AIModelManager.modelFileNames[1]] // FFN chunk 1
-            _ = self.loadedModels[AIModelManager.modelFileNames[2]] // FFN chunk 2
-            _ = self.loadedModels[AIModelManager.modelFileNames[3]] // FFN chunk 3
-            _ = self.loadedModels[AIModelManager.modelFileNames[4]] // lm_head
-            
-            // TODO: Implement actual inference pipeline
-            let result = ""
-            
-            DispatchQueue.main.async {
-                completion(result)
+        guard #available(iOS 18.0, *), let engine = self.inferenceEngine as? GemmaInferenceEngine else {
+            print("AIModelManager: Inference engine not available (requires iOS 18+)")
+            completion("")
+            return
+        }
+        
+        // Cancel any previous in-flight inference
+        engine.isCancelled = true
+        
+        // Build prompt on main thread (fast)
+        let inputTokens = tokenizer.buildPrompt(userMessage: input)
+        print("AIModelManager: Prompt tokenized to \(inputTokens.count) tokens")
+        
+        let stopTokenIds: Set<Int> = [tokenizer.eosTokenId, tokenizer.endOfTurnTokenId]
+        let startTime = CFAbsoluteTimeGetCurrent()
+        
+        // Run on engine's serial queue (ensures previous cancelled inference finishes first)
+        engine.runGenerate(inputTokens: inputTokens, maxNewTokens: 256, stopTokenIds: stopTokenIds) { outputTokens in
+            // Already on main queue
+            if outputTokens.isEmpty {
+                print("AIModelManager: Inference returned empty (cancelled or error)")
+                completion("")
+                return
             }
+            
+            let filteredTokens = outputTokens.filter { !tokenizer.isStopToken($0) }
+            let result = tokenizer.decode(filteredTokens)
+            
+            let elapsed = CFAbsoluteTimeGetCurrent() - startTime
+            let tokensPerSec = outputTokens.count > 0 ? Double(outputTokens.count) / elapsed : 0
+            print("AIModelManager: Generated \(outputTokens.count) tokens in \(String(format: "%.1f", elapsed))s (\(String(format: "%.1f", tokensPerSec)) t/s)")
+            print("AIModelManager: Result: \(result)")
+            
+            completion(result)
         }
     }
     

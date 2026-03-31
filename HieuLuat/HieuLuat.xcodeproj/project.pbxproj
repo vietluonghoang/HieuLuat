@@ -71,6 +71,8 @@
 		AA0001032D0000030000A001 /* AIModelUnzipper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001032D0000030000A000 /* AIModelUnzipper.swift */; };
 		AA0001042D0000040000A001 /* AIModelOverlayWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001042D0000040000A000 /* AIModelOverlayWindow.swift */; };
 		AA0001052D0000050000A001 /* AIModelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001052D0000050000A000 /* AIModelCoordinator.swift */; };
+		AA0001062D0000060000A001 /* GemmaTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001062D0000060000A000 /* GemmaTokenizer.swift */; };
+		AA0001072D0000070000A001 /* GemmaInferenceEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001072D0000070000A000 /* GemmaInferenceEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +166,8 @@
 		AA0001032D0000030000A000 /* AIModelUnzipper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIModelUnzipper.swift; sourceTree = "<group>"; };
 		AA0001042D0000040000A000 /* AIModelOverlayWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIModelOverlayWindow.swift; sourceTree = "<group>"; };
 		AA0001052D0000050000A000 /* AIModelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIModelCoordinator.swift; sourceTree = "<group>"; };
+		AA0001062D0000060000A000 /* GemmaTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemmaTokenizer.swift; sourceTree = "<group>"; };
+		AA0001072D0000070000A000 /* GemmaInferenceEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemmaInferenceEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +229,8 @@
 				AA0001032D0000030000A000 /* AIModelUnzipper.swift */,
 				AA0001042D0000040000A000 /* AIModelOverlayWindow.swift */,
 				AA0001052D0000050000A000 /* AIModelCoordinator.swift */,
+				AA0001062D0000060000A000 /* GemmaTokenizer.swift */,
+				AA0001072D0000070000A000 /* GemmaInferenceEngine.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -662,6 +668,8 @@
 				AA0001032D0000030000A001 /* AIModelUnzipper.swift in Sources */,
 				AA0001042D0000040000A001 /* AIModelOverlayWindow.swift in Sources */,
 				AA0001052D0000050000A001 /* AIModelCoordinator.swift in Sources */,
+				AA0001062D0000060000A001 /* GemmaTokenizer.swift in Sources */,
+				AA0001072D0000070000A001 /* GemmaInferenceEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

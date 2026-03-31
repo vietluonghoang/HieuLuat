@@ -35,7 +35,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     
     // AI-assisted search
     private var aiDebounceTimer: Timer?
-    private let aiDebounceInterval: TimeInterval = 0.6
+    private let aiDebounceInterval: TimeInterval = 1.2  // longer debounce to avoid repeated inference
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,18 +83,22 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // Always cancel pending AI work on every keystroke
+        aiDebounceTimer?.invalidate()
+        AIModelManager.shared.cancelInference()
+        
+        // Immediately show results with the raw keyword (no AI delay)
+        builtQuery = getBuiltQuery(keyword: searchText)
+        filterContentForSearchText(searchText: searchText)
+        
+        // Schedule AI enhancement in the background after user stops typing
         if AIModelManager.shared.isModelReady {
-            print("AI Model is ready")
-            // AI ready: debounce, then run inference to enhance/extract keywords
-            aiDebounceTimer?.invalidate()
+            let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard trimmed.count >= 3 else { return } // need at least 3 chars for meaningful AI
+            
             aiDebounceTimer = Timer.scheduledTimer(withTimeInterval: aiDebounceInterval, repeats: false) { [weak self] _ in
                 self?.performAISearch(userInput: searchText)
             }
-        } else {
-            print("AI Model is NOT ready")
-            // AI not ready: use existing flow directly
-            builtQuery = getBuiltQuery(keyword: searchText)
-            filterContentForSearchText(searchText: searchText)
         }
     }
     

@@ -35,13 +35,25 @@ class AIModelCoordinator: NSObject {
     // MARK: - Public
     
     func checkAndPromptIfNeeded(from viewController: UIViewController) {
+        // Check device capability first — skip AI entirely on unsupported devices
+        let capability = manager.checkDeviceCapability()
+        guard capability.isSupported else {
+            print("AIModelCoordinator: Device not supported for AI - \(capability.reason ?? "")")
+            return
+        }
+        
+        // Guard: skip if already in progress or ready
+        if manager.isModelReady || manager.isBusy {
+            print("AIModelCoordinator: Skipping — already \(manager.isModelReady ? "ready" : "busy")")
+            return
+        }
+        
         guard manager.shouldPromptUser() else {
-            if manager.checkModelAvailability() && !manager.isModelReady {
+            if manager.checkModelAvailability() {
                 overlay.show()
                 listenForModelState()
                 manager.loadModels()
-            } else if !manager.checkModelAvailability() {
-                // User opted in but model not fully downloaded (app was killed mid-download)
+            } else {
                 startFullPipeline()
             }
             return
@@ -62,6 +74,12 @@ class AIModelCoordinator: NSObject {
     }
     
     func startFullPipeline() {
+        // Prevent re-entry if already in progress
+        guard !manager.isBusy && !manager.isModelReady else {
+            print("AIModelCoordinator: startFullPipeline() skipped — already \(manager.isModelReady ? "ready" : "busy")")
+            return
+        }
+        
         manager.fetchRemoteModelConfig()
         
         if manager.checkModelAvailability() {
@@ -169,6 +187,7 @@ class AIModelCoordinator: NSObject {
             NotificationCenter.default.removeObserver(self, name: .AIModelStateDidChange, object: nil)
         case .error(let error):
             var message = "Đã xảy ra lỗi."
+            var usePopup = false
             switch error {
             case .networkUnavailable:
                 message = "Không có kết nối mạng."
@@ -183,11 +202,37 @@ class AIModelCoordinator: NSObject {
             case .checksumMismatch:
                 message = "File mô hình bị lỗi."
             case .lowMemory:
-                message = "Thiết bị thiếu bộ nhớ RAM."
+                usePopup = true
+                message = "Thiết bị không đủ bộ nhớ RAM để nạp mô hình AI."
             }
-            overlay.showError(message: message)
+            if usePopup {
+                overlay.dismiss()
+                showResourceAlert(message: message)
+            } else {
+                overlay.showError(message: message)
+            }
         default:
             break
+        }
+    }
+    
+    private func showResourceAlert(message: String) {
+        DispatchQueue.main.async { [weak self] in
+            let alert = UIAlertController(
+                title: "Không thể chạy AI",
+                message: "\(message)\n\nHãy đóng bớt ứng dụng đang chạy rồi thử lại, hoặc tắt tính năng AI.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "Thử lại", style: .default) { [weak self] _ in
+                self?.overlay.show()
+                self?.listenForModelState()
+                self?.manager.loadModels()
+            })
+            alert.addAction(UIAlertAction(title: "Tắt AI", style: .destructive) { [weak self] _ in
+                self?.manager.userDidOptOut()
+            })
+            alert.addAction(UIAlertAction(title: "Để sau", style: .cancel, handler: nil))
+            self?.topViewController()?.present(alert, animated: true, completion: nil)
         }
     }
     
