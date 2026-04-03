@@ -31,11 +31,39 @@ class VBPLTableViewCell: UITableViewCell{
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        // Card appearance
+        contentView.backgroundColor = AppColors.surface
+        contentView.layer.cornerRadius = AppRadius.md
+        AppShadow.light(for: contentView.layer)
+        backgroundColor = .clear
+        
+        // Image styling
+        imgView?.layer.cornerRadius = AppRadius.sm
+        imgView?.clipsToBounds = true
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
+        contentView.backgroundColor = selected ? AppColors.primaryContainer : AppColors.surface
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        UIView.animate(withDuration: 0.15) {
+            self.contentView.transform = highlighted ? CGAffineTransform(scaleX: 0.98, y: 0.98) : .identity
+            self.contentView.backgroundColor = highlighted ? AppColors.primaryContainer : AppColors.surface
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(
+            top: AppSpacing.xs,
+            left: AppSpacing.md,
+            bottom: AppSpacing.xs,
+            right: AppSpacing.md
+        ))
     }
     
     func updateDieukhoan(dieukhoan: Dieukhoan,fullDetails: Bool,showVanban: Bool, maxText: Int = 250, defaultImage: Int = 0) {

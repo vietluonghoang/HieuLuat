@@ -10,11 +10,14 @@ import UIKit
 
 class LoadingView: UIView {
     func showSpinner() {
-        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
+        let ai = UIActivityIndicatorView.init(style: .large)
+        ai.color = AppColors.primary
         ai.startAnimating()
         ai.center = self.center
         
         DispatchQueue.main.async {
+            self.backgroundColor = AppColors.surface.withAlphaComponent(0.9)
+            self.layer.cornerRadius = AppRadius.lg
             self.addSubview(ai)
         }
     }

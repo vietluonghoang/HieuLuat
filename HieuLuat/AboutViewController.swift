@@ -17,9 +17,17 @@ class AboutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Modern styling
+        view.backgroundColor = AppColors.surfaceVariant
         btnFounderFB.setTitle((GeneralSettings.getFBLink[1]).absoluteString, for: .normal)
         btnFounderE.setTitle(GeneralSettings.getEmailAddress, for: .normal)
-        // Do any additional setup after loading the view.
+        // Style buttons
+        btnFounderFB.tintColor = AppColors.primary
+        btnFounderFB.titleLabel?.font = AppTypography.bodyMedium
+        btnFounderE.tintColor = AppColors.primary
+        btnFounderE.titleLabel?.font = AppTypography.bodyMedium
+        btnAdsOptout.tintColor = AppColors.primary
+        btnAdsOptout.titleLabel?.font = AppTypography.labelLarge
         
         if GeneralSettings.isAdsOptout {
             btnAdsOptout.isEnabled = false
@@ -33,8 +41,8 @@ class AboutViewController: UIViewController {
     private func setupAIAttributionLabel() {
         let label = UILabel()
         label.text = "Tính năng AI sử dụng kiến trúc mô hình Gemma® của Google và được chuyển đổi bởi công cụ của ANEMLL (MIT License)."
-        label.font = UIFont.systemFont(ofSize: 10)
-        label.textColor = .gray
+        label.font = AppTypography.caption
+        label.textColor = AppColors.onSurfaceVariant
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -44,11 +52,6 @@ class AboutViewController: UIViewController {
             label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             label.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
         ])
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func btnFouderFBAction(_ sender: Any) {

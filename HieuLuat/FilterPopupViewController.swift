@@ -20,6 +20,16 @@ class FilterPopupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateSwitches()
+        
+        // Modern styling
+        view.backgroundColor = AppColors.surface
+        svPopupContent?.backgroundColor = AppColors.surface
+        viewContent?.backgroundColor = AppColors.surface
+        viewContent?.layer.cornerRadius = AppRadius.lg
+        viewDetailContent?.backgroundColor = AppColors.surfaceVariant
+        viewDetailContent?.layer.cornerRadius = AppRadius.md
+        lblPopupTitle?.font = AppTypography.titleMedium
+        lblPopupTitle?.textColor = AppColors.onSurface
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,10 +62,12 @@ class FilterPopupViewController: UIViewController {
         
         let lblVanbanShortname = CustomizedLabel()
         lblVanbanShortname.setBoldCaptionLabel()
+        lblVanbanShortname.textColor = AppColors.onSurface
         lblVanbanShortname.text = shortname
         
         let lblVanbanFullname = CustomizedLabel()
         lblVanbanFullname.setLightCaptionLabel()
+        lblVanbanFullname.textColor = AppColors.onSurfaceVariant
         lblVanbanFullname.text = fullname
         
         let swt = UISwitch()
@@ -71,6 +83,9 @@ class FilterPopupViewController: UIViewController {
         lblVanbanFullname.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         swt.setContentCompressionResistancePriority(.required, for: .horizontal)
         swt.setContentHuggingPriority(.required, for: .horizontal)
+        
+        wrapperView.backgroundColor = AppColors.surface
+        wrapperView.layer.cornerRadius = AppRadius.sm
         
         wrapperView.addSubview(lblVanbanShortname)
         wrapperView.addSubview(lblVanbanFullname)

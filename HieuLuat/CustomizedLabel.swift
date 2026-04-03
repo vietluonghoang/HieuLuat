@@ -63,23 +63,28 @@ class CustomizedLabel: UILabel {
     
     func setLightCaptionLabel() {
         setDefaultLabelConfig()
-        font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.light)
+        font = AppTypography.bodySmall
+        textColor = AppColors.onSurfaceVariant
     }
     func setBoldCaptionLabel() {
         setDefaultLabelConfig()
-        font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.bold)
+        font = AppTypography.labelLarge
+        textColor = AppColors.onSurface
     }
     func setRegularCaptionLabel() {
         setDefaultLabelConfig()
-        font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.regular)
+        font = AppTypography.labelMedium
+        textColor = AppColors.onSurfaceVariant
     }
     func setRegularCaptionLabelRightAligned() {
         setDefaultLabelConfig()
-        font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.regular)
+        font = AppTypography.labelMedium
+        textColor = AppColors.onSurfaceVariant
         textAlignment = NSTextAlignment.right
     }
     func setNormalCaptionLabel() {
         setDefaultLabelConfig()
-        font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.regular)
+        font = AppTypography.bodyMedium
+        textColor = AppColors.onSurface
     }
 }

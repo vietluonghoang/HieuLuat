@@ -39,11 +39,12 @@ class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, U
         rowCount = dieukhoanList.count
         tblView.reloadData()
         initAds()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        // Modern styling
+        view.backgroundColor = AppColors.surfaceVariant
+        tblView?.backgroundColor = .clear
+        tblView?.separatorStyle = .none
+        tblView?.contentInset = UIEdgeInsets(top: AppSpacing.sm, left: 0, bottom: AppSpacing.sm, right: 0)
     }
     
     func initSearch() {

@@ -43,8 +43,8 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     var plateShapesFiltered = [String]()
     var plateShapesSelected = [String:Bool]()
     var plateDetailsGroupsSelected = [String:Bool]()
-    let onColor = UIColor.blue
-    let offColor = UIColor(red:0.39377 , green: 0.891997, blue: 0.793788, alpha: 1.0)
+    let onColor = AppColors.primary
+    let offColor = AppColors.surfaceVariant
     let shapeGroupNamePair = ["Circle":"Hình tròn","Rectangle":"Hình chữ nhật","Arrow":"Hình mũi tên","Octagon":"Hình bát giác","Triangle":"Hình tam giác","Square":"Hình vuông","Rhombus":"Hình quả trám","Xshape":"Hình chữ X"]
     //    var offColor = UIColor.cyan
     let redirectionHelper = RedirectionHelper()
@@ -61,6 +61,27 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         tblView.delegate = self
         tblView.dataSource = self
         
+        // Modern UI styling
+        view.backgroundColor = AppColors.surfaceVariant
+        tblView.backgroundColor = .clear
+        tblView.separatorStyle = .none
+        tblView.contentInset = UIEdgeInsets(top: AppSpacing.sm, left: 0, bottom: AppSpacing.sm, right: 0)
+        adsView?.backgroundColor = AppColors.surface
+        viewSearch?.backgroundColor = AppColors.surface
+        plateShapeSelectView?.backgroundColor = AppColors.surface
+        viewDetailsSelect?.backgroundColor = AppColors.surface
+        svPlateShapeSelect?.backgroundColor = .clear
+
+        // Style filter label
+        lblPlateShapeGroupFilter?.font = AppTypography.labelMedium
+        lblPlateShapeGroupFilter?.textColor = AppColors.primary
+        
+        // Style detail buttons
+        for btn in [btnArrow, btnAlphanumeric, btnCreatures, btnVehicles, btnSigns, btnStructures, btnFigures, btnExtras] {
+            btn?.layer.cornerRadius = AppRadius.sm
+            btn?.titleLabel?.font = AppTypography.labelMedium
+        }
+        
         initPlateShapeGroupsList()
         updateFilterLabel()
         updateGroupsScrollView()
@@ -71,11 +92,6 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         initAds()
         AnalyticsHelper.sendAnalyticEvent(eventName: "open_screen", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_TRACUUBIENBAO])
         AnalyticsHelper.sendAnalyticEventMixPanel(eventName: "screen_open", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_TRACUUBIENBAO])
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func btnArrowAct(_ sender: Any) {

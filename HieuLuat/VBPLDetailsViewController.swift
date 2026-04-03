@@ -108,6 +108,38 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         Utils.lowerInternalConstraintPriorities(viewThamquyen)
         Utils.lowerInternalConstraintPriorities(viewMinhhoa)
         
+        // Modern UI styling
+        view.backgroundColor = AppColors.surfaceVariant
+        scvDetails?.backgroundColor = AppColors.surfaceVariant
+        tblView.backgroundColor = .clear
+        tblView.separatorStyle = .none
+
+        // Style extra info view
+        viewExtraInfo?.backgroundColor = AppColors.surface
+        viewExtraInfo?.layer.cornerRadius = AppRadius.md
+
+        // Style bosung/khacphuc views
+        viewBosungKhacphuc?.backgroundColor = AppColors.surface
+        viewBosungKhacphuc?.layer.cornerRadius = AppRadius.md
+
+        viewHinhphatbosung?.backgroundColor = AppColors.surfaceContainer
+        viewHinhphatbosung?.layer.cornerRadius = AppRadius.sm
+
+        viewBienphapkhacphuc?.backgroundColor = AppColors.surfaceContainer
+        viewBienphapkhacphuc?.layer.cornerRadius = AppRadius.sm
+
+        viewTamgiuPhuongtien?.backgroundColor = AppColors.surfaceContainer
+        viewTamgiuPhuongtien?.layer.cornerRadius = AppRadius.sm
+
+        viewThamquyen?.backgroundColor = AppColors.surfaceContainer
+        viewThamquyen?.layer.cornerRadius = AppRadius.sm
+
+        // Style bottom buttons
+        viewBottomButtons?.backgroundColor = AppColors.surface
+
+        // Style ads view
+        viewAds?.backgroundColor = AppColors.surface
+
         tblView.delegate = self
         tblView.dataSource = self
         synthesizer.delegate = self
@@ -137,6 +169,12 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }else{
             btnSeeMore.isHidden = true
         }
+        btnSeeMore.tintColor = AppColors.primary
+        btnSeeMore.titleLabel?.font = AppTypography.labelLarge
+
+        btnParentBreadscrub?.tintColor = AppColors.primary
+        btnParentBreadscrub?.titleLabel?.font = AppTypography.labelLarge
+
         if(relatedChildren.count < 1 && utterance.voice?.language == nil){
             consLblSeeMoreHeight.constant = 0
         }
@@ -247,6 +285,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         updateSpeakerButton(onNow: true)
     }
     private func updateSpeakerButton(onNow: Bool){
+        btnRead.tintColor = AppColors.primary
         if onNow {
             btnRead.setImage(UIImage(named: "speaker_on"), for: .normal)
             btnRead.backgroundColor = UIColor.init(red: 56/255, green: 207/255, blue: 109/255, alpha: 1)

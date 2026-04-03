@@ -12,6 +12,10 @@ import SystemConfiguration
 
 class AdsHelper {
     
+    // Rate limiting: track last ad request time to avoid flooding AdMob
+    private static var lastAdRequestTime: TimeInterval = 0
+    private static let minimumAdRequestInterval: TimeInterval = 5.0 // seconds between requests
+    
     class func initBannerAds(btnFBBanner: UIButton, bannerView: GADBannerView, toView: UIView, root: UIViewController){
         if GeneralSettings.isEnableBannerAds && AdsHelper.isConnectedToNetwork() {
             addBannerViewToView(bannerView: bannerView,toView: toView, root: root)
@@ -72,14 +76,21 @@ class AdsHelper {
             bannerView.adUnitID = "ca-app-pub-1832172217205335/8933489074"
         }
         bannerView.rootViewController = root
-        let request = GADRequest()
-//        if GeneralSettings.isDevMode {
-//            //            deprecated 'testDevices' method
-//            //            request.testDevices = [ "80d71213058fcf16c5bdb59a1fb12840" ]
-//            print("========= ADS: signing test device")
-//            GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "80d71213058fcf16c5bdb59a1fb12840" ]
-//        }
-        bannerView.load(request)
+        
+        // Rate limit: skip if last request was too recent
+        let now = Date().timeIntervalSince1970
+        let elapsed = now - lastAdRequestTime
+        if elapsed < minimumAdRequestInterval {
+            let delay = minimumAdRequestInterval - elapsed
+            print("========= ADS: throttling request, retrying in \(String(format: "%.1f", delay))s")
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                self.lastAdRequestTime = Date().timeIntervalSince1970
+                bannerView.load(GADRequest())
+            }
+        } else {
+            lastAdRequestTime = now
+            bannerView.load(GADRequest())
+        }
     }
     
     class func addButtonToView(btnFBBanner: UIButton, toView: UIView){

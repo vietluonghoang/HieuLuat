@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Apply global UI theme
+        AppTheme.apply()
+        
         // Use the Firebase library to configure APIs.
         print("--- Configuring Firebase library......")
         FirebaseApp.configure()

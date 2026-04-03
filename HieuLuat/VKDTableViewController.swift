@@ -49,12 +49,6 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
         tblView.delegate = self
         tblView.dataSource = self
 
@@ -68,11 +62,21 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
         initAds()
         AnalyticsHelper.sendAnalyticEvent(eventName: "open_screen", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_TRACUUVACHKEDUONG])
         AnalyticsHelper.sendAnalyticEventMixPanel(eventName: "screen_open", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_TRACUUVACHKEDUONG])
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        // Modern styling
+        view.backgroundColor = AppColors.surfaceVariant
+        tblView?.backgroundColor = .clear
+        tblView?.separatorStyle = .none
+        tblView?.contentInset = UIEdgeInsets(top: AppSpacing.sm, left: 0, bottom: AppSpacing.sm, right: 0)
+        svResult?.backgroundColor = .clear
+        viewSearch?.backgroundColor = AppColors.surface
+        viewSearch?.layer.cornerRadius = AppRadius.md
+        vachShapeSelectView?.backgroundColor = AppColors.surface
+        vachShapeSelectView?.layer.cornerRadius = AppRadius.md
+        viewDetailsSelect?.backgroundColor = AppColors.surface
+        viewDetailsSelect?.layer.cornerRadius = AppRadius.md
+        lblVachShapeGroupFilter?.font = AppTypography.bodyMedium
+        lblVachShapeGroupFilter?.textColor = AppColors.onSurfaceVariant
     }
     
     @IBAction func btnOnroadAct(_ sender: Any) {

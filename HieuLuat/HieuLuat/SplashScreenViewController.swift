@@ -95,18 +95,18 @@ class SplashScreenViewController: UIViewController {
     private func setupProgressUI() {
         progressView = UIProgressView(progressViewStyle: .default)
         progressView.translatesAutoresizingMaskIntoConstraints = false
-        progressView.progressTintColor = UIColor(red: 0.0, green: 0.75, blue: 0.95, alpha: 1.0)
-        progressView.trackTintColor = UIColor.darkGray
+        progressView.progressTintColor = AppColors.primary
+        progressView.trackTintColor = AppColors.outline
         progressView.progress = 0.0
-        progressView.layer.cornerRadius = 2
+        progressView.layer.cornerRadius = AppRadius.xs
         progressView.clipsToBounds = true
         view.addSubview(progressView)
 
         progressLabel = UILabel()
         progressLabel.translatesAutoresizingMaskIntoConstraints = false
         progressLabel.text = "Đang tải dữ liệu..."
-        progressLabel.textColor = .white
-        progressLabel.font = UIFont.systemFont(ofSize: 13)
+        progressLabel.textColor = AppColors.onSurface
+        progressLabel.font = AppTypography.bodySmall
         progressLabel.textAlignment = .center
         view.addSubview(progressLabel)
 

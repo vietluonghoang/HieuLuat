@@ -40,6 +40,14 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Modern UI styling
+        view.backgroundColor = AppColors.surfaceVariant
+        tblView.backgroundColor = .clear
+        tblView.separatorStyle = .none
+        tblView.contentInset = UIEdgeInsets(top: AppSpacing.sm, left: 0, bottom: AppSpacing.sm, right: 0)
+        searchbarView?.backgroundColor = AppColors.surface
+        bottomView?.backgroundColor = AppColors.surface
+        
         // Do any additional setup after loading the view.
         
         tblView.delegate = self
@@ -60,11 +68,6 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         AnalyticsHelper.sendAnalyticEventMixPanel(eventName: "screen_open", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_TRACUUMUCPHAT])
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func initSearch() {
         searchBar.delegate = self
         searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -76,6 +79,25 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
             searchBar.leadingAnchor.constraint(equalTo: searchTextView.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: searchTextView.trailingAnchor),
         ])
+        // Modern search bar styling
+        searchBar.searchBarStyle = .minimal
+        searchBar.barTintColor = AppColors.surface
+        searchBar.tintColor = AppColors.primary
+        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+            textField.backgroundColor = AppColors.surfaceVariant
+            textField.textColor = AppColors.onSurface
+            textField.font = AppTypography.bodyMedium
+            textField.layer.cornerRadius = AppRadius.md
+            textField.clipsToBounds = true
+            let placeholderText = NSAttributedString(
+                string: "Tìm kiếm mức phạt...",
+                attributes: [
+                    .foregroundColor: AppColors.onSurfaceVariant,
+                    .font: AppTypography.bodyMedium
+                ]
+            )
+            textField.attributedPlaceholder = placeholderText
+        }
         if #available(iOS 10.0, *) {
         }else{
             btnMicro.isHidden = true
@@ -293,6 +315,8 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
             newLabel = Utils.removeLastCharacters(result: newLabel, length: 2)
         }
         lblLoctheo.text = newLabel
+        lblLoctheo.font = AppTypography.labelMedium
+        lblLoctheo.textColor = AppColors.primary
     }
     
     func getActiveFilter() -> [String] {

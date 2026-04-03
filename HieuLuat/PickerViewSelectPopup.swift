@@ -26,6 +26,10 @@ class PickerViewSelectPopup: UIViewController, UIPickerViewDelegate, UIPickerVie
         // Do any additional setup after loading the view.
         self.pvMucphat.delegate = self
         self.pvMucphat.dataSource = self
+        
+        // Modern styling
+        view.backgroundColor = AppColors.surface
+        pvMucphat?.backgroundColor = AppColors.surface
     }
     
     func updateMucphat(root: MPSearchFilterPopupController, target: String) {

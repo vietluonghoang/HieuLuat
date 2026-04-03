@@ -73,6 +73,7 @@ class ImagePreviewViewController: UIViewController, UIScrollViewDelegate {
     private func setupCloseButton() {
         btnClose.setTitle("✕", for: .normal)
         btnClose.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        btnClose.tintColor = .white
         btnClose.setTitleColor(.white, for: .normal)
         btnClose.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         btnClose.layer.cornerRadius = 20

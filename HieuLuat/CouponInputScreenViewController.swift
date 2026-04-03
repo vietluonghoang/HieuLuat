@@ -21,7 +21,8 @@ class CouponInputScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        // Modern styling
+        view.backgroundColor = AppColors.surfaceVariant
     }
     
     @IBAction func btnConfirmAction(_ sender: Any) {

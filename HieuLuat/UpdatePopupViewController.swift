@@ -13,8 +13,12 @@ class UpdatePopupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        // Modern styling
+        view.backgroundColor = AppColors.surface
+        btnUpdate.backgroundColor = AppColors.primary
+        btnUpdate.setTitleColor(AppColors.onPrimary, for: .normal)
+        btnUpdate.layer.cornerRadius = AppRadius.md
+        btnUpdate.titleLabel?.font = AppTypography.labelLarge
         AnalyticsHelper.sendAnalyticEvent(eventName: "open_screen", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_UPDATEVERSION])
         AnalyticsHelper.sendAnalyticEventMixPanel(eventName: "screen_open", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_UPDATEVERSION])
     }

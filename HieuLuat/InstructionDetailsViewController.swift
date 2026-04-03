@@ -32,6 +32,29 @@ class InstructionDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Modern styling
+        view.backgroundColor = AppColors.surfaceVariant
+        scrViewContent?.backgroundColor = AppColors.surfaceVariant
+        viewTop?.backgroundColor = AppColors.surface
+        viewTop?.layer.cornerRadius = AppRadius.md
+        viewBottom?.backgroundColor = AppColors.surface
+        viewSource?.backgroundColor = .clear
+        viewTitle?.backgroundColor = .clear
+        viewAuthor?.backgroundColor = .clear
+        viewContent?.backgroundColor = .clear
+        
+        // Style labels
+        lblTittle?.font = AppTypography.titleLarge
+        lblTittle?.textColor = AppColors.onSurface
+        lblAuthor?.font = AppTypography.bodySmall
+        lblAuthor?.textColor = AppColors.onSurfaceVariant
+        lblAuthorName?.font = AppTypography.labelLarge
+        lblAuthorName?.textColor = AppColors.onSurface
+        lblSource?.font = AppTypography.bodySmall
+        lblSource?.textColor = AppColors.onSurfaceVariant
+        btnSource?.tintColor = AppColors.primary
+        btnSource?.titleLabel?.font = AppTypography.bodySmall
+        
         // Do any additional setup after loading the view.
         if !AdsHelper.isConnectedToNetwork() {
             viewSource.isHidden = true

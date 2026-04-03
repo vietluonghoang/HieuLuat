@@ -26,6 +26,9 @@ class SpeechRecognizerController: UIViewController, SFSpeechRecognizerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Modern styling
+        view.backgroundColor = AppColors.surface
+        
         // Do any additional setup after loading the view.
         speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: localIdentifier))
         initSpeechRecognition()

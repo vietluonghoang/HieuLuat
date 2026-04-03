@@ -21,9 +21,13 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         AnalyticsHelper.sendAnalyticEvent(eventName: "app_open", params: [String:String]())
         GeneralSettings.getLastAppOpenTimestamp = Int(NSDate().timeIntervalSince1970)
+        
+        view.backgroundColor = AppColors.surfaceVariant
+        
+        lblVersion.font = AppTypography.caption
+        lblVersion.textColor = AppColors.onSurfaceVariant
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,17 +46,14 @@ class ViewController: UIViewController {
         }
         lblVersion.text = getVersion()
         
-        //Adding border to view tracuu
-        viewTracuu.layer.borderColor = UIColor.cyan.cgColor
-        viewTracuu.layer.borderWidth = 2
+        // Modern card styling for viewTracuu
+        viewTracuu.backgroundColor = AppColors.surface
+        viewTracuu.layer.cornerRadius = AppRadius.lg
+        AppShadow.light(for: viewTracuu.layer)
+        viewTracuu.layer.borderWidth = 0
         
         // Check and prompt for AI model download
         AIModelCoordinator.shared.checkAndPromptIfNeeded(from: self)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func btnCameraAct(_ sender: Any) {

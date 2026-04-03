@@ -40,6 +40,12 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Modern styling
+        view.backgroundColor = AppColors.surfaceVariant
+        tblView?.backgroundColor = .clear
+        tblView?.separatorStyle = .none
+        
         tblView.delegate = self
         tblView.dataSource = self
         // Do any additional setup after loading the view.

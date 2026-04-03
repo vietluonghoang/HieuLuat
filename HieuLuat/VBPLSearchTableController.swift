@@ -48,6 +48,14 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate,
         tblView.delegate = self
         tblView.dataSource = self
 
+        // Modern UI styling
+        view.backgroundColor = AppColors.surfaceVariant
+        tblView.backgroundColor = .clear
+        tblView.separatorStyle = .none
+        tblView.contentInset = UIEdgeInsets(top: AppSpacing.sm, left: 0, bottom: AppSpacing.sm, right: 0)
+        viewTop?.backgroundColor = AppColors.surface
+        viewBottom?.backgroundColor = AppColors.surface
+
         initSearch()
         initFilterConfig()
         updateFilterLabel()
@@ -68,11 +76,6 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate,
             params: ["screen_name": AnalyticsHelper.SCREEN_NAME_TRACUUVANBAN])
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     func initSearch() {
         searchBar.delegate = self
         searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -84,6 +87,25 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate,
             searchBar.leadingAnchor.constraint(equalTo: searchTextView.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: searchTextView.trailingAnchor),
         ])
+        // Modern search bar styling
+        searchBar.searchBarStyle = .minimal
+        searchBar.barTintColor = AppColors.surface
+        searchBar.tintColor = AppColors.primary
+        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+            textField.backgroundColor = AppColors.surfaceVariant
+            textField.textColor = AppColors.onSurface
+            textField.font = AppTypography.bodyMedium
+            textField.layer.cornerRadius = AppRadius.md
+            textField.clipsToBounds = true
+            let placeholderText = NSAttributedString(
+                string: "Tìm kiếm văn bản pháp luật...",
+                attributes: [
+                    .foregroundColor: AppColors.onSurfaceVariant,
+                    .font: AppTypography.bodyMedium
+                ]
+            )
+            textField.attributedPlaceholder = placeholderText
+        }
         if #available(iOS 10.0, *) {
         } else {
             btnMicro.isHidden = true
@@ -172,6 +194,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate,
         }
         lblLoctheo.text = newLabel
         lblLoctheo.setRegularCaptionLabel()
+        lblLoctheo.textColor = AppColors.primary
         viewTop.layoutIfNeeded()
     }
 

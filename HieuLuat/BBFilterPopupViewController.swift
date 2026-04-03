@@ -29,11 +29,12 @@ class BBFilterPopupViewController: UIViewController {
         initFilterOptions()
         updateSwitches()
         initHeaderText()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        // Modern styling
+        view.backgroundColor = AppColors.surface
+        svOptions?.backgroundColor = AppColors.surface
+        lblHeaderText?.font = AppTypography.titleMedium
+        lblHeaderText?.textColor = AppColors.onSurface
     }
     
     //optionText will be the list of display name for options. Therefore, the order of optionText and options must be the same since the corresponding text will be replaced for option

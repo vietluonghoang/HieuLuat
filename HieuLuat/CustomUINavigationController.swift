@@ -14,8 +14,20 @@ import UIKit
 class CustomNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Customize the navigation controller if needed
-//        performSegue(withIdentifier: "goHome", sender: nil)
+        
+        // Modern navigation styling
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = AppColors.surface
+        appearance.titleTextAttributes = [
+            .foregroundColor: AppColors.onSurface,
+            .font: AppTypography.titleMedium
+        ]
+        appearance.shadowColor = .clear
+        navigationBar.standardAppearance = appearance
+        navigationBar.scrollEdgeAppearance = appearance
+        navigationBar.compactAppearance = appearance
+        navigationBar.tintColor = AppColors.primary
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

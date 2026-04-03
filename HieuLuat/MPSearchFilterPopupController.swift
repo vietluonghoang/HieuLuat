@@ -172,13 +172,22 @@ class MPSearchFilterPopupController: UIViewController {
         lblDoituong.isHidden = true
         swtDoituong.isHidden = true
         
+        // Modern styling
+        view.backgroundColor = AppColors.surface
+        svLocScrollview?.backgroundColor = AppColors.surface
+        lblMucphat?.font = AppTypography.titleSmall
+        lblMucphat?.textColor = AppColors.onSurface
+        lblPhuongtien?.font = AppTypography.titleSmall
+        lblPhuongtien?.textColor = AppColors.onSurface
+        lblDoituong?.font = AppTypography.titleSmall
+        lblDoituong?.textColor = AppColors.onSurface
+        for sectionView in [viewMucphat, viewPhuongtien, viewDoituong, viewCanhan, viewTochuc, viewDoanhnghiep, viewNhanvien, viewTrungtam] {
+            sectionView?.backgroundColor = AppColors.surfaceVariant
+            sectionView?.layer.cornerRadius = AppRadius.sm
+        }
+        
         //enable this initialization will cause the layout to be broken (wider than actual size)
         //        initPhuongtienButtons()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func initFilters() {
