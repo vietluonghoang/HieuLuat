@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GemmaTokenizer {
+class GemmaTokenizer: AITokenizer {
     
     // MARK: - Special Token IDs
     
@@ -18,6 +18,10 @@ class GemmaTokenizer {
     let unkTokenId: Int = 3
     private(set) var startOfTurnTokenId: Int = 105
     private(set) var endOfTurnTokenId: Int = 106
+    
+    var stopTokenIds: Set<Int> {
+        return [eosTokenId, endOfTurnTokenId]
+    }
     
     // MARK: - Vocab & Merges
     

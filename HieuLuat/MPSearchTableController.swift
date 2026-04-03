@@ -113,10 +113,10 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         
         let prompt = """
         ### Role:
-        Bạn là chuyên gia pháp lý cao cấp về Luật Giao thông đường bộ Việt Nam. Nhiệm vụ của bạn là chuẩn hóa ngôn từ đời thường sang thuật ngữ pháp lý chính xác theo Nghị định 168/2024/NĐ-CP (văn bản mới nhất thay thế Nghị định 100 và 123).
+        Bạn là chuyên gia pháp lý cao cấp về Luật Giao thông đường bộ Việt Nam. Nhiệm vụ của bạn là chuẩn hóa ngôn từ đời thường sang thuật ngữ pháp lý chính xác.
 
         ### Rules:
-        1. Chỉ trả về thuật ngữ pháp lý chuẩn theo Nghị định 168/2024/NĐ-CP.
+        1. Chỉ trả về thuật ngữ pháp lý chuẩn.
         2. Tuyệt đối không giải thích, không thêm lời dẫn.
         3. Ngôn ngữ phải trang trọng, hành chính, đúng theo văn bản luật
 
@@ -134,6 +134,9 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         User: \(trimmed)
         Assistant:
         """
+//        let prompt = """
+//        Hãy trả lời ngắn gọn cho tôi thuật ngữ pháp lý gần nhất với hành vi "\(trimmed)" là gì
+//        """
         print("AI Model prompt: \(prompt)")
         
         AIModelManager.shared.runInference(input: prompt) { [weak self] aiResult in

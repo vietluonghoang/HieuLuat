@@ -83,17 +83,10 @@ class AIModelManager {
     
     // MARK: - Constants
     
-    private static let modelFileNames = [
-        "gemma3_embeddings_lut8.mlmodelc",
-        "gemma3_FFN_PF_lut6_chunk_01of03.mlmodelc",
-        "gemma3_FFN_PF_lut6_chunk_02of03.mlmodelc",
-        "gemma3_FFN_PF_lut6_chunk_03of03.mlmodelc",
-        "gemma3_lm_head_lut6.mlmodelc"
-    ]
-    
     private static let modelsFolderName = "AIModels"
+    private static let metaFileName = "meta.yaml"
     private static let minimumRequiredDiskSpaceBytes: UInt64 = 9 * 1024 * 1024 * 1024 // 9GB
-    private static let minimumRAMBytes: UInt64 = 5 * 1024 * 1024 * 1024 // 5GB RAM minimum
+    private static let minimumRAMBytes: UInt64 = 100 * 1024 * 1024 * 1024 // 100GB RAM — AI feature temporarily disabled
     private static let userDefaultsModelVersionKey = "ai_model_version"
     private static let userDefaultsOptedInKey = "ai_model_opted_in"
     
@@ -102,8 +95,9 @@ class AIModelManager {
     private var loadedModels: [String: MLModel] = [:]
     private var remoteModelUrl: String?
     private var remoteModelVersion: String?
-    private var tokenizer: GemmaTokenizer?
-    private var inferenceEngine: Any? // GemmaInferenceEngine (iOS 18+)
+    private(set) var modelConfig: AIModelConfig?
+    private var tokenizer: AITokenizer?
+    private var inferenceEngine: AIInferenceEngine?
     
     private var modelsDirectoryURL: URL {
         let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
@@ -146,15 +140,31 @@ class AIModelManager {
     // MARK: - Memory Warning
     
     private var memoryWarningsDuringLoad: Int = 0
+    private var readyTimestamp: Date = .distantPast
+    private static let memoryWarningGracePeriod: TimeInterval = 30 // seconds after load
     
     @objc private func handleMemoryWarning() {
-        print("AIModelManager: ⚠️ Memory warning (state: \(state))")
+        NSLog("AIModelManager: ⚠️ Memory warning (state: \(state))")
         switch state {
         case .ready:
-            print("AIModelManager: Unloading models to free memory")
-            inferenceEngine = nil
-            loadedModels.removeAll()
-            state = .idle
+            // ANE compilation after load causes a temporary memory spike.
+            // Ignore memory warnings within a grace period after models become ready.
+            let elapsed = Date().timeIntervalSince(readyTimestamp)
+            if elapsed < AIModelManager.memoryWarningGracePeriod {
+                NSLog("AIModelManager: Ignoring memory warning — within %.0fs grace period after load", elapsed)
+                return
+            }
+            // First try evicting cached prefill models before full unload
+            if #available(iOS 18.0, *), let qwenEngine = inferenceEngine as? QwenInferenceEngine {
+                qwenEngine.evictPrefillModels()
+                NSLog("AIModelManager: Evicted prefill models to free memory")
+            } else {
+                NSLog("AIModelManager: Unloading models to free memory")
+                inferenceEngine?.isCancelled = true
+                inferenceEngine = nil
+                loadedModels.removeAll()
+                state = .idle
+            }
         case .loadingModels:
             // Do NOT abort — CoreML compile causes temporary memory spikes.
             // The memory will recover after compilation finishes.
@@ -279,8 +289,19 @@ class AIModelManager {
     // MARK: - Model Availability
     
     func checkModelAvailability() -> Bool {
+        // Load config from meta.yaml if not already loaded
+        if modelConfig == nil {
+            let metaURL = modelsDirectoryURL.appendingPathComponent(AIModelManager.metaFileName)
+            modelConfig = AIModelConfig.load(from: metaURL)
+        }
+        
+        guard let config = modelConfig else {
+            // No meta.yaml — models not available
+            return false
+        }
+        
         let fileManager = FileManager.default
-        for fileName in AIModelManager.modelFileNames {
+        for fileName in config.allModelFileNames {
             let fileURL = modelsDirectoryURL.appendingPathComponent(fileName)
             var isDirectory: ObjCBool = false
             if !fileManager.fileExists(atPath: fileURL.path, isDirectory: &isDirectory) || !isDirectory.boolValue {
@@ -393,7 +414,20 @@ class AIModelManager {
             return
         }
         
-        let totalModels = AIModelManager.modelFileNames.count
+        // Load config from meta.yaml
+        if modelConfig == nil {
+            let metaURL = modelsDirectoryURL.appendingPathComponent(AIModelManager.metaFileName)
+            modelConfig = AIModelConfig.load(from: metaURL)
+        }
+        
+        guard let config = modelConfig else {
+            print("AIModelManager: ❌ No meta.yaml found — cannot load models")
+            state = .error(.modelLoadFailed("meta.yaml not found in model directory"))
+            return
+        }
+        
+        let modelFileNames = config.allModelFileNames
+        let totalModels = modelFileNames.count
         state = .loadingModels(current: 0, total: totalModels)
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -411,9 +445,19 @@ class AIModelManager {
             self.memoryWarningsDuringLoad = 0
             var models = [String: MLModel]()
             
-            for (index, fileName) in AIModelManager.modelFileNames.enumerated() {
+            let ffnFileNames = Set(config.ffnChunkFileNames)
+            // For Qwen (multi-function), skip FFN loading here — engine loads on demand
+            let skipFFN = config.modelType == .qwen
+            
+            for (index, fileName) in modelFileNames.enumerated() {
                 DispatchQueue.main.async {
                     self.state = .loadingModels(current: index, total: totalModels)
+                }
+                
+                // Skip FFN models for Qwen — they'll be loaded on-demand by the engine
+                if skipFFN && ffnFileNames.contains(fileName) {
+                    NSLog("AIModelManager: [LOAD] Skipping %@ — Qwen FFN loaded on-demand by engine", fileName)
+                    continue
                 }
                 
                 let fileURL = self.modelsDirectoryURL.appendingPathComponent(fileName)
@@ -430,7 +474,7 @@ class AIModelManager {
                 }
                 
                 if let error = loadError {
-                    print("AIModelManager: ❌ Failed to load \(fileName): \(error)")
+                    NSLog("AIModelManager: ❌ Failed to load %@: %@", fileName, "\(error)")
                     DispatchQueue.main.async {
                         self.state = .error(.modelLoadFailed("\(fileName): \(error.localizedDescription)"))
                     }
@@ -456,29 +500,55 @@ class AIModelManager {
             let freeAfter = self.getAvailableMemory()
             print("AIModelManager: All models loaded. Free memory: \(freeAfter / (1024*1024))MB")
             
-            // Initialize tokenizer
-            let tokenizer = GemmaTokenizer(modelDirectory: self.modelsDirectoryURL)
+            // For multi-function FFN models (e.g. Qwen), the engine loads
+            // prefill/infer functions on-demand from URLs to save memory.
+            // For single-function models (e.g. Gemma), use the pre-loaded models.
+            var ffnModelsForEngine: [MLModel] = []
+            var ffnURLsForEngine: [URL]? = nil
+            let isMultiFunction = config.modelType == .qwen
             
-            // Initialize inference engine (iOS 18+ only)
-            var engine: Any? = nil
-            if #available(iOS 18.0, *) {
-                let embedModel = models[AIModelManager.modelFileNames[0]]!
-                let ffnModels = [
-                    models[AIModelManager.modelFileNames[1]]!,
-                    models[AIModelManager.modelFileNames[2]]!,
-                    models[AIModelManager.modelFileNames[3]]!
-                ]
-                let lmHeadModel = models[AIModelManager.modelFileNames[4]]!
-                engine = GemmaInferenceEngine(
-                    embedModel: embedModel,
-                    ffnModels: ffnModels,
-                    lmHeadModel: lmHeadModel,
-                    contextLength: 4096,
-                    slidingWindow: 1024
-                )
-                print("AIModelManager: Inference engine initialized")
+            if isMultiFunction {
+                // Qwen: pass FFN URLs so engine can load prefill/infer on demand.
+                // Don't pre-load FFN models — saves ~2GB of RAM.
+                ffnURLsForEngine = config.ffnChunkFileNames.map {
+                    self.modelsDirectoryURL.appendingPathComponent($0)
+                }
+                NSLog("AIModelManager: Qwen multi-function — FFN will be loaded on-demand (%d chunks)", ffnURLsForEngine!.count)
             } else {
-                print("AIModelManager: Inference engine requires iOS 18+")
+                // Gemma/Llama: use models already loaded in the first pass
+                for ffnName in config.ffnChunkFileNames {
+                    if let existingModel = models[ffnName] {
+                        ffnModelsForEngine.append(existingModel)
+                    } else {
+                        NSLog("AIModelManager: ❌ No FFN model available for %@", ffnName)
+                        DispatchQueue.main.async {
+                            self.state = .error(.modelLoadFailed("No FFN model for \(ffnName)"))
+                        }
+                        return
+                    }
+                }
+            }
+            
+            // Initialize tokenizer via factory (based on model type)
+            let tokenizer = AITokenizerFactory.create(for: config, modelDirectory: self.modelsDirectoryURL)
+            
+            // Initialize inference engine via factory (iOS 18+ only)
+            var engine: AIInferenceEngine? = nil
+            if #available(iOS 18.0, *) {
+                let embedModel = models[config.embeddingsFileName]!
+                let lmHeadModel = models[config.lmHeadFileName]!
+                
+                engine = AIInferenceEngineFactory.create(
+                    for: config,
+                    embedModel: embedModel,
+                    ffnModels: ffnModelsForEngine,
+                    lmHeadModel: lmHeadModel,
+                    ffnURLs: ffnURLsForEngine
+                )
+                NSLog("AIModelManager: Inference engine initialized (type: %@, multiFunction: %d)",
+                      "\(config.modelType)", isMultiFunction ? 1 : 0)
+            } else {
+                NSLog("AIModelManager: Inference engine requires iOS 18+")
             }
             
             DispatchQueue.main.async {
@@ -491,119 +561,126 @@ class AIModelManager {
                 }
                 self.tokenizer = tokenizer
                 self.inferenceEngine = engine
+                self.readyTimestamp = Date()
                 self.state = .ready
                 let finalFree = self.getAvailableMemory()
-                print("AIModelManager: ✅ All models loaded. Free: \(finalFree / (1024*1024))MB, app used: \(self.getAppUsedMemory() / (1024*1024))MB, mem warnings during load: \(self.memoryWarningsDuringLoad)")
+                NSLog("AIModelManager: ✅ All models loaded. Free: %luMB, app used: %luMB, tokenizer: %@, engine: %@",
+                      finalFree / (1024*1024),
+                      self.getAppUsedMemory() / (1024*1024),
+                      String(describing: type(of: tokenizer)),
+                      engine == nil ? "nil" : String(describing: type(of: engine!)))
             }
         }
     }
     
-    private func loadSingleModel(at url: URL) throws -> MLModel {
+    private func loadSingleModel(at url: URL, functionName: String? = nil) throws -> MLModel {
         let fileName = url.lastPathComponent
+        let funcLabel = functionName.map { " (func: \($0))" } ?? ""
         let freeBefore = getAvailableMemory()
-        print("AIModelManager: [LOAD] Starting \(fileName) - free: \(freeBefore / (1024*1024))MB, app used: \(getAppUsedMemory() / (1024*1024))MB")
+        NSLog("AIModelManager: [LOAD] Starting %@%@ - free: %luMB", fileName, funcLabel, freeBefore / (1024*1024))
         
         let config = MLModelConfiguration()
-        // Use CPU+NeuralEngine only (matching ANEMLL reference).
-        // .all includes GPU which doubles memory buffers unnecessarily.
         if #available(iOS 16.0, *) {
             config.computeUnits = .cpuAndNeuralEngine
         } else {
             config.computeUnits = .all
         }
         
-        // Multi-function CoreML models (like Gemma 3n) require
-        // specifying functionName on iOS 18+ / macOS 15+.
-        // Try without functionName first, then retry with known function names.
+        // If a specific function name is requested, set it
+        if #available(iOS 18.0, *), let funcName = functionName {
+            config.functionName = funcName
+        }
+        
         do {
-            print("AIModelManager: [LOAD] \(fileName) - calling MLModel(contentsOf:)...")
             let model = try MLModel(contentsOf: url, configuration: config)
             let freeAfter = getAvailableMemory()
-            let deltaMB = Int64(freeBefore / (1024*1024)) - Int64(freeAfter / (1024*1024))
-            print("AIModelManager: [LOAD] \(fileName) - OK, free: \(freeAfter / (1024*1024))MB (delta: \(deltaMB > 0 ? "-" : "+")\(abs(deltaMB))MB)")
+            NSLog("AIModelManager: [LOAD] %@%@ - OK, free: %luMB", fileName, funcLabel, freeAfter / (1024*1024))
             return model
         } catch {
             let errorDesc = "\(error)"
-            print("AIModelManager: [LOAD] \(fileName) - first attempt failed: \(errorDesc)")
+            NSLog("AIModelManager: [LOAD] %@%@ - failed: %@", fileName, funcLabel, errorDesc)
             
-            guard errorDesc.contains("multi-function") || errorDesc.contains("multifunction") ||
-                  errorDesc.contains("multi_function") || errorDesc.contains("function") else {
-                throw error
-            }
-            
-            print("AIModelManager: [LOAD] \(fileName) - multi-function detected, trying functionName...")
-            
-            if #available(iOS 18.0, *) {
-                let functionNames = ["main", "predict", "forward"]
-                for funcName in functionNames {
-                    let mfConfig = MLModelConfiguration()
-                    if #available(iOS 16.0, *) {
-                        mfConfig.computeUnits = .cpuAndNeuralEngine
-                    } else {
-                        mfConfig.computeUnits = .all
-                    }
-                    mfConfig.functionName = funcName
-                    do {
-                        print("AIModelManager: [LOAD] \(fileName) - trying functionName=\"\(funcName)\"...")
-                        let model = try MLModel(contentsOf: url, configuration: mfConfig)
-                        let freeAfter = getAvailableMemory()
-                        print("AIModelManager: [LOAD] \(fileName) - OK with \"\(funcName)\", free: \(freeAfter / (1024*1024))MB")
-                        return model
-                    } catch {
-                        print("AIModelManager: [LOAD] \(fileName) - \"\(funcName)\" failed: \(error)")
-                        continue
+            // If no explicit function name was given and it's a multi-function error,
+            // try known function names
+            if functionName == nil,
+               (errorDesc.contains("multi-function") || errorDesc.contains("function")) {
+                NSLog("AIModelManager: [LOAD] %@ - multi-function detected, trying known function names...", fileName)
+                
+                if #available(iOS 18.0, *) {
+                    // Try the actual ANEMLL function names first, then common ones
+                    let candidates = ["infer", "prefill", "main", "predict", "forward"]
+                    for funcName in candidates {
+                        let mfConfig = MLModelConfiguration()
+                        if #available(iOS 16.0, *) {
+                            mfConfig.computeUnits = .cpuAndNeuralEngine
+                        } else {
+                            mfConfig.computeUnits = .all
+                        }
+                        mfConfig.functionName = funcName
+                        do {
+                            NSLog("AIModelManager: [LOAD] %@ - trying functionName=\"%@\"...", fileName, funcName)
+                            let model = try MLModel(contentsOf: url, configuration: mfConfig)
+                            NSLog("AIModelManager: [LOAD] %@ - OK with \"%@\"", fileName, funcName)
+                            return model
+                        } catch {
+                            NSLog("AIModelManager: [LOAD] %@ - \"%@\" failed: %@", fileName, funcName, "\(error)")
+                            continue
+                        }
                     }
                 }
                 throw AIModelError.modelLoadFailed("No valid function found in \(fileName)")
-            } else {
-                throw AIModelError.modelLoadFailed("Multi-function models require iOS 18.0+")
             }
+            
+            throw error
         }
     }
     
     // MARK: - Inference
     
     /// Cancel any in-flight inference so a new one can start cleanly.
+    /// The engine's serial queue ensures the cancelled run finishes before the next starts.
     func cancelInference() {
-        if #available(iOS 18.0, *), let engine = inferenceEngine as? GemmaInferenceEngine {
-            engine.isCancelled = true
-        }
+        inferenceEngine?.isCancelled = true
     }
     
     func runInference(input: String, completion: @escaping (String) -> Void) {
+        NSLog("AIModelManager: runInference called, isModelReady=%d, tokenizer=%@, engine=%@",
+              isModelReady ? 1 : 0,
+              tokenizer == nil ? "nil" : String(describing: type(of: tokenizer!)),
+              inferenceEngine == nil ? "nil" : String(describing: type(of: inferenceEngine!)))
+        
         guard isModelReady else {
-            print("AIModelManager: Models not ready for inference")
+            NSLog("AIModelManager: Models not ready for inference")
             completion("")
             return
         }
         
         guard let tokenizer = self.tokenizer else {
-            print("AIModelManager: Tokenizer not initialized")
+            NSLog("AIModelManager: Tokenizer not initialized")
             completion("")
             return
         }
         
-        guard #available(iOS 18.0, *), let engine = self.inferenceEngine as? GemmaInferenceEngine else {
-            print("AIModelManager: Inference engine not available (requires iOS 18+)")
+        guard let engine = self.inferenceEngine else {
+            NSLog("AIModelManager: Inference engine not available")
             completion("")
             return
         }
         
-        // Cancel any previous in-flight inference
+        // Cancel any previous in-flight inference (generation ID bump handles the rest)
         engine.isCancelled = true
         
         // Build prompt on main thread (fast)
         let inputTokens = tokenizer.buildPrompt(userMessage: input)
-        print("AIModelManager: Prompt tokenized to \(inputTokens.count) tokens")
+        NSLog("AIModelManager: Prompt tokenized to %d tokens", inputTokens.count)
         
-        let stopTokenIds: Set<Int> = [tokenizer.eosTokenId, tokenizer.endOfTurnTokenId]
+        let stopTokenIds = tokenizer.stopTokenIds
         let startTime = CFAbsoluteTimeGetCurrent()
         
-        // Run on engine's serial queue (ensures previous cancelled inference finishes first)
         engine.runGenerate(inputTokens: inputTokens, maxNewTokens: 256, stopTokenIds: stopTokenIds) { outputTokens in
             // Already on main queue
             if outputTokens.isEmpty {
-                print("AIModelManager: Inference returned empty (cancelled or error)")
+                NSLog("AIModelManager: Inference returned empty (cancelled or error)")
                 completion("")
                 return
             }
@@ -613,8 +690,8 @@ class AIModelManager {
             
             let elapsed = CFAbsoluteTimeGetCurrent() - startTime
             let tokensPerSec = outputTokens.count > 0 ? Double(outputTokens.count) / elapsed : 0
-            print("AIModelManager: Generated \(outputTokens.count) tokens in \(String(format: "%.1f", elapsed))s (\(String(format: "%.1f", tokensPerSec)) t/s)")
-            print("AIModelManager: Result: \(result)")
+            NSLog("AIModelManager: Generated %d tokens in %.1fs (%.1f t/s)", outputTokens.count, elapsed, tokensPerSec)
+            NSLog("AIModelManager: Result: %@", result)
             
             completion(result)
         }

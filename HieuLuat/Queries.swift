@@ -77,15 +77,11 @@ class Queries: NSObject {
         let appendKeyword = [String]()
         let sql = query.lowercased() + specificVanban
         
-        let resultSet: FMResultSet! = DataConnection.instance().executeQuery(setRecordsCap(query: sql), withArgumentsIn: appendKeyword)!
-        
-        var dieukhoanArray = Array<Dieukhoan>()
-        
-        if resultSet != nil {
-            dieukhoanArray = generateDieukhoanList(resultSet: resultSet)
+        guard let resultSet = DataConnection.instance().executeQuery(setRecordsCap(query: sql), withArgumentsIn: appendKeyword) else {
+            return []
         }
-                
-        return dieukhoanArray
+        
+        return generateDieukhoanList(resultSet: resultSet)
     }
     
     class func searchDieukhoanByID(keyword:String,vanbanid:[String]) -> [Dieukhoan] {

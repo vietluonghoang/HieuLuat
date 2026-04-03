@@ -39,14 +39,6 @@ class AIModelUnzipper {
     
     weak var delegate: AIModelUnzipperDelegate?
     
-    private let expectedModelFiles = [
-        "gemma3_embeddings_lut8.mlmodelc",
-        "gemma3_FFN_PF_lut6_chunk_01of03.mlmodelc",
-        "gemma3_FFN_PF_lut6_chunk_02of03.mlmodelc",
-        "gemma3_FFN_PF_lut6_chunk_03of03.mlmodelc",
-        "gemma3_lm_head_lut6.mlmodelc"
-    ]
-    
     // MARK: - Public
     
     /// Unzips the file at `source` into `destination` on a background queue.
@@ -78,7 +70,7 @@ class AIModelUnzipper {
                 
                 observation.invalidate()
                 
-                // Verify all expected model files exist
+                // Verify meta.yaml exists and all model files it references are present
                 let missingFiles = self.verifyModelFiles(in: destination)
                 if !missingFiles.isEmpty {
                     throw UnzipError.missingModelFiles(missingFiles)
@@ -109,9 +101,17 @@ class AIModelUnzipper {
     
     private func verifyModelFiles(in directory: URL) -> [String] {
         let fileManager = FileManager.default
-        var missing: [String] = []
         
-        for fileName in expectedModelFiles {
+        // First, check that meta.yaml exists
+        let metaURL = directory.appendingPathComponent("meta.yaml")
+        guard fileManager.fileExists(atPath: metaURL.path),
+              let config = AIModelConfig.load(from: metaURL) else {
+            return ["meta.yaml"]
+        }
+        
+        // Verify all model files listed in meta.yaml
+        var missing: [String] = []
+        for fileName in config.allModelFileNames {
             let filePath = directory.appendingPathComponent(fileName)
             if !fileManager.fileExists(atPath: filePath.path) {
                 missing.append(fileName)

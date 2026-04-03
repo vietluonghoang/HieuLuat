@@ -73,6 +73,11 @@
 		AA0001052D0000050000A001 /* AIModelCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001052D0000050000A000 /* AIModelCoordinator.swift */; };
 		AA0001062D0000060000A001 /* GemmaTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001062D0000060000A000 /* GemmaTokenizer.swift */; };
 		AA0001072D0000070000A001 /* GemmaInferenceEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001072D0000070000A000 /* GemmaInferenceEngine.swift */; };
+		AA0001082D0000080000A001 /* AIModelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001082D0000080000A000 /* AIModelConfig.swift */; };
+		AA0001092D0000090000A001 /* AITokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001092D0000090000A000 /* AITokenizer.swift */; };
+		AA00010A2D00000A0000A001 /* AIInferenceEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010A2D00000A0000A000 /* AIInferenceEngine.swift */; };
+		AA00010B2D00000B0000A001 /* QwenTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010B2D00000B0000A000 /* QwenTokenizer.swift */; };
+		AA00010C2D00000C0000A001 /* QwenInferenceEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010C2D00000C0000A000 /* QwenInferenceEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +173,11 @@
 		AA0001052D0000050000A000 /* AIModelCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIModelCoordinator.swift; sourceTree = "<group>"; };
 		AA0001062D0000060000A000 /* GemmaTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemmaTokenizer.swift; sourceTree = "<group>"; };
 		AA0001072D0000070000A000 /* GemmaInferenceEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemmaInferenceEngine.swift; sourceTree = "<group>"; };
+		AA0001082D0000080000A000 /* AIModelConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIModelConfig.swift; sourceTree = "<group>"; };
+		AA0001092D0000090000A000 /* AITokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITokenizer.swift; sourceTree = "<group>"; };
+		AA00010A2D00000A0000A000 /* AIInferenceEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIInferenceEngine.swift; sourceTree = "<group>"; };
+		AA00010B2D00000B0000A000 /* QwenTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QwenTokenizer.swift; sourceTree = "<group>"; };
+		AA00010C2D00000C0000A000 /* QwenInferenceEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QwenInferenceEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +241,11 @@
 				AA0001052D0000050000A000 /* AIModelCoordinator.swift */,
 				AA0001062D0000060000A000 /* GemmaTokenizer.swift */,
 				AA0001072D0000070000A000 /* GemmaInferenceEngine.swift */,
+				AA0001082D0000080000A000 /* AIModelConfig.swift */,
+				AA0001092D0000090000A000 /* AITokenizer.swift */,
+				AA00010A2D00000A0000A000 /* AIInferenceEngine.swift */,
+				AA00010B2D00000B0000A000 /* QwenTokenizer.swift */,
+				AA00010C2D00000C0000A000 /* QwenInferenceEngine.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -670,6 +685,11 @@
 				AA0001052D0000050000A001 /* AIModelCoordinator.swift in Sources */,
 				AA0001062D0000060000A001 /* GemmaTokenizer.swift in Sources */,
 				AA0001072D0000070000A001 /* GemmaInferenceEngine.swift in Sources */,
+				AA0001082D0000080000A001 /* AIModelConfig.swift in Sources */,
+				AA0001092D0000090000A001 /* AITokenizer.swift in Sources */,
+				AA00010A2D00000A0000A001 /* AIInferenceEngine.swift in Sources */,
+				AA00010B2D00000B0000A001 /* QwenTokenizer.swift in Sources */,
+				AA00010C2D00000C0000A001 /* QwenInferenceEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
