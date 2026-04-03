@@ -33,10 +33,39 @@ class VBPLTableViewCell: UITableViewCell{
         super.awakeFromNib()
         
         // Card appearance
+        backgroundColor = .clear
         contentView.backgroundColor = AppColors.surface
         contentView.layer.cornerRadius = AppRadius.md
-        AppShadow.light(for: contentView.layer)
-        backgroundColor = .clear
+        contentView.clipsToBounds = true
+        
+        // Lower image height priority so it doesn't conflict with cell sizing
+        consHeightImageView?.priority = .defaultHigh
+        
+        // Add inner padding so text doesn't sit flush against rounded corners.
+        // Storyboard constraints use tiny constants (0-2pt) to pin subviews to
+        // contentView edges. We bump them to AppSpacing.sm (8pt) for breathing room.
+        let pad = AppSpacing.sm  // 8pt
+        for constraint in contentView.constraints {
+            guard let first = constraint.firstItem as? UIView,
+                  let second = constraint.secondItem as? UIView else { continue }
+            
+            let involvesContentView = (first === contentView || second === contentView)
+            guard involvesContentView else { continue }
+            
+            let attr1 = constraint.firstAttribute
+            let attr2 = constraint.secondAttribute
+            let edges: Set<NSLayoutConstraint.Attribute> = [.top, .bottom, .leading, .trailing, .left, .right]
+            guard edges.contains(attr1) && edges.contains(attr2) else { continue }
+            
+            // Only widen small gaps (0-4pt); leave already-large ones alone
+            if abs(constraint.constant) <= 4 {
+                if constraint.constant >= 0 {
+                    constraint.constant = pad
+                } else {
+                    constraint.constant = -pad
+                }
+            }
+        }
         
         // Image styling
         imgView?.layer.cornerRadius = AppRadius.sm
@@ -58,12 +87,21 @@ class VBPLTableViewCell: UITableViewCell{
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        // Outer margin between cells for card spacing
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(
             top: AppSpacing.xs,
             left: AppSpacing.md,
             bottom: AppSpacing.xs,
             right: AppSpacing.md
         ))
+        // Shadow on the cell layer (outside clipsToBounds of contentView)
+        let shadowPath = UIBezierPath(roundedRect: contentView.bounds, cornerRadius: AppRadius.md)
+        layer.shadowPath = shadowPath.cgPath
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.06
+        layer.shadowOffset = CGSize(width: 0, height: 2)
+        layer.shadowRadius = 8
+        layer.masksToBounds = false
     }
     
     func updateDieukhoan(dieukhoan: Dieukhoan,fullDetails: Bool,showVanban: Bool, maxText: Int = 250, defaultImage: Int = 0) {

@@ -75,8 +75,8 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
         vachShapeSelectView?.layer.cornerRadius = AppRadius.md
         viewDetailsSelect?.backgroundColor = AppColors.surface
         viewDetailsSelect?.layer.cornerRadius = AppRadius.md
-        lblVachShapeGroupFilter?.font = AppTypography.bodyMedium
-        lblVachShapeGroupFilter?.textColor = AppColors.onSurfaceVariant
+        lblVachShapeGroupFilter?.font = AppTypography.labelMedium
+        lblVachShapeGroupFilter?.textColor = AppColors.primary
     }
     
     @IBAction func btnOnroadAct(_ sender: Any) {
