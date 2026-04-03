@@ -203,7 +203,7 @@ class AIModelManager {
         if totalRAM < AIModelManager.minimumRAMBytes {
             return DeviceCapability(totalRAM: totalRAM, availableRAM: availableRAM,
                                     chipGeneration: chip, isSupported: false,
-                                    reason: "Thiết bị cần ít nhất 5GB RAM để chạy AI. Thiết bị hiện có \(totalRAM / (1024*1024))MB.")
+                                    reason: "Thiết bị cần ít nhất \(AIModelManager.minimumRAMBytes / (1024*1024*1024))GB RAM để chạy AI. Thiết bị hiện có \(totalRAM / (1024*1024))MB.")
         }
         
         // Check chip (A15+ recommended for Neural Engine performance)
