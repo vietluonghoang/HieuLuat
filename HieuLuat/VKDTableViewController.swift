@@ -40,8 +40,8 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
     var vachShapesFiltered = [String]()
     var vachShapesSelected = [String:Bool]()
     var vachDetailsGroupsSelected = [String:Bool]()
-    let onColor = UIColor.blue
-    let offColor = UIColor(red:0.39377 , green: 0.891997, blue: 0.793788, alpha: 1.0)
+    let onColor = AppColors.primary
+    let offColor = AppColors.surfaceVariant
     var shapeGroupNamePair = [String:String]()
     //    var offColor = UIColor.cyan
     let redirectionHelper = RedirectionHelper()
@@ -77,6 +77,18 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
         viewDetailsSelect?.layer.cornerRadius = AppRadius.md
         lblVachShapeGroupFilter?.font = AppTypography.labelMedium
         lblVachShapeGroupFilter?.textColor = AppColors.primary
+        
+        // Style detail filter icon buttons
+        for btn in [btnOnroad, btnCross, btnSidewalk, btnObstacle] {
+            guard let btn = btn else { continue }
+            btn.layer.cornerRadius = AppRadius.sm
+            btn.layer.borderWidth = 1
+            btn.layer.borderColor = AppColors.outline.cgColor
+            btn.backgroundColor = AppColors.surfaceVariant
+            btn.tintColor = AppColors.onSurfaceVariant
+            btn.imageView?.contentMode = .scaleAspectFit
+            btn.addTouchAnimations()
+        }
     }
     
     @IBAction func btnOnroadAct(_ sender: Any) {
@@ -97,7 +109,12 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
     
     func updateButtonState(btnName: String,button: UIButton) {
         updateVachDetailsGroupSelected(details: btnName)
-        Utils.updateButtonState(button: button, state: isButtonOn(btnName: btnName), onColor: onColor, offColor: offColor)
+        let isOn = isButtonOn(btnName: btnName)
+        UIView.animate(withDuration: 0.2) {
+            button.backgroundColor = isOn ? AppColors.primaryContainer : AppColors.surfaceVariant
+            button.layer.borderColor = isOn ? AppColors.primary.cgColor : AppColors.outline.cgColor
+            button.layer.borderWidth = isOn ? 1.5 : 1
+        }
         updateSearchResults()
     }
     

@@ -21,17 +21,15 @@ class AboutViewController: UIViewController {
         view.backgroundColor = AppColors.surfaceVariant
         btnFounderFB.setTitle((GeneralSettings.getFBLink[1]).absoluteString, for: .normal)
         btnFounderE.setTitle(GeneralSettings.getEmailAddress, for: .normal)
-        // Style buttons
-        btnFounderFB.tintColor = AppColors.primary
-        btnFounderFB.titleLabel?.font = AppTypography.bodyMedium
-        btnFounderE.tintColor = AppColors.primary
-        btnFounderE.titleLabel?.font = AppTypography.bodyMedium
-        btnAdsOptout.tintColor = AppColors.primary
-        btnAdsOptout.titleLabel?.font = AppTypography.labelLarge
+        // Style as plain link buttons (no border, no background)
+        btnFounderFB.applyModernStyle(.link)
+        btnFounderFB.contentHorizontalAlignment = .left
+        btnFounderE.applyModernStyle(.link)
+        btnFounderE.contentHorizontalAlignment = .left
         
-        if GeneralSettings.isAdsOptout {
-            btnAdsOptout.isEnabled = false
-        }
+        // Always hide ads opt-out button
+        btnAdsOptout.isHidden = true
+        
         AnalyticsHelper.sendAnalyticEvent(eventName: "open_screen", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_CHUNGTOI])
         AnalyticsHelper.sendAnalyticEventMixPanel(eventName: "screen_open", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_CHUNGTOI])
         
@@ -45,12 +43,15 @@ class AboutViewController: UIViewController {
         label.textColor = AppColors.onSurfaceVariant
         label.textAlignment = .center
         label.numberOfLines = 0
+        label.backgroundColor = AppColors.surfaceVariant
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
+        view.bringSubviewToFront(label)
+        
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            label.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppSpacing.md),
+            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -AppSpacing.md),
+            label.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -AppSpacing.sm)
         ])
     }
     

@@ -15,10 +15,7 @@ class UpdatePopupViewController: UIViewController {
         super.viewDidLoad()
         // Modern styling
         view.backgroundColor = AppColors.surface
-        btnUpdate.backgroundColor = AppColors.primary
-        btnUpdate.setTitleColor(AppColors.onPrimary, for: .normal)
-        btnUpdate.layer.cornerRadius = AppRadius.md
-        btnUpdate.titleLabel?.font = AppTypography.labelLarge
+        btnUpdate.applyModernStyle(.primary)
         AnalyticsHelper.sendAnalyticEvent(eventName: "open_screen", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_UPDATEVERSION])
         AnalyticsHelper.sendAnalyticEventMixPanel(eventName: "screen_open", params: ["screen_name" : AnalyticsHelper.SCREEN_NAME_UPDATEVERSION])
     }

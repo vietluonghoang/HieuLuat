@@ -30,6 +30,7 @@ class PickerViewSelectPopup: UIViewController, UIPickerViewDelegate, UIPickerVie
         // Modern styling
         view.backgroundColor = AppColors.surface
         pvMucphat?.backgroundColor = AppColors.surface
+        btnXong.applyModernStyle(.primary)
     }
     
     func updateMucphat(root: MPSearchFilterPopupController, target: String) {

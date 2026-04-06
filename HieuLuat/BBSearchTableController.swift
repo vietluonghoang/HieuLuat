@@ -76,10 +76,16 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
         lblPlateShapeGroupFilter?.font = AppTypography.labelMedium
         lblPlateShapeGroupFilter?.textColor = AppColors.primary
         
-        // Style detail buttons
+        // Style detail filter icon buttons
         for btn in [btnArrow, btnAlphanumeric, btnCreatures, btnVehicles, btnSigns, btnStructures, btnFigures, btnExtras] {
-            btn?.layer.cornerRadius = AppRadius.sm
-            btn?.titleLabel?.font = AppTypography.labelMedium
+            guard let btn = btn else { continue }
+            btn.layer.cornerRadius = AppRadius.sm
+            btn.layer.borderWidth = 1
+            btn.layer.borderColor = AppColors.outline.cgColor
+            btn.backgroundColor = AppColors.surfaceVariant
+            btn.tintColor = AppColors.onSurfaceVariant
+            btn.imageView?.contentMode = .scaleAspectFit
+            btn.addTouchAnimations()
         }
         
         initPlateShapeGroupsList()
@@ -128,7 +134,12 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     
     func updateButtonState(btnName: String,button: UIButton) {
         updatePlateDetailsGroupSelected(details: btnName)
-        Utils.updateButtonState(button: button, state: isButtonOn(btnName: btnName), onColor: onColor, offColor: offColor)
+        let isOn = isButtonOn(btnName: btnName)
+        UIView.animate(withDuration: 0.2) {
+            button.backgroundColor = isOn ? AppColors.primaryContainer : AppColors.surfaceVariant
+            button.layer.borderColor = isOn ? AppColors.primary.cgColor : AppColors.outline.cgColor
+            button.layer.borderWidth = isOn ? 1.5 : 1
+        }
         updateSearchResults()
     }
     

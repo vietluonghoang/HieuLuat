@@ -185,6 +185,7 @@ class MPSearchFilterPopupController: UIViewController {
             sectionView?.backgroundColor = AppColors.surfaceVariant
             sectionView?.layer.cornerRadius = AppRadius.sm
         }
+        btnXong.applyModernStyle(.primary)
         
         //enable this initialization will cause the layout to be broken (wider than actual size)
         //        initPhuongtienButtons()
@@ -214,24 +215,24 @@ class MPSearchFilterPopupController: UIViewController {
     
     func initPhuongtienButtons() {
         let buttonWidth = (self.view.frame.size.width/3) - 3
-        consBtnOtoWidth.constant = buttonWidth
-        Utils.updateButtonState(button: btnOto, state: root.searchFilters["Phuongtien"]!["Oto"]!["chon"] != "0", onColor: UIColor.blue,offColor: UIColor.white)
-        consBtnXemayWidth.constant = buttonWidth
-        Utils.updateButtonState(button: btnXemay, state: root.searchFilters["Phuongtien"]!["Xemay"]!["chon"] != "0", onColor: UIColor.blue,offColor: UIColor.white)
-        consBtnXechuyendungWidth.constant = buttonWidth
-        Utils.updateButtonState(button: btnXechuyendung, state: root.searchFilters["Phuongtien"]!["Xechuyendung"]!["chon"] != "0", onColor: UIColor.blue,offColor: UIColor.white)
-        consBtnTauhoaWidth.constant = buttonWidth
-        Utils.updateButtonState(button: btnTauhoa, state: root.searchFilters["Phuongtien"]!["Tauhoa"]!["chon"] != "0", onColor: UIColor.blue,offColor: UIColor.white)
-        consBtnXedapWidth.constant = buttonWidth
-        Utils.updateButtonState(button: btnXedap, state: root.searchFilters["Phuongtien"]!["Xedap"]!["chon"] != "0", onColor: UIColor.blue,offColor: UIColor.white)
-        consBtnDiboWidth.constant = buttonWidth
-        Utils.updateButtonState(button: btnDibo, state: root.searchFilters["Phuongtien"]!["Dibo"]!["chon"] != "0", onColor: UIColor.blue,offColor: UIColor.white)
+        let vehicleButtons = [
+            (btnOto!, consBtnOtoWidth!, "Oto"),
+            (btnXemay!, consBtnXemayWidth!, "Xemay"),
+            (btnXechuyendung!, consBtnXechuyendungWidth!, "Xechuyendung"),
+            (btnTauhoa!, consBtnTauhoaWidth!, "Tauhoa"),
+            (btnXedap!, consBtnXedapWidth!, "Xedap"),
+            (btnDibo!, consBtnDiboWidth!, "Dibo")
+        ]
+        for (button, widthConstraint, key) in vehicleButtons {
+            widthConstraint.constant = buttonWidth
+            button.applyModernStyle(.toggle)
+            button.applyToggleState(isOn: root.searchFilters["Phuongtien"]![key]!["chon"] != "0")
+        }
         consScrollviewWidth.constant = self.view.frame.size.width
-        
     }
     
     @IBAction func btnOtoAction(_ sender: Any) {
-        Utils.updateButtonState(button: btnOto, state: root.searchFilters["Phuongtien"]!["Oto"]!["chon"] == "0", onColor: UIColor.blue,offColor: UIColor.white)
+        btnOto.applyToggleState(isOn: root.searchFilters["Phuongtien"]!["Oto"]!["chon"] == "0")
         if root.searchFilters["Phuongtien"]!["Oto"]!["chon"] == "0" {
             root.searchFilters["Phuongtien"]!["Oto"]!["chon"] = "1"
         }else{
@@ -240,7 +241,7 @@ class MPSearchFilterPopupController: UIViewController {
     }
     
     @IBAction func btnXemayAction(_ sender: Any) {
-        Utils.updateButtonState(button: btnXemay, state: root.searchFilters["Phuongtien"]!["Xemay"]!["chon"] == "0", onColor: UIColor.blue,offColor: UIColor.white)
+        btnXemay.applyToggleState(isOn: root.searchFilters["Phuongtien"]!["Xemay"]!["chon"] == "0")
         if root.searchFilters["Phuongtien"]!["Xemay"]!["chon"] == "0" {
             root.searchFilters["Phuongtien"]!["Xemay"]!["chon"] = "1"
         }else{
@@ -249,7 +250,7 @@ class MPSearchFilterPopupController: UIViewController {
     }
     
     @IBAction func btnXechuyendungAction(_ sender: Any) {
-        Utils.updateButtonState(button: btnXechuyendung, state: root.searchFilters["Phuongtien"]!["Xechuyendung"]!["chon"] == "0", onColor: UIColor.blue,offColor: UIColor.white)
+        btnXechuyendung.applyToggleState(isOn: root.searchFilters["Phuongtien"]!["Xechuyendung"]!["chon"] == "0")
         if root.searchFilters["Phuongtien"]!["Xechuyendung"]!["chon"] == "0" {
             root.searchFilters["Phuongtien"]!["Xechuyendung"]!["chon"] = "1"
         }else{
@@ -258,7 +259,7 @@ class MPSearchFilterPopupController: UIViewController {
     }
     
     @IBAction func btnTauhoaAction(_ sender: Any) {
-        Utils.updateButtonState(button: btnTauhoa, state: root.searchFilters["Phuongtien"]!["Tauhoa"]!["chon"] == "0", onColor: UIColor.blue,offColor: UIColor.white)
+        btnTauhoa.applyToggleState(isOn: root.searchFilters["Phuongtien"]!["Tauhoa"]!["chon"] == "0")
         if root.searchFilters["Phuongtien"]!["Tauhoa"]!["chon"] == "0" {
             root.searchFilters["Phuongtien"]!["Tauhoa"]!["chon"] = "1"
         }else{
@@ -267,7 +268,7 @@ class MPSearchFilterPopupController: UIViewController {
     }
     
     @IBAction func btnXedapAction(_ sender: Any) {
-        Utils.updateButtonState(button: btnXedap, state: root.searchFilters["Phuongtien"]!["Xedap"]!["chon"] == "0", onColor: UIColor.blue,offColor: UIColor.white)
+        btnXedap.applyToggleState(isOn: root.searchFilters["Phuongtien"]!["Xedap"]!["chon"] == "0")
         if root.searchFilters["Phuongtien"]!["Xedap"]!["chon"] == "0" {
             root.searchFilters["Phuongtien"]!["Xedap"]!["chon"] = "1"
         }else{
@@ -276,7 +277,7 @@ class MPSearchFilterPopupController: UIViewController {
     }
     
     @IBAction func btnDiboAction(_ sender: Any) {
-        Utils.updateButtonState(button: btnDibo, state: root.searchFilters["Phuongtien"]!["Dibo"]!["chon"] == "0", onColor: UIColor.blue,offColor: UIColor.white)
+        btnDibo.applyToggleState(isOn: root.searchFilters["Phuongtien"]!["Dibo"]!["chon"] == "0")
         if root.searchFilters["Phuongtien"]!["Dibo"]!["chon"] == "0" {
             root.searchFilters["Phuongtien"]!["Dibo"]!["chon"] = "1"
         }else{

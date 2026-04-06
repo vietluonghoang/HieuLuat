@@ -60,6 +60,7 @@ class ModernSearchBar: UIView {
         microButton.tintColor = AppColors.onSurfaceVariant
         microButton.translatesAutoresizingMaskIntoConstraints = false
         microButton.addTarget(self, action: #selector(microTapped), for: .touchUpInside)
+        microButton.addTouchAnimations()
 
         // AI badge
         aiIndicatorView.isHidden = true

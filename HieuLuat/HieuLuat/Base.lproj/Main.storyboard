@@ -413,17 +413,11 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0f-nB-WP8">
                                         <rect key="frame" x="2" y="2" width="366" height="50"/>
-                                        <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="KZg-3S-eEd"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                         <state key="normal" title="Tra cứu nhanh"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="0Yw-pY-oe6" kind="show" id="mzu-Np-Gb0"/>
                                         </connections>
@@ -2200,19 +2194,13 @@ kết cấu hạ tầng đường sắt</string>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1BN-KM-F23">
                                 <rect key="frame" x="0.0" y="1888" width="320" height="50"/>
-                                <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="3ss-Ke-Kbx"/>
+                                    <constraint firstAttribute="height" constant="48" id="3ss-Ke-Kbx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Xong">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnXongAction:" destination="z67-X4-AOs" eventType="touchDown" id="gC7-cH-Dsi"/>
                                 </connections>
@@ -2744,18 +2732,12 @@ kết cấu hạ tầng đường sắt</string>
                                                         <rect key="frame" x="4" y="2" width="98.5" height="62"/>
                                                         <subviews>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sd-Nb-cw3">
-                                                                <rect key="frame" x="32" y="2" width="35" height="35"/>
-                                                                <color key="backgroundColor" red="0.52994311950699147" green="0.88094372669032206" blue="0.79682934368452352" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <rect key="frame" x="32" y="2" width="44" height="44"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="35" id="Jk5-Lg-wnj"/>
-                                                                    <constraint firstAttribute="width" constant="35" id="Wnv-3z-Dqo"/>
+                                                                    <constraint firstAttribute="height" constant="44" id="Jk5-Lg-wnj"/>
+                                                                    <constraint firstAttribute="width" constant="44" id="Wnv-3z-Dqo"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Mũi tên" image="Arrow"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="10"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnArrowAct:" destination="UDc-4c-lDr" eventType="touchDown" id="tz0-4I-9Gj"/>
                                                                 </connections>
@@ -2782,13 +2764,7 @@ kết cấu hạ tầng đường sắt</string>
                                                         <subviews>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDF-b4-dWA">
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
-                                                                <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Chữ số" image="Alphanumeric" backgroundImage="Alphanumeric"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="10"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnAlphanumericAct:" destination="UDc-4c-lDr" eventType="touchDown" id="wwI-fa-2yR"/>
                                                                 </connections>
@@ -2821,13 +2797,7 @@ kết cấu hạ tầng đường sắt</string>
                                                             </label>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCM-AR-fBd">
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
-                                                                <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Người, vật" image="Creatures"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="10"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnCreaturesAct:" destination="UDc-4c-lDr" eventType="touchDown" id="ymo-94-3fd"/>
                                                                 </connections>
@@ -2848,13 +2818,7 @@ kết cấu hạ tầng đường sắt</string>
                                                         <subviews>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Txe-G7-gLj">
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
-                                                                <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Phương tiện" image="Vehicles"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="10"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnVehiclesAct:" destination="UDc-4c-lDr" eventType="touchDown" id="qIP-a2-yRC"/>
                                                                 </connections>
@@ -2881,13 +2845,7 @@ kết cấu hạ tầng đường sắt</string>
                                                         <subviews>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeO-Gc-u7H">
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
-                                                                <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Biểu tượng" image="Signs"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="10"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnSignsAct:" destination="UDc-4c-lDr" eventType="touchDown" id="Saz-Bh-8uX"/>
                                                                 </connections>
@@ -2919,13 +2877,7 @@ kết cấu hạ tầng đường sắt</string>
                                                         <subviews>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9T-H2-ZLI">
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
-                                                                <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Công trình, Cấu trúc" image="Structures"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="10"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnStructuresAct:" destination="UDc-4c-lDr" eventType="touchDown" id="hBh-Kh-yxt"/>
                                                                 </connections>
@@ -2958,13 +2910,7 @@ kết cấu hạ tầng đường sắt</string>
                                                             </label>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B31-V8-3ZE">
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
-                                                                <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Hình dạng" image="Figures"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="10"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnFiguresAct:" destination="UDc-4c-lDr" eventType="touchDown" id="Vxa-uv-ol2"/>
                                                                 </connections>
@@ -3269,27 +3215,21 @@ kết cấu hạ tầng đường sắt</string>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAe-Yo-byZ">
                                         <rect key="frame" x="50" y="8" width="314" height="34"/>
-                                        <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                                         <state key="normal" title="Xong">
                                             <color key="titleColor" red="0.97405253599999997" green="1" blue="0.98692935439999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="btnXongOnTouchDown:" destination="bHe-bI-s7N" eventType="touchDown" id="45j-XQ-c3B"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="GAe-Yo-byZ" firstAttribute="leading" secondItem="Ite-zt-jvo" secondAttribute="leading" constant="50" id="7ar-Kj-0we"/>
-                                    <constraint firstItem="GAe-Yo-byZ" firstAttribute="bottom" secondItem="Ite-zt-jvo" secondAttribute="bottom" constant="-8" id="Op1-WC-YxG"/>
-                                    <constraint firstItem="GAe-Yo-byZ" firstAttribute="top" secondItem="Ite-zt-jvo" secondAttribute="top" constant="8" id="ZXe-4x-OVo"/>
-                                    <constraint firstItem="GAe-Yo-byZ" firstAttribute="trailing" secondItem="Ite-zt-jvo" secondAttribute="trailing" constant="-50" id="atM-eL-TL5"/>
-                                    <constraint firstAttribute="height" constant="50" id="rxn-gc-dAn"/>
+                                    <constraint firstItem="GAe-Yo-byZ" firstAttribute="leading" secondItem="Ite-zt-jvo" secondAttribute="leading" constant="0" id="7ar-Kj-0we"/>
+                                    <constraint firstItem="GAe-Yo-byZ" firstAttribute="bottom" secondItem="Ite-zt-jvo" secondAttribute="bottom" constant="0" id="Op1-WC-YxG"/>
+                                    <constraint firstItem="GAe-Yo-byZ" firstAttribute="top" secondItem="Ite-zt-jvo" secondAttribute="top" constant="0" id="ZXe-4x-OVo"/>
+                                    <constraint firstItem="GAe-Yo-byZ" firstAttribute="trailing" secondItem="Ite-zt-jvo" secondAttribute="trailing" constant="0" id="atM-eL-TL5"/>
+                                    <constraint firstAttribute="height" constant="48" id="rxn-gc-dAn"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -3347,16 +3287,10 @@ kết cấu hạ tầng đường sắt</string>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6HX-1G-jkm">
                                         <rect key="frame" x="10" y="210" width="230" height="30"/>
-                                        <color key="backgroundColor" red="0.069381929930000003" green="0.78833538290000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Xong">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="btnDoneAction:" destination="3kr-rx-vyq" eventType="touchDown" id="yzK-d8-29M"/>
                                         </connections>
@@ -3450,18 +3384,12 @@ kết cấu hạ tầng đường sắt</string>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdN-SI-HIm">
                                 <rect key="frame" x="0.0" y="754" width="414" height="50"/>
-                                <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="L37-Bo-Dma"/>
+                                    <constraint firstAttribute="height" constant="48" id="L37-Bo-Dma"/>
                                 </constraints>
                                 <state key="normal" title="Xong">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnXongOnTouchDown:" destination="xmY-Cs-zLN" eventType="touchDown" id="tM3-mk-mJN"/>
                                 </connections>
@@ -3482,6 +3410,7 @@ kết cấu hạ tầng đường sắt</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnXong" destination="GdN-SI-HIm" id="mBn-Xq-1aZ"/>
                         <outlet property="lblPopupTitle" destination="Ouj-31-CZM" id="MHg-K6-UrF"/>
                         <outlet property="svPopupContent" destination="rx7-Bz-RSl" id="pLJ-tO-Hh9"/>
                         <outlet property="viewContent" destination="bVd-ED-38T" id="WQt-ZZ-w0C"/>
@@ -4493,18 +4422,12 @@ kết cấu hạ tầng đường sắt</string>
                                                         <rect key="frame" x="4" y="2" width="98.5" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFa-1Z-QS0">
-                                                                <rect key="frame" x="32" y="2" width="35" height="35"/>
-                                                                <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <rect key="frame" x="32" y="2" width="44" height="44"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="35" id="Axx-y7-0rs"/>
-                                                                    <constraint firstAttribute="height" constant="35" id="MDA-2e-5Ab"/>
+                                                                    <constraint firstAttribute="width" constant="44" id="Axx-y7-0rs"/>
+                                                                    <constraint firstAttribute="height" constant="44" id="MDA-2e-5Ab"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Mũi tên" image="onroad"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="10"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnArrowAct:" destination="UDc-4c-lDr" eventType="touchDown" id="Fyi-g7-Pnv"/>
                                                                     <action selector="btnOnroadAct:" destination="70T-2Q-g9y" eventType="touchUpInside" id="xzD-g6-5KD"/>
@@ -4531,13 +4454,7 @@ kết cấu hạ tầng đường sắt</string>
                                                         <subviews>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IuV-ow-j4s">
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
-                                                                <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Chữ số" image="cross"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="10"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnAlphanumericAct:" destination="UDc-4c-lDr" eventType="touchDown" id="cNo-LE-5cv"/>
                                                                     <action selector="btnCrossAct:" destination="70T-2Q-g9y" eventType="touchUpInside" id="z44-Iw-KXw"/>
@@ -4570,13 +4487,7 @@ kết cấu hạ tầng đường sắt</string>
                                                             </label>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nXk-Xj-eug">
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
-                                                                <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Người, vật" image="sidewalk"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="10"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnCreaturesAct:" destination="UDc-4c-lDr" eventType="touchDown" id="QbO-rV-ERW"/>
                                                                     <action selector="btnSidewalkAct:" destination="70T-2Q-g9y" eventType="touchUpInside" id="lKa-ji-UcQ"/>
@@ -4597,13 +4508,7 @@ kết cấu hạ tầng đường sắt</string>
                                                         <subviews>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fka-af-nau">
                                                                 <rect key="frame" x="32" y="2" width="35" height="35"/>
-                                                                <color key="backgroundColor" red="0.52994311949999995" green="0.88094372669999998" blue="0.79682934370000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <state key="normal" title="Phương tiện" image="obstacles"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="10"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btnObstacleAct:" destination="70T-2Q-g9y" eventType="touchUpInside" id="E8c-GB-7LE"/>
                                                                     <action selector="btnVehiclesAct:" destination="UDc-4c-lDr" eventType="touchDown" id="bEN-63-T9I"/>
@@ -4737,16 +4642,13 @@ kết cấu hạ tầng đường sắt</string>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yul-xe-bL2">
                                 <rect key="frame" x="0.0" y="774" width="414" height="30"/>
-                                <color key="backgroundColor" red="0.20857585370000001" green="0.76687471149999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="yul-xe-h48"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Xong">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnXongAction:" destination="mVo-FR-jcp" eventType="touchUpInside" id="g3E-Ag-mce"/>
                                 </connections>

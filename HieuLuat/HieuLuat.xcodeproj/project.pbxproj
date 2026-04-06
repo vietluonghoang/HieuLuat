@@ -65,6 +65,7 @@
 		33FD3B7A232B50B700DD7087 /* CustomizedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FD3B79232B50B600DD7087 /* CustomizedLabel.swift */; };
 		69CA5C872C2EDBF10049C4E1 /* CustomUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CA5C862C2EDBF10049C4E1 /* CustomUINavigationController.swift */; };
 		69DF82E02F7FCED400BEBFD7 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DF82D92F7FCED400BEBFD7 /* CardView.swift */; };
+		CD5FCF6B714C4C8B00AE4AE7 /* ModernButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5FCF6B714C4C8B01AE4AE7 /* ModernButton.swift */; };
 		69DF82E12F7FCED400BEBFD7 /* ModernSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DF82DC2F7FCED400BEBFD7 /* ModernSearchBar.swift */; };
 		69DF82E22F7FCED400BEBFD7 /* ChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DF82DA2F7FCED400BEBFD7 /* ChipView.swift */; };
 		69DF82E32F7FCED400BEBFD7 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DF82DE2F7FCED400BEBFD7 /* Theme.swift */; };
@@ -172,6 +173,7 @@
 		69DF82D92F7FCED400BEBFD7 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		69DF82DA2F7FCED400BEBFD7 /* ChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipView.swift; sourceTree = "<group>"; };
 		69DF82DB2F7FCED400BEBFD7 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		CD5FCF6B714C4C8B01AE4AE7 /* ModernButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernButton.swift; sourceTree = "<group>"; };
 		69DF82DC2F7FCED400BEBFD7 /* ModernSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernSearchBar.swift; sourceTree = "<group>"; };
 		69DF82DD2F7FCED400BEBFD7 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		69DF82DE2F7FCED400BEBFD7 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				69DF82D92F7FCED400BEBFD7 /* CardView.swift */,
 				69DF82DA2F7FCED400BEBFD7 /* ChipView.swift */,
 				69DF82DB2F7FCED400BEBFD7 /* EmptyStateView.swift */,
+				CD5FCF6B714C4C8B01AE4AE7 /* ModernButton.swift */,
 				69DF82DC2F7FCED400BEBFD7 /* ModernSearchBar.swift */,
 				69DF82DD2F7FCED400BEBFD7 /* TagView.swift */,
 				69DF82DE2F7FCED400BEBFD7 /* Theme.swift */,
@@ -678,6 +681,7 @@
 				334AAFB21FC1E0A300A5BE0F /* GeneralSettings.swift in Sources */,
 				33FD3B78232A6BBC00DD7087 /* RedirectionHelper.swift in Sources */,
 				69DF82E02F7FCED400BEBFD7 /* CardView.swift in Sources */,
+				CD5FCF6B714C4C8B00AE4AE7 /* ModernButton.swift in Sources */,
 				69DF82E12F7FCED400BEBFD7 /* ModernSearchBar.swift in Sources */,
 				69DF82E22F7FCED400BEBFD7 /* ChipView.swift in Sources */,
 				69DF82E32F7FCED400BEBFD7 /* Theme.swift in Sources */,

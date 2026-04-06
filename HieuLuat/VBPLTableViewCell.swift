@@ -45,6 +45,7 @@ class VBPLTableViewCell: UITableViewCell{
         // Storyboard constraints use tiny constants (0-2pt) to pin subviews to
         // contentView edges. We bump them to AppSpacing.sm (8pt) for breathing room.
         let pad = AppSpacing.sm  // 8pt
+        let trailingBottomAttrs: Set<NSLayoutConstraint.Attribute> = [.bottom, .trailing, .right]
         for constraint in contentView.constraints {
             guard let first = constraint.firstItem as? UIView,
                   let second = constraint.secondItem as? UIView else { continue }
@@ -58,11 +59,20 @@ class VBPLTableViewCell: UITableViewCell{
             guard edges.contains(attr1) && edges.contains(attr2) else { continue }
             
             // Only widen small gaps (0-4pt); leave already-large ones alone
-            if abs(constraint.constant) <= 4 {
-                if constraint.constant >= 0 {
-                    constraint.constant = pad
-                } else {
+            guard abs(constraint.constant) <= 4 else { continue }
+            
+            // Determine correct sign: when a subview's trailing/bottom is pinned
+            // to contentView's trailing/bottom, the constant must be negative to
+            // create inward padding.
+            if first === contentView {
+                // contentView.edge == subview.edge + constant → positive = inward
+                constraint.constant = pad
+            } else {
+                // subview.edge == contentView.edge + constant
+                if trailingBottomAttrs.contains(attr1) {
                     constraint.constant = -pad
+                } else {
+                    constraint.constant = pad
                 }
             }
         }
@@ -95,13 +105,22 @@ class VBPLTableViewCell: UITableViewCell{
             right: AppSpacing.md
         ))
         // Shadow on the cell layer (outside clipsToBounds of contentView)
-        let shadowPath = UIBezierPath(roundedRect: contentView.bounds, cornerRadius: AppRadius.md)
+        let shadowPath = UIBezierPath(roundedRect: contentView.frame, cornerRadius: AppRadius.md)
         layer.shadowPath = shadowPath.cgPath
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.06
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowRadius = 8
         layer.masksToBounds = false
+    }
+    
+    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+        let horizontalInsets = AppSpacing.md * 2
+        let verticalInsets = AppSpacing.xs * 2
+        let adjustedTarget = CGSize(width: targetSize.width - horizontalInsets, height: targetSize.height)
+        var size = super.systemLayoutSizeFitting(adjustedTarget, withHorizontalFittingPriority: horizontalFittingPriority, verticalFittingPriority: verticalFittingPriority)
+        size.height += verticalInsets
+        return size
     }
     
     func updateDieukhoan(dieukhoan: Dieukhoan,fullDetails: Bool,showVanban: Bool, maxText: Int = 250, defaultImage: Int = 0) {

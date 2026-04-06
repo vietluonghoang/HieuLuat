@@ -197,17 +197,12 @@ class AIModelOverlayWindow: UIWindow {
         stackView.addArrangedSubview(checkmarkLabel)
 
         cancelButton.setTitle("Hủy", for: .normal)
-        cancelButton.setTitleColor(.red, for: .normal)
-        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        cancelButton.applyModernStyle(.destructive)
         cancelButton.addTarget(self, action: #selector(cancelTapped), for: .touchUpInside)
         stackView.addArrangedSubview(cancelButton)
 
         retryButton.setTitle("Thử lại", for: .normal)
-        retryButton.setTitleColor(.white, for: .normal)
-        retryButton.backgroundColor = .cyan
-        retryButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        retryButton.layer.cornerRadius = 8
-        retryButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 24, bottom: 8, right: 24)
+        retryButton.applyModernStyle(.primary)
         retryButton.addTarget(self, action: #selector(retryTapped), for: .touchUpInside)
         retryButton.isHidden = true
         stackView.addArrangedSubview(retryButton)

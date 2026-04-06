@@ -35,6 +35,7 @@ class BBFilterPopupViewController: UIViewController {
         svOptions?.backgroundColor = AppColors.surface
         lblHeaderText?.font = AppTypography.titleMedium
         lblHeaderText?.textColor = AppColors.onSurface
+        btnXong.applyModernStyle(.primary)
     }
     
     //optionText will be the list of display name for options. Therefore, the order of optionText and options must be the same since the corresponding text will be replaced for option

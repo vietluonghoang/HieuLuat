@@ -169,11 +169,8 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         }else{
             btnSeeMore.isHidden = true
         }
-        btnSeeMore.tintColor = AppColors.primary
-        btnSeeMore.titleLabel?.font = AppTypography.labelLarge
-
-        btnParentBreadscrub?.tintColor = AppColors.primary
-        btnParentBreadscrub?.titleLabel?.font = AppTypography.labelLarge
+        btnSeeMore.applyModernStyle(.tertiary)
+        btnParentBreadscrub?.applyModernStyle(.tertiary)
 
         if(relatedChildren.count < 1 && utterance.voice?.language == nil){
             consLblSeeMoreHeight.constant = 0
@@ -285,13 +282,16 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         updateSpeakerButton(onNow: true)
     }
     private func updateSpeakerButton(onNow: Bool){
-        btnRead.tintColor = AppColors.primary
+        btnRead.layer.cornerRadius = AppRadius.md
+        btnRead.addTouchAnimations()
         if onNow {
             btnRead.setImage(UIImage(named: "speaker_on"), for: .normal)
-            btnRead.backgroundColor = UIColor.init(red: 56/255, green: 207/255, blue: 109/255, alpha: 1)
-        }else{
+            btnRead.backgroundColor = AppColors.success
+            btnRead.tintColor = .white
+        } else {
             btnRead.setImage(UIImage(named: "speaker_off"), for: .normal)
-            btnRead.backgroundColor = UIColor.init(red: 255/255, green: 64/255, blue: 129/255, alpha: 1)
+            btnRead.backgroundColor = AppColors.error
+            btnRead.tintColor = .white
         }
     }
     

@@ -28,6 +28,7 @@ class SpeechRecognizerController: UIViewController, SFSpeechRecognizerDelegate{
         
         // Modern styling
         view.backgroundColor = AppColors.surface
+        btnDone.applyModernStyle(.primary)
         
         // Do any additional setup after loading the view.
         speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: localIdentifier))

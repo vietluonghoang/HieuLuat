@@ -62,8 +62,7 @@ class EmptyStateView: UIView {
         // Action button
         if let actionTitle = actionTitle {
             actionButton.setTitle(actionTitle, for: .normal)
-            actionButton.titleLabel?.font = AppTypography.labelLarge
-            actionButton.tintColor = AppColors.primary
+            actionButton.applyModernStyle(.secondary)
             actionButton.addTarget(self, action: #selector(actionTapped), for: .touchUpInside)
             stack.addArrangedSubview(actionButton)
         }

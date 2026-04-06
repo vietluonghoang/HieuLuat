@@ -52,8 +52,7 @@ class InstructionDetailsViewController: UIViewController {
         lblAuthorName?.textColor = AppColors.onSurface
         lblSource?.font = AppTypography.bodySmall
         lblSource?.textColor = AppColors.onSurfaceVariant
-        btnSource?.tintColor = AppColors.primary
-        btnSource?.titleLabel?.font = AppTypography.bodySmall
+        btnSource?.applyModernStyle(.tertiary)
         
         // Do any additional setup after loading the view.
         if !AdsHelper.isConnectedToNetwork() {

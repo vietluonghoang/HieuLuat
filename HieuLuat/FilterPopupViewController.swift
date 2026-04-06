@@ -13,7 +13,7 @@ class FilterPopupViewController: UIViewController {
     @IBOutlet var viewContent: UIView!
     @IBOutlet var lblPopupTitle: UILabel!
     @IBOutlet var viewDetailContent: UIView!
-    
+    @IBOutlet var btnXong: UIButton!
     
     var root: VBPLSearchTableController? = nil
     
@@ -30,6 +30,7 @@ class FilterPopupViewController: UIViewController {
         viewDetailContent?.layer.cornerRadius = AppRadius.md
         lblPopupTitle?.font = AppTypography.titleMedium
         lblPopupTitle?.textColor = AppColors.onSurface
+        btnXong?.applyModernStyle(.primary)
     }
     
     override func didReceiveMemoryWarning() {

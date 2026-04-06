@@ -52,6 +52,9 @@ class ViewController: UIViewController {
         AppShadow.light(for: viewTracuu.layer)
         viewTracuu.layer.borderWidth = 0
         
+        // Style all buttons within the view hierarchy
+        styleButtons(in: view)
+        
         // Check and prompt for AI model download
         AIModelCoordinator.shared.checkAndPromptIfNeeded(from: self)
     }
@@ -66,6 +69,19 @@ class ViewController: UIViewController {
         let bundleVersion: AnyObject? = Bundle.main.infoDictionary!["CFBundleVersion"] as AnyObject
         let versionInfo = "v.\(bundleCode as! String)(\(bundleVersion as! String)) - db.\(DataConnection.getCurrentDBVersion())"
         return versionInfo
+    }
+    
+    private func styleButtons(in parentView: UIView) {
+        for subview in parentView.subviews {
+            if let button = subview as? UIButton, let title = button.title(for: .normal) {
+                if title == "Chúng tôi là ai?" {
+                    button.applyModernStyle(.link)
+                } else {
+                    button.applyModernStyle(.primary)
+                }
+            }
+            styleButtons(in: subview)
+        }
     }
     
     func checkIfNeedToUpdate() -> Bool {
