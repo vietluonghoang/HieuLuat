@@ -126,9 +126,6 @@ class DataConnection: NSObject {
     }
     
     private class func updateDatabaseVersion (db: FMDatabase, newVersion: Int){
-        getCurrentDBVersion()
-    }
-    private class func updateDatabaseVersion (db: FMDatabase, newVersion: Int){
         do {
             try db.execute("PRAGMA user_version = \(newVersion)")
         }catch {
@@ -136,6 +133,7 @@ class DataConnection: NSObject {
         }
     }
 }
+
     private class func loadAIModel() {
         // Implement loading AI model using llama.cpp
     }
