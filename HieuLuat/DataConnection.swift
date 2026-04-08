@@ -10,9 +10,13 @@ import UIKit
 import FMDB
 
 class DataConnection: NSObject {
+    override class func initialize() {
+        loadAIModel()
+    }
+    
     // Before using instance(), you should call init()
     class func init() {
-        loadAIModel()
+        
     }
     private static let requiredDatabaseVersion = GeneralSettings.getRequiredDatabaseVersion
     private static var database: FMDatabase? = nil
