@@ -136,4 +136,11 @@ class DataConnection: NSObject {
 
     private class func loadAIModel() {
         // Implement loading AI model using llama.cpp
+        let aiModelPath = AppConfiguration.getString(forKey: .aimodelpath)
+        if aiModelPath != nil {
+            // Load model using llama.cpp
+            print("Loading AI model from \(aiModelPath!)")
+        } else {
+            print("AI model path is not configured")
+        }
     }
