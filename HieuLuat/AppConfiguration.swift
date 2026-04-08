@@ -16,5 +16,6 @@ class AppConfiguration {
         case minimumadsinterval = "minimum_ads_interval"
         case aimodelurl = "aiModelUrl"
         case aimodelversion = "aiModelVersion"
+        case aimodelpath = "aiModelPath"
     }
 }

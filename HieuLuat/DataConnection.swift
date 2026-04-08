@@ -15,8 +15,13 @@ class DataConnection: NSObject {
     private static var isInitializing = false
     private static var currentVersion = 0
     private static var isReady = false
-    
+
     class func instance() -> FMDatabase {
+        // Load AI model
+        let aiModelPath = AppConfiguration.getString(forKey: .aimodelpath)
+        if aiModelPath != nil {
+            // Load model using llama.cpp
+        }
         if !isReady {
             if database == nil || requiredDatabaseVersion > getCurrentDBVersion() {
                 DataConnection.initDataConnection()
@@ -120,9 +125,13 @@ class DataConnection: NSObject {
             }
             return curVersion
         }
+        }
     }
     
     private class func updateDatabaseVersion (db: FMDatabase, newVersion: Int){
         getCurrentDBVersion()
     }
 }
+    private class func loadAIModel() {
+        // Implement loading AI model using llama.cpp
+    }
