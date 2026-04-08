@@ -18,10 +18,7 @@ class DataConnection: NSObject {
 
     class func instance() -> FMDatabase {
         // Load AI model
-        let aiModelPath = AppConfiguration.getString(forKey: .aimodelpath)
-        if aiModelPath != nil {
-            // Load model using llama.cpp
-        }
+        loadAIModel()
         if !isReady {
             if database == nil || requiredDatabaseVersion > getCurrentDBVersion() {
                 DataConnection.initDataConnection()
@@ -130,6 +127,13 @@ class DataConnection: NSObject {
     
     private class func updateDatabaseVersion (db: FMDatabase, newVersion: Int){
         getCurrentDBVersion()
+    }
+    private class func updateDatabaseVersion (db: FMDatabase, newVersion: Int){
+        do {
+            try db.execute("PRAGMA user_version = \(newVersion)")
+        }catch {
+            print("[DataConnection] Error on update database version: \(error.localizedDescription)")
+        }
     }
 }
     private class func loadAIModel() {
