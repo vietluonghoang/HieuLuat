@@ -25,8 +25,24 @@ void llama_bridge_init_model(const char * model_path) {
     llama_backend_init();
 
     // --- model ---
+    //
+    // GPU offload: n_gpu_layers = 0 (CPU-only).
+    //
+    // Setting n_gpu_layers > 0 causes EXC_BAD_ACCESS in ggml_metal_encoder_set_pipeline
+    // (ggml-metal-device.m:487) because some Metal shader pipelines fail to compile at
+    // runtime on A15/iOS 26, returning NULL. The crash happens in ggml_metal_op_unary
+    // during llama_decode.
+    //
+    // Root cause: ggml-metal's compile_pipeline returns {.pipeline=nil} on failure, but
+    // callers dereference it without NULL checks → SIGSEGV.
+    //
+    // To re-enable GPU acceleration:
+    //   1. Update llama.cpp to a newer version that may fix the pipeline NULL handling.
+    //   2. Or patch ggml-metal-device.m to fallback to CPU when pipeline compile fails.
+    //   3. Then set n_gpu_layers = 20~35 (Gemma-4 E2B has 35 layers, A15 has ~4GB VRAM).
+    //
     struct llama_model_params mparams = llama_model_default_params();
-    mparams.n_gpu_layers = 0;  // CPU-only for now — Metal pipeline issues on A15
+    mparams.n_gpu_layers = 0;
 
     NSLog(@"[llama_bridge] loading model: %s", model_path);
     s_model = llama_model_load_from_file(model_path, mparams);
