@@ -10,23 +10,13 @@ import UIKit
 import FMDB
 
 class DataConnection: NSObject {
-    override class func initialize() {
-        loadAIModel()
-    }
-    
-    // Before using instance(), you should call init()
-    class func init() {
-        
-    }
     private static let requiredDatabaseVersion = GeneralSettings.getRequiredDatabaseVersion
     private static var database: FMDatabase? = nil
     private static var isInitializing = false
     private static var currentVersion = 0
     private static var isReady = false
-
+    
     class func instance() -> FMDatabase {
-        // Load AI model
-        loadAIModel()
         if !isReady {
             if database == nil || requiredDatabaseVersion > getCurrentDBVersion() {
                 DataConnection.initDataConnection()
@@ -130,33 +120,9 @@ class DataConnection: NSObject {
             }
             return curVersion
         }
-        }
     }
     
     private class func updateDatabaseVersion (db: FMDatabase, newVersion: Int){
-        do {
-            try db.execute("PRAGMA user_version = \(newVersion)")
-        }catch {
-            print("[DataConnection] Error on update database version: \(error.localizedDescription)")
-        }
+        getCurrentDBVersion()
     }
 }
-
-    private class func loadAIModel() {
-        // Implement loading AI model using llama.cpp
-        let aiModelPath = AppConfiguration.Configuration.aimodelpath.rawValue
-        let value = Bundle.main.object(forInfoDictionaryKey: aiModelPath) as? String
-        if let modelPath = value {
-            // Load model using llama.cpp
-            print("Loading AI model from \(modelPath)")
-        } else {
-            print("AI model path is not configured")
-        }
-        let aiModelPath = AppConfiguration.getString(forKey: .aimodelpath)
-        if aiModelPath != nil {
-            // Load model using llama.cpp
-            print("Loading AI model from \(aiModelPath!)")
-        } else {
-            print("AI model path is not configured")
-        }
-    }

@@ -9,5 +9,7 @@
 #ifndef WeThoong_Bridging_Header_h
 #define WeThoong_Bridging_Header_h
 
+#include "llama_bridge.h"
+
 #endif /* WeThoong_Bridging_Header_h */
 

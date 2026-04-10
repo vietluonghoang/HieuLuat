@@ -38,8 +38,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize MixPanel
         AnalyticsHelper.initMixPanel(userID: "")
         
+        // --- llama.cpp GGUF test ---
+        #if DEBUG
+        testLlamaBridge()
+        #endif
+        
         return true
     }
+    
+    #if DEBUG
+    private func testLlamaBridge() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            NSLog("[AppDelegate] Loading llama.cpp GGUF model...")
+            LlamaBridge.shared.loadModel()
+            
+            NSLog("[AppDelegate] Running inference...")
+            let result = LlamaBridge.shared.infer(prompt: "Hello")
+            NSLog("[AppDelegate] Inference result: %@", result)
+        }
+    }
+    #endif
     
     func application(_ application: UIApplication,
                      handleEventsForBackgroundURLSession identifier: String,
