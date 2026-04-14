@@ -233,512 +233,9 @@
 		69DFC4C62F83E91D00BEBFD7 /* internlm2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69DFC2702F83E91D00BEBFD7 /* internlm2.cpp */; };
 		69DFC4CB2F83E91D00BEBFD7 /* ggml-cpu.c in Sources */ = {isa = PBXBuildFile; fileRef = 69DFBE8B2F83E91D00BEBFD7 /* ggml-cpu.c */; };
 		69DFC4D02F83E91D00BEBFD7 /* rwkv7.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69DFC2A52F83E91D00BEBFD7 /* rwkv7.cpp */; };
-		69DFC4D12F83E91D00BEBFD7 /* mmq-instance-q4_k.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF0E2F83E91D00BEBFD7 /* mmq-instance-q4_k.cu */; };
-		69DFC4D22F83E91D00BEBFD7 /* mul_mmq_funcs.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1AF2F83E91D00BEBFD7 /* mul_mmq_funcs.glsl */; };
-		69DFC4D32F83E91D00BEBFD7 /* dequant_iq2_s.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1602F83E91D00BEBFD7 /* dequant_iq2_s.comp */; };
-		69DFC4D42F83E91D00BEBFD7 /* upscale.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1EA2F83E91D00BEBFD7 /* upscale.comp */; };
-		69DFC4D52F83E91D00BEBFD7 /* sumrows.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF8D2F83E91D00BEBFD7 /* sumrows.cuh */; };
-		69DFC4D62F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC14A2F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC4D72F83E91D00BEBFD7 /* fattn-vec-instance-bf16-q4_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEC12F83E91D00BEBFD7 /* fattn-vec-instance-bf16-q4_1.cu */; };
-		69DFC4D82F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_16-ncols2_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEAE2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_16-ncols2_1.cu */; };
-		69DFC4D92F83E91D00BEBFD7 /* contig_copy.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC14C2F83E91D00BEBFD7 /* contig_copy.comp */; };
-		69DFC4DA2F83E91D00BEBFD7 /* fattn-vec-instance-f16-bf16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEC52F83E91D00BEBFD7 /* fattn-vec-instance-f16-bf16.cu */; };
-		69DFC4DB2F83E91D00BEBFD7 /* mul_mat_vecq_funcs.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1A92F83E91D00BEBFD7 /* mul_mat_vecq_funcs.glsl */; };
-		69DFC4DC2F83E91D00BEBFD7 /* topk-moe.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF902F83E91D00BEBFD7 /* topk-moe.cu */; };
-		69DFC4DD2F83E91D00BEBFD7 /* mmq-instance-q5_k.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF112F83E91D00BEBFD7 /* mmq-instance-q5_k.cu */; };
-		69DFC4DE2F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC11C2F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC4DF2F83E91D00BEBFD7 /* FindSIMD.cmake in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBE772F83E91D00BEBFD7 /* FindSIMD.cmake */; };
-		69DFC4E02F83E91D00BEBFD7 /* diag_mask_inf.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1732F83E91D00BEBFD7 /* diag_mask_inf.comp */; };
-		69DFC4E12F83E91D00BEBFD7 /* log.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1942F83E91D00BEBFD7 /* log.comp */; };
-		69DFC4E22F83E91D00BEBFD7 /* mmq-instance-iq3_xxs.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF052F83E91D00BEBFD7 /* mmq-instance-iq3_xxs.cu */; };
-		69DFC4E32F83E91D00BEBFD7 /* add-id.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF1C2F83E91D00BEBFD7 /* add-id.cuh */; };
-		69DFC4E42F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2B32F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC4E52F83E91D00BEBFD7 /* fattn-vec-instance-q5_0-q8_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEE02F83E91D00BEBFD7 /* fattn-vec-instance-q5_0-q8_0.cu */; };
-		69DFC4E62F83E91D00BEBFD7 /* mul_mmq.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1AE2F83E91D00BEBFD7 /* mul_mmq.comp */; };
-		69DFC4E72F83E91D00BEBFD7 /* im2col.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1902F83E91D00BEBFD7 /* im2col.comp */; };
-		69DFC4E82F83E91D00BEBFD7 /* getrows.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF512F83E91D00BEBFD7 /* getrows.cu */; };
-		69DFC4E92F83E91D00BEBFD7 /* dequantize.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF3F2F83E91D00BEBFD7 /* dequantize.cuh */; };
-		69DFC4EA2F83E91D00BEBFD7 /* wkv.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF9B2F83E91D00BEBFD7 /* wkv.cu */; };
-		69DFC4EB2F83E91D00BEBFD7 /* rope_multi.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1C32F83E91D00BEBFD7 /* rope_multi.comp */; };
-		69DFC4EC2F83E91D00BEBFD7 /* solve_tri.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF852F83E91D00BEBFD7 /* solve_tri.cuh */; };
-		69DFC4ED2F83E91D00BEBFD7 /* norm.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF662F83E91D00BEBFD7 /* norm.cuh */; };
-		69DFC4EE2F83E91D00BEBFD7 /* rms_norm_back.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1BE2F83E91D00BEBFD7 /* rms_norm_back.comp */; };
-		69DFC4EF2F83E91D00BEBFD7 /* mul_mat_vec_iq2_xs.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC19D2F83E91D00BEBFD7 /* mul_mat_vec_iq2_xs.comp */; };
-		69DFC4F02F83E91D00BEBFD7 /* count_experts.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1562F83E91D00BEBFD7 /* count_experts.comp */; };
-		69DFC4F12F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_8-ncols2_2.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEAB2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_8-ncols2_2.cu */; };
-		69DFC4F22F83E91D00BEBFD7 /* types.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1E92F83E91D00BEBFD7 /* types.glsl */; };
-		69DFC4F32F83E91D00BEBFD7 /* repeat.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1BB2F83E91D00BEBFD7 /* repeat.comp */; };
-		69DFC4F42F83E91D00BEBFD7 /* pad_reflect_1d.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF702F83E91D00BEBFD7 /* pad_reflect_1d.cuh */; };
-		69DFC4F52F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC23B2F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC4F62F83E91D00BEBFD7 /* timestep_embedding.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1E32F83E91D00BEBFD7 /* timestep_embedding.comp */; };
-		69DFC4F72F83E91D00BEBFD7 /* mmf-instance-ncols_5.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEF42F83E91D00BEBFD7 /* mmf-instance-ncols_5.cu */; };
-		69DFC4F82F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1212F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC4F92F83E91D00BEBFD7 /* mul_mat_vec_iq1_s.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC19B2F83E91D00BEBFD7 /* mul_mat_vec_iq1_s.comp */; };
-		69DFC4FA2F83E91D00BEBFD7 /* cumsum.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF3E2F83E91D00BEBFD7 /* cumsum.cuh */; };
-		69DFC4FB2F83E91D00BEBFD7 /* mul_mat_decls.tmpl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2062F83E91D00BEBFD7 /* mul_mat_decls.tmpl */; };
-		69DFC4FC2F83E91D00BEBFD7 /* solve_tri.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF842F83E91D00BEBFD7 /* solve_tri.cu */; };
-		69DFC4FD2F83E91D00BEBFD7 /* upscale.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF992F83E91D00BEBFD7 /* upscale.cuh */; };
-		69DFC4FE2F83E91D00BEBFD7 /* solve_tri.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2122F83E91D00BEBFD7 /* solve_tri.wgsl */; };
-		69DFC4FF2F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC07D2F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC5002F83E91D00BEBFD7 /* rope.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC20C2F83E91D00BEBFD7 /* rope.wgsl */; };
-		69DFC5012F83E91D00BEBFD7 /* topk-moe.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF912F83E91D00BEBFD7 /* topk-moe.cuh */; };
-		69DFC5022F83E91D00BEBFD7 /* cpy.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1FA2F83E91D00BEBFD7 /* cpy.wgsl */; };
-		69DFC5032F83E91D00BEBFD7 /* fattn-vec-instance-q5_0-bf16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEDA2F83E91D00BEBFD7 /* fattn-vec-instance-q5_0-bf16.cu */; };
-		69DFC5042F83E91D00BEBFD7 /* acc.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1402F83E91D00BEBFD7 /* acc.comp */; };
-		69DFC5052F83E91D00BEBFD7 /* square.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1D92F83E91D00BEBFD7 /* square.comp */; };
-		69DFC5062F83E91D00BEBFD7 /* mmf-instance-ncols_7.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEF62F83E91D00BEBFD7 /* mmf-instance-ncols_7.cu */; };
-		69DFC5072F83E91D00BEBFD7 /* concat.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1F92F83E91D00BEBFD7 /* concat.wgsl */; };
-		69DFC5082F83E91D00BEBFD7 /* im2col_3d.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1912F83E91D00BEBFD7 /* im2col_3d.comp */; };
-		69DFC5092F83E91D00BEBFD7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC23A2F83E91D00BEBFD7 /* .gitignore */; };
-		69DFC50A2F83E91D00BEBFD7 /* GitVars.cmake in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBE372F83E91D00BEBFD7 /* GitVars.cmake */; };
-		69DFC50B2F83E91D00BEBFD7 /* swiglu_oai.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1E12F83E91D00BEBFD7 /* swiglu_oai.comp */; };
-		69DFC50C2F83E91D00BEBFD7 /* embed_wgsl.py in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1FC2F83E91D00BEBFD7 /* embed_wgsl.py */; };
-		69DFC50D2F83E91D00BEBFD7 /* mmf-instance-ncols_11.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEFA2F83E91D00BEBFD7 /* mmf-instance-ncols_11.cu */; };
-		69DFC50E2F83E91D00BEBFD7 /* coopmat.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC13B2F83E91D00BEBFD7 /* coopmat.comp */; };
-		69DFC50F2F83E91D00BEBFD7 /* mul_mat_vec_iq2_s.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC19C2F83E91D00BEBFD7 /* mul_mat_vec_iq2_s.comp */; };
-		69DFC5102F83E91D00BEBFD7 /* mmq-instance-iq1_s.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF002F83E91D00BEBFD7 /* mmq-instance-iq1_s.cu */; };
-		69DFC5112F83E91D00BEBFD7 /* diagmask.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF432F83E91D00BEBFD7 /* diagmask.cuh */; };
-		69DFC5122F83E91D00BEBFD7 /* mmvq.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF632F83E91D00BEBFD7 /* mmvq.cu */; };
-		69DFC5132F83E91D00BEBFD7 /* fattn-vec-instance-q5_1-q8_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEE72F83E91D00BEBFD7 /* fattn-vec-instance-q5_1-q8_0.cu */; };
-		69DFC5142F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_2-ncols2_32.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEA52F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_2-ncols2_32.cu */; };
-		69DFC5152F83E91D00BEBFD7 /* copy_transpose.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1532F83E91D00BEBFD7 /* copy_transpose.comp */; };
-		69DFC5162F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBE892F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC5172F83E91D00BEBFD7 /* acc.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF192F83E91D00BEBFD7 /* acc.cu */; };
-		69DFC5182F83E91D00BEBFD7 /* roll.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF762F83E91D00BEBFD7 /* roll.cu */; };
-		69DFC5192F83E91D00BEBFD7 /* common_decls.tmpl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1F82F83E91D00BEBFD7 /* common_decls.tmpl */; };
-		69DFC51A2F83E91D00BEBFD7 /* fattn-vec-instance-q8_0-q4_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEEB2F83E91D00BEBFD7 /* fattn-vec-instance-q8_0-q4_1.cu */; };
-		69DFC51B2F83E91D00BEBFD7 /* fattn-vec-instance-q5_0-q4_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEDD2F83E91D00BEBFD7 /* fattn-vec-instance-q5_0-q4_1.cu */; };
-		69DFC51C2F83E91D00BEBFD7 /* dequant_iq2_xs.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1612F83E91D00BEBFD7 /* dequant_iq2_xs.comp */; };
-		69DFC51D2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_4-ncols2_16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEA92F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_4-ncols2_16.cu */; };
-		69DFC51E2F83E91D00BEBFD7 /* div.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1742F83E91D00BEBFD7 /* div.comp */; };
-		69DFC51F2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_4-ncols2_4.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEA72F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_4-ncols2_4.cu */; };
-		69DFC5202F83E91D00BEBFD7 /* softcap.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF802F83E91D00BEBFD7 /* softcap.cu */; };
-		69DFC5212F83E91D00BEBFD7 /* norm.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1B32F83E91D00BEBFD7 /* norm.comp */; };
-		69DFC5222F83E91D00BEBFD7 /* argmax.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF1F2F83E91D00BEBFD7 /* argmax.cu */; };
-		69DFC5232F83E91D00BEBFD7 /* mmf-instance-ncols_16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEFF2F83E91D00BEBFD7 /* mmf-instance-ncols_16.cu */; };
-		69DFC5242F83E91D00BEBFD7 /* geglu_erf.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1812F83E91D00BEBFD7 /* geglu_erf.comp */; };
-		69DFC5252F83E91D00BEBFD7 /* l2_norm.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1922F83E91D00BEBFD7 /* l2_norm.comp */; };
-		69DFC5262F83E91D00BEBFD7 /* flash_attn_cm2.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC17B2F83E91D00BEBFD7 /* flash_attn_cm2.comp */; };
-		69DFC5272F83E91D00BEBFD7 /* top-k.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF8E2F83E91D00BEBFD7 /* top-k.cu */; };
-		69DFC5282F83E91D00BEBFD7 /* gla.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF542F83E91D00BEBFD7 /* gla.cu */; };
-		69DFC5292F83E91D00BEBFD7 /* pool2d.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1B72F83E91D00BEBFD7 /* pool2d.comp */; };
-		69DFC52A2F83E91D00BEBFD7 /* out-prod.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF6B2F83E91D00BEBFD7 /* out-prod.cu */; };
-		69DFC52B2F83E91D00BEBFD7 /* soft_max_large1.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1D32F83E91D00BEBFD7 /* soft_max_large1.comp */; };
-		69DFC52C2F83E91D00BEBFD7 /* fattn-wmma-f16.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF4C2F83E91D00BEBFD7 /* fattn-wmma-f16.cuh */; };
-		69DFC52D2F83E91D00BEBFD7 /* htp_iface.idl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBFB02F83E91D00BEBFD7 /* htp_iface.idl */; };
-		69DFC52E2F83E91D00BEBFD7 /* fattn-vec-instance-q4_0-q5_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBED12F83E91D00BEBFD7 /* fattn-vec-instance-q4_0-q5_1.cu */; };
-		69DFC52F2F83E91D00BEBFD7 /* mmq.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF5F2F83E91D00BEBFD7 /* mmq.cu */; };
-		69DFC5302F83E91D00BEBFD7 /* xielu.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1EF2F83E91D00BEBFD7 /* xielu.comp */; };
-		69DFC5312F83E91D00BEBFD7 /* dequant_q5_0.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC16D2F83E91D00BEBFD7 /* dequant_q5_0.comp */; };
-		69DFC5322F83E91D00BEBFD7 /* mmq-instance-iq2_xs.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF022F83E91D00BEBFD7 /* mmq-instance-iq2_xs.cu */; };
-		69DFC5332F83E91D00BEBFD7 /* fill.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1772F83E91D00BEBFD7 /* fill.comp */; };
-		69DFC5342F83E91D00BEBFD7 /* rope_funcs.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1C12F83E91D00BEBFD7 /* rope_funcs.glsl */; };
-		69DFC5352F83E91D00BEBFD7 /* solve_tri.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1D72F83E91D00BEBFD7 /* solve_tri.comp */; };
-		69DFC5362F83E91D00BEBFD7 /* cpy.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF392F83E91D00BEBFD7 /* cpy.cuh */; };
-		69DFC5372F83E91D00BEBFD7 /* mul_mat_reg_tile.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2072F83E91D00BEBFD7 /* mul_mat_reg_tile.wgsl */; };
-		69DFC5382F83E91D00BEBFD7 /* dequant_q6_k.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1702F83E91D00BEBFD7 /* dequant_q6_k.comp */; };
-		69DFC5392F83E91D00BEBFD7 /* add.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1412F83E91D00BEBFD7 /* add.comp */; };
-		69DFC53A2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_16-ncols2_4.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEB02F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_16-ncols2_4.cu */; };
-		69DFC53B2F83E91D00BEBFD7 /* soft_max.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1D02F83E91D00BEBFD7 /* soft_max.comp */; };
-		69DFC53C2F83E91D00BEBFD7 /* step.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1DC2F83E91D00BEBFD7 /* step.comp */; };
-		69DFC53D2F83E91D00BEBFD7 /* wkv7.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1EE2F83E91D00BEBFD7 /* wkv7.comp */; };
-		69DFC53E2F83E91D00BEBFD7 /* mmf-instance-ncols_4.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEF32F83E91D00BEBFD7 /* mmf-instance-ncols_4.cu */; };
-		69DFC53F2F83E91D00BEBFD7 /* conv-transpose-1d.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF2B2F83E91D00BEBFD7 /* conv-transpose-1d.cu */; };
-		69DFC5402F83E91D00BEBFD7 /* opt-step-sgd.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF6A2F83E91D00BEBFD7 /* opt-step-sgd.cuh */; };
-		69DFC5412F83E91D00BEBFD7 /* diagmask.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF422F83E91D00BEBFD7 /* diagmask.cu */; };
-		69DFC5422F83E91D00BEBFD7 /* ggml-config.cmake.in in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBE362F83E91D00BEBFD7 /* ggml-config.cmake.in */; };
-		69DFC5432F83E91D00BEBFD7 /* mmvf.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF612F83E91D00BEBFD7 /* mmvf.cu */; };
-		69DFC5442F83E91D00BEBFD7 /* convert.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF332F83E91D00BEBFD7 /* convert.cu */; };
-		69DFC5452F83E91D00BEBFD7 /* glu_head.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC18B2F83E91D00BEBFD7 /* glu_head.glsl */; };
-		69DFC5462F83E91D00BEBFD7 /* fattn-vec-instance-q8_0-bf16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEE82F83E91D00BEBFD7 /* fattn-vec-instance-q8_0-bf16.cu */; };
-		69DFC5472F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_1-ncols2_8.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBE9F2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_1-ncols2_8.cu */; };
-		69DFC5482F83E91D00BEBFD7 /* unary.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2152F83E91D00BEBFD7 /* unary.wgsl */; };
-		69DFC5492F83E91D00BEBFD7 /* geglu.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1802F83E91D00BEBFD7 /* geglu.comp */; };
-		69DFC54A2F83E91D00BEBFD7 /* mul_mat_subgroup_matrix.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2082F83E91D00BEBFD7 /* mul_mat_subgroup_matrix.wgsl */; };
-		69DFC54B2F83E91D00BEBFD7 /* argsort.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF212F83E91D00BEBFD7 /* argsort.cu */; };
-		69DFC54C2F83E91D00BEBFD7 /* cpy.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF382F83E91D00BEBFD7 /* cpy.cu */; };
-		69DFC54D2F83E91D00BEBFD7 /* coopmat2.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC13C2F83E91D00BEBFD7 /* coopmat2.comp */; };
-		69DFC54E2F83E91D00BEBFD7 /* conv-transpose-1d.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF2C2F83E91D00BEBFD7 /* conv-transpose-1d.cuh */; };
-		69DFC54F2F83E91D00BEBFD7 /* mmf-instance-ncols_13.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEFC2F83E91D00BEBFD7 /* mmf-instance-ncols_13.cu */; };
-		69DFC5502F83E91D00BEBFD7 /* soft_max_back.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1D12F83E91D00BEBFD7 /* soft_max_back.comp */; };
-		69DFC5512F83E91D00BEBFD7 /* fattn-tile.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF492F83E91D00BEBFD7 /* fattn-tile.cuh */; };
-		69DFC5522F83E91D00BEBFD7 /* fattn-tile-instance-dkq112-dv112.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEB92F83E91D00BEBFD7 /* fattn-tile-instance-dkq112-dv112.cu */; };
-		69DFC5532F83E91D00BEBFD7 /* mul_mat_vec_iq1_m.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC19A2F83E91D00BEBFD7 /* mul_mat_vec_iq1_m.comp */; };
-		69DFC5542F83E91D00BEBFD7 /* utils.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1EB2F83E91D00BEBFD7 /* utils.glsl */; };
-		69DFC5552F83E91D00BEBFD7 /* softmax.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF822F83E91D00BEBFD7 /* softmax.cu */; };
-		69DFC5562F83E91D00BEBFD7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC21C2F83E91D00BEBFD7 /* .gitignore */; };
-		69DFC5572F83E91D00BEBFD7 /* dequant_q5_1.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC16E2F83E91D00BEBFD7 /* dequant_q5_1.comp */; };
-		69DFC5582F83E91D00BEBFD7 /* group_norm.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC18D2F83E91D00BEBFD7 /* group_norm.comp */; };
-		69DFC5592F83E91D00BEBFD7 /* softmax.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF832F83E91D00BEBFD7 /* softmax.cuh */; };
-		69DFC55A2F83E91D00BEBFD7 /* diag.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF402F83E91D00BEBFD7 /* diag.cu */; };
-		69DFC55B2F83E91D00BEBFD7 /* mmf-instance-ncols_12.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEFB2F83E91D00BEBFD7 /* mmf-instance-ncols_12.cu */; };
-		69DFC55C2F83E91D00BEBFD7 /* floor.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC17E2F83E91D00BEBFD7 /* floor.comp */; };
-		69DFC55D2F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF272F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC55E2F83E91D00BEBFD7 /* ssm-conv.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF862F83E91D00BEBFD7 /* ssm-conv.cu */; };
-		69DFC55F2F83E91D00BEBFD7 /* mudnn.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBFE82F83E91D00BEBFD7 /* mudnn.cuh */; };
-		69DFC5602F83E91D00BEBFD7 /* clamp.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF262F83E91D00BEBFD7 /* clamp.cuh */; };
-		69DFC5612F83E91D00BEBFD7 /* bfloat16.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC13A2F83E91D00BEBFD7 /* bfloat16.comp */; };
-		69DFC5622F83E91D00BEBFD7 /* sum.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF8A2F83E91D00BEBFD7 /* sum.cu */; };
-		69DFC5632F83E91D00BEBFD7 /* mean.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF582F83E91D00BEBFD7 /* mean.cu */; };
-		69DFC5642F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBFE62F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC5652F83E91D00BEBFD7 /* mul_mmq_shmem_types.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1B02F83E91D00BEBFD7 /* mul_mmq_shmem_types.glsl */; };
-		69DFC5662F83E91D00BEBFD7 /* scale.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF7B2F83E91D00BEBFD7 /* scale.cuh */; };
-		69DFC5672F83E91D00BEBFD7 /* gated_delta_net.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC17F2F83E91D00BEBFD7 /* gated_delta_net.comp */; };
-		69DFC5682F83E91D00BEBFD7 /* cumsum.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF3D2F83E91D00BEBFD7 /* cumsum.cu */; };
-		69DFC5692F83E91D00BEBFD7 /* fill.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF4D2F83E91D00BEBFD7 /* fill.cu */; };
-		69DFC56A2F83E91D00BEBFD7 /* arange.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1442F83E91D00BEBFD7 /* arange.comp */; };
-		69DFC56B2F83E91D00BEBFD7 /* dequant_mxfp4.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1672F83E91D00BEBFD7 /* dequant_mxfp4.comp */; };
-		69DFC56C2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_4-ncols2_8.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEA82F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_4-ncols2_8.cu */; };
-		69DFC56D2F83E91D00BEBFD7 /* mmf-instance-ncols_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEF02F83E91D00BEBFD7 /* mmf-instance-ncols_1.cu */; };
-		69DFC56E2F83E91D00BEBFD7 /* mul_mat_vec_q3_k.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1A42F83E91D00BEBFD7 /* mul_mat_vec_q3_k.comp */; };
-		69DFC56F2F83E91D00BEBFD7 /* fattn-vec-instance-bf16-bf16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEBE2F83E91D00BEBFD7 /* fattn-vec-instance-bf16-bf16.cu */; };
-		69DFC5702F83E91D00BEBFD7 /* soft_max_large2.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1D42F83E91D00BEBFD7 /* soft_max_large2.comp */; };
-		69DFC5712F83E91D00BEBFD7 /* multi_add.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1B12F83E91D00BEBFD7 /* multi_add.comp */; };
-		69DFC5722F83E91D00BEBFD7 /* fattn-tile-instance-dkq40-dv40.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEB42F83E91D00BEBFD7 /* fattn-tile-instance-dkq40-dv40.cu */; };
-		69DFC5732F83E91D00BEBFD7 /* integer_dot.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC13D2F83E91D00BEBFD7 /* integer_dot.comp */; };
-		69DFC5742F83E91D00BEBFD7 /* mul_mat_vec_q4_k.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1A52F83E91D00BEBFD7 /* mul_mat_vec_q4_k.comp */; };
-		69DFC5752F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_1-ncols2_32.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEA12F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_1-ncols2_32.cu */; };
-		69DFC5762F83E91D00BEBFD7 /* fattn-tile-instance-dkq512-dv512.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEBC2F83E91D00BEBFD7 /* fattn-tile-instance-dkq512-dv512.cu */; };
-		69DFC5772F83E91D00BEBFD7 /* tri.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF922F83E91D00BEBFD7 /* tri.cu */; };
-		69DFC5782F83E91D00BEBFD7 /* fattn-tile-instance-dkq256-dv256.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEBB2F83E91D00BEBFD7 /* fattn-tile-instance-dkq256-dv256.cu */; };
-		69DFC5792F83E91D00BEBFD7 /* gated_delta_net.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF4F2F83E91D00BEBFD7 /* gated_delta_net.cu */; };
-		69DFC57A2F83E91D00BEBFD7 /* rope_norm.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1C52F83E91D00BEBFD7 /* rope_norm.comp */; };
-		69DFC57B2F83E91D00BEBFD7 /* sin.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1CF2F83E91D00BEBFD7 /* sin.comp */; };
-		69DFC57C2F83E91D00BEBFD7 /* clamp.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1492F83E91D00BEBFD7 /* clamp.comp */; };
-		69DFC57D2F83E91D00BEBFD7 /* mmq-instance-iq3_s.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF042F83E91D00BEBFD7 /* mmq-instance-iq3_s.cu */; };
-		69DFC57E2F83E91D00BEBFD7 /* dequant_q4_0.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC16A2F83E91D00BEBFD7 /* dequant_q4_0.comp */; };
-		69DFC57F2F83E91D00BEBFD7 /* mudnn.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBFE72F83E91D00BEBFD7 /* mudnn.cu */; };
-		69DFC5802F83E91D00BEBFD7 /* flash_attn_base.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1792F83E91D00BEBFD7 /* flash_attn_base.glsl */; };
-		69DFC5812F83E91D00BEBFD7 /* fattn-vec-instance-f16-q4_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEC72F83E91D00BEBFD7 /* fattn-vec-instance-f16-q4_0.cu */; };
-		69DFC5822F83E91D00BEBFD7 /* mul_mat_vec_q2_k.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1A32F83E91D00BEBFD7 /* mul_mat_vec_q2_k.comp */; };
-		69DFC5832F83E91D00BEBFD7 /* mmf.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF5C2F83E91D00BEBFD7 /* mmf.cuh */; };
-		69DFC5842F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_32-ncols2_2.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEB22F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_32-ncols2_2.cu */; };
-		69DFC5852F83E91D00BEBFD7 /* fattn-tile-instance-dkq128-dv128.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEBA2F83E91D00BEBFD7 /* fattn-tile-instance-dkq128-dv128.cu */; };
-		69DFC5862F83E91D00BEBFD7 /* fattn-vec-instance-q5_1-q4_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEE42F83E91D00BEBFD7 /* fattn-vec-instance-q5_1-q4_1.cu */; };
-		69DFC5872F83E91D00BEBFD7 /* rope.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF782F83E91D00BEBFD7 /* rope.cu */; };
-		69DFC5882F83E91D00BEBFD7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBDF72F83E91D00BEBFD7 /* README.md */; };
-		69DFC5892F83E91D00BEBFD7 /* mul_mat_vec_q5_k.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1A62F83E91D00BEBFD7 /* mul_mat_vec_q5_k.comp */; };
-		69DFC58A2F83E91D00BEBFD7 /* repeat_back.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1BC2F83E91D00BEBFD7 /* repeat_back.comp */; };
-		69DFC58B2F83E91D00BEBFD7 /* libggml-htp.inf in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBFD32F83E91D00BEBFD7 /* libggml-htp.inf */; };
-		69DFC58C2F83E91D00BEBFD7 /* argmax.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF202F83E91D00BEBFD7 /* argmax.cuh */; };
-		69DFC58D2F83E91D00BEBFD7 /* pool2d.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF722F83E91D00BEBFD7 /* pool2d.cuh */; };
-		69DFC58E2F83E91D00BEBFD7 /* mul_mat_vec_p021.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1A22F83E91D00BEBFD7 /* mul_mat_vec_p021.comp */; };
-		69DFC58F2F83E91D00BEBFD7 /* generic_head.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1872F83E91D00BEBFD7 /* generic_head.glsl */; };
-		69DFC5902F83E91D00BEBFD7 /* mul_mat_vec_iq3_s.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC19F2F83E91D00BEBFD7 /* mul_mat_vec_iq3_s.comp */; };
-		69DFC5912F83E91D00BEBFD7 /* mmf-instance-ncols_3.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEF22F83E91D00BEBFD7 /* mmf-instance-ncols_3.cu */; };
-		69DFC5922F83E91D00BEBFD7 /* fill.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF4E2F83E91D00BEBFD7 /* fill.cuh */; };
-		69DFC5932F83E91D00BEBFD7 /* mmq-instance-nvfp4.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF092F83E91D00BEBFD7 /* mmq-instance-nvfp4.cu */; };
-		69DFC5942F83E91D00BEBFD7 /* mul_mat_split_k_reduce.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1962F83E91D00BEBFD7 /* mul_mat_split_k_reduce.comp */; };
-		69DFC5952F83E91D00BEBFD7 /* rope_vision.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1C72F83E91D00BEBFD7 /* rope_vision.comp */; };
-		69DFC5962F83E91D00BEBFD7 /* cross-entropy-loss.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF3C2F83E91D00BEBFD7 /* cross-entropy-loss.cuh */; };
-		69DFC5972F83E91D00BEBFD7 /* rope_params.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1C62F83E91D00BEBFD7 /* rope_params.glsl */; };
-		69DFC5982F83E91D00BEBFD7 /* fattn-vec-instance-q8_0-q8_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEEE2F83E91D00BEBFD7 /* fattn-vec-instance-q8_0-q8_0.cu */; };
-		69DFC5992F83E91D00BEBFD7 /* fattn-vec-instance-q4_0-q5_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBED02F83E91D00BEBFD7 /* fattn-vec-instance-q4_0-q5_0.cu */; };
-		69DFC59A2F83E91D00BEBFD7 /* unary.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF972F83E91D00BEBFD7 /* unary.cuh */; };
-		69DFC59B2F83E91D00BEBFD7 /* fattn-vec-instance-q4_1-q4_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBED62F83E91D00BEBFD7 /* fattn-vec-instance-q4_1-q4_1.cu */; };
-		69DFC59C2F83E91D00BEBFD7 /* fattn-vec-instance-q4_0-q8_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBED22F83E91D00BEBFD7 /* fattn-vec-instance-q4_0-q8_0.cu */; };
-		69DFC59D2F83E91D00BEBFD7 /* mul_mm_cm2.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1AB2F83E91D00BEBFD7 /* mul_mm_cm2.comp */; };
-		69DFC59E2F83E91D00BEBFD7 /* roll.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF772F83E91D00BEBFD7 /* roll.cuh */; };
-		69DFC59F2F83E91D00BEBFD7 /* set-rows.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF7E2F83E91D00BEBFD7 /* set-rows.cu */; };
-		69DFC5A02F83E91D00BEBFD7 /* sigmoid.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1CC2F83E91D00BEBFD7 /* sigmoid.comp */; };
-		69DFC5A12F83E91D00BEBFD7 /* top-k.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF8F2F83E91D00BEBFD7 /* top-k.cuh */; };
-		69DFC5A22F83E91D00BEBFD7 /* leaky_relu.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1932F83E91D00BEBFD7 /* leaky_relu.comp */; };
-		69DFC5A32F83E91D00BEBFD7 /* scale.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF7A2F83E91D00BEBFD7 /* scale.cu */; };
-		69DFC5A42F83E91D00BEBFD7 /* fattn-vec-instance-bf16-q8_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEC42F83E91D00BEBFD7 /* fattn-vec-instance-bf16-q8_0.cu */; };
-		69DFC5A52F83E91D00BEBFD7 /* set.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF7C2F83E91D00BEBFD7 /* set.cu */; };
-		69DFC5A62F83E91D00BEBFD7 /* conv2d-dw.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF302F83E91D00BEBFD7 /* conv2d-dw.cuh */; };
-		69DFC5A72F83E91D00BEBFD7 /* get_rows.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2022F83E91D00BEBFD7 /* get_rows.wgsl */; };
-		69DFC5A82F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBE4F2F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC5A92F83E91D00BEBFD7 /* dequant_funcs.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC15B2F83E91D00BEBFD7 /* dequant_funcs.glsl */; };
-		69DFC5AA2F83E91D00BEBFD7 /* fattn-mma-f16.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF472F83E91D00BEBFD7 /* fattn-mma-f16.cuh */; };
-		69DFC5AB2F83E91D00BEBFD7 /* mul_mat_vec_iface.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1992F83E91D00BEBFD7 /* mul_mat_vec_iface.glsl */; };
-		69DFC5AC2F83E91D00BEBFD7 /* flash_attn_split_k_reduce.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC17D2F83E91D00BEBFD7 /* flash_attn_split_k_reduce.comp */; };
-		69DFC5AD2F83E91D00BEBFD7 /* sub.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1DD2F83E91D00BEBFD7 /* sub.comp */; };
-		69DFC5AE2F83E91D00BEBFD7 /* sum_rows.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1DE2F83E91D00BEBFD7 /* sum_rows.comp */; };
-		69DFC5AF2F83E91D00BEBFD7 /* ssm_conv.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1DA2F83E91D00BEBFD7 /* ssm_conv.comp */; };
-		69DFC5B02F83E91D00BEBFD7 /* fattn-tile-instance-dkq72-dv72.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEB62F83E91D00BEBFD7 /* fattn-tile-instance-dkq72-dv72.cu */; };
-		69DFC5B12F83E91D00BEBFD7 /* dequant_q4_1.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC16B2F83E91D00BEBFD7 /* dequant_q4_1.comp */; };
-		69DFC5B22F83E91D00BEBFD7 /* fattn-vec-instance-q5_1-q5_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEE52F83E91D00BEBFD7 /* fattn-vec-instance-q5_1-q5_0.cu */; };
-		69DFC5B32F83E91D00BEBFD7 /* set_rows.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2102F83E91D00BEBFD7 /* set_rows.wgsl */; };
-		69DFC5B42F83E91D00BEBFD7 /* fattn-vec-instance-q8_0-q4_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEEA2F83E91D00BEBFD7 /* fattn-vec-instance-q8_0-q4_0.cu */; };
-		69DFC5B52F83E91D00BEBFD7 /* fattn-vec-instance-f16-q5_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEC92F83E91D00BEBFD7 /* fattn-vec-instance-f16-q5_0.cu */; };
-		69DFC5B62F83E91D00BEBFD7 /* flash_attn_vec_blk.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1FE2F83E91D00BEBFD7 /* flash_attn_vec_blk.wgsl */; };
-		69DFC5B72F83E91D00BEBFD7 /* trunc.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1E82F83E91D00BEBFD7 /* trunc.comp */; };
-		69DFC5B82F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2252F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC5B92F83E91D00BEBFD7 /* opt-step-adamw.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF682F83E91D00BEBFD7 /* opt-step-adamw.cuh */; };
-		69DFC5BA2F83E91D00BEBFD7 /* memset.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2042F83E91D00BEBFD7 /* memset.wgsl */; };
-		69DFC5BB2F83E91D00BEBFD7 /* dequant_q2_k.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1682F83E91D00BEBFD7 /* dequant_q2_k.comp */; };
-		69DFC5BC2F83E91D00BEBFD7 /* sumrows.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF8C2F83E91D00BEBFD7 /* sumrows.cu */; };
-		69DFC5BD2F83E91D00BEBFD7 /* mmf-instance-ncols_9.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEF82F83E91D00BEBFD7 /* mmf-instance-ncols_9.cu */; };
-		69DFC5BE2F83E91D00BEBFD7 /* dequant_iq3_xxs.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1642F83E91D00BEBFD7 /* dequant_iq3_xxs.comp */; };
-		69DFC5BF2F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBFCE2F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC5C02F83E91D00BEBFD7 /* rope_head.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1C22F83E91D00BEBFD7 /* rope_head.glsl */; };
-		69DFC5C12F83E91D00BEBFD7 /* set.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF7D2F83E91D00BEBFD7 /* set.cuh */; };
-		69DFC5C22F83E91D00BEBFD7 /* fattn-vec-instance-f16-q5_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBECA2F83E91D00BEBFD7 /* fattn-vec-instance-f16-q5_1.cu */; };
-		69DFC5C32F83E91D00BEBFD7 /* add1.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1432F83E91D00BEBFD7 /* add1.comp */; };
-		69DFC5C42F83E91D00BEBFD7 /* vecdotq.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF9A2F83E91D00BEBFD7 /* vecdotq.cuh */; };
-		69DFC5C52F83E91D00BEBFD7 /* ggmlremoting_functions.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1282F83E91D00BEBFD7 /* ggmlremoting_functions.yaml */; };
-		69DFC5C62F83E91D00BEBFD7 /* fattn-vec-instance-q5_0-q5_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEDE2F83E91D00BEBFD7 /* fattn-vec-instance-q5_0-q5_0.cu */; };
-		69DFC5C72F83E91D00BEBFD7 /* neg.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1B22F83E91D00BEBFD7 /* neg.comp */; };
-		69DFC5C82F83E91D00BEBFD7 /* mmf-instance-ncols_15.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEFE2F83E91D00BEBFD7 /* mmf-instance-ncols_15.cu */; };
-		69DFC5C92F83E91D00BEBFD7 /* gated_delta_net.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2012F83E91D00BEBFD7 /* gated_delta_net.wgsl */; };
-		69DFC5CA2F83E91D00BEBFD7 /* fattn-tile-instance-dkq80-dv80.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEB72F83E91D00BEBFD7 /* fattn-tile-instance-dkq80-dv80.cu */; };
-		69DFC5CB2F83E91D00BEBFD7 /* mul_mat_vec_iq3_xxs.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1A02F83E91D00BEBFD7 /* mul_mat_vec_iq3_xxs.comp */; };
-		69DFC5CC2F83E91D00BEBFD7 /* count_equal.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1552F83E91D00BEBFD7 /* count_equal.comp */; };
-		69DFC5CD2F83E91D00BEBFD7 /* dequant_q4_k.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC16C2F83E91D00BEBFD7 /* dequant_q4_k.comp */; };
-		69DFC5CE2F83E91D00BEBFD7 /* count-equal.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF362F83E91D00BEBFD7 /* count-equal.cuh */; };
-		69DFC5CF2F83E91D00BEBFD7 /* im2col.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF562F83E91D00BEBFD7 /* im2col.cu */; };
-		69DFC5D02F83E91D00BEBFD7 /* arange.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF1E2F83E91D00BEBFD7 /* arange.cuh */; };
-		69DFC5D12F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_4-ncols2_2.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEA62F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_4-ncols2_2.cu */; };
-		69DFC5D22F83E91D00BEBFD7 /* wkv6.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1ED2F83E91D00BEBFD7 /* wkv6.comp */; };
-		69DFC5D32F83E91D00BEBFD7 /* argmax.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1452F83E91D00BEBFD7 /* argmax.comp */; };
-		69DFC5D42F83E91D00BEBFD7 /* binbcast.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF242F83E91D00BEBFD7 /* binbcast.cuh */; };
-		69DFC5D52F83E91D00BEBFD7 /* fattn-vec-instance-q4_0-f16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBECD2F83E91D00BEBFD7 /* fattn-vec-instance-q4_0-f16.cu */; };
-		69DFC5D62F83E91D00BEBFD7 /* flash_attn_vec_reduce.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1FF2F83E91D00BEBFD7 /* flash_attn_vec_reduce.wgsl */; };
-		69DFC5D72F83E91D00BEBFD7 /* pad_reflect_1d.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF6F2F83E91D00BEBFD7 /* pad_reflect_1d.cu */; };
-		69DFC5D82F83E91D00BEBFD7 /* fattn-vec-instance-q4_1-q8_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBED92F83E91D00BEBFD7 /* fattn-vec-instance-q4_1-q8_0.cu */; };
-		69DFC5D92F83E91D00BEBFD7 /* mmq-instance-iq2_s.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF012F83E91D00BEBFD7 /* mmq-instance-iq2_s.cu */; };
-		69DFC5DA2F83E91D00BEBFD7 /* fattn-tile-instance-dkq576-dv512.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEBD2F83E91D00BEBFD7 /* fattn-tile-instance-dkq576-dv512.cu */; };
-		69DFC5DB2F83E91D00BEBFD7 /* fattn-vec-instance-q4_0-q4_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBECE2F83E91D00BEBFD7 /* fattn-vec-instance-q4_0-q4_0.cu */; };
-		69DFC5DC2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_8-ncols2_4.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEAC2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_8-ncols2_4.cu */; };
-		69DFC5DD2F83E91D00BEBFD7 /* rte.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1C92F83E91D00BEBFD7 /* rte.glsl */; };
-		69DFC5DE2F83E91D00BEBFD7 /* pad.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF6E2F83E91D00BEBFD7 /* pad.cuh */; };
-		69DFC5DF2F83E91D00BEBFD7 /* common.cmake in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBE352F83E91D00BEBFD7 /* common.cmake */; };
-		69DFC5E02F83E91D00BEBFD7 /* reduce_rows.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF752F83E91D00BEBFD7 /* reduce_rows.cuh */; };
-		69DFC5E12F83E91D00BEBFD7 /* generate_cu_files.py in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEEF2F83E91D00BEBFD7 /* generate_cu_files.py */; };
-		69DFC5E22F83E91D00BEBFD7 /* fattn-vec-instance-q8_0-q5_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEED2F83E91D00BEBFD7 /* fattn-vec-instance-q8_0-q5_1.cu */; };
-		69DFC5E32F83E91D00BEBFD7 /* sum_rows.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1DF2F83E91D00BEBFD7 /* sum_rows.glsl */; };
-		69DFC5E42F83E91D00BEBFD7 /* dequant_iq2_xxs.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1622F83E91D00BEBFD7 /* dequant_iq2_xxs.comp */; };
-		69DFC5E52F83E91D00BEBFD7 /* flash_attn_cm1.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC17A2F83E91D00BEBFD7 /* flash_attn_cm1.comp */; };
-		69DFC5E62F83E91D00BEBFD7 /* hardsigmoid.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC18E2F83E91D00BEBFD7 /* hardsigmoid.comp */; };
-		69DFC5E72F83E91D00BEBFD7 /* cross-entropy-loss.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF3B2F83E91D00BEBFD7 /* cross-entropy-loss.cu */; };
-		69DFC5E82F83E91D00BEBFD7 /* fattn-vec-instance-q8_0-q5_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEEC2F83E91D00BEBFD7 /* fattn-vec-instance-q8_0-q5_0.cu */; };
-		69DFC5E92F83E91D00BEBFD7 /* fattn-vec-instance-q4_1-f16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBED42F83E91D00BEBFD7 /* fattn-vec-instance-q4_1-f16.cu */; };
-		69DFC5EA2F83E91D00BEBFD7 /* flash_attn.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1FD2F83E91D00BEBFD7 /* flash_attn.wgsl */; };
-		69DFC5EB2F83E91D00BEBFD7 /* rms_norm.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1BD2F83E91D00BEBFD7 /* rms_norm.comp */; };
-		69DFC5EC2F83E91D00BEBFD7 /* .clang-format in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC07C2F83E91D00BEBFD7 /* .clang-format */; };
-		69DFC5ED2F83E91D00BEBFD7 /* cumsum_multipass2.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1592F83E91D00BEBFD7 /* cumsum_multipass2.comp */; };
-		69DFC5EE2F83E91D00BEBFD7 /* mmf-instance-ncols_6.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEF52F83E91D00BEBFD7 /* mmf-instance-ncols_6.cu */; };
-		69DFC5EF2F83E91D00BEBFD7 /* rms_norm_partials.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1BF2F83E91D00BEBFD7 /* rms_norm_partials.comp */; };
-		69DFC5F02F83E91D00BEBFD7 /* mul_mat_vec_base.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1982F83E91D00BEBFD7 /* mul_mat_vec_base.glsl */; };
-		69DFC5F12F83E91D00BEBFD7 /* diag.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF412F83E91D00BEBFD7 /* diag.cuh */; };
-		69DFC5F22F83E91D00BEBFD7 /* mul_mat_vec_iq2_xxs.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC19E2F83E91D00BEBFD7 /* mul_mat_vec_iq2_xxs.comp */; };
-		69DFC5F32F83E91D00BEBFD7 /* tsembd.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF952F83E91D00BEBFD7 /* tsembd.cuh */; };
-		69DFC5F42F83E91D00BEBFD7 /* sqrt.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1D82F83E91D00BEBFD7 /* sqrt.comp */; };
-		69DFC5F52F83E91D00BEBFD7 /* mmf-instance-ncols_2.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEF12F83E91D00BEBFD7 /* mmf-instance-ncols_2.cu */; };
-		69DFC5F62F83E91D00BEBFD7 /* sum_rows.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2142F83E91D00BEBFD7 /* sum_rows.wgsl */; };
-		69DFC5F72F83E91D00BEBFD7 /* conv2d-transpose.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF322F83E91D00BEBFD7 /* conv2d-transpose.cuh */; };
-		69DFC5F82F83E91D00BEBFD7 /* binbcast.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF232F83E91D00BEBFD7 /* binbcast.cu */; };
-		69DFC5F92F83E91D00BEBFD7 /* pad.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF6D2F83E91D00BEBFD7 /* pad.cu */; };
-		69DFC5FA2F83E91D00BEBFD7 /* mul_mat_vec.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2092F83E91D00BEBFD7 /* mul_mat_vec.wgsl */; };
-		69DFC5FB2F83E91D00BEBFD7 /* cumsum.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1FB2F83E91D00BEBFD7 /* cumsum.wgsl */; };
-		69DFC5FC2F83E91D00BEBFD7 /* mmid.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF5E2F83E91D00BEBFD7 /* mmid.cuh */; };
-		69DFC5FD2F83E91D00BEBFD7 /* regenerate_remoting.py in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1292F83E91D00BEBFD7 /* regenerate_remoting.py */; };
-		69DFC5FE2F83E91D00BEBFD7 /* fattn-tile.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF482F83E91D00BEBFD7 /* fattn-tile.cu */; };
-		69DFC5FF2F83E91D00BEBFD7 /* dequant_funcs_cm2.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC15C2F83E91D00BEBFD7 /* dequant_funcs_cm2.glsl */; };
-		69DFC6002F83E91D00BEBFD7 /* embed_kernel.py in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBFF72F83E91D00BEBFD7 /* embed_kernel.py */; };
-		69DFC6012F83E91D00BEBFD7 /* glu.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2032F83E91D00BEBFD7 /* glu.wgsl */; };
-		69DFC6022F83E91D00BEBFD7 /* argsort.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1F52F83E91D00BEBFD7 /* argsort.wgsl */; };
-		69DFC6032F83E91D00BEBFD7 /* opt-step-sgd.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF692F83E91D00BEBFD7 /* opt-step-sgd.cu */; };
-		69DFC6042F83E91D00BEBFD7 /* mul_mat_vec_nc.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1A12F83E91D00BEBFD7 /* mul_mat_vec_nc.comp */; };
-		69DFC6052F83E91D00BEBFD7 /* fattn-vec-instance-bf16-f16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEBF2F83E91D00BEBFD7 /* fattn-vec-instance-bf16-f16.cu */; };
-		69DFC6062F83E91D00BEBFD7 /* binary.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1F72F83E91D00BEBFD7 /* binary.wgsl */; };
-		69DFC6072F83E91D00BEBFD7 /* pad.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1B62F83E91D00BEBFD7 /* pad.comp */; };
-		69DFC6082F83E91D00BEBFD7 /* quantize_q8_1.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1B82F83E91D00BEBFD7 /* quantize_q8_1.comp */; };
-		69DFC6092F83E91D00BEBFD7 /* add-id.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF1B2F83E91D00BEBFD7 /* add-id.cu */; };
-		69DFC60A2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_2-ncols2_4.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEA22F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_2-ncols2_4.cu */; };
-		69DFC60B2F83E91D00BEBFD7 /* mul_mm.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1AA2F83E91D00BEBFD7 /* mul_mm.comp */; };
-		69DFC60C2F83E91D00BEBFD7 /* fattn-vec.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF4A2F83E91D00BEBFD7 /* fattn-vec.cuh */; };
-		69DFC60D2F83E91D00BEBFD7 /* ggml-cuda.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF532F83E91D00BEBFD7 /* ggml-cuda.cu */; };
-		69DFC60E2F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBE0D2F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC60F2F83E91D00BEBFD7 /* mmq-instance-q5_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF102F83E91D00BEBFD7 /* mmq-instance-q5_1.cu */; };
-		69DFC6102F83E91D00BEBFD7 /* gelu.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1832F83E91D00BEBFD7 /* gelu.comp */; };
-		69DFC6112F83E91D00BEBFD7 /* dequant_f32.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC15A2F83E91D00BEBFD7 /* dequant_f32.comp */; };
-		69DFC6122F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBFA22F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC6132F83E91D00BEBFD7 /* fattn-vec-instance-q4_1-bf16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBED32F83E91D00BEBFD7 /* fattn-vec-instance-q4_1-bf16.cu */; };
-		69DFC6142F83E91D00BEBFD7 /* get_rows_quant.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC18A2F83E91D00BEBFD7 /* get_rows_quant.comp */; };
-		69DFC6152F83E91D00BEBFD7 /* getrows.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF522F83E91D00BEBFD7 /* getrows.cuh */; };
-		69DFC6162F83E91D00BEBFD7 /* softplus.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1D62F83E91D00BEBFD7 /* softplus.comp */; };
-		69DFC6172F83E91D00BEBFD7 /* mmq-instance-mxfp4.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF082F83E91D00BEBFD7 /* mmq-instance-mxfp4.cu */; };
-		69DFC6182F83E91D00BEBFD7 /* tanh.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1E22F83E91D00BEBFD7 /* tanh.comp */; };
-		69DFC6192F83E91D00BEBFD7 /* fattn-tile-instance-dkq96-dv96.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEB82F83E91D00BEBFD7 /* fattn-tile-instance-dkq96-dv96.cu */; };
-		69DFC61A2F83E91D00BEBFD7 /* mul_mm_funcs.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1AC2F83E91D00BEBFD7 /* mul_mm_funcs.glsl */; };
-		69DFC61B2F83E91D00BEBFD7 /* opt_step_adamw.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1B42F83E91D00BEBFD7 /* opt_step_adamw.comp */; };
-		69DFC61C2F83E91D00BEBFD7 /* set.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC20F2F83E91D00BEBFD7 /* set.wgsl */; };
-		69DFC61D2F83E91D00BEBFD7 /* soft_max.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2112F83E91D00BEBFD7 /* soft_max.wgsl */; };
-		69DFC61E2F83E91D00BEBFD7 /* concat.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF2A2F83E91D00BEBFD7 /* concat.cuh */; };
-		69DFC61F2F83E91D00BEBFD7 /* fattn-vec-instance-q4_1-q5_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBED72F83E91D00BEBFD7 /* fattn-vec-instance-q4_1-q5_0.cu */; };
-		69DFC6202F83E91D00BEBFD7 /* copy_from_quant.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1512F83E91D00BEBFD7 /* copy_from_quant.comp */; };
-		69DFC6212F83E91D00BEBFD7 /* wkv.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF9C2F83E91D00BEBFD7 /* wkv.cuh */; };
-		69DFC6222F83E91D00BEBFD7 /* swiglu.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1E02F83E91D00BEBFD7 /* swiglu.comp */; };
-		69DFC6232F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2282F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC6242F83E91D00BEBFD7 /* mmf.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF5B2F83E91D00BEBFD7 /* mmf.cu */; };
-		69DFC6252F83E91D00BEBFD7 /* abs.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC13F2F83E91D00BEBFD7 /* abs.comp */; };
-		69DFC6262F83E91D00BEBFD7 /* dequant_iq1_m.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC15E2F83E91D00BEBFD7 /* dequant_iq1_m.comp */; };
-		69DFC6272F83E91D00BEBFD7 /* concat.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC14B2F83E91D00BEBFD7 /* concat.comp */; };
-		69DFC6282F83E91D00BEBFD7 /* gelu_quick.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1852F83E91D00BEBFD7 /* gelu_quick.comp */; };
-		69DFC6292F83E91D00BEBFD7 /* fattn-vec-instance-f16-q8_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBECB2F83E91D00BEBFD7 /* fattn-vec-instance-f16-q8_0.cu */; };
-		69DFC62A2F83E91D00BEBFD7 /* mul_mat.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2052F83E91D00BEBFD7 /* mul_mat.wgsl */; };
-		69DFC62B2F83E91D00BEBFD7 /* flash_attn_vec_split.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2002F83E91D00BEBFD7 /* flash_attn_vec_split.wgsl */; };
-		69DFC62C2F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2172F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC62D2F83E91D00BEBFD7 /* mmf-instance-ncols_10.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEF92F83E91D00BEBFD7 /* mmf-instance-ncols_10.cu */; };
-		69DFC62E2F83E91D00BEBFD7 /* mmq-instance-q3_k.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF0B2F83E91D00BEBFD7 /* mmq-instance-q3_k.cu */; };
-		69DFC62F2F83E91D00BEBFD7 /* set-rows.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF7F2F83E91D00BEBFD7 /* set-rows.cuh */; };
-		69DFC6302F83E91D00BEBFD7 /* mmid.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF5D2F83E91D00BEBFD7 /* mmid.cu */; };
-		69DFC6312F83E91D00BEBFD7 /* fattn-vec-instance-q5_1-f16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEE22F83E91D00BEBFD7 /* fattn-vec-instance-q5_1-f16.cu */; };
-		69DFC6322F83E91D00BEBFD7 /* tsembd.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF942F83E91D00BEBFD7 /* tsembd.cu */; };
-		69DFC6332F83E91D00BEBFD7 /* acc.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF1A2F83E91D00BEBFD7 /* acc.cuh */; };
-		69DFC6342F83E91D00BEBFD7 /* flash_attn.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1782F83E91D00BEBFD7 /* flash_attn.comp */; };
-		69DFC6352F83E91D00BEBFD7 /* common.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF282F83E91D00BEBFD7 /* common.cuh */; };
-		69DFC6362F83E91D00BEBFD7 /* mmq-instance-q4_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF0C2F83E91D00BEBFD7 /* mmq-instance-q4_0.cu */; };
-		69DFC6372F83E91D00BEBFD7 /* mul_mat_vec.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1972F83E91D00BEBFD7 /* mul_mat_vec.comp */; };
-		69DFC6382F83E91D00BEBFD7 /* mean.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF592F83E91D00BEBFD7 /* mean.cuh */; };
-		69DFC6392F83E91D00BEBFD7 /* generic_binary_head.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1862F83E91D00BEBFD7 /* generic_binary_head.glsl */; };
-		69DFC63A2F83E91D00BEBFD7 /* concat.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF292F83E91D00BEBFD7 /* concat.cu */; };
-		69DFC63B2F83E91D00BEBFD7 /* argsort_merge.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1F62F83E91D00BEBFD7 /* argsort_merge.wgsl */; };
-		69DFC63C2F83E91D00BEBFD7 /* hardswish.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC18F2F83E91D00BEBFD7 /* hardswish.comp */; };
-		69DFC63D2F83E91D00BEBFD7 /* mmq-instance-iq4_xs.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF072F83E91D00BEBFD7 /* mmq-instance-iq4_xs.cu */; };
-		69DFC63E2F83E91D00BEBFD7 /* exp.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1762F83E91D00BEBFD7 /* exp.comp */; };
-		69DFC63F2F83E91D00BEBFD7 /* arange.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF1D2F83E91D00BEBFD7 /* arange.cu */; };
-		69DFC6402F83E91D00BEBFD7 /* ssm-scan.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF882F83E91D00BEBFD7 /* ssm-scan.cu */; };
-		69DFC6412F83E91D00BEBFD7 /* cmake-toolchain.cmake in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBFA12F83E91D00BEBFD7 /* cmake-toolchain.cmake */; };
-		69DFC6422F83E91D00BEBFD7 /* rope_neox.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1C42F83E91D00BEBFD7 /* rope_neox.comp */; };
-		69DFC6432F83E91D00BEBFD7 /* fattn.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF442F83E91D00BEBFD7 /* fattn.cu */; };
-		69DFC6442F83E91D00BEBFD7 /* out-prod.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF6C2F83E91D00BEBFD7 /* out-prod.cuh */; };
-		69DFC6452F83E91D00BEBFD7 /* mmq-instance-iq2_xxs.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF032F83E91D00BEBFD7 /* mmq-instance-iq2_xxs.cu */; };
-		69DFC6462F83E91D00BEBFD7 /* fattn-common.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF462F83E91D00BEBFD7 /* fattn-common.cuh */; };
-		69DFC6472F83E91D00BEBFD7 /* fattn-vec-instance-f16-q4_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEC82F83E91D00BEBFD7 /* fattn-vec-instance-f16-q4_1.cu */; };
-		69DFC6482F83E91D00BEBFD7 /* mul_mat_vecq.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1A82F83E91D00BEBFD7 /* mul_mat_vecq.comp */; };
-		69DFC6492F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_64-ncols2_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEB32F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_64-ncols2_1.cu */; };
-		69DFC64A2F83E91D00BEBFD7 /* flash_attn_mask_opt.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC17C2F83E91D00BEBFD7 /* flash_attn_mask_opt.comp */; };
-		69DFC64B2F83E91D00BEBFD7 /* fattn-vec-instance-bf16-q4_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEC02F83E91D00BEBFD7 /* fattn-vec-instance-bf16-q4_0.cu */; };
-		69DFC64C2F83E91D00BEBFD7 /* soft_max_large3.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1D52F83E91D00BEBFD7 /* soft_max_large3.comp */; };
-		69DFC64D2F83E91D00BEBFD7 /* dequant_iq4_xs.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1662F83E91D00BEBFD7 /* dequant_iq4_xs.comp */; };
-		69DFC64E2F83E91D00BEBFD7 /* glu_main.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC18C2F83E91D00BEBFD7 /* glu_main.glsl */; };
-		69DFC64F2F83E91D00BEBFD7 /* dequant_iq3_s.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1632F83E91D00BEBFD7 /* dequant_iq3_s.comp */; };
-		69DFC6502F83E91D00BEBFD7 /* fattn-vec-instance-q4_1-q5_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBED82F83E91D00BEBFD7 /* fattn-vec-instance-q4_1-q5_1.cu */; };
-		69DFC6512F83E91D00BEBFD7 /* fattn-vec-instance-q5_1-q5_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEE62F83E91D00BEBFD7 /* fattn-vec-instance-q5_1-q5_1.cu */; };
-		69DFC6522F83E91D00BEBFD7 /* softcap.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF812F83E91D00BEBFD7 /* softcap.cuh */; };
-		69DFC6532F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC21D2F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC6542F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_8-ncols2_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEAA2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_8-ncols2_1.cu */; };
-		69DFC6552F83E91D00BEBFD7 /* repeat.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC20B2F83E91D00BEBFD7 /* repeat.wgsl */; };
-		69DFC6562F83E91D00BEBFD7 /* opt_step_sgd.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1B52F83E91D00BEBFD7 /* opt_step_sgd.comp */; };
-		69DFC6572F83E91D00BEBFD7 /* sum.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF8B2F83E91D00BEBFD7 /* sum.cuh */; };
-		69DFC6582F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_2-ncols2_8.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEA32F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_2-ncols2_8.cu */; };
-		69DFC6592F83E91D00BEBFD7 /* mmq-instance-q2_k.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF0A2F83E91D00BEBFD7 /* mmq-instance-q2_k.cu */; };
-		69DFC65A2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_2-ncols2_16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEA42F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_2-ncols2_16.cu */; };
-		69DFC65B2F83E91D00BEBFD7 /* cp-async.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF372F83E91D00BEBFD7 /* cp-async.cuh */; };
-		69DFC65C2F83E91D00BEBFD7 /* rope.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF792F83E91D00BEBFD7 /* rope.cuh */; };
-		69DFC65D2F83E91D00BEBFD7 /* silu.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1CD2F83E91D00BEBFD7 /* silu.comp */; };
-		69DFC65E2F83E91D00BEBFD7 /* mmq-instance-q8_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF132F83E91D00BEBFD7 /* mmq-instance-q8_0.cu */; };
-		69DFC65F2F83E91D00BEBFD7 /* fattn-vec-instance-q5_1-bf16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEE12F83E91D00BEBFD7 /* fattn-vec-instance-q5_1-bf16.cu */; };
-		69DFC6602F83E91D00BEBFD7 /* mul_mat_vec_q6_k.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1A72F83E91D00BEBFD7 /* mul_mat_vec_q6_k.comp */; };
-		69DFC6612F83E91D00BEBFD7 /* argmax.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1F42F83E91D00BEBFD7 /* argmax.wgsl */; };
-		69DFC6622F83E91D00BEBFD7 /* cpy-utils.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF3A2F83E91D00BEBFD7 /* cpy-utils.cuh */; };
-		69DFC6632F83E91D00BEBFD7 /* fattn-wmma-f16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF4B2F83E91D00BEBFD7 /* fattn-wmma-f16.cu */; };
-		69DFC6642F83E91D00BEBFD7 /* fattn-vec-instance-q4_1-q4_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBED52F83E91D00BEBFD7 /* fattn-vec-instance-q4_1-q4_0.cu */; };
-		69DFC6652F83E91D00BEBFD7 /* host-toolchain.cmake.in in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1382F83E91D00BEBFD7 /* host-toolchain.cmake.in */; };
-		69DFC6662F83E91D00BEBFD7 /* diag.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1722F83E91D00BEBFD7 /* diag.comp */; };
-		69DFC6672F83E91D00BEBFD7 /* dequant_head.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC15D2F83E91D00BEBFD7 /* dequant_head.glsl */; };
-		69DFC6682F83E91D00BEBFD7 /* silu_back.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1CE2F83E91D00BEBFD7 /* silu_back.comp */; };
-		69DFC6692F83E91D00BEBFD7 /* fattn-tile-instance-dkq64-dv64.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEB52F83E91D00BEBFD7 /* fattn-tile-instance-dkq64-dv64.cu */; };
-		69DFC66A2F83E91D00BEBFD7 /* ssm_conv.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC2132F83E91D00BEBFD7 /* ssm_conv.wgsl */; };
-		69DFC66B2F83E91D00BEBFD7 /* topk_nary_search.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1E62F83E91D00BEBFD7 /* topk_nary_search.comp */; };
-		69DFC66C2F83E91D00BEBFD7 /* topk_moe.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1E52F83E91D00BEBFD7 /* topk_moe.comp */; };
-		69DFC66D2F83E91D00BEBFD7 /* fattn-vec-instance-q5_1-q4_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEE32F83E91D00BEBFD7 /* fattn-vec-instance-q5_1-q4_0.cu */; };
-		69DFC66E2F83E91D00BEBFD7 /* soft_max_large_common.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1D22F83E91D00BEBFD7 /* soft_max_large_common.glsl */; };
-		69DFC66F2F83E91D00BEBFD7 /* dequant_q3_k.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1692F83E91D00BEBFD7 /* dequant_q3_k.comp */; };
-		69DFC6702F83E91D00BEBFD7 /* convert.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF342F83E91D00BEBFD7 /* convert.cuh */; };
-		69DFC6712F83E91D00BEBFD7 /* gelu_erf.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1842F83E91D00BEBFD7 /* gelu_erf.comp */; };
-		69DFC6722F83E91D00BEBFD7 /* conv2d.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF2D2F83E91D00BEBFD7 /* conv2d.cu */; };
-		69DFC6732F83E91D00BEBFD7 /* copy_to_quant.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1522F83E91D00BEBFD7 /* copy_to_quant.comp */; };
-		69DFC6742F83E91D00BEBFD7 /* argsort_large.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1472F83E91D00BEBFD7 /* argsort_large.comp */; };
-		69DFC6752F83E91D00BEBFD7 /* copy.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1502F83E91D00BEBFD7 /* copy.comp */; };
-		69DFC6762F83E91D00BEBFD7 /* fattn-vec-instance-q8_0-f16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEE92F83E91D00BEBFD7 /* fattn-vec-instance-q8_0-f16.cu */; };
-		69DFC6772F83E91D00BEBFD7 /* fattn.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF452F83E91D00BEBFD7 /* fattn.cuh */; };
-		69DFC6782F83E91D00BEBFD7 /* conv2d_dw.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC14E2F83E91D00BEBFD7 /* conv2d_dw.comp */; };
-		69DFC6792F83E91D00BEBFD7 /* ssm-conv.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF872F83E91D00BEBFD7 /* ssm-conv.cuh */; };
-		69DFC67A2F83E91D00BEBFD7 /* cos.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1542F83E91D00BEBFD7 /* cos.comp */; };
-		69DFC67B2F83E91D00BEBFD7 /* fattn-vec-instance-q5_0-q4_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEDC2F83E91D00BEBFD7 /* fattn-vec-instance-q5_0-q4_0.cu */; };
-		69DFC67C2F83E91D00BEBFD7 /* dequant_iq1_s.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC15F2F83E91D00BEBFD7 /* dequant_iq1_s.comp */; };
-		69DFC67D2F83E91D00BEBFD7 /* unary.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF962F83E91D00BEBFD7 /* unary.cu */; };
-		69DFC67E2F83E91D00BEBFD7 /* geglu_quick.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1822F83E91D00BEBFD7 /* geglu_quick.comp */; };
-		69DFC67F2F83E91D00BEBFD7 /* mmq-instance-q6_k.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF122F83E91D00BEBFD7 /* mmq-instance-q6_k.cu */; };
-		69DFC6802F83E91D00BEBFD7 /* dequant_q5_k.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC16F2F83E91D00BEBFD7 /* dequant_q5_k.comp */; };
-		69DFC6812F83E91D00BEBFD7 /* ssm-scan.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF892F83E91D00BEBFD7 /* ssm-scan.cuh */; };
-		69DFC6822F83E91D00BEBFD7 /* scale.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1CA2F83E91D00BEBFD7 /* scale.comp */; };
-		69DFC6832F83E91D00BEBFD7 /* roll.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1C02F83E91D00BEBFD7 /* roll.comp */; };
-		69DFC6842F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBFD82F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC6852F83E91D00BEBFD7 /* im2col.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF572F83E91D00BEBFD7 /* im2col.cuh */; };
-		69DFC6862F83E91D00BEBFD7 /* conv2d-transpose.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF312F83E91D00BEBFD7 /* conv2d-transpose.cu */; };
-		69DFC6872F83E91D00BEBFD7 /* elu.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1752F83E91D00BEBFD7 /* elu.comp */; };
-		69DFC6882F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC0522F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC6892F83E91D00BEBFD7 /* conv2d.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF2E2F83E91D00BEBFD7 /* conv2d.cuh */; };
-		69DFC68A2F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC0C02F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC68B2F83E91D00BEBFD7 /* sgn.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1CB2F83E91D00BEBFD7 /* sgn.comp */; };
-		69DFC68C2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_16-ncols2_2.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEAF2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_16-ncols2_2.cu */; };
-		69DFC68D2F83E91D00BEBFD7 /* mmf-instance-ncols_14.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEFD2F83E91D00BEBFD7 /* mmf-instance-ncols_14.cu */; };
-		69DFC68E2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_8-ncols2_8.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEAD2F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_8-ncols2_8.cu */; };
-		69DFC68F2F83E91D00BEBFD7 /* cumsum_multipass1.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1582F83E91D00BEBFD7 /* cumsum_multipass1.comp */; };
-		69DFC6902F83E91D00BEBFD7 /* gated_delta_net.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF502F83E91D00BEBFD7 /* gated_delta_net.cuh */; };
-		69DFC6912F83E91D00BEBFD7 /* mmf-instance-ncols_8.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEF72F83E91D00BEBFD7 /* mmf-instance-ncols_8.cu */; };
-		69DFC6922F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC0882F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC6932F83E91D00BEBFD7 /* tri.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1E72F83E91D00BEBFD7 /* tri.comp */; };
-		69DFC6942F83E91D00BEBFD7 /* fattn-vec-instance-q5_0-f16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEDB2F83E91D00BEBFD7 /* fattn-vec-instance-q5_0-f16.cu */; };
-		69DFC6952F83E91D00BEBFD7 /* mul.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1952F83E91D00BEBFD7 /* mul.comp */; };
-		69DFC6962F83E91D00BEBFD7 /* pool2d.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF712F83E91D00BEBFD7 /* pool2d.cu */; };
-		69DFC6972F83E91D00BEBFD7 /* opt-step-adamw.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF672F83E91D00BEBFD7 /* opt-step-adamw.cu */; };
-		69DFC6982F83E91D00BEBFD7 /* ceil.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1482F83E91D00BEBFD7 /* ceil.comp */; };
-		69DFC6992F83E91D00BEBFD7 /* conv_transpose_1d.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC14D2F83E91D00BEBFD7 /* conv_transpose_1d.comp */; };
-		69DFC69A2F83E91D00BEBFD7 /* mmvq.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF642F83E91D00BEBFD7 /* mmvq.cuh */; };
-		69DFC69B2F83E91D00BEBFD7 /* get_rows.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1892F83E91D00BEBFD7 /* get_rows.comp */; };
-		69DFC69C2F83E91D00BEBFD7 /* row_norm.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC20D2F83E91D00BEBFD7 /* row_norm.wgsl */; };
-		69DFC69D2F83E91D00BEBFD7 /* scale.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC20E2F83E91D00BEBFD7 /* scale.wgsl */; };
-		69DFC69E2F83E91D00BEBFD7 /* argsort.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1462F83E91D00BEBFD7 /* argsort.comp */; };
-		69DFC69F2F83E91D00BEBFD7 /* add_id.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1422F83E91D00BEBFD7 /* add_id.comp */; };
-		69DFC6A02F83E91D00BEBFD7 /* mmvf.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF622F83E91D00BEBFD7 /* mmvf.cuh */; };
-		69DFC6A12F83E91D00BEBFD7 /* mul_mm_id_funcs.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1AD2F83E91D00BEBFD7 /* mul_mm_id_funcs.glsl */; };
-		69DFC6A22F83E91D00BEBFD7 /* norm.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF652F83E91D00BEBFD7 /* norm.cu */; };
-		69DFC6A32F83E91D00BEBFD7 /* fattn-vec-instance-bf16-q5_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEC32F83E91D00BEBFD7 /* fattn-vec-instance-bf16-q5_1.cu */; };
-		69DFC6A42F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1F12F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC6A52F83E91D00BEBFD7 /* fattn-vec-instance-q4_0-bf16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBECC2F83E91D00BEBFD7 /* fattn-vec-instance-q4_0-bf16.cu */; };
-		69DFC6A62F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBE562F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC6A72F83E91D00BEBFD7 /* conv2d-dw.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF2F2F83E91D00BEBFD7 /* conv2d-dw.cu */; };
-		69DFC6A82F83E91D00BEBFD7 /* relu.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1BA2F83E91D00BEBFD7 /* relu.comp */; };
-		69DFC6A92F83E91D00BEBFD7 /* mmq-instance-q5_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF0F2F83E91D00BEBFD7 /* mmq-instance-q5_0.cu */; };
-		69DFC6AA2F83E91D00BEBFD7 /* fattn-vec-instance-f16-f16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEC62F83E91D00BEBFD7 /* fattn-vec-instance-f16-f16.cu */; };
-		69DFC6AB2F83E91D00BEBFD7 /* build-info.cpp.in in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBE032F83E91D00BEBFD7 /* build-info.cpp.in */; };
-		69DFC6AC2F83E91D00BEBFD7 /* quantize.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF732F83E91D00BEBFD7 /* quantize.cu */; };
-		69DFC6AD2F83E91D00BEBFD7 /* topk_argsort.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1E42F83E91D00BEBFD7 /* topk_argsort.comp */; };
-		69DFC6AE2F83E91D00BEBFD7 /* fattn-vec-instance-bf16-q5_0.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEC22F83E91D00BEBFD7 /* fattn-vec-instance-bf16-q5_0.cu */; };
-		69DFC6AF2F83E91D00BEBFD7 /* dequant_iq4_nl.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1652F83E91D00BEBFD7 /* dequant_iq4_nl.comp */; };
-		69DFC6B02F83E91D00BEBFD7 /* gla.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF552F83E91D00BEBFD7 /* gla.cuh */; };
-		69DFC6B12F83E91D00BEBFD7 /* round.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1C82F83E91D00BEBFD7 /* round.comp */; };
-		69DFC6B22F83E91D00BEBFD7 /* ssm_scan.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1DB2F83E91D00BEBFD7 /* ssm_scan.comp */; };
-		69DFC6B32F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_1-ncols2_16.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEA02F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_1-ncols2_16.cu */; };
-		69DFC6B42F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_32-ncols2_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEB12F83E91D00BEBFD7 /* fattn-mma-f16-instance-ncols1_32-ncols2_1.cu */; };
-		69DFC6B52F83E91D00BEBFD7 /* fattn-vec-instance-q4_0-q4_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBECF2F83E91D00BEBFD7 /* fattn-vec-instance-q4_0-q4_1.cu */; };
-		69DFC6B62F83E91D00BEBFD7 /* argsort.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF222F83E91D00BEBFD7 /* argsort.cuh */; };
-		69DFC6B72F83E91D00BEBFD7 /* generic_unary_head.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1882F83E91D00BEBFD7 /* generic_unary_head.glsl */; };
-		69DFC6B82F83E91D00BEBFD7 /* quantize.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF742F83E91D00BEBFD7 /* quantize.cuh */; };
-		69DFC6B92F83E91D00BEBFD7 /* tri.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF932F83E91D00BEBFD7 /* tri.cuh */; };
-		69DFC6BA2F83E91D00BEBFD7 /* upscale.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF982F83E91D00BEBFD7 /* upscale.cu */; };
-		69DFC6BB2F83E91D00BEBFD7 /* fattn-vec-instance-q5_0-q5_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBEDF2F83E91D00BEBFD7 /* fattn-vec-instance-q5_0-q5_1.cu */; };
-		69DFC6BC2F83E91D00BEBFD7 /* cumsum.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1572F83E91D00BEBFD7 /* cumsum.comp */; };
-		69DFC6BD2F83E91D00BEBFD7 /* pad.wgsl in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC20A2F83E91D00BEBFD7 /* pad.wgsl */; };
-		69DFC6BE2F83E91D00BEBFD7 /* clamp.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF252F83E91D00BEBFD7 /* clamp.cu */; };
-		69DFC6BF2F83E91D00BEBFD7 /* conv2d_mm.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC14F2F83E91D00BEBFD7 /* conv2d_mm.comp */; };
-		69DFC6C02F83E91D00BEBFD7 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBFD62F83E91D00BEBFD7 /* CMakeLists.txt */; };
-		69DFC6C12F83E91D00BEBFD7 /* reglu.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1B92F83E91D00BEBFD7 /* reglu.comp */; };
-		69DFC6C22F83E91D00BEBFD7 /* count-equal.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF352F83E91D00BEBFD7 /* count-equal.cu */; };
-		69DFC6C32F83E91D00BEBFD7 /* mmq.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF602F83E91D00BEBFD7 /* mmq.cuh */; };
-		69DFC6C42F83E91D00BEBFD7 /* dequant_q8_0.comp in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC1712F83E91D00BEBFD7 /* dequant_q8_0.comp */; };
-		69DFC6C52F83E91D00BEBFD7 /* mma.cuh in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF5A2F83E91D00BEBFD7 /* mma.cuh */; };
-		69DFC6C62F83E91D00BEBFD7 /* mmq-instance-q4_1.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF0D2F83E91D00BEBFD7 /* mmq-instance-q4_1.cu */; };
-		69DFC6C72F83E91D00BEBFD7 /* mmq-instance-iq4_nl.cu in Resources */ = {isa = PBXBuildFile; fileRef = 69DFBF062F83E91D00BEBFD7 /* mmq-instance-iq4_nl.cu */; };
 		69DFC6CA2F83EBDE00BEBFD7 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DFC6C92F83EBDE00BEBFD7 /* Metal.framework */; };
 		69DFC6CC2F83EBEA00BEBFD7 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DFC6CB2F83EBEA00BEBFD7 /* MetalKit.framework */; };
-		69DFC6CE2F83ED3300BEBFD7 /* gemma-4-E2B-it-Q4_K_M.gguf in Resources */ = {isa = PBXBuildFile; fileRef = 69DFC6CD2F83ED3300BEBFD7 /* gemma-4-E2B-it-Q4_K_M.gguf */; };
+		69DFC6D12F8909F300BEBFD7 /* LlamaInferenceEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DFC6D02F8909F300BEBFD7 /* LlamaInferenceEngine.swift */; };
 		AA0001012D0000010000A001 /* AIModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001012D0000010000A000 /* AIModelManager.swift */; };
 		AA0001022D0000020000A001 /* AIModelDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001022D0000020000A000 /* AIModelDownloader.swift */; };
 		AA0001032D0000030000A001 /* AIModelUnzipper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001032D0000030000A000 /* AIModelUnzipper.swift */; };
@@ -751,15 +248,15 @@
 		AA00010A2D00000A0000A001 /* AIInferenceEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010A2D00000A0000A000 /* AIInferenceEngine.swift */; };
 		AA00010B2D00000B0000A001 /* QwenTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010B2D00000B0000A000 /* QwenTokenizer.swift */; };
 		AA00010C2D00000C0000A001 /* QwenInferenceEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010C2D00000C0000A000 /* QwenInferenceEngine.swift */; };
-		CD5FCF6B714C4C8B00AE4AE7 /* ModernButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5FCF6B714C4C8B01AE4AE7 /* ModernButton.swift */; };
-		DD976512C6EA4AA2897B0B01 /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD976512C6EA4AA2897B0B00 /* ImagePreviewViewController.swift */; };
-		F3496ED8629233F246F7241A /* Pods_HieuLuat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFE2F7FD06EFE3C0182DCF6 /* Pods_HieuLuat.framework */; };
 		BB00000100000001000BB001 /* llama_bridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB00000100000001000BB000 /* llama_bridge.mm */; };
 		BB00000200000002000BB001 /* LlamaBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00000200000002000BB000 /* LlamaBridge.swift */; };
 		CC00000100000001000CC001 /* unicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69DFC2E82F83E91D00BEBFD7 /* unicode.cpp */; };
 		CC00000200000002000CC001 /* ggml-backend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69DFC22C2F83E91D00BEBFD7 /* ggml-backend.cpp */; };
 		CC00000300000003000CC001 /* ggml-backend-reg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69DFC2302F83E91D00BEBFD7 /* ggml-backend-reg.cpp */; };
 		CC00000400000004000CC001 /* ggml-backend-dl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69DFC22E2F83E91D00BEBFD7 /* ggml-backend-dl.cpp */; };
+		CD5FCF6B714C4C8B00AE4AE7 /* ModernButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5FCF6B714C4C8B01AE4AE7 /* ModernButton.swift */; };
+		DD976512C6EA4AA2897B0B01 /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD976512C6EA4AA2897B0B00 /* ImagePreviewViewController.swift */; };
+		F3496ED8629233F246F7241A /* Pods_HieuLuat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFE2F7FD06EFE3C0182DCF6 /* Pods_HieuLuat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2073,7 +1570,7 @@
 		69DFC2EA2F83E91D00BEBFD7 /* unicode-data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "unicode-data.cpp"; sourceTree = "<group>"; };
 		69DFC6C92F83EBDE00BEBFD7 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		69DFC6CB2F83EBEA00BEBFD7 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
-		69DFC6CD2F83ED3300BEBFD7 /* gemma-4-E2B-it-Q4_K_M.gguf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "gemma-4-E2B-it-Q4_K_M.gguf"; sourceTree = "<group>"; };
+		69DFC6D02F8909F300BEBFD7 /* LlamaInferenceEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LlamaInferenceEngine.swift; sourceTree = "<group>"; };
 		AA0001012D0000010000A000 /* AIModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIModelManager.swift; sourceTree = "<group>"; };
 		AA0001022D0000020000A000 /* AIModelDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIModelDownloader.swift; sourceTree = "<group>"; };
 		AA0001032D0000030000A000 /* AIModelUnzipper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIModelUnzipper.swift; sourceTree = "<group>"; };
@@ -2086,13 +1583,13 @@
 		AA00010A2D00000A0000A000 /* AIInferenceEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIInferenceEngine.swift; sourceTree = "<group>"; };
 		AA00010B2D00000B0000A000 /* QwenTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QwenTokenizer.swift; sourceTree = "<group>"; };
 		AA00010C2D00000C0000A000 /* QwenInferenceEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QwenInferenceEngine.swift; sourceTree = "<group>"; };
+		BB00000100000001000BB000 /* llama_bridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = llama_bridge.mm; sourceTree = "<group>"; };
+		BB00000200000002000BB000 /* LlamaBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LlamaBridge.swift; sourceTree = "<group>"; };
+		BB00000300000003000BB000 /* llama_bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = llama_bridge.h; sourceTree = "<group>"; };
 		CD5FCF6B714C4C8B01AE4AE7 /* ModernButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernButton.swift; sourceTree = "<group>"; };
 		D5AEB76F78499DA0C4B45CCC /* Pods-HieuLuat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.release.xcconfig"; path = "Target Support Files/Pods-HieuLuat/Pods-HieuLuat.release.xcconfig"; sourceTree = "<group>"; };
 		D6E1636B56AABF4ED831A738 /* Pods-HieuLuat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HieuLuat.debug.xcconfig"; path = "Target Support Files/Pods-HieuLuat/Pods-HieuLuat.debug.xcconfig"; sourceTree = "<group>"; };
 		DD976512C6EA4AA2897B0B00 /* ImagePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewViewController.swift; sourceTree = "<group>"; };
-		BB00000100000001000BB000 /* llama_bridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = llama_bridge.mm; sourceTree = "<group>"; };
-		BB00000300000003000BB000 /* llama_bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = llama_bridge.h; sourceTree = "<group>"; };
-		BB00000200000002000BB000 /* LlamaBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LlamaBridge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2159,6 +1656,7 @@
 				AA0001032D0000030000A000 /* AIModelUnzipper.swift */,
 				AA0001042D0000040000A000 /* AIModelOverlayWindow.swift */,
 				AA0001052D0000050000A000 /* AIModelCoordinator.swift */,
+				69DFC6D02F8909F300BEBFD7 /* LlamaInferenceEngine.swift */,
 				AA0001062D0000060000A000 /* GemmaTokenizer.swift */,
 				AA0001072D0000070000A000 /* GemmaInferenceEngine.swift */,
 				AA0001082D0000080000A000 /* AIModelConfig.swift */,
@@ -3978,7 +3476,6 @@
 		69DFC6CF2F83ED3900BEBFD7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				69DFC6CD2F83ED3300BEBFD7 /* gemma-4-E2B-it-Q4_K_M.gguf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -4119,7 +3616,6 @@
 			files = (
 				33F06FF9212439DD00A69431 /* Hieuluat.sqlite in Resources */,
 				330A1EB928BA14A10032840E /* remote_config_defaults.plist in Resources */,
-				69DFC6CE2F83ED3300BEBFD7 /* gemma-4-E2B-it-Q4_K_M.gguf in Resources */,
 				339E096526FB6E20007686DC /* GoogleService-Info.plist in Resources */,
 				33D305301F51794F00547497 /* Assets.xcassets in Resources */,
 				33D3052E1F51794F00547497 /* Main.storyboard in Resources */,
@@ -4371,6 +3867,7 @@
 				69DFC3CF2F83E91D00BEBFD7 /* ops.cpp in Sources */,
 				69DFC3D22F83E91D00BEBFD7 /* llama-model-loader.cpp in Sources */,
 				69DFC3D32F83E91D00BEBFD7 /* gemma2-iswa.cpp in Sources */,
+				69DFC6D12F8909F300BEBFD7 /* LlamaInferenceEngine.swift in Sources */,
 				69DFC3D42F83E91D00BEBFD7 /* deepseek2.cpp in Sources */,
 				69DFC3D62F83E91D00BEBFD7 /* vec.cpp in Sources */,
 				69DFC3D72F83E91D00BEBFD7 /* arcee.cpp in Sources */,
@@ -4656,9 +4153,17 @@
 				CURRENT_PROJECT_VERSION = 22090801;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = D95825NFBM;
-				USE_HEADERMAP = NO;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"GGML_USE_METAL=1",
+					"GGML_USE_CPU=1",
+					"GGML_CPU_GENERIC=1",
+					"GGML_SCHED_MAX_SPLIT_INPUTS=256",
+					"GGML_VERSION=\\\"0.9.11\\\"",
+					"GGML_COMMIT=\\\"unknown\\\"",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FMDB/FMDB.framework/Headers\"",
@@ -4700,17 +4205,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.6;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"GGML_USE_METAL=1",
-					"GGML_USE_CPU=1",
-					"GGML_CPU_GENERIC=1",
-					"GGML_SCHED_MAX_SPLIT_INPUTS=256",
-					"GGML_VERSION=\\\"0.9.11\\\"",
-					"GGML_COMMIT=\\\"unknown\\\"",
-				);
-				MTL_COMPILER_FLAGS = "-DGGML_METAL_HAS_BF16 -std=metal3.1";
-				MTL_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/llama.cpp/ggml/src";
+				MTL_COMPILER_FLAGS = "-std=metal3.0";
+				MTL_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/llama.cpp/ggml/src $(PROJECT_DIR)/llama.cpp/ggml/src/ggml-metal";
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.WeThoong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4719,6 +4215,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "WeThoong-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 5.0;
+				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
@@ -4732,9 +4229,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 22090801;
 				DEVELOPMENT_TEAM = D95825NFBM;
-				USE_HEADERMAP = NO;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"GGML_USE_METAL=1",
+					"GGML_USE_CPU=1",
+					"GGML_CPU_GENERIC=1",
+					"GGML_SCHED_MAX_SPLIT_INPUTS=256",
+					"GGML_VERSION=\\\"0.9.11\\\"",
+					"GGML_COMMIT=\\\"unknown\\\"",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FMDB/FMDB.framework/Headers\"",
@@ -4776,17 +4281,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.6;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"GGML_USE_METAL=1",
-					"GGML_USE_CPU=1",
-					"GGML_CPU_GENERIC=1",
-					"GGML_SCHED_MAX_SPLIT_INPUTS=256",
-					"GGML_VERSION=\\\"0.9.11\\\"",
-					"GGML_COMMIT=\\\"unknown\\\"",
-				);
-				MTL_COMPILER_FLAGS = "-DGGML_METAL_HAS_BF16 -std=metal3.1";
-				MTL_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/llama.cpp/ggml/src";
+				MTL_COMPILER_FLAGS = "-std=metal3.0";
+				MTL_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/llama.cpp/ggml/src $(PROJECT_DIR)/llama.cpp/ggml/src/ggml-metal";
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vietlh.WeThoong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4795,6 +4291,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "WeThoong-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 5.0;
+				USE_HEADERMAP = NO;
 			};
 			name = Release;
 		};

@@ -15,17 +15,44 @@ protocol AIInferenceEngine: AnyObject {
     
     func runGenerate(inputTokens: [Int], maxNewTokens: Int,
                      stopTokenIds: Set<Int>, completion: @escaping ([Int]) -> Void)
+    
+    // Support direct string prompt for Llama bypass
+    func runGenerate(prompt: String, maxNewTokens: Int,
+                     stopTokenIds: Set<Int>, completion: @escaping ([Int]) -> Void)
+                     
     func resetState()
+}
+
+enum AIModelBackend {
+    case coreML
+    case llama
 }
 
 /// Factory that creates the correct inference engine for a given model type.
 @available(iOS 18.0, *)
 enum AIInferenceEngineFactory {
     static func create(for config: AIModelConfig,
-                       embedModel: MLModel,
-                       ffnModels: [MLModel],
-                       lmHeadModel: MLModel,
+                       backend: AIModelBackend,
+                       tokenizer: Any? = nil,
+                       embedModel: MLModel? = nil,
+                       ffnModels: [MLModel]? = nil,
+                       lmHeadModel: MLModel? = nil,
                        ffnURLs: [URL]? = nil) -> AIInferenceEngine {
+        
+        if backend == .llama {
+            guard let tokenizer = tokenizer as? AITokenizer else {
+                fatalError("AITokenizer required for Llama backend")
+            }
+            return LlamaInferenceEngine(tokenizer: tokenizer, config: config)
+        }
+        
+        // Ensure required CoreML models are present
+        guard let embedModel = embedModel,
+              let ffnModels = ffnModels,
+              let lmHeadModel = lmHeadModel else {
+            fatalError("CoreML models required for CoreML backend")
+        }
+
         switch config.modelType {
         case .qwen:
             if let urls = ffnURLs {
@@ -57,6 +84,7 @@ enum AIInferenceEngineFactory {
                 slidingWindow: min(1024, config.contextLength)
             )
         case .llama:
+            // Fallback for non-GGUF Llama
             return GemmaInferenceEngine(
                 embedModel: embedModel,
                 ffnModels: ffnModels,

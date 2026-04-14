@@ -42,6 +42,25 @@ struct AIModelConfig {
     let lmHeadFileName: String
     let ffnBaseFileName: String
     
+    // MARK: - Factory
+    
+    static func dummyForLlama() -> AIModelConfig {
+        return AIModelConfig(
+            modelPrefix: "llama",
+            modelType: .llama,
+            contextLength: 512,
+            batchSize: 64,
+            splitLmHead: 8,
+            numChunks: 1,
+            lutFFN: "none",
+            lutLmHead: "none",
+            lutEmbeddings: "none",
+            embeddingsFileName: "",
+            lmHeadFileName: "",
+            ffnBaseFileName: ""
+        )
+    }
+    
     /// All model file names that must exist on disk.
     var allModelFileNames: [String] {
         var names: [String] = [embeddingsFileName]

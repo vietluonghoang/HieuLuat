@@ -20,6 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Disable Metal globally before llama.cpp loads
+        setenv("GGML_METAL_ENABLE", "0", 1)
+        setenv("GGML_METAL_OFF", "1", 1)
+
         // Override point for customization after application launch.
         
         // Apply global UI theme
@@ -49,11 +53,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     #if DEBUG
     private func testLlamaBridge() {
         DispatchQueue.global(qos: .userInitiated).async {
-            NSLog("[AppDelegate] Loading llama.cpp GGUF model...")
-            LlamaBridge.shared.loadModel()
+            // Find the GGUF model in the documents directory to match the new dynamic path requirement
+            let fileManager = FileManager.default
+            let docs = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+            // Assuming the model file exists, or just pass a dummy path if this is a legacy test
+            let modelPath = docs.appendingPathComponent("model.gguf").path
+            
+            NSLog("[AppDelegate] Loading llama.cpp GGUF model at: %@", modelPath)
+            LlamaBridge.shared.loadModel(path: modelPath)
             
             NSLog("[AppDelegate] Running inference...")
-            let result = LlamaBridge.shared.infer(prompt: "Hello")
+            let result = LlamaBridge.shared.infer(prompt: "Hello", maxNewTokens: 64, stopTokenIds: [])
             NSLog("[AppDelegate] Inference result: %@", result)
         }
     }

@@ -191,18 +191,27 @@ class AIModelDownloader: NSObject, URLSessionDownloadDelegate {
                                                      in: .userDomainMask,
                                                      appropriateFor: nil,
                                                      create: true)
-            let tempDestination = appSupportDir.appendingPathComponent("aimodel_download_temp.zip")
+            let modelsDir = appSupportDir.appendingPathComponent("AIModels")
+            try fileManager.createDirectory(at: modelsDir, withIntermediateDirectories: true)
+            
+            // Get the suggested filename from the task response or original request
+            let fileName = downloadTask.response?.suggestedFilename 
+                        ?? downloadTask.originalRequest?.url?.lastPathComponent 
+                        ?? location.lastPathComponent
+            
+            // Determine destination based on file extension
+            let finalDestination = modelsDir.appendingPathComponent(fileName)
 
-            if fileManager.fileExists(atPath: tempDestination.path) {
-                try fileManager.removeItem(at: tempDestination)
+            if fileManager.fileExists(atPath: finalDestination.path) {
+                try fileManager.removeItem(at: finalDestination)
             }
-            try fileManager.moveItem(at: location, to: tempDestination)
+            try fileManager.moveItem(at: location, to: finalDestination)
 
             cleanUpResumeDataFile()
 
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                self.delegate?.downloader(self, didFinishDownloadingTo: tempDestination)
+                self.delegate?.downloader(self, didFinishDownloadingTo: finalDestination)
             }
         } catch {
             DispatchQueue.main.async { [weak self] in

@@ -14,12 +14,13 @@ final class LlamaBridge {
 
     private init() {}
 
-    /// Load the GGUF model bundled in Resources. Safe to call multiple times.
-    func loadModel() {
+    /// Load the GGUF model from the given absolute path. Safe to call multiple times.
+    func loadModel(path: String) {
         guard !isModelLoaded else { return }
 
-        guard let path = Bundle.main.path(forResource: "gemma-4-E2B-it-Q4_K_M", ofType: "gguf") else {
-            NSLog("[LlamaBridge] ERROR: GGUF file not found in bundle")
+        // Ensure the file exists
+        guard FileManager.default.fileExists(atPath: path) else {
+            NSLog("[LlamaBridge] ERROR: GGUF file not found at path: %@", path)
             return
         }
 
@@ -29,22 +30,27 @@ final class LlamaBridge {
     }
 
     /// Run inference synchronously and return the generated text.
-    func infer(prompt: String) -> String {
+    func infer(prompt: String, maxNewTokens: Int, stopTokenIds: [Int]) -> String {
         guard isModelLoaded else {
             NSLog("[LlamaBridge] ERROR: model not loaded")
             return ""
         }
 
-        guard let cResult = llama_bridge_run_inference(prompt) else {
+        let stopTokens32 = stopTokenIds.map { Int32($0) }
+        let cResult = stopTokens32.withUnsafeBufferPointer { (pointer: UnsafeBufferPointer<Int32>) -> UnsafePointer<CChar>? in
+            return llama_bridge_run_inference(prompt, Int32(maxNewTokens), pointer.baseAddress, Int32(pointer.count))
+        }
+        
+        guard let result = cResult else {
             return ""
         }
-        return String(cString: cResult)
+        return String(cString: result)
     }
 
     /// Run inference on a background queue; completion called on main.
-    func inferAsync(prompt: String, completion: @escaping (String) -> Void) {
+    func inferAsync(prompt: String, maxNewTokens: Int, stopTokenIds: [Int], completion: @escaping (String) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            let result = self?.infer(prompt: prompt) ?? ""
+            let result = self?.infer(prompt: prompt, maxNewTokens: maxNewTokens, stopTokenIds: stopTokenIds) ?? ""
             DispatchQueue.main.async { completion(result) }
         }
     }

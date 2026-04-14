@@ -103,7 +103,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
             btnMicro.isHidden = true
         }
     }
-
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // Always cancel pending AI work on every keystroke
         aiDebounceTimer?.invalidate()
@@ -133,32 +133,35 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
             return
         }
         
+        //        let prompt = """
+        //        ### Role:
+        //        Bạn là chuyên gia pháp lý cao cấp về Luật Giao thông đường bộ Việt Nam. Nhiệm vụ của bạn là chuẩn hóa ngôn từ đời thường sang thuật ngữ pháp lý chính xác.
+        //
+        //        ### Rules:
+        //        1. Chỉ trả về thuật ngữ pháp lý chuẩn.
+        //        2. Tuyệt đối không giải thích, không thêm lời dẫn.
+        //        3. Ngôn ngữ phải trang trọng, hành chính, đúng theo văn bản luật
+        //
+        //        ### Examples:
+        //        - User: vượt đèn đỏ
+        //        - Assistant: Không chấp hành hiệu lệnh của đèn tín hiệu giao thông
+        //
+        //        - User: kẹp ba trên xe máy
+        //        - Assistant: Chở theo từ 02 người trở lên trên xe
+        //
+        //        - User: vừa lái xe vừa nghe điện thoại
+        //        - Assistant: Người đang điều khiển xe sử dụng điện thoại di động, thiết bị âm thanh
+        //
+        //        ### Input:
+        //        User: \(trimmed)
+        //        Assistant:
+        //        """
+        //        let prompt = """
+        //        Hãy trả lời ngắn gọn cho tôi thuật ngữ pháp lý gần nhất với hành vi "\(trimmed)" là gì
+        //        """
         let prompt = """
-        ### Role:
-        Bạn là chuyên gia pháp lý cao cấp về Luật Giao thông đường bộ Việt Nam. Nhiệm vụ của bạn là chuẩn hóa ngôn từ đời thường sang thuật ngữ pháp lý chính xác.
-
-        ### Rules:
-        1. Chỉ trả về thuật ngữ pháp lý chuẩn.
-        2. Tuyệt đối không giải thích, không thêm lời dẫn.
-        3. Ngôn ngữ phải trang trọng, hành chính, đúng theo văn bản luật
-
-        ### Examples:
-        - User: vượt đèn đỏ
-        - Assistant: Không chấp hành hiệu lệnh của đèn tín hiệu giao thông
-
-        - User: kẹp ba trên xe máy
-        - Assistant: Chở theo từ 02 người trở lên trên xe
-
-        - User: vừa lái xe vừa nghe điện thoại
-        - Assistant: Người đang điều khiển xe sử dụng điện thoại di động, thiết bị âm thanh
-
-        ### Input:
-        User: \(trimmed)
-        Assistant:
+        Chào bạn, "\(trimmed)" là gì
         """
-//        let prompt = """
-//        Hãy trả lời ngắn gọn cho tôi thuật ngữ pháp lý gần nhất với hành vi "\(trimmed)" là gì
-//        """
         print("AI Model prompt: \(prompt)")
         
         AIModelManager.shared.runInference(input: prompt) { [weak self] aiResult in

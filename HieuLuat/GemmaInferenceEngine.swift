@@ -85,6 +85,12 @@ class GemmaInferenceEngine: AIInferenceEngine {
         }
     }
 
+    func runGenerate(prompt: String, maxNewTokens: Int,
+                     stopTokenIds: Set<Int>, completion: @escaping ([Int]) -> Void) {
+        // GemmaEngine doesn't support direct string prompt (it needs tokenized inputs)
+        completion([])
+    }
+
     private func generate(inputTokens: [Int], maxNewTokens: Int, stopTokenIds: Set<Int>) -> [Int] {
         guard !inputTokens.isEmpty else { return [] }
 

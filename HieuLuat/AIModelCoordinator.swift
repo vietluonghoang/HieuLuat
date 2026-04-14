@@ -261,6 +261,12 @@ extension AIModelCoordinator: AIModelDownloaderDelegate {
     }
     
     func downloader(_ downloader: AIModelDownloader, didFinishDownloadingTo location: URL) {
+        // If it's already in the models directory, just notify manager to load
+        if location.path.contains("AIModels") {
+            manager.downloadAndUnzipCompleted()
+            return
+        }
+
         let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
         let modelsDir = appSupportURL.appendingPathComponent("AIModels")
         

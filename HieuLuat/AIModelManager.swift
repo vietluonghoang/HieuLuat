@@ -86,7 +86,7 @@ class AIModelManager {
     private static let modelsFolderName = "AIModels"
     private static let metaFileName = "meta.yaml"
     private static let minimumRequiredDiskSpaceBytes: UInt64 = 9 * 1024 * 1024 * 1024 // 9GB
-    private static let minimumRAMBytes: UInt64 = 100 * 1024 * 1024 * 1024 // 100GB RAM — AI feature temporarily disabled
+    private static let minimumRAMBytes: UInt64 = 5 * 1024 * 1024 * 1024 // 5GB RAM — AI feature temporarily disabled
     private static let userDefaultsModelVersionKey = "ai_model_version"
     private static let userDefaultsOptedInKey = "ai_model_opted_in"
     
@@ -158,6 +158,11 @@ class AIModelManager {
             if #available(iOS 18.0, *), let qwenEngine = inferenceEngine as? QwenInferenceEngine {
                 qwenEngine.evictPrefillModels()
                 NSLog("AIModelManager: Evicted prefill models to free memory")
+            } else if detectBackend() == .llama {
+                NSLog("AIModelManager: Unloading Llama model to free memory")
+                LlamaBridge.shared.freeModel()
+                inferenceEngine = nil
+                state = .idle
             } else {
                 NSLog("AIModelManager: Unloading models to free memory")
                 inferenceEngine?.isCancelled = true
@@ -289,6 +294,14 @@ class AIModelManager {
     // MARK: - Model Availability
     
     func checkModelAvailability() -> Bool {
+        let backend = detectBackend()
+        
+        if backend == .llama {
+            let fileManager = FileManager.default
+            let files = try? fileManager.contentsOfDirectory(atPath: modelsDirectoryURL.path)
+            return files?.contains(where: { $0.hasSuffix(".gguf") }) == true
+        }
+
         // Load config from meta.yaml if not already loaded
         if modelConfig == nil {
             let metaURL = modelsDirectoryURL.appendingPathComponent(AIModelManager.metaFileName)
@@ -357,12 +370,32 @@ class AIModelManager {
     
     // MARK: - Download
     
+    func clearModelsDirectory() {
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: modelsDirectoryURL.path) {
+            do {
+                let contents = try fileManager.contentsOfDirectory(atPath: modelsDirectoryURL.path)
+                for file in contents {
+                    try fileManager.removeItem(at: modelsDirectoryURL.appendingPathComponent(file))
+                }
+                print("AIModelManager: Models directory cleared")
+            } catch {
+                print("AIModelManager: Failed to clear models directory: \(error.localizedDescription)")
+            }
+        } else {
+            try? fileManager.createDirectory(at: modelsDirectoryURL, withIntermediateDirectories: true)
+        }
+    }
+
     func startDownload() {
         // Prevent duplicate downloads
         guard !isBusy else {
             print("AIModelManager: startDownload() skipped — already busy")
             return
         }
+        
+        // Clean up old models before starting new download
+        clearModelsDirectory()
         
         guard let urlString = remoteModelUrl, !urlString.isEmpty else {
             state = .error(.downloadFailed("No model URL available from Remote Config"))
@@ -407,6 +440,20 @@ class AIModelManager {
     
     // MARK: - Load Models
     
+    func detectBackend() -> AIModelBackend {
+        let fileManager = FileManager.default
+        let path = modelsDirectoryURL.path
+        let files = try? fileManager.contentsOfDirectory(atPath: path)
+        NSLog("AIModelManager: [DETECT] Checking backend in %@. Files: %@", path, files?.description ?? "nil")
+        
+        if files?.contains(where: { $0.hasSuffix(".gguf") }) == true {
+            NSLog("AIModelManager: [DETECT] Detected .gguf file, returning .llama")
+            return .llama
+        }
+        NSLog("AIModelManager: [DETECT] No .gguf file found, returning .coreML")
+        return .coreML
+    }
+
     func loadModels() {
         // Prevent duplicate loads
         guard !isModelReady && !isBusy else {
@@ -414,18 +461,54 @@ class AIModelManager {
             return
         }
         
-        // Load config from meta.yaml
-        if modelConfig == nil {
+        let backend = detectBackend()
+        
+        if backend == .llama {
+            modelConfig = AIModelConfig.dummyForLlama()
+        } else {
+            // Load config from meta.yaml
             let metaURL = modelsDirectoryURL.appendingPathComponent(AIModelManager.metaFileName)
             modelConfig = AIModelConfig.load(from: metaURL)
         }
         
         guard let config = modelConfig else {
-            print("AIModelManager: ❌ No meta.yaml found — cannot load models")
-            state = .error(.modelLoadFailed("meta.yaml not found in model directory"))
+            print("AIModelManager: ❌ Configuration not found (meta.yaml missing for CoreML)")
+            state = .error(.modelLoadFailed("Configuration not found"))
             return
         }
         
+        if backend == .llama {
+            NSLog("AIModelManager: [LOAD] Llama backend detected")
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                guard let self = self else { return }
+                
+                // Find .gguf file
+                let files = try? FileManager.default.contentsOfDirectory(atPath: self.modelsDirectoryURL.path)
+                guard let ggufFile = files?.first(where: { $0.hasSuffix(".gguf") }) else {
+                    DispatchQueue.main.async { self.state = .error(.modelLoadFailed("No GGUF file found")) }
+                    return
+                }
+                
+                let ggufURL = self.modelsDirectoryURL.appendingPathComponent(ggufFile)
+                LlamaBridge.shared.loadModel(path: ggufURL.path)
+                
+                let tokenizer = AITokenizerFactory.create(for: config, modelDirectory: self.modelsDirectoryURL)
+                
+                var engine: AIInferenceEngine? = nil
+                if #available(iOS 18.0, *) {
+                    engine = AIInferenceEngineFactory.create(for: config, backend: .llama, tokenizer: tokenizer)
+                }
+                
+                DispatchQueue.main.async {
+                    self.tokenizer = tokenizer
+                    self.inferenceEngine = engine
+                    self.readyTimestamp = Date()
+                    self.state = .ready
+                }
+            }
+            return
+        }
+
         let modelFileNames = config.allModelFileNames
         let totalModels = modelFileNames.count
         state = .loadingModels(current: 0, total: totalModels)
@@ -540,6 +623,7 @@ class AIModelManager {
                 
                 engine = AIInferenceEngineFactory.create(
                     for: config,
+                    backend: .coreML,
                     embedModel: embedModel,
                     ffnModels: ffnModelsForEngine,
                     lmHeadModel: lmHeadModel,
@@ -670,30 +754,39 @@ class AIModelManager {
         // Cancel any previous in-flight inference (generation ID bump handles the rest)
         engine.isCancelled = true
         
-        // Build prompt on main thread (fast)
-        let inputTokens = tokenizer.buildPrompt(userMessage: input)
-        NSLog("AIModelManager: Prompt tokenized to %d tokens", inputTokens.count)
-        
         let stopTokenIds = tokenizer.stopTokenIds
-        let startTime = CFAbsoluteTimeGetCurrent()
         
-        engine.runGenerate(inputTokens: inputTokens, maxNewTokens: 256, stopTokenIds: stopTokenIds) { outputTokens in
-            // Already on main queue
-            if outputTokens.isEmpty {
-                NSLog("AIModelManager: Inference returned empty (cancelled or error)")
-                completion("")
-                return
+        if detectBackend() == .llama, let llamaEngine = engine as? LlamaInferenceEngine {
+            // Build prompt
+            let inputTokens = tokenizer.buildPrompt(userMessage: input)
+            let formattedPrompt = tokenizer.decode(inputTokens)
+            
+            NSLog("AIModelManager: Using Llama engine (prompt length: %d)", formattedPrompt.count)
+            
+            llamaEngine.runGenerate(prompt: formattedPrompt, maxNewTokens: 256, stopTokenIds: stopTokenIds) { outputTokens in
+                let result = tokenizer.decode(outputTokens)
+                completion(result)
             }
+        } else {
+            // Build prompt on main thread (fast)
+            let inputTokens = tokenizer.buildPrompt(userMessage: input)
+            NSLog("AIModelManager: Prompt tokenized to %d tokens", inputTokens.count)
             
-            let filteredTokens = outputTokens.filter { !tokenizer.isStopToken($0) }
-            let result = tokenizer.decode(filteredTokens)
+            let startTime = CFAbsoluteTimeGetCurrent()
             
-            let elapsed = CFAbsoluteTimeGetCurrent() - startTime
-            let tokensPerSec = outputTokens.count > 0 ? Double(outputTokens.count) / elapsed : 0
-            NSLog("AIModelManager: Generated %d tokens in %.1fs (%.1f t/s)", outputTokens.count, elapsed, tokensPerSec)
-            NSLog("AIModelManager: Result: %@", result)
-            
-            completion(result)
+            engine.runGenerate(inputTokens: inputTokens, maxNewTokens: 256, stopTokenIds: stopTokenIds) { outputTokens in
+                // Already on main queue
+                if outputTokens.isEmpty {
+                    NSLog("AIModelManager: Inference returned empty (cancelled or error)")
+                    completion("")
+                    return
+                }
+                
+                let filteredTokens = outputTokens.filter { !tokenizer.isStopToken($0) }
+                let result = tokenizer.decode(filteredTokens)
+                
+                completion(result)
+            }
         }
     }
     

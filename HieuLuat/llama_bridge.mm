@@ -8,6 +8,15 @@
 #include <string>
 #include <vector>
 
+// Forcefully disable Metal at the earliest possible moment
+static int _metal_disabled = []() {
+    setenv("GGML_METAL_ENABLE", "0", 1);
+    setenv("GGML_METAL_OFF", "1", 1);
+    setenv("GGML_METAL_BF16_DISABLE", "1", 1);
+    NSLog(@"[llama_bridge] Metal disabled via environment variables");
+    return 0;
+}();
+
 static llama_model   * s_model   = nullptr;
 static llama_context * s_ctx     = nullptr;
 static llama_sampler * s_sampler = nullptr;
@@ -22,6 +31,8 @@ void llama_bridge_init_model(const char * model_path) {
     }
 
     NSLog(@"[llama_bridge] llama_backend_init");
+    
+    // Initializing backend. Metal is already disabled via static initializer.
     llama_backend_init();
 
     // --- model ---
@@ -78,7 +89,7 @@ void llama_bridge_init_model(const char * model_path) {
     NSLog(@"[llama_bridge] sampler chain ready");
 }
 
-const char * llama_bridge_run_inference(const char * prompt) {
+const char * llama_bridge_run_inference(const char * prompt, int max_new_tokens, const int * stop_tokens, int num_stop_tokens) {
     s_result.clear();
 
     if (!s_model || !s_ctx || !s_sampler) {
@@ -115,15 +126,27 @@ const char * llama_bridge_run_inference(const char * prompt) {
     }
 
     // --- autoregressive generation ---
-    const int max_gen = 64;
     char piece_buf[64];
 
-    for (int i = 0; i < max_gen; i++) {
+    for (int i = 0; i < max_new_tokens; i++) {
         llama_token new_token = llama_sampler_sample(s_sampler, s_ctx, -1);
 
         // check EOS / EOG
         if (llama_vocab_is_eog(vocab, new_token)) {
             NSLog(@"[llama_bridge] EOG at step %d", i);
+            break;
+        }
+
+        // check stop tokens
+        bool should_stop = false;
+        for (int s = 0; s < num_stop_tokens; s++) {
+            if (new_token == (llama_token)stop_tokens[s]) {
+                should_stop = true;
+                break;
+            }
+        }
+        if (should_stop) {
+            NSLog(@"[llama_bridge] STOP token at step %d", i);
             break;
         }
 

@@ -28,7 +28,31 @@ enum AITokenizerFactory {
         case .gemma:
             return GemmaTokenizer(modelDirectory: modelDirectory)
         case .llama:
-            return GemmaTokenizer(modelDirectory: modelDirectory)
+            return LlamaTokenizer()
         }
+    }
+}
+
+class LlamaTokenizer: AITokenizer {
+    var eosTokenId: Int = 2
+    var stopTokenIds: Set<Int> = [2]
+    
+    func encode(_ text: String) -> [Int] {
+        return Array(text.utf8).map { Int($0) }
+    }
+    
+    func decode(_ ids: [Int]) -> String {
+        let bytes = ids.compactMap { UInt8(exactly: $0) }
+        return String(bytes: bytes, encoding: .utf8) ?? ""
+    }
+    
+    func buildPrompt(userMessage: String) -> [Int] {
+        // Basic ChatML-like template: <|im_start|>user\n{message}<|im_end|>\n<|im_start|>assistant\n
+        let template = "<|im_start|>user\n\(userMessage)<|im_end|>\n<|im_start|>assistant\n"
+        return encode(template)
+    }
+    
+    func isStopToken(_ id: Int) -> Bool {
+        return stopTokenIds.contains(id)
     }
 }

@@ -281,6 +281,12 @@ class QwenInferenceEngine: AIInferenceEngine {
             DispatchQueue.main.async { completion(tokens) }
         }
     }
+
+    func runGenerate(prompt: String, maxNewTokens: Int,
+                     stopTokenIds: Set<Int>, completion: @escaping ([Int]) -> Void) {
+        // QwenEngine doesn't support direct string prompt (it needs tokenized inputs)
+        completion([])
+    }
     
     func resetState() {
         contextPosition = 0

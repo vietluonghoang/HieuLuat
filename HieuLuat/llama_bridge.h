@@ -11,7 +11,7 @@ extern "C" {
 #endif
 
 void llama_bridge_init_model(const char * model_path);
-const char * llama_bridge_run_inference(const char * prompt);
+const char * llama_bridge_run_inference(const char * prompt, int max_new_tokens, const int * stop_tokens, int num_stop_tokens);
 void llama_bridge_free(void);
 
 #ifdef __cplusplus
