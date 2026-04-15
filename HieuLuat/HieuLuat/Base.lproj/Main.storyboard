@@ -5449,7 +5449,7 @@ kết cấu hạ tầng đường sắt</string>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="zLc-SN-foh" kind="relationship" relationship="rootViewController" destinationCreationSelector="goHome" id="zJs-Nt-cjK"/>
+                        <segue destination="zLc-SN-foh" kind="relationship" relationship="rootViewController" id="zJs-Nt-cjK"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fsa-xE-sE9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

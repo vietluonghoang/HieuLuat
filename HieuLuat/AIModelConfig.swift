@@ -48,7 +48,7 @@ struct AIModelConfig {
         return AIModelConfig(
             modelPrefix: "llama",
             modelType: .llama,
-            contextLength: 512,
+            contextLength: 2048,  // Reduced for A15: 2K context fits in ~4GB VRAM
             batchSize: 64,
             splitLmHead: 8,
             numChunks: 1,

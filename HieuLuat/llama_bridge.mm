@@ -65,8 +65,8 @@ void llama_bridge_init_model(const char * model_path) {
 
     // --- context ---
     struct llama_context_params cparams = llama_context_default_params();
-    cparams.n_ctx       = 256;
-    cparams.n_batch     = 256;
+    cparams.n_ctx       = 2048;  // Reduced context for A15 mobile (from 8K to 2K)
+    cparams.n_batch     = 64;    // Reduced batch size to fit A15 memory (4GB VRAM)
     cparams.n_threads   = 4;
     cparams.n_threads_batch = 4;
 
@@ -118,18 +118,25 @@ const char * llama_bridge_run_inference(const char * prompt, int max_new_tokens,
     llama_memory_clear(llama_get_memory(s_ctx), /*data=*/true);
 
     // --- prefill: decode prompt batch ---
+    NSLog(@"[llama_bridge] prefill: decoding %d tokens", n_tokens);
     struct llama_batch batch = llama_batch_get_one(tokens.data(), n_tokens);
     if (llama_decode(s_ctx, batch) != 0) {
         NSLog(@"[llama_bridge] ERROR: decode (prefill) failed");
         s_result = "[error: decode failed]";
         return s_result.c_str();
     }
+    NSLog(@"[llama_bridge] prefill: OK");
 
     // --- autoregressive generation ---
     char piece_buf[64];
+    NSLog(@"[llama_bridge] starting generation, max_new_tokens=%d", max_new_tokens);
 
     for (int i = 0; i < max_new_tokens; i++) {
         llama_token new_token = llama_sampler_sample(s_sampler, s_ctx, -1);
+        
+        if (i == 0 || i % 20 == 0) {
+            NSLog(@"[llama_bridge] generation step %d/%d, token=%d", i, max_new_tokens, new_token);
+        }
 
         // check EOS / EOG
         if (llama_vocab_is_eog(vocab, new_token)) {

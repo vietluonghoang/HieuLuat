@@ -47,9 +47,10 @@ class LlamaTokenizer: AITokenizer {
     }
     
     func buildPrompt(userMessage: String) -> [Int] {
-        // Basic ChatML-like template: <|im_start|>user\n{message}<|im_end|>\n<|im_start|>assistant\n
-        let template = "<|im_start|>user\n\(userMessage)<|im_end|>\n<|im_start|>assistant\n"
-        return encode(template)
+        // Gemma-4 has built-in Jinja2 chat_template in model file.
+        // llama.cpp automatically applies it during tokenization.
+        // Just return the user message; llama_tokenize() handles formatting.
+        return encode(userMessage)
     }
     
     func isStopToken(_ id: Int) -> Bool {

@@ -42,33 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize MixPanel
         AnalyticsHelper.initMixPanel(userID: "")
         
-        // --- llama.cpp GGUF test ---
-        #if DEBUG
-        testLlamaBridge()
-        #endif
-        
         return true
     }
     
-    #if DEBUG
-    private func testLlamaBridge() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            // Find the GGUF model in the documents directory to match the new dynamic path requirement
-            let fileManager = FileManager.default
-            let docs = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-            // Assuming the model file exists, or just pass a dummy path if this is a legacy test
-            let modelPath = docs.appendingPathComponent("model.gguf").path
-            
-            NSLog("[AppDelegate] Loading llama.cpp GGUF model at: %@", modelPath)
-            LlamaBridge.shared.loadModel(path: modelPath)
-            
-            NSLog("[AppDelegate] Running inference...")
-            let result = LlamaBridge.shared.infer(prompt: "Hello", maxNewTokens: 64, stopTokenIds: [])
-            NSLog("[AppDelegate] Inference result: %@", result)
-        }
-    }
-    #endif
-    
+
     func application(_ application: UIApplication,
                      handleEventsForBackgroundURLSession identifier: String,
                      completionHandler: @escaping () -> Void) {

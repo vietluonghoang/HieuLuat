@@ -29,13 +29,16 @@ final class LlamaInferenceEngine: AIInferenceEngine {
     }
     
     func runGenerate(prompt: String, maxNewTokens: Int,
-                     stopTokenIds: Set<Int>, completion: @escaping ([Int]) -> Void) {
+                      stopTokenIds: Set<Int>, completion: @escaping ([Int]) -> Void) {
         
         NSLog("LlamaInferenceEngine: Prompt: %@", prompt)
+        NSLog("LlamaInferenceEngine: maxNewTokens=%d, stopTokenIds=%@", maxNewTokens, stopTokenIds.description)
         
         bridge.inferAsync(prompt: prompt, maxNewTokens: maxNewTokens, stopTokenIds: Array(stopTokenIds)) { [weak self] resultString in
             guard let self = self else { return }
+            NSLog("LlamaInferenceEngine: Got inference result (length=%d): %@", resultString.count, resultString)
             let resultTokens = self.tokenizer.encode(resultString)
+            NSLog("LlamaInferenceEngine: Encoded to %d tokens", resultTokens.count)
             completion(resultTokens)
         }
     }
