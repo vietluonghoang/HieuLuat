@@ -31,6 +31,7 @@ final class LlamaInferenceEngine: AIInferenceEngine {
     func runGenerate(prompt: String, maxNewTokens: Int,
                       stopTokenIds: Set<Int>, completion: @escaping ([Int]) -> Void) {
         
+        NSLog("LlamaInferenceEngine: runGenerate() CALLED with prompt=\(prompt.prefix(50))... maxNewTokens=\(maxNewTokens)")
         NSLog("LlamaInferenceEngine: Prompt: %@", prompt)
         NSLog("LlamaInferenceEngine: maxNewTokens=%d, stopTokenIds=%@", maxNewTokens, stopTokenIds.description)
         

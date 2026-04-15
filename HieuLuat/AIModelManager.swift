@@ -735,10 +735,11 @@ class AIModelManager {
     }
     
     func runInference(input: String, completion: @escaping (String) -> Void) {
-        NSLog("AIModelManager: runInference called, isModelReady=%d, tokenizer=%@, engine=%@",
-              isModelReady ? 1 : 0,
-              tokenizer == nil ? "nil" : String(describing: type(of: tokenizer!)),
-              inferenceEngine == nil ? "nil" : String(describing: type(of: inferenceEngine!)))
+         NSLog("AIModelManager: runInference() CALLED with input=\(input.prefix(50))... isModelReady=%d", isModelReady ? 1 : 0)
+         NSLog("AIModelManager: runInference called, isModelReady=%d, tokenizer=%@, engine=%@",
+               isModelReady ? 1 : 0,
+               tokenizer == nil ? "nil" : String(describing: type(of: tokenizer!)),
+               inferenceEngine == nil ? "nil" : String(describing: type(of: inferenceEngine!)))
         
         guard isModelReady else {
             NSLog("AIModelManager: Models not ready for inference")

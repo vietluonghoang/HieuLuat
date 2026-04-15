@@ -31,6 +31,7 @@ final class LlamaBridge {
 
     /// Run inference synchronously and return the generated text.
     func infer(prompt: String, maxNewTokens: Int, stopTokenIds: [Int]) -> String {
+        NSLog("[LlamaBridge] infer() START - prompt=\(prompt.prefix(50))... maxNewTokens=\(maxNewTokens)")
         guard isModelLoaded else {
             NSLog("[LlamaBridge] ERROR: model not loaded")
             return ""
@@ -42,16 +43,31 @@ final class LlamaBridge {
         }
         
         guard let result = cResult else {
+            NSLog("[LlamaBridge] ERROR: cResult is nil")
             return ""
         }
-        return String(cString: result)
+        
+        // Debug: check raw bytes
+        let rawBytes = UnsafeBufferPointer(start: result, count: 50)
+        let hexStr = rawBytes.prefix(20).map { String(format: "%02x", $0) }.joined(separator: " ")
+        NSLog("[LlamaBridge] Raw bytes: %@", hexStr)
+        
+        let resultStr = String(cString: result)
+        NSLog("[LlamaBridge] infer() DONE - result length=\(resultStr.count), preview=\(resultStr.prefix(50))")
+        return resultStr
     }
 
     /// Run inference on a background queue; completion called on main.
     func inferAsync(prompt: String, maxNewTokens: Int, stopTokenIds: [Int], completion: @escaping (String) -> Void) {
+        print("[LlamaBridge] inferAsync() START on background thread")
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            print("[LlamaBridge] inferAsync() calling infer() on bg thread")
             let result = self?.infer(prompt: prompt, maxNewTokens: maxNewTokens, stopTokenIds: stopTokenIds) ?? ""
-            DispatchQueue.main.async { completion(result) }
+            print("[LlamaBridge] inferAsync() back from infer(), result length=\(result.count), posting to main thread")
+            DispatchQueue.main.async { 
+                print("[LlamaBridge] inferAsync() completion() on main thread")
+                completion(result) 
+            }
         }
     }
 
