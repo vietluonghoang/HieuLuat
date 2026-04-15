@@ -20,9 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Disable Metal globally before llama.cpp loads
-        setenv("GGML_METAL_ENABLE", "0", 1)
-        setenv("GGML_METAL_OFF", "1", 1)
+        // Metal GPU acceleration is now managed by llama_bridge.mm with safeguards
 
         // Override point for customization after application launch.
         

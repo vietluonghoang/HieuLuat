@@ -493,16 +493,23 @@ class AIModelManager {
                 LlamaBridge.shared.loadModel(path: ggufURL.path)
                 
                 let tokenizer = AITokenizerFactory.create(for: config, modelDirectory: self.modelsDirectoryURL)
+                NSLog("AIModelManager: Tokenizer created: %@", String(describing: type(of: tokenizer)))
                 
                 var engine: AIInferenceEngine? = nil
                 if #available(iOS 18.0, *) {
                     engine = AIInferenceEngineFactory.create(for: config, backend: .llama, tokenizer: tokenizer)
+                    NSLog("AIModelManager: Engine created (iOS 18+): %@", engine == nil ? "nil" : String(describing: type(of: engine!)))
+                } else {
+                    NSLog("AIModelManager: iOS < 18.0, engine creation skipped")
                 }
                 
                 DispatchQueue.main.async {
                     self.tokenizer = tokenizer
                     self.inferenceEngine = engine
                     self.readyTimestamp = Date()
+                    NSLog("AIModelManager: [Llama] State set to .ready (tokenizer=%@, engine=%@)",
+                          String(describing: type(of: tokenizer)),
+                          engine == nil ? "nil" : String(describing: type(of: engine!)))
                     self.state = .ready
                 }
             }
@@ -763,7 +770,7 @@ class AIModelManager {
             
             NSLog("AIModelManager: Using Llama engine (prompt length: %d)", formattedPrompt.count)
             
-            llamaEngine.runGenerate(prompt: formattedPrompt, maxNewTokens: 64, stopTokenIds: stopTokenIds) { outputTokens in
+            llamaEngine.runGenerate(prompt: formattedPrompt, maxNewTokens: 10, stopTokenIds: stopTokenIds) { outputTokens in
                 let result = tokenizer.decode(outputTokens)
                 completion(result)
             }
@@ -774,7 +781,7 @@ class AIModelManager {
             
             let startTime = CFAbsoluteTimeGetCurrent()
             
-            engine.runGenerate(inputTokens: inputTokens, maxNewTokens: 64, stopTokenIds: stopTokenIds) { outputTokens in
+            engine.runGenerate(inputTokens: inputTokens, maxNewTokens: 10, stopTokenIds: stopTokenIds) { outputTokens in
                 // Already on main queue
                 if outputTokens.isEmpty {
                     NSLog("AIModelManager: Inference returned empty (cancelled or error)")
