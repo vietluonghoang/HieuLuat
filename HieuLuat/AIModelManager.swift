@@ -763,7 +763,7 @@ class AIModelManager {
             
             NSLog("AIModelManager: Using Llama engine (prompt length: %d)", formattedPrompt.count)
             
-            llamaEngine.runGenerate(prompt: formattedPrompt, maxNewTokens: 256, stopTokenIds: stopTokenIds) { outputTokens in
+            llamaEngine.runGenerate(prompt: formattedPrompt, maxNewTokens: 64, stopTokenIds: stopTokenIds) { outputTokens in
                 let result = tokenizer.decode(outputTokens)
                 completion(result)
             }
@@ -774,7 +774,7 @@ class AIModelManager {
             
             let startTime = CFAbsoluteTimeGetCurrent()
             
-            engine.runGenerate(inputTokens: inputTokens, maxNewTokens: 256, stopTokenIds: stopTokenIds) { outputTokens in
+            engine.runGenerate(inputTokens: inputTokens, maxNewTokens: 64, stopTokenIds: stopTokenIds) { outputTokens in
                 // Already on main queue
                 if outputTokens.isEmpty {
                     NSLog("AIModelManager: Inference returned empty (cancelled or error)")
