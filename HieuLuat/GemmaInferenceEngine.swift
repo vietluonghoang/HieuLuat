@@ -52,7 +52,7 @@ class GemmaInferenceEngine: AIInferenceEngine {
         guard let model = model else { return }
         let inputs = model.modelDescription.inputDescriptionsByName.keys.sorted()
         let outputs = model.modelDescription.outputDescriptionsByName.keys.sorted()
-        NSLog("GemmaEngine: %@ inputs=%@ outputs=%@", label, inputs.description, outputs.description)
+        Logger.debug("[\(label)] inputs=\(inputs) outputs=\(outputs)", category: .aiModel)
     }
 
     /// Inspect a model's input description to check if it has a given input name.
@@ -69,6 +69,7 @@ class GemmaInferenceEngine: AIInferenceEngine {
         // NOTE: isCancelled is set to false INSIDE the async block to avoid race condition
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else {
+                Logger.error("Self reference lost in async block", category: .inference)
                 DispatchQueue.main.async { completion([]) }
                 return
             }
@@ -76,10 +77,10 @@ class GemmaInferenceEngine: AIInferenceEngine {
             // Reset cancellation at the start of actual work
             self.isCancelled = false
 
-            NSLog("GemmaEngine: generate() starting on background thread")
+            Logger.info("Starting Gemma inference", category: .inference)
             let tokens = self.generate(inputTokens: inputTokens, maxNewTokens: maxNewTokens,
                                        stopTokenIds: stopTokenIds)
-            NSLog("GemmaEngine: generate() finished with %d tokens", tokens.count)
+            Logger.info("Gemma inference completed with \(tokens.count) tokens", category: .inference)
 
             DispatchQueue.main.async { completion(tokens) }
         }
@@ -92,55 +93,47 @@ class GemmaInferenceEngine: AIInferenceEngine {
     }
 
     private func generate(inputTokens: [Int], maxNewTokens: Int, stopTokenIds: Set<Int>) -> [Int] {
-        guard !inputTokens.isEmpty else { return [] }
+        guard !inputTokens.isEmpty else {
+            Logger.warning("Empty input tokens for Gemma inference", category: .inference)
+            return []
+        }
 
         // Reset state at the start of each generation
         resetState()
 
-        NSLog("GemmaEngine: prefill starting (%d tokens, contextLength=%d)", inputTokens.count, contextLength)
+        Logger.info("Gemma prefill starting (\(inputTokens.count) tokens)", category: .inference)
 
         do {
             // Prefill: process all input tokens one-by-one (memory safe)
             for i in 0..<inputTokens.count {
                 if isCancelled {
-                    NSLog("GemmaEngine: prefill cancelled at %d/%d", i, inputTokens.count)
+                    Logger.warning("Gemma prefill cancelled at \(i)/\(inputTokens.count)", category: .inference)
                     return []
-                }
-
-                if i == 0 {
-                    NSLog("GemmaEngine: prefill token 0 (first call)...")
                 }
 
                 try inferSingleToken(tokenId: inputTokens[i])
 
-                if i == 0 {
-                    NSLog("GemmaEngine: prefill token 0 succeeded")
-                } else if i % 200 == 0 {
-                    NSLog("GemmaEngine: prefill %d/%d", i, inputTokens.count)
+                if i > 0 && i % 200 == 0 {
+                    Logger.debug("Gemma prefill progress: \(i)/\(inputTokens.count)", category: .inference)
                 }
             }
-            NSLog("GemmaEngine: prefill done, contextPosition=%d", contextPosition)
+            Logger.info("Gemma prefill done (contextPosition: \(contextPosition))", category: .inference)
 
             // Decode: generate new tokens auto-regressively
             var generatedTokens = [Int]()
             var currentToken = inputTokens.last!
-            NSLog("GemmaEngine: starting decode loop (lastToken=%d, isCancelled=%d)", currentToken, isCancelled ? 1 : 0)
 
             for step in 0..<maxNewTokens {
                 if isCancelled {
-                    NSLog("GemmaEngine: decode cancelled at step %d", step)
+                    Logger.warning("Gemma decode cancelled at step \(step)", category: .inference)
                     return generatedTokens
                 }
 
                 let nextToken = try decodeOneToken(tokenId: currentToken)
                 generatedTokens.append(nextToken)
 
-                if step < 2 {
-                    NSLog("GemmaEngine: decode step %d → token %d", step, nextToken)
-                }
-
                 if stopTokenIds.contains(nextToken) {
-                    NSLog("GemmaEngine: stop token reached at step %d", step)
+                    Logger.debug("Gemma stop token reached at step \(step)", category: .inference)
                     break
                 }
                 currentToken = nextToken
@@ -148,7 +141,7 @@ class GemmaInferenceEngine: AIInferenceEngine {
 
             return generatedTokens
         } catch {
-            NSLog("GemmaEngine ERROR: %@", "\(error)")
+            Logger.error("Gemma inference error", error: error, category: .inference)
             return []
         }
     }
@@ -166,20 +159,16 @@ class GemmaInferenceEngine: AIInferenceEngine {
         let inputIds = try createInputIds(token: tokenId)
 
         if contextPosition == 0 {
-            NSLog("GemmaEngine: [token 0] running embeddings (first call — ANE compile may take 1-2 min)...")
+            Logger.info("Processing first token (ANE compilation may take 1-2 min)", category: .inference)
         }
+        
         let embedOutput = try runEmbeddings(inputIds: inputIds)
+        
         if contextPosition == 0 {
-            NSLog("GemmaEngine: [token 0] embeddings OK, running FFN %d chunks (ANE compile may take 1-2 min per chunk)...", ffnModels.count)
+            Logger.info("Running FFN with \(ffnModels.count) chunks", category: .inference)
         }
 
         _ = try runFFNChunks(hiddenStates: embedOutput)
-
-        if contextPosition == 0 {
-            NSLog("GemmaEngine: [token 0] ✅ first token complete — ANE compilation done")
-        } else if contextPosition % 200 == 0 {
-            NSLog("GemmaEngine: prefill %d/%d", contextPosition, contextPosition) // actual total unknown here
-        }
 
         contextPosition += 1
     }
@@ -191,19 +180,13 @@ class GemmaInferenceEngine: AIInferenceEngine {
         let inputIds = try createInputIds(token: tokenId)
         let embedOutput = try runEmbeddings(inputIds: inputIds)
 
-        if decodeCount == 0 {
-            NSLog("GemmaEngine: decode[0] embed OK, running FFN...")
-        }
         let hiddenStates = try runFFNChunks(hiddenStates: embedOutput)
-
-        if decodeCount == 0 {
-            NSLog("GemmaEngine: decode[0] FFN OK, running LMHead (first call — ANE compile may take 1-2 min)...")
-        }
         contextPosition += 1
+        
         let token = try runLMHead(hiddenStates: hiddenStates)
 
         if decodeCount == 0 {
-            NSLog("GemmaEngine: decode[0] ✅ LMHead OK → token %d", token)
+            Logger.debug("Decode first token: \(token)", category: .inference)
         }
         decodeCount += 1
         return token
