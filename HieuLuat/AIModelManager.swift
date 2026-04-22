@@ -45,6 +45,42 @@ extension Notification.Name {
     static let AIModelStateDidChange = Notification.Name("AIModelStateDidChange")
 }
 
+// MARK: - AI Runtime Config (from Remote Config)
+
+struct AIRuntimeConfig {
+    let gpuLayers: Int32
+    let contextLength: Int
+    let batchSize: Int
+    let threadCount: Int
+    let maxNewTokens: Int
+    let minimumRAMGB: Int
+    let minimumDiskSpaceGB: Int
+    
+    static func fromRemoteConfig() -> AIRuntimeConfig {
+        let rc = RemoteConfig.remoteConfig()
+        return AIRuntimeConfig(
+            gpuLayers: Int32(rc.configValue(forKey: "aiGpuLayers").numberValue.int32Value),
+            contextLength: rc.configValue(forKey: "aiContextLength").numberValue.intValue,
+            batchSize: rc.configValue(forKey: "aiBatchSize").numberValue.intValue,
+            threadCount: rc.configValue(forKey: "aiThreadCount").numberValue.intValue,
+            maxNewTokens: rc.configValue(forKey: "aiMaxNewTokens").numberValue.intValue,
+            minimumRAMGB: rc.configValue(forKey: "aiMinimumRAM").numberValue.intValue,
+            minimumDiskSpaceGB: rc.configValue(forKey: "aiMinimumDiskSpace").numberValue.intValue
+        )
+    }
+    
+    /// Fallback defaults (matching prototype)
+    static let defaults = AIRuntimeConfig(
+        gpuLayers: 0,
+        contextLength: 2048,
+        batchSize: 64,
+        threadCount: 4,
+        maxNewTokens: 128,
+        minimumRAMGB: 5,
+        minimumDiskSpaceGB: 9
+    )
+}
+
 // MARK: - AIModelManager
 
 class AIModelManager {
@@ -52,6 +88,9 @@ class AIModelManager {
     static let shared = AIModelManager()
     
     weak var delegate: AIModelManagerDelegate?
+    
+    /// Runtime AI config — loaded from Remote Config, used by bridge & inference.
+    private(set) var aiConfig: AIRuntimeConfig = .defaults
     
     private(set) var state: AIModelState = .idle {
         didSet {
@@ -85,8 +124,14 @@ class AIModelManager {
     
     private static let modelsFolderName = "AIModels"
     private static let metaFileName = "meta.yaml"
-    private static let minimumRequiredDiskSpaceBytes: UInt64 = 9 * 1024 * 1024 * 1024 // 9GB
-    private static let minimumRAMBytes: UInt64 = 5 * 1024 * 1024 * 1024 // 5GB RAM — AI feature temporarily disabled
+    // Disk/RAM thresholds are now driven by aiConfig (from Remote Config).
+    // These computed properties maintain backward compatibility.
+    private var minimumRequiredDiskSpaceBytes: UInt64 {
+        UInt64(aiConfig.minimumDiskSpaceGB) * 1024 * 1024 * 1024
+    }
+    private var minimumRAMBytes: UInt64 {
+        UInt64(aiConfig.minimumRAMGB) * 1024 * 1024 * 1024
+    }
     private static let userDefaultsModelVersionKey = "ai_model_version"
     private static let userDefaultsOptedInKey = "ai_model_opted_in"
     
@@ -205,10 +250,10 @@ class AIModelManager {
         }
         
         // Check RAM (need 6GB+ total)
-        if totalRAM < AIModelManager.minimumRAMBytes {
+        if totalRAM < minimumRAMBytes {
             return DeviceCapability(totalRAM: totalRAM, availableRAM: availableRAM,
                                     chipGeneration: chip, isSupported: false,
-                                    reason: "Thiết bị cần ít nhất \(AIModelManager.minimumRAMBytes / (1024*1024*1024))GB RAM để chạy AI. Thiết bị hiện có \(totalRAM / (1024*1024))MB.")
+                                    reason: "Thiết bị cần ít nhất \(aiConfig.minimumRAMGB)GB RAM để chạy AI. Thiết bị hiện có \(totalRAM / (1024*1024))MB.")
         }
         
         // Check chip (A15+ recommended for Neural Engine performance)
@@ -336,6 +381,13 @@ class AIModelManager {
         remoteModelUrl = url
         remoteModelVersion = version
         
+        // Load AI runtime params from Remote Config
+        aiConfig = AIRuntimeConfig.fromRemoteConfig()
+        NSLog("AIModelManager: AI config loaded — gpuLayers=%d, ctx=%d, batch=%d, threads=%d, maxTokens=%d, minRAM=%dGB, minDisk=%dGB",
+              aiConfig.gpuLayers, aiConfig.contextLength, aiConfig.batchSize,
+              aiConfig.threadCount, aiConfig.maxNewTokens,
+              aiConfig.minimumRAMGB, aiConfig.minimumDiskSpaceGB)
+        
         print("AIModelManager: Remote model URL = \(url ?? "nil")")
         print("AIModelManager: Remote model version = \(version ?? "nil")")
         
@@ -360,7 +412,7 @@ class AIModelManager {
             if let availableBytes = values.volumeAvailableCapacityForImportantUsage {
                 let available = UInt64(availableBytes)
                 print("AIModelManager: Available disk space = \(available / (1024 * 1024)) MB")
-                return available >= AIModelManager.minimumRequiredDiskSpaceBytes
+                return available >= minimumRequiredDiskSpaceBytes
             }
         } catch {
             print("AIModelManager: Failed to check disk space: \(error.localizedDescription)")
@@ -490,7 +542,7 @@ class AIModelManager {
                 }
                 
                 let ggufURL = self.modelsDirectoryURL.appendingPathComponent(ggufFile)
-                LlamaBridge.shared.loadModel(path: ggufURL.path)
+                LlamaBridge.shared.loadModel(path: ggufURL.path, config: self.aiConfig)
                 
                 let tokenizer = AITokenizerFactory.create(for: config, modelDirectory: self.modelsDirectoryURL)
                 NSLog("AIModelManager: Tokenizer created: %@", String(describing: type(of: tokenizer)))
@@ -771,7 +823,7 @@ class AIModelManager {
             
             NSLog("AIModelManager: Using Llama engine (prompt length: %d)", formattedPrompt.count)
             
-            llamaEngine.runGenerate(prompt: formattedPrompt, maxNewTokens: 10, stopTokenIds: stopTokenIds) { outputTokens in
+            llamaEngine.runGenerate(prompt: formattedPrompt, maxNewTokens: aiConfig.maxNewTokens, stopTokenIds: stopTokenIds) { outputTokens in
                 let result = tokenizer.decode(outputTokens)
                 completion(result)
             }
@@ -782,7 +834,7 @@ class AIModelManager {
             
             let startTime = CFAbsoluteTimeGetCurrent()
             
-            engine.runGenerate(inputTokens: inputTokens, maxNewTokens: 10, stopTokenIds: stopTokenIds) { outputTokens in
+            engine.runGenerate(inputTokens: inputTokens, maxNewTokens: aiConfig.maxNewTokens, stopTokenIds: stopTokenIds) { outputTokens in
                 // Already on main queue
                 if outputTokens.isEmpty {
                     NSLog("AIModelManager: Inference returned empty (cancelled or error)")

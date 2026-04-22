@@ -45,11 +45,12 @@ struct AIModelConfig {
     // MARK: - Factory
     
     static func dummyForLlama() -> AIModelConfig {
+        let rc = AIModelManager.shared.aiConfig
         return AIModelConfig(
             modelPrefix: "llama",
             modelType: .llama,
-            contextLength: 2048,  // Reduced for A15: 2K context fits in ~4GB VRAM
-            batchSize: 64,
+            contextLength: rc.contextLength,
+            batchSize: rc.batchSize,
             splitLmHead: 8,
             numChunks: 1,
             lutFFN: "none",

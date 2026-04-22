@@ -115,7 +115,7 @@ class GemmaInferenceEngine: AIInferenceEngine {
 
                 if i == 0 {
                     NSLog("GemmaEngine: prefill token 0 succeeded")
-                } else if i % 50 == 0 {
+                } else if i % 200 == 0 {
                     NSLog("GemmaEngine: prefill %d/%d", i, inputTokens.count)
                 }
             }
@@ -135,7 +135,7 @@ class GemmaInferenceEngine: AIInferenceEngine {
                 let nextToken = try decodeOneToken(tokenId: currentToken)
                 generatedTokens.append(nextToken)
 
-                if step < 5 {
+                if step < 2 {
                     NSLog("GemmaEngine: decode step %d → token %d", step, nextToken)
                 }
 
@@ -177,7 +177,7 @@ class GemmaInferenceEngine: AIInferenceEngine {
 
         if contextPosition == 0 {
             NSLog("GemmaEngine: [token 0] ✅ first token complete — ANE compilation done")
-        } else if contextPosition % 50 == 0 {
+        } else if contextPosition % 200 == 0 {
             NSLog("GemmaEngine: prefill %d/%d", contextPosition, contextPosition) // actual total unknown here
         }
 

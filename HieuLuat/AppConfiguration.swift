@@ -17,5 +17,12 @@ class AppConfiguration {
         case aimodelurl = "aiModelUrl"
         case aimodelversion = "aiModelVersion"
         case aimodelpath = "aiModelPath"
+        case aiGpuLayers = "aiGpuLayers"
+        case aiContextLength = "aiContextLength"
+        case aiBatchSize = "aiBatchSize"
+        case aiThreadCount = "aiThreadCount"
+        case aiMaxNewTokens = "aiMaxNewTokens"
+        case aiMinimumRAM = "aiMinimumRAM"
+        case aiMinimumDiskSpace = "aiMinimumDiskSpace"
     }
 }

@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import os.log
 
 /// Llama-based inference engine, bridging to C++ llama.cpp.
 final class LlamaInferenceEngine: AIInferenceEngine {
+    
+    private static let logger = OSLog(subsystem: "com.hieuluat.app", category: "LlamaEngine")
     
     var isCancelled: Bool = false
     private let bridge = LlamaBridge.shared
@@ -19,7 +22,7 @@ final class LlamaInferenceEngine: AIInferenceEngine {
     init(tokenizer: AITokenizer, config: AIModelConfig) {
         self.tokenizer = tokenizer
         self.config = config
-        NSLog("LlamaInferenceEngine: Initialized with config: contextLength=%d", config.contextLength)
+        os_log(.info, log: Self.logger, "Initialized with contextLength=%d", config.contextLength)
     }
     
     func runGenerate(inputTokens: [Int], maxNewTokens: Int,
@@ -31,21 +34,18 @@ final class LlamaInferenceEngine: AIInferenceEngine {
     func runGenerate(prompt: String, maxNewTokens: Int,
                       stopTokenIds: Set<Int>, completion: @escaping ([Int]) -> Void) {
         
-        NSLog("LlamaInferenceEngine: runGenerate() CALLED with prompt=\(prompt.prefix(50))... maxNewTokens=\(maxNewTokens)")
-        NSLog("LlamaInferenceEngine: Prompt: %@", prompt)
-        NSLog("LlamaInferenceEngine: maxNewTokens=%d, stopTokenIds=%@", maxNewTokens, stopTokenIds.description)
+        os_log(.info, log: Self.logger, "runGenerate() CALLED maxNewTokens=%d", maxNewTokens)
         
         bridge.inferAsync(prompt: prompt, maxNewTokens: maxNewTokens, stopTokenIds: Array(stopTokenIds)) { [weak self] resultString in
             guard let self = self else { return }
-            NSLog("LlamaInferenceEngine: Got inference result (length=%d): %@", resultString.count, resultString)
             let resultTokens = self.tokenizer.encode(resultString)
-            NSLog("LlamaInferenceEngine: Encoded to %d tokens", resultTokens.count)
+            os_log(.info, log: Self.logger, "inference done, result=%d chars, %d tokens", resultString.count, resultTokens.count)
             completion(resultTokens)
         }
     }
     
     func resetState() {
         // LlamaBridge handles its own memory/KV cache clearing in run_inference
-        NSLog("LlamaInferenceEngine: State reset")
+        os_log(.debug, log: Self.logger, "State reset")
     }
 }

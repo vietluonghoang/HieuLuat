@@ -334,7 +334,7 @@ class QwenInferenceEngine: AIInferenceEngine {
                 }
                 generatedTokens.append(nextToken)
                 
-                if step < 5 || step % 20 == 0 {
+                if step == 0 || step % 200 == 0 {
                     NSLog("QwenEngine: decode step %d/%d → token %d", step, maxNewTokens, nextToken)
                 }
                 
@@ -366,7 +366,9 @@ class QwenInferenceEngine: AIInferenceEngine {
             
             let batchEnd = min(batchPos + batchSize, contextPos)
             
-            NSLog("QwenEngine: prefill batch %d-%d/%d", batchPos, batchEnd, contextPos)
+            if batchPos == 0 || batchPos % (batchSize * 4) == 0 {
+                NSLog("QwenEngine: prefill batch %d-%d/%d", batchPos, batchEnd, contextPos)
+            }
             
             try autoreleasepool {
                 let batchInputIds = try createBatchInputIds(

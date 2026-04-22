@@ -34,5 +34,19 @@
 	<string></string>
 	<key>aiModelVersion</key>
 	<string>0</string>
+	<key>aiGpuLayers</key>
+	<string>0</string>
+	<key>aiContextLength</key>
+	<string>2048</string>
+	<key>aiBatchSize</key>
+	<string>64</string>
+	<key>aiThreadCount</key>
+	<string>4</string>
+	<key>aiMaxNewTokens</key>
+	<string>128</string>
+	<key>aiMinimumRAM</key>
+	<string>5</string>
+	<key>aiMinimumDiskSpace</key>
+	<string>9</string>
 </dict>
 </plist>
