@@ -1,0 +1,3243 @@
+-------------------------------------
+Translated Report (Full Report Below)
+-------------------------------------
+Process:             HieuLuat [16217]
+Path:                /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/HieuLuat
+Identifier:          com.vietlh.WeThoong
+Version:             2.6 (22090801)
+Code Type:           ARM-64 (Native)
+Role:                Foreground
+Parent Process:      launchd [1]
+Coalition:           com.vietlh.WeThoong [757]
+User ID:             501
+
+Date/Time:           2026-04-10 11:08:19.2955 +0700
+Launch Time:         2026-04-10 11:08:12.3489 +0700
+Hardware Model:      iPhone14,3
+OS Version:          iPhone OS 26.3 (23D127)
+Release Type:        User
+Baseband Version:    5.40.01
+
+Crash Reporter Key:  ff19a4586c630f7730b06822beae5d529c245626
+Incident Identifier: FE67E9CA-3558-4473-A72D-434914CC7CB7
+
+Time Awake Since Boot: 320000 seconds
+
+Triggered by Thread: 8, Dispatch Queue: com.apple.root.user-initiated-qos
+
+Exception Type:    EXC_BAD_ACCESS (SIGSEGV)
+Exception Subtype: KERN_INVALID_ADDRESS at 0x0000000000000000
+Exception Codes:   0x0000000000000001, 0x0000000000000000
+
+Termination Reason:  Namespace SIGNAL, Code 11, Segmentation fault: 11
+Terminating Process: exc handler [16217]
+
+
+VM Region Info: 0 is not in any region.  Bytes before following region: 4301045760
+      REGION TYPE                 START - END      [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL
+      UNUSED SPACE AT START
+--->  
+      __TEXT                   1005cc000-1005d8000 [   48K] r-x/r-x SM=COW  /var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/HieuLuat
+
+Thread 0 name:   Dispatch queue: com.apple.main-thread
+Thread 0:
+0   HieuLuat.debug.dylib          	       0x1025f3fa8 outlined destroy of SplashScreenViewController? + 0
+1   HieuLuat.debug.dylib          	       0x1025ed298 closure #1 in SplashScreenViewController.completeInitialization() + 140
+2   HieuLuat.debug.dylib          	       0x1024d33f8 thunk for @escaping @callee_guaranteed () -> () + 48
+3   libdispatch.dylib             	       0x1c56c67fc _dispatch_client_callout + 15
+4   libdispatch.dylib             	       0x1c56b1664 _dispatch_continuation_pop + 595
+5   libdispatch.dylib             	       0x1c56c4538 _dispatch_source_latch_and_call + 395
+6   libdispatch.dylib             	       0x1c56c320c _dispatch_source_invoke + 843
+7   libdispatch.dylib             	       0x1c56e3a34 _dispatch_main_queue_drain.cold.5 + 591
+8   libdispatch.dylib             	       0x1c56bbec8 _dispatch_main_queue_drain + 179
+9   libdispatch.dylib             	       0x1c56bbe04 _dispatch_main_queue_callback_4CF + 43
+10  CoreFoundation                	       0x18c9f12b4 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__ + 15
+11  CoreFoundation                	       0x18c9a4b3c __CFRunLoopRun + 1943
+12  CoreFoundation                	       0x18c9a3a6c _CFRunLoopRunSpecificWithOptions + 531
+13  GraphicsServices              	       0x231315498 GSEventRunModal + 119
+14  UIKitCore                     	       0x192453df8 -[UIApplication _run] + 791
+15  UIKitCore                     	       0x1923fce54 UIApplicationMain + 335
+16  HieuLuat.debug.dylib          	       0x10256803c __debug_main_executable_dylib_entry_point + 64
+17  dyld                          	       0x18997ee28 start + 7115
+
+Thread 1:
+
+Thread 2:
+
+Thread 3:
+
+Thread 4 name:  com.apple.uikit.eventfetch-thread
+Thread 4:
+0   libsystem_kernel.dylib        	       0x23a13acd4 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x23a13e2f8 mach_msg2_internal + 75
+2   libsystem_kernel.dylib        	       0x23a13e214 mach_msg_overwrite + 427
+3   libsystem_kernel.dylib        	       0x23a13e05c mach_msg + 23
+4   CoreFoundation                	       0x18c9cd868 __CFRunLoopServiceMachPort + 159
+5   CoreFoundation                	       0x18c9a4848 __CFRunLoopRun + 1187
+6   CoreFoundation                	       0x18c9a3a6c _CFRunLoopRunSpecificWithOptions + 531
+7   Foundation                    	       0x18a963f54 -[NSRunLoop(NSRunLoop) runMode:beforeDate:] + 211
+8   Foundation                    	       0x18a96412c -[NSRunLoop(NSRunLoop) runUntilDate:] + 63
+9   UIKitCore                     	       0x192429094 -[UIEventFetcher threadMain] + 407
+10  Foundation                    	       0x18a02321c __NSThread__start__ + 731
+11  libsystem_pthread.dylib       	       0x1e94f844c _pthread_start + 135
+12  libsystem_pthread.dylib       	       0x1e94f48cc thread_start + 7
+
+Thread 5:
+
+Thread 6 name:   Dispatch queue: com.apple.root.default-qos
+Thread 6:
+0   libsystem_kernel.dylib        	       0x23a1407f4 __semwait_signal + 8
+1   libsystem_c.dylib             	       0x1982bd7e4 nanosleep + 219
+2   libsystem_c.dylib             	       0x1982bd6fc usleep + 67
+3   HieuLuat.debug.dylib          	       0x10204e174 __ggml_metal_rsets_init_block_invoke + 396
+4   libdispatch.dylib             	       0x1c56acadc _dispatch_call_block_and_release + 31
+5   libdispatch.dylib             	       0x1c56c67fc _dispatch_client_callout + 15
+6   libdispatch.dylib             	       0x1c56e2830 _dispatch_queue_override_invoke.cold.3 + 107
+7   libdispatch.dylib             	       0x1c56b12fc _dispatch_queue_override_invoke + 847
+8   libdispatch.dylib             	       0x1c56bef48 _dispatch_root_queue_drain + 363
+9   libdispatch.dylib             	       0x1c56bf6fc _dispatch_worker_thread2 + 179
+10  libsystem_pthread.dylib       	       0x1e94f537c _pthread_wqthread + 231
+11  libsystem_pthread.dylib       	       0x1e94f48c0 start_wqthread + 7
+
+Thread 7 name:  com.google.firebase.crashlytics.MachExceptionServer
+Thread 7:
+0   libsystem_kernel.dylib        	       0x23a13f024 write + 8
+1   FirebaseCrashlytics           	       0x100b4a8fc FIRCLSSDKFileLog + 392
+2   FirebaseCrashlytics           	       0x100b4d604 FIRCLSMachExceptionReply + 320
+3   FirebaseCrashlytics           	       0x100b4d0d4 FIRCLSMachExceptionServer + 100
+4   libsystem_pthread.dylib       	       0x1e94f844c _pthread_start + 135
+5   libsystem_pthread.dylib       	       0x1e94f48cc thread_start + 7
+
+Thread 8 name:   Dispatch queue: com.apple.root.user-initiated-qos
+Thread 8 Crashed:
+0   HieuLuat.debug.dylib          	       0x10204dc88 ggml_metal_encoder_set_pipeline + 40
+1   HieuLuat.debug.dylib          	       0x10206117c ggml_metal_op_unary + 1448
+2   HieuLuat.debug.dylib          	       0x10205eb08 ggml_metal_op_encode_impl(ggml_metal_op*, int) + 4544
+3   HieuLuat.debug.dylib          	       0x10205d804 ggml_metal_op_encode + 92
+4   HieuLuat.debug.dylib          	       0x10217f3a0 __ggml_metal_set_n_cb_block_invoke + 524
+5   HieuLuat.debug.dylib          	       0x10217eb04 ggml_metal_graph_compute + 1184
+6   HieuLuat.debug.dylib          	       0x102456df4 ggml_backend_metal_graph_compute(ggml_backend*, ggml_cgraph*) + 44
+7   HieuLuat.debug.dylib          	       0x102390a34 ggml_backend_graph_compute_async + 92
+8   HieuLuat.debug.dylib          	       0x102395d74 ggml_backend_sched_compute_splits(ggml_backend_sched*) + 2448
+9   HieuLuat.debug.dylib          	       0x1023953cc ggml_backend_sched_graph_compute_async + 176
+10  HieuLuat.debug.dylib          	       0x10220d264 llama_context::graph_compute(ggml_cgraph*, bool) + 364
+11  HieuLuat.debug.dylib          	       0x10220ce70 llama_context::process_ubatch(llama_ubatch const&, llm_graph_type, llama_memory_context_i*, ggml_status&) + 720
+12  HieuLuat.debug.dylib          	       0x10220e9c8 llama_context::decode(llama_batch const&) + 2632
+13  HieuLuat.debug.dylib          	       0x10221533c llama_decode + 32
+14  HieuLuat.debug.dylib          	       0x1024a2a3c llama_bridge_run_inference + 568
+15  HieuLuat.debug.dylib          	       0x1026b54ac LlamaBridge.infer(prompt:) + 180
+16  HieuLuat.debug.dylib          	       0x102567718 closure #1 in AppDelegate.testLlamaBridge() + 324
+17  HieuLuat.debug.dylib          	       0x102567834 thunk for @escaping @callee_guaranteed @Sendable () -> () + 48
+18  libdispatch.dylib             	       0x1c56acadc _dispatch_call_block_and_release + 31
+19  libdispatch.dylib             	       0x1c56c67fc _dispatch_client_callout + 15
+20  libdispatch.dylib             	       0x1c56e341c <deduplicated_symbol> + 31
+21  libdispatch.dylib             	       0x1c56bf0bc _dispatch_root_queue_drain + 735
+22  libdispatch.dylib             	       0x1c56bf6fc _dispatch_worker_thread2 + 179
+23  libsystem_pthread.dylib       	       0x1e94f537c _pthread_wqthread + 231
+24  libsystem_pthread.dylib       	       0x1e94f48c0 start_wqthread + 7
+
+Thread 9:
+
+Thread 10:
+
+Thread 11:
+
+Thread 12:
+
+Thread 13 name:  JavaScriptCore libpas scavenger
+Thread 13:
+0   libsystem_kernel.dylib        	       0x23a1405d4 __psynch_cvwait + 8
+1   libsystem_pthread.dylib       	       0x1e94f6b58 _pthread_cond_wait + 983
+2   JavaScriptCore                	       0x1a1a71350 scavenger_thread_main + 1659
+3   libsystem_pthread.dylib       	       0x1e94f844c _pthread_start + 135
+4   libsystem_pthread.dylib       	       0x1e94f48cc thread_start + 7
+
+Thread 14 name:  Log work queue
+Thread 14:
+0   libsystem_kernel.dylib        	       0x23a13ac50 semaphore_wait_trap + 8
+1   WebKit                        	       0x1a7014bbc IPC::StreamConnectionWorkQueue::startProcessingThread()::$_0::operator()() + 47
+2   JavaScriptCore                	       0x1a1c0ed34 WTF::Thread::entryPoint(WTF::Thread::NewThreadContext*) + 367
+3   JavaScriptCore                	       0x1a1c0ee14 WTF::wtfThreadEntryPoint(void*) + 15
+4   libsystem_pthread.dylib       	       0x1e94f844c _pthread_start + 135
+5   libsystem_pthread.dylib       	       0x1e94f48cc thread_start + 7
+
+Thread 15 name:  com.apple.NSURLConnectionLoader
+Thread 15:
+0   libsystem_kernel.dylib        	       0x23a13acd4 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x23a13e2f8 mach_msg2_internal + 75
+2   libsystem_kernel.dylib        	       0x23a13e214 mach_msg_overwrite + 427
+3   libsystem_kernel.dylib        	       0x23a13e05c mach_msg + 23
+4   CoreFoundation                	       0x18c9cd868 __CFRunLoopServiceMachPort + 159
+5   CoreFoundation                	       0x18c9a4848 __CFRunLoopRun + 1187
+6   CoreFoundation                	       0x18c9a3a6c _CFRunLoopRunSpecificWithOptions + 531
+7   CFNetwork                     	       0x1a18f5c10 +[__CFN_CoreSchedulingSetRunnable _run:] + 415
+8   Foundation                    	       0x18a02321c __NSThread__start__ + 731
+9   libsystem_pthread.dylib       	       0x1e94f844c _pthread_start + 135
+10  libsystem_pthread.dylib       	       0x1e94f48cc thread_start + 7
+
+
+Thread 8 crashed with ARM Thread State (64-bit):
+    x0: 0x000000012ba144d0   x1: 0x000000016febc0a0   x2: 0x0000000000000000   x3: 0x000000016febc0c8
+    x4: 0x0000000121968280   x5: 0x000000000000001b   x6: 0x0000000000000101   x7: 0xfffff0003ffff800
+    x8: 0x0000000000000000   x9: 0x0000000121872750  x10: 0x0000000000000001  x11: 0x0000000000000000
+   x12: 0x0248e246804cda74  x13: 0x0248d242804cd270  x14: 0x00000000000cd800  x15: 0x0000000000000003
+   x16: 0x00000002a76368f0  x17: 0x000000048d242a70  x18: 0x0000000000000000  x19: 0x000000011ec78f00
+   x20: 0x000000011ec6cce0  x21: 0x0000000000000000  x22: 0x000000011ec69140  x23: 0x0000000000000114
+   x24: 0x0000000000000004  x25: 0x000000016fec30e0  x26: 0xffffffffffffffff  x27: 0x00000000fff0ffff
+   x28: 0x0000000000000000   fp: 0x000000016febbf40   lr: 0x000000010206117c
+    sp: 0x000000016febbf30   pc: 0x000000010204dc88 cpsr: 0x60001000
+   far: 0x0000000000000000  esr: 0x92000006 (Data Abort) byte read Translation fault
+
+Binary Images:
+       0x1005cc000 -        0x1005d7fff HieuLuat arm64  <8d5afefb1c2c377392b2779182e395f1> /var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/HieuLuat
+       0x101fd0000 -        0x102a7ffff HieuLuat.debug.dylib arm64  <24074196a17637549cfaf6fa8d5304d0> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/HieuLuat.debug.dylib
+       0x100724000 -        0x10073bfff FBLPromises arm64  <0dee0574dc353766b4ef02e851b0bac7> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FBLPromises.framework/FBLPromises
+       0x10075c000 -        0x100773fff FMDB arm64  <1215c511b27b35c7889ba5f04800d1de> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FMDB.framework/FMDB
+       0x100790000 -        0x10079bfff FirebaseABTesting arm64  <12f08dcff14335879239bc9d14c4f8f5> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseABTesting.framework/FirebaseABTesting
+       0x1007b0000 -        0x1007c7fff FirebaseCore arm64  <48c644ce71433669ad30b3db3cc34f62> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseCore.framework/FirebaseCore
+       0x100704000 -        0x10070bfff FirebaseCoreExtension arm64  <bbbe3122d13e3410b7926d35ed0f37f7> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseCoreExtension.framework/FirebaseCoreExtension
+       0x100864000 -        0x10088ffff FirebaseCoreInternal arm64  <d9a7172245763d839853a7a6a6c5a09e> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseCoreInternal.framework/FirebaseCoreInternal
+       0x100b28000 -        0x100b8bfff FirebaseCrashlytics arm64  <72d9daaf9d8a35b4b1c4f1bc07d90583> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseCrashlytics.framework/FirebaseCrashlytics
+       0x100bfc000 -        0x100c47fff FirebaseInAppMessaging arm64  <6fcb578e3794358cbc98363968c0f4a5> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseInAppMessaging.framework/FirebaseInAppMessaging
+       0x100a54000 -        0x100a73fff FirebaseInstallations arm64  <6bb23e66c7f1356db5ec3aa7ab2ec283> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseInstallations.framework/FirebaseInstallations
+       0x100aa0000 -        0x100ad3fff FirebaseRemoteConfig arm64  <69e0c34cb6e033bbaef422b681ca073c> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseRemoteConfig.framework/FirebaseRemoteConfig
+       0x100d2c000 -        0x100d5bfff FirebaseSessions arm64  <8f174cc1026a36d8bf57f6205a5afd82> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseSessions.framework/FirebaseSessions
+       0x100ca4000 -        0x100cd7fff GoogleDataTransport arm64  <76abd2c7788b3b80a11daeef901c16b2> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/GoogleDataTransport.framework/GoogleDataTransport
+       0x100db8000 -        0x100ddffff GoogleUtilities arm64  <a923c9c814363b3483ed8fa6dad0cfb2> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/GoogleUtilities.framework/GoogleUtilities
+       0x100f14000 -        0x100f83fff Mixpanel arm64  <b48cb59fd5fa3666a22b98427e959634> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/Mixpanel.framework/Mixpanel
+       0x100e10000 -        0x100e2bfff Promises arm64  <98415bbd2f8735c38758eac0473da2d5> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/Promises.framework/Promises
+       0x100e54000 -        0x100e77fff SwiftyJSON arm64  <d22f5c08506e30d1856f064a437988e6> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/SwiftyJSON.framework/SwiftyJSON
+       0x1010c4000 -        0x10110ffff ZIPFoundation arm64  <712a9d46d8f33c4291e418f6f5da1dc5> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/ZIPFoundation.framework/ZIPFoundation
+       0x100804000 -        0x10080ffff nanopb arm64  <b57294fca4bc34e5a028c200bf18a73e> /private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/nanopb.framework/nanopb
+       0x1008f8000 -        0x100903fff libobjc-trampolines.dylib arm64e  <1954b963897d321f88be880ecef5b408> /private/preboot/Cryptexes/OS/usr/lib/libobjc-trampolines.dylib
+       0x100648000 -        0x10065bfff GAXClient arm64e  <95fa94bd585e3d41a48310d722bc5efe> /System/Library/AccessibilityBundles/GAXClient.bundle/GAXClient
+       0x1c56ab000 -        0x1c56f121f libdispatch.dylib arm64e  <904d48a3d99e3962bfa9c3dfb66bba83> /usr/lib/system/libdispatch.dylib
+       0x18c987000 -        0x18cf0d73f CoreFoundation arm64e  <d52bceeee890347c84611537154e22d9> /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+       0x231314000 -        0x23131c7ff GraphicsServices arm64e  <12a401ff966436029f17f3047446e62b> /System/Library/PrivateFrameworks/GraphicsServices.framework/GraphicsServices
+       0x1923b6000 -        0x1948159bf UIKitCore arm64e  <a70d8d96f3a53099901127eeb49d7be8> /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+       0x18997a000 -        0x189a19347 dyld arm64e  <7631b298c24e3532b62500a1ad73c1fd> /usr/lib/dyld
+               0x0 - 0xffffffffffffffff ??? unknown-arch  <00000000000000000000000000000000> ???
+       0x1898f8000 -        0x189949b5f libobjc.A.dylib arm64e  <4358daf977583542a1e19f185534a911> /usr/lib/libobjc.A.dylib
+       0x23a13a000 -        0x23a174d2b libsystem_kernel.dylib arm64e  <8d8301292cbe32a9b61ece493eecb399> /usr/lib/system/libsystem_kernel.dylib
+       0x189fc1000 -        0x18ae07c9f Foundation arm64e  <4c3912d2e14a3a21926b54bef625be89> /System/Library/Frameworks/Foundation.framework/Foundation
+       0x1e94f4000 -        0x1e950045f libsystem_pthread.dylib arm64e  <4f94107b94d23e888542f5403c581b50> /usr/lib/system/libsystem_pthread.dylib
+       0x1982b1000 -        0x1983315af libsystem_c.dylib arm64e  <61a33aa9d6683b35a859b6925c4047b9> /usr/lib/system/libsystem_c.dylib
+       0x2a7636000 -        0x2a763df3b libsystem_platform.dylib arm64e  <440513f7c74e35a6a34ad06a9df88547> /usr/lib/system/libsystem_platform.dylib
+       0x2a75bb000 -        0x2a75be190 libsystem_blocks.dylib arm64e  <020a49c8f4fd35378b960ce840330f55> /usr/lib/system/libsystem_blocks.dylib
+       0x1a1a64000 -        0x1a349733f JavaScriptCore arm64e  <b24f906d9ff0332b8cf35f1d3239d0ab> /System/Library/Frameworks/JavaScriptCore.framework/JavaScriptCore
+       0x1a6f7d000 -        0x1a86517ff WebKit arm64e  <6e978fe3934d3ae496a2b499fca08604> /System/Library/Frameworks/WebKit.framework/WebKit
+       0x1a16ad000 -        0x1a1a638bf CFNetwork arm64e  <ac6cb88437403320999436594af6ad73> /System/Library/Frameworks/CFNetwork.framework/CFNetwork
+
+VM Region Summary:
+ReadOnly portion of Libraries: Total=1.7G resident=0K(0%) swapped_out_or_unallocated=1.7G(100%)
+Writable regions: Total=1.5G written=2243K(0%) resident=2195K(0%) swapped_out=48K(0%) unallocated=1.5G(100%)
+
+                                VIRTUAL   REGION 
+REGION TYPE                        SIZE    COUNT (non-coalesced) 
+===========                     =======  ======= 
+.note.gnu.proper                    320        1 
+Activity Tracing                   256K        1 
+Audio                               64K        1 
+CoreAnimation                       48K        3 
+Foundation                          16K        1 
+Kernel Alloc Once                   32K        1 
+MALLOC                             1.3G       43 
+MALLOC guard page                 4080K        4 
+Mach message                        16K        1 
+SQLite page cache                 1408K       11 
+STACK GUARD                        240K       15 
+Stack                             8640K       16 
+VM_ALLOCATE                       1008K       10 
+WebKit Malloc                    256.1M        8 
+__AUTH                            7853K      702 
+__AUTH_CONST                     101.3M     1093 
+__CTF                               824        1 
+__DATA                            50.7M     1063 
+__DATA_CONST                      34.0M     1119 
+__DATA_DIRTY                      9641K      967 
+__FONT_DATA                        2352        1 
+__INFO_FILTER                         8        1 
+__LINKEDIT                       189.6M       23 
+__OBJC_RO                         84.2M        1 
+__OBJC_RW                         3177K        1 
+__TEXT                             1.5G     1134 
+__TEXT (graphics)                   48K        1 
+__TPRO_CONST                       128K        2 
+mapped file                        3.0G       29 
+page table in kernel              2195K        1 
+shared memory                       80K        4 
+===========                     =======  ======= 
+TOTAL                              6.5G     6259 
+
+
+-----------
+Full Report
+-----------
+
+{"app_name":"HieuLuat","timestamp":"2026-04-10 11:08:20.00 +0700","app_version":"2.6","slice_uuid":"8d5afefb-1c2c-3773-92b2-779182e395f1","build_version":"22090801","platform":"2","bundleID":"com.vietlh.WeThoong","share_with_app_devs":"0","is_first_party":"0","bug_type":"309","os_version":"iPhone OS 26.3 (23D127)","roots_installed":"0","name":"HieuLuat","incident_id":"FE67E9CA-3558-4473-A72D-434914CC7CB7"}
+{
+"uptime": 320000,
+"procRole": "Foreground",
+"version": 2,
+"userID": 501,
+"deployVersion": 210,
+"modelCode": "iPhone14,3",
+"coalitionID": 757,
+"osVersion": {
+"isEmbedded": true,
+"train": "iPhone OS 26.3",
+"releaseType": "User",
+"build": "23D127"
+},
+"captureTime": "2026-04-10 11:08:19.2955 +0700",
+"codeSigningMonitor": 2,
+"incident": "FE67E9CA-3558-4473-A72D-434914CC7CB7",
+"pid": 16217,
+"translated": false,
+"cpuType": "ARM-64",
+"procLaunch": "2026-04-10 11:08:12.3489 +0700",
+"procStartAbsTime": 7799518787830,
+"procExitAbsTime": 7799683259099,
+"procName": "HieuLuat",
+"procPath": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/HieuLuat",
+"bundleInfo": {
+"CFBundleShortVersionString": "2.6",
+"CFBundleVersion": "22090801",
+"CFBundleIdentifier": "com.vietlh.WeThoong"
+},
+"storeInfo": {
+"deviceIdentifierForVendor": "D34A5733-1B79-4FA9-9D2B-AF5BE5E9B868",
+"thirdParty": true
+},
+"parentProc": "launchd",
+"parentPid": 1,
+"coalitionName": "com.vietlh.WeThoong",
+"crashReporterKey": "ff19a4586c630f7730b06822beae5d529c245626",
+"appleIntelligenceStatus": {
+"reasons": [
+"deviceNotCapable"
+],
+"state": "unavailable"
+},
+"developerMode": 1,
+"bootProgressRegister": "0x20800004",
+"wasUnlockedSinceBoot": 1,
+"isLocked": 0,
+"codeSigningID": "com.vietlh.WeThoong",
+"codeSigningTeamID": "D95825NFBM",
+"codeSigningFlags": 570434309,
+"codeSigningValidationCategory": 3,
+"codeSigningTrustLevel": 4,
+"codeSigningAuxiliaryInfo": 9007199254740992,
+"instructionByteStream": {
+"beforePC": "/4MA0f17Aan9QwCR6AMBquAHAPnpAwiq6QMA+ekHQPkgAUD5CAFA+Q==",
+"atPC": "AgFA+Y21I5T9e0Gp/4MAkcADX9b/wwDR/XsCqf2DAJHoAwGqoIMf+A=="
+},
+"bootSessionUUID": "59500434-AD04-41CA-B10B-1DB9DF2D6F12",
+"basebandVersion": "5.40.01",
+"vmRegionInfo": "0 is not in any region.  Bytes before following region: 4301045760\n      REGION TYPE                 START - END      [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL\n      UNUSED SPACE AT START\n--->  \n      __TEXT                   1005cc000-1005d8000 [   48K] r-x/r-x SM=COW  /var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/HieuLuat",
+"exception": {
+"codes": "0x0000000000000001, 0x0000000000000000",
+"rawCodes": [
+1,
+0
+],
+"type": "EXC_BAD_ACCESS",
+"signal": "SIGSEGV",
+"subtype": "KERN_INVALID_ADDRESS at 0x0000000000000000"
+},
+"termination": {
+"flags": 0,
+"code": 11,
+"namespace": "SIGNAL",
+"indicator": "Segmentation fault: 11",
+"byProc": "exc handler",
+"byPid": 16217
+},
+"vmregioninfo": "0 is not in any region.  Bytes before following region: 4301045760\n      REGION TYPE                 START - END      [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL\n      UNUSED SPACE AT START\n--->  \n      __TEXT                   1005cc000-1005d8000 [   48K] r-x/r-x SM=COW  /var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/HieuLuat",
+"faultingThread": 8,
+"threads": [
+{
+"id": 2680141,
+"threadState": {
+"x": [
+{
+"value": 6165832136
+},
+{
+"value": 216172786453924279,
+"symbolLocation": 216172782113783815,
+"symbol": "type metadata for SplashScreenViewController"
+},
+{
+"value": 4334735940,
+"symbolLocation": 56,
+"symbol": "closure #1 in SplashScreenViewController.completeInitialization()"
+},
+{
+"value": 5008166960
+},
+{
+"value": 32
+},
+{
+"value": 22003117457408
+},
+{
+"value": 2
+},
+{
+"value": 4294967295
+},
+{
+"value": 6602855484,
+"symbolLocation": 0,
+"symbol": "objc_retain"
+},
+{
+"value": 259
+},
+{
+"value": 144115192415996343,
+"symbolLocation": 144115188075855879,
+"symbol": "type metadata for SplashScreenViewController"
+},
+{
+"value": 216172786453924279,
+"symbolLocation": 216172782113783815,
+"symbol": "type metadata for SplashScreenViewController"
+},
+{
+"value": 34
+},
+{
+"value": 40
+},
+{
+"value": 34
+},
+{
+"value": 18446744068904173568
+},
+{
+"value": 216172786453924279,
+"symbolLocation": 216172782113783815,
+"symbol": "type metadata for SplashScreenViewController"
+},
+{
+"value": 288230380491852215,
+"symbolLocation": 288230376151711751,
+"symbol": "type metadata for SplashScreenViewController"
+},
+{
+"value": 0
+},
+{
+"value": 8422757248,
+"symbolLocation": 0,
+"symbol": "_dispatch_main_q"
+},
+{
+"value": 4805378048
+},
+{
+"value": 0
+},
+{
+"value": 272
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 8422843104,
+"symbolLocation": 224,
+"symbol": "_main_thread"
+},
+{
+"value": 8422757248,
+"symbolLocation": 0,
+"symbol": "_dispatch_main_q"
+},
+{
+"value": 18437737153627684860
+},
+{
+"value": 8422843104,
+"symbolLocation": 224,
+"symbol": "_main_thread"
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 4334736024
+},
+"cpsr": {
+"value": 1610616832
+},
+"fp": {
+"value": 6165832192
+},
+"sp": {
+"value": 6165832112
+},
+"esr": {
+"value": 2181038087,
+"description": "(Instruction Abort) Translation fault"
+},
+"pc": {
+"value": 4334763944
+},
+"far": {
+"value": 4334763944
+}
+},
+"queue": "com.apple.main-thread",
+"frames": [
+{
+"imageOffset": 6438824,
+"symbol": "outlined destroy of SplashScreenViewController?",
+"symbolLocation": 0,
+"imageIndex": 1
+},
+{
+"imageOffset": 6410904,
+"symbol": "closure #1 in SplashScreenViewController.completeInitialization()",
+"symbolLocation": 140,
+"imageIndex": 1
+},
+{
+"imageOffset": 5256184,
+"symbol": "thunk for @escaping @callee_guaranteed () -> ()",
+"symbolLocation": 48,
+"imageIndex": 1
+},
+{
+"imageOffset": 112636,
+"symbol": "_dispatch_client_callout",
+"symbolLocation": 15,
+"imageIndex": 22
+},
+{
+"imageOffset": 26212,
+"symbol": "_dispatch_continuation_pop",
+"symbolLocation": 595,
+"imageIndex": 22
+},
+{
+"imageOffset": 103736,
+"symbol": "_dispatch_source_latch_and_call",
+"symbolLocation": 395,
+"imageIndex": 22
+},
+{
+"imageOffset": 98828,
+"symbol": "_dispatch_source_invoke",
+"symbolLocation": 843,
+"imageIndex": 22
+},
+{
+"imageOffset": 231988,
+"symbol": "_dispatch_main_queue_drain.cold.5",
+"symbolLocation": 591,
+"imageIndex": 22
+},
+{
+"imageOffset": 69320,
+"symbol": "_dispatch_main_queue_drain",
+"symbolLocation": 179,
+"imageIndex": 22
+},
+{
+"imageOffset": 69124,
+"symbol": "_dispatch_main_queue_callback_4CF",
+"symbolLocation": 43,
+"imageIndex": 22
+},
+{
+"imageOffset": 434868,
+"symbol": "__CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__",
+"symbolLocation": 15,
+"imageIndex": 23
+},
+{
+"imageOffset": 121660,
+"symbol": "__CFRunLoopRun",
+"symbolLocation": 1943,
+"imageIndex": 23
+},
+{
+"imageOffset": 117356,
+"symbol": "_CFRunLoopRunSpecificWithOptions",
+"symbolLocation": 531,
+"imageIndex": 23
+},
+{
+"imageOffset": 5272,
+"symbol": "GSEventRunModal",
+"symbolLocation": 119,
+"imageIndex": 24
+},
+{
+"imageOffset": 646648,
+"symbol": "-[UIApplication _run]",
+"symbolLocation": 791,
+"imageIndex": 25
+},
+{
+"imageOffset": 290388,
+"symbol": "UIApplicationMain",
+"symbolLocation": 335,
+"imageIndex": 25
+},
+{
+"imageOffset": 5865532,
+"symbol": "__debug_main_executable_dylib_entry_point",
+"symbolLocation": 64,
+"imageIndex": 1
+},
+{
+"imageOffset": 20008,
+"symbol": "start",
+"symbolLocation": 7115,
+"imageIndex": 26
+}
+]
+},
+{
+"id": 2680152,
+"frames": [],
+"threadState": {
+"x": [
+{
+"value": 6166392832
+},
+{
+"value": 3331
+},
+{
+"value": 6165856256
+},
+{
+"value": 0
+},
+{
+"value": 409603
+},
+{
+"value": 18446744073709551615
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 0
+},
+"cpsr": {
+"value": 4096
+},
+"fp": {
+"value": 0
+},
+"sp": {
+"value": 6166392832
+},
+"esr": {
+"value": 1442840704,
+"description": "(Syscall)"
+},
+"pc": {
+"value": 8209254584
+},
+"far": {
+"value": 0
+}
+}
+},
+{
+"id": 2680153,
+"frames": [],
+"threadState": {
+"x": [
+{
+"value": 6166966272
+},
+{
+"value": 7427
+},
+{
+"value": 6166429696
+},
+{
+"value": 0
+},
+{
+"value": 409604
+},
+{
+"value": 18446744073709551615
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 0
+},
+"cpsr": {
+"value": 4096
+},
+"fp": {
+"value": 0
+},
+"sp": {
+"value": 6166966272
+},
+"esr": {
+"value": 1442840704,
+"description": "(Syscall)"
+},
+"pc": {
+"value": 8209254584
+},
+"far": {
+"value": 0
+}
+}
+},
+{
+"id": 2680155,
+"frames": [],
+"threadState": {
+"x": [
+{
+"value": 6168113152
+},
+{
+"value": 10499
+},
+{
+"value": 6167576576
+},
+{
+"value": 0
+},
+{
+"value": 409603
+},
+{
+"value": 18446744073709551615
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 0
+},
+"cpsr": {
+"value": 4096
+},
+"fp": {
+"value": 0
+},
+"sp": {
+"value": 6168113152
+},
+"esr": {
+"value": 1442840704,
+"description": "(Syscall)"
+},
+"pc": {
+"value": 8209254584
+},
+"far": {
+"value": 0
+}
+}
+},
+{
+"id": 2680158,
+"name": "com.apple.uikit.eventfetch-thread",
+"threadState": {
+"x": [
+{
+"value": 268451845
+},
+{
+"value": 21592279046
+},
+{
+"value": 8589934592
+},
+{
+"value": 60486024429568
+},
+{
+"value": 0
+},
+{
+"value": 60486024429568
+},
+{
+"value": 2
+},
+{
+"value": 4294967295
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 2
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 14083
+},
+{
+"value": 256
+},
+{
+"value": 0
+},
+{
+"value": 18446744073709551569
+},
+{
+"value": 1099511628034
+},
+{
+"value": 0
+},
+{
+"value": 4294967295
+},
+{
+"value": 2
+},
+{
+"value": 60486024429568
+},
+{
+"value": 0
+},
+{
+"value": 60486024429568
+},
+{
+"value": 6169828744
+},
+{
+"value": 8589934592
+},
+{
+"value": 21592279046
+},
+{
+"value": 18446744073709550527
+},
+{
+"value": 10889134080,
+"symbolLocation": 0,
+"symbol": "_libkernel_string_functions"
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 9564316408
+},
+"cpsr": {
+"value": 4096
+},
+"fp": {
+"value": 6169828592
+},
+"sp": {
+"value": 6169828512
+},
+"esr": {
+"value": 1442840704,
+"description": "(Syscall)"
+},
+"pc": {
+"value": 9564302548
+},
+"far": {
+"value": 0
+}
+},
+"frames": [
+{
+"imageOffset": 3284,
+"symbol": "mach_msg2_trap",
+"symbolLocation": 8,
+"imageIndex": 29
+},
+{
+"imageOffset": 17144,
+"symbol": "mach_msg2_internal",
+"symbolLocation": 75,
+"imageIndex": 29
+},
+{
+"imageOffset": 16916,
+"symbol": "mach_msg_overwrite",
+"symbolLocation": 427,
+"imageIndex": 29
+},
+{
+"imageOffset": 16476,
+"symbol": "mach_msg",
+"symbolLocation": 23,
+"imageIndex": 29
+},
+{
+"imageOffset": 288872,
+"symbol": "__CFRunLoopServiceMachPort",
+"symbolLocation": 159,
+"imageIndex": 23
+},
+{
+"imageOffset": 120904,
+"symbol": "__CFRunLoopRun",
+"symbolLocation": 1187,
+"imageIndex": 23
+},
+{
+"imageOffset": 117356,
+"symbol": "_CFRunLoopRunSpecificWithOptions",
+"symbolLocation": 531,
+"imageIndex": 23
+},
+{
+"imageOffset": 10104660,
+"symbol": "-[NSRunLoop(NSRunLoop) runMode:beforeDate:]",
+"symbolLocation": 211,
+"imageIndex": 30
+},
+{
+"imageOffset": 10105132,
+"symbol": "-[NSRunLoop(NSRunLoop) runUntilDate:]",
+"symbolLocation": 63,
+"imageIndex": 30
+},
+{
+"imageOffset": 471188,
+"symbol": "-[UIEventFetcher threadMain]",
+"symbolLocation": 407,
+"imageIndex": 25
+},
+{
+"imageOffset": 401948,
+"symbol": "__NSThread__start__",
+"symbolLocation": 731,
+"imageIndex": 30
+},
+{
+"imageOffset": 17484,
+"symbol": "_pthread_start",
+"symbolLocation": 135,
+"imageIndex": 31
+},
+{
+"imageOffset": 2252,
+"symbol": "thread_start",
+"symbolLocation": 7,
+"imageIndex": 31
+}
+]
+},
+{
+"id": 2680164,
+"frames": [],
+"threadState": {
+"x": [
+{
+"value": 6170406912
+},
+{
+"value": 28931
+},
+{
+"value": 6169870336
+},
+{
+"value": 0
+},
+{
+"value": 409604
+},
+{
+"value": 18446744073709551615
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 0
+},
+"cpsr": {
+"value": 4096
+},
+"fp": {
+"value": 0
+},
+"sp": {
+"value": 6170406912
+},
+"esr": {
+"value": 1442840704,
+"description": "(Syscall)"
+},
+"pc": {
+"value": 8209254584
+},
+"far": {
+"value": 0
+}
+}
+},
+{
+"id": 2680166,
+"threadState": {
+"x": [
+{
+"value": 4
+},
+{
+"value": 0
+},
+{
+"value": 1
+},
+{
+"value": 1
+},
+{
+"value": 0
+},
+{
+"value": 500000000
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 8422750536,
+"symbolLocation": 0,
+"symbol": "clock_sem"
+},
+{
+"value": 3
+},
+{
+"value": 17
+},
+{
+"value": 2
+},
+{
+"value": 1
+},
+{
+"value": 4802775360
+},
+{
+"value": 72057602460961433,
+"symbolLocation": 72057594037927937,
+"symbol": "OBJC_CLASS_$_NSLock"
+},
+{
+"value": 8423033496,
+"symbolLocation": 0,
+"symbol": "OBJC_CLASS_$_NSLock"
+},
+{
+"value": 334
+},
+{
+"value": 8448994352
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 6171553200
+},
+{
+"value": 4811590064
+},
+{
+"value": 4
+},
+{
+"value": 6171554016
+},
+{
+"value": 8422759040,
+"symbolLocation": 1536,
+"symbol": "_dispatch_root_queues"
+},
+{
+"value": 1535
+},
+{
+"value": 8399504772,
+"symbolLocation": 0,
+"symbol": "_dispatch_continuation_cache_limit"
+},
+{
+"value": 284
+},
+{
+"value": 0
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 6847977444
+},
+"cpsr": {
+"value": 2684358656
+},
+"fp": {
+"value": 6171553184
+},
+"sp": {
+"value": 6171553136
+},
+"esr": {
+"value": 1442840704,
+"description": "(Syscall)"
+},
+"pc": {
+"value": 9564325876
+},
+"far": {
+"value": 0
+}
+},
+"queue": "com.apple.root.default-qos",
+"frames": [
+{
+"imageOffset": 26612,
+"symbol": "__semwait_signal",
+"symbolLocation": 8,
+"imageIndex": 29
+},
+{
+"imageOffset": 51172,
+"symbol": "nanosleep",
+"symbolLocation": 219,
+"imageIndex": 32
+},
+{
+"imageOffset": 50940,
+"symbol": "usleep",
+"symbolLocation": 67,
+"imageIndex": 32
+},
+{
+"imageOffset": 516468,
+"symbol": "__ggml_metal_rsets_init_block_invoke",
+"symbolLocation": 396,
+"imageIndex": 1
+},
+{
+"imageOffset": 6876,
+"symbol": "_dispatch_call_block_and_release",
+"symbolLocation": 31,
+"imageIndex": 22
+},
+{
+"imageOffset": 112636,
+"symbol": "_dispatch_client_callout",
+"symbolLocation": 15,
+"imageIndex": 22
+},
+{
+"imageOffset": 227376,
+"symbol": "_dispatch_queue_override_invoke.cold.3",
+"symbolLocation": 107,
+"imageIndex": 22
+},
+{
+"imageOffset": 25340,
+"symbol": "_dispatch_queue_override_invoke",
+"symbolLocation": 847,
+"imageIndex": 22
+},
+{
+"imageOffset": 81736,
+"symbol": "_dispatch_root_queue_drain",
+"symbolLocation": 363,
+"imageIndex": 22
+},
+{
+"imageOffset": 83708,
+"symbol": "_dispatch_worker_thread2",
+"symbolLocation": 179,
+"imageIndex": 22
+},
+{
+"imageOffset": 4988,
+"symbol": "_pthread_wqthread",
+"symbolLocation": 231,
+"imageIndex": 31
+},
+{
+"imageOffset": 2240,
+"symbol": "start_wqthread",
+"symbolLocation": 7,
+"imageIndex": 31
+}
+]
+},
+{
+"id": 2680169,
+"name": "com.google.firebase.crashlytics.MachExceptionServer",
+"threadState": {
+"x": [
+{
+"value": 1
+},
+{
+"value": 0
+},
+{
+"value": 1
+},
+{
+"value": 11398245636
+},
+{
+"value": 10758893076481
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 4307013276
+},
+{
+"value": 6
+},
+{
+"value": 1
+},
+{
+"value": 2505
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 11538317736,
+"symbolLocation": 0,
+"symbol": "_NSConcreteStackBlock"
+},
+{
+"value": 11538317736,
+"symbolLocation": 0,
+"symbol": "_NSConcreteStackBlock"
+},
+{
+"value": 4
+},
+{
+"value": 11397741484,
+"symbolLocation": 0,
+"symbol": "-[__NSStackBlock__ release]"
+},
+{
+"value": 0
+},
+{
+"value": 6172147712
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 4306807036
+},
+"cpsr": {
+"value": 4096
+},
+"fp": {
+"value": 4312120992
+},
+"sp": {
+"value": 4312120800
+},
+"esr": {
+"value": 1442840704,
+"description": "(Syscall)"
+},
+"pc": {
+"value": 9564319780
+},
+"far": {
+"value": 0
+}
+},
+"frames": [
+{
+"imageOffset": 20516,
+"symbol": "write",
+"symbolLocation": 8,
+"imageIndex": 29
+},
+{
+"imageOffset": 141564,
+"symbol": "FIRCLSSDKFileLog",
+"symbolLocation": 392,
+"imageIndex": 8
+},
+{
+"imageOffset": 153092,
+"symbol": "FIRCLSMachExceptionReply",
+"symbolLocation": 320,
+"imageIndex": 8
+},
+{
+"imageOffset": 151764,
+"symbol": "FIRCLSMachExceptionServer",
+"symbolLocation": 100,
+"imageIndex": 8
+},
+{
+"imageOffset": 17484,
+"symbol": "_pthread_start",
+"symbolLocation": 135,
+"imageIndex": 31
+},
+{
+"imageOffset": 2252,
+"symbol": "thread_start",
+"symbolLocation": 7,
+"imageIndex": 31
+}
+]
+},
+{
+"triggered": true,
+"id": 2680178,
+"threadState": {
+"x": [
+{
+"value": 5026956496
+},
+{
+"value": 6172688544
+},
+{
+"value": 0
+},
+{
+"value": 6172688584
+},
+{
+"value": 4858479232
+},
+{
+"value": 27
+},
+{
+"value": 257
+},
+{
+"value": 18446726482597246976
+},
+{
+"value": 0
+},
+{
+"value": 4857472848
+},
+{
+"value": 1
+},
+{
+"value": 0
+},
+{
+"value": 164630178827131508
+},
+{
+"value": 164612569461215856
+},
+{
+"value": 841728
+},
+{
+"value": 3
+},
+{
+"value": 11398244592,
+"symbolLocation": 0,
+"symbol": "_platform_memmove"
+},
+{
+"value": 19547826800
+},
+{
+"value": 0
+},
+{
+"value": 4811362048
+},
+{
+"value": 4811312352
+},
+{
+"value": 0
+},
+{
+"value": 4811297088
+},
+{
+"value": 276
+},
+{
+"value": 4
+},
+{
+"value": 6172717280
+},
+{
+"value": 18446744073709551615
+},
+{
+"value": 4293984255
+},
+{
+"value": 0
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 4328919420
+},
+"cpsr": {
+"value": 1610616832
+},
+"fp": {
+"value": 6172688192
+},
+"sp": {
+"value": 6172688176
+},
+"esr": {
+"value": 2449473542,
+"description": "(Data Abort) byte read Translation fault"
+},
+"pc": {
+"value": 4328840328,
+"matchesCrashFrame": 1
+},
+"far": {
+"value": 0
+}
+},
+"queue": "com.apple.root.user-initiated-qos",
+"frames": [
+{
+"imageOffset": 515208,
+"symbol": "ggml_metal_encoder_set_pipeline",
+"symbolLocation": 40,
+"imageIndex": 1
+},
+{
+"imageOffset": 594300,
+"symbol": "ggml_metal_op_unary",
+"symbolLocation": 1448,
+"imageIndex": 1
+},
+{
+"imageOffset": 584456,
+"symbol": "ggml_metal_op_encode_impl(ggml_metal_op*, int)",
+"symbolLocation": 4544,
+"imageIndex": 1
+},
+{
+"imageOffset": 579588,
+"symbol": "ggml_metal_op_encode",
+"symbolLocation": 92,
+"imageIndex": 1
+},
+{
+"imageOffset": 1766304,
+"symbol": "__ggml_metal_set_n_cb_block_invoke",
+"symbolLocation": 524,
+"imageIndex": 1
+},
+{
+"imageOffset": 1764100,
+"symbol": "ggml_metal_graph_compute",
+"symbolLocation": 1184,
+"imageIndex": 1
+},
+{
+"imageOffset": 4746740,
+"symbol": "ggml_backend_metal_graph_compute(ggml_backend*, ggml_cgraph*)",
+"symbolLocation": 44,
+"imageIndex": 1
+},
+{
+"imageOffset": 3934772,
+"symbol": "ggml_backend_graph_compute_async",
+"symbolLocation": 92,
+"imageIndex": 1
+},
+{
+"imageOffset": 3956084,
+"symbol": "ggml_backend_sched_compute_splits(ggml_backend_sched*)",
+"symbolLocation": 2448,
+"imageIndex": 1
+},
+{
+"imageOffset": 3953612,
+"symbol": "ggml_backend_sched_graph_compute_async",
+"symbolLocation": 176,
+"imageIndex": 1
+},
+{
+"imageOffset": 2347620,
+"symbol": "llama_context::graph_compute(ggml_cgraph*, bool)",
+"symbolLocation": 364,
+"imageIndex": 1
+},
+{
+"imageOffset": 2346608,
+"symbol": "llama_context::process_ubatch(llama_ubatch const&, llm_graph_type, llama_memory_context_i*, ggml_status&)",
+"symbolLocation": 720,
+"imageIndex": 1
+},
+{
+"imageOffset": 2353608,
+"symbol": "llama_context::decode(llama_batch const&)",
+"symbolLocation": 2632,
+"imageIndex": 1
+},
+{
+"imageOffset": 2380604,
+"symbol": "llama_decode",
+"symbolLocation": 32,
+"imageIndex": 1
+},
+{
+"imageOffset": 5057084,
+"symbol": "llama_bridge_run_inference",
+"symbolLocation": 568,
+"imageIndex": 1
+},
+{
+"imageOffset": 7230636,
+"symbol": "LlamaBridge.infer(prompt:)",
+"symbolLocation": 180,
+"imageIndex": 1
+},
+{
+"imageOffset": 5863192,
+"symbol": "closure #1 in AppDelegate.testLlamaBridge()",
+"symbolLocation": 324,
+"imageIndex": 1
+},
+{
+"imageOffset": 5863476,
+"symbol": "thunk for @escaping @callee_guaranteed @Sendable () -> ()",
+"symbolLocation": 48,
+"imageIndex": 1
+},
+{
+"imageOffset": 6876,
+"symbol": "_dispatch_call_block_and_release",
+"symbolLocation": 31,
+"imageIndex": 22
+},
+{
+"imageOffset": 112636,
+"symbol": "_dispatch_client_callout",
+"symbolLocation": 15,
+"imageIndex": 22
+},
+{
+"imageOffset": 230428,
+"symbol": "<deduplicated_symbol>",
+"symbolLocation": 31,
+"imageIndex": 22
+},
+{
+"imageOffset": 82108,
+"symbol": "_dispatch_root_queue_drain",
+"symbolLocation": 735,
+"imageIndex": 22
+},
+{
+"imageOffset": 83708,
+"symbol": "_dispatch_worker_thread2",
+"symbolLocation": 179,
+"imageIndex": 22
+},
+{
+"imageOffset": 4988,
+"symbol": "_pthread_wqthread",
+"symbolLocation": 231,
+"imageIndex": 31
+},
+{
+"imageOffset": 2240,
+"symbol": "start_wqthread",
+"symbolLocation": 7,
+"imageIndex": 31
+}
+]
+},
+{
+"id": 2680182,
+"frames": [],
+"threadState": {
+"x": [
+{
+"value": 6173290496
+},
+{
+"value": 41731
+},
+{
+"value": 6172753920
+},
+{
+"value": 0
+},
+{
+"value": 409604
+},
+{
+"value": 18446744073709551615
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 0
+},
+"cpsr": {
+"value": 4096
+},
+"fp": {
+"value": 0
+},
+"sp": {
+"value": 6173290496
+},
+"esr": {
+"value": 1442840704,
+"description": "(Syscall)"
+},
+"pc": {
+"value": 8209254584
+},
+"far": {
+"value": 0
+}
+}
+},
+{
+"id": 2680183,
+"frames": [],
+"threadState": {
+"x": [
+{
+"value": 6173863936
+},
+{
+"value": 41475
+},
+{
+"value": 6173327360
+},
+{
+"value": 0
+},
+{
+"value": 409604
+},
+{
+"value": 18446744073709551615
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 0
+},
+"cpsr": {
+"value": 4096
+},
+"fp": {
+"value": 0
+},
+"sp": {
+"value": 6173863936
+},
+"esr": {
+"value": 1442840704,
+"description": "(Syscall)"
+},
+"pc": {
+"value": 8209254584
+},
+"far": {
+"value": 0
+}
+}
+},
+{
+"id": 2680184,
+"frames": [],
+"threadState": {
+"x": [
+{
+"value": 6174437376
+},
+{
+"value": 41219
+},
+{
+"value": 6173900800
+},
+{
+"value": 0
+},
+{
+"value": 409604
+},
+{
+"value": 18446744073709551615
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 0
+},
+"cpsr": {
+"value": 4096
+},
+"fp": {
+"value": 0
+},
+"sp": {
+"value": 6174437376
+},
+"esr": {
+"value": 1442840704,
+"description": "(Syscall)"
+},
+"pc": {
+"value": 8209254584
+},
+"far": {
+"value": 0
+}
+}
+},
+{
+"id": 2680202,
+"frames": [],
+"threadState": {
+"x": [
+{
+"value": 6177878016
+},
+{
+"value": 39459
+},
+{
+"value": 6177341440
+},
+{
+"value": 0
+},
+{
+"value": 409604
+},
+{
+"value": 18446744073709551615
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 0
+},
+"cpsr": {
+"value": 4096
+},
+"fp": {
+"value": 0
+},
+"sp": {
+"value": 6177878016
+},
+"esr": {
+"value": 1442840704,
+"description": "(Syscall)"
+},
+"pc": {
+"value": 8209254584
+},
+"far": {
+"value": 0
+}
+}
+},
+{
+"id": 2680203,
+"name": "JavaScriptCore libpas scavenger",
+"threadState": {
+"x": [
+{
+"value": 260
+},
+{
+"value": 0
+},
+{
+"value": 34816
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 160
+},
+{
+"value": 9
+},
+{
+"value": 999998984
+},
+{
+"value": 6178451112
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 2
+},
+{
+"value": 2
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 305
+},
+{
+"value": 8448994096
+},
+{
+"value": 0
+},
+{
+"value": 4522027072
+},
+{
+"value": 4522027136
+},
+{
+"value": 6178451680
+},
+{
+"value": 999998984
+},
+{
+"value": 9
+},
+{
+"value": 34816
+},
+{
+"value": 38913
+},
+{
+"value": 39168
+},
+{
+"value": 8384864256,
+"symbolLocation": 4715336,
+"symbol": "pas_mar_global_registry"
+},
+{
+"value": 8426692608,
+"symbolLocation": 4648,
+"symbol": "bmalloc_common_primitive_heap_support"
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 8209263448
+},
+"cpsr": {
+"value": 1610616832
+},
+"fp": {
+"value": 6178451232
+},
+"sp": {
+"value": 6178451088
+},
+"esr": {
+"value": 1442840704,
+"description": "(Syscall)"
+},
+"pc": {
+"value": 9564325332
+},
+"far": {
+"value": 0
+}
+},
+"frames": [
+{
+"imageOffset": 26068,
+"symbol": "__psynch_cvwait",
+"symbolLocation": 8,
+"imageIndex": 29
+},
+{
+"imageOffset": 11096,
+"symbol": "_pthread_cond_wait",
+"symbolLocation": 983,
+"imageIndex": 31
+},
+{
+"imageOffset": 54096,
+"symbol": "scavenger_thread_main",
+"symbolLocation": 1659,
+"imageIndex": 35
+},
+{
+"imageOffset": 17484,
+"symbol": "_pthread_start",
+"symbolLocation": 135,
+"imageIndex": 31
+},
+{
+"imageOffset": 2252,
+"symbol": "thread_start",
+"symbolLocation": 7,
+"imageIndex": 31
+}
+]
+},
+{
+"id": 2680243,
+"name": "Log work queue",
+"threadState": {
+"x": [
+{
+"value": 14
+},
+{
+"value": 4791652454
+},
+{
+"value": 0
+},
+{
+"value": 6179019040
+},
+{
+"value": 8389151976,
+"symbolLocation": 0,
+"symbol": "_os_log_current_test_callback"
+},
+{
+"value": 2219101995766382596
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 4092
+},
+{
+"value": 8422773160,
+"symbolLocation": 0,
+"symbol": "OBJC_CLASS_$_OS_os_log"
+},
+{
+"value": 8422773160,
+"symbolLocation": 0,
+"symbol": "OBJC_CLASS_$_OS_os_log"
+},
+{
+"value": 18446744073709551580
+},
+{
+"value": 8448939216
+},
+{
+"value": 0
+},
+{
+"value": 4664067072
+},
+{
+"value": 4664067112
+},
+{
+"value": 6179024896
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 4664067200
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 0
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 7096847292
+},
+"cpsr": {
+"value": 2147487744
+},
+"fp": {
+"value": 6179024704
+},
+"sp": {
+"value": 6179024672
+},
+"esr": {
+"value": 1442840704,
+"description": "(Syscall)"
+},
+"pc": {
+"value": 9564302416
+},
+"far": {
+"value": 0
+}
+},
+"frames": [
+{
+"imageOffset": 3152,
+"symbol": "semaphore_wait_trap",
+"symbolLocation": 8,
+"imageIndex": 29
+},
+{
+"imageOffset": 621500,
+"symbol": "IPC::StreamConnectionWorkQueue::startProcessingThread()::$_0::operator()()",
+"symbolLocation": 47,
+"imageIndex": 36
+},
+{
+"imageOffset": 1748276,
+"symbol": "WTF::Thread::entryPoint(WTF::Thread::NewThreadContext*)",
+"symbolLocation": 367,
+"imageIndex": 35
+},
+{
+"imageOffset": 1748500,
+"symbol": "WTF::wtfThreadEntryPoint(void*)",
+"symbolLocation": 15,
+"imageIndex": 35
+},
+{
+"imageOffset": 17484,
+"symbol": "_pthread_start",
+"symbolLocation": 135,
+"imageIndex": 31
+},
+{
+"imageOffset": 2252,
+"symbol": "thread_start",
+"symbolLocation": 7,
+"imageIndex": 31
+}
+]
+},
+{
+"id": 2680248,
+"name": "com.apple.NSURLConnectionLoader",
+"threadState": {
+"x": [
+{
+"value": 268451845
+},
+{
+"value": 21592279046
+},
+{
+"value": 8589934592
+},
+{
+"value": 219949570195456
+},
+{
+"value": 0
+},
+{
+"value": 219949570195456
+},
+{
+"value": 2
+},
+{
+"value": 4294967295
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 2
+},
+{
+"value": 0
+},
+{
+"value": 0
+},
+{
+"value": 51211
+},
+{
+"value": 6400
+},
+{
+"value": 0
+},
+{
+"value": 18446744073709551569
+},
+{
+"value": 27487790700802
+},
+{
+"value": 0
+},
+{
+"value": 4294967295
+},
+{
+"value": 2
+},
+{
+"value": 219949570195456
+},
+{
+"value": 0
+},
+{
+"value": 219949570195456
+},
+{
+"value": 6179593544
+},
+{
+"value": 8589934592
+},
+{
+"value": 21592279046
+},
+{
+"value": 18446744073709550527
+},
+{
+"value": 10889134080,
+"symbolLocation": 0,
+"symbol": "_libkernel_string_functions"
+}
+],
+"flavor": "ARM_THREAD_STATE64",
+"lr": {
+"value": 9564316408
+},
+"cpsr": {
+"value": 4096
+},
+"fp": {
+"value": 6179593392
+},
+"sp": {
+"value": 6179593312
+},
+"esr": {
+"value": 1442840704,
+"description": "(Syscall)"
+},
+"pc": {
+"value": 9564302548
+},
+"far": {
+"value": 0
+}
+},
+"frames": [
+{
+"imageOffset": 3284,
+"symbol": "mach_msg2_trap",
+"symbolLocation": 8,
+"imageIndex": 29
+},
+{
+"imageOffset": 17144,
+"symbol": "mach_msg2_internal",
+"symbolLocation": 75,
+"imageIndex": 29
+},
+{
+"imageOffset": 16916,
+"symbol": "mach_msg_overwrite",
+"symbolLocation": 427,
+"imageIndex": 29
+},
+{
+"imageOffset": 16476,
+"symbol": "mach_msg",
+"symbolLocation": 23,
+"imageIndex": 29
+},
+{
+"imageOffset": 288872,
+"symbol": "__CFRunLoopServiceMachPort",
+"symbolLocation": 159,
+"imageIndex": 23
+},
+{
+"imageOffset": 120904,
+"symbol": "__CFRunLoopRun",
+"symbolLocation": 1187,
+"imageIndex": 23
+},
+{
+"imageOffset": 117356,
+"symbol": "_CFRunLoopRunSpecificWithOptions",
+"symbolLocation": 531,
+"imageIndex": 23
+},
+{
+"imageOffset": 2395152,
+"symbol": "+[__CFN_CoreSchedulingSetRunnable _run:]",
+"symbolLocation": 415,
+"imageIndex": 37
+},
+{
+"imageOffset": 401948,
+"symbol": "__NSThread__start__",
+"symbolLocation": 731,
+"imageIndex": 30
+},
+{
+"imageOffset": 17484,
+"symbol": "_pthread_start",
+"symbolLocation": 135,
+"imageIndex": 31
+},
+{
+"imageOffset": 2252,
+"symbol": "thread_start",
+"symbolLocation": 7,
+"imageIndex": 31
+}
+]
+}
+],
+"usedImages": [
+{
+"source": "P",
+"arch": "arm64",
+"base": 4301045760,
+"size": 49152,
+"uuid": "8d5afefb-1c2c-3773-92b2-779182e395f1",
+"path": "/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/HieuLuat",
+"name": "HieuLuat"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4328325120,
+"size": 11206656,
+"uuid": "24074196-a176-3754-9cfa-f6fa8d5304d0",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/HieuLuat.debug.dylib",
+"name": "HieuLuat.debug.dylib"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4302454784,
+"size": 98304,
+"uuid": "0dee0574-dc35-3766-b4ef-02e851b0bac7",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FBLPromises.framework/FBLPromises",
+"name": "FBLPromises"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4302684160,
+"size": 98304,
+"uuid": "1215c511-b27b-35c7-889b-a5f04800d1de",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FMDB.framework/FMDB",
+"name": "FMDB"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4302897152,
+"size": 49152,
+"uuid": "12f08dcf-f143-3587-9239-bc9d14c4f8f5",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseABTesting.framework/FirebaseABTesting",
+"name": "FirebaseABTesting"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4303028224,
+"size": 98304,
+"uuid": "48c644ce-7143-3669-ad30-b3db3cc34f62",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseCore.framework/FirebaseCore",
+"name": "FirebaseCore"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4302323712,
+"size": 32768,
+"uuid": "bbbe3122-d13e-3410-b792-6d35ed0f37f7",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseCoreExtension.framework/FirebaseCoreExtension",
+"name": "FirebaseCoreExtension"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4303765504,
+"size": 180224,
+"uuid": "d9a71722-4576-3d83-9853-a7a6a6c5a09e",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseCoreInternal.framework/FirebaseCoreInternal",
+"name": "FirebaseCoreInternal"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4306665472,
+"size": 409600,
+"uuid": "72d9daaf-9d8a-35b4-b1c4-f1bc07d90583",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseCrashlytics.framework/FirebaseCrashlytics",
+"name": "FirebaseCrashlytics"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4307533824,
+"size": 311296,
+"uuid": "6fcb578e-3794-358c-bc98-363968c0f4a5",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseInAppMessaging.framework/FirebaseInAppMessaging",
+"name": "FirebaseInAppMessaging"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4305797120,
+"size": 131072,
+"uuid": "6bb23e66-c7f1-356d-b5ec-3aa7ab2ec283",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseInstallations.framework/FirebaseInstallations",
+"name": "FirebaseInstallations"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4306108416,
+"size": 212992,
+"uuid": "69e0c34c-b6e0-33bb-aef4-22b681ca073c",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseRemoteConfig.framework/FirebaseRemoteConfig",
+"name": "FirebaseRemoteConfig"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4308779008,
+"size": 196608,
+"uuid": "8f174cc1-026a-36d8-bf57-f6205a5afd82",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/FirebaseSessions.framework/FirebaseSessions",
+"name": "FirebaseSessions"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4308221952,
+"size": 212992,
+"uuid": "76abd2c7-788b-3b80-a11d-aeef901c16b2",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/GoogleDataTransport.framework/GoogleDataTransport",
+"name": "GoogleDataTransport"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4309352448,
+"size": 163840,
+"uuid": "a923c9c8-1436-3b34-83ed-8fa6dad0cfb2",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/GoogleUtilities.framework/GoogleUtilities",
+"name": "GoogleUtilities"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4310777856,
+"size": 458752,
+"uuid": "b48cb59f-d5fa-3666-a22b-98427e959634",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/Mixpanel.framework/Mixpanel",
+"name": "Mixpanel"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4309712896,
+"size": 114688,
+"uuid": "98415bbd-2f87-35c3-8758-eac0473da2d5",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/Promises.framework/Promises",
+"name": "Promises"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4309991424,
+"size": 147456,
+"uuid": "d22f5c08-506e-30d1-856f-064a437988e6",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/SwiftyJSON.framework/SwiftyJSON",
+"name": "SwiftyJSON"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4312547328,
+"size": 311296,
+"uuid": "712a9d46-d8f3-3c42-91e4-18f6f5da1dc5",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/ZIPFoundation.framework/ZIPFoundation",
+"name": "ZIPFoundation"
+},
+{
+"source": "P",
+"arch": "arm64",
+"base": 4303372288,
+"size": 49152,
+"uuid": "b57294fc-a4bc-34e5-a028-c200bf18a73e",
+"path": "/private/var/containers/Bundle/Application/20E910B3-DF8F-4F26-9971-39D1EE31670E/HieuLuat.app/Frameworks/nanopb.framework/nanopb",
+"name": "nanopb"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 4304371712,
+"size": 49152,
+"uuid": "1954b963-897d-321f-88be-880ecef5b408",
+"path": "/private/preboot/Cryptexes/OS/usr/lib/libobjc-trampolines.dylib",
+"name": "libobjc-trampolines.dylib"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 4301553664,
+"size": 81920,
+"uuid": "95fa94bd-585e-3d41-a483-10d722bc5efe",
+"path": "/System/Library/AccessibilityBundles/GAXClient.bundle/GAXClient",
+"name": "GAXClient"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 7607070720,
+"size": 287264,
+"uuid": "904d48a3-d99e-3962-bfa9-c3dfb66bba83",
+"path": "/usr/lib/system/libdispatch.dylib",
+"name": "libdispatch.dylib"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 6653767680,
+"size": 5793600,
+"uuid": "d52bceee-e890-347c-8461-1537154e22d9",
+"path": "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation",
+"name": "CoreFoundation"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 9415245824,
+"size": 34816,
+"uuid": "12a401ff-9664-3602-9f17-f3047446e62b",
+"path": "/System/Library/PrivateFrameworks/GraphicsServices.framework/GraphicsServices",
+"name": "GraphicsServices"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 6748332032,
+"size": 38140352,
+"uuid": "a70d8d96-f3a5-3099-9011-27eeb49d7be8",
+"path": "/System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore",
+"name": "UIKitCore"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 6603382784,
+"size": 652104,
+"uuid": "7631b298-c24e-3532-b625-00a1ad73c1fd",
+"path": "/usr/lib/dyld",
+"name": "dyld"
+},
+{
+"size": 0,
+"source": "A",
+"base": 0,
+"uuid": "00000000-0000-0000-0000-000000000000"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 6602850304,
+"size": 334688,
+"uuid": "4358daf9-7758-3542-a1e1-9f185534a911",
+"path": "/usr/lib/libobjc.A.dylib",
+"name": "libobjc.A.dylib"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 9564299264,
+"size": 240940,
+"uuid": "8d830129-2cbe-32a9-b61e-ce493eecb399",
+"path": "/usr/lib/system/libsystem_kernel.dylib",
+"name": "libsystem_kernel.dylib"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 6609965056,
+"size": 14970016,
+"uuid": "4c3912d2-e14a-3a21-926b-54bef625be89",
+"path": "/System/Library/Frameworks/Foundation.framework/Foundation",
+"name": "Foundation"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 8209252352,
+"size": 50272,
+"uuid": "4f94107b-94d2-3e88-8542-f5403c581b50",
+"path": "/usr/lib/system/libsystem_pthread.dylib",
+"name": "libsystem_pthread.dylib"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 6847926272,
+"size": 525744,
+"uuid": "61a33aa9-d668-3b35-a859-b6925c4047b9",
+"path": "/usr/lib/system/libsystem_c.dylib",
+"name": "libsystem_c.dylib"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 11398242304,
+"size": 32572,
+"uuid": "440513f7-c74e-35a6-a34a-d06a9df88547",
+"path": "/usr/lib/system/libsystem_platform.dylib",
+"name": "libsystem_platform.dylib"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 11397738496,
+"size": 12689,
+"uuid": "020a49c8-f4fd-3537-8b96-0ce840330f55",
+"path": "/usr/lib/system/libsystem_blocks.dylib",
+"name": "libsystem_blocks.dylib"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 7006994432,
+"size": 27472704,
+"uuid": "b24f906d-9ff0-332b-8cf3-5f1d3239d0ab",
+"path": "/System/Library/Frameworks/JavaScriptCore.framework/JavaScriptCore",
+"name": "JavaScriptCore"
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 7096225792,
+"size": 23939072,
+"uuid": "6e978fe3-934d-3ae4-96a2-b499fca08604",
+"path": "/System/Library/Frameworks/WebKit.framework/WebKit",
+"name": "WebKit" 
+},
+{
+"source": "P",
+"arch": "arm64e",
+"base": 7003099136,
+"size": 3893440,
+"uuid": "ac6cb884-3740-3320-9994-36594af6ad73",
+"path": "/System/Library/Frameworks/CFNetwork.framework/CFNetwork",
+"name": "CFNetwork"
+}
+],
+"sharedCache": {
+"base": 6602244096,
+"size": 5197791232,
+"uuid": "cbbac057-efde-31bf-9a9d-f243b3010db1"
+},
+"vmSummary": "ReadOn

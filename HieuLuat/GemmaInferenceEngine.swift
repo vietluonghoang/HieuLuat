@@ -52,7 +52,7 @@ class GemmaInferenceEngine: AIInferenceEngine {
         guard let model = model else { return }
         let inputs = model.modelDescription.inputDescriptionsByName.keys.sorted()
         let outputs = model.modelDescription.outputDescriptionsByName.keys.sorted()
-        Logger.debug("[\(label)] inputs=\(inputs) outputs=\(outputs)", category: .aiModel)
+        print("[\(label)] inputs=\(inputs) outputs=\(outputs)")
     }
 
     /// Inspect a model's input description to check if it has a given input name.
@@ -69,7 +69,7 @@ class GemmaInferenceEngine: AIInferenceEngine {
         // NOTE: isCancelled is set to false INSIDE the async block to avoid race condition
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else {
-                Logger.error("Self reference lost in async block", category: .inference)
+                print("Self reference lost in async block")
                 DispatchQueue.main.async { completion([]) }
                 return
             }
@@ -77,10 +77,10 @@ class GemmaInferenceEngine: AIInferenceEngine {
             // Reset cancellation at the start of actual work
             self.isCancelled = false
 
-            Logger.info("Starting Gemma inference", category: .inference)
+            print("Starting Gemma inference")
             let tokens = self.generate(inputTokens: inputTokens, maxNewTokens: maxNewTokens,
                                        stopTokenIds: stopTokenIds)
-            Logger.info("Gemma inference completed with \(tokens.count) tokens", category: .inference)
+            print("Gemma inference completed with \(tokens.count) tokens")
 
             DispatchQueue.main.async { completion(tokens) }
         }
@@ -94,30 +94,30 @@ class GemmaInferenceEngine: AIInferenceEngine {
 
     private func generate(inputTokens: [Int], maxNewTokens: Int, stopTokenIds: Set<Int>) -> [Int] {
         guard !inputTokens.isEmpty else {
-            Logger.warning("Empty input tokens for Gemma inference", category: .inference)
+            print("Empty input tokens for Gemma inference")
             return []
         }
 
         // Reset state at the start of each generation
         resetState()
 
-        Logger.info("Gemma prefill starting (\(inputTokens.count) tokens)", category: .inference)
+        print("Gemma prefill starting (\(inputTokens.count) tokens)")
 
         do {
             // Prefill: process all input tokens one-by-one (memory safe)
             for i in 0..<inputTokens.count {
                 if isCancelled {
-                    Logger.warning("Gemma prefill cancelled at \(i)/\(inputTokens.count)", category: .inference)
+                    print("Gemma prefill cancelled at \(i)/\(inputTokens.count)")
                     return []
                 }
 
                 try inferSingleToken(tokenId: inputTokens[i])
 
                 if i > 0 && i % 200 == 0 {
-                    Logger.debug("Gemma prefill progress: \(i)/\(inputTokens.count)", category: .inference)
+                    print("Gemma prefill progress: \(i)/\(inputTokens.count)")
                 }
             }
-            Logger.info("Gemma prefill done (contextPosition: \(contextPosition))", category: .inference)
+            print("Gemma prefill done (contextPosition: \(contextPosition))")
 
             // Decode: generate new tokens auto-regressively
             var generatedTokens = [Int]()
@@ -125,7 +125,7 @@ class GemmaInferenceEngine: AIInferenceEngine {
 
             for step in 0..<maxNewTokens {
                 if isCancelled {
-                    Logger.warning("Gemma decode cancelled at step \(step)", category: .inference)
+                    print("Gemma decode cancelled at step \(step)")
                     return generatedTokens
                 }
 
@@ -133,7 +133,7 @@ class GemmaInferenceEngine: AIInferenceEngine {
                 generatedTokens.append(nextToken)
 
                 if stopTokenIds.contains(nextToken) {
-                    Logger.debug("Gemma stop token reached at step \(step)", category: .inference)
+                    print("Gemma stop token reached at step \(step)")
                     break
                 }
                 currentToken = nextToken
@@ -141,7 +141,7 @@ class GemmaInferenceEngine: AIInferenceEngine {
 
             return generatedTokens
         } catch {
-            Logger.error("Gemma inference error", error: error, category: .inference)
+            print("Gemma inference error", "error:", error)
             return []
         }
     }
@@ -159,13 +159,13 @@ class GemmaInferenceEngine: AIInferenceEngine {
         let inputIds = try createInputIds(token: tokenId)
 
         if contextPosition == 0 {
-            Logger.info("Processing first token (ANE compilation may take 1-2 min)", category: .inference)
+            print("Processing first token (ANE compilation may take 1-2 min)")
         }
         
         let embedOutput = try runEmbeddings(inputIds: inputIds)
         
         if contextPosition == 0 {
-            Logger.info("Running FFN with \(ffnModels.count) chunks", category: .inference)
+            print("Running FFN with \(ffnModels.count) chunks")
         }
 
         _ = try runFFNChunks(hiddenStates: embedOutput)
@@ -186,7 +186,7 @@ class GemmaInferenceEngine: AIInferenceEngine {
         let token = try runLMHead(hiddenStates: hiddenStates)
 
         if decodeCount == 0 {
-            Logger.debug("Decode first token: \(token)", category: .inference)
+            print("Decode first token: \(token)")
         }
         decodeCount += 1
         return token
