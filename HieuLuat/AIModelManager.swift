@@ -58,14 +58,26 @@ struct AIRuntimeConfig {
     
     static func fromRemoteConfig() -> AIRuntimeConfig {
         let rc = RemoteConfig.remoteConfig()
+        let gpuLayers = Int32(rc.configValue(forKey: "aiGpuLayers").numberValue.int32Value)
+        let contextLength = rc.configValue(forKey: "aiContextLength").numberValue.intValue
+        let batchSize = rc.configValue(forKey: "aiBatchSize").numberValue.intValue
+        let threadCount = rc.configValue(forKey: "aiThreadCount").numberValue.intValue
+        let maxNewTokens = rc.configValue(forKey: "aiMaxNewTokens").numberValue.intValue
+        let minimumRAMGB = rc.configValue(forKey: "aiMinimumRAM").numberValue.intValue
+        let minimumDiskSpaceGB = rc.configValue(forKey: "aiMinimumDiskSpace").numberValue.intValue
+        
+        NSLog("DEBUG: AIRuntimeConfig.fromRemoteConfig() - aiGpuLayers raw value: %@", 
+              rc.configValue(forKey: "aiGpuLayers"))
+        NSLog("DEBUG: AIRuntimeConfig.fromRemoteConfig() - gpuLayers parsed: %d", gpuLayers)
+        
         return AIRuntimeConfig(
-            gpuLayers: Int32(rc.configValue(forKey: "aiGpuLayers").numberValue.int32Value),
-            contextLength: rc.configValue(forKey: "aiContextLength").numberValue.intValue,
-            batchSize: rc.configValue(forKey: "aiBatchSize").numberValue.intValue,
-            threadCount: rc.configValue(forKey: "aiThreadCount").numberValue.intValue,
-            maxNewTokens: rc.configValue(forKey: "aiMaxNewTokens").numberValue.intValue,
-            minimumRAMGB: rc.configValue(forKey: "aiMinimumRAM").numberValue.intValue,
-            minimumDiskSpaceGB: rc.configValue(forKey: "aiMinimumDiskSpace").numberValue.intValue
+            gpuLayers: gpuLayers,
+            contextLength: contextLength,
+            batchSize: batchSize,
+            threadCount: threadCount,
+            maxNewTokens: maxNewTokens,
+            minimumRAMGB: minimumRAMGB,
+            minimumDiskSpaceGB: minimumDiskSpaceGB
         )
     }
     

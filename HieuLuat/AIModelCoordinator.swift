@@ -50,6 +50,8 @@ class AIModelCoordinator: NSObject {
         
         guard manager.shouldPromptUser() else {
             if manager.checkModelAvailability() {
+                // Must fetch remote config BEFORE loading models to get GPU layers setting
+                manager.fetchRemoteModelConfig()
                 overlay.show()
                 listenForModelState()
                 manager.loadModels()
