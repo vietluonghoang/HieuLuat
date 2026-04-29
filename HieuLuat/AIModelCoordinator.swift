@@ -19,6 +19,8 @@ class AIModelCoordinator: NSObject {
     private let unzipper = AIModelUnzipper()
     private let overlay = AIModelOverlayWindow.shared
     
+    private var modelFileSizeBytes: Int64?
+    
     private override init() {
         super.init()
         downloader.delegate = self
@@ -52,7 +54,7 @@ class AIModelCoordinator: NSObject {
             if manager.checkModelAvailability() {
                 // Must fetch remote config BEFORE loading models to get GPU layers setting
                 manager.fetchRemoteModelConfig()
-                overlay.show()
+                overlay.showMinimized()
                 listenForModelState()
                 manager.loadModels()
             } else {
@@ -61,16 +63,33 @@ class AIModelCoordinator: NSObject {
             return
         }
         
+        // Try to get model file size from remote config
+        let fileSizeGB = getModelFileSizeGB()
+        let message: String
+        if let sizeGB = fileSizeGB, sizeGB > 0 {
+            message = String(format: "Bạn có muốn kích hoạt AI Search hỗ trợ tìm kiếm? (Cần tải khoảng %.1f GB dữ liệu)", sizeGB)
+        } else {
+            message = "Bạn có muốn kích hoạt AI Search hỗ trợ tìm kiếm?"
+        }
+        
         let alert = UIAlertController(
             title: "AI Search",
-            message: "Bạn có muốn kích hoạt AI Search hỗ trợ tìm kiếm? (Cần tải khoảng 4GB dữ liệu)",
+            message: message,
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: "Kích hoạt", style: .default) { [weak self] _ in
             self?.manager.userDidOptIn()
             self?.startFullPipeline()
         })
-        alert.addAction(UIAlertAction(title: "Để sau", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Để sau", style: .default, handler: nil))
+        
+        // Style the buttons with custom colors
+        if let optInAction = alert.actions.first {
+            optInAction.setValue(UIColor(red: 56/255, green: 207/255, blue: 109/255, alpha: 1), forKey: "titleTextColor")
+        }
+        if let optOutAction = alert.actions.last {
+            optOutAction.setValue(UIColor.gray, forKey: "titleTextColor")
+        }
         
         viewController.present(alert, animated: true, completion: nil)
     }
@@ -119,20 +138,37 @@ class AIModelCoordinator: NSObject {
     }
     
     private func showCellularWarning() {
+        let fileSizeGB = getModelFileSizeGB()
+        let message: String
+        if let sizeGB = fileSizeGB, sizeGB > 0 {
+            message = String(format: "Bạn đang sử dụng mạng di động (4G/5G). Mô hình AI có dung lượng khoảng %.1f GB, có thể tiêu tốn nhiều dữ liệu. Bạn có muốn tiếp tục?", sizeGB)
+        } else {
+            message = "Bạn đang sử dụng mạng di động (4G/5G). Việc tải mô hình AI có thể tiêu tốn nhiều dữ liệu. Bạn có muốn tiếp tục?"
+        }
+        
         let alert = UIAlertController(
             title: "Đang dùng dữ liệu di động",
-            message: "Bạn đang sử dụng mạng di động (4G/5G). Mô hình AI có dung lượng khoảng 4GB, có thể tiêu tốn nhiều dữ liệu. Bạn có muốn tiếp tục?",
+            message: message,
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "Tiếp tục tải", style: .destructive) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "Tiếp tục tải", style: .default) { [weak self] _ in
             self?.beginDownload()
         })
-        alert.addAction(UIAlertAction(title: "Đợi WiFi", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Đợi WiFi", style: .default, handler: nil))
+        
+        // Style the buttons
+        if let continueAction = alert.actions.first {
+            continueAction.setValue(UIColor(red: 56/255, green: 207/255, blue: 109/255, alpha: 1), forKey: "titleTextColor")
+        }
+        if let waitAction = alert.actions.last {
+            waitAction.setValue(UIColor.gray, forKey: "titleTextColor")
+        }
+        
         topViewController()?.present(alert, animated: true, completion: nil)
     }
     
     private func beginDownload() {
-        overlay.show()
+        overlay.showMinimized()
         listenForModelState()
         manager.startDownload()
         
@@ -166,6 +202,17 @@ class AIModelCoordinator: NSObject {
     private func getModelURL() -> String? {
         let remoteConfig = FirebaseRemoteConfig.RemoteConfig.remoteConfig()
         return remoteConfig.configValue(forKey: "aiModelUrl").stringValue
+    }
+    
+    private func getModelFileSizeGB() -> Double? {
+        let remoteConfig = FirebaseRemoteConfig.RemoteConfig.remoteConfig()
+        let sizeBytes = remoteConfig.configValue(forKey: "aiModelFileSizeBytes").numberValue.int64Value
+        
+        // Only return if a valid size is configured (> 0)
+        guard sizeBytes > 0 else { return nil }
+        
+        let sizeGB = Double(sizeBytes) / (1024.0 * 1024.0 * 1024.0)
+        return sizeGB
     }
     
     private func listenForModelState() {
@@ -226,14 +273,26 @@ class AIModelCoordinator: NSObject {
                 preferredStyle: .alert
             )
             alert.addAction(UIAlertAction(title: "Thử lại", style: .default) { [weak self] _ in
-                self?.overlay.show()
+                self?.overlay.showMinimized()
                 self?.listenForModelState()
                 self?.manager.loadModels()
             })
-            alert.addAction(UIAlertAction(title: "Tắt AI", style: .destructive) { [weak self] _ in
+            alert.addAction(UIAlertAction(title: "Tắt AI", style: .default) { [weak self] _ in
                 self?.manager.userDidOptOut()
             })
-            alert.addAction(UIAlertAction(title: "Để sau", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Để sau", style: .default, handler: nil))
+            
+            // Style the buttons
+            if let retryAction = alert.actions[0] as? UIAlertAction {
+                retryAction.setValue(UIColor(red: 56/255, green: 207/255, blue: 109/255, alpha: 1), forKey: "titleTextColor")
+            }
+            if let disableAction = alert.actions[1] as? UIAlertAction {
+                disableAction.setValue(UIColor(red: 255/255, green: 59/255, blue: 48/255, alpha: 1), forKey: "titleTextColor")
+            }
+            if let laterAction = alert.actions[2] as? UIAlertAction {
+                laterAction.setValue(UIColor.gray, forKey: "titleTextColor")
+            }
+            
             self?.topViewController()?.present(alert, animated: true, completion: nil)
         }
     }

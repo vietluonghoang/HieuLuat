@@ -103,6 +103,7 @@ class AIModelOverlayWindow: UIWindow {
         ])
 
         let bgTap = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
+        bgTap.cancelsTouchesInView = false
         backgroundView.addGestureRecognizer(bgTap)
 
         if #available(iOS 13.0, *) {
@@ -292,7 +293,8 @@ class AIModelOverlayWindow: UIWindow {
     }
 
     @objc private func backgroundTapped() {
-        if !isShowingSuccess && !isShowingError {
+        // Allow minimize from background tap unless showing success
+        if !isShowingSuccess {
             animateToMinimized()
         }
     }
@@ -434,6 +436,28 @@ class AIModelOverlayWindow: UIWindow {
             }
         }
     }
+    
+    /// Show directly in minimized state (floating bubble)
+    func showMinimized() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.isMinimized = true
+            self.isShowingSuccess = false
+            self.isShowingError = false
+            self.resetUI()
+            self.backgroundView.isHidden = true
+            self.cardView.isHidden = true
+            self.bubbleView.isHidden = false
+            self.bubbleView.alpha = 0
+            self.bubbleView.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
+            self.isHidden = false
+            UIView.animate(withDuration: 0.3) {
+                self.alpha = 1
+                self.bubbleView.alpha = 1
+                self.bubbleView.transform = .identity
+            }
+        }
+    }
 
     func dismiss() {
         DispatchQueue.main.async { [weak self] in
@@ -454,6 +478,21 @@ class AIModelOverlayWindow: UIWindow {
             })
         }
     }
+    
+    /// Dismiss overlay and ensure it's not visible (reset to safe state)
+    func dismissCompletely() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.isHidden = true
+            self.alpha = 0
+            self.isMinimized = false
+            self.isShowingSuccess = false
+            self.isShowingError = false
+            self.bubbleView.isHidden = true
+            self.backgroundView.isHidden = true
+            self.cardView.isHidden = true
+        }
+    }
 
     func updateDownloadProgress(progress: Double, speed: Double, downloadedMB: Double, totalMB: Double) {
         DispatchQueue.main.async { [weak self] in
@@ -461,6 +500,11 @@ class AIModelOverlayWindow: UIWindow {
             self.currentProgress = Float(progress)
             self.currentStatusText = "Tải AI"
             self.isShowingSuccess = false
+
+            // Auto-minimize if expanded (unless showing error)
+            if !self.isMinimized && !self.isShowingError {
+                self.animateToMinimized()
+            }
 
             self.statusLabel.text = "Đang tải mô hình AI..."
             self.statusLabel.textColor = .gray
@@ -487,6 +531,11 @@ class AIModelOverlayWindow: UIWindow {
             self.currentStatusText = "Giải nén"
             self.isShowingSuccess = false
 
+            // Auto-minimize if expanded (unless showing error)
+            if !self.isMinimized && !self.isShowingError {
+                self.animateToMinimized()
+            }
+
             self.statusLabel.text = "Đang giải nén..."
             self.statusLabel.textColor = .gray
             self.progressView.isHidden = false
@@ -512,6 +561,11 @@ class AIModelOverlayWindow: UIWindow {
             self.currentStatusText = "Nạp AI"
             self.isShowingSuccess = false
 
+            // Auto-minimize if expanded (unless showing error)
+            if !self.isMinimized && !self.isShowingError {
+                self.animateToMinimized()
+            }
+
             self.statusLabel.text = "Đang nạp mô hình... (\(current)/\(total))"
             self.statusLabel.textColor = .gray
             self.progressView.isHidden = false
@@ -535,6 +589,11 @@ class AIModelOverlayWindow: UIWindow {
             self.isShowingSuccess = true
             self.currentProgress = 1.0
 
+            // Force expand to show checkmark (unless already expanded)
+            if self.isMinimized {
+                self.animateToExpanded()
+            }
+
             self.statusLabel.isHidden = true
             self.progressView.isHidden = true
             self.percentageLabel.isHidden = true
@@ -545,7 +604,8 @@ class AIModelOverlayWindow: UIWindow {
             self.minimizeButton.isHidden = true
             self.checkmarkLabel.isHidden = false
 
-            if self.isMinimized { self.syncBubbleState() }
+            // Also update bubble state for minimized transition
+            self.syncBubbleState()
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
                 self?.dismiss()
