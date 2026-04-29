@@ -500,9 +500,10 @@ class AIModelOverlayWindow: UIWindow {
             self.currentProgress = Float(progress)
             self.currentStatusText = "Tải AI"
             self.isShowingSuccess = false
+            self.isShowingError = false  // Clear error flag when progress resumes
 
-            // Auto-minimize if expanded (unless showing error)
-            if !self.isMinimized && !self.isShowingError {
+            // Auto-minimize if expanded
+            if !self.isMinimized {
                 self.animateToMinimized()
             }
 
@@ -530,9 +531,10 @@ class AIModelOverlayWindow: UIWindow {
             self.currentProgress = Float(progress)
             self.currentStatusText = "Giải nén"
             self.isShowingSuccess = false
+            self.isShowingError = false  // Clear error flag when progress resumes
 
-            // Auto-minimize if expanded (unless showing error)
-            if !self.isMinimized && !self.isShowingError {
+            // Auto-minimize if expanded
+            if !self.isMinimized {
                 self.animateToMinimized()
             }
 
@@ -560,9 +562,10 @@ class AIModelOverlayWindow: UIWindow {
             self.currentProgress = fraction
             self.currentStatusText = "Nạp AI"
             self.isShowingSuccess = false
+            self.isShowingError = false  // Clear error flag when progress resumes
 
-            // Auto-minimize if expanded (unless showing error)
-            if !self.isMinimized && !self.isShowingError {
+            // Auto-minimize if expanded
+            if !self.isMinimized {
                 self.animateToMinimized()
             }
 

@@ -1,16 +1,137 @@
-
-Showing All Errors Only
-CompileC /Users/vietcat/Library/Developer/Xcode/DerivedData/HieuLuat-agkjobuqjlmomhaomykimnbhnzcl/Build/Intermediates.noindex/HieuLuat.build/Debug-iphoneos/HieuLuat.build/Objects-normal/arm64/wkv.o /Users/vietcat/Desktop/Workshop/Hieuluat/Code/HieuLuat/HieuLuat/llama.cpp/ggml/src/ggml-sycl/wkv.cpp normal arm64 c++ com.apple.compilers.llvm.clang.1_0.compiler (in target 'HieuLuat' from project 'HieuLuat')
-    cd /Users/vietcat/Desktop/Workshop/Hieuluat/Code/HieuLuat/HieuLuat
-    
-    Using response file: /Users/vietcat/Library/Developer/Xcode/DerivedData/HieuLuat-agkjobuqjlmomhaomykimnbhnzcl/Build/Intermediates.noindex/HieuLuat.build/Debug-iphoneos/HieuLuat.build/Objects-normal/arm64/82b82416624d2658e5098eb0a28c15c5-common-args.resp
-    
-    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -ivfsstatcache /Users/vietcat/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphoneos26.2-23C53-dc75598d0054f22ec865fa860f139d723794476bd08197c3e2abd9bb477ef7f7.sdkstatcache -fmessage-length\=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit\=0 -fno-color-diagnostics -fmodules-prune-interval\=86400 -fmodules-prune-after\=345600 -fbuild-session-file\=/Users/vietcat/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -fmodules-validate-once-per-build-session -Wnon-modular-include-in-framework-module -Werror\=non-modular-include-in-framework-module -Wno-trigraphs -Wno-missing-field-initializers -Wno-missing-prototypes -Werror\=return-type -Wdocumentation -Wunreachable-code -Werror\=deprecated-objc-isa-usage -Werror\=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wno-float-conversion -Wnon-literal-null-conversion -Wobjc-literal-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -Wno-implicit-fallthrough -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -Wno-sign-conversion -Winfinite-recursion -Wmove -Wcomma -Wblock-capture-autoreleasing -Wstrict-prototypes -Wrange-loop-analysis -Wno-semicolon-before-method-body -index-store-path /Users/vietcat/Library/Developer/Xcode/DerivedData/HieuLuat-agkjobuqjlmomhaomykimnbhnzcl/Index.noindex/DataStore @/Users/vietcat/Library/Developer/Xcode/DerivedData/HieuLuat-agkjobuqjlmomhaomykimnbhnzcl/Build/Intermediates.noindex/HieuLuat.build/Debug-iphoneos/HieuLuat.build/Objects-normal/arm64/82b82416624d2658e5098eb0a28c15c5-common-args.resp -MMD -MT dependencies -MF /Users/vietcat/Library/Developer/Xcode/DerivedData/HieuLuat-agkjobuqjlmomhaomykimnbhnzcl/Build/Intermediates.noindex/HieuLuat.build/Debug-iphoneos/HieuLuat.build/Objects-normal/arm64/wkv.d --serialize-diagnostics /Users/vietcat/Library/Developer/Xcode/DerivedData/HieuLuat-agkjobuqjlmomhaomykimnbhnzcl/Build/Intermediates.noindex/HieuLuat.build/Debug-iphoneos/HieuLuat.build/Objects-normal/arm64/wkv.dia -c /Users/vietcat/Desktop/Workshop/Hieuluat/Code/HieuLuat/HieuLuat/llama.cpp/ggml/src/ggml-sycl/wkv.cpp -o /Users/vietcat/Library/Developer/Xcode/DerivedData/HieuLuat-agkjobuqjlmomhaomykimnbhnzcl/Build/Intermediates.noindex/HieuLuat.build/Debug-iphoneos/HieuLuat.build/Objects-normal/arm64/wkv.o -index-unit-output-path /HieuLuat.build/Debug-iphoneos/HieuLuat.build/Objects-normal/arm64/wkv.o
-
-/Users/vietcat/Desktop/Workshop/Hieuluat/Code/HieuLuat/HieuLuat/llama.cpp/ggml/src/ggml-sycl/wkv.cpp:1:10: fatal error: 'sycl/sycl.hpp' file not found
-    1 | #include <sycl/sycl.hpp>
-      |          ^~~~~~~~~~~~~~~
-1 error generated.
-
-/Users/vietcat/Desktop/Workshop/Hieuluat/Code/HieuLuat/HieuLuat/llama.cpp/ggml/src/ggml-sycl/wkv.cpp:1:10: 'sycl/sycl.hpp' file not found
-
+warning: (arm64) /Users/vietcat/Library/Developer/Xcode/DerivedData/HieuLuat-agkjobuqjlmomhaomykimnbhnzcl/Build/Products/Debug-iphoneos/HieuLuat.app/HieuLuat empty dSYM file detected, dSYM was created with an executable with no debug info.
+`UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+--- Configuring Firebase library......
+[Firebase/Crashlytics] Version 12.12.1
+12.12.1 - [FirebaseAnalytics][I-ACS023007] Analytics v.12.12.1 started
+12.12.1 - [FirebaseAnalytics][I-ACS023008] To enable debug logging set the following application argument: -FIRAnalyticsDebugEnabled (see http://goo.gl/RfcP7r)
+12.12.1 - [FirebaseRemoteConfig][I-RCN000072] New config database created. Resetting user defaults.
+12.12.1 - [FirebaseAnalytics][I-ACS800023] No pending snapshot to activate. SDK name: app_measurement
+[DataConnection] Initializing database...
+[DataConnection] Database ready (v16)
+--- Getting RemoteConfig from Firebase
+Delay to wait for initialization of Firebase and Device information.....
++++++ MixPanel enabled
+ app_open
+ [:]
+Requesting for permission....
+12.12.1 - [FirebaseAnalytics][I-ACS023012] Analytics collection enabled
+12.12.1 - [FirebaseAnalytics][I-ACS023220] Analytics screen reporting is enabled. Call Analytics.logEvent(AnalyticsEventScreenView, parameters: [...]) to log a screen view event. To disable automatic screen reporting, set the flag FirebaseAutomaticScreenReportingEnabled to NO (boolean) in the Info.plist
+12.12.1 - [FirebaseAnalytics][I-ACS023308] Failed to initiate on-device conversion measurement for retrieving aggregate first-party data. Ads account not linked to Google Analytics.
+Checking the initialization conditions....
+Checking the initialization conditions....
+Checking the initialization conditions....
+RemoteConfig fetched!
++++++ MixPanel enabled
+ app_config
+ ["enableInterstitialAds": "false", "enableBannerAds": "false", "trackAutomaticEvents": "false", "defaultActiveQC41Id": "22", "defaultConnectionTries": "30", "minimumAdsInterval": "300", "tamgiuPhuongtienDieukhoanID": "{\"2\":\"2820\", \"17\":\"12766\", \"23\":\"16779\", \"6\":\"6592\"}", "developementMode": "false", "requiredDBVersion": "16", "minimumAppVersion": "1.0", "mixPanelEnabled": "true", "defaultMixPanelEventSendTimeout": "3000", "enableInappNotif": "false", "defaultActiveNDXPId": "23"]
+--- defaultActiveNDXPId: 23
+--- defaultActiveQC41Id: 22
+--- defaultConnectionTries: 20
+--- defaultMixPanelEventSendTimeout: 3000
+--- developementMode: false
+--- enableBannerAds: true
+--- enableInappNotif: false
+--- enableInterstitialAds: false
+--- minimumAdsInterval: 400
+--- minimumAppVersion: 2.6
+--- mixPanelEnabled: true
+--- requiredDBVersion: 16
+--- tamgiuPhuongtienDieukhoanID: 
+23: 16779
+6: 6592
+2: 2820
+17: 12766
+--- trackAutomaticEvents: false
+RemoteConfig fetched successfully
+Checking the initialization conditions....
+Checking the initialization conditions....
+Checking the initialization conditions....
+Denied
+Installation ID: dUN0g1_p4EDLkbcQSjZy3l
+Checking the initialization conditions....
+.... Device IDs ready
+Requesting for permission....
+Denied
+Installation ID: dUN0g1_p4EDLkbcQSjZy3l
+forwarding to Home
++++ Sending analytics to Firebase.....
++++++ analytics tracking sent: app_open &/idforvendor*D34A5733-1B79-4FA9-9D2B-AF5BE5E9B868//adsid*dUN0g1_p4EDLkbcQSjZy3l//dbVersion*16/
+AIModelManager: Device check - RAM: 5640MB, Available: 3047MB, Chip: A15
+AIModelManager: [DETECT] Checking backend in /var/mobile/Containers/Data/Application/091284BA-1AFE-413E-A428-695859535B6B/Library/Application Support/AIModels. Files: nil
+AIModelManager: [DETECT] No .gguf file found, returning .coreML
+AIModelConfig: Cannot read meta.yaml at /var/mobile/Containers/Data/Application/091284BA-1AFE-413E-A428-695859535B6B/Library/Application Support/AIModels/meta.yaml
+AIModelManager: User opted in for AI model
+AIModelManager: [DETECT] Checking backend in /var/mobile/Containers/Data/Application/091284BA-1AFE-413E-A428-695859535B6B/Library/Application Support/AIModels. Files: nil
+AIModelManager: [DETECT] No .gguf file found, returning .coreML
+AIModelConfig: Cannot read meta.yaml at /var/mobile/Containers/Data/Application/091284BA-1AFE-413E-A428-695859535B6B/Library/Application Support/AIModels/meta.yaml
+AIModelManager: Available disk space = 169157 MB
+AIModelManager: Remote Config fetched successfully
+DEBUG: AIRuntimeConfig.fromRemoteConfig() - aiGpuLayers raw value: <FIRRemoteConfigValue: 0x1164e5c80>
+DEBUG: AIRuntimeConfig.fromRemoteConfig() - gpuLayers parsed: 24
+WARNING: aiGpuLayers (24) exceeds device max (20), clamping
+AIModelManager: AI config loaded — gpuLayers=20, ctx=2048, batch=64, threads=4, maxTokens=128, minRAM=5GB, minDisk=9GB
+AIModelManager: Remote model URL = https://pub-03e3206c32dd4761a8823c10fa4999c9.r2.dev/Llama-3.2-3B-Instruct-Q4_K_M.gguf
+AIModelManager: Remote model version = 0.1.0
+AIModelManager: New model version available (0.1.0 vs local none)
+========= ADS: showing real ads
++++ Sending analytics to Firebase.....
++++++ analytics tracking sent: open_screen &/idforvendor*D34A5733-1B79-4FA9-9D2B-AF5BE5E9B868//adsid*dUN0g1_p4EDLkbcQSjZy3l//dbVersion*16//screen_name*TracuuMucphat/
++++++ MixPanel enabled
+ screen_open
+ ["screen_name": "TracuuMucphat"]
+<Google> To get test ads on this device, set: 
+Objective-C
+	GADMobileAds.sharedInstance.requestConfiguration.testDeviceIdentifiers = @[ @"6cd6f10f85af5b1990b6e346ff6fc977" ];
+Swift
+	GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "6cd6f10f85af5b1990b6e346ff6fc977" ]
+<Google> Note that test device identifiers may be reset when uninstalling and reinstalling the application.
+Could not create a sandbox extension for '/var/containers/Bundle/Application/D9BCA792-0E37-442F-A105-CDDD73E781B3/HieuLuat.app'
+WebContent[68922] Unable to hide query parameters from script (missing data)
+59638328 Plugin query method called
+(501) Invalidation handler invoked, clearing connection
+(501) personaAttributesForPersonaType for type:0 failed with error Error Domain=NSCocoaErrorDomain Code=4099 "The connection to service named com.apple.mobile.usermanagerd.xpc was invalidated from this process." UserInfo={NSDebugDescription=The connection to service named com.apple.mobile.usermanagerd.xpc was invalidated from this process.}
+LaunchServices: store (null) or url (null) was nil: Error Domain=NSOSStatusErrorDomain Code=-54 "process may not map database" UserInfo={_LSLine=74, _LSFunction=_LSServer_GetServerStoreForConnectionWithCompletionHandler, _LSFile=LSDReadService.mm, NSDebugDescription=process may not map database}
+Attempt to map database failed: permission was denied. This attempt will not be retried.
+Failed to initialize client context with error Error Domain=NSOSStatusErrorDomain Code=-54 "process may not map database" UserInfo={_LSLine=74, _LSFunction=_LSServer_GetServerStoreForConnectionWithCompletionHandler, _LSFile=LSDReadService.mm, NSDebugDescription=process may not map database}
+LaunchServices: store (null) or url (null) was nil: Error Domain=NSOSStatusErrorDomain Code=-54 "process may not map database" UserInfo={_LSLine=74, _LSFunction=_LSServer_GetServerStoreForConnectionWithCompletionHandler, _LSFile=LSDReadService.mm, NSDebugDescription=process may not map database}
+Attempt to map database failed: permission was denied. This attempt will not be retried.
+Failed to initialize client context with error Error Domain=NSOSStatusErrorDomain Code=-54 "process may not map database" UserInfo={_LSLine=74, _LSFunction=_LSServer_GetServerStoreForConnectionWithCompletionHandler, _LSFile=LSDReadService.mm, NSDebugDescription=process may not map database}
+Failed to change to usage state 2: (null)
+LaunchServices: store (null) or url (null) was nil: Error Domain=NSOSStatusErrorDomain Code=-54 "process may not map database" UserInfo={_LSLine=74, _LSFunction=_LSServer_GetServerStoreForConnectionWithCompletionHandler, _LSFile=LSDReadService.mm, NSDebugDescription=process may not map database}
+Attempt to map database failed: permission was denied. This attempt will not be retried.
+Failed to initialize client context with error Error Domain=NSOSStatusErrorDomain Code=-54 "process may not map database" UserInfo={_LSLine=74, _LSFunction=_LSServer_GetServerStoreForConnectionWithCompletionHandler, _LSFile=LSDReadService.mm, NSDebugDescription=process may not map database}
+LaunchServices: store (null) or url (null) was nil: Error Domain=NSOSStatusErrorDomain Code=-54 "process may not map database" UserInfo={_LSLine=74, _LSFunction=_LSServer_GetServerStoreForConnectionWithCompletionHandler, _LSFile=LSDReadService.mm, NSDebugDescription=process may not map database}
+Attempt to map database failed: permission was denied. This attempt will not be retried.
+Failed to initialize client context with error Error Domain=NSOSStatusErrorDomain Code=-54 "process may not map database" UserInfo={_LSLine=74, _LSFunction=_LSServer_GetServerStoreForConnectionWithCompletionHandler, _LSFile=LSDReadService.mm, NSDebugDescription=process may not map database}
+Failed to change to usage state 2: (null)
+The variant selector cell index number could not be found.
+fopen failed for data file: errno = 2 (No such file or directory)
+Errors found! Invalidating cache...
+fopen failed for data file: errno = 2 (No such file or directory)
+Errors found! Invalidating cache...
+The variant selector cell index number could not be found.
+The variant selector cell index number could not be found.
+The variant selector cell index number could not be found.
+The variant selector cell index number could not be found.
+The variant selector cell index number could not be found.
+The variant selector cell index number could not be found.
+The variant selector cell index number could not be found.
+The variant selector cell index number could not be found.
+The variant selector cell index number could not be found.
+The variant selector cell index number could not be found.
+AIModelManager: [DETECT] Checking backend in /var/mobile/Containers/Data/Application/091284BA-1AFE-413E-A428-695859535B6B/Library/Application Support/AIModels. Files: ["Llama-3.2-3B-Instruct-Q4_K_M.gguf"]
+AIModelManager: [DETECT] Detected .gguf file, returning .llama
+AIModelManager: [LOAD] Llama backend detected
+loading model at: /var/mobile/Containers/Data/Application/091284BA-1AFE-413E-A428-695859535B6B/Library/Application Support/AIModels/Llama-3.2-3B-Instruct-Q4_K_M.gguf
+[llama_bridge] llama_backend_init
+[llama_bridge] loading model: /var/mobile/Containers/Data/Application/091284BA-1AFE-413E-A428-695859535B6B/Library/Application Support/AIModels/Llama-3.2-3B-Instruct-Q4_K_M.gguf (gpu=20, ctx=2048, batch=64, threads=4)
+[llama_bridge] model loaded OK
+[llama_bridge] context created OK (n_ctx=2048)
+[llama_bridge] sampler chain ready
+AIModelManager: Tokenizer created: LlamaTokenizer
+Initialized with contextLength=2048
+AIModelManager: Engine created (iOS 18+): LlamaInferenceEngine
+AIModelManager: [Llama] State set to .ready (tokenizer=LlamaTokenizer, engine=LlamaInferenceEngine)
+tcp_input [C18.1.1.1:3] flags=[R] seq=3656520960, ack=0, win=0 state=LAST_ACK rcv_nxt=3656520960, snd_una=4090487404
+tcp_input [C17.1.1.1:3] flags=[R] seq=19278044, ack=0, win=0 state=LAST_ACK rcv_nxt=19278044, snd_una=637183018
+interruptionHandler is called. -[FontServicesDaemonManager connection]_block_invoke
