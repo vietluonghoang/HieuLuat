@@ -10,6 +10,7 @@ import Foundation
 import os.log
 
 /// Llama-based inference engine, bridging to C++ llama.cpp.
+@available(iOS 18.0, *)
 final class LlamaInferenceEngine: AIInferenceEngine {
     
     private static let logger = OSLog(subsystem: "com.hieuluat.app", category: "LlamaEngine")

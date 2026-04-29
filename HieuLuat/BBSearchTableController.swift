@@ -36,7 +36,7 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     
     var dieukhoanList = [Dieukhoan]()
     var rowCount = 0
-    var bannerView: GADBannerView!
+    var bannerView: BannerView!
     let btnFBBanner = UIButton()
     var plateShapeGroups = [String]()
     var plateShapeGroupFiltersSelected = [String:Bool]()
@@ -159,7 +159,7 @@ class BBSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func initAds() {
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        bannerView = BannerView(adSize: kGADAdSizeSmartBannerPortrait)
         btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
         AdsHelper.initBannerAds(btnFBBanner: btnFBBanner, bannerView: bannerView, toView: adsView, root: self)
     }

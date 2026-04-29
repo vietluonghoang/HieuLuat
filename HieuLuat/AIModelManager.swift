@@ -58,7 +58,7 @@ struct AIRuntimeConfig {
     
     static func fromRemoteConfig() -> AIRuntimeConfig {
         let rc = RemoteConfig.remoteConfig()
-        let gpuLayers = Int32(rc.configValue(forKey: "aiGpuLayers").numberValue.int32Value)
+        var gpuLayers = Int32(rc.configValue(forKey: "aiGpuLayers").numberValue.int32Value)
         let contextLength = rc.configValue(forKey: "aiContextLength").numberValue.intValue
         let batchSize = rc.configValue(forKey: "aiBatchSize").numberValue.intValue
         let threadCount = rc.configValue(forKey: "aiThreadCount").numberValue.intValue
@@ -70,6 +70,16 @@ struct AIRuntimeConfig {
               rc.configValue(forKey: "aiGpuLayers"))
         NSLog("DEBUG: AIRuntimeConfig.fromRemoteConfig() - gpuLayers parsed: %d", gpuLayers)
         
+        // Validate gpuLayers: clamp to safe range
+        let maxGpuLayers = detectMaxSafeGpuLayers()
+        if gpuLayers < 0 {
+            NSLog("WARNING: aiGpuLayers negative (%d), using 0", gpuLayers)
+            gpuLayers = 0
+        } else if gpuLayers > maxGpuLayers {
+            NSLog("WARNING: aiGpuLayers (%d) exceeds device max (%d), clamping", gpuLayers, maxGpuLayers)
+            gpuLayers = maxGpuLayers
+        }
+        
         return AIRuntimeConfig(
             gpuLayers: gpuLayers,
             contextLength: contextLength,
@@ -79,6 +89,16 @@ struct AIRuntimeConfig {
             minimumRAMGB: minimumRAMGB,
             minimumDiskSpaceGB: minimumDiskSpaceGB
         )
+    }
+    
+    private static func detectMaxSafeGpuLayers() -> Int32 {
+        // TODO: Detect device capability based on model and iOS version
+        // A15+ (iPhone 13 Pro, 14+): 40 layers safe
+        // A14/A15 (iPhone 12-13): 30 layers
+        // Older: 10 layers
+        
+        // For now, use conservative default
+        return 20
     }
     
     /// Fallback defaults (matching prototype)
@@ -387,32 +407,57 @@ class AIModelManager {
         state = .checkingRemoteConfig
         
         let remoteConfig = RemoteConfig.remoteConfig()
-        let url = remoteConfig.configValue(forKey: "aiModelUrl").stringValue
-        let version = remoteConfig.configValue(forKey: "aiModelVersion").stringValue
         
-        remoteModelUrl = url
-        remoteModelVersion = version
-        
-        // Load AI runtime params from Remote Config
-        aiConfig = AIRuntimeConfig.fromRemoteConfig()
-        NSLog("AIModelManager: AI config loaded — gpuLayers=%d, ctx=%d, batch=%d, threads=%d, maxTokens=%d, minRAM=%dGB, minDisk=%dGB",
-              aiConfig.gpuLayers, aiConfig.contextLength, aiConfig.batchSize,
-              aiConfig.threadCount, aiConfig.maxNewTokens,
-              aiConfig.minimumRAMGB, aiConfig.minimumDiskSpaceGB)
-        
-        print("AIModelManager: Remote model URL = \(url ?? "nil")")
-        print("AIModelManager: Remote model version = \(version ?? "nil")")
-        
-        if let remoteVersion = version, !remoteVersion.isEmpty {
-            let localVersion = modelVersion
-            if localVersion != remoteVersion {
-                print("AIModelManager: New model version available (\(remoteVersion) vs local \(localVersion ?? "none"))")
-            } else {
-                print("AIModelManager: Model is up to date (version \(remoteVersion))")
+        // Fetch from Firebase server (with no minimum interval for dev)
+        remoteConfig.fetch(withExpirationDuration: 0) { [weak self] status, error in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    NSLog("AIModelManager: Remote Config fetch failed: %@", error.localizedDescription)
+                    // Continue with cached values
+                } else if status == .success {
+                    NSLog("AIModelManager: Remote Config fetched successfully")
+                    // Activate fetched values
+                    remoteConfig.activate { activated, error in
+                        if let error = error {
+                            NSLog("AIModelManager: Remote Config activate failed: %@", error.localizedDescription)
+                        } else if activated {
+                            NSLog("AIModelManager: Remote Config activated")
+                        }
+                    }
+                }
+                
+                // Load config (cached or fetched)
+                let url = remoteConfig.configValue(forKey: "aiModelUrl").stringValue
+                let version = remoteConfig.configValue(forKey: "aiModelVersion").stringValue
+                
+                self.remoteModelUrl = url
+                self.remoteModelVersion = version
+                
+                // Load AI runtime params from Remote Config
+                self.aiConfig = AIRuntimeConfig.fromRemoteConfig()
+                NSLog("AIModelManager: AI config loaded — gpuLayers=%d, ctx=%d, batch=%d, threads=%d, maxTokens=%d, minRAM=%dGB, minDisk=%dGB",
+                      self.aiConfig.gpuLayers, self.aiConfig.contextLength, self.aiConfig.batchSize,
+                      self.aiConfig.threadCount, self.aiConfig.maxNewTokens,
+                      self.aiConfig.minimumRAMGB, self.aiConfig.minimumDiskSpaceGB)
+                
+                print("AIModelManager: Remote model URL = \(url)")
+                print("AIModelManager: Remote model version = \(version)")
+                
+                if !version.isEmpty {
+                    let remoteVersion = version
+                    let localVersion = self.modelVersion
+                    if localVersion != remoteVersion {
+                        print("AIModelManager: New model version available (\(remoteVersion) vs local \(localVersion ?? "none"))")
+                    } else {
+                        print("AIModelManager: Model is up to date (version \(remoteVersion))")
+                    }
+                }
+                
+                self.state = .idle
             }
         }
-        
-        state = .idle
     }
     
     // MARK: - Disk Space
@@ -828,16 +873,24 @@ class AIModelManager {
         
         let stopTokenIds = tokenizer.stopTokenIds
         
-        if detectBackend() == .llama, let llamaEngine = engine as? LlamaInferenceEngine {
-            // Build prompt
-            let inputTokens = tokenizer.buildPrompt(userMessage: input)
-            let formattedPrompt = tokenizer.decode(inputTokens)
-            
-            NSLog("AIModelManager: Using Llama engine (prompt length: %d)", formattedPrompt.count)
-            
-            llamaEngine.runGenerate(prompt: formattedPrompt, maxNewTokens: aiConfig.maxNewTokens, stopTokenIds: stopTokenIds) { outputTokens in
-                let result = tokenizer.decode(outputTokens)
-                completion(result)
+        if detectBackend() == .llama {
+            if #available(iOS 18.0, *) {
+                guard let llamaEngine = engine as? LlamaInferenceEngine else {
+                    fatalError("Engine is not LlamaInferenceEngine despite backend detection")
+                }
+                // Build prompt
+                let inputTokens = tokenizer.buildPrompt(userMessage: input)
+                let formattedPrompt = tokenizer.decode(inputTokens)
+                
+                NSLog("AIModelManager: Using Llama engine (prompt length: %d)", formattedPrompt.count)
+                
+                llamaEngine.runGenerate(prompt: formattedPrompt, maxNewTokens: aiConfig.maxNewTokens, stopTokenIds: stopTokenIds) { outputTokens in
+                    let result = tokenizer.decode(outputTokens)
+                    completion(result)
+                }
+            } else {
+                NSLog("AIModelManager: Llama backend requires iOS 18.0+")
+                completion("")
             }
         } else {
             // Build prompt on main thread (fast)

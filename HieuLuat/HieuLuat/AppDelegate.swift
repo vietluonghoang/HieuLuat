@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //         Sample AdMob app ID: ca-app-pub-3940256099942544~1458002511
         //                GADMobileAds.configure(withApplicationID: "cca-app-pub-3940256099942544/6300978111")
 //        GADMobileAds.configure(withApplicationID: "ca-app-pub-1832172217205335~6889602059")
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        MobileAds.initialize()
         
         // Initialize MixPanel
         AnalyticsHelper.initMixPanel(userID: "")

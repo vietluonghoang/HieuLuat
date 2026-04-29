@@ -29,7 +29,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     var searchFilters = [String:[String:[String:String]]]()
     var builtQuery = ""
     var settings = GeneralSettings()
-    var bannerView: GADBannerView!
+    var bannerView: BannerView!
     let btnFBBanner = UIButton()
     let redirectionHelper = RedirectionHelper()
     
@@ -176,7 +176,7 @@ class MPSearchTableController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func initAds() {
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        bannerView = BannerView(adSize: kGADAdSizeSmartBannerPortrait)
         btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
         AdsHelper.initBannerAds(btnFBBanner: btnFBBanner, bannerView: bannerView, toView: bottomView, root: self)
     }

@@ -4,6 +4,8 @@
 //
 
 #import <Foundation/Foundation.h>
+// Enable Metal BF16 support
+#define GGML_METAL_HAS_BF16 1
 #include "llama.h"
 #include <string>
 #include <vector>

@@ -19,7 +19,7 @@ class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, U
     var specificVanbanId = [String]()
     let searchController = UISearchController(searchResultsController: nil)
     var rowCount = 0
-    var bannerView: GADBannerView!
+    var bannerView: BannerView!
     let btnFBBanner = UIButton()
     let redirectionHelper = RedirectionHelper()
     
@@ -55,7 +55,7 @@ class VBPLDetailsSearchTableController: UIViewController, UITableViewDelegate, U
     }
     
     func initAds() {
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        bannerView = BannerView(adSize: kGADAdSizeSmartBannerPortrait)
         btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
         AdsHelper.initBannerAds(btnFBBanner: btnFBBanner, bannerView: bannerView, toView: viewAds, root: self)
     }

@@ -33,7 +33,7 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
     
     var dieukhoanList = [Dieukhoan]()
     var rowCount = 0
-    var bannerView: GADBannerView!
+    var bannerView: BannerView!
     let btnFBBanner = UIButton()
     var vachShapeGroups = [String]()
     var vachShapeGroupFiltersSelected = [String:Bool]()
@@ -134,7 +134,7 @@ class VKDTableController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func initAds() {
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        bannerView = BannerView(adSize: kGADAdSizeSmartBannerPortrait)
         btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
         AdsHelper.initBannerAds(btnFBBanner: btnFBBanner, bannerView: bannerView, toView: adsView, root: self)
     }

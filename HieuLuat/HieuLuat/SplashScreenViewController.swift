@@ -340,7 +340,7 @@ class SplashScreenViewController: UIViewController {
         )
         GeneralSettings.minimumAppVersionRequired = remoteConfig.configValue(
             forKey: "minimumAppVersion"
-        ).stringValue!
+        ).stringValue
         print(
             "--- minimumAppVersion: \(GeneralSettings.minimumAppVersionRequired)"
         )

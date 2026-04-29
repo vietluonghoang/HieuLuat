@@ -43,7 +43,11 @@ enum AIInferenceEngineFactory {
             guard let tokenizer = tokenizer as? AITokenizer else {
                 fatalError("AITokenizer required for Llama backend")
             }
-            return LlamaInferenceEngine(tokenizer: tokenizer, config: config)
+            if #available(iOS 18.0, *) {
+                return LlamaInferenceEngine(tokenizer: tokenizer, config: config)
+            } else {
+                fatalError("Llama backend requires iOS 18.0+")
+            }
         }
         
         // Ensure required CoreML models are present

@@ -12,7 +12,7 @@ import GoogleMobileAds
 
 class InstructionSearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
-    var bannerView: GADBannerView!
+    var bannerView: BannerView!
     let btnFBBanner = UIButton()
     let redirectionHelper = RedirectionHelper()
     let searchController = UISearchController(searchResultsController: nil)
@@ -101,7 +101,7 @@ class InstructionSearchViewController: UIViewController, UITableViewDelegate, UI
     }
     
     func initAds() {
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        bannerView = BannerView(adSize: kGADAdSizeSmartBannerPortrait)
         btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
         AdsHelper.initBannerAds(btnFBBanner: btnFBBanner, bannerView: bannerView, toView: viewBottom, root: self)
     }

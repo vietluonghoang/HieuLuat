@@ -30,7 +30,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate,
     private var searchKeyword = ""
     private var rowCount = 0
     var filterSettings = [String: String]()
-    private var bannerView: GADBannerView!
+    private var bannerView: BannerView!
     private let btnFBBanner = UIButton()
     private let redirectionHelper = RedirectionHelper()
     
@@ -117,7 +117,7 @@ class VBPLSearchTableController: UIViewController, UITableViewDelegate,
     }
 
     func initAds() {
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        bannerView = BannerView(adSize: kGADAdSizeSmartBannerPortrait)
         btnFBBanner.addTarget(
             self, action: #selector(btnFouderFBAction), for: .touchDown)
         AdsHelper.initBannerAds(

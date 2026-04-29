@@ -25,7 +25,7 @@ class InstructionDetailsViewController: UIViewController {
     
     var phantich = Phantich()
     var redirectionHelper = RedirectionHelper()
-    var bannerView: GADBannerView!
+    var bannerView: BannerView!
     let btnFBBanner = UIButton()
     let network = NetworkHandler()
     
@@ -94,7 +94,7 @@ class InstructionDetailsViewController: UIViewController {
     
     func initAds() {
         //Initialize Google Admob
-        bannerView = GADBannerView(adSize: GADAdSizeBanner)
+        bannerView = BannerView(adSize: AdSizeBanner)
         btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
         AdsHelper.initBannerAds(btnFBBanner: btnFBBanner, bannerView: bannerView, toView: viewBottom, root: self)
     }

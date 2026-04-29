@@ -16,7 +16,7 @@ class AdsHelper {
     private static var lastAdRequestTime: TimeInterval = 0
     private static let minimumAdRequestInterval: TimeInterval = 5.0 // seconds between requests
     
-    class func initBannerAds(btnFBBanner: UIButton, bannerView: GADBannerView, toView: UIView, root: UIViewController){
+    class func initBannerAds(btnFBBanner: UIButton, bannerView: BannerView, toView: UIView, root: UIViewController){
         if GeneralSettings.isEnableBannerAds && AdsHelper.isConnectedToNetwork() {
             addBannerViewToView(bannerView: bannerView,toView: toView, root: root)
         }else{
@@ -24,7 +24,7 @@ class AdsHelper {
         }
     }
     
-    class func addBannerViewToView(bannerView: GADBannerView, toView: UIView, root: UIViewController) {
+    class func addBannerViewToView(bannerView: BannerView, toView: UIView, root: UIViewController) {
         bannerView.translatesAutoresizingMaskIntoConstraints = false
         toView.addSubview(bannerView)
         toView.addConstraints(
@@ -85,11 +85,11 @@ class AdsHelper {
             print("========= ADS: throttling request, retrying in \(String(format: "%.1f", delay))s")
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                 self.lastAdRequestTime = Date().timeIntervalSince1970
-                bannerView.load(GADRequest())
+                bannerView.load(Request())
             }
         } else {
             lastAdRequestTime = now
-            bannerView.load(GADRequest())
+            bannerView.load(Request())
         }
     }
     

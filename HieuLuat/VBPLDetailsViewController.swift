@@ -90,7 +90,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     let searchController = UISearchController(searchResultsController: nil)
     var rowCount = 0
     var settings = GeneralSettings()
-    var bannerView: GADBannerView!
+    var bannerView: BannerView!
     let btnFBBanner = UIButton()
     let redirectionHelper = RedirectionHelper()
     var contentString = ""
@@ -214,7 +214,7 @@ class VBPLDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func initAds() {
         //Initialize Google Admob
-        bannerView = GADBannerView(adSize: GADAdSizeBanner)
+        bannerView = BannerView(adSize: AdSizeBanner)
         btnFBBanner.addTarget(self, action: #selector(btnFouderFBAction), for: .touchDown)
         AdsHelper.initBannerAds(btnFBBanner: btnFBBanner, bannerView: bannerView, toView: viewAds, root: self)
     }
