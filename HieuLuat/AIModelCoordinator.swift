@@ -168,13 +168,14 @@ class AIModelCoordinator: NSObject {
     }
     
     private func beginDownload() {
+        NSLog("🔵 AIModelCoordinator: [MILESTONE] Download starting...")
         overlay.showMinimized()
         listenForModelState()
         manager.startDownload()
         
         // Try to resume a previous interrupted download first
         if downloader.hasResumeData {
-            print("AIModelCoordinator: Resuming interrupted download...")
+            NSLog("🔄 AIModelCoordinator: [MILESTONE] Resuming interrupted download...")
             downloader.resumeDownload()
             return
         }
@@ -322,6 +323,10 @@ extension AIModelCoordinator: AIModelDownloaderDelegate {
     }
     
     func downloader(_ downloader: AIModelDownloader, didFinishDownloadingTo location: URL) {
+        let fileSize = (try? FileManager.default.attributesOfItem(atPath: location.path))?[.size] as? NSNumber
+        let fileSizeMB = Double(fileSize?.int64Value ?? 0) / (1024.0 * 1024.0)
+        NSLog("✅ AIModelCoordinator: [MILESTONE] Download completed (%.1f MB)", fileSizeMB)
+        
         // If it's already in the models directory, just notify manager to load
         if location.path.contains("AIModels") {
             manager.downloadAndUnzipCompleted()
@@ -331,6 +336,7 @@ extension AIModelCoordinator: AIModelDownloaderDelegate {
         let appSupportURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
         let modelsDir = appSupportURL.appendingPathComponent("AIModels")
         
+        NSLog("🔄 AIModelCoordinator: [MILESTONE] Unzip starting...")
         unzipper.unzip(fileAt: location, to: modelsDir)
     }
     
@@ -353,6 +359,7 @@ extension AIModelCoordinator: AIModelUnzipperDelegate {
     }
     
     func unzipper(_ unzipper: AIModelUnzipper, didFinishUnzippingTo destination: URL) {
+        NSLog("✅ AIModelCoordinator: [MILESTONE] Unzip completed")
         manager.downloadAndUnzipCompleted()
     }
     

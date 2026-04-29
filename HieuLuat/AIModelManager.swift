@@ -66,18 +66,10 @@ struct AIRuntimeConfig {
         let minimumRAMGB = rc.configValue(forKey: "aiMinimumRAM").numberValue.intValue
         let minimumDiskSpaceGB = rc.configValue(forKey: "aiMinimumDiskSpace").numberValue.intValue
         
-        NSLog("DEBUG: AIRuntimeConfig.fromRemoteConfig() - aiGpuLayers raw value: %@", 
-              rc.configValue(forKey: "aiGpuLayers"))
-        NSLog("DEBUG: AIRuntimeConfig.fromRemoteConfig() - gpuLayers parsed: %d", gpuLayers)
-        
-        // Validate gpuLayers: clamp to safe range
-        let maxGpuLayers = detectMaxSafeGpuLayers()
+        // Validate gpuLayers: only clamp negative values
         if gpuLayers < 0 {
             NSLog("WARNING: aiGpuLayers negative (%d), using 0", gpuLayers)
             gpuLayers = 0
-        } else if gpuLayers > maxGpuLayers {
-            NSLog("WARNING: aiGpuLayers (%d) exceeds device max (%d), clamping", gpuLayers, maxGpuLayers)
-            gpuLayers = maxGpuLayers
         }
         
         return AIRuntimeConfig(
@@ -89,16 +81,6 @@ struct AIRuntimeConfig {
             minimumRAMGB: minimumRAMGB,
             minimumDiskSpaceGB: minimumDiskSpaceGB
         )
-    }
-    
-    private static func detectMaxSafeGpuLayers() -> Int32 {
-        // TODO: Detect device capability based on model and iOS version
-        // A15+ (iPhone 13 Pro, 14+): 40 layers safe
-        // A14/A15 (iPhone 12-13): 30 layers
-        // Older: 10 layers
-        
-        // For now, use conservative default
-        return 20
     }
     
     /// Fallback defaults (matching prototype)
@@ -566,10 +548,11 @@ class AIModelManager {
     func loadModels() {
         // Prevent duplicate loads
         guard !isModelReady && !isBusy else {
-            print("AIModelManager: loadModels() skipped — already \(isModelReady ? "ready" : "busy")")
+            NSLog("AIModelManager: loadModels() skipped — already %@", isModelReady ? "ready" : "busy")
             return
         }
         
+        NSLog("🔵 AIModelManager: [MILESTONE] loadModels() starting...")
         let backend = detectBackend()
         
         if backend == .llama {
@@ -616,6 +599,7 @@ class AIModelManager {
                     self.tokenizer = tokenizer
                     self.inferenceEngine = engine
                     self.readyTimestamp = Date()
+                    NSLog("✅ AIModelManager: [MILESTONE] Models loaded successfully (.ready)")
                     NSLog("AIModelManager: [Llama] State set to .ready (tokenizer=%@, engine=%@)",
                           String(describing: type(of: tokenizer)),
                           engine == nil ? "nil" : String(describing: type(of: engine!)))
@@ -844,11 +828,8 @@ class AIModelManager {
     }
     
     func runInference(input: String, completion: @escaping (String) -> Void) {
-         NSLog("AIModelManager: runInference() CALLED with input=\(input.prefix(50))... isModelReady=%d", isModelReady ? 1 : 0)
-         NSLog("AIModelManager: runInference called, isModelReady=%d, tokenizer=%@, engine=%@",
-               isModelReady ? 1 : 0,
-               tokenizer == nil ? "nil" : String(describing: type(of: tokenizer!)),
-               inferenceEngine == nil ? "nil" : String(describing: type(of: inferenceEngine!)))
+        let inputPreview = input.prefix(60).replacingOccurrences(of: "\n", with: " ")
+        NSLog("🔵 AIModelManager: [MILESTONE] Inference starting (input: %@...)", inputPreview)
         
         guard isModelReady else {
             NSLog("AIModelManager: Models not ready for inference")
@@ -886,6 +867,8 @@ class AIModelManager {
                 
                 llamaEngine.runGenerate(prompt: formattedPrompt, maxNewTokens: aiConfig.maxNewTokens, stopTokenIds: stopTokenIds) { outputTokens in
                     let result = tokenizer.decode(outputTokens)
+                    let outputPreview = result.prefix(60).replacingOccurrences(of: "\n", with: " ")
+                    NSLog("✅ AIModelManager: [MILESTONE] Inference completed (output: %@...)", outputPreview)
                     completion(result)
                 }
             } else {
@@ -909,6 +892,8 @@ class AIModelManager {
                 
                 let filteredTokens = outputTokens.filter { !tokenizer.isStopToken($0) }
                 let result = tokenizer.decode(filteredTokens)
+                let outputPreview = result.prefix(60).replacingOccurrences(of: "\n", with: " ")
+                NSLog("✅ AIModelManager: [MILESTONE] Inference completed (output: %@...)", outputPreview)
                 
                 completion(result)
             }
